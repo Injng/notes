@@ -40,6 +40,7 @@ This is particularly ingenious because the density of the lines directly correla
 Now we will attempt to calculate the electric field due to an infinite wire containing charge of density $\lambda$ Coulombs per meter:
 
 ![[Pasted image 20241204204127.png]]
+
 We shall take a tiny length of the wire, $dx$, and consider the small difference of electric field $d\vec{E}$ that it imparts on a charge above it. 
 
 Firstly, note that all the horizontal components will cancel due to symmetry. Another symmetry argument for this could be that for any argument you give me that it should tilt to the left, that same argument can be applied to say that it should tilt to the right — because on an infinite line of charge, the side to the left and the side to the right of the charge look exactly identical.
