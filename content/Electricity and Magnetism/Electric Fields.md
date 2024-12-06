@@ -70,3 +70,45 @@ $$
 And there we go.
 
 There is something interesting about this. How does this field get weaker as distance, $a$, increases? It falls over like $\frac{1}{a}$, not like $\frac{1}{a^2}$ as we would expect. This is because we are considering an infinite line of charge, so all of the forces that a charge would experience adds up to a field that falls like $\frac{1}{a}$.
+### Electric Field Due to an Infinite Plane of Charge
+Now we will consider the electric field due to an infinite sheet of positive charge, with charge density $\sigma$ (notice the $\sigma$ is used for Coulombs per area, and $\lambda$ is used for Coulombs per length).
+
+Now, notice by symmetry arguments similar to what we did for an infinite line, the electric field should be the same no matter how you translate the plane. Additionally, there should be no component that is not perpendicular to the plane.
+
+![[Pasted image 20241205201447.png]]
+
+Now we shall consider a tiny piece of area on the ring shown above $dA$ due to $dr$. The electric field that is represented by the arrow on the charge above the plane shall then be $d\vec{E}$. By Coulomb's Law:
+$$
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{\sigma dA}{(a^2+r^2)}
+$$
+By symmetry, we only need to consider the component perpendicular to the plane:
+$$
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{\sigma dA}{(a^2+r^2)} \cdot \frac{a}{(a^2+r^2)^\frac{1}{2}}
+$$
+Now, we are only considering an area $dA$ of the ring. What if we wanted the entire area, $A$, of the ring? Well, we can just look at this as an infinitesimally small annulus, which can literally be approximated to be a rectangle of length circumference ($2\pi r$) and width $dr$. Thus:
+$$
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{2\pi r dr}{(a^2+r^2)^\frac{3}{2}} \cdot a\sigma
+$$
+Now, we shall integrate this to obtain $E$:
+$$
+E=\frac{a\sigma}{2\epsilon_0} \int_{0}^{\infty}{\frac{rdr}{(a^2+r^2)^\frac{3}{2}}}
+$$
+Looking at this, we can perform the same trig substitution for $r=a\tan{\theta}$ as we did above. However, we can also do it a different, arguably simpler way, by performing the substitution $u=r^2$, which follows that $\frac{dw}{2}=rdr$:
+$$
+E = \frac{a\sigma}{2\epsilon_0} \int_{0}^{\infty}{\frac{dw}{2(w+a^2)^\frac{3}{2}}} = \frac{a\sigma}{4\epsilon_0} \int_{0}^{\infty}{\frac{dw}{(w+a^2)^\frac{3}{2}}}
+$$
+Now, this has become much easier to integrate:
+$$
+E = \frac{a\sigma}{4\epsilon_0} \cdot \left[\frac{-2}{(w+a^2)^\frac{1}{2}}\right]_{0}^{\infty} = \frac{a\sigma}{4\epsilon_0}\cdot\frac{2}{a}
+$$
+Thus, our answer is:
+$$
+E = \frac{\sigma}{2\epsilon_0}
+$$
+Now, this is very interesting. Notice that our $a$ term cancelled out — it doesn't depend on distance! No matter how far you go from the infinite plane of charge, the effect will still be the exact same.
+
+Intuitively, you could look at the perpendicular component and reach a viable argument:
+
+![[Pasted image 20241205205046.png]]
+
+You realize that as a point moves farther away, the perpendicular component is larger relative to when it is closer, and so somehow this increase cancels out perfectly with the decrease in force due to the larger distance.
