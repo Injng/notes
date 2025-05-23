@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-05-23 Fri 12:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Electricity_and_Magnetism/index.html">Electricity And Magnetism</a></div>
+</div>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc5615fc">1. Electric Flux</a>
+<ul>
+<li><a href="#org511b27d">1.1. Introduction to Flux</a></li>
+<li><a href="#orgd678630">1.2. Introduction to Electric Flux</a>
+<ul>
+<li><a href="#org7e11842">1.2.1. Area as a Vector</a></li>
+<li><a href="#org2d42789">1.2.2. The Dot Product</a></li>
+<li><a href="#org4db05dd">1.2.3. Electric Flux on a Surface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org2158d7e">2. Gauss's Law</a>
+<ul>
+<li>
+<ul>
+<li><a href="#org107e938">2.0.1. For Continuous Charges</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc5615fc" class="outline-2">
+<h2 id="orgc5615fc"><span class="section-number-2">1.</span> Electric Flux</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org511b27d" class="outline-3">
+<h3 id="org511b27d"><span class="section-number-3">1.1.</span> Introduction to Flux</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+In order to understand electric flux, it is important to attain an intuitive understanding of what flux itself is first.
+</p>
+
+<p>
+Flux, put simply, is a measure for the amount of stuff that goes through a particular surface. This can be measured in different ways depending
+on the item you are measuring. A common metaphor for this is putting a hula hoop into rain. The surface would be the surface enclosed by
+the hula hoop, and the flux would be the rate of rain passing through the hula hoop per unit area. 
+</p>
+
+<p>
+In other words, here flux can be seen as <b>flow rate per unit area</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd678630" class="outline-3">
+<h3 id="orgd678630"><span class="section-number-3">1.2.</span> Introduction to Electric Flux</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Electric flux is a bit different. You can think of electric flux as the <b>number of field lines passing through an area</b>. Remember, field line
+density is directly proportional to electric field magnitude, so these two can be used interchangeably. Therefore, we can set up a little
+equivalency here:
+</p>
+
+<p>
+\[
+\frac{N}{A} \propto E
+\]
+</p>
+
+<p>
+Here, \(N\) is the number of field lines, \(A\) is the area we are considering, \(E\) is the magnitude of the elctric field, and so \(\frac{N}{A}\)
+is field line density (number of lines per unit area).
+</p>
+
+<p>
+Therefore, to get the total number of field lines passing through an area \(A\), we can do:
+</p>
+
+<p>
+\[
+N \propto EA
+\]
+</p>
+
+<p>
+Now, this is not precisely our definition of electric flux, but it is close. The real definition is actually \(\vec{E} \cdot \vec{A}\), with a dot product:
+</p>
+
+<p>
+\[
+\Phi = \vec{E} \cdot \vec{A} \tag{1}
+\]
+</p>
+
+<p>
+Firstly, this is necessary because we are working with vectors. Vectors have direction, and we need a way to deal with that.
+</p>
+</div>
+<div id="outline-container-org7e11842" class="outline-4">
+<h4 id="org7e11842"><span class="section-number-4">1.2.1.</span> Area as a Vector</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+One interesting thing that this brings up is that I just asserted that \(E\) and \(A\) are vectors. But how can area, which is a purely numerical
+statement, be a vector?
+</p>
+
+<p>
+Well, it can. Area as a vector can have many interesting implications, but all we need to know right now is how it is defined. We know the
+magnitude of area — that's just area — but how do we know which direction it points in?
+</p>
+
+<p>
+Consider an area in 3D. The direction that the area vector of this area points in must <i>uniquely identify this area</i>, in other words the direction
+in points in must have one and only one corresponding plane. The normal vector fits the bill perfectly. 
+</p>
+
+<p>
+Notice that a plane has two normal vectors, however — one pointing up and one pointing down. Which one do we choose?
+</p>
+
+<p>
+The cross product answers this question for us. Geometrically, the cross product between two vectors is equivalent to the area of the
+parallelogram bounded by those two vectors. The direction of the cross product is given by the right-hand rule. The vector for our area, then,
+shall also be given by the right-hand rule.
+</p>
+
+<p>
+In summary, the area vector is as follows: (1) it's magnitude is the area, and (2) the direction is normal to the surface, given by the right-hand
+rule for the vectors bounding the area.
+</p>
+</div>
+</div>
+<div id="outline-container-org2d42789" class="outline-4">
+<h4 id="org2d42789"><span class="section-number-4">1.2.2.</span> The Dot Product</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+But why is it that we use a  dot product, you ask? Well, consider how 
+\(\vec{E} \cdot \vec{A} = \| \vec{E} \| \| \vec{A} \| \cos{\theta}\), where \(\theta\) is the angle the two vectors are making with each other.
+</p>
+
+<p>
+This \(\cos{\theta}\) is key:
+</p>
+
+
+<div id="org1e95916" class="figure">
+<p><img src="../../static/flux_surface.png" alt="flux_surface.png" />
+</p>
+</div>
+
+<p>
+The claim that field line density is \(\frac{N}{A}\) here is an oversimplification. The \(A\) that we are referring to must actually be
+normal to the field lines for this equation to work. The diagram above shows this clearly: even though the tilted surface is larger, the 
+number of field lines that pass through it is the same, which means the <i>flux has to be the same</i>.
+</p>
+
+<p>
+For this to hold true, we need to consider the tilted surface exactly the same as the normal one. Here's where the\(\cos{\theta}\) comes into 
+play. If we consider the tilted rectangle to be \(A = lw\), then the normal one would be \(A = (l \cos{\theta})w\), which means the area of
+the normal rectangle, \(A_{n}\), will be:
+</p>
+
+<p>
+\[
+A_{n} = A\cos{\theta}
+\]
+</p>
+
+<p>
+Therefore, what the dot product is really doing is multiplying the electric field and the area together, but also taking into account if
+the area is tilted or not with the extra \(\cos{\theta}\) term.
+</p>
+</div>
+</div>
+<div id="outline-container-org4db05dd" class="outline-4">
+<h4 id="org4db05dd"><span class="section-number-4">1.2.3.</span> Electric Flux on a Surface</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+Now that we have established that electric flux is \(\vec{E} \cdot \vec{A}\), we have to face an uncomfortable truth: in the real-world,
+surfaces are rarely simple 2D rectangles.
+</p>
+
+<p>
+This is where calculus comes in. For complicated 3D shapes, we can model their surface areas as the sum of a bunch of infinitesimally
+small rectangular areas \(d\vec{A}\), and then add them all up with a <b>surface integral</b>. Note that this surface must be closed. A surface integral 
+is essentially a way to  integrate over the entire surface of something, and by doing so \(d\vec{A}\) we can obtain the surface area:
+</p>
+
+<p>
+\[
+\Phi = \iint{\vec{E} d\vec{A}} \tag{2}
+\]
+</p>
+
+<p>
+This is also  electric flux.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org2158d7e" class="outline-2">
+<h2 id="org2158d7e"><span class="section-number-2">2.</span> Gauss's Law</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Remember that the double integral expression for electric flux, (2),  holds <i>for any closed surface</i>. One particular closed surface of interest is the sphere.
+Let's imagine a sphere surrounding a central charge of \(q\) Coulombs. We know that the electric flux out of this sphere must be equivalent to
+the electric flux out of any other surface.
+</p>
+
+<p>
+Now, the sphere is nice because we don't need to use surface integrals. Each field line is perfectly perpendicular to the surface of the sphere, and we
+know that the surface area of a sphere is \(4\pi r^2\). Therefore, by the definition of electric flux given by (1), we know that:
+</p>
+
+<p>
+\[
+\Phi = \vec{E} \cdot 4\pi r^2 = \frac{q}{4\pi\epsilon_0 r^2} \cdot 4\pi r^2 = \frac{q}{\epsilon_0}
+\]
+</p>
+
+<p>
+As we said before, the flux through a closed surface surrounding a charge would be the same no matter what the closed surface is, as long as it is
+the same charge. Therefore, be equating this with (2), we obtain:
+</p>
+
+<p>
+\[
+\frac{q}{\epsilon_0} = \iint{\vec{E}d\vec{A}} \tag{3}
+\]
+</p>
+
+<p>
+This result is known as <b>Gauss's Law</b>. Notice that by the superposition principle, this still holds for any number of charges within the enclosed
+surface; by this definition \(q\) is just the total charge enclosed by the surface.
+</p>
+</div>
+<div id="outline-container-org107e938" class="outline-4">
+<h4 id="org107e938"><span class="section-number-4">2.0.1.</span> For Continuous Charges</h4>
+<div class="outline-text-4" id="text-2-0-1">
+<p>
+What if we don't have discrete charges, however? Let's say we have a continuous charge distribution with a <i>charge density function</i> 
+\(\rho(x, y, z)\). Then, take tiny cubes within the surfaee of dimension \(\mathrm{d}x\), \(\mathrm{d}y\), and \(\mathrm{d}z\). Then, the charge
+within each of these tiny cubes would be \(\rho(x, y, z)\mathrm{d}x\mathrm{d}y\mathrm{d}z\).
+</p>
+
+<p>
+Then, to calculate the total charge \(q\) inside a surface for a continuous charge distribution, we can take a triple integral in order to integrate
+over the volume for each of these tiny cubes:
+</p>
+
+<p>
+\[
+q = \iiint{\rho(x,y,z) \mathrm{d}x \mathrm{d} y \mathrm{d}z}
+\]
+</p>
+
+<p>
+Therefore, for a continuous charge distribution, Gauss's Law can be written as:
+</p>
+
+<p>
+\[
+\frac{1}{\epsilon_0}  \iiint{\rho(x,y,z) \mathrm{d}x \mathrm{d} y \mathrm{d}z} =  \iint{\vec{E}d\vec{A}} \tag{4}
+\]
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Lin Jiang</p>
+<p class="date">Created: 2025-05-23 Fri 12:51</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

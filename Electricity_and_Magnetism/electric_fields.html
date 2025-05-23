@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-05-23 Fri 12:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Electricity_and_Magnetism/index.html">Electricity And Magnetism</a></div>
+</div>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgee25c8d">1. Introduction to Electrostatics</a>
+<ul>
+<li><a href="#org041b50a">1.1. Charges</a></li>
+<li><a href="#orgdb968d6">1.2. Coulomb's Law</a></li>
+</ul>
+</li>
+<li><a href="#org4db1db5">2. Electric Fields</a>
+<ul>
+<li><a href="#org25c4228">2.1. Electric Field Lines</a></li>
+<li><a href="#org046e4cd">2.2. Electric Field Due to an Infinite Line of Charge</a></li>
+<li><a href="#orga3eaf43">2.3. Electric Field Due to an Infinite Plane of Charge</a></li>
+</ul>
+</li>
+<li><a href="#org30a389d">3. Conductors and Insulators</a>
+<ul>
+<li><a href="#org1ad0f06">3.1. Conductors</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgee25c8d" class="outline-2">
+<h2 id="orgee25c8d"><span class="section-number-2">1.</span> Introduction to Electrostatics</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+To begin our discussion of electric fields, we should first consider the study of <b>electrostatics</b>
+</p>
+
+<p>
+Electrostatics is the study of charges that are not moving (the opposite of that is <i>electrodynamics</i>, but we'll get to that later).
+</p>
+
+<p>
+One law upholds the entirety of electrostatics, and that law is known as Coulomb's Law.
+</p>
+</div>
+<div id="outline-container-org041b50a" class="outline-3">
+<h3 id="org041b50a"><span class="section-number-3">1.1.</span> Charges</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Charges are the gateway to electricity and magnetism. To be able to play this game, you must have charge. In a way, charge can be seen as a physical property.
+</p>
+
+<p>
+Negative charge is carried by electrons. Interestingly, this is the most basic unit of charge: this negative charge carried by electrons exactly equals the positive charge carried by protons. Neutrons do not carry charge — they are neutral. This also means that charge is <b>quantized</b>, as only basic units of charge can be added up.
+</p>
+
+<p>
+This quantized charge is the charge in an electron, which is \(-e=1.602\times 10^{-19} \text{ C}\).
+</p>
+
+<p>
+Charge is also conserved locally.  Charge cannot be universally conserved, as this would violate special relativity.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdb968d6" class="outline-3">
+<h3 id="orgdb968d6"><span class="section-number-3">1.2.</span> Coulomb's Law</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Now onto this great law known as Coulomb's Law. It basically states that the force experienced by a charged particle due to another charged particle is directly proportional to their charges and inversely proportional to their squared distance:
+\[
+F_C=\frac{1}{4\pi\epsilon_0}\frac{q_1q_2}{r^2}\hat{r}
+\]
+Notice its similarities with the Universal Law of Gravitation.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4db1db5" class="outline-2">
+<h2 id="org4db1db5"><span class="section-number-2">2.</span> Electric Fields</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Electric fields are basically just a generalization of Coulomb's Law. We remove the actual physical charge from the law, and consider only a "test charge" — theorizing "what would happen" if a charge was actually there.
+</p>
+
+<p>
+You can also think of it as putting a charge of 1 there to just test the "electric field". Thus, the electric field given by a charge \(q\)  is just:
+</p>
+
+<p>
+\[
+E = \frac{1}{4\pi\epsilon_0} \frac{q}{r^2} \hat{r}
+\]
+</p>
+
+<p>
+Notice that the second charge is nowhere to be seen. This is because we can now rewrite Coulomb's Law as:
+</p>
+
+<p>
+\[
+F_C = qE
+\]
+</p>
+
+<p>
+Very convenient!
+</p>
+</div>
+<div id="outline-container-org25c4228" class="outline-3">
+<h3 id="org25c4228"><span class="section-number-3">2.1.</span> Electric Field Lines</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Now, some genius thought of a method to visualize electric fields by drawing lines to represent the force vectors.
+</p>
+
+<p>
+This is particularly ingenious because the density of the lines directly correlate to the relative intensity of the force. If we draw a sphere around the charge, the surface area of that sphere is \(4\pi r^2\). If we have \(n\) number of lines going through an area of \(4\pi r^2\), notice that as \(r\) increases the density falls off by \(\frac{1}{r^2}\), consistent with Coulomb's 
+</p>
+</div>
+</div>
+<div id="outline-container-org046e4cd" class="outline-3">
+<h3 id="org046e4cd"><span class="section-number-3">2.2.</span> Electric Field Due to an Infinite Line of Charge</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Now we will attempt to calculate the electric field due to an infinite wire containing charge of density \(\lambda\) Coulombs per meter:
+</p>
+
+
+<div id="orgb5d68cb" class="figure">
+<p><img src="../../static/infinite_line_charge.png" alt="infinite_line_charge.png" />
+</p>
+</div>
+
+<p>
+We shall take a tiny length of the wire, \(dx\), and consider the small difference of electric field \(d\vec{E}\) that it imparts on a charge above it. 
+</p>
+
+<p>
+Firstly, note that all the horizontal components will cancel due to symmetry. Another symmetry argument for this could be that for any argument you give me that it should tilt to the left, that same argument can be applied to say that it should tilt to the right — because on an infinite line of charge, the side to the left and the side to the right of the charge look exactly identical.
+</p>
+
+<p>
+Thus, we need only to calculate the vertical component of this electric field. To do so, we can simply take the cosine of the angle it makes with the vertical and multiply.
+</p>
+
+<p>
+Therefore, we have:
+</p>
+
+<p>
+\[
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{\lambda dx}{a^2+x^2} \cdot \frac{a}{\sqrt{a^2+x^2}}
+\]
+</p>
+
+<p>
+To find the total electric field, we can integrate this:
+</p>
+
+<p>
+\[
+E=\frac{\lambda a}{4\pi \epsilon_0}\int_{-\infty}^{\infty}{\frac{1}{(a^2+x^2)^\frac{3}{2}}dx}
+\]
+</p>
+
+<p>
+We can now proceed by trig substitution. We substitute \(x=a\tan{\theta}\),
+</p>
+
+<p>
+\[
+E=\frac{\lambda a}{4\pi \epsilon_0} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}{\frac{a\sec^2{\theta}d\theta}{a^3\sec^3{\theta}}}
+\]
+</p>
+
+<p>
+Simplifying,
+</p>
+
+<p>
+\[
+E=\frac{\lambda}{4\pi \epsilon_0 a} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\frac{1}{\sec{\theta}}d\theta
+\]
+</p>
+
+<p>
+Finally, we evaluate the integral from \(-\frac{\pi}{2}\) to \(\frac{\pi}{2}\),
+</p>
+
+<p>
+\[
+E=\frac{\lambda}{4\pi \epsilon_0 a} (1+1) = \frac{\lambda}{2\pi \epsilon_0 a}
+\]
+</p>
+
+<p>
+And there we go.
+</p>
+
+<p>
+There is something interesting about this. How does this field get weaker as distance, \(a\), increases? It falls over like \(\frac{1}{a}\), not like \(\frac{1}{a^2}\) as we would expect. This is because we are considering an infinite line of charge, so all of the forces that a charge would experience adds up to a field that falls like \(\frac{1}{a}\).
+</p>
+</div>
+</div>
+<div id="outline-container-orga3eaf43" class="outline-3">
+<h3 id="orga3eaf43"><span class="section-number-3">2.3.</span> Electric Field Due to an Infinite Plane of Charge</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Now we will consider the electric field due to an infinite sheet of positive charge, with charge density \(\sigma\) (notice the \(\sigma\) is used for Coulombs per area, and \(\lambda\) is used for Coulombs per length).
+</p>
+
+<p>
+Now, notice by symmetry arguments similar to what we did for an infinite line, the electric field should be the same no matter how you translate the plane. Additionally, there should be no component that is not perpendicular to the plane.
+</p>
+
+
+<div id="org28daeae" class="figure">
+<p><img src="../../static/infinite_plane_charge.png" alt="infinite_plane_charge.png" />
+</p>
+</div>
+
+<p>
+Now we shall consider a tiny piece of area on the ring shown above \(dA\) due to \(dr\). The electric field that is represented by the arrow on the charge above the plane shall then be \(d\vec{E}\). By Coulomb's Law:
+</p>
+
+<p>
+\[
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{\sigma dA}{(a^2+r^2)}
+\]
+</p>
+
+<p>
+By symmetry, we only need to consider the component perpendicular to the plane:
+</p>
+
+<p>
+\[
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{\sigma dA}{(a^2+r^2)} \cdot \frac{a}{(a^2+r^2)^\frac{1}{2}}
+\]
+</p>
+
+<p>
+Now, we are only considering an area \(dA\) of the ring. What if we wanted the entire area, \(A\), of the ring? Well, we can just look at this as an infinitesimally small annulus, which can literally be approximated to be a rectangle of length circumference (\(2\pi r\)) and width \(dr\). Thus:
+</p>
+
+<p>
+\[
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{2\pi r dr}{(a^2+r^2)^\frac{3}{2}} \cdot a\sigma
+\]
+</p>
+
+<p>
+Now, we shall integrate this to obtain \(E\):
+</p>
+
+<p>
+\[
+E=\frac{a\sigma}{2\epsilon_0} \int_{0}^{\infty}{\frac{rdr}{(a^2+r^2)^\frac{3}{2}}}
+\]
+</p>
+
+<p>
+Looking at this, we can perform the same trig substitution for \(r=a\tan{\theta}\) as we did above. However, we can also do it a different, arguably simpler way, by performing the substitution \(u=r^2\), which follows that \(\frac{dw}{2}=rdr\):
+</p>
+
+<p>
+\[
+E = \frac{a\sigma}{2\epsilon_0} \int_{0}^{\infty}{\frac{dw}{2(w+a^2)^\frac{3}{2}}} = \frac{a\sigma}{4\epsilon_0} \int_{0}^{\infty}{\frac{dw}{(w+a^2)^\frac{3}{2}}}
+\]
+</p>
+
+<p>
+Now, this has become much easier to integrate:
+</p>
+
+<p>
+\[
+E = \frac{a\sigma}{4\epsilon_0} \cdot \left[\frac{-2}{(w+a^2)^\frac{1}{2}}\right]_{0}^{\infty} = \frac{a\sigma}{4\epsilon_0}\cdot\frac{2}{a}
+\]
+</p>
+
+<p>
+Thus, our answer is:
+</p>
+
+<p>
+\[
+E = \frac{\sigma}{2\epsilon_0}
+\]
+</p>
+
+<p>
+Now, this is very interesting. Notice that our \(a\) term cancelled out — it doesn't depend on distance! No matter how far you go from the infinite plane of charge, the effect will still be the exact same.
+</p>
+
+<p>
+Intuitively, you could look at the perpendicular component and reach a viable argument. You realize that as a point moves farther away, the perpendicular component is larger relative to when it is closer, and so somehow this increase cancels out perfectly with the decrease in force due to the larger distance.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org30a389d" class="outline-2">
+<h2 id="org30a389d"><span class="section-number-2">3.</span> Conductors and Insulators</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org1ad0f06" class="outline-3">
+<h3 id="org1ad0f06"><span class="section-number-3">3.1.</span> Conductors</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Another important application of electric field is to conductors and insulators. Conductors conduct electricity by allowing free-moving electrons to pass through. This, through the perspective of charges and electric fields, brings up two interesting results.
+</p>
+
+<p>
+Firstly, realize that by definition <b>the electric field within a conductor is zero</b>. To see why this is the case, imagine you subject the conductor to any electric field. Since by definition electrons, or charges, can move within the conductor, the outside electric field will cause <i>polarization</i> to occur. In other words, the charges within the conductor will keep moving until the electric field they produce exactly cancels the outside electric field it is subjected to.
+</p>
+
+<p>
+This also implies that the <b>electric charge within a conductor is zero</b>. This is because all of the free charge will migrate to the edge of the conductor, leaving the field and charge within it zero.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Lin Jiang</p>
+<p class="date">Created: 2025-05-23 Fri 12:51</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
