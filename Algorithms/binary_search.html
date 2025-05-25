@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-25 Sun 13:00 -->
+<!-- 2025-05-25 Sun 13:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title>Binary Search</title>
 <meta name="author" content="Lin Jiang" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
@@ -16,20 +16,21 @@
 <div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Algorithms/index.html">Algorithms</a></div>
 </div>
 <div id="content" class="content">
+<h1 class="title">Binary Search</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbaec36c">1. Binary Search</a>
+<li><a href="#org814de43">1. Binary Search</a>
 <ul>
-<li><a href="#orgd33795f">1.1. Off by One Error</a></li>
+<li><a href="#org272834b">1.1. Off by One Error</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbaec36c" class="outline-2">
-<h2 id="orgbaec36c"><span class="section-number-2">1.</span> Binary Search</h2>
+<div id="outline-container-org814de43" class="outline-2">
+<h2 id="org814de43"><span class="section-number-2">1.</span> Binary Search</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A large question is how do we update <code>left</code> and <code>right</code>. This depends on whether we are searching for the maximum value or the minimum value.
@@ -42,8 +43,8 @@ On the other hand, if we are searching for the minimum value, then it makes sens
 right if the midpoint is greater than or equal to the query value.
 </p>
 </div>
-<div id="outline-container-orgd33795f" class="outline-3">
-<h3 id="orgd33795f"><span class="section-number-3">1.1.</span> Off by One Error</h3>
+<div id="outline-container-org272834b" class="outline-3">
+<h3 id="org272834b"><span class="section-number-3">1.1.</span> Off by One Error</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 If we're updating <code>left</code>, then if we set the midpoint equivalent to <code>(left + right) / 2</code> there will be a moment where we have an
@@ -58,7 +59,7 @@ infinite loop. Therefore, the correct midpoint equation is actually <code>(left 
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2024-12-17 20:10
+               Last modified: 2025-05-25 13:11
              </div>
 </div>
 </body>

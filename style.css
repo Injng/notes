@@ -36,6 +36,10 @@
   box-sizing: border-box;
 }
 
+.content {
+  padding: 0px 200px;
+}
+
 /* Blockquotes */
 blockquote {
   border-left: 4px solid var(--blue);
