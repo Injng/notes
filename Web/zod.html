@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-05-25 Sun 13:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> Web</div>
+</div>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org662ef31">1. Schemas</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org662ef31" class="outline-2">
+<h2 id="org662ef31"><span class="section-number-2">1.</span> Schemas</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Define and export a <code>zod</code> schema like so:
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript"><span class="org-keyword">export</span> <span class="org-keyword">const</span> <span class="org-variable-name">personalInformationSchema</span> = z.<span class="org-function-call">object</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">{</span>
+  name: z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-3">()</span>,
+  email: z.<span class="org-function-call">email</span><span class="org-rainbow-delimiters-depth-3">()</span>,
+  phone: z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-3">()</span>,
+  birthday: z.<span class="org-function-call">date</span><span class="org-rainbow-delimiters-depth-3">()</span>
+<span class="org-rainbow-delimiters-depth-2">}</span><span class="org-rainbow-delimiters-depth-1">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-05-25 12:37
+             </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,159 @@
+/* Catppuccin Latte Palette for Org-Publish with Htmlize Syntax Highlighting */
+
+/* Color Palette Variables */
+:root {
+  /* Catppuccin Latte Colors */
+  --base: #eff1f5;
+  --mantle: #e6e9ef;
+  --crust: #dce0e8;
+  --surface0: #ccd0da;
+  --surface1: #bcc0cc;
+  --surface2: #acb0be;
+  --overlay0: #9ca0b0;
+  --overlay1: #8c8fa1;
+  --overlay2: #7c7f93;
+  --subtext0: #6c6f85;
+  --subtext1: #5c5f77;
+  --text: #4c4f69;
+  --lavender: #7287fd;
+  --blue: #1e66f5;
+  --sapphire: #209fb5;
+  --sky: #04a5e5;
+  --teal: #179299;
+  --green: #40a02b;
+  --yellow: #df8e1d;
+  --peach: #fe640b;
+  --maroon: #e64553;
+  --red: #d20f39;
+  --mauve: #8839ef;
+  --pink: #ea76cb;
+  --flamingo: #dd7878;
+  --rosewater: #dc8a78;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid var(--blue);
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  background-color: var(--mantle);
+  color: var(--subtext1);
+  font-style: italic;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Code Blocks and Inline Code */
+code {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.9em;
+  background-color: var(--mantle);
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: var(--red);
+}
+
+pre {
+  background-color: var(--mantle);
+  border: 1px solid var(--surface1);
+  border-radius: 6px;
+  padding: 1em;
+  overflow-x: auto;
+  margin: 1em 0;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: var(--text);
+}
+
+/* Org-mode specific elements */
+.todo {
+  color: var(--red);
+  font-weight: bold;
+}
+
+.done {
+  color: var(--green);
+  font-weight: bold;
+}
+
+.tag {
+  background-color: var(--surface0);
+  color: var(--subtext1);
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  margin-left: 0.5em;
+}
+
+.timestamp {
+  color: var(--overlay1);
+  font-family: monospace;
+}
+
+/* Preamble and Postamble */
+#preamble, #postamble {
+  border-top: 1px solid var(--surface1);
+  padding: 1em 0;
+  margin: 2em 0 0 0;
+  color: var(--subtext1);
+  font-size: 0.9em;
+}
+
+#preamble {
+  border-top: none;
+  border-bottom: 1px solid var(--surface1);
+  margin: 0 0 2em 0;
+}
+
+/* Htmlize Syntax Highlighting Classes */
+.org-keyword { color: var(--mauve); font-weight: bold; }
+.org-string { color: var(--green); }
+.org-comment { color: var(--overlay1); font-style: italic; }
+.org-comment-delimiter { color: var(--overlay1); }
+.org-type { color: var(--yellow); }
+.org-variable-name { color: var(--text); }
+.org-function-name { color: var(--blue); font-weight: bold; }
+.org-constant { color: var(--peach); }
+.org-builtin { color: var(--red); }
+.org-preprocessor { color: var(--pink); }
+.org-doc { color: var(--green); font-style: italic; }
+
+/* Language-specific syntax highlighting */
+.org-sh-quoted-exec { color: var(--green); }
+.org-lisp-keyword { color: var(--mauve); }
+.org-python-keyword { color: var(--mauve); }
+.org-javascript-keyword { color: var(--mauve); }
+.org-css-selector { color: var(--blue); }
+.org-css-property { color: var(--sky); }
+.org-html-tag { color: var(--red); }
+.org-html-tag-name { color: var(--blue); }
+
+/* Additional syntax highlighting classes */
+.org-warning { color: var(--yellow); background-color: var(--mantle); }
+.org-error { color: var(--red); background-color: var(--mantle); }
+.org-success { color: var(--green); }
+.org-rainbow-delimiters-depth-1 { color: var(--blue); }
+.org-rainbow-delimiters-depth-2 { color: var(--green); }
+.org-rainbow-delimiters-depth-3 { color: var(--yellow); }
+.org-rainbow-delimiters-depth-4 { color: var(--red); }
+.org-rainbow-delimiters-depth-5 { color: var(--mauve); }
+.org-rainbow-delimiters-depth-6 { color: var(--pink); }
+
+/* Org-mode drawers and special blocks */
+.org-drawer { color: var(--overlay1); }
+.org-special-keyword { color: var(--pink); font-weight: bold; }
+.org-meta-line { color: var(--overlay1); }
+.org-document-title { color: var(--blue); font-size: 1.5em; font-weight: bold; }
+.org-document-info { color: var(--subtext1); }
+.org-document-info-keyword { color: var(--overlay1); }
