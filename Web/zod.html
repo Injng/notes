@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-26 Mon 10:06 -->
+<!-- 2025-05-26 Mon 10:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zod</title>
@@ -21,23 +21,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org607633e">1. Schemas</a></li>
-<li><a href="#org2d632e9">2. Validations</a>
+<li><a href="#org4fda3d3">1. Schemas</a></li>
+<li><a href="#org56ac518">2. Validations</a>
 <ul>
-<li><a href="#orgf94e789">2.1. Strings</a>
+<li><a href="#orge997180">2.1. Strings</a>
 <ul>
-<li><a href="#org1390006">2.1.1. Example: ZIP Code</a></li>
+<li><a href="#org02a9cab">2.1.1. Example: ZIP Code</a></li>
 </ul>
 </li>
-<li><a href="#org1678a85">2.2. Date</a></li>
-<li><a href="#org99fcf16">2.3. Enums</a></li>
+<li><a href="#org4599ea0">2.2. Date</a></li>
+<li><a href="#org197fdfe">2.3. Enums</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org607633e" class="outline-2">
-<h2 id="org607633e"><span class="section-number-2">1.</span> Schemas</h2>
+<div id="outline-container-org4fda3d3" class="outline-2">
+<h2 id="org4fda3d3"><span class="section-number-2">1.</span> Schemas</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Define and export a <code>zod</code> schema like so:
@@ -53,12 +53,12 @@ Define and export a <code>zod</code> schema like so:
 </div>
 </div>
 </div>
-<div id="outline-container-org2d632e9" class="outline-2">
-<h2 id="org2d632e9"><span class="section-number-2">2.</span> Validations</h2>
+<div id="outline-container-org56ac518" class="outline-2">
+<h2 id="org56ac518"><span class="section-number-2">2.</span> Validations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgf94e789" class="outline-3">
-<h3 id="orgf94e789"><span class="section-number-3">2.1.</span> Strings</h3>
+<div id="outline-container-orge997180" class="outline-3">
+<h3 id="orge997180"><span class="section-number-3">2.1.</span> Strings</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">max</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
@@ -91,8 +91,8 @@ z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><spa
 </pre>
 </div>
 </div>
-<div id="outline-container-org1390006" class="outline-4">
-<h4 id="org1390006"><span class="section-number-4">2.1.1.</span> Example: ZIP Code</h4>
+<div id="outline-container-org02a9cab" class="outline-4">
+<h4 id="org02a9cab"><span class="section-number-4">2.1.1.</span> Example: ZIP Code</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Use <code>string().regex()</code> for ZIP code validation:
@@ -104,8 +104,8 @@ Use <code>string().regex()</code> for ZIP code validation:
 </div>
 </div>
 </div>
-<div id="outline-container-org1678a85" class="outline-3">
-<h3 id="org1678a85"><span class="section-number-3">2.2.</span> Date</h3>
+<div id="outline-container-org4599ea0" class="outline-3">
+<h3 id="org4599ea0"><span class="section-number-3">2.2.</span> Date</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Validates a <code>Date</code> instance. For HTML input, use the string validation <code>z.iso.date()</code> instead.
@@ -118,8 +118,8 @@ z<span class="org-delimiter">.</span><span class="org-function-call">date</span>
 </div>
 </div>
 </div>
-<div id="outline-container-org99fcf16" class="outline-3">
-<h3 id="org99fcf16"><span class="section-number-3">2.3.</span> Enums</h3>
+<div id="outline-container-org197fdfe" class="outline-3">
+<h3 id="org197fdfe"><span class="section-number-3">2.3.</span> Enums</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Ensures input is within a collection of allowable inputs.
