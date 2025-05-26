@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-25 Sun 20:26 -->
+<!-- 2025-05-26 Mon 10:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zod</title>
@@ -21,17 +21,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0e5ad7c">1. Schemas</a></li>
-<li><a href="#org8f2cf3e">2. Validations</a>
+<li><a href="#org607633e">1. Schemas</a></li>
+<li><a href="#org2d632e9">2. Validations</a>
 <ul>
-<li><a href="#org5f16f14">2.1. Strings</a></li>
+<li><a href="#orgf94e789">2.1. Strings</a>
+<ul>
+<li><a href="#org1390006">2.1.1. Example: ZIP Code</a></li>
+</ul>
+</li>
+<li><a href="#org1678a85">2.2. Date</a></li>
+<li><a href="#org99fcf16">2.3. Enums</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0e5ad7c" class="outline-2">
-<h2 id="org0e5ad7c"><span class="section-number-2">1.</span> Schemas</h2>
+<div id="outline-container-org607633e" class="outline-2">
+<h2 id="org607633e"><span class="section-number-2">1.</span> Schemas</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Define and export a <code>zod</code> schema like so:
@@ -47,12 +53,12 @@ Define and export a <code>zod</code> schema like so:
 </div>
 </div>
 </div>
-<div id="outline-container-org8f2cf3e" class="outline-2">
-<h2 id="org8f2cf3e"><span class="section-number-2">2.</span> Validations</h2>
+<div id="outline-container-org2d632e9" class="outline-2">
+<h2 id="org2d632e9"><span class="section-number-2">2.</span> Validations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org5f16f14" class="outline-3">
-<h3 id="org5f16f14"><span class="section-number-3">2.1.</span> Strings</h3>
+<div id="outline-container-orgf94e789" class="outline-3">
+<h3 id="orgf94e789"><span class="section-number-3">2.1.</span> Strings</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">max</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
@@ -78,10 +84,50 @@ z<span class="org-delimiter">.</span><span class="org-function-call">ipv4</span>
 z<span class="org-delimiter">.</span><span class="org-function-call">ipv6</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
 z<span class="org-delimiter">.</span><span class="org-function-call">cidrv4</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>        <span class="org-comment">// ipv4 CIDR block</span>
 z<span class="org-delimiter">.</span><span class="org-function-call">cidrv6</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>        <span class="org-comment">// ipv6 CIDR block</span>
-z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>      <span class="org-comment">// YYYY-MM-DD</span>
 z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">time</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
 z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">datetime</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
 z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">duration</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org1390006" class="outline-4">
+<h4 id="org1390006"><span class="section-number-4">2.1.1.</span> Example: ZIP Code</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+Use <code>string().regex()</code> for ZIP code validation:
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">regex</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-regexp">/^\d{5}(-\d{4})?$/</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1678a85" class="outline-3">
+<h3 id="org1678a85"><span class="section-number-3">2.2.</span> Date</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Validates a <code>Date</code> instance. For HTML input, use the string validation <code>z.iso.date()</code> instead.
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">safeParse</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-keyword">new</span> <span class="org-type">Date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">()</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>                 <span class="org-comment">// success: true</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">safeParse</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"2022-01-12T00:00:00.000Z"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span> <span class="org-comment">// success: false</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org99fcf16" class="outline-3">
+<h3 id="org99fcf16"><span class="section-number-3">2.3.</span> Enums</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Ensures input is within a collection of allowable inputs.
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript-ts"><span class="org-keyword">const</span> <span class="org-variable-name">fish</span> <span class="org-operator">=</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">[</span></span><span class="org-string">"Salmon"</span><span class="org-delimiter">,</span> <span class="org-string">"Tuna"</span><span class="org-delimiter">,</span> <span class="org-string">"Trout"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">]</span></span> <span class="org-keyword">as</span> <span class="org-keyword">const</span><span class="org-delimiter">;</span>   <span class="org-comment">// as const needed for type inference</span>
+
+<span class="org-keyword">const</span> <span class="org-variable-name">FishEnum</span> <span class="org-operator">=</span> z<span class="org-delimiter">.</span><span class="org-function-call">enum</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span>fish<span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
 </pre>
 </div>
 </div>
@@ -93,7 +139,7 @@ z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><spa
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-05-25 20:26
+               Last modified: 2025-05-26 10:01
              </div>
 </div>
 </body>

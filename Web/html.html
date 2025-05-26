@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-05-26 Mon 10:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HTML</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Web/index.html">Web</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">HTML</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8f65e6f">1. Forms</a>
+<ul>
+<li><a href="#org6fa1794">1.1. <code>&lt;select&gt;</code></a>
+<ul>
+<li><a href="#org062ee71">1.1.1. Example: States</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8f65e6f" class="outline-2">
+<h2 id="org8f65e6f"><span class="section-number-2">1.</span> Forms</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org6fa1794" class="outline-3">
+<h3 id="org6fa1794"><span class="section-number-3">1.1.</span> <code>&lt;select&gt;</code></h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The <code>&lt;select&gt;</code> tag is used to create a drop-down list for the user to select one of some pre-defined values.
+</p>
+</div>
+<div id="outline-container-org062ee71" class="outline-4">
+<h4 id="org062ee71"><span class="section-number-4">1.1.1.</span> Example: States</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<div class="org-src-container">
+<pre class="src src-html">&lt;<span class="org-function-name">select</span> <span class="org-variable-name">name</span>=<span class="org-string">"states"</span> <span class="org-variable-name">id</span>=<span class="org-string">"states"</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">""</span>&gt;Select a state&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"AL"</span>&gt;Alabama&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"AK"</span>&gt;Alaska&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"AZ"</span>&gt;Arizona&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"AR"</span>&gt;Arkansas&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"CA"</span>&gt;California&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"CO"</span>&gt;Colorado&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"CT"</span>&gt;Connecticut&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"DE"</span>&gt;Delaware&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"FL"</span>&gt;Florida&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"GA"</span>&gt;Georgia&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"HI"</span>&gt;Hawaii&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"ID"</span>&gt;Idaho&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"IL"</span>&gt;Illinois&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"IN"</span>&gt;Indiana&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"IA"</span>&gt;Iowa&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"KS"</span>&gt;Kansas&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"KY"</span>&gt;Kentucky&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"LA"</span>&gt;Louisiana&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"ME"</span>&gt;Maine&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"MD"</span>&gt;Maryland&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"MA"</span>&gt;Massachusetts&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"MI"</span>&gt;Michigan&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"MN"</span>&gt;Minnesota&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"MS"</span>&gt;Mississippi&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"MO"</span>&gt;Missouri&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"MT"</span>&gt;Montana&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"NE"</span>&gt;Nebraska&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"NV"</span>&gt;Nevada&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"NH"</span>&gt;New Hampshire&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"NJ"</span>&gt;New Jersey&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"NM"</span>&gt;New Mexico&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"NY"</span>&gt;New York&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"NC"</span>&gt;North Carolina&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"ND"</span>&gt;North Dakota&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"OH"</span>&gt;Ohio&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"OK"</span>&gt;Oklahoma&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"OR"</span>&gt;Oregon&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"PA"</span>&gt;Pennsylvania&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"RI"</span>&gt;Rhode Island&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"SC"</span>&gt;South Carolina&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"SD"</span>&gt;South Dakota&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"TN"</span>&gt;Tennessee&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"TX"</span>&gt;Texas&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"UT"</span>&gt;Utah&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"VT"</span>&gt;Vermont&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"VA"</span>&gt;Virginia&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"WA"</span>&gt;Washington&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"WV"</span>&gt;West Virginia&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"WI"</span>&gt;Wisconsin&lt;/<span class="org-function-name">option</span>&gt;
+    &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"WY"</span>&gt;Wyoming&lt;/<span class="org-function-name">option</span>&gt;
+&lt;/<span class="org-function-name">select</span>&gt;
+</pre>
+</div>
+<p>
+Using <code>svelte</code>, we can also save these values in a array and use an <code>each</code> block to populate our drop-down:
+</p>
+<div class="org-src-container">
+<pre class="src src-svelte"><span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">script</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-keyword">const</span> <span class="org-variable-name">states</span> = <span class="org-rainbow-delimiters-depth-1">[</span>
+        <span class="org-string">"Alabama"</span>, <span class="org-string">"Alaska"</span>, <span class="org-string">"Arizona"</span>, <span class="org-string">"Arkansas"</span>, <span class="org-string">"California"</span>,
+        <span class="org-string">"Colorado"</span>, <span class="org-string">"Connecticut"</span>, <span class="org-string">"Delaware"</span>, <span class="org-string">"Florida"</span>, <span class="org-string">"Georgia"</span>,
+        <span class="org-string">"Hawaii"</span>, <span class="org-string">"Idaho"</span>, <span class="org-string">"Illinois"</span>, <span class="org-string">"Indiana"</span>, <span class="org-string">"Iowa"</span>,
+        <span class="org-string">"Kansas"</span>, <span class="org-string">"Kentucky"</span>, <span class="org-string">"Louisiana"</span>, <span class="org-string">"Maine"</span>, <span class="org-string">"Maryland"</span>,
+        <span class="org-string">"Massachusetts"</span>, <span class="org-string">"Michigan"</span>, <span class="org-string">"Minnesota"</span>, <span class="org-string">"Mississippi"</span>, <span class="org-string">"Missouri"</span>,
+        <span class="org-string">"Montana"</span>, <span class="org-string">"Nebraska"</span>, <span class="org-string">"Nevada"</span>, <span class="org-string">"New Hampshire"</span>, <span class="org-string">"New Jersey"</span>,
+        <span class="org-string">"New Mexico"</span>, <span class="org-string">"New York"</span>, <span class="org-string">"North Carolina"</span>, <span class="org-string">"North Dakota"</span>, <span class="org-string">"Ohio"</span>,
+        <span class="org-string">"Oklahoma"</span>, <span class="org-string">"Oregon"</span>, <span class="org-string">"Pennsylvania"</span>, <span class="org-string">"Rhode Island"</span>, <span class="org-string">"South Carolina"</span>,
+        <span class="org-string">"South Dakota"</span>, <span class="org-string">"Tennessee"</span>, <span class="org-string">"Texas"</span>, <span class="org-string">"Utah"</span>, <span class="org-string">"Vermont"</span>,
+        <span class="org-string">"Virginia"</span>, <span class="org-string">"Washington"</span>, <span class="org-string">"West Virginia"</span>, <span class="org-string">"Wisconsin"</span>, <span class="org-string">"Wyoming"</span>
+    <span class="org-rainbow-delimiters-depth-1">]</span>;
+<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">script</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+
+<span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">select</span> <span class="org-variable-name">name</span>=<span class="org-string">"states"</span> <span class="org-variable-name">id</span>=<span class="org-string">"states"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">""</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>Select a state<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">option</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-type"><span class="org-rainbow-delimiters-depth-1">{</span></span><span class="org-type">#</span><span class="org-keyword">each</span> states <span class="org-keyword">as</span> state<span class="org-type"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+        <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">option</span> value=<span class="org-type"><span class="org-rainbow-delimiters-depth-2">{</span></span>state<span class="org-type"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-rainbow-delimiters-depth-1">&gt;</span><span class="org-type"><span class="org-rainbow-delimiters-depth-1">{</span></span>state<span class="org-type"><span class="org-rainbow-delimiters-depth-1">}</span></span><span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">option</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-type"><span class="org-rainbow-delimiters-depth-1">{</span></span><span class="org-type">/</span><span class="org-keyword">each</span><span class="org-type"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">select</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-05-26 09:55
+             </div>
+</div>
+</body>
+</html>
