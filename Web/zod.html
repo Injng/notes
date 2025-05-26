@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-25 Sun 20:18 -->
+<!-- 2025-05-25 Sun 20:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zod</title>
@@ -21,67 +21,67 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd4a9d85">1. Schemas</a></li>
-<li><a href="#orge2a8dc0">2. Validations</a>
+<li><a href="#org0e5ad7c">1. Schemas</a></li>
+<li><a href="#org8f2cf3e">2. Validations</a>
 <ul>
-<li><a href="#org0fd0397">2.1. Strings</a></li>
+<li><a href="#org5f16f14">2.1. Strings</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd4a9d85" class="outline-2">
-<h2 id="orgd4a9d85"><span class="section-number-2">1.</span> Schemas</h2>
+<div id="outline-container-org0e5ad7c" class="outline-2">
+<h2 id="org0e5ad7c"><span class="section-number-2">1.</span> Schemas</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Define and export a <code>zod</code> schema like so:
 </p>
 <div class="org-src-container">
-<pre class="src src-typescript"><span class="org-keyword">export</span> <span class="org-keyword">const</span> <span class="org-variable-name">personalInformationSchema</span> = z.<span class="org-function-call">object</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">{</span>
-  name: z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-3">()</span>,
-  email: z.<span class="org-function-call">email</span><span class="org-rainbow-delimiters-depth-3">()</span>,
-  phone: z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-3">()</span>,
-  birthday: z.<span class="org-function-call">date</span><span class="org-rainbow-delimiters-depth-3">()</span>
-<span class="org-rainbow-delimiters-depth-2">}</span><span class="org-rainbow-delimiters-depth-1">)</span>;
+<pre class="src src-typescript-ts"><span class="org-keyword">export</span> <span class="org-keyword">const</span> <span class="org-variable-name">personalInformationSchema</span> <span class="org-operator">=</span> z<span class="org-delimiter">.</span><span class="org-function-call">object</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span>
+  <span class="org-property-use">name</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">,</span>
+  <span class="org-property-use">email</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">email</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">,</span>
+  <span class="org-property-use">phone</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">,</span>
+  <span class="org-property-use">birthday</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span>
+<span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge2a8dc0" class="outline-2">
-<h2 id="orge2a8dc0"><span class="section-number-2">2.</span> Validations</h2>
+<div id="outline-container-org8f2cf3e" class="outline-2">
+<h2 id="org8f2cf3e"><span class="section-number-2">2.</span> Validations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org0fd0397" class="outline-3">
-<h3 id="org0fd0397"><span class="section-number-3">2.1.</span> Strings</h3>
+<div id="outline-container-org5f16f14" class="outline-3">
+<h3 id="org5f16f14"><span class="section-number-3">2.1.</span> Strings</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
-<pre class="src src-typescript">z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-function-call">max</span><span class="org-rainbow-delimiters-depth-1">(</span>5<span class="org-rainbow-delimiters-depth-1">)</span>;
-z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-function-call">min</span><span class="org-rainbow-delimiters-depth-1">(</span>5<span class="org-rainbow-delimiters-depth-1">)</span>;
-z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-function-call">length</span><span class="org-rainbow-delimiters-depth-1">(</span>5<span class="org-rainbow-delimiters-depth-1">)</span>;
-z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-function-call">regex</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">/^[a-z]+$/</span><span class="org-rainbow-delimiters-depth-1">)</span>;
-z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-function-call">startsWith</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"aaa"</span><span class="org-rainbow-delimiters-depth-1">)</span>;
-z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-function-call">endsWith</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"zzz"</span><span class="org-rainbow-delimiters-depth-1">)</span>;
-z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-function-call">includes</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"---"</span><span class="org-rainbow-delimiters-depth-1">)</span>;
-z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-function-call">uppercase</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">string</span><span class="org-rainbow-delimiters-depth-1">()</span>.<span class="org-function-call">lowercase</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">email</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">uuid</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">url</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">emoji</span><span class="org-rainbow-delimiters-depth-1">()</span>;         <span class="org-comment-delimiter">// </span><span class="org-comment">validates a single emoji </span><span class="org-variable-name">character</span>
-z.<span class="org-function-call">base64</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">base64url</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">nanoid</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">cuid</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">cuid2</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">ulid</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">ipv4</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">ipv6</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.<span class="org-function-call">cidrv4</span><span class="org-rainbow-delimiters-depth-1">()</span>;        <span class="org-comment-delimiter">// </span><span class="org-comment">ipv4 CIDR </span><span class="org-variable-name">block</span>
-z.<span class="org-function-call">cidrv6</span><span class="org-rainbow-delimiters-depth-1">()</span>;        <span class="org-comment-delimiter">// </span><span class="org-comment">ipv6 CIDR </span><span class="org-variable-name">block</span>
-z.iso.<span class="org-function-call">date</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.iso.<span class="org-function-call">time</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.iso.<span class="org-function-call">datetime</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-z.iso.<span class="org-function-call">duration</span><span class="org-rainbow-delimiters-depth-1">()</span>;
+<pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">max</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">min</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">length</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">regex</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-regexp">/^[a-z]+$/</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">startsWith</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"aaa"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">endsWith</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"zzz"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">includes</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"---"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">uppercase</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">lowercase</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">email</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">uuid</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">url</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">emoji</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>         <span class="org-comment">// validates a single emoji character</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">base64</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">base64url</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">nanoid</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">cuid</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">cuid2</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">ulid</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">ipv4</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">ipv6</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">cidrv4</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>        <span class="org-comment">// ipv4 CIDR block</span>
+z<span class="org-delimiter">.</span><span class="org-function-call">cidrv6</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>        <span class="org-comment">// ipv6 CIDR block</span>
+z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">time</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">datetime</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">duration</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
 </pre>
 </div>
 </div>
@@ -93,7 +93,7 @@ z.iso.<span class="org-function-call">duration</span><span class="org-rainbow-de
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-05-25 20:18
+               Last modified: 2025-05-25 20:26
              </div>
 </div>
 </body>

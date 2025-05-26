@@ -147,12 +147,7 @@ pre code {
 .org-warning { color: var(--yellow); background-color: var(--mantle); }
 .org-error { color: var(--red); background-color: var(--mantle); }
 .org-success { color: var(--green); }
-.org-rainbow-delimiters-depth-1 { color: var(--blue); }
-.org-rainbow-delimiters-depth-2 { color: var(--green); }
-.org-rainbow-delimiters-depth-3 { color: var(--yellow); }
-.org-rainbow-delimiters-depth-4 { color: var(--red); }
-.org-rainbow-delimiters-depth-5 { color: var(--mauve); }
-.org-rainbow-delimiters-depth-6 { color: var(--pink); }
+.org-function-call { color: var(--blue); }
 
 /* Org-mode drawers and special blocks */
 .org-drawer { color: var(--overlay1); }
