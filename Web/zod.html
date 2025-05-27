@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-26 Mon 23:31 -->
+<!-- 2025-05-27 Tue 00:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zod</title>
@@ -21,21 +21,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0da0a5f">1. Schemas</a></li>
-<li><a href="#org44326e6">2. Validations</a>
+<li><a href="#org62afaa5">1. Schemas</a></li>
+<li><a href="#orgb556748">2. Validations</a>
 <ul>
-<li><a href="#orgd81600e">2.1. Strings</a>
+<li><a href="#org9887d1c">2.1. Strings</a>
 <ul>
-<li><a href="#org21f8fb7">2.1.1. Example: ZIP Code</a></li>
+<li><a href="#org6c95b40">2.1.1. Example: ZIP Code</a></li>
 </ul>
 </li>
-<li><a href="#org0e1c31c">2.2. Date</a></li>
-<li><a href="#org0a78831">2.3. Enums</a></li>
-<li><a href="#orgd1b8751">2.4. Numbers</a></li>
-<li><a href="#org3de717c">2.5. Refinements</a></li>
-<li><a href="#org1a7b30f">2.6. Instanceof</a>
+<li><a href="#org4319811">2.2. Date</a></li>
+<li><a href="#orgec6b49b">2.3. Enums</a></li>
+<li><a href="#orgc31d218">2.4. Numbers</a></li>
+<li><a href="#orgb40922e">2.5. Refinements</a></li>
+<li><a href="#org3fb6db2">2.6. Instanceof</a>
 <ul>
-<li><a href="#orgebc9f80">2.6.1. Example: File Input</a></li>
+<li><a href="#orgfd694f7">2.6.1. Example: File Input</a></li>
 </ul>
 </li>
 </ul>
@@ -43,8 +43,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org0da0a5f" class="outline-2">
-<h2 id="org0da0a5f"><span class="section-number-2">1.</span> Schemas</h2>
+<div id="outline-container-org62afaa5" class="outline-2">
+<h2 id="org62afaa5"><span class="section-number-2">1.</span> Schemas</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Define and export a <code>zod</code> schema like so:
@@ -60,12 +60,12 @@ Define and export a <code>zod</code> schema like so:
 </div>
 </div>
 </div>
-<div id="outline-container-org44326e6" class="outline-2">
-<h2 id="org44326e6"><span class="section-number-2">2.</span> Validations</h2>
+<div id="outline-container-orgb556748" class="outline-2">
+<h2 id="orgb556748"><span class="section-number-2">2.</span> Validations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgd81600e" class="outline-3">
-<h3 id="orgd81600e"><span class="section-number-3">2.1.</span> Strings</h3>
+<div id="outline-container-org9887d1c" class="outline-3">
+<h3 id="org9887d1c"><span class="section-number-3">2.1.</span> Strings</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">max</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
@@ -98,8 +98,8 @@ z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><spa
 </pre>
 </div>
 </div>
-<div id="outline-container-org21f8fb7" class="outline-4">
-<h4 id="org21f8fb7"><span class="section-number-4">2.1.1.</span> Example: ZIP Code</h4>
+<div id="outline-container-org6c95b40" class="outline-4">
+<h4 id="org6c95b40"><span class="section-number-4">2.1.1.</span> Example: ZIP Code</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Use <code>string().regex()</code> for ZIP code validation:
@@ -111,8 +111,8 @@ Use <code>string().regex()</code> for ZIP code validation:
 </div>
 </div>
 </div>
-<div id="outline-container-org0e1c31c" class="outline-3">
-<h3 id="org0e1c31c"><span class="section-number-3">2.2.</span> Date</h3>
+<div id="outline-container-org4319811" class="outline-3">
+<h3 id="org4319811"><span class="section-number-3">2.2.</span> Date</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Validates a <code>Date</code> instance. For HTML input, use the string validation <code>z.iso.date()</code> instead.
@@ -125,8 +125,8 @@ z<span class="org-delimiter">.</span><span class="org-function-call">date</span>
 </div>
 </div>
 </div>
-<div id="outline-container-org0a78831" class="outline-3">
-<h3 id="org0a78831"><span class="section-number-3">2.3.</span> Enums</h3>
+<div id="outline-container-orgec6b49b" class="outline-3">
+<h3 id="orgec6b49b"><span class="section-number-3">2.3.</span> Enums</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Ensures input is within a collection of allowable inputs.
@@ -139,8 +139,8 @@ Ensures input is within a collection of allowable inputs.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd1b8751" class="outline-3">
-<h3 id="orgd1b8751"><span class="section-number-3">2.4.</span> Numbers</h3>
+<div id="outline-container-orgc31d218" class="outline-3">
+<h3 id="orgc31d218"><span class="section-number-3">2.4.</span> Numbers</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 <code>z.number()</code> allows any finite number.
@@ -159,8 +159,8 @@ z<span class="org-delimiter">.</span><span class="org-function-call">number</spa
 </div>
 </div>
 </div>
-<div id="outline-container-org3de717c" class="outline-3">
-<h3 id="org3de717c"><span class="section-number-3">2.5.</span> Refinements</h3>
+<div id="outline-container-orgb40922e" class="outline-3">
+<h3 id="orgb40922e"><span class="section-number-3">2.5.</span> Refinements</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Every <code>zod</code> schema has an array of refinements, which allow for performing custom validation that <code>zod</code> doesn't provide an API for. Refinements should return a falsy value to signal validation failure.
@@ -173,8 +173,8 @@ Every <code>zod</code> schema has an array of refinements, which allow for perfo
 </div>
 </div>
 </div>
-<div id="outline-container-org1a7b30f" class="outline-3">
-<h3 id="org1a7b30f"><span class="section-number-3">2.6.</span> Instanceof</h3>
+<div id="outline-container-org3fb6db2" class="outline-3">
+<h3 id="org3fb6db2"><span class="section-number-3">2.6.</span> Instanceof</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 Use <code>z.instanceof()</code> to check if input is an instance of a class.
@@ -188,8 +188,8 @@ Use <code>z.instanceof()</code> to check if input is an instance of a class.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgebc9f80" class="outline-4">
-<h4 id="orgebc9f80"><span class="section-number-4">2.6.1.</span> Example: File Input</h4>
+<div id="outline-container-orgfd694f7" class="outline-4">
+<h4 id="orgfd694f7"><span class="section-number-4">2.6.1.</span> Example: File Input</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <p>
 We can ensure the input is a file and validate the size of the file using <code>z.instanceof()</code> and <code>refine()</code>:
