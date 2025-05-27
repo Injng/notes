@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-27 Tue 00:02 -->
+<!-- 2025-05-27 Tue 14:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Superforms</title>
@@ -41,7 +41,8 @@
 The first step is to create a validation schema using a schema library, such as <a href="zod.html#+TITLE:Zod">Zod</a>:
 </p>
 <div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-keyword">export</span> <span class="org-keyword">const</span> <span class="org-variable-name">personalInformationSchema</span> <span class="org-operator">=</span> z<span class="org-delimiter">.</span><span class="org-function-call">object</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span>
+<pre class="src src-typescript-ts"><span class="org-comment">// schema.ts</span>
+<span class="org-keyword">export</span> <span class="org-keyword">const</span> <span class="org-variable-name">personalInformationSchema</span> <span class="org-operator">=</span> z<span class="org-delimiter">.</span><span class="org-function-call">object</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span>
   <span class="org-property-use">name</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">optional</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">,</span>
   <span class="org-property-use">email</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">email</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">optional</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">,</span>
   <span class="org-property-use">phone</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">optional</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">,</span>
@@ -58,8 +59,20 @@ The first step is to create a validation schema using a schema library, such as 
 Then, initialize the form and load it into the <code>PageData</code> through the server:
 </p>
 <div class="org-src-container">
-<pre class="src src-typescript-ts">
+<pre class="src src-typescript-ts"><span class="org-comment">// +page.server.ts</span>
+<span class="org-keyword">import</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-variable-name">superValidate</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-keyword">from</span> <span class="org-string">'sveltekit-superforms'</span><span class="org-delimiter">;</span>
+<span class="org-keyword">import</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-variable-name">zod</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-keyword">from</span> <span class="org-string">'sveltekit-superforms/adapters'</span><span class="org-delimiter">;</span>
+<span class="org-keyword">import</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-variable-name">personalInformationSchema</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-keyword">from</span> <span class="org-string">'./schema'</span><span class="org-delimiter">;</span>
 
+<span class="org-comment">/** Load member data for the profile page. */</span>
+<span class="org-keyword">export</span> <span class="org-keyword">const</span> <span class="org-function-name">load</span><span class="org-delimiter">:</span> <span class="org-type">PageServerLoad</span> <span class="org-operator">=</span> <span class="org-keyword">async</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span> locals<span class="org-delimiter">:</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">{</span></span> <span class="org-variable-name">supabase</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">}</span></span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span> =&gt; <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+  <span class="org-comment">// load personal information form</span>
+  <span class="org-keyword">const</span> <span class="org-variable-name">personalInformationForm</span> <span class="org-operator">=</span> <span class="org-keyword">await</span> <span class="org-function-call">superValidate</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-function-call">zod</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">(</span></span>personalInformationSchema<span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">)</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-delimiter">;</span>
+
+  <span class="org-keyword">return</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span>
+    <span class="org-property-use">personalInformationForm</span><span class="org-delimiter">,</span>
+  <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-delimiter">;</span>
+<span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span>
 </pre>
 </div>
 </div>
@@ -71,7 +84,7 @@ Then, initialize the form and load it into the <code>PageData</code> through the
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-05-26 23:20
+               Last modified: 2025-05-27 14:34
              </div>
 </div>
 </body>
