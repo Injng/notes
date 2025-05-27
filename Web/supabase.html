@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-05-27 Tue 16:45 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Supabase</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Web/index.html">Web</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Supabase</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org93aa4b8">1. Database</a>
+<ul>
+<li><a href="#orga056ae5">1.1. Select</a>
+<ul>
+<li><a href="#org6c33d5a">1.1.1. Filtering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org93aa4b8" class="outline-2">
+<h2 id="org93aa4b8"><span class="section-number-2">1.</span> Database</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orga056ae5" class="outline-3">
+<h3 id="orga056ae5"><span class="section-number-3">1.1.</span> Select</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+To read rows from a table, use the <code>select</code> method:
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript-ts"><span class="org-comment">// read all rows</span>
+<span class="org-keyword">let</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-property-use">data</span><span class="org-delimiter">:</span> <span class="org-variable-name">members</span><span class="org-delimiter">,</span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
+  <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">select</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'*'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+
+<span class="org-comment">// read specific columns</span>
+<span class="org-keyword">let</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-property-use">data</span><span class="org-delimiter">:</span> <span class="org-variable-name">members</span><span class="org-delimiter">,</span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
+  <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">select</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'some_column,other_column'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>  
+</pre>
+</div>
+</div>
+<div id="outline-container-org6c33d5a" class="outline-4">
+<h4 id="org6c33d5a"><span class="section-number-4">1.1.1.</span> Filtering</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<div class="org-src-container">
+<pre class="src src-typescript-ts"><span class="org-keyword">let</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-property-use">data</span><span class="org-delimiter">:</span> <span class="org-variable-name">members</span><span class="org-delimiter">,</span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
+  <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">select</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"*"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+
+  <span class="org-comment">// Filters</span>
+  <span class="org-delimiter">.</span><span class="org-function-call">eq</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Equal to'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">gt</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Greater than'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">lt</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Less than'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">gte</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Greater than or equal to'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">lte</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Less than or equal to'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">like</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'%CaseSensitive%'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">ilike</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'%CaseInsensitive%'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">is</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-constant">null</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">in</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-string">'Array'</span><span class="org-delimiter">,</span> <span class="org-string">'Values'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">neq</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Not equal to'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+
+  <span class="org-comment">// Arrays</span>
+  <span class="org-delimiter">.</span><span class="org-function-call">contains</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'array_column'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-string">'array'</span><span class="org-delimiter">,</span> <span class="org-string">'contains'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">containedBy</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'array_column'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-string">'contained'</span><span class="org-delimiter">,</span> <span class="org-string">'by'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+
+  <span class="org-comment">// Logical operators</span>
+  <span class="org-delimiter">.</span><span class="org-function-call">not</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'like'</span><span class="org-delimiter">,</span> <span class="org-string">'Negate filter'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">or</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'some_column.eq.Some value, other_column.eq.Other value'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-05-27 16:45
+             </div>
+</div>
+</body>
+</html>
