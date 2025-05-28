@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-27 Tue 21:57 -->
+<!-- 2025-05-28 Wed 16:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Supabase</title>
@@ -32,7 +32,11 @@
 </li>
 <li><a href="#orgb028a39">2. Auth</a>
 <ul>
-<li><a href="#orgff218db">2.1. Custom Claims</a></li>
+<li><a href="#orgff218db">2.1. Custom Claims</a>
+<ul>
+<li><a href="#orgc13a7a3">2.1.1. Example: Role-Based Access Control</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -111,9 +115,9 @@ Supabase uses JWTs, or JSON Web Tokens, to store information about the identity 
 To do so, use a <a href="https://supabase.com/docs/guides/auth/auth-hooks/custom-access-token-hook">Custom Access Token Hook</a>. The custom access token hook runs before a token is issued and allows you to add additional claims based on the authentication method used:
 </p>
 <div class="org-src-container">
-<pre class="src src-sql-ts"><span class="org-keyword">CREATE</span> OR <span class="org-keyword">REPLACE</span> <span class="org-keyword">FUNCTION</span> <span class="org-sql-ts-mode-schema-name">public</span>.<span class="org-function-name">custom_access_token_hook</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-variable-name">event</span> <span class="org-type">JSONB</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre class="src src-sql-ts"><span class="org-keyword">CREATE</span> OR <span class="org-keyword">REPLACE</span> <span class="org-keyword">FUNCTION</span> public.<span class="org-type">custom_access_token_hook</span><span class="org-rainbow-delimiters-depth-1">(</span>event <span class="org-type">JSONB</span><span class="org-rainbow-delimiters-depth-1">)</span>
 <span class="org-keyword">RETURNS</span> <span class="org-type">JSONB</span>
-<span class="org-keyword">LANGUAGE</span> <span class="org-constant">plpgsql</span>
+<span class="org-keyword">LANGUAGE</span> plpgsql
 <span class="org-keyword">AS</span> $$
   <span class="org-keyword">DECLARE</span>
     claims <span class="org-type">JSONB</span>;
@@ -128,6 +132,158 @@ $$;
 </pre>
 </div>
 </div>
+<div id="outline-container-orgc13a7a3" class="outline-4">
+<h4 id="orgc13a7a3"><span class="section-number-4">2.1.1.</span> Example: Role-Based Access Control</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+The general idea is we can use certain <i>permissions</i> granted to certain <i>roles</i> for use in RLS to have more fine-grained control over who gets to access what data. To do this, we can create an <code>app_permission</code> enum type to list out all the permissions, and an <code>app_role</code> enum type to list out all of the roles. Then, we can have a <code>user_roles</code> junction table to link a particular UUID with an <code>app_role</code>, and a <code>role_permissions</code> junction table to link specific roles to permissions.
+</p>
+<div class="org-src-container">
+<pre class="src src-sql-ts"><span class="org-comment">-- CUSTOM TYPES</span>
+<span class="org-keyword">CREATE</span> <span class="org-keyword">TYPE</span> public.<span class="org-type">app_permission</span> <span class="org-keyword">AS</span> <span class="org-type">ENUM</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'members.select'</span>, <span class="org-number">'members.update'</span>, <span class="org-number">'members.insert'</span><span class="org-rainbow-delimiters-depth-1">)</span>;
+<span class="org-keyword">CREATE</span> <span class="org-keyword">TYPE</span> public.<span class="org-type">app_role</span> <span class="org-keyword">AS</span> <span class="org-type">ENUM</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'admin'</span>, <span class="org-number">'member'</span><span class="org-rainbow-delimiters-depth-1">)</span>;
+
+<span class="org-comment">-- USER ROLES</span>
+<span class="org-keyword">CREATE</span> <span class="org-keyword">TABLE</span> public.<span class="org-type">user_roles</span> <span class="org-rainbow-delimiters-depth-1">(</span>
+  id        <span class="org-type">BIGINT</span> <span class="org-keyword">GENERATED</span> BY <span class="org-keyword">DEFAULT</span> <span class="org-keyword">AS</span> IDENTITY <span class="org-keyword">PRIMARY</span> <span class="org-keyword">KEY</span>,
+  user_id   <span class="org-type">UUID</span> <span class="org-keyword">REFERENCES</span> auth.<span class="org-type">users</span> ON <span class="org-keyword">DELETE</span> CASCADE NOT <span class="org-type">NULL</span>,
+  role      <span class="org-type">app_role</span> NOT <span class="org-type">NULL</span>,
+  UNIQUE <span class="org-rainbow-delimiters-depth-2">(</span>user_id, role<span class="org-rainbow-delimiters-depth-2">)</span>
+<span class="org-rainbow-delimiters-depth-1">)</span>;
+<span class="org-keyword">COMMENT</span> ON <span class="org-keyword">TABLE</span> public.<span class="org-type">user_roles</span> <span class="org-keyword">IS</span> <span class="org-number">'Application roles for each user.'</span>;
+
+<span class="org-comment">-- ROLE PERMISSIONS</span>
+<span class="org-keyword">CREATE</span> <span class="org-keyword">TABLE</span> public.<span class="org-type">role_permissions</span> <span class="org-rainbow-delimiters-depth-1">(</span>
+  id          <span class="org-type">BIGINT</span> <span class="org-keyword">GENERATED</span> BY <span class="org-keyword">DEFAULT</span> <span class="org-keyword">AS</span> IDENTITY <span class="org-keyword">PRIMARY</span> <span class="org-keyword">KEY</span>,
+  role        <span class="org-type">app_role</span> NOT <span class="org-type">NULL</span>,
+  permission  <span class="org-type">app_permission</span> NOT <span class="org-type">NULL</span>,
+  UNIQUE <span class="org-rainbow-delimiters-depth-2">(</span>role, permission<span class="org-rainbow-delimiters-depth-2">)</span>
+<span class="org-rainbow-delimiters-depth-1">)</span>;
+<span class="org-keyword">COMMENT</span> ON <span class="org-keyword">TABLE</span> public.<span class="org-type">role_permissions</span> <span class="org-keyword">IS</span> <span class="org-number">'Application permissions for each role.'</span>;
+</pre>
+</div>
+<p>
+We can then insert into <code>public.role_permissions</code> the permissions for each role, like so:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql-ts"><span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> public.<span class="org-type">role_permissions</span> <span class="org-rainbow-delimiters-depth-1">(</span>role, permission<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-keyword">VALUES</span>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'admin'</span>, <span class="org-number">'members.select'</span><span class="org-rainbow-delimiters-depth-1">)</span>,  
+        <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'admin'</span>, <span class="org-number">'members.update'</span><span class="org-rainbow-delimiters-depth-1">)</span>,
+        <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'admin'</span>, <span class="org-number">'members.insert'</span><span class="org-rainbow-delimiters-depth-1">)</span>;
+</pre>
+</div>
+<p>
+In order for Supabase Auth to know what role an user is, we can now take advantage of the custom claims feature to add their role as a claim:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql-ts"><span class="org-comment">-- Create the auth hook function</span>
+<span class="org-keyword">CREATE</span> OR <span class="org-keyword">REPLACE</span> <span class="org-keyword">FUNCTION</span> public.<span class="org-type">custom_access_token_hook</span><span class="org-rainbow-delimiters-depth-1">(</span>event <span class="org-type">jsonb</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-keyword">RETURNS</span> <span class="org-type">jsonb</span>
+<span class="org-keyword">LANGUAGE</span> plpgsql
+<span class="org-keyword">STABLE</span>
+<span class="org-keyword">AS</span> $$
+  <span class="org-keyword">DECLARE</span>
+    claims <span class="org-type">jsonb</span>;
+    user_role public.<span class="org-type">app_role</span>;
+  <span class="org-keyword">BEGIN</span>
+    <span class="org-comment">-- Fetch the user role in the user_roles table</span>
+    <span class="org-keyword">SELECT</span> role INTO user_role <span class="org-keyword">FROM</span> public.<span class="org-type">user_roles</span> <span class="org-keyword">WHERE</span> user_id = <span class="org-rainbow-delimiters-depth-1">(</span>event-&gt;&gt;<span class="org-number">'user_id'</span><span class="org-rainbow-delimiters-depth-1">)</span>::<span class="org-type">uuid</span>;
+
+    claims := event-&gt;'claims';
+
+    <span class="org-keyword">IF</span> user_role <span class="org-keyword">IS</span> NOT <span class="org-type">NULL</span> <span class="org-keyword">THEN</span>
+      <span class="org-comment">-- Set the claim</span>
+      claims := JSONB_SET<span class="org-rainbow-delimiters-depth-1">(</span>claims, '{user_role}', TO_JSONB<span class="org-rainbow-delimiters-depth-2">(</span>user_role<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>;
+    <span class="org-keyword">ELSE</span>
+      claims := JSONB_SET<span class="org-rainbow-delimiters-depth-1">(</span>claims, '{user_role}', 'null'<span class="org-rainbow-delimiters-depth-1">)</span>;
+    <span class="org-keyword">END</span> IF;
+
+    <span class="org-comment">-- Update the 'claims' object in the original event</span>
+    event := JSONB_SET<span class="org-rainbow-delimiters-depth-1">(</span>event, '{claims}', claims<span class="org-rainbow-delimiters-depth-1">)</span>;
+
+    <span class="org-comment">-- Return the modified or original event</span>
+    <span class="org-keyword">RETURN</span> event;
+  <span class="org-keyword">END</span>;
+$$;
+
+GRANT USAGE ON <span class="org-keyword">SCHEMA</span> public <span class="org-keyword">TO</span> supabase_auth_admin;
+
+GRANT <span class="org-keyword">EXECUTE</span>
+  ON <span class="org-keyword">FUNCTION</span> public.custom_access_token_hook
+  <span class="org-keyword">TO</span> supabase_auth_admin;
+
+REVOKE <span class="org-keyword">EXECUTE</span>
+  ON <span class="org-keyword">FUNCTION</span> public.custom_access_token_hook
+  <span class="org-keyword">FROM</span> authenticated, anon, public;
+
+GRANT <span class="org-keyword">ALL</span>
+  ON <span class="org-keyword">TABLE</span> public.user_roles
+<span class="org-keyword">TO</span> supabase_auth_admin;
+
+REVOKE <span class="org-keyword">ALL</span>
+  ON <span class="org-keyword">TABLE</span> public.user_roles
+  <span class="org-keyword">FROM</span> authenticated, anon, public;
+
+<span class="org-keyword">CREATE</span> POLICY "Allow auth admin to read user roles" ON public.user_roles
+<span class="org-keyword">AS</span> PERMISSIVE <span class="org-keyword">FOR</span> <span class="org-keyword">SELECT</span>
+TO supabase_auth_admin
+<span class="org-keyword">USING</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">TRUE</span><span class="org-rainbow-delimiters-depth-1">)</span>;
+</pre>
+</div>
+<p>
+To enable this function as a hook, in the dashboard, navigate to <a href="https://supabase.com/dashboard/project/_/auth/hooks">Authentication &gt; Hooks</a> and select the appropriate Postgres function from the dropdown menu.
+</p>
+
+<p>
+Now, in order to use this information in our RLS policies, we can create a function called <code>authorize</code> to see if the user has the required permission:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql-ts"><span class="org-keyword">CREATE</span> OR <span class="org-keyword">REPLACE</span> <span class="org-keyword">FUNCTION</span> public.<span class="org-type">authorize</span><span class="org-rainbow-delimiters-depth-1">(</span>
+  requested_permission <span class="org-type">app_permission</span>
+<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-keyword">RETURNS</span> <span class="org-type">boolean</span> <span class="org-keyword">AS</span> $$
+<span class="org-keyword">DECLARE</span>
+  bind_permissions <span class="org-type">int</span>;
+  user_role public.<span class="org-type">app_role</span>;
+<span class="org-keyword">BEGIN</span>
+  <span class="org-keyword">SELECT</span> <span class="org-rainbow-delimiters-depth-1">(</span>auth.<span class="org-type">jwt</span><span class="org-rainbow-delimiters-depth-2">()</span> -&gt;&gt; <span class="org-number">'user_role'</span><span class="org-rainbow-delimiters-depth-1">)</span>::public.<span class="org-type">app_role</span> INTO user_role;
+
+  <span class="org-keyword">SELECT</span> <span class="org-type">COUNT</span><span class="org-rainbow-delimiters-depth-1">(</span>*<span class="org-rainbow-delimiters-depth-1">)</span>
+  INTO bind_permissions
+  <span class="org-keyword">FROM</span> public.<span class="org-type">role_permissions</span>
+  <span class="org-keyword">WHERE</span> <span class="org-type">role_permissions</span>.permission = requested_permission
+    AND <span class="org-type">role_permissions</span>.role = user_role;
+
+  <span class="org-keyword">RETURN</span> bind_permissions &gt; <span class="org-number">0</span>;
+<span class="org-keyword">END</span>;
+$$ <span class="org-keyword">LANGUAGE</span> plpgsql <span class="org-keyword">STABLE</span> <span class="org-keyword">SECURITY</span> <span class="org-keyword">DEFINER</span> SET search_path = '';
+</pre>
+</div>
+<p>
+We can now use this function in our RLS policies, like so:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql-ts"><span class="org-keyword">CREATE</span> POLICY "Allow authorized select access"
+ON "public"."members"
+<span class="org-keyword">FOR</span> <span class="org-keyword">SELECT</span> TO authenticated <span class="org-keyword">USING</span> <span class="org-rainbow-delimiters-depth-1">(</span>
+  <span class="org-rainbow-delimiters-depth-2">(</span><span class="org-keyword">SELECT</span> <span class="org-type">authorize</span><span class="org-rainbow-delimiters-depth-3">(</span><span class="org-number">'members.select'</span><span class="org-rainbow-delimiters-depth-3">)</span><span class="org-rainbow-delimiters-depth-2">)</span>
+<span class="org-rainbow-delimiters-depth-1">)</span>;
+
+<span class="org-keyword">CREATE</span> POLICY "Allow authorized update access"
+ON "public"."members"
+<span class="org-keyword">FOR</span> <span class="org-keyword">UPDATE</span> <span class="org-type">TO</span> authenticated <span class="org-keyword">USING</span> <span class="org-rainbow-delimiters-depth-1">(</span>
+  <span class="org-rainbow-delimiters-depth-2">(</span><span class="org-keyword">SELECT</span> <span class="org-type">authorize</span><span class="org-rainbow-delimiters-depth-3">(</span><span class="org-number">'members.update'</span><span class="org-rainbow-delimiters-depth-3">)</span><span class="org-rainbow-delimiters-depth-2">)</span>
+<span class="org-rainbow-delimiters-depth-1">)</span>;
+
+<span class="org-keyword">CREATE</span> POLICY "Allow authorized insert access"
+ON "public"."members"
+<span class="org-keyword">FOR</span> <span class="org-keyword">INSERT</span> <span class="org-type">TO</span> authenticated <span class="org-keyword">WITH</span> CHECK <span class="org-rainbow-delimiters-depth-1">(</span>
+  <span class="org-rainbow-delimiters-depth-2">(</span><span class="org-keyword">SELECT</span> <span class="org-type">authorize</span><span class="org-rainbow-delimiters-depth-3">(</span><span class="org-number">'members.insert'</span><span class="org-rainbow-delimiters-depth-3">)</span><span class="org-rainbow-delimiters-depth-2">)</span>
+<span class="org-rainbow-delimiters-depth-1">)</span>;
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -136,7 +292,7 @@ $$;
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-05-27 18:14
+               Last modified: 2025-05-28 16:36
              </div>
 </div>
 </body>
