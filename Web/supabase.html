@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-27 Tue 16:58 -->
+<!-- 2025-05-27 Tue 21:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Supabase</title>
@@ -30,7 +30,11 @@
 </li>
 </ul>
 </li>
-<li><a href="#orgb028a39">2. Auth</a></li>
+<li><a href="#orgb028a39">2. Auth</a>
+<ul>
+<li><a href="#orgff218db">2.1. Custom Claims</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -99,6 +103,32 @@ To read rows from a table, use the <code>select</code> method:
 </pre>
 </div>
 </div>
+<div id="outline-container-orgff218db" class="outline-3">
+<h3 id="orgff218db"><span class="section-number-3">2.1.</span> Custom Claims</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Supabase uses JWTs, or JSON Web Tokens, to store information about the identity and authentication of a user. You can add <i>custom claims</i> to these JWTs in order to add more information to the identity of a user, extending your application's functionality.
+To do so, use a <a href="https://supabase.com/docs/guides/auth/auth-hooks/custom-access-token-hook">Custom Access Token Hook</a>. The custom access token hook runs before a token is issued and allows you to add additional claims based on the authentication method used:
+</p>
+<div class="org-src-container">
+<pre class="src src-sql-ts"><span class="org-keyword">CREATE</span> OR <span class="org-keyword">REPLACE</span> <span class="org-keyword">FUNCTION</span> <span class="org-sql-ts-mode-schema-name">public</span>.<span class="org-function-name">custom_access_token_hook</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-variable-name">event</span> <span class="org-type">JSONB</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-keyword">RETURNS</span> <span class="org-type">JSONB</span>
+<span class="org-keyword">LANGUAGE</span> <span class="org-constant">plpgsql</span>
+<span class="org-keyword">AS</span> $$
+  <span class="org-keyword">DECLARE</span>
+    claims <span class="org-type">JSONB</span>;
+    new_claim <span class="org-type">JSONB</span>;
+  <span class="org-keyword">BEGIN</span>
+    claims := event-&gt;'claims';
+    claims := jsonb_set<span class="org-rainbow-delimiters-depth-1">(</span>claims, '{new_claim}', new_claim<span class="org-rainbow-delimiters-depth-1">)</span>;
+    event := jsonb_set<span class="org-rainbow-delimiters-depth-1">(</span>event, '{claims}', claims<span class="org-rainbow-delimiters-depth-1">)</span>;
+    <span class="org-keyword">RETURN</span> event;
+  <span class="org-keyword">END</span>;
+$$;
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -106,7 +136,7 @@ To read rows from a table, use the <code>select</code> method:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-05-27 16:46
+               Last modified: 2025-05-27 18:14
              </div>
 </div>
 </body>
