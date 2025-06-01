@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-02 Mon 05:12 -->
+<!-- 2025-06-02 Mon 05:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vectors</title>
@@ -73,6 +73,7 @@
 <li><a href="#orge3b5899">2.5. Cross Product</a>
 <ul>
 <li><a href="#orgae41a8b">2.5.1. Volume</a></li>
+<li><a href="#orgcf43e74">2.5.2. Equation of a Plane</a></li>
 </ul>
 </li>
 </ul>
@@ -88,7 +89,7 @@ Vectors are values that have both a <b>direction</b> and a <b>magnitude</b> (or 
 </p>
 
 
-<div id="orgcb515bf" class="figure">
+<div id="org21d82ba" class="figure">
 <p><img src="../static/vectors1.png" alt="vectors1.png" />
 </p>
 </div>
@@ -142,7 +143,7 @@ Vectors can be added both geometrically and numerically. Starting with the geome
 </p>
 
 
-<div id="orgd012ead" class="figure">
+<div id="orgc7daaa5" class="figure">
 <p><img src="../static/vectors2.png" alt="vectors2.png" />
 </p>
 </div>
@@ -166,7 +167,7 @@ Geometrically, multiplying by a scalar simply scales the length of the vector, l
 </p>
 
 
-<div id="orgfa136d9" class="figure">
+<div id="org98bacc4" class="figure">
 <p><img src="../static/vectors3.png" alt="vectors3.png" />
 </p>
 </div>
@@ -206,7 +207,7 @@ Geometrically, what we're doing is:
 </p>
 
 
-<div id="org905f4c5" class="figure">
+<div id="org352dcaf" class="figure">
 <p><img src="../static/vectors4.png" alt="vectors4.png" />
 </p>
 </div>
@@ -220,7 +221,7 @@ To prove this result, we can use the Law of Cosines. Given two vectors \(\vec{A}
 </p>
 
 
-<div id="org8fc760e" class="figure">
+<div id="orgb539cb3" class="figure">
 <p><img src="../static/vectors5.png" alt="vectors5.png" />
 </p>
 </div>
@@ -293,7 +294,7 @@ We can use the dot product to <i>find the component of a vector along a certain 
 </p>
 
 
-<div id="org05e7a41" class="figure">
+<div id="orgeb310a6" class="figure">
 <p><img src="../static/vectors6.png" alt="vectors6.png" />
 </p>
 </div>
@@ -393,7 +394,7 @@ With this new operation, we can have some fresh insights on volumes of parallele
 </p>
 
 
-<div id="orgb0e8df2" class="figure">
+<div id="orgb70967e" class="figure">
 <p><img src="../static/vectors7.png" alt="vectors7.png" />
 </p>
 </div>
@@ -417,6 +418,66 @@ Notice, however, that the direction of \(\hat{n}\) is exactly the direction we g
 V = \vec{A} \cdot (\vec{B} \times \vec{C})
 \]
 </p>
+
+<p>
+This is known as a <b>triple product</b>. Additionally, as a determinant of three vectors in space also gives the volume of a parallelepiped, we realize that the triple product is equivalent to the determinant:
+</p>
+
+\begin{align}
+\vec{A} \cdot (\vec{B} \times \vec{C}) = \det(\vec{A}, \vec{B}, \vec{C})
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgcf43e74" class="outline-4">
+<h4 id="orgcf43e74"><span class="section-number-4">2.5.2.</span> Equation of a Plane</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+Given three points in a plane, \(P_1\), \(P_2\), and \(P_3\), we can find a condition on another point \(P\) with coordinates \((x,y,z)\) that tells us whether or not \(P\) is in this plane.
+</p>
+
+
+<div id="org4435962" class="figure">
+<p><img src="../static/vectors8.png" alt="vectors8.png" />
+</p>
+</div>
+
+<p>
+One way to think about this is to draw three vectors as shown above. If \(P\) is in the plane of \(P_1\), \(P_2\), and \(P_3\), then it follows that the parallelepiped formed from these vectors must be completely "flat". In other words, this volume must be zero, and we can say that \(\det (\vec{P_1P_2},\vec{P_1P},\vec{P_1P_3})=0\).
+</p>
+
+<p>
+Another way to do this is by considering a normal vector to the plane as shown below:
+</p>
+
+
+<div id="org19ac2cb" class="figure">
+<p><img src="../static/vectors9.png" alt="vectors9.png" />
+</p>
+</div>
+
+<p>
+Then, we can say that \(P\) is in the plane if the vector \(\vec{P_1P}\) is perpendicular to the normal vector \(\vec{N}\). In other words:
+</p>
+
+<p>
+\[
+\vec{P_1P} \cdot \vec{N} = 0
+\]
+</p>
+
+<p>
+Now, to find the normal vector to the plane \(\vec{N}\), all we have to do is to take the cross product between \(\vec{P_1P_2}\) and \(\vec{P_1P_3}\). Therefore, we can rewrite the above equation as:
+</p>
+
+<p>
+\[
+\vec{P_1P} \cdot (\vec{P_1P_2} \times \vec{P_1P_3}) = 0
+\]
+</p>
+
+<p>
+Realize that this is a triple product, and by (1), this is the exact same as our first method as it yields the determinant.
+</p>
 </div>
 </div>
 </div>
@@ -427,7 +488,7 @@ V = \vec{A} \cdot (\vec{B} \times \vec{C})
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-02 05:12
+               Last modified: 2025-06-02 05:41
              </div>
 </div>
 </body>
