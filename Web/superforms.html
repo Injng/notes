@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-27 Tue 14:34 -->
+<!-- 2025-06-01 Sun 14:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Superforms</title>
@@ -21,21 +21,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd60af9b">1. Quickstart</a>
+<li><a href="#org3961a11">1. Quickstart</a>
 <ul>
-<li><a href="#org29e18cc">1.1. Validation Schema</a></li>
-<li><a href="#orgc60550b">1.2. Load Form</a></li>
+<li><a href="#org8587376">1.1. Validation Schema</a></li>
+<li><a href="#org301baf4">1.2. Load Form</a></li>
+<li><a href="#orgf9362dc">1.3. Form Actions</a></li>
+<li><a href="#org6cd2a29">1.4. Frontend Form</a></li>
+</ul>
+</li>
+<li><a href="#org4d06b19">2. Error Handling</a>
+<ul>
+<li><a href="#org4f6e388">2.1. Validation Errors</a></li>
+<li><a href="#org672a1bc">2.2. Status Messages</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd60af9b" class="outline-2">
-<h2 id="orgd60af9b"><span class="section-number-2">1.</span> Quickstart</h2>
+<div id="outline-container-org3961a11" class="outline-2">
+<h2 id="org3961a11"><span class="section-number-2">1.</span> Quickstart</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org29e18cc" class="outline-3">
-<h3 id="org29e18cc"><span class="section-number-3">1.1.</span> Validation Schema</h3>
+<div id="outline-container-org8587376" class="outline-3">
+<h3 id="org8587376"><span class="section-number-3">1.1.</span> Validation Schema</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The first step is to create a validation schema using a schema library, such as <a href="zod.html#+TITLE:Zod">Zod</a>:
@@ -52,8 +60,8 @@ The first step is to create a validation schema using a schema library, such as 
 </div>
 </div>
 </div>
-<div id="outline-container-orgc60550b" class="outline-3">
-<h3 id="orgc60550b"><span class="section-number-3">1.2.</span> Load Form</h3>
+<div id="outline-container-org301baf4" class="outline-3">
+<h3 id="org301baf4"><span class="section-number-3">1.2.</span> Load Form</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Then, initialize the form and load it into the <code>PageData</code> through the server:
@@ -77,6 +85,87 @@ Then, initialize the form and load it into the <code>PageData</code> through the
 </div>
 </div>
 </div>
+<div id="outline-container-orgf9362dc" class="outline-3">
+<h3 id="orgf9362dc"><span class="section-number-3">1.3.</span> Form Actions</h3>
+</div>
+<div id="outline-container-org6cd2a29" class="outline-3">
+<h3 id="org6cd2a29"><span class="section-number-3">1.4.</span> Frontend Form</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Use the data loaded in by Superforms in the client to show the form and integrate:
+</p>
+<div class="org-src-container">
+<pre class="src src-svelte"><span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">script</span> <span class="org-variable-name">lang</span>=<span class="org-string">"ts"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+  <span class="org-keyword">import</span> <span class="org-rainbow-delimiters-depth-1">{</span> superForm <span class="org-rainbow-delimiters-depth-1">}</span> <span class="org-keyword">from</span> "sveltekit-superforms";
+
+  <span class="org-comment">// get page data loaded from server</span>
+  <span class="org-keyword">let</span> <span class="org-rainbow-delimiters-depth-1">{</span> data <span class="org-rainbow-delimiters-depth-1">}</span> = <span class="org-function-call">$props</span><span class="org-rainbow-delimiters-depth-1">()</span>;
+
+  <span class="org-comment">// superforms loaded forms</span>
+  <span class="org-keyword">const</span> <span class="org-rainbow-delimiters-depth-1">{</span> form: <span class="org-variable-name">personalInformationForm</span> <span class="org-rainbow-delimiters-depth-1">}</span> = <span class="org-function-call">superForm</span><span class="org-rainbow-delimiters-depth-1">(</span>data.personalInformationForm<span class="org-rainbow-delimiters-depth-1">)</span>;
+<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">script</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+
+<span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">form</span> <span class="org-variable-name">method</span>=<span class="org-string">"POST"</span> <span class="org-variable-name">action</span>=<span class="org-string">"?/save_personal_information"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+  <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">label</span> <span class="org-variable-name">class</span>=<span class="org-string">"grid grid-cols-[150px_1fr] mb-2 items-center"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>Name<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"name"</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">class</span>=<span class="org-string">"border border-muted-b bg-input"</span>
+           <span class="org-type">bind:value</span>=<span class="org-type"><span class="org-rainbow-delimiters-depth-2">{</span></span>$personalInformationForm.name<span class="org-type"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+  <span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">label</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+  <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">label</span> <span class="org-variable-name">class</span>=<span class="org-string">"grid grid-cols-[150px_1fr] mb-2 items-center"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>Email<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"email"</span> <span class="org-variable-name">type</span>=<span class="org-string">"email"</span> <span class="org-variable-name">class</span>=<span class="org-string">"border border-muted-b bg-input"</span>
+           <span class="org-type">bind:value</span>=<span class="org-type"><span class="org-rainbow-delimiters-depth-2">{</span></span>$personalInformationForm.email<span class="org-type"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+  <span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">label</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+  <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"grid grid-cols-2"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">label</span> <span class="org-variable-name">class</span>=<span class="org-string">"grid grid-cols-[150px_1fr] mb-2 mr-5 items-center"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+      <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>Phone<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+      <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"phone"</span> <span class="org-variable-name">type</span>=<span class="org-string">"tel"</span> <span class="org-variable-name">class</span>=<span class="org-string">"border border-muted-b bg-input"</span>
+             <span class="org-type">bind:value</span>=<span class="org-type"><span class="org-rainbow-delimiters-depth-2">{</span></span>$personalInformationForm.phone<span class="org-type"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">label</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">label</span> <span class="org-variable-name">class</span>=<span class="org-string">"grid grid-cols-[150px_1fr] mb-2 ml-5 items-center"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+      <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>Birthday<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+      <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"birthday"</span> <span class="org-variable-name">type</span>=<span class="org-string">"date"</span> <span class="org-variable-name">class</span>=<span class="org-string">"border border-muted-b bg-input"</span>
+             <span class="org-type">bind:value</span>=<span class="org-type"><span class="org-rainbow-delimiters-depth-2">{</span></span>$personalInformationForm.birthday<span class="org-type"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">label</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+  <span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+  <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">div</span> <span class="org-variable-name">class</span>=<span class="org-string">"w-full flex justify-end"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">button</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+      Save
+    <span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">button</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+  <span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">div</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">form</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4d06b19" class="outline-2">
+<h2 id="org4d06b19"><span class="section-number-2">2.</span> Error Handling</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org4f6e388" class="outline-3">
+<h3 id="org4f6e388"><span class="section-number-3">2.1.</span> Validation Errors</h3>
+</div>
+<div id="outline-container-org672a1bc" class="outline-3">
+<h3 id="org672a1bc"><span class="section-number-3">2.2.</span> Status Messages</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+For server-side errors that don't pertain to validating any one field or input, use a status message to indicate an error on the front-end.
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript-ts"><span class="org-keyword">const</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
+  <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">update</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span>form<span class="org-delimiter">.</span>data<span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">eq</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'email'</span><span class="org-delimiter">,</span> user<span class="org-delimiter">.</span>email<span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
+<span class="org-keyword">if</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span>error<span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span>
+  <span class="org-keyword">return</span> <span class="org-function-call">message</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">(</span></span>form<span class="org-delimiter">,</span> <span class="org-string">'Database error.'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">{</span></span>
+    <span class="org-property-use">status</span><span class="org-delimiter">:</span> <span class="org-number">500</span>
+  <span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">}</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">)</span></span><span class="org-delimiter">;</span>
+<span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -84,7 +173,7 @@ Then, initialize the form and load it into the <code>PageData</code> through the
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-05-27 14:34
+               Last modified: 2025-06-01 14:21
              </div>
 </div>
 </body>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-05-28 Wed 16:37 -->
+<!-- 2025-06-01 Sun 14:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Supabase</title>
@@ -21,20 +21,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org93aa4b8">1. Database</a>
+<li><a href="#org780b85f">1. Database</a>
 <ul>
-<li><a href="#orga056ae5">1.1. Select</a>
+<li><a href="#org2efb590">1.1. Update</a></li>
+<li><a href="#org74fdefa">1.2. Select</a>
 <ul>
-<li><a href="#org6c33d5a">1.1.1. Filtering</a></li>
+<li><a href="#orgd92e319">1.2.1. Filtering</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb028a39">2. Auth</a>
+<li><a href="#org6cc2ff1">2. Auth</a>
 <ul>
-<li><a href="#orgff218db">2.1. Custom Claims</a>
+<li><a href="#orge070824">2.1. Custom Claims</a>
 <ul>
-<li><a href="#orgc13a7a3">2.1.1. Example: Role-Based Access Control</a></li>
+<li><a href="#org526598d">2.1.1. Example: Role-Based Access Control</a></li>
 </ul>
 </li>
 </ul>
@@ -42,13 +43,29 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org93aa4b8" class="outline-2">
-<h2 id="org93aa4b8"><span class="section-number-2">1.</span> Database</h2>
+<div id="outline-container-org780b85f" class="outline-2">
+<h2 id="org780b85f"><span class="section-number-2">1.</span> Database</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orga056ae5" class="outline-3">
-<h3 id="orga056ae5"><span class="section-number-3">1.1.</span> Select</h3>
+<div id="outline-container-org2efb590" class="outline-3">
+<h3 id="org2efb590"><span class="section-number-3">1.1.</span> Update</h3>
 <div class="outline-text-3" id="text-1-1">
+<p>
+To update a row in a table, use the <code>update</code> method:
+</p>
+<div class="org-src-container">
+<pre class="src src-typescript-ts"><span class="org-keyword">const</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-variable-name">data</span><span class="org-delimiter">,</span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
+  <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">update</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span> <span class="org-property-use">other_column</span><span class="org-delimiter">:</span> <span class="org-string">'otherValue'</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">eq</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'some_column'</span><span class="org-delimiter">,</span> <span class="org-string">'someValue'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">select</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org74fdefa" class="outline-3">
+<h3 id="org74fdefa"><span class="section-number-3">1.2.</span> Select</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 To read rows from a table, use the <code>select</code> method:
 </p>
@@ -65,9 +82,9 @@ To read rows from a table, use the <code>select</code> method:
 </pre>
 </div>
 </div>
-<div id="outline-container-org6c33d5a" class="outline-4">
-<h4 id="org6c33d5a"><span class="section-number-4">1.1.1.</span> Filtering</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<div id="outline-container-orgd92e319" class="outline-4">
+<h4 id="orgd92e319"><span class="section-number-4">1.2.1.</span> Filtering</h4>
+<div class="outline-text-4" id="text-1-2-1">
 <div class="org-src-container">
 <pre class="src src-typescript-ts"><span class="org-keyword">let</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-property-use">data</span><span class="org-delimiter">:</span> <span class="org-variable-name">members</span><span class="org-delimiter">,</span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
   <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
@@ -86,7 +103,7 @@ To read rows from a table, use the <code>select</code> method:
   <span class="org-delimiter">.</span><span class="org-function-call">neq</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Not equal to'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
 
   <span class="org-comment">// Arrays</span>
-  <span class="org-delimiter">.</span><span class="org-function-call">contains</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'array_column'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-string">'array'</span><span class="org-delimiter">,</span> <span class="org-string">'contains'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  <span class="org-delimiter">.</span><span class="org-function-call">contains</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'array_column'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-string">'array'</span><span class="org-delimiter">,</span> <span class="org-string">'cxontains'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
   <span class="org-delimiter">.</span><span class="org-function-call">containedBy</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'array_column'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-string">'contained'</span><span class="org-delimiter">,</span> <span class="org-string">'by'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
 
   <span class="org-comment">// Logical operators</span>
@@ -98,17 +115,20 @@ To read rows from a table, use the <code>select</code> method:
 </div>
 </div>
 </div>
-<div id="outline-container-orgb028a39" class="outline-2">
-<h2 id="orgb028a39"><span class="section-number-2">2.</span> Auth</h2>
+<div id="outline-container-org6cc2ff1" class="outline-2">
+<h2 id="org6cc2ff1"><span class="section-number-2">2.</span> Auth</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-comment">// obtain the user from supabase</span>
+<pre class="src src-typescript-ts"><span class="org-comment">// obtain the user from supabase (always use this on server-side)</span>
 <span class="org-keyword">const</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> data<span class="org-delimiter">:</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span> <span class="org-variable-name">user</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase<span class="org-delimiter">.</span>auth<span class="org-delimiter">.</span><span class="org-function-call">getUser</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+
+<span class="org-comment">// obtain the user from supabase (faster client-side option)</span>
+<span class="org-function-call">getSession</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span>session<span class="org-delimiter">.</span>user
 </pre>
 </div>
 </div>
-<div id="outline-container-orgff218db" class="outline-3">
-<h3 id="orgff218db"><span class="section-number-3">2.1.</span> Custom Claims</h3>
+<div id="outline-container-orge070824" class="outline-3">
+<h3 id="orge070824"><span class="section-number-3">2.1.</span> Custom Claims</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Supabase uses JWTs, or JSON Web Tokens, to store information about the identity and authentication of a user. You can add <i>custom claims</i> to these JWTs in order to add more information to the identity of a user, extending your application's functionality.
@@ -132,8 +152,8 @@ $$;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc13a7a3" class="outline-4">
-<h4 id="orgc13a7a3"><span class="section-number-4">2.1.1.</span> Example: Role-Based Access Control</h4>
+<div id="outline-container-org526598d" class="outline-4">
+<h4 id="org526598d"><span class="section-number-4">2.1.1.</span> Example: Role-Based Access Control</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 The general idea is we can use certain <i>permissions</i> granted to certain <i>roles</i> for use in RLS to have more fine-grained control over who gets to access what data. To do this, we can create an <code>app_permission</code> enum type to list out all the permissions, and an <code>app_role</code> enum type to list out all of the roles. Then, we can have a <code>user_roles</code> junction table to link a particular UUID with an <code>app_role</code>, and a <code>role_permissions</code> junction table to link specific roles to permissions.
@@ -292,7 +312,7 @@ ON "public"."members"
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-05-28 16:36
+               Last modified: 2025-06-01 14:21
              </div>
 </div>
 </body>
