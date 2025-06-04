@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-06-05 Thu 06:17 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Velocity and Acceleration</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Velocity and Acceleration</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3c85c50">1. Velocity and Acceleration</a>
+<ul>
+<li><a href="#org6cb4515">1.1. Arc Length</a></li>
+<li><a href="#orgbf49355">1.2. Unit Tangent Vector</a></li>
+</ul>
+</li>
+<li><a href="#org94af027">2. Kepler's Second Law</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3c85c50" class="outline-2">
+<h2 id="org3c85c50"><span class="section-number-2">1.</span> Velocity and Acceleration</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Recall that we can use <a href="lines.html#orgd911f2e">parametric equations</a> to obtain a position vector. To get the <b>velocity</b> from our position vector, we take the derivative with respect to time:
+</p>
+
+<p>
+\[
+\vec{v} = \frac{\text{d}\vec{r}}{\text{d}t} = \langle \frac{\text{d}x}{\text{d}t},\frac{\text{d}y}{\text{d}t}, \frac{\text{d}z}{\text{d}t} \rangle
+\]
+</p>
+
+<p>
+This is a vector quantity, as it not only has magnitude but also direction. The scalar value of <b>speed</b> is simply the magnitude of the <b>velocity</b>.
+</p>
+
+<p>
+The <b>acceleration</b> is how fast the velocity is changing; in other words, the derivative of the velocity:
+</p>
+
+<p>
+\[
+\vec{a} = \frac{\text{d}\vec{v}}{\text{d}t}
+\]
+</p>
+
+<p>
+Realize that even if the speed is not changing, if the direction is changing then there is acceleration.
+</p>
+</div>
+<div id="outline-container-org6cb4515" class="outline-3">
+<h3 id="org6cb4515"><span class="section-number-3">1.1.</span> Arc Length</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The <b>arc length</b>, \(s\), is the distance travelled along a trajectory. We can take the derivative of this to obtain speed:
+</p>
+
+<p>
+\[
+\frac{\text{d}s}{\text{d}t} = \|\vec{v}\|
+\]
+</p>
+
+<p>
+It is also possible to recover the length of the trajectory by integrating \(\frac{\text{d}s}{\text{d}t}\), but this is not always feasible.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf49355" class="outline-3">
+<h3 id="orgbf49355"><span class="section-number-3">1.2.</span> Unit Tangent Vector</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The velocity vector points tangent along the trajectory, and the <b>unit tangent vector</b> is simply that rescaled to a unit:
+</p>
+
+
+<div id="org3310c44" class="figure">
+<p><img src="../static/velocity1.png" alt="velocity1.png" />
+</p>
+</div>
+
+<p>
+We can therefore say that:
+</p>
+
+<p>
+\[
+\hat{T} = \frac{\vec{v}}{\|\vec{v}\|}
+\]
+</p>
+
+<p>
+Now, consider using the chain rule for velocity:
+</p>
+
+<p>
+\[
+\vec{v} = \frac{\text{d}\vec{r}}{\text{d}t} = \frac{\text{d}\vec{r}}{\text{d}s} \frac{\text{d}s}{\text{d}t} = \hat{T} \|\vec{v}\|
+\]
+</p>
+
+<p>
+This reveals an identity:
+</p>
+
+<p>
+\[
+\frac{\text{d}\vec{r}}{\text{d}s} = \hat{T}
+\]
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org94af027" class="outline-2">
+<h2 id="org94af027"><span class="section-number-2">2.</span> Kepler's Second Law</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We can use <b>Kepler's Second Law</b> to illustrate the use of velocity and position vectors. Kepler's Second Law states that the <i>motion of planets is in a plane</i>, and that <i>the area swept out by the line from the Sun to the planets is at a constant rate</i>.
+</p>
+
+<p>
+What this is saying is that the area swept out by the planets are all at a constant rate, proportional to time. This implies that planets closer to the Sun, that sweeps out less area per unit time compared to planets farther away from the Sun, which means that they must go faster than planets farther away.
+</p>
+
+<p>
+Now, consider the following diagram and vectors of the system:
+</p>
+
+
+<div id="org719b8bc" class="figure">
+<p><img src="../static/kepler1.png" alt="kepler1.png" />
+</p>
+</div>
+
+<p>
+The position vector, \(\vec{r}\), changes by \(\Delta \vec{r}\). Realize that to find the area of this space, we can approximate it to be a triangle when \(\Delta \vec{r}\) is small. Therefore, we can use <a href="vectors.html#orge3b5899">cross product</a> to find the area:
+</p>
+
+<p>
+\[
+A \approx \frac{1}{2} \|\vec{r} \times \Delta\vec{r}\|
+\]
+</p>
+
+<p>
+Now, since velocity is \(\frac{\Delta \vec{r}}{\Delta t}\), we can rewrite this as:
+</p>
+
+<p>
+\[
+A \approx \frac{1}{2} \|\vec{r} \times \vec{v} \| \Delta t
+\]
+</p>
+
+<p>
+Realize that the law is saying that this area is proportional to time; in other words, it's saying that \(\|\vec{r} \times \vec{v}\|\) is constant. Now, since the planets are also moving in one plane, that plane contains \(\vec{r}\) and \(\vec{v}\). This means that \(\text{dir}(\vec{r} \times \vec{v})\) is always constant, namely, perpendicular to this plane. Thus:
+</p>
+
+<p>
+\[
+\frac{\text{d}}{\text{d}t}(\vec{r} \times \vec{v}) = 0
+\]
+</p>
+
+<p>
+We can use the product rule like so:
+</p>
+
+\begin{aligned}
+\frac{\text{d}\vec{r}}{\text{d}t} \times \vec{v} + \vec{r} \times \frac{\text{d}\vec{v}}{\text{d}t} &= 0 \\
+\vec{v} \times \vec{v} + \vec{r} \times \vec{a} &= 0 \\
+\vec{r} \times \vec{a} &= 0
+\end{aligned}
+
+<p>
+The only time in which the cross product of two vectors equals to zero is when they are parallel to each other. In other words, the acceleration vector is parallel to the position vector. In other words, there is a central force from the planets to the Sun.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-06-05 06:17
+             </div>
+</div>
+</body>
+</html>
