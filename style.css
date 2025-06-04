@@ -312,3 +312,10 @@ pre code {
 .org-date { color: var(--lavender); }
 .org-time-stamp { color: var(--lavender); }
 .org-time-stamp-inactive { color: var(--overlay1); }
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
