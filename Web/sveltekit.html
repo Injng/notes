@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-01 Sun 14:28 -->
+<!-- 2025-06-11 Wed 12:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SvelteKit</title>
@@ -22,6 +22,7 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org79c202c">1. Error Handling</a></li>
+<li><a href="#org0772a0e">2. Props</a></li>
 </ul>
 </div>
 </div>
@@ -41,13 +42,29 @@ If an error occurs during load, the nearest <code>+error.svelte</code> file will
 </div>
 </div>
 </div>
+<div id="outline-container-org0772a0e" class="outline-2">
+<h2 id="org0772a0e"><span class="section-number-2">2.</span> Props</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Use the <code>$props</code> rune to pass properties to components:
+</p>
+<div class="org-src-container">
+<pre class="src src-svelte"><span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">script</span> <span class="org-variable-name">lang</span>=<span class="org-string">"ts"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+    <span class="org-keyword">let</span> <span class="org-rainbow-delimiters-depth-1">{</span> adjective <span class="org-rainbow-delimiters-depth-1">}</span> = <span class="org-function-call">$props</span><span class="org-rainbow-delimiters-depth-1">()</span>;
+<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">script</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+
+<span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">p</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>this component is <span class="org-type"><span class="org-rainbow-delimiters-depth-1">{</span></span>adjective<span class="org-type"><span class="org-rainbow-delimiters-depth-1">}</span></span><span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">p</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-01 14:21
+               Last modified: 2025-06-09 08:02
              </div>
 </div>
 </body>
