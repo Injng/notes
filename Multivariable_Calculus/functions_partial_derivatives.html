@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-06-16 Mon 08:28 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Functions and Partial Derivatives</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Functions and Partial Derivatives</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb4d35f4">1. Functions of Multiple Variables</a>
+<ul>
+<li><a href="#orgc102ddb">1.1. Visualizing a Function of Two Variables</a>
+<ul>
+<li><a href="#orgc3e2a6a">1.1.1. Contour Plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgf9d548d">2. Partial Derivatives</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb4d35f4" class="outline-2">
+<h2 id="orgb4d35f4"><span class="section-number-2">1.</span> Functions of Multiple Variables</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We have seen and know how to take the derivative of functions of one variable, for example:
+</p>
+
+<p>
+\[
+f(x) = \sin(x)
+\]
+</p>
+
+<p>
+Functions of 2 variables are simply functions that, when given an input \((x,y)\), we get an output \(f(x,y)\). For example:
+</p>
+
+<p>
+\[
+f(x,y) = x^2+y^2
+\]
+</p>
+
+<p>
+Just like functions of one variable, functions fo multiple variables need not be defined at all points: there can be a <i>domain</i> for which inputs the functions is defined. For example, \(f(x,y) = \frac{1}{x+y}\) is only defined if \(x+y \neq 0\). 
+</p>
+</div>
+<div id="outline-container-orgc102ddb" class="outline-3">
+<h3 id="orgc102ddb"><span class="section-number-3">1.1.</span> Visualizing a Function of Two Variables</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+First, we can visualize a function of two variables by plotting its <b>graph</b>. We can define a third dimension \(z=f(x,y)\), such that the graph is now a surface in space:
+</p>
+
+
+<div id="org09b9229" class="figure">
+<p><img src="../static/functions_partial_derivatives1.png" alt="functions_partial_derivatives1.png" />
+</p>
+</div>
+
+<p>
+It is often easier to guess what the graph looks like by considering the function in cross-sections of planes. Take for example the function \(f(x,y) = 1-x^2-y^2\). We know that:
+</p>
+
+<ul class="org-ul">
+<li><span class="underline">yz-plane</span>: \(z=1-y^2\), downward facing parabola</li>
+<li><span class="underline">xz-plane</span>: \(z=1-x^2\), downward facing parabola</li>
+<li><span class="underline">xy-plane</span>: \(x^2+y^2=1\), unit circle</li>
+</ul>
+
+<p>
+With this information, we can see the graph will look somewhat like this:
+</p>
+
+
+<div id="orgd10054a" class="figure">
+<p><img src="../static/functions_partial_derivatives2.png" alt="functions_partial_derivatives2.png" />
+</p>
+</div>
+
+<p>
+However, notice that it is very difficult to draw three dimensional graphs on a two dimensional surface. To do this, we can use another tool.
+</p>
+</div>
+<div id="outline-container-orgc3e2a6a" class="outline-4">
+<h4 id="orgc3e2a6a"><span class="section-number-4">1.1.1.</span> Contour Plot</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+The <b>contour plot</b> is similar to a topographic map: each curve on the contour plot shows the function at a certain constant elevation:
+</p>
+
+
+<div id="org2bccb5b" class="figure">
+<p><img src="../static/contour1.png" alt="contour1.png" />
+</p>
+</div>
+
+<p>
+In other words, each <b>contour</b> on the contour plot shows all the points where \(f(x,y)\) is equivalent to <i>some fixed constants, chosen at regular intervals</i>. These contours are also called a <b>level curve</b> of \(f\), because each curve is at a constant "elevation".
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf9d548d" class="outline-2">
+<h2 id="orgf9d548d"><span class="section-number-2">2.</span> Partial Derivatives</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+While the contour plot can tell us qualitatively the rate of change with respect to \(x\) and \(y\), this is also a tool for the derivative. However, for functions of multiple variables, we need to introduce the <b>partial derivative</b>. It is defined like so:
+</p>
+
+\begin{aligned}
+f_x &= \frac{\partial f}{\partial x} = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x, y_0) - f(x_0,y_0)}{\Delta x} \\
+f_x &= \frac{\partial f}{\partial y} = \lim_{\Delta y \to 0} \frac{f(x_0, y_0 + \Delta y) - f(x_0,y_0)}{\Delta y}
+\end{aligned}
+
+<p>
+Just like how for one variable, the derivative is the slope of the tangent line to the function, for two variables, it is the same. The partial derivative with respect to x is simply the slope of the tangent line when y is held constant (\(y=y_0\)), and vice versa.
+</p>
+
+<p>
+To compute the partial derivative, we treat the other variable as a constant and then proceed with the normal derivative. For example:
+</p>
+
+\begin{aligned}
+f(x,y) &= x^3y + y^2 \\
+f_x &= 3x^2y \\
+f_y &= x^3 + 2y
+\end{aligned}
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-06-16 08:28
+             </div>
+</div>
+</body>
+</html>
