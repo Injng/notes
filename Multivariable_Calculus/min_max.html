@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-18 Wed 09:21 -->
+<!-- 2025-06-20 Fri 15:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Min/Max Problems</title>
@@ -57,6 +57,13 @@
 <li><a href="#org658312f">2. Min/Max Problems</a>
 <ul>
 <li><a href="#org13517b2">2.1. Saddle Point</a></li>
+<li><a href="#orgefcc43d">2.2. Second Derivative Test</a>
+<ul>
+<li><a href="#org64bb1ad">2.2.1. Special Case</a></li>
+<li><a href="#orgf775e52">2.2.2. General Case</a></li>
+<li><a href="#org57fdf50">2.2.3. Intuition to General Case</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#orga5201e8">3. Least-Squares Interpolation</a></li>
@@ -81,7 +88,7 @@ The intuition for this is that the effects add up. By changing \(x\) by a small 
 </p>
 
 
-<div id="org5bbf022" class="figure">
+<div id="orgb519ede" class="figure">
 <p><img src="../static/min_max1.png" alt="min_max1.png" />
 </p>
 </div>
@@ -150,8 +157,111 @@ It is interesting to note that in three dimensions, there could be a case where 
 </p>
 
 
-<div id="org84615eb" class="figure">
+<div id="orgc0850b4" class="figure">
 <p><img src="../static/min_max2.png" alt="min_max2.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgefcc43d" class="outline-3">
+<h3 id="orgefcc43d"><span class="section-number-3">2.2.</span> Second Derivative Test</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Once we find the critical points, however, we still have no way of telling if it is a local minimum, a local maximum, or a saddle point. In addition, we would also like to know the <i>global</i> minimum and maximum.
+</p>
+
+<p>
+Note that the global min and max doesn't have to be at a critical point: it can also be at a <b>boundary value</b>, either of the domain or at infinity.
+</p>
+
+<p>
+To find the type of critical point we have, we use what is known as the <b>second derivative test</b>. 
+</p>
+</div>
+<div id="outline-container-org64bb1ad" class="outline-4">
+<h4 id="org64bb1ad"><span class="section-number-4">2.2.1.</span> Special Case</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+We will use the quadratic function \(w=ax^2 + bxy + cy^2\), where \(a \neq 0\), for intuition. First, we complete the square:
+</p>
+
+\begin{aligned}
+w &= a(x^2 + \frac{b}{a}xy) + cy^2 \\
+w &= a(x + \frac{b}{2a}y)^2 + (c - \frac{b^2}{4a})y^2 \\
+w &= \frac{1}{4a} \left [ 4a^2(x+\frac{b}{2a}y)^2 + (4ac - b^2)y^2 \right ]
+\end{aligned}
+
+<p>
+Since \(4a^2(x+\frac{b}{2a}y)^2\) is all composed of squares, this term will always be positive. Therefore, there are three cases, depending on the sign of \(4ac-b^2\).
+</p>
+
+<p>
+First, when \(4ac-b^2 < 0\), there is a saddle point. This is because \(w\) is not necessarily all negative or all positive from the critical point, which is the key characteristic of a saddle point.
+</p>
+
+<p>
+Second, when \(4ac-b^2 = 0\), we have what's called a <b>degenerate critical point</b>, because there is one direction in which nothing happens (when \(x+\frac{b}{2a}y\) is constant). In more complicated functions, we will be unable to tell what happens exactly around this critical point.
+</p>
+
+<p>
+Finally, when \(4ac-b^2 > 0\), this means we have a sum of two squares. This means that everything within the brackets is positive, and therefore the overall sign of the function \(w\) depends solely on the sign of \(a\). In this case, if \(a > 0\), \(w\) is always positive, and therefore we have a minimum. Otherwise, if \(a < 0\), \(w\) is always negative, and therefore we have a maximum.
+</p>
+
+<p>
+Notice that this looks very much like the <b>discriminant</b> of the quadratic formula. Indeed, we can reach the same intuition using the quadratic formula. Instead of completing the square, we can factor out \(y^2\) to get:
+</p>
+
+<p>
+\[
+w=y^2 \left[a \left( \frac{x}{y} \right ) ^2 + b \left ( \frac{x}{y} \right ) + c \right]
+\]
+</p>
+
+<p>
+The term inside the brackets is a quadratic equation, with variable \(\frac{x}{y}\). Thus, if \(b^2-4ac>0\) (or \(4ac-b^2 < 0\)), this means this equation has roots, and therefore can take both positive and negative values, which again leads us to a saddle point. Otherwise, if \(b^2-4ac<0\), this means that the equation never has a root (never takes the value zero), which means it is either always positive or always negative, depending on the sign of \(a\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf775e52" class="outline-4">
+<h4 id="orgf775e52"><span class="section-number-4">2.2.2.</span> General Case</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+In general, we look at the <b>second partial derivative</b>. At a critical point \((x_0,y_0)\) of a function \(f\), the second derivative test says that if:
+</p>
+
+\begin{aligned}
+A &= f_{xx}(x_0,y_0) \\
+B &= f_{xy}(x_0,y_0) \\
+C &= f_{yy}(x_0,y_0)
+\end{aligned}
+
+<p>
+Note that \(f_{xy}=f_{yx}\). Now, we look at \(AC-B^2\):
+</p>
+
+<ul class="org-ul">
+<li>if \(AC-B^2 > 0\) and \(A > 0\), local minimum</li>
+<li>if \(AC-B^2 > 0\) and \(A < 0\), local maximum</li>
+<li>if \(AC-B^2 < 0\), saddle point</li>
+<li>if \(AC-B^2 = 0\), inconclusive</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org57fdf50" class="outline-4">
+<h4 id="org57fdf50"><span class="section-number-4">2.2.3.</span> Intuition to General Case</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+The intuition here lies in <b>Taylor approximations</b>. Notice that our linear approximation is simply the first-order terms of a Taylor approximation; however, at a critical point, the first-order derivatives are zero. Therefore, we need to add in the second-derivative terms to be more accurate:
+</p>
+
+<p>
+\[
+\Delta f_\text{crit} \approx \frac{1}{2}f_{xx} (x-x_0)^2 + f_{xy}(x-x_0)(y-y_0) + \frac{1}{2}f_{yy}(y-y_0)^2
+\]
+</p>
+
+<p>
+Suddenly, realize that this approximation is <i>exactly the same as our special case</i>: this shows that our general case can be reduced to our special case. Realize that here, \(\frac{1}{2}A = a\), \(B = b\), and \(\frac{1}{2}C = c\) (this also explains why the 4 is dropped in our general case).
 </p>
 </div>
 </div>
@@ -216,7 +326,7 @@ Realize that once you plug in all of the data points as numbers, this comes out 
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-18 09:21
+               Last modified: 2025-06-20 15:52
              </div>
 </div>
 </body>
