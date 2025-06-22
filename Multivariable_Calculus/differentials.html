@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-06-22 Sun 09:47 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Differentials and Chain Rule</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Differentials and Chain Rule</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org350948b">1. Total Differential</a></li>
+<li><a href="#orgb8ac146">2. Chain Rule</a>
+<ul>
+<li><a href="#orgf4bf06e">2.1. Proof</a></li>
+</ul>
+</li>
+<li><a href="#orga971bc6">3. Applications of Chain Rule</a>
+<ul>
+<li><a href="#org941fc9b">3.1. Product Rule</a></li>
+<li><a href="#org1a9d01a">3.2. Quotient Rule</a></li>
+<li><a href="#org5f13073">3.3. Multiple Intermediate Variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org350948b" class="outline-2">
+<h2 id="org350948b"><span class="section-number-2">1.</span> Total Differential</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Given function \(f(x,y,z)\), we have
+</p>
+
+<p>
+\[
+\text{d}f = f_x\text{d}x + f_y\text{d}y + f_z\text{d}z
+\]
+</p>
+
+<p>
+In this way, these differentials encode how changes in \(x\), \(y\), and \(z\) affect the function \(f\). Notice that it is similar to our formula for <a href="min_max.html#orgf8c879a">linear approximations</a>, and so they can also be thought of as a placeholder for the small variations \(\Delta x\), \(\Delta y\), and \(\Delta z\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb8ac146" class="outline-2">
+<h2 id="orgb8ac146"><span class="section-number-2">2.</span> Chain Rule</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We can also divide by something like \(\text{d}t\) to get a rate of change if they depend on some external parameter \(t\), such as when \(x=x(t)\), \(y=y(t)\), and \(z=z(t)\), to get the <b>chain rule</b>:
+</p>
+
+<p>
+\[
+\frac{\text{d}f}{\text{d}t} = f_x\frac{\text{d}x}{\text{d}t} + f_y\frac{\text{d}y}{\text{d}t} + f_z\frac{\text{d}z}{\text{d}t}
+\]
+</p>
+</div>
+<div id="outline-container-orgf4bf06e" class="outline-3">
+<h3 id="orgf4bf06e"><span class="section-number-3">2.1.</span> Proof</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+From our formula for linear approximation, we have that:
+</p>
+
+<p>
+\[
+\Delta f \approx f_x \Delta x + f_y \Delta y + f_z \Delta z
+\]
+</p>
+
+<p>
+Dividing everything by a change in time \(\Delta t\), we have:
+</p>
+
+<p>
+\[
+\frac{\Delta f}{\Delta t} \approx f_x\frac{\Delta x}{\Delta t} +f_y \frac{\Delta y}{\Delta t} + f_z \frac{\Delta z}{\Delta t}
+\]
+</p>
+
+<p>
+Now, as we take the limit as \(\Delta t\) tends to zero, we get the following equality which is the chain rule:
+</p>
+
+<p>
+\[
+\lim_{\Delta t \to 0}{\frac{\Delta f}{\Delta t}} = \frac{\text{d}f}{\text{d}t} = f_x\frac{\text{d}x}{\text{d}t} + f_y\frac{\text{d}y}{\text{d}t} + f_z\frac{\text{d}z}{\text{d}t}
+\]
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga971bc6" class="outline-2">
+<h2 id="orga971bc6"><span class="section-number-2">3.</span> Applications of Chain Rule</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org941fc9b" class="outline-3">
+<h3 id="org941fc9b"><span class="section-number-3">3.1.</span> Product Rule</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+We can use multivariable calculus and the chain rule to justify the product rule. Given a function \(f=uv\), where \(u=u(t)\) and \(v=v(t)\), we have that:
+</p>
+
+<p>
+\[
+\frac{\text{d}(uv)}{\text{d}t} = f_u \frac{\text{d}u}{\text{d}t} + f_v \frac{\text{d}v}{\text{d}t} = v \frac{\text{d}u}{\text{d}t} + u \frac{\text{d}v}{\text{d}t}
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org1a9d01a" class="outline-3">
+<h3 id="org1a9d01a"><span class="section-number-3">3.2.</span> Quotient Rule</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Given a function \(g=\frac{u}{v}\), where \(u=u(t)\) and \(v=v(t)\), we have:
+</p>
+
+<p>
+\[
+\frac{\text{d}(\frac{u}{v})}{\text{d}t} = \frac{1}{v} \frac{\text{d}u}{\text{d}t} - \frac{u}{v^2} \frac{\text{d}v}{\text{d}t}
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org5f13073" class="outline-3">
+<h3 id="org5f13073"><span class="section-number-3">3.3.</span> Multiple Intermediate Variables</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+If we have a function \(f(u,v)\) where we have \(u(x,y)\) and \(v(x,y)\), we now have two intermediate variables \(x\) and \(y\). If we actually calculate the chain rule out, we have the following formulas:
+</p>
+
+\begin{aligned}
+\frac{\partial f}{\partial u} = \frac{\partial f}{\partial x} \frac{\partial x}{\partial u} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial u} \\
+\frac{\partial f}{\partial v} = \frac{\partial f}{\partial x} \frac{\partial x}{\partial v} + \frac{\partial f}{\partial y} \frac{\partial y}{\partial v}
+\end{aligned}
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-06-22 09:47
+             </div>
+</div>
+</body>
+</html>
