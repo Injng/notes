@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-06-24 Tue 09:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gradient</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Gradient</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0414c17">1. Gradient</a>
+<ul>
+<li><a href="#orgcaea8bb">1.1. Level Surfaces</a>
+<ul>
+<li><a href="#org60b0875">1.1.1. Intuition</a></li>
+<li><a href="#org82284a1">1.1.2. Proof</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org24f1f27">2. Directional Derivatives</a>
+<ul>
+<li><a href="#orgacffd27">2.1. Application of Gradient</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0414c17" class="outline-2">
+<h2 id="org0414c17"><span class="section-number-2">1.</span> Gradient</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Given a function \(w=f(x,y,z)\) in three variables, the <b>gradient</b> of \(w\) is the vector formed by its partial derivatives:
+</p>
+
+<p>
+\[
+\nabla w = \langle w_x,w_y,w_z \rangle
+\]
+</p>
+
+<p>
+We can then, for example, rewrite the <a href="differentials.html#orgb8ac146">chain rule</a> like so:
+</p>
+
+<p>
+\[
+\frac{\text{d}f}{\text{d}t} = \nabla f \cdot \frac{\text{d} \vec{r}}{\text{d} t}
+\]
+</p>
+
+<p>
+where \(\frac{\text{d} \vec{r}}{\text{d} t} = \langle\frac{\text{d}x}{\text{d}t},\frac{\text{d}y}{\text{d}t},\frac{\text{d}z}{\text{d}t}\rangle\).
+</p>
+</div>
+<div id="outline-container-orgcaea8bb" class="outline-3">
+<h3 id="orgcaea8bb"><span class="section-number-3">1.1.</span> Level Surfaces</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The gradient of \(w\) at a point is perpendicular to the level surface \(w=c\) at that point, pointing towards higher values of \(w\).
+</p>
+</div>
+<div id="outline-container-org60b0875" class="outline-4">
+<h4 id="org60b0875"><span class="section-number-4">1.1.1.</span> Intuition</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Take, for example, the function \(w(x,y,z) = a_1x + a_2y + a_3z\). Then, the gradient of this function is:
+</p>
+
+<p>
+\[
+\nabla w = \langle a_1, a_2, a_3 \rangle
+\]
+</p>
+
+<p>
+The level surfaces can be represented by \(a_1x+a_2y+a_3z=c\), where \(c\) is some constant. Realize, however, that this is simply the equation of a plane, and we know that what happens to be the gradient vector is perpendicular to this plane.
+</p>
+</div>
+</div>
+<div id="outline-container-org82284a1" class="outline-4">
+<h4 id="org82284a1"><span class="section-number-4">1.1.2.</span> Proof</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Say we have a level surface \(w(x,y,z)=c\), and we have another function \(\vec{r}(t)\) that moves on this level surface. We know that since \(\vec{r}(t)\) moves on the level surface, then its velocity vector \(\vec{v}\) must also be tangent to this level surface. Then, by the <a href="differentials.html#orgb8ac146">chain rule</a>, we have:
+</p>
+
+<p>
+\[
+\frac{\text{d}w}{\text{d}t} = \nabla w \cdot \frac{\text{d}\vec{r}}{\text{d}t} = \nabla w \cdot \vec{v}
+\]
+</p>
+
+<p>
+Yet, since \(w(t)=c\), its derivative must be zero. Therefore, we have:
+</p>
+
+<p>
+\[
+\nabla w \cdot \vec{v} = 0
+\]
+</p>
+
+<p>
+As the dot product is zero, we know that the gradient vector and the velocity vector are perpendicular. However, since the velocity vector is tangent to the surface, this can be extended to mean that the <i>gradient vector and the level surface are perpendicular</i>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org24f1f27" class="outline-2">
+<h2 id="org24f1f27"><span class="section-number-2">2.</span> Directional Derivatives</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Partial derivatives gives us the rate of change for a function in the directions defined by \(\hat{i}\), \(\hat{j}\), and so on. But <b>directional derivatives</b> allow us to calculate the rate of change for a function \(w\) in some <i>arbitrary direction</i> defined by the unit vector \(\hat{u}\).
+</p>
+
+<p>
+To do so, we will introduce an external parameter \(s\), where \(\vec{r}(s)\) is the trajcetory along \(\hat{u} = \langle a,b \rangle\) moving at unit speed. Then, we can parameterize \(x\) and \(y\) in terms of \(s\):
+</p>
+
+\begin{aligned}
+x(s) &= x_0 + as \\
+y(s) &= y_0 + bs
+\end{aligned}
+
+<p>
+We see that what we really want is to find \(\frac{\text{d}w}{\text{d}s}\). To do this, we can use the <a href="differentials.html#orgb8ac146">chain rule</a>, with the notation as follows:
+</p>
+
+<p>
+\[
+\frac{\text{d}w}{\text{d}s}_{|\hat{u}} = \nabla w \cdot \frac{\text{d}\vec{r}}{\text{d}s} = \nabla w \cdot \hat{u}
+\]
+</p>
+</div>
+<div id="outline-container-orgacffd27" class="outline-3">
+<h3 id="orgacffd27"><span class="section-number-3">2.1.</span> Application of Gradient</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+We can further simplify this into:
+</p>
+
+<p>
+\[
+\frac{\text{d}w}{\text{d}s}_{|\hat{u}} = \nabla w \cdot \hat{u} = |\nabla w| \cos{\theta}
+\]
+</p>
+
+<p>
+Geometrically, this means that the directional derivative is the projection of the gradient along the direction of the unit vector. It can be seen that the directional derivative's magnitude is the largest when \(\cos(0)=1\); in other words, when \(\hat{u} = \text{dir}(\nabla w)\).
+</p>
+
+<p>
+This is a new way of thinking about the gradient: <i>the gradient is the direction in which the function changes increases the fastest at that point</i>. Similarly, this can be extended to show that the direction in which the function not changes is when the direction is perpendicular to the gradient (notice that this means we are moving along the level surface), and so on.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-06-24 09:06
+             </div>
+</div>
+</body>
+</html>
