@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-24 Tue 09:00 -->
+<!-- 2025-07-08 Tue 05:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functions and Partial Derivatives</title>
@@ -62,7 +62,15 @@
 </li>
 </ul>
 </li>
-<li><a href="#orgf9d548d">2. Partial Derivatives</a></li>
+<li><a href="#orgf9d548d">2. Partial Derivatives</a>
+<ul>
+<li><a href="#org0011148">2.1. Non-Independent Variables</a>
+<ul>
+<li><a href="#org0374d4d">2.1.1. A Note on Notation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -101,7 +109,7 @@ First, we can visualize a function of two variables by plotting its <b>graph</b>
 </p>
 
 
-<div id="orgdd0475b" class="figure">
+<div id="org1b816a5" class="figure">
 <p><img src="../static/functions_partial_derivatives1.png" alt="functions_partial_derivatives1.png" />
 </p>
 </div>
@@ -121,7 +129,7 @@ With this information, we can see the graph will look somewhat like this:
 </p>
 
 
-<div id="orgc95cdc1" class="figure">
+<div id="org2ffbd08" class="figure">
 <p><img src="../static/functions_partial_derivatives2.png" alt="functions_partial_derivatives2.png" />
 </p>
 </div>
@@ -138,7 +146,7 @@ The <b>contour plot</b> is similar to a topographic map: each curve on the conto
 </p>
 
 
-<div id="org42b07ff" class="figure">
+<div id="org96a47ad" class="figure">
 <p><img src="../static/contour1.png" alt="contour1.png" />
 </p>
 </div>
@@ -176,6 +184,87 @@ f_x &= 3x^2y \\
 f_y &= x^3 + 2y
 \end{aligned}
 </div>
+<div id="outline-container-org0011148" class="outline-3">
+<h3 id="org0011148"><span class="section-number-3">2.1.</span> Non-Independent Variables</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Sometimes, we want to take the partial derivative of a function \(f(x,y,z)\) such that we have the constraint \(g(x,y,z)=c\).
+</p>
+
+<p>
+It follows then that we can write a function for a variable in terms of the other variable — for example, \(z=z(x,y)\). The question is then how do we find partial derivatives like \(\frac{\partial z}{\partial x}\) and \(\frac{\partial z}{\partial y}\) without necessarily having to solve for \(z\)?
+</p>
+
+<p>
+Taking the <a href="differentials.html#org350948b">total differential</a> of \(g\), we get that:
+</p>
+
+<p>
+\[
+\text{d}g = g_x \text{d}x + g_y \text{d}y + g_z \text{d}z
+\]
+</p>
+
+<p>
+Yet, since \(g\) is equal to a constant, we know that \(\text{d}g=0\). Therefore, we can write:
+</p>
+
+<p>
+\[
+ g_x \text{d}x + g_y \text{d}y + g_z \text{d}z = 0
+\]
+</p>
+
+<p>
+This now gives us a relationship between all of the variables. If for example we view \(z=z(x,y)\), we can figure out the relationship for \(\text{d}z\) by isolating it from the total differential above:
+</p>
+
+<p>
+\[
+\text{d}z = -\frac{g_x}{g_z}\text{d}x - \frac{g_y}{g_z}\text{d}y
+\]
+</p>
+
+<p>
+Therefore, we get that:
+</p>
+
+\begin{aligned}
+\frac{\partial z}{\partial x} = -\frac{g_x}{g_z} \\
+\frac{\partial z}{\partial y} = -\frac{g_y}{g_z}
+\end{aligned}
+
+<p>
+We can go a step further and find things like \(f_y\) with \(x\) held constant by considering the total differential of \(f\). Then, since \(\text{d}x=0\), we can plug in what we found for \(\text{d}z\) to get a total differential that only has \(\text{d}y\).
+</p>
+</div>
+<div id="outline-container-org0374d4d" class="outline-4">
+<h4 id="org0374d4d"><span class="section-number-4">2.1.1.</span> A Note on Notation</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+Consider the function \(f(x,y)=x+y\). Then, apply the change of variables \(x=u\), \(y=u+v\). Since \(f=x+y\) now becomes \(f=2u+v\), we know that these two things are true:
+</p>
+
+\begin{aligned}
+\frac{\partial f}{\partial x} = 1 \\
+\frac{\partial f}{\partial u} = 2
+\end{aligned}
+
+<p>
+This offers up a possible contradiction: we know that \(x=u\), yet \(f_x \neq f_u\)!
+</p>
+
+<p>
+The key thing to realize is that there is hidden information that our notation for partial derivatives is ignoring. For \(f_x\), we are changing \(x\) while keeping \(y\) constant, and for \(f_u\), we are changing \(u\) while keeping \(v\) constant. Therefore, for situations like these, we need clearer notation that specifies what it is we are keeping constant:
+</p>
+
+\begin{aligned}
+\frac{\partial f}{\partial x} = \left ( \frac{\partial f}{\partial x} \right )_y \\
+\frac{\partial f}{\partial u} = \left ( \frac{\partial f}{\partial u} \right )_v
+\end{aligned}
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -183,7 +272,7 @@ f_y &= x^3 + 2y
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-24 08:57
+               Last modified: 2025-07-08 05:57
              </div>
 </div>
 </body>
