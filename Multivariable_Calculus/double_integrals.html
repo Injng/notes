@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-07-09 Wed 07:42 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Double Integrals</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Double Integrals</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org10b7dc9">1. Intuition</a></li>
+<li><a href="#orgbd754eb">2. Definition</a></li>
+<li><a href="#org043e375">3. Computation</a>
+<ul>
+<li><a href="#org17a3bf8">3.1. Exchanging the Order of Integration</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org10b7dc9" class="outline-2">
+<h2 id="org10b7dc9"><span class="section-number-2">1.</span> Intuition</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Similar to how an integral in single-variable calculus is defined as the area underneath a curve, we can rouhgly define a <b>double integral</b> as the <i>volume underneath a surface</i>. In other words, the double integral of a function \(z=f(x,y)\) is such that we choose a region \(R\) in the \(xy\) plane and we compute the volume underneath the surface for the region \(R\):
+</p>
+
+
+<div id="org2ca3747" class="figure">
+<p><img src="../static/double_integrals1.png" alt="double_integrals1.png" />
+</p>
+</div>
+
+<p>
+We can write this as:
+</p>
+
+<p>
+\[
+\iint_{R} f(x,y) \text{ d}A
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd754eb" class="outline-2">
+<h2 id="orgbd754eb"><span class="section-number-2">2.</span> Definition</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+However, we need a more rigorous definition. Remember how we cut the area into small rectangles in order to calculate the integral for single-variable calculus. Similarly for double integrals, we can divide the volume up into small rectangular prisms, like so:
+</p>
+
+
+<div id="org1ab8e43" class="figure">
+<p><img src="../static/double_integrals2.png" alt="double_integrals2.png" />
+</p>
+</div>
+
+<p>
+What this figure is showing is that we can take small areas \(\Delta A\) and multiply them with our function \(f\) to obtain the volumes of these small rectangular prisms. Then, adding all of these prisms together will give us an estimate of the total volume.
+</p>
+
+<p>
+What the double integral does, then, is the limit as all of these rectangular prisms gets smaller and smaller, just like for single integrals. We can write this as:
+</p>
+
+<p>
+\[
+\lim_{\Delta A_i \to 0} {\sum_{i} f(x_i,y_i) \cdot \Delta A_i}
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org043e375" class="outline-2">
+<h2 id="org043e375"><span class="section-number-2">3.</span> Computation</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Computing double integrals actually involves reducing it to the computation of two single variable integrals. Realize that we can take a plane and "scan" from the back to the front; for each plane, the integral will give us the area underneath the curve for the surface intersected by that plane, and then the next integral will sum up all of these areas in turn:
+</p>
+
+
+<div id="org1cf4db1" class="figure">
+<p><img src="../static/double_integrals3.png" alt="double_integrals3.png" />  
+</p>
+</div>
+
+<p>
+In other words, we can let \(S(x)\) to be the area of each slice shown in the figure above. Then the volume of the region is:
+</p>
+
+<p>
+\[
+\iint_R f(x,y) \text{ d}A = \int_{x_\text{min}}^{x_\text{max}} S(x) \text{ d}x
+\]
+</p>
+
+<p>
+Yet, \(S(x)\) itself is the integral in each plane:
+</p>
+
+<p>
+\[
+S(x) = \int_{y_\text{min}(x)}^{y_\text{max}(x)} f(x,y) \text{ d}y
+\]
+</p>
+
+<p>
+Critically, remember that our bounds of integration here actually depend on what \(x\) we have. Putting these two equations together, we have that:
+</p>
+
+<p>
+\[
+\iint_R f(x,y) \text{ d}A = \int_{x_\text{min}}^{x_\text{max}} \int_{y_\text{min}(x)}^{y_\text{max}(x)} f(x,y) \text{ d}y \text{ d}x
+\]
+</p>
+
+<p>
+We have now turned our double integral expression into what we call an <b>iterated integral</b> — reducing our calculation to the repeated application of two single integrals.
+</p>
+</div>
+<div id="outline-container-org17a3bf8" class="outline-3">
+<h3 id="org17a3bf8"><span class="section-number-3">3.1.</span> Exchanging the Order of Integration</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Sometimes, it may be helpful to exchange the order of integration: instead of \(\text{d}y\text{ d}x\), we take \(\text{d}x\text{ d}y\) instead. To do this, however, we must be extremely careful about how we set up the bounds. In general, we need to draw a picture of our slices in order to understand the bounds going the other way.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-07-09 07:42
+             </div>
+</div>
+</body>
+</html>
