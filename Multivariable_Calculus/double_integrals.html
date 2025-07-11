@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-07-09 Wed 07:42 -->
+<!-- 2025-07-11 Fri 09:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Double Integrals</title>
@@ -60,6 +60,13 @@
 <li><a href="#org17a3bf8">3.1. Exchanging the Order of Integration</a></li>
 </ul>
 </li>
+<li><a href="#orgaaad16c">4. Polar Coordinates</a>
+<ul>
+<li><a href="#org9ad6eef">4.1. Mass</a></li>
+<li><a href="#orga807340">4.2. Continuous Average</a></li>
+<li><a href="#orga6f0154">4.3. Moment of Inertia</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -71,7 +78,7 @@ Similar to how an integral in single-variable calculus is defined as the area un
 </p>
 
 
-<div id="org2ca3747" class="figure">
+<div id="org32196e0" class="figure">
 <p><img src="../static/double_integrals1.png" alt="double_integrals1.png" />
 </p>
 </div>
@@ -95,7 +102,7 @@ However, we need a more rigorous definition. Remember how we cut the area into s
 </p>
 
 
-<div id="org1ab8e43" class="figure">
+<div id="orgd5c16c6" class="figure">
 <p><img src="../static/double_integrals2.png" alt="double_integrals2.png" />
 </p>
 </div>
@@ -123,7 +130,7 @@ Computing double integrals actually involves reducing it to the computation of t
 </p>
 
 
-<div id="org1cf4db1" class="figure">
+<div id="orgde347b3" class="figure">
 <p><img src="../static/double_integrals3.png" alt="double_integrals3.png" />  
 </p>
 </div>
@@ -159,7 +166,7 @@ Critically, remember that our bounds of integration here actually depend on what
 </p>
 
 <p>
-We have now turned our double integral expression into what we call an <b>iterated integral</b> — reducing our calculation to the repeated application of two single integrals.
+We have now turned our double integral expression into what we call <b>iterated integrals</b> — reducing our calculation to the repeated application of two single integrals.
 </p>
 </div>
 <div id="outline-container-org17a3bf8" class="outline-3">
@@ -171,13 +178,119 @@ Sometimes, it may be helpful to exchange the order of integration: instead of \(
 </div>
 </div>
 </div>
+<div id="outline-container-orgaaad16c" class="outline-2">
+<h2 id="orgaaad16c"><span class="section-number-2">4.</span> Polar Coordinates</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Sometimes, when we're working with things like circles, it might be easier to integrate instead in <b><b>polar coordinates</b></b>. Polar coordinates are defined by:
+</p>
+
+\begin{aligned}
+x = r\cos\theta \\
+y = r\sin\theta
+\end{aligned}
+
+<p>
+Instead of integrating \(\text{d}x\) and then \(\text{d}y\), we will instead integrate \(\text{d}r\) and then \(\text{d}\theta\). We will then represent the bounds of the integrals in terms of polar coordinates \((r,\theta)\). It is helpful to visualize as adding small increments \(\Delta r\) and \(\Delta \theta\), like so:
+</p>
+
+
+<div id="org1701c74" class="figure">
+<p><img src="../static/double_integrals4.png" alt="double_integrals4.png" />
+</p>
+</div>
+
+<p>
+Now we want to represent the small change in area, \(\Delta A\), in terms of \(r\) and \(\theta\). First, realize that as the area gets smaller and smaller, we can approximate it into being a rectangle. One of the sides we know is \(\Delta r\). The other side corresponds to the arc length of a circle of radius \(r\) with arc angle \(\Delta \theta\), so the length is \(r \Delta \theta\). In other words, we can say that:
+</p>
+
+<p>
+\[
+\text{d}A = r \text{ d}r\text{ d}\theta
+\]
+</p>
+
+<p>
+Therefore, to compute a double integral in polar coordinates, replace the bounds using \(r\) and \(\theta\), and replace \(\text{d}A\) with \(r \text{ d}r\text{ d}\theta\).
+</p>
+</div>
+<div id="outline-container-org9ad6eef" class="outline-3">
+<h3 id="org9ad6eef"><span class="section-number-3">4.1.</span> Mass</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+We can use double integrals to find the mass of a flat object by using the density \(\delta\), which is the mass per unit area. Then, we can integrate this over the flat region to find the mass like so:
+</p>
+
+<p>
+\[
+M = \iint_R \delta \text{ d}A
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orga807340" class="outline-3">
+<h3 id="orga807340"><span class="section-number-3">4.2.</span> Continuous Average</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+We can define the average of \(f\) over a continuous region \(R\) as the double integral of \(f\) on \(R\) divided by the total area of \(R\):
+</p>
+
+<p>
+\[
+\bar{f} = \frac{1}{A} \iint_R f \text{ d}A
+\]
+</p>
+
+<p>
+We can also calculate where the <b>center of mass</b> of a flat object is \((\bar{x},\bar{y})\) by using a weighted average with density function \(\delta\) and dividing by mass instead of area:
+</p>
+
+\begin{aligned}
+\bar{x} = \frac{1}{M} \iint_R x\delta \text{ d}A \\
+\bar{y} = \frac{1}{M} \iint_R y\delta \text{ d}A
+\end{aligned}
+</div>
+</div>
+<div id="outline-container-orga6f0154" class="outline-3">
+<h3 id="orga6f0154"><span class="section-number-3">4.3.</span> Moment of Inertia</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+The <b>moment of inertia</b> is to rotational motion as mass is to translational motion. In other words, mass determines how hard it is to impart translational motion on an object, and the moment of inertia is the same but for rotational motion about a certain axis.
+</p>
+
+<p>
+To get the moment of inertia, first consider the kinetic energy. Given a velocity and mass of an object, we know the the kinetic energy is equal to \(\frac{1}{2}mv^2\). Now, consider a point mass of mass \(m\) at a distance \(r\) from the center of rotation, rotating at angular velocity \(\omega\). For unit time, the object rotates an angle of \(\omega\), and the distance it travels is given by the arc length formula \(r\omega\). Therefore, the velocity is \(r\omega\), so the kinetic energy is:
+</p>
+
+<p>
+\[
+\text{KE} = \frac{1}{2}mv^2 = \frac{1}{2}mr^2\omega^2
+\]
+</p>
+
+<p>
+Since \(\omega\) is to rotational motion what \(v\) is to translational motion, we take the expression \(mr^2\) above and call that the <i>moment of inertia</i>.
+</p>
+
+<p>
+For objects that are more complicated than a point mass, we can calculate the moment of inertia around the origin using a double integral:
+</p>
+
+<p>
+\[
+I_0 = \iint_R r^2 \delta \text{ d}A
+\]
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-07-09 07:42
+               Last modified: 2025-07-11 09:48
              </div>
 </div>
 </body>
