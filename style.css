@@ -40,6 +40,12 @@
   padding: 0px 200px;
 }
 
+@media (max-width: 800px) {
+  .content {
+    padding: 0px 32px;
+  }
+}
+
 /* Blockquotes */
 blockquote {
   border-left: 4px solid var(--blue);
