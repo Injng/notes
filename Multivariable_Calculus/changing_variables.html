@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-07-13 Sun 19:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Change of Variables</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Change of Variables</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org61d8af5">1. General Case</a></li>
+</ul>
+</div>
+</div>
+<p>
+Sometimes, we want to perform a <b>change of variables</b> between one coordinate system to another. For example, if we have \(\text{d}A=\text{d}x\text{ d}y\), we want to change this system to \(\text{d}A'=\text{d}u\text{ d}v\). This type of transformation is often performed when it is easier to do calculations in another coordinate system.
+</p>
+
+<p>
+The issue is, the area \(A\) in \(xy\) coordinates may not be the same area in \(uv\) coordinates. Our job, then, is to figure out the relationship between \(\text{d}A\) and \(\text{d}A'\). In other words, we want to find a <i>scaling factor</i> that relates these two coordinate systems.
+</p>
+<div id="outline-container-org61d8af5" class="outline-2">
+<h2 id="org61d8af5"><span class="section-number-2">1.</span> General Case</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In general, let's say we have a coordinate system in \(uv\) such that its relationship with the \(xy\) coordinate system is as follows:
+</p>
+
+\begin{aligned}
+u=u(x,y) \\
+v=v(x,y) 
+\end{aligned}
+
+<p>
+Then, by the approximation formulas, we can write:
+</p>
+
+\begin{aligned}
+\Delta u \approx u_x \Delta x + u_y \Delta y \\
+\Delta v \approx v_x \Delta x + v_y \Delta y
+\end{aligned}
+
+<p>
+Writing in matrix form, we have:
+</p>
+
+\begin{aligned}
+\begin{bmatrix} \Delta u \\ \Delta v \end{bmatrix} \approx \begin{bmatrix} u_x & u_y \\ v_x & v_y \end{bmatrix} \begin{bmatrix} \Delta x \\ \Delta y \end{bmatrix}
+\end{aligned}
+
+<p>
+We can think of this as if we have a small rectangle in the \(xy\) system, it will be transformed into a small parallelogram in the \(uv\) system. Our system of equations tell us that the area of this parallelogram, transformed from a unit square in \(xy\), is the <a href="vectors.html#orgc361803">determinant</a> like so:
+</p>
+
+\begin{aligned}
+|J| = \left| \begin{matrix} u_x & u_y \\ v_x & v_y \end{matrix} \right|
+\end{aligned}
+
+<p>
+We call this value \(J\) the <b>Jacobian</b>. Then,
+</p>
+
+<p>
+\[
+\text{d}u\text{ d}v = |J|\text{ d}x\text{ d}y
+\]
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-07-13 19:25
+             </div>
+</div>
+</body>
+</html>
