@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-07-16 Wed 11:04 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Line Integrals</title>
+<meta name="author" content="Lin Jiang" />
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Line Integrals</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga0f2a96">1. Work and Line Integrals</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga0f2a96" class="outline-2">
+<h2 id="orga0f2a96"><span class="section-number-2">1.</span> Work and Line Integrals</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Recall that <b>work</b> is defined as the dot product between force and displacement, the amount of energy provided by the force to perform the displacement:
+</p>
+
+<p>
+\[
+W = \vec{F} \cdot \Delta \vec{r}
+\]
+</p>
+
+<p>
+However, we may be dealing with more complicated trajectories, or when the force is not constant over the entire displacement, like so:
+</p>
+
+
+<div id="org82e21af" class="figure">
+<p><img src="../static/line_integrals1.png" alt="line_integrals1.png" />
+</p>
+</div>
+
+<p>
+In these cases, we can try taking smaller and smaller segments of the trajectory and then summing all of our work calculations for each of those segments. Therefore, along some trajectory \(C\), the work adds up to the <b>line integral</b>:
+</p>
+
+<p>
+\[
+W = \lim_{\Delta r_i \to 0} \sum_i \vec{F} \cdot \Delta \vec{r_i} = \int_C \vec{F} \cdot \text{ d}\vec{r}
+\]
+</p>
+
+<p>
+In order to actually compute this integral, we can instead integrate over time:
+</p>
+
+\begin{align}
+W = \int_C \vec{F} \cdot \text{ d}\vec{r} = \int_{t_1}^{t_2} \vec{F} \cdot \frac{\text{d}\vec{r}}{\text{d}t} \text{ d}t
+\end{align}
+
+<p>
+We can also try writing the force and displacement as \(\vec{F} = \langle M, N\rangle\) and \(\text{d}\vec{r} = \langle\text{d}x, \text{ d}y\rangle\). Therefore, we have:
+</p>
+
+\begin{align}
+W = \int_C \vec{F} \cdot \text{ d}\vec{r} = \int_C M \text{ d}x + N \text{ d}y
+\end{align}
+
+<p>
+Critically, note that <i>we cannot split this into two integrals</i> as the notation suggests, as in fact \(M\) and \(N\) depends on both \(x\) and \(y\). In order to actually evaluate this, we need to express \(M\) and \(N\) in terms of a single variable (e.g. \(t\)), and then substitute into the integral.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-07-16 11:04
+             </div>
+</div>
+</body>
+</html>
