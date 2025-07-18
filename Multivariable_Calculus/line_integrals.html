@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-07-16 Wed 11:04 -->
+<!-- 2025-07-18 Fri 10:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Line Integrals</title>
@@ -54,9 +54,13 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#orga0f2a96">1. Work and Line Integrals</a></li>
+<li><a href="#org5ac9af7">2. Fundamental Theorem of Calculus for Line Integrals</a></li>
 </ul>
 </div>
 </div>
+<p>
+A line integral is a way to integrate a function over a line or a path, rather than an interval or a region. Critically, the integral shows that it is dependent not only on the start and end points, but also the specific path taken to get between these two points.
+</p>
 <div id="outline-container-orga0f2a96" class="outline-2">
 <h2 id="orga0f2a96"><span class="section-number-2">1.</span> Work and Line Integrals</h2>
 <div class="outline-text-2" id="text-1">
@@ -75,7 +79,7 @@ However, we may be dealing with more complicated trajectories, or when the force
 </p>
 
 
-<div id="org82e21af" class="figure">
+<div id="org25d5193" class="figure">
 <p><img src="../static/line_integrals1.png" alt="line_integrals1.png" />
 </p>
 </div>
@@ -111,13 +115,56 @@ Critically, note that <i>we cannot split this into two integrals</i> as the nota
 </p>
 </div>
 </div>
+<div id="outline-container-org5ac9af7" class="outline-2">
+<h2 id="org5ac9af7"><span class="section-number-2">2.</span> Fundamental Theorem of Calculus for Line Integrals</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+When our line integral is done on a <a href="vector_fields.html#orgf31f015">gradient field</a>, then we have a special case of the <b>fundamental theorem of calculus</b>. Specifically, if we have a trajectory \(C\) that runs from point \(P_0\) to point \(P_1\), then we have:
+</p>
+
+<p>
+\[
+\int_C \nabla f \cdot \text{ d}\vec{r} = f(P_1) - f(P_0)
+\]
+</p>
+
+<p>
+In other words, the <i>line integral of the gradient of a function gives you back that function</i>. Critically note that this is only true for gradient fields, and cannot be applied universally to any vector field.
+</p>
+
+<p>
+To see that this is true, we can split it up into coordinate form. The gradient field can be written as \(\langle f_x, f_y \rangle\), and so by the <a href="differentials.html#org350948b">total differential</a>, we have:
+</p>
+
+<p>
+\[
+\int_C \nabla f \cdot \text{ d}\vec{r} = \int_C f_x\text{ d}x + f_y\text{ d}y = \int_C \text{d}f = f(P_1) - f(P_0)
+\]
+</p>
+
+<p>
+This can make the calculation of many line integrals much easier. For example, if we have the line integral of a particular vector field, as long as we can find a function \(f\) for which the vector field is \(\nabla f\), then all we need to do is to calculate the values of \(f\) at the endpoints of the curve.
+</p>
+
+<p>
+The consequences of this theorem, such as this trick, is known as <a href="vector_fields.html#orgd3ab8a0">conservative fields</a> and <a href="vector_fields.html#org5da0a2c">path independence</a>. To summarize, we have four equivalent properties:
+</p>
+
+<ol class="org-ol">
+<li>\(\vec{F}\) is <a href="vector_fields.html#orgd3ab8a0">conservative</a></li>
+<li>\(\int F \cdot \text{ d}\vec{r}\) is <a href="vector_fields.html#org5da0a2c">path independent</a></li>
+<li>\(\vec{F}\) is a <a href="vector_fields.html#orgf31f015">gradient field</a></li>
+<li>\(M \text{ d}x + N \text{ d}y = \text{d}f\)</li>
+</ol>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-07-16 11:04
+               Last modified: 2025-07-18 10:34
              </div>
 </div>
 </body>
