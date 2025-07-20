@@ -3,11 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-24 Tue 09:06 -->
+<!-- 2025-07-20 Sun 11:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Gradient</title>
-<meta name="author" content="Lin Jiang" />
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 <script>
@@ -53,26 +52,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0414c17">1. Gradient</a>
+<li><a href="#org5fd85d7">1. Gradient</a>
 <ul>
-<li><a href="#orgcaea8bb">1.1. Level Surfaces</a>
+<li><a href="#org4995191">1.1. Level Surfaces</a>
 <ul>
-<li><a href="#org60b0875">1.1.1. Intuition</a></li>
-<li><a href="#org82284a1">1.1.2. Proof</a></li>
+<li><a href="#org685e7b0">1.1.1. Intuition</a></li>
+<li><a href="#org5496738">1.1.2. Proof</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org24f1f27">2. Directional Derivatives</a>
+<li><a href="#org5cc247c">2. Directional Derivatives</a>
 <ul>
-<li><a href="#orgacffd27">2.1. Application of Gradient</a></li>
+<li><a href="#org1f967e3">2.1. Application of Gradient</a></li>
+</ul>
+</li>
+<li><a href="#orga454978">3. Finding the Potential</a>
+<ul>
+<li><a href="#orgfba2bc3">3.1. Using Line Integrals</a></li>
+<li><a href="#org0959aa0">3.2. Using Antiderivatives</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0414c17" class="outline-2">
-<h2 id="org0414c17"><span class="section-number-2">1.</span> Gradient</h2>
+<div id="outline-container-org5fd85d7" class="outline-2">
+<h2 id="org5fd85d7"><span class="section-number-2">1.</span> Gradient</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Given a function \(w=f(x,y,z)\) in three variables, the <b>gradient</b> of \(w\) is the vector formed by its partial derivatives:
@@ -85,7 +90,7 @@ Given a function \(w=f(x,y,z)\) in three variables, the <b>gradient</b> of \(w\)
 </p>
 
 <p>
-We can then, for example, rewrite the <a href="differentials.html#orgb8ac146">chain rule</a> like so:
+We can then, for example, rewrite the <a href="differentials.html#orgd9fc2c2">chain rule</a> like so:
 </p>
 
 <p>
@@ -98,15 +103,15 @@ We can then, for example, rewrite the <a href="differentials.html#orgb8ac146">ch
 where \(\frac{\text{d} \vec{r}}{\text{d} t} = \langle\frac{\text{d}x}{\text{d}t},\frac{\text{d}y}{\text{d}t},\frac{\text{d}z}{\text{d}t}\rangle\).
 </p>
 </div>
-<div id="outline-container-orgcaea8bb" class="outline-3">
-<h3 id="orgcaea8bb"><span class="section-number-3">1.1.</span> Level Surfaces</h3>
+<div id="outline-container-org4995191" class="outline-3">
+<h3 id="org4995191"><span class="section-number-3">1.1.</span> Level Surfaces</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The gradient of \(w\) at a point is perpendicular to the level surface \(w=c\) at that point, pointing towards higher values of \(w\).
 </p>
 </div>
-<div id="outline-container-org60b0875" class="outline-4">
-<h4 id="org60b0875"><span class="section-number-4">1.1.1.</span> Intuition</h4>
+<div id="outline-container-org685e7b0" class="outline-4">
+<h4 id="org685e7b0"><span class="section-number-4">1.1.1.</span> Intuition</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 Take, for example, the function \(w(x,y,z) = a_1x + a_2y + a_3z\). Then, the gradient of this function is:
@@ -123,11 +128,11 @@ The level surfaces can be represented by \(a_1x+a_2y+a_3z=c\), where \(c\) is so
 </p>
 </div>
 </div>
-<div id="outline-container-org82284a1" class="outline-4">
-<h4 id="org82284a1"><span class="section-number-4">1.1.2.</span> Proof</h4>
+<div id="outline-container-org5496738" class="outline-4">
+<h4 id="org5496738"><span class="section-number-4">1.1.2.</span> Proof</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
-Say we have a level surface \(w(x,y,z)=c\), and we have another function \(\vec{r}(t)\) that moves on this level surface. We know that since \(\vec{r}(t)\) moves on the level surface, then its velocity vector \(\vec{v}\) must also be tangent to this level surface. Then, by the <a href="differentials.html#orgb8ac146">chain rule</a>, we have:
+Say we have a level surface \(w(x,y,z)=c\), and we have another function \(\vec{r}(t)\) that moves on this level surface. We know that since \(\vec{r}(t)\) moves on the level surface, then its velocity vector \(\vec{v}\) must also be tangent to this level surface. Then, by the <a href="differentials.html#orgd9fc2c2">chain rule</a>, we have:
 </p>
 
 <p>
@@ -153,8 +158,8 @@ As the dot product is zero, we know that the gradient vector and the velocity ve
 </div>
 </div>
 </div>
-<div id="outline-container-org24f1f27" class="outline-2">
-<h2 id="org24f1f27"><span class="section-number-2">2.</span> Directional Derivatives</h2>
+<div id="outline-container-org5cc247c" class="outline-2">
+<h2 id="org5cc247c"><span class="section-number-2">2.</span> Directional Derivatives</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Partial derivatives gives us the rate of change for a function in the directions defined by \(\hat{i}\), \(\hat{j}\), and so on. But <b>directional derivatives</b> allow us to calculate the rate of change for a function \(w\) in some <i>arbitrary direction</i> defined by the unit vector \(\hat{u}\).
@@ -170,7 +175,7 @@ y(s) &= y_0 + bs
 \end{aligned}
 
 <p>
-We see that what we really want is to find \(\frac{\text{d}w}{\text{d}s}\). To do this, we can use the <a href="differentials.html#orgb8ac146">chain rule</a>, with the notation as follows:
+We see that what we really want is to find \(\frac{\text{d}w}{\text{d}s}\). To do this, we can use the <a href="differentials.html#orgd9fc2c2">chain rule</a>, with the notation as follows:
 </p>
 
 <p>
@@ -179,8 +184,8 @@ We see that what we really want is to find \(\frac{\text{d}w}{\text{d}s}\). To d
 \]
 </p>
 </div>
-<div id="outline-container-orgacffd27" class="outline-3">
-<h3 id="orgacffd27"><span class="section-number-3">2.1.</span> Application of Gradient</h3>
+<div id="outline-container-org1f967e3" class="outline-3">
+<h3 id="org1f967e3"><span class="section-number-3">2.1.</span> Application of Gradient</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We can further simplify this into:
@@ -202,13 +207,71 @@ This is a new way of thinking about the gradient: <i>the gradient is the directi
 </div>
 </div>
 </div>
+<div id="outline-container-orga454978" class="outline-2">
+<h2 id="orga454978"><span class="section-number-2">3.</span> Finding the Potential</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Sometimes, we would like to know the potential function that a given gradient is of. There are two ways to do this: using <a href="line_integrals.html#org8590bcd">line integrals</a>, and using antiderivatives.
+</p>
+</div>
+<div id="outline-container-orgfba2bc3" class="outline-3">
+<h3 id="orgfba2bc3"><span class="section-number-3">3.1.</span> Using Line Integrals</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+We know by the <a href="line_integrals.html#org7c7f2b7">fundamental theorem of calculus</a>, we can say that, for the trajectory starting from \((0,0)\) to \((x,y)\):
+</p>
+
+<p>
+\[
+\int_C \vec{F} \cdot \text{ d}\vec{r} = f(x,y) - f(0,0)
+\]
+</p>
+
+<p>
+Therefore,
+</p>
+
+<p>
+\[
+f(x,y) = \int_C \vec{F} \cdot \text{ d}\vec{r} + f(0,0)
+\]
+</p>
+
+<p>
+The \(f(0,0)\) can be interpreted as an integration constant. Since this vector field is <a href="vector_fields.html#orgebe13bc">path independent</a>, we can choose the easiest path to get from \((0,0)\) to \((x,y)\): first along the x-axis, and then parallel to the y-axis. These two paths are easy to compute because for the first one, \(y\) is constant so \(\text{d}y=0\), and vice versa for the second path.
+</p>
+</div>
+</div>
+<div id="outline-container-org0959aa0" class="outline-3">
+<h3 id="org0959aa0"><span class="section-number-3">3.2.</span> Using Antiderivatives</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+We can also use antiderivatives to find \(f\), such that we know the gradient components \(f_x\) and \(f_y\). First, taking the antiderivative of \(f_x\), we have:
+</p>
+
+<p>
+\[
+f = \int f_x + g(y)
+\]
+</p>
+
+<p>
+\(g(y)\) is our integration constant, as we took the antiderivative with respect to \(x\). However, this means that there could still be extra terms that depend only on \(y\), which is why it is necessary to include this \(g(y)\).
+</p>
+
+<p>
+But since we now know \(f\), we can figure out what \(g(y)\) should be by taking the derivative with respect to \(y\) and equating with our gradient expression for \(f_y\).
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-24 09:06
+               Last modified: 2025-07-20 11:56
              </div>
 </div>
 </body>
