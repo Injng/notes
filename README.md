@@ -73,6 +73,11 @@ This is the `org-publish` configuration used to publish these notes:
 (use-package htmlize
   :ensure t
   :init (setq org-html-htmlize-output-type 'css))
+  
+;; More blocks
+(use-package org-special-block-extras
+  :ensure t
+  :init (org-special-block-extras-mode))
 
 ;; Main publish configuration
 (setq org-publish-project-alist
