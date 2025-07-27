@@ -6,7 +6,7 @@
 <!-- 2025-07-27 Sun 10:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Multivariable Calculus</title>
+<title>Triple Integrals</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -277,37 +277,147 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
 <div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Multivariable Calculus</h1>
+<h1 class="title">Triple Integrals</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge4abcd8">1. Triple Integral</a></li>
+<li><a href="#org8703e9f">2. Cylindrical Coordinates</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge4abcd8" class="outline-2">
+<h2 id="orge4abcd8"><span class="section-number-2">1.</span> Triple Integral</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Notes:</b></b>
+The <b>triple integral</b> is defined as the integral for a function depending on three variables, \(x\), \(y\), and \(z\), enclosing some region \(R\) in space, such that we can take the integral over the region with respect to \(\text{d}V\), the volume element:
 </p>
 
-<ul class="org-ul">
-<li><a href="line_integrals.html">Line Integrals</a></li>
-<li><a href="changing_variables.html">Change of Variables</a></li>
-<li><a href="curl.html">Curl</a></li>
-<li><a href="planes.html">Planes</a></li>
-<li><a href="greens_theorem.html">Green's Theorem</a></li>
-<li><a href="velocity_acceleration.html">Velocity and Acceleration</a></li>
-<li><a href="double_integrals.html">Double Integrals</a></li>
-<li><a href="differentials.html">Differentials and Chain Rule</a></li>
-<li><a href="min_max.html">Min/Max Problems</a></li>
-<li><a href="matrices.html">Matrices</a></li>
-<li><a href="lagrange_multipliers.html">Lagrange Multipliers</a></li>
-<li><a href="vector_fields.html">Vector Fields</a></li>
-<li><a href="gradient.html">Gradient</a></li>
-<li><a href="flux.html">Flux</a></li>
-<li><a href="triple_integrals.html">Triple Integrals</a></li>
-<li><a href="vectors.html">Vectors</a></li>
-<li><a href="lines.html">Lines and Parametric Curves</a></li>
-<li><a href="functions_partial_derivatives.html">Functions and Partial Derivatives</a></li>
-</ul>
+<p>
+\[
+\iiint_R f \text{ d}V
+\]
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Region between paraboloids
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to find the region between the paraboloids \(z=x^2 + y^2\) and \(z=4-x^2-y^2\):
+</p>
+
+
+<div id="orgbd72b18" class="figure">
+<p><img src="../static/triple_integrals1.png" alt="triple_integrals1.png" />
+</p>
+</div>
+
+<p>
+Similar to how we find the area with a double integral, to find the volume of a triple integral, we integrate 1 with respect to the volume element, \(\iiint 1 \text{ d}V\).
+</p>
+
+<p>
+The question now is to decide our order of integration. \(\text{d}z\) seems promising as once we know \(x\) and \(y\), we can easily express the bottom and top values of \(z\) in terms of \(x\) and \(y\). Therefore, we can write:
+</p>
+
+<p>
+\[
+\int \int \int_{x^2+y^2}^{4-x^2-y^2} \text{d}z\text{ d}y\text{ d}x
+\]
+</p>
+
+<p>
+Next, for \(x\) and \(y\), we just want to integrate over all the values \((x,y)\) in the shadow of our solid, which is whenever \(z_{\text{bottom}} < z_{\text{top}}\). This comes down to \(x^2+y^2 < 2\), which means that it is a disk of radius \(\sqrt{2}\). Therefore, our triple integral would be:
+</p>
+
+<p>
+\[
+\int_{-\sqrt{2}}^{\sqrt{2}} \int_{-\sqrt{2-x^2}}^{\sqrt{2-x^2}} \int_{x^2+y^2}^{4-x^2-y^2} \text{d}z\text{ d}y\text{ d}x
+\]
+</p>
+
+<p>
+The smarter thing to do here, however, would be to evaluate this in polar coordinates instead:
+</p>
+
+<p>
+\[
+\int_{0}^{2\pi} \int_{0}^{\sqrt{2}} \int_{r^2}^{4-r^2}r \text{ d}z \text{ d}r\text{ d}\theta
+\]
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org8703e9f" class="outline-2">
+<h2 id="org8703e9f"><span class="section-number-2">2.</span> Cylindrical Coordinates</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Sometimes, it is easier to express things in <b>cylindrical coordinates</b> in order to integrate. Cylindrical coordinates in \((r,\theta,z)\) work by first expressing a point in space by using polar coordinates to pinpoint its projection in the \(xy\) plane, and then using \(z\) to describe its height:
+</p>
+
+
+<div id="org9687baa" class="figure">
+<p><img src="../static/triple_integrals2.png" alt="triple_integrals2.png" />
+</p>
+</div>
+
+<p>
+\(\theta\) is measured from the x-axis counterclockwise. Note that since the usual convention puts the x-axis pointing towards us, when \(\theta=0\) the point is no longer pointing to the right, but rather towards the front.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
