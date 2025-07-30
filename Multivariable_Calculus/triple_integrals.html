@@ -3,214 +3,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-07-27 Sun 10:24 -->
+<!-- 2025-07-30 Wed 11:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Triple Integrals</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -322,6 +121,14 @@
 <ul>
 <li><a href="#orge4abcd8">1. Triple Integral</a></li>
 <li><a href="#org8703e9f">2. Cylindrical Coordinates</a></li>
+<li><a href="#orgdabd70b">3. Applications</a>
+<ul>
+<li><a href="#orgfa09b13">3.1. Mass</a></li>
+<li><a href="#orgb126718">3.2. Average Value</a></li>
+<li><a href="#org52cc857">3.3. Center of Mass</a></li>
+<li><a href="#orgf8b7352">3.4. Moment of Inertia</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -357,7 +164,7 @@ We want to find the region between the paraboloids \(z=x^2 + y^2\) and \(z=4-x^2
 </p>
 
 
-<div id="orgbd72b18" class="figure">
+<div id="org1ad3ec3" class="figure">
 <p><img src="../static/triple_integrals1.png" alt="triple_integrals1.png" />
 </p>
 </div>
@@ -398,6 +205,33 @@ The smarter thing to do here, however, would be to evaluate this in polar coordi
 
 
 </details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Region inside unit sphere
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We would like to set up a triple integral for the region \(z>1-y\) inside a unit ball center at the origin, \(x^2+y^2+z^2<1\):
+</p>
+
+
+<div id="orgcb9d70d" class="figure">
+<p><img src="../static/triple_integrals4.png" alt="triple_integrals4.png" />
+</p>
+</div>
+
+
+</details>
 </div>
 </div>
 <div id="outline-container-org8703e9f" class="outline-2">
@@ -408,7 +242,7 @@ Sometimes, it is easier to express things in <b>cylindrical coordinates</b> in o
 </p>
 
 
-<div id="org9687baa" class="figure">
+<div id="orgd467c25" class="figure">
 <p><img src="../static/triple_integrals2.png" alt="triple_integrals2.png" />
 </p>
 </div>
@@ -416,6 +250,122 @@ Sometimes, it is easier to express things in <b>cylindrical coordinates</b> in o
 <p>
 \(\theta\) is measured from the x-axis counterclockwise. Note that since the usual convention puts the x-axis pointing towards us, when \(\theta=0\) the point is no longer pointing to the right, but rather towards the front.
 </p>
+
+<p>
+The volume element then becomes \(\text{d}x\text{ d}y\text{ d}z = r\text{ d}r\text{ d}\theta\text{ d}z\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgdabd70b" class="outline-2">
+<h2 id="orgdabd70b"><span class="section-number-2">3.</span> Applications</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgfa09b13" class="outline-3">
+<h3 id="orgfa09b13"><span class="section-number-3">3.1.</span> Mass</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+We know that density is \(\delta = \frac{\Delta m}{\Delta V}\), so the mass element is equal to \(\text{d}m = \delta \text{ d}V\). Therefore, mass \(M\) is:
+</p>
+
+<p>
+\[
+M= \iiint_R \delta \text{ d}V
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgb126718" class="outline-3">
+<h3 id="orgb126718"><span class="section-number-3">3.2.</span> Average Value</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+The average value of \(f(x,y,z)\) in the region \(R\) is the triple integral of the function over the volume of the region:
+</p>
+
+<p>
+\[
+\bar{f} = \frac{1}{\text{Vol}(R)} \iiint_R f \text{ d}V
+\]
+</p>
+
+<p>
+We can also calculate a <i>weighted average</i> with the density and mass:
+</p>
+
+<p>
+\[
+\frac{1}{\text{Mass}(R)} \iiint_R f \delta \text{ d}V
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org52cc857" class="outline-3">
+<h3 id="org52cc857"><span class="section-number-3">3.3.</span> Center of Mass</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+The <b>center of mass</b> is calculated by finding the weighted average values of each coordinate: \((\bar{x},\bar{y},\bar{z})\). For example, \(\bar{x}\) would be calculated by:
+</p>
+
+<p>
+\[
+\bar{x} = \frac{1}{\text{Mass}(R)} \iiint_R x \delta \text{ d}V
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgf8b7352" class="outline-3">
+<h3 id="orgf8b7352"><span class="section-number-3">3.4.</span> Moment of Inertia</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+The <b>moment of inertia</b> around an axis is similar to <a href="double_integrals.html#org0f27336">what we had for double integrals</a>, where \(r\) is the distance to the axis:
+</p>
+
+<p>
+\[
+\iiint_R r^2 \delta \text{ d}V
+\]
+</p>
+
+<p>
+Realize that if we consider \(r\) to be in cylindrical coordinates, this formula is consistent with any axis: we just base the cylindrical coordinates to be on the same axis.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Moment of inertia of a solid cone
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We would like to find the moment of inertia \(I_z\) about the z-axis of a solid cone between \(z=ar\) and \(z=b\), where \(r\) is in cylindrical coordinates:
+</p>
+
+
+<div id="org6c56eb6" class="figure">
+<p><img src="../static/triple_integrals3.png" alt="triple_integrals3.png" />
+</p>
+</div>
+
+<p>
+Now, the moment of inertia is, assuming density is 1:
+</p>
+
+<p>
+\[
+I_z = \iiint r^2 r \text{ d}r\text{ d}\theta\text{ d}z
+\]
+</p>
+
+
+</details>
+</div>
 </div>
 </div>
 </div>
@@ -424,7 +374,7 @@ Sometimes, it is easier to express things in <b>cylindrical coordinates</b> in o
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-07-27 10:24
+               Last modified: 2025-07-30 11:14
              </div>
 </div>
 </body>
