@@ -3,12 +3,79 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-07-24 Thu 12:27 -->
+<!-- 2025-08-03 Sun 08:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Flux</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
 <script>
   window.MathJax = {
     tex: {
@@ -52,39 +119,40 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbfb5567">1. Definition of Flux</a></li>
-<li><a href="#org63828fd">2. Physical Interpretation</a></li>
-<li><a href="#orgd492c64">3. Green's Theorem for Flux</a></li>
+<li><a href="#org142ad4b">1. Flux Through a Curve</a>
+<ul>
+<li><a href="#org63828fd">1.1. Physical Interpretation</a></li>
+<li><a href="#orgd492c64">1.2. Green's Theorem for Flux</a></li>
+</ul>
+</li>
+<li><a href="#orga83cf74">2. Flux Through a Surface</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbfb5567" class="outline-2">
-<h2 id="orgbfb5567"><span class="section-number-2">1.</span> Definition of Flux</h2>
+<div id="outline-container-org142ad4b" class="outline-2">
+<h2 id="org142ad4b"><span class="section-number-2">1.</span> Flux Through a Curve</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The flux can be defined using a <a href="line_integrals.html#org8590bcd">line integral</a>. Given \(C\) as a plane curve and \(F\) as a vector field, the <b>flux</b> of \(\vec{F}\) across \(C\) is defined as:
+The flux in 2D can be defined using a <a href="line_integrals.html#org8590bcd">line integral</a>. Given \(C\) as a plane curve and \(F\) as a vector field, the <b>flux</b> of \(\vec{F}\) across \(C\) is defined as:
 </p>
 
-<p>
-\[
+\begin{align}
 \int_C \vec{F} \cdot \hat{n} \text{ d}s
-\]
-</p>
+\end{align}
 
 <p>
 where \(\hat{n}\) is the unit normal vector to \(C\), pointing 90 degrees clockwise from the tangent vector \(\hat{T}\).
 </p>
 </div>
-</div>
-<div id="outline-container-org63828fd" class="outline-2">
-<h2 id="org63828fd"><span class="section-number-2">2.</span> Physical Interpretation</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org63828fd" class="outline-3">
+<h3 id="org63828fd"><span class="section-number-3">1.1.</span> Physical Interpretation</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 If \(\vec{F}\) is a velocity field, then flux measures <i>how much passes through a curve per unit time</i>. If we consider really small segments of \(C\) with length \(\Delta s\), then we can model the total amount that passes through this segment as a parallelogram like so:
 </p>
 
 
-<div id="org38a3e9f" class="figure">
+<div id="org5457046" class="figure">
 <p><img src="../static/flux1.png" alt="flux1.png" />
 </p>
 </div>
@@ -104,9 +172,9 @@ Then, the sum of all of these segments of \(C\) gives us the line integral. The 
 </p>
 </div>
 </div>
-<div id="outline-container-orgd492c64" class="outline-2">
-<h2 id="orgd492c64"><span class="section-number-2">3.</span> Green's Theorem for Flux</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-orgd492c64" class="outline-3">
+<h3 id="orgd492c64"><span class="section-number-3">1.2.</span> Green's Theorem for Flux</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 We know that \(\text{d}s\) is the scalar of \(\text{d}r\) from the <a href="line_integrals.html#org8590bcd">line integral for work</a>, so we can say that \(\text{d}r = \hat{T}\text{ d}s = \langle \text{d}x, \text{d}y \rangle\), where \(\hat{T}\) is the tangential unit vector. Since \(\hat{n}\) is simply \(\hat{T}\) rotated 90 degrees clockwise, we can say that
 </p>
@@ -151,12 +219,87 @@ The <b>divergence</b> of \(\vec{F}\) is represented by \(\text{div }\vec{F} = P_
 </div>
 </div>
 </div>
+<div id="outline-container-orga83cf74" class="outline-2">
+<h2 id="orga83cf74"><span class="section-number-2">2.</span> Flux Through a Surface</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+In 3D space, we measure flux going <i>through a surface</i>; therefore, we will have to use a <b>surface integral</b>, instead of a line integral. Conceptually, it will be very similar to line integrals, but it will have three variables that will be reduced to two, summing up small surfaces.
+</p>
+
+<p>
+If we have a vector field \(\vec{F}\) and a surface in space \(S\), we want to know the amount of \(\vec{F}\) that passes through \(S\). The logic will be similar to the one for flux through a curve: we find \(\hat{n}\), the unit normal vector to \(S\). Since there are two different choices for \(\hat{n}\), the one that we choose will be called the <i>orientation</i> of our surface. Then, we have:
+</p>
+
+\begin{align}
+\iint_S \vec{F}\cdot\hat{n} \text{ d}S
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Flux through a sphere
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to find the flux of the vector field \(\vec{H} = z\hat{k}\) through a sphere of radius \(a\) centered at the origin. It is conventional that we choose the normal vector pointing out. Since on the sphere, \(\sqrt{x^2+y^2+z^2}=a\), our normal vector is:
+</p>
+
+<p>
+\[
+\hat{n} = \frac{\langle x,y,z \rangle}{a}
+\]
+</p>
+
+<p>
+Thus,
+</p>
+
+<p>
+\[
+\vec{H} \cdot \hat{n} = \langle 0,0,z \rangle \cdot \frac{\langle x,y,z \rangle}{a}
+= \frac{z^2}{a}
+\]
+</p>
+
+<p>
+We can then write our double integral as:
+</p>
+
+<p>
+\[
+\iint_S \frac{z^2}{a} \text{ d}S
+\]
+</p>
+
+<p>
+Now, we wil have to express \(S\) in terms of two variables. Since we are on a sphere, it is natural to use <a href="triple_integrals.html#orgd4fc952">spherical coordinates</a>: we shall use \(\phi\) and \(\theta\). Using these coordinates, we can express a small change in the surface as \(\text{d}S = a^2\sin{\phi}\text{ d}\phi\text{ d}\theta\), and \(z=a\cos\phi\). Therefore, we can set up our double integral as:
+</p>
+
+<p>
+\[
+\int_{0}^{2\pi} \int_{0}^{\pi} \frac{a^2\cos^2\phi}{a} \cdot a^2\sin\phi \text{ d}\phi\text{ d}\theta
+\]
+</p>
+
+
+</details>
+</div>
+</div>
+</div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-07-24 12:27
+               Last modified: 2025-08-03 08:45
              </div>
 </div>
 </body>
