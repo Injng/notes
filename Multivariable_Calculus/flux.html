@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-08-03 Sun 08:45 -->
+<!-- 2025-08-05 Tue 09:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Flux</title>
@@ -125,7 +125,12 @@
 <li><a href="#orgd492c64">1.2. Green's Theorem for Flux</a></li>
 </ul>
 </li>
-<li><a href="#orga83cf74">2. Flux Through a Surface</a></li>
+<li><a href="#orga83cf74">2. Flux Through a Surface</a>
+<ul>
+<li><a href="#org0460cf3">2.1. Computing Flux Through a Graph</a></li>
+<li><a href="#org3042f89">2.2. Implicit Surfaces</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -152,7 +157,7 @@ If \(\vec{F}\) is a velocity field, then flux measures <i>how much passes throug
 </p>
 
 
-<div id="org5457046" class="figure">
+<div id="orgc198cee" class="figure">
 <p><img src="../static/flux1.png" alt="flux1.png" />
 </p>
 </div>
@@ -244,7 +249,7 @@ If we have a vector field \(\vec{F}\) and a surface in space \(S\), we want to k
                   <summary>
                     <strong>
                       <font face="Courier" size="3" color="green">
-                         Flux through a sphere
+                         Example: Flux through a sphere
                       </font>
                     </strong>
                   </summary>
@@ -292,6 +297,106 @@ Now, we wil have to express \(S\) in terms of two variables. Since we are on a s
 
 </details>
 </div>
+<div id="outline-container-org0460cf3" class="outline-3">
+<h3 id="org0460cf3"><span class="section-number-3">2.1.</span> Computing Flux Through a Graph</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+If a surface \(S\) is the graph of \(z=f(x,y)\), then we have the following expression:
+</p>
+
+\begin{align}
+\hat{n}\text{ d}S = \pm \langle -f_x.-f_y,1 \rangle \text{ d}x\text{ d}y
+\end{align}
+
+<p>
+We can prove this by considering a small section of the surface when we start at \((x,y,f(x,y))\) and change by tiny amounts \(\Delta x\) and \(\Delta y\). This results in a parallelogram shape, which we can find the area of by taking the <a href="vectors.html#org3468c61">cross product</a> of the vectors of the two sides. This is also especially convenient because the cross product also returns the <i>unit normal vector</i>, which is exactly what we need.
+</p>
+
+<p>
+Call the vector moving in the \(x\) direction \(\vec{u}\), and the vector moving in the \(y\) direction \(\vec{v}\). Then,
+</p>
+
+\begin{aligned}
+\vec{u} = \langle x+\Delta x, y, f(x+\Delta x, y)\rangle - \langle x,y,f(x,y) \rangle \\
+\vec{v} = \langle x, y+\Delta y, f(x,y+\Delta y)\rangle - \langle x,y,f(x,y) \rangle
+\end{aligned}
+
+<p>
+Using linear approximation, we can rewrite \(f(x+\Delta x,y)\) to \(f(x,y) + \Delta xf_x\), and vice versa for \(\vec{v}\). Thus,
+</p>
+
+\begin{aligned}
+\vec{u} = \langle \Delta x, 0, f_x\Delta x \rangle = \langle 1,0,f_x \rangle \Delta x \\
+\vec{v} = \langle 0, \Delta y, f_y\Delta y \rangle = \langle 0,1,f_y \rangle \Delta y \\
+\end{aligned}
+
+<p>
+We can now do the cross product, which comes out to be:
+</p>
+
+<p>
+\[
+\vec{n}\Delta S = \vec{u} \times \vec{v} = \langle -f_x,-f_y,1 \rangle \Delta x \Delta y
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org3042f89" class="outline-3">
+<h3 id="org3042f89"><span class="section-number-3">2.2.</span> Implicit Surfaces</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Lots of times we want to do the surface integral if we know the normal vector \(\vec{N}\) to the surface. This occurs, for example, when we have a plane, or a function \(g(x,y,z)=0\) where we can obtain the normal vector through the <a href="gradient.html#org5fd85d7">gradient</a>.
+</p>
+
+<p>
+Consider the projection of the surface onto the xy plane, \(\Delta A\), and the angle it makes it with as \(\alpha\):
+</p>
+
+
+<div id="orgfb912a3" class="figure">
+<p><img src="../static/flux2.png" alt="flux2.png" />
+</p>
+</div>
+
+<p>
+We can see that \(\Delta S = \cos \alpha \Delta A\). To find \(\cos \alpha\), consider that \(\alpha\) is also equivalent to the angle made between the normal vectors of the surface, \(\vec{N}\), and the projection, \(\hat{k}\). Thus:
+</p>
+
+<p>
+\[
+\Delta A = \Delta S \cos \alpha = \Delta S \frac{\vec{N}\cdot\hat{k}}{|\vec{N}|}
+\]
+</p>
+
+<p>
+Then, \(\Delta S\) is:
+</p>
+
+<p>
+\[
+\Delta S = \frac{|\vec{N}|}{\vec{N} \cdot \hat{k}} \Delta A
+\]
+</p>
+
+<p>
+Now, consider \(\hat{n}\Delta S\):
+</p>
+
+<p>
+\[
+\hat{n}\Delta S = \frac{|\vec{N}|\hat{n}}{\vec{N} \cdot \hat{k}} \Delta A = \pm \frac{\vec{N}}{\vec{N} \cdot \hat{k}} \Delta x \Delta y
+\]
+</p>
+
+<p>
+Therefore, we can write that:
+</p>
+
+\begin{align}
+\hat{n}\text{ d}S = \pm \frac{\vec{N}}{\vec{N} \cdot \hat{k}} \text{ d}x\text{ d}y
+\end{align}
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -299,7 +404,7 @@ Now, we wil have to express \(S\) in terms of two variables. Since we are on a s
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-03 08:45
+               Last modified: 2025-08-05 09:44
              </div>
 </div>
 </body>
