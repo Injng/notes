@@ -6,7 +6,7 @@
 <!-- 2025-08-07 Thu 09:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Electricity And Magnetism</title>
+<title>Divergence Theorem</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -76,21 +76,72 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Electricity_and_Magnetism/index.html">Electricity And Magnetism</a></div>
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Electricity And Magnetism</h1>
+<h1 class="title">Divergence Theorem</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0df284e">1. Divergence Theorem</a></li>
+</ul>
+</div>
+</div>
 <p>
-<b><b>Notes:</b></b>
+The <b>divergence theorem</b>, or the Gauss-Green theorem, is the 3D analogue of <a href="greens_theorem.html#org632b9fe">Green's Theorem</a> for <a href="flux.html#orga83cf74">flux</a>.
+</p>
+<div id="outline-container-org0df284e" class="outline-2">
+<h2 id="org0df284e"><span class="section-number-2">1.</span> Divergence Theorem</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The theorem states that if \(S\) is a <i>closed surface</i> enclosing a region \(D\), oriented with \(\hat{n}\) pointing outwards, and a vector field \(\vec{F}\) defined and differentiable everywhere in \(D\), then the following is true:
 </p>
 
-<ul class="org-ul">
-<li><a href="gauss_law.html">Gauss's Law</a></li>
-<li><a href="electric_fields.html">Electric Fields</a></li>
-</ul>
+\begin{align}
+{\subset\!\supset} \llap{\iint}_S \vec{F} \cdot \text{ d}\vec{S} = \iiint_D \text{div }\vec{F} \text{ d}V
+\end{align}
+
+<p>
+where \(\text{div}(P\hat{i} + Q\hat{j} + R\hat{k}) = P_x+Q_y+R_z\).
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
