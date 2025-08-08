@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-08-07 Thu 09:31 -->
+<!-- 2025-08-08 Fri 11:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Divergence Theorem</title>
@@ -120,6 +120,7 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org0df284e">1. Divergence Theorem</a></li>
+<li><a href="#org0ad6385">2. Physical Interpretation of Divergence</a></li>
 </ul>
 </div>
 </div>
@@ -138,7 +139,19 @@ The theorem states that if \(S\) is a <i>closed surface</i> enclosing a region \
 \end{align}
 
 <p>
-where \(\text{div}(P\hat{i} + Q\hat{j} + R\hat{k}) = P_x+Q_y+R_z\).
+where \(\text{div}(P\hat{i} + Q\hat{j} + R\hat{k}) = P_x+Q_y+R_z\). We can also use <a href="del.html#orgaf5ea3f">del notation</a> to represent divergence as \(\nabla \cdot \vec{F}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org0ad6385" class="outline-2">
+<h2 id="org0ad6385"><span class="section-number-2">2.</span> Physical Interpretation of Divergence</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The divergence of a vector field \(\vec{F}\) can be seen as the "source rate" or the <i>amount of flux generated per unit volume</i>. Therefore, if we think of \(\vec{F}\) as the velocity of some incompressible fluid flow, then summing all of the divergences of \(\vec{F}\) in the region \(D\) bounded by \(S\) is the same as the flux out of that region \(D\) — in other words, the amount of fluid leaving \(D\) per unit time.
+</p>
+
+<p>
+Therefore, the divergence itself measures the amount of sources or sinks per unit volume at a given place.
 </p>
 </div>
 </div>
@@ -148,7 +161,7 @@ where \(\text{div}(P\hat{i} + Q\hat{j} + R\hat{k}) = P_x+Q_y+R_z\).
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-07 09:31
+               Last modified: 2025-08-08 11:15
              </div>
 </div>
 </body>

@@ -6,7 +6,7 @@
 <!-- 2025-08-08 Fri 11:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Web</title>
+<title>Del</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -76,32 +76,94 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Web/index.html">Web</a></div>
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Web</h1>
+<h1 class="title">Del</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgaf5ea3f">1. Del Operator</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaf5ea3f" class="outline-2">
+<h2 id="orgaf5ea3f"><span class="section-number-2">1.</span> Del Operator</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Notes:</b></b>
+The <b>del</b> operator \(\nabla\) is an easy way to write certain values in multivariable calculus. We can write this operator in symbolic notation (not a real vector) to understand how it works:
 </p>
 
-<ul class="org-ul">
-<li><a href="zod.html">Zod</a></li>
-<li><a href="sql.html">SQL</a></li>
-<li><a href="supabase.html">Supabase</a></li>
-<li><a href="sveltekit.html">SvelteKit</a></li>
-<li><a href="html.html">HTML</a></li>
-<li><a href="superforms.html">Superforms</a></li>
-</ul>
+<p>
+\[
+\nabla = \langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \rangle
+\]
+</p>
+
+<p>
+Thus, the <a href="gradient.html#org5fd85d7">gradient</a> of a function \(f\) can be written as \(\nabla f\):
+</p>
+
+<p>
+\[
+\nabla f = \langle \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}, \frac{\partial f}{\partial z} \rangle
+\]
+</p>
+
+<p>
+Similarly, the <a href="divergence_theorem.html#org0ad6385">divergence</a> of a function \(f=\langle P,Q,R \rangle\) can be written as \(\nabla \cdot f\):
+</p>
+
+<p>
+\[
+\nabla \cdot f = \langle \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \rangle \cdot \langle P,Q,R \rangle = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z} 
+\]
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-08 11:15
+               Last modified: 2025-08-08 11:11
              </div>
 </div>
 </body>
