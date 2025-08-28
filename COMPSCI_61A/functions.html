@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-08-28 Thu 10:19 -->
+<!-- 2025-08-28 Thu 10:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functions</title>
@@ -96,6 +96,8 @@
 <li><a href="#org1a47016">3.3. Procedure for Calling User-Defined Functions</a></li>
 </ul>
 </li>
+<li><a href="#orga50f087">4. None</a></li>
+<li><a href="#orgb4766f9">5. Pure and Non-Pure Functions</a></li>
 </ul>
 </div>
 </div>
@@ -132,7 +134,7 @@ While we can use assignment to bind names to values, we can use a <b>function de
 </p>
 
 
-<div id="orgfa364d3" class="figure">
+<div id="org96c922d" class="figure">
 <p><img src="../static/COMPSCI_61A/functions2.png" alt="functions2.png" />
 </p>
 </div>
@@ -168,7 +170,7 @@ A name evaluates to the value bound to that name in the earliest frame of the cu
 </p>
 
 
-<div id="orgae521f1" class="figure">
+<div id="org1f0e741" class="figure">
 <p><img src="../static/COMPSCI_61A/functions1.png" alt="functions1.png" />
 </p>
 </div>
@@ -213,13 +215,33 @@ A function's <i>signature</i> is important because it contains all the informati
 </div>
 </div>
 </div>
+<div id="outline-container-orga50f087" class="outline-2">
+<h2 id="orga50f087"><span class="section-number-2">4.</span> None</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The special value <code>None</code> represents nothing in Python. A function that does not explicitly return a value will return <code>None</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb4766f9" class="outline-2">
+<h2 id="orgb4766f9"><span class="section-number-2">5.</span> Pure and Non-Pure Functions</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<b>Pure functions</b> only <i>return values</i>. For example, the built-in function <code>abs</code> is a pure function, as in takes in an argument (e.g. -2) and returns a value (e.g. 2).
+</p>
+
+<p>
+On the other hand, <b>non-pure functions</b> have <i>side effects</i>. For example, the <code>print</code> function is a non-pure function, as it has the side effect of displaying the output, and returns <code>None</code>. A <b>side effect</b> is not a value; it's anything that happens as a consequence of calling a function. Examples of side effects include I/O, modifying a non-locak variable, or raising errors/exceptions.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-28 10:18
+               Last modified: 2025-08-28 10:29
              </div>
 </div>
 </body>
