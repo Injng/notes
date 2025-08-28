@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-08-27 Wed 22:24 -->
+<!-- 2025-08-28 Thu 10:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functions</title>
@@ -88,8 +88,14 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#orgebf4187">1. Assignment</a></li>
-<li><a href="#org95996fd">2. User-Defined Functions</a></li>
-<li><a href="#org40fba27">3. Environment Diagrams</a></li>
+<li><a href="#orgd154346">2. Defining Functions</a></li>
+<li><a href="#orgc6222b1">3. Environments</a>
+<ul>
+<li><a href="#orgd29733e">3.1. Procedure for Assignment Statements</a></li>
+<li><a href="#org845dcdf">3.2. Procedure for <code>def</code> Statements</a></li>
+<li><a href="#org1a47016">3.3. Procedure for Calling User-Defined Functions</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -118,11 +124,21 @@ If we set <code>max</code> to something else, like <code>max = 3</code>, then we
 </p>
 </div>
 </div>
-<div id="outline-container-org95996fd" class="outline-2">
-<h2 id="org95996fd"><span class="section-number-2">2.</span> User-Defined Functions</h2>
+<div id="outline-container-orgd154346" class="outline-2">
+<h2 id="orgd154346"><span class="section-number-2">2.</span> Defining Functions</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-We can also define our own functions in Python. For example:
+While we can use assignment to bind names to values, we can use a <b>function definition</b> to bind names to <i>expressions</i>. The function definition consists of a <b>function signature</b> composed of a name and <b>formal parameters</b>, and a <b>function body</b> that defines the computational process of the function:
+</p>
+
+
+<div id="orgfa364d3" class="figure">
+<p><img src="../static/COMPSCI_61A/functions2.png" alt="functions2.png" />
+</p>
+</div>
+
+<p>
+For example:
 </p>
 
 <div class="org-src-container">
@@ -136,16 +152,63 @@ We can now use this <b>user-defined function</b> exactly as we would use a built
 </p>
 </div>
 </div>
-<div id="outline-container-org40fba27" class="outline-2">
-<h2 id="org40fba27"><span class="section-number-2">3.</span> Environment Diagrams</h2>
+<div id="outline-container-orgc6222b1" class="outline-2">
+<h2 id="orgc6222b1"><span class="section-number-2">3.</span> Environments</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Environment diagrams visualize the interpreter's process. There is code on the left with statements and expressions, with the arrows indicating evaluation order. On the right we have frames, where we keep track of names bound to values:
+Every expression is evaluated in the context of an <b>environment</b>. An environment consists of a sequence of <b>frames</b>, which keeps track of the names bound to values. 
+</p>
+
+<p>
+A name evaluates to the value bound to that name in the earliest frame of the current environment in which that name is found. For example, if we are executing the body of some user-defined function, to look up a name we will first look for that name in the local frame of that function, and then the global frame.
+</p>
+
+<p>
+<i>Environment diagrams</i> visualize the interpreter's process. There is code on the left with statements and expressions, with the arrows indicating evaluation order. On the right we have frames, where we keep track of names bound to values:
 </p>
 
 
-<div id="org82321e4" class="figure">
+<div id="orgae521f1" class="figure">
 <p><img src="../static/COMPSCI_61A/functions1.png" alt="functions1.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-orgd29733e" class="outline-3">
+<h3 id="orgd29733e"><span class="section-number-3">3.1.</span> Procedure for Assignment Statements</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Python has an execution rule for evaluating assignment statements:
+</p>
+<ol class="org-ol">
+<li>Evaluate all expressions to the right of <code>=</code> from left to right</li>
+<li>Bind all names to the left of <code>=</code> to the resulting values in the current frame</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org845dcdf" class="outline-3">
+<h3 id="org845dcdf"><span class="section-number-3">3.2.</span> Procedure for <code>def</code> Statements</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Python also has an execution rule for evaluating function definitions:
+</p>
+<ol class="org-ol">
+<li>Create a function with the given signature</li>
+<li>Set the body of that function to be everything indented after the first line</li>
+<li>Bind the name to that function in the current frame</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org1a47016" class="outline-3">
+<h3 id="org1a47016"><span class="section-number-3">3.3.</span> Procedure for Calling User-Defined Functions</h3>
+<div class="outline-text-3" id="text-3-3">
+<ol class="org-ol">
+<li>Add a <b>local frame</b>, forming a <i>new</i> environment</li>
+<li>Bind the function's formal parameters to its arguments in that frame</li>
+<li>Execute the body of the function in that new environment</li>
+</ol>
+
+<p>
+A function's <i>signature</i> is important because it contains all the information needed to create a local frame. The environment we have now is the <i>local frame, followed by the global frame</i>.
 </p>
 </div>
 </div>
@@ -156,7 +219,7 @@ Environment diagrams visualize the interpreter's process. There is code on the l
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-27 22:19
+               Last modified: 2025-08-28 10:18
              </div>
 </div>
 </body>
