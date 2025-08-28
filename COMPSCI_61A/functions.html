@@ -6,7 +6,7 @@
 <!-- 2025-08-27 Wed 22:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Expressions</title>
+<title>Functions</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -82,60 +82,71 @@
 <div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Expressions</h1>
+<h1 class="title">Functions</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdcaa97a">1. Expressions</a>
-<ul>
-<li><a href="#orgee8accf">1.1. Call Expressions</a></li>
-</ul>
-</li>
+<li><a href="#orgebf4187">1. Assignment</a></li>
+<li><a href="#org95996fd">2. User-Defined Functions</a></li>
+<li><a href="#org40fba27">3. Environment Diagrams</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdcaa97a" class="outline-2">
-<h2 id="orgdcaa97a"><span class="section-number-2">1.</span> Expressions</h2>
+<div id="outline-container-orgebf4187" class="outline-2">
+<h2 id="orgebf4187"><span class="section-number-2">1.</span> Assignment</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-An <b>expression</b> describes a computation and evaluates to a value. Some examples are:
+An <b>assignment statement</b> requires a <i>name</i> on the left side of the assignment operator, <code>=</code>, and an expression on the right side: e.g. <code>radius = 10</code>. We can then use this name in other expressions.
 </p>
 
-<ul class="org-ul">
-<li><code>2</code>: number or numeral</li>
-<li><code>pi</code>: name</li>
-<li><code>'are you human'</code>: string</li>
-<li><code>abs(-1)</code>: call expression</li>
-</ul>
+<p>
+We can also assign multiple names to multiple expressions at the same time. For example, we can write:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-py">area, circ = pi * radius * radius, 2 * pi * radius
+</pre>
+</div>
 
 <p>
-The first three are known as <b>primitive expressions</b>. Symbols like <code>+</code> and <code>*</code> can also be expressed using a call expression, being <code>add()</code> and <code>mul()</code> respectively.
+We can also use the assignment operator to give names to functions. For example, we can set the name of a built-in function to something else, like <code>f = max</code>, which sets the name <code>f</code> to the built-in function <code>max</code>. Now, we can write <code>f(1, 2, 3)</code> to do the same thing as <code>max(1, 2, 3)</code>.
+</p>
+
+<p>
+If we set <code>max</code> to something else, like <code>max = 3</code>, then we can <code>max</code> is no longer set to the built-in function and running <code>max(1, 2, 3)</code> will throw an error. However, we can fix this by doing <code>max = f</code>, which sets <code>max</code> back to the built-in function.
 </p>
 </div>
-<div id="outline-container-orgee8accf" class="outline-3">
-<h3 id="orgee8accf"><span class="section-number-3">1.1.</span> Call Expressions</h3>
-<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org95996fd" class="outline-2">
+<h2 id="org95996fd"><span class="section-number-2">2.</span> User-Defined Functions</h2>
+<div class="outline-text-2" id="text-2">
 <p>
-A <b>call expression</b> is made up of an <i>operator</i> and <i>operands</i>. In <code>add(1, 2)</code>, the <code>add</code> is the operator, and the <code>1</code> and <code>2</code> are operands.
+We can also define our own functions in Python. For example:
 </p>
 
-<p>
-The evaluation procedure for call expressions is:
-(1) evaluate the operator &#x2013;&gt; function
-(2) evaluate each operand &#x2013;&gt; argument
-(3) apply the function to the arguments
-</p>
+<div class="org-src-container">
+<pre class="src src-py">def square(x):
+    return mul(x, x)
+</pre>
+</div>
 
 <p>
-We can write out an <b>expression tree</b> with <b>subexpressions</b> as well:
-</p>
-
-
-<div id="org6d7a717" class="figure">
-<p><img src="../static/COMPSCI_61A/expressions1.png" alt="expressions1.png" />
+We can now use this <b>user-defined function</b> exactly as we would use a built-in function. A function differs from a name as it evaluates the defined expression every time you call it.
 </p>
 </div>
+</div>
+<div id="outline-container-org40fba27" class="outline-2">
+<h2 id="org40fba27"><span class="section-number-2">3.</span> Environment Diagrams</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Environment diagrams visualize the interpreter's process. There is code on the left with statements and expressions, with the arrows indicating evaluation order. On the right we have frames, where we keep track of names bound to values:
+</p>
+
+
+<div id="org82321e4" class="figure">
+<p><img src="../static/COMPSCI_61A/functions1.png" alt="functions1.png" />
+</p>
 </div>
 </div>
 </div>
@@ -145,7 +156,7 @@ We can write out an <b>expression tree</b> with <b>subexpressions</b> as well:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-27 22:12
+               Last modified: 2025-08-27 22:19
              </div>
 </div>
 </body>
