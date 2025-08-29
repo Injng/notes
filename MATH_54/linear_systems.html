@@ -6,7 +6,7 @@
 <!-- 2025-08-29 Fri 09:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>Linear Systems</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -76,74 +76,108 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
+</div>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="MATH_54/index.html">MATH 54</a>
-<ul class="org-ul">
-<li><a href="MATH_54/triangular_and_echelon_forms.html">Triangular and Echelon Forms</a></li>
-<li><a href="MATH_54/linear_systems.html">Linear Systems</a></li>
-</ul></li>
-<li><a href="PHYSICS_7A/index.html">PHYSICS 7A</a>
-<ul class="org-ul">
-<li><a href="PHYSICS_7A/1d_kinematics.html">1D Kinematics</a></li>
-</ul></li>
-<li><a href="COMPSCI_61A/index.html">COMPSCI 61A</a>
-<ul class="org-ul">
-<li><a href="COMPSCI_61A/functions.html">Functions</a></li>
-<li><a href="COMPSCI_61A/expressions.html">Expressions</a></li>
-</ul></li>
-<li><a href="Algorithms/index.html">Algorithms</a>
-<ul class="org-ul">
-<li><a href="Algorithms/binary_search.html">Binary Search</a></li>
-</ul></li>
-<li><a href="Web/index.html">Web</a>
-<ul class="org-ul">
-<li><a href="Web/sveltekit.html">SvelteKit</a></li>
-<li><a href="Web/zod.html">Zod</a></li>
-<li><a href="Web/sql.html">SQL</a></li>
-<li><a href="Web/html.html">HTML</a></li>
-<li><a href="Web/superforms.html">Superforms</a></li>
-<li><a href="Web/supabase.html">Supabase</a></li>
-</ul></li>
-<li><a href="Electricity_and_Magnetism/index.html">Electricity and Magnetism</a>
-<ul class="org-ul">
-<li><a href="Electricity_and_Magnetism/gauss_law.html">Gauss's Law</a></li>
-<li><a href="Electricity_and_Magnetism/electric_fields.html">Electric Fields</a></li>
-</ul></li>
-<li><a href="Multivariable_Calculus/index.html">Multivariable Calculus</a>
-<ul class="org-ul">
-<li><a href="Multivariable_Calculus/divergence_theorem.html">Divergence Theorem</a></li>
-<li><a href="Multivariable_Calculus/del.html">Del</a></li>
-<li><a href="Multivariable_Calculus/flux.html">Flux</a></li>
-<li><a href="Multivariable_Calculus/triple_integrals.html">Triple Integrals</a></li>
-<li><a href="Multivariable_Calculus/greens_theorem.html">Green's Theorem</a></li>
-<li><a href="Multivariable_Calculus/curl.html">Curl</a></li>
-<li><a href="Multivariable_Calculus/line_integrals.html">Line Integrals</a></li>
-<li><a href="Multivariable_Calculus/vector_fields.html">Vector Fields</a></li>
-<li><a href="Multivariable_Calculus/changing_variables.html">Change of Variables</a></li>
-<li><a href="Multivariable_Calculus/double_integrals.html">Double Integrals</a></li>
-<li><a href="Multivariable_Calculus/lagrange_multipliers.html">Lagrange Multipliers</a></li>
-<li><a href="Multivariable_Calculus/gradient.html">Gradient</a></li>
-<li><a href="Multivariable_Calculus/differentials.html">Differentials</a></li>
-<li><a href="Multivariable_Calculus/min_max.html">Min/Max Problems</a></li>
-<li><a href="Multivariable_Calculus/functions_partial_derivatives.html">Functions and Partial Derivatives</a></li>
-<li><a href="Multivariable_Calculus/velocity_acceleration.html">Velocity and Acceleration</a></li>
-<li><a href="Multivariable_Calculus/lines.html">Lines and Parametric Curves</a></li>
-<li><a href="Multivariable_Calculus/planes.html">Planes</a></li>
-<li><a href="Multivariable_Calculus/matrices.html">Matrices</a></li>
-<li><a href="Multivariable_Calculus/vectors.html">Vectors</a></li>
-</ul></li>
+<h1 class="title">Linear Systems</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc00e141">1. Linear Systems</a></li>
+<li><a href="#orgb352e21">2. Elementary Row Operations</a></li>
 </ul>
+</div>
+</div>
+<div id="outline-container-orgc00e141" class="outline-2">
+<h2 id="orgc00e141"><span class="section-number-2">1.</span> Linear Systems</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A <b>linear system</b> is a system of <b>linear equations</b>, which are equations with variables \(x_1, x_2, \ldots, x_n\) that can be written in the form \(a_1x_1 + \cdots + a_nx_n = b\). In traditional algebra, we can solve these systems using techniques such as substitution and elimination. However, for really large systems, these techniques become tedious and unwieldy.
+</p>
+
+<p>
+Instead, we can use <b>matrices</b> to represent these equations in another way, for example:
+</p>
+
+\begin{aligned}
+\begin{bmatrix} a_1 & a_2 \\ b_1 & b_2 \end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} = \begin{bmatrix} c_1 \\ c_2 \end{bmatrix}
+\end{aligned}
+
+<p>
+The first matrix of constants is known as the <b>coefficient matrix</b> because it holds the coefficients of the linear system. We can append the constants to the matrix to form an <b>augmented matrix</b>, which holds all the information we need to describe the system:
+</p>
+
+\begin{aligned}
+\begin{bmatrix} a_1 & a_2 & c_1 \\ b_1 & b_2 & c_2 \end{bmatrix}
+\end{aligned}
+</div>
+</div>
+<div id="outline-container-orgb352e21" class="outline-2">
+<h2 id="orgb352e21"><span class="section-number-2">2.</span> Elementary Row Operations</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+To solve the system, we can look to simplifying the augmented matrix. To do so, we can use <b>row operations</b>, which consist of:
+</p>
+
+<ol class="org-ol">
+<li><i>Replacement</i>: replace a row by itself plus the multiple of another row</li>
+<li><i>Interchange</i>: swap two different rows</li>
+<li><i>Scaling</i>: multiply a row by a nonzero constant</li>
+</ol>
+
+<p>
+These row operations can be seen as analogous to the operations we do on equations when we perform traditional algebra techniques such as elimination.
+</p>
+
+<p>
+Two matrices are said to be <b>row equivalent</b> if one can be reached from the other using elementary row operations. If two systems have augmented matrices which are row equivalent, then they are the same system: they have the same solutions.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-29 09:44
+               Last modified: 2025-08-29 09:41
              </div>
 </div>
 </body>
