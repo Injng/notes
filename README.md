@@ -21,8 +21,8 @@ This is the `org-publish` configuration used to publish these notes:
 
 ;; Helper function to clean up directory names for display
 (defun my-clean-directory-name (dir-name)
-  (let ((clean-name (replace-regexp-in-string "_" " " dir-name)))
-    (capitalize clean-name)))
+  "Clean up DIR-NAME for display by replacing underscores with spaces."
+  (replace-regexp-in-string "_" " " dir-name))
 
 ;; Generate breadcrumbs
 (defun my-generate-breadcrumbs (rel-file base-dir)
