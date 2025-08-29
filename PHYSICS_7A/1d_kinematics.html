@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-08-28 Thu 21:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>1D Kinematics</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">1D Kinematics</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2d84f51">1. Terminology</a></li>
+<li><a href="#orgf7a85de">2. Kinematic Equations</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2d84f51" class="outline-2">
+<h2 id="org2d84f51"><span class="section-number-2">1.</span> Terminology</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Position</b> is the location of a system. It requires the choice of an <i>origin</i>, <i>units</i> to describe the location, an <i>axis</i>, and the <i>orientation</i> (positive direction) of that axis.
+</p>
+
+<p>
+<b>Displacement</b> is a change in position: \(\Delta x = x_{i + 1} - x_i\).
+</p>
+
+<p>
+The <b>net displacement</b> is the sum of all the displacements, or the final position minus the initial position: \(\Delta x_\text{net} - \sum_{i=1}^{n} \Delta x_i = x_\text{final} - x_\text{initial}\).
+</p>
+
+<p>
+The <b>distance</b> is the total distance the system travels. Note that distance is not necessarily the same as the absolute value of displacement. For example, in a path with <i>turning points</i>, the net displacement might be zero, yet the distance is most definitely <i>not</i> zero:
+</p>
+
+
+<div id="org26cd904" class="figure">
+<p><img src="../static/PHYSICS_7A/1d_kinematics1.png" alt="1d_kinematics1.png" />
+</p>
+</div>
+
+<p>
+The <b>average speed</b> is the total distance over the time interval. This value will always be positive, since distance is always positive. Note that a downside of this is that it does not tell you what direction the system is moving.
+</p>
+
+<p>
+The <b>average velocity</b>, on the other hand, is defined as \(\bar{v} = \frac{\Delta x}{\Delta t}\). Its sign <i>does</i> tell you the direction of motion. However, for system that changes velocity significantly over time, the average velocity often does not describe the motion very well.
+</p>
+
+<p>
+Instead, we can use <b>instantaneous velocity</b>, which is the velocity at an instant. It is defined as:
+</p>
+
+<p>
+\[
+v(t) = \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t} = \frac{\text{d} x}{\text{d} t}
+\]
+</p>
+
+<p>
+Its units are \(\frac{\text{m}}{\text{s}}\). This is the slope of the tangent line of a position versus time graph at a given time.
+</p>
+
+<p>
+As velocity changes over time, we get <b>acceleration</b>. The acceleration is defined as:
+</p>
+
+<p>
+\[
+a(t) = \lim_{\Delta t \to 0} \frac{\Delta v}{\Delta t} = \frac{\text{d}v}{\text{d}t} = \frac{\text{d}^2x}{\text{d}t^2}
+\]
+</p>
+
+<p>
+Its units are \(\frac{\text{m}}{\text{s}^2}\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf7a85de" class="outline-2">
+<h2 id="orgf7a85de"><span class="section-number-2">2.</span> Kinematic Equations</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Assuming that acceleration is constant, we can derive several kinematic equations. Starting with:
+</p>
+
+\begin{aligned}
+a &= \frac{\text{d}v}{\text{d}t} \\
+\text{d}v &= a\text{ d}t
+\end{aligned}
+
+<p>
+Integrating both sides, we have:
+</p>
+
+\begin{aligned}
+\int \text{d}v &= \int a\text{ d}t \\
+v(t) - v_0 &= at
+\end{aligned}
+
+<p>
+Rearranging, we obtain:
+</p>
+
+\begin{align}
+\boxed{v(t) = at + v_0}
+\end{align}
+
+<p>
+Similarly, we know that for velocity:
+</p>
+
+\begin{aligned}
+v(t) &= \frac{\text{d}x}{\text{d}t} \\
+\text{d}x &= v(t) \text{ d}t \\
+\int \text{d}x &= \int v(t) \text{ d}t
+\end{aligned}
+
+<p>
+Substituting (1) for \(v(t)\), we have:
+</p>
+
+\begin{aligned}
+\int \text{d}x &= \int (at + v_0) \text{ d}t \\
+x(t) - x_0 &= \frac{1}{2}at^2 + v_0t
+\end{aligned}
+
+<p>
+Thus, we can rearrange this to obtain:
+</p>
+
+\begin{align}
+\boxed{x(t) = x_0 + v_0t + \frac{1}{2}at^2}
+\end{align}
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-08-28 21:32
+             </div>
+</div>
+</body>
+</html>
