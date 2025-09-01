@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-08-28 Thu 10:36 -->
+<!-- 2025-09-01 Mon 10:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functions</title>
@@ -87,17 +87,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgebf4187">1. Assignment</a></li>
-<li><a href="#orgd154346">2. Defining Functions</a></li>
-<li><a href="#orgc6222b1">3. Environments</a>
+<li><a href="#orgebf4187">1. Assignment</a>
 <ul>
-<li><a href="#orgd29733e">3.1. Procedure for Assignment Statements</a></li>
-<li><a href="#org845dcdf">3.2. Procedure for <code>def</code> Statements</a></li>
-<li><a href="#org1a47016">3.3. Procedure for Calling User-Defined Functions</a></li>
+<li><a href="#orgd29733e">1.1. Procedure for Assignment Statements</a></li>
 </ul>
 </li>
-<li><a href="#orga50f087">4. None</a></li>
-<li><a href="#orgb4766f9">5. Pure and Non-Pure Functions</a></li>
+<li><a href="#orgd154346">2. Defining Functions</a>
+<ul>
+<li><a href="#org845dcdf">2.1. Procedure for <code>def</code> Statements</a></li>
+<li><a href="#org1a47016">2.2. Procedure for Calling User-Defined Functions</a></li>
+</ul>
+</li>
+<li><a href="#orga50f087">3. None</a></li>
+<li><a href="#orgb4766f9">4. Pure and Non-Pure Functions</a></li>
 </ul>
 </div>
 </div>
@@ -125,6 +127,18 @@ We can also use the assignment operator to give names to functions. For example,
 If we set <code>max</code> to something else, like <code>max = 3</code>, then we can <code>max</code> is no longer set to the built-in function and running <code>max(1, 2, 3)</code> will throw an error. However, we can fix this by doing <code>max = f</code>, which sets <code>max</code> back to the built-in function.
 </p>
 </div>
+<div id="outline-container-orgd29733e" class="outline-3">
+<h3 id="orgd29733e"><span class="section-number-3">1.1.</span> Procedure for Assignment Statements</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Python has an execution rule for evaluating assignment statements:
+</p>
+<ol class="org-ol">
+<li>Evaluate all expressions to the right of <code>=</code> from left to right</li>
+<li>Bind all names to the left of <code>=</code> to the resulting values in the current <a href="environments.html#org05aed64">frame</a></li>
+</ol>
+</div>
+</div>
 </div>
 <div id="outline-container-orgd154346" class="outline-2">
 <h2 id="orgd154346"><span class="section-number-2">2.</span> Defining Functions</h2>
@@ -134,7 +148,7 @@ While we can use assignment to bind names to values, we can use a <b>function de
 </p>
 
 
-<div id="org96c922d" class="figure">
+<div id="org8eefaa9" class="figure">
 <p><img src="../static/COMPSCI_61A/functions2.png" alt="functions2.png" />
 </p>
 </div>
@@ -153,58 +167,24 @@ For example:
 We can now use this <b>user-defined function</b> exactly as we would use a built-in function. A function differs from a name as it evaluates the defined expression every time you call it.
 </p>
 </div>
-</div>
-<div id="outline-container-orgc6222b1" class="outline-2">
-<h2 id="orgc6222b1"><span class="section-number-2">3.</span> Environments</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-Every expression is evaluated in the context of an <b>environment</b>. An environment consists of a sequence of <b>frames</b>, which keeps track of the names bound to values. 
-</p>
-
-<p>
-A name evaluates to the value bound to that name in the earliest frame of the current environment in which that name is found. For example, if we are executing the body of some user-defined function, to look up a name we will first look for that name in the local frame of that function, and then the global frame.
-</p>
-
-<p>
-<i>Environment diagrams</i> visualize the interpreter's process. There is code on the left with statements and expressions, with the arrows indicating evaluation order. On the right we have frames, where we keep track of names bound to values:
-</p>
-
-
-<div id="org1f0e741" class="figure">
-<p><img src="../static/COMPSCI_61A/functions1.png" alt="functions1.png" />
-</p>
-</div>
-</div>
-<div id="outline-container-orgd29733e" class="outline-3">
-<h3 id="orgd29733e"><span class="section-number-3">3.1.</span> Procedure for Assignment Statements</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-Python has an execution rule for evaluating assignment statements:
-</p>
-<ol class="org-ol">
-<li>Evaluate all expressions to the right of <code>=</code> from left to right</li>
-<li>Bind all names to the left of <code>=</code> to the resulting values in the current frame</li>
-</ol>
-</div>
-</div>
 <div id="outline-container-org845dcdf" class="outline-3">
-<h3 id="org845dcdf"><span class="section-number-3">3.2.</span> Procedure for <code>def</code> Statements</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org845dcdf"><span class="section-number-3">2.1.</span> Procedure for <code>def</code> Statements</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 Python also has an execution rule for evaluating function definitions:
 </p>
 <ol class="org-ol">
 <li>Create a function with the given signature</li>
 <li>Set the body of that function to be everything indented after the first line</li>
-<li>Bind the name to that function in the current frame</li>
+<li>Bind the name to that function in the current <a href="environments.html#org05aed64">frame</a></li>
 </ol>
 </div>
 </div>
 <div id="outline-container-org1a47016" class="outline-3">
-<h3 id="org1a47016"><span class="section-number-3">3.3.</span> Procedure for Calling User-Defined Functions</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="org1a47016"><span class="section-number-3">2.2.</span> Procedure for Calling User-Defined Functions</h3>
+<div class="outline-text-3" id="text-2-2">
 <ol class="org-ol">
-<li>Add a <b>local frame</b>, forming a <i>new</i> environment</li>
+<li>Add a <b>local frame</b>, forming a <i>new</i> <a href="environments.html#org05aed64">environment</a></li>
 <li>Bind the function's formal parameters to its arguments in that frame</li>
 <li>Execute the body of the function in that new environment</li>
 </ol>
@@ -216,16 +196,16 @@ A function's <i>signature</i> is important because it contains all the informati
 </div>
 </div>
 <div id="outline-container-orga50f087" class="outline-2">
-<h2 id="orga50f087"><span class="section-number-2">4.</span> None</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="orga50f087"><span class="section-number-2">3.</span> None</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 The special value <code>None</code> represents nothing in Python. A function that does not explicitly return a value will return <code>None</code>.
 </p>
 </div>
 </div>
 <div id="outline-container-orgb4766f9" class="outline-2">
-<h2 id="orgb4766f9"><span class="section-number-2">5.</span> Pure and Non-Pure Functions</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="orgb4766f9"><span class="section-number-2">4.</span> Pure and Non-Pure Functions</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 <b>Pure functions</b> only <i>return values</i>. For example, the built-in function <code>abs</code> is a pure function, as in takes in an argument (e.g. -2) and returns a value (e.g. 2).
 </p>
@@ -241,7 +221,7 @@ On the other hand, <b>non-pure functions</b> have <i>side effects</i>. For examp
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-28 10:29
+               Last modified: 2025-09-01 10:26
              </div>
 </div>
 </body>

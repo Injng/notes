@@ -6,7 +6,7 @@
 <!-- 2025-09-01 Mon 10:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>static</title>
+<title>Environments</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -79,25 +79,75 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/static/index.html">static</a></div>
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">static</h1>
+<h1 class="title">Environments</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org05aed64">1. Environments</a></li>
+<li><a href="#org4f17896">2. Multiple Environments</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org05aed64" class="outline-2">
+<h2 id="org05aed64"><span class="section-number-2">1.</span> Environments</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Subdirectories:</b></b>
+Every expression is evaluated in the context of an <b>environment</b>. An environment consists of a sequence of <b>frames</b>, which keeps track of the names bound to values. Every expression is evaluated in the context of an environment.
 </p>
 
-<ul class="org-ul">
-<li><a href="COMPSCI_61A/index.html">COMPSCI 61A</a></li>
-<li><a href="PHYSICS_7A/index.html">PHYSICS 7A</a></li>
-</ul>
+<p>
+A name evaluates to the value bound to that name in the <i>earliest frame of the current environment</i> in which that name is found. For example, if we are executing the body of some user-defined function, to look up a name we will first look for that name in the local frame of that function, and then the global frame. Therefore, <i>names have different meanings in different environments</i>.
+</p>
+
+<p>
+<i>Environment diagrams</i> visualize the interpreter's process. There is code on the left with statements and expressions, with the arrows indicating evaluation order. On the right we have frames, where we keep track of names bound to values:
+</p>
+
+
+<div id="orge77396f" class="figure">
+<p><img src="../static/COMPSCI_61A/functions1.png" alt="functions1.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4f17896" class="outline-2">
+<h2 id="org4f17896"><span class="section-number-2">2.</span> Multiple Environments</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+As we mentioned, an environment is a sequence of frames. Specifically, it is either:
+</p>
+
+<ol class="org-ol">
+<li>The global frame</li>
+<li>A local frame, followed by a global frame</li>
+</ol>
+
+<p>
+Local frames are added to the environment when a <a href="functions.html#org1a47016">user-defined function is called</a>. If another user-defined function is called within that function, there is also the possibility to create yet another environment. For example, in the environment diagram below:
+</p>
+
+
+<div id="org6a9fe97" class="figure">
+<p><img src="../static/COMPSCI_61A/environments1.png" alt="environments1.png" />
+</p>
+</div>
+
+<p>
+(1) is an environment, but so are both of the environments consisting of (1) and (2) together. Only one of these environments is the active one at any moment, and that is determined based on where the program is executing. For example, if the program is executing within the user-defined function <code>square</code>, then the environment is (1) and (2); otherwise, the environment is the global frame (1).
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-01 10:39
+               Last modified: 2025-09-01 10:37
              </div>
 </div>
 </body>
