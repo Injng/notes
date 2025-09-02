@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-02 Tue 08:43 -->
+<!-- 2025-09-02 Tue 09:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -92,13 +92,19 @@
 <li><a href="#orgb6dc17c">1.1. Primitive Types</a></li>
 </ul>
 </li>
-<li><a href="#org29dd908">2. Assignment</a></li>
+<li><a href="#org374bd13">2. Assignment</a></li>
 <li><a href="#org2e0d11d">3. Operators</a></li>
 <li><a href="#org35c418d">4. Functions</a>
 <ul>
-<li><a href="#org7210086">4.1. Defining Functions</a></li>
+<li><a href="#orge13116a">4.1. Defining Functions</a></li>
 <li><a href="#org18d2aaf">4.2. Docstrings</a></li>
 <li><a href="#org95131ae">4.3. Doctests</a></li>
+</ul>
+</li>
+<li><a href="#orgeecbff1">5. Conditional Statements</a></li>
+<li><a href="#org738a95b">6. Iteration</a>
+<ul>
+<li><a href="#org6939d85">6.1. <code>while</code></a></li>
 </ul>
 </li>
 </ul>
@@ -128,8 +134,8 @@ The <b>primitive</b> types are the most basic types in Python and are <i>immutab
 </div>
 </div>
 </div>
-<div id="outline-container-org29dd908" class="outline-2">
-<h2 id="org29dd908"><span class="section-number-2">2.</span> Assignment</h2>
+<div id="outline-container-org374bd13" class="outline-2">
+<h2 id="org374bd13"><span class="section-number-2">2.</span> <a href="functions.html#orgebf4187">Assignment</a></h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">x</span> <span class="org-operator">=</span> <span class="org-py-number">4</span> / <span class="org-py-number">3</span>                   <span class="org-comment-delimiter"># </span><span class="org-comment">assignment
@@ -157,8 +163,8 @@ The <b>primitive</b> types are the most basic types in Python and are <i>immutab
 <h2 id="org35c418d"><span class="section-number-2">4.</span> Functions</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org7210086" class="outline-3">
-<h3 id="org7210086"><span class="section-number-3">4.1.</span> Defining Functions</h3>
+<div id="outline-container-orge13116a" class="outline-3">
+<h3 id="orge13116a"><span class="section-number-3">4.1.</span> <a href="functions.html#orgd154346">Defining Functions</a></h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Functions consist of a <b>function signature</b>, which defines the <b>name</b> and a number of <b>formal parameters</b>. The <b>function body</b> is the part indented after the function signature:
@@ -210,13 +216,46 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
 </div>
 </div>
 </div>
+<div id="outline-container-orgeecbff1" class="outline-2">
+<h2 id="orgeecbff1"><span class="section-number-2">5.</span> <a href="control.html#org4c698ef">Conditional Statements</a></h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">absolute_value</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-doc">"""Return the absolute value of x."""</span>
+    <span class="org-keyword">if</span> x &lt; <span class="org-py-number">0</span>:
+        <span class="org-keyword">return</span> -x
+    <span class="org-keyword">elif</span> x == <span class="org-py-number">0</span>:
+        <span class="org-keyword">return</span> <span class="org-py-number">0</span>
+    <span class="org-keyword">else</span>:
+        <span class="org-keyword">return</span> x
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org738a95b" class="outline-2">
+<h2 id="org738a95b"><span class="section-number-2">6.</span> <a href="control.html#orgeec7d8a">Iteration</a></h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org6939d85" class="outline-3">
+<h3 id="org6939d85"><span class="section-number-3">6.1.</span> <code>while</code></h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">i</span>, <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>, <span class="org-py-number">0</span>
+<span class="org-keyword">while</span> i &lt; <span class="org-py-number">3</span>:
+    <span class="org-py-variable-name">i</span> <span class="org-operator">=</span> i + <span class="org-py-number">1</span>
+    <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> total + i
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-02 08:31
+               Last modified: 2025-09-02 09:40
              </div>
 </div>
 </body>
