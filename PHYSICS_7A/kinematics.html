@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-08-28 Thu 21:32 -->
+<!-- 2025-09-02 Tue 22:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>1D Kinematics</title>
+<title>Kinematics</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -114,18 +114,20 @@
 <div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">1D Kinematics</h1>
+<h1 class="title">Kinematics</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2d84f51">1. Terminology</a></li>
-<li><a href="#orgf7a85de">2. Kinematic Equations</a></li>
+<li><a href="#orgd603407">1. Terminology</a></li>
+<li><a href="#org38bb19a">2. Kinematic Equations</a></li>
+<li><a href="#orgee16627">3. 1D Kinematics</a></li>
+<li><a href="#orgdc9040d">4. 2D Kinematics</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2d84f51" class="outline-2">
-<h2 id="org2d84f51"><span class="section-number-2">1.</span> Terminology</h2>
+<div id="outline-container-orgd603407" class="outline-2">
+<h2 id="orgd603407"><span class="section-number-2">1.</span> Terminology</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Position</b> is the location of a system. It requires the choice of an <i>origin</i>, <i>units</i> to describe the location, an <i>axis</i>, and the <i>orientation</i> (positive direction) of that axis.
@@ -144,7 +146,7 @@ The <b>distance</b> is the total distance the system travels. Note that distance
 </p>
 
 
-<div id="org26cd904" class="figure">
+<div id="org8b86015" class="figure">
 <p><img src="../static/PHYSICS_7A/1d_kinematics1.png" alt="1d_kinematics1.png" />
 </p>
 </div>
@@ -186,8 +188,8 @@ Its units are \(\frac{\text{m}}{\text{s}^2}\).
 </p>
 </div>
 </div>
-<div id="outline-container-orgf7a85de" class="outline-2">
-<h2 id="orgf7a85de"><span class="section-number-2">2.</span> Kinematic Equations</h2>
+<div id="outline-container-org38bb19a" class="outline-2">
+<h2 id="org38bb19a"><span class="section-number-2">2.</span> Kinematic Equations</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Assuming that acceleration is constant, we can derive several kinematic equations. Starting with:
@@ -241,6 +243,109 @@ Thus, we can rearrange this to obtain:
 \begin{align}
 \boxed{x(t) = x_0 + v_0t + \frac{1}{2}at^2}
 \end{align}
+
+<p>
+By combination of (1) and (2), we can also obtain the following equation:
+</p>
+
+\begin{align}
+\boxed{x(t) - x_0 = \frac{(v(t))^2 - v_0^2}{2a}}
+\end{align}
+
+<p>
+Similarly:
+</p>
+
+\begin{align}
+\boxed{x(t) - x_0 = \frac{v_0 + v(t)}{2}t}
+\end{align}
+
+<p>
+Note that in (4), \(\frac{v_0 + v(t)}{2}\) is just average velocity.
+</p>
+</div>
+</div>
+<div id="outline-container-orgee16627" class="outline-2">
+<h2 id="orgee16627"><span class="section-number-2">3.</span> 1D Kinematics</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+We can apply the kinematic equations to problems in one dimension. These problems generally involve objects in free fall.
+</p>
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Ball tossed upwards
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a ball tossed upward with an initial velocity \(v_0\) from height \(y_0\):
+</p>
+
+
+<div id="orgdb1a2ff" class="figure">
+<p><img src="../static/PHYSICS_7A/1d_kinematics2.png" alt="1d_kinematics2.png" />
+</p>
+</div>
+
+<p>
+We can determine the time required to reach the peak position by realizing that the velocity at the peak is zero. Therefore, we can use (1) with \(-g\) as the acceleration:
+</p>
+
+\begin{aligned}
+0 &= -gt_\text{peak} + v_0 \\
+t_\text{peak} &= \frac{v_0}{g}
+\end{aligned}
+
+<p>
+We can also calculate the y position at the peak of the arc. We can use (3) like so:
+</p>
+
+\begin{aligned}
+x(t) - x_0 &= \frac{(v(t))^2 - v_0^2}{2a} \\
+y_\text{peak} - y_0 &= \frac{v_0^2}{2g} \\
+y_\text{peak} &= \frac{v_0^2}{2g} + y_0
+\end{aligned}
+
+<p>
+We can also calculate the time required to reach the point \(|v(t)| = v_0\). By the symmetry of the problem, we realize that at a certain height \(y=y_0\), there are two points with the same speed: \(t=0, v=v_0\), and \(t>0, v=-v_0\). Knowing that the time to the peak position is \(\frac{v_0}{g}\), therefore the answer is \(\frac{2v_0}{g}\).
+</p>
+
+<p>
+Finally, we can also calculate the time spent in the air before the ball hits the ground, otherwise known as the <i>time of flight</i>. For this, we can use (2):
+</p>
+
+\begin{aligned}
+0 &= y_0 + v_0t + \frac{1}{2}at^2 \\
+0 &= \frac{1}{2}gt^2 - v_0t - y_0 \\
+t &= \frac{v_0 \pm \sqrt{v_0^2 + 2gy_0}}{g}
+\end{aligned}
+
+<p>
+Mathematically, there are two solutions, but only the one where \(t > 0\) makes sense in this context.
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgdc9040d" class="outline-2">
+<h2 id="orgdc9040d"><span class="section-number-2">4.</span> 2D Kinematics</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+In two dimensions, we can do the same thing as one dimension, but we need to consider the vertical and horizontal directions separately. Therefore, we often have to consider two separate equations for each of the directions.
+</p>
+
+<p>
+One new quantity in 2D kinematics is <b>range</b>, which is the total horizontal distance traveled during the fall.
+</p>
 </div>
 </div>
 </div>
@@ -249,7 +354,7 @@ Thus, we can rearrange this to obtain:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-28 21:32
+               Last modified: 2025-09-02 22:24
              </div>
 </div>
 </body>
