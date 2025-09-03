@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-02 Tue 09:40 -->
+<!-- 2025-09-03 Wed 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -93,7 +93,13 @@
 </ul>
 </li>
 <li><a href="#org374bd13">2. Assignment</a></li>
-<li><a href="#org2e0d11d">3. Operators</a></li>
+<li><a href="#org2e0d11d">3. Operators</a>
+<ul>
+<li><a href="#org5931b56">3.1. Mathematical Operators</a></li>
+<li><a href="#org29a53d0">3.2. Comparison Operators</a></li>
+<li><a href="#orga796975">3.3. Boolean Operators</a></li>
+</ul>
+</li>
 <li><a href="#org35c418d">4. Functions</a>
 <ul>
 <li><a href="#orge13116a">4.1. Defining Functions</a></li>
@@ -147,6 +153,10 @@ The <b>primitive</b> types are the most basic types in Python and are <i>immutab
 <div id="outline-container-org2e0d11d" class="outline-2">
 <h2 id="org2e0d11d"><span class="section-number-2">3.</span> Operators</h2>
 <div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org5931b56" class="outline-3">
+<h3 id="org5931b56"><span class="section-number-3">3.1.</span> Mathematical Operators</h3>
+<div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-py-number">1</span> + <span class="org-py-number">2</span>                   <span class="org-comment-delimiter"># </span><span class="org-comment">addition
 </span><span class="org-py-variable-name">b</span> <span class="org-operator">=</span> <span class="org-py-number">2</span> - <span class="org-py-number">1</span>                   <span class="org-comment-delimiter"># </span><span class="org-comment">subtraction
@@ -156,6 +166,32 @@ The <b>primitive</b> types are the most basic types in Python and are <i>immutab
 </span><span class="org-py-variable-name">f</span> <span class="org-operator">=</span> <span class="org-py-number">4</span> % <span class="org-py-number">3</span>                   <span class="org-comment-delimiter"># </span><span class="org-comment">modulus (1)
 </span><span class="org-py-variable-name">g</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">1</span> + <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">)</span> * <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">3</span> + <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-1">)</span>       <span class="org-comment-delimiter"># </span><span class="org-comment">association</span>
 </pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org29a53d0" class="outline-3">
+<h3 id="org29a53d0"><span class="section-number-3">3.2.</span> Comparison Operators</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-number">1</span> &lt; <span class="org-py-number">2</span>                       <span class="org-comment-delimiter"># </span><span class="org-comment">less than
+</span><span class="org-py-number">1</span> &lt;= <span class="org-py-number">2</span>                      <span class="org-comment-delimiter"># </span><span class="org-comment">less than or equal to
+</span><span class="org-py-number">2</span> &gt; <span class="org-py-number">1</span>                       <span class="org-comment-delimiter"># </span><span class="org-comment">greater than
+</span><span class="org-py-number">2</span> &gt;= <span class="org-py-number">1</span>                      <span class="org-comment-delimiter"># </span><span class="org-comment">greater than or equal to
+</span><span class="org-py-number">1</span> == <span class="org-py-number">1</span>                      <span class="org-comment-delimiter"># </span><span class="org-comment">equals to
+</span><span class="org-py-number">2</span> != <span class="org-py-number">1</span>                      <span class="org-comment-delimiter"># </span><span class="org-comment">not equal to</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga796975" class="outline-3">
+<h3 id="orga796975"><span class="section-number-3">3.3.</span> Boolean Operators</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-pseudo-keyword">True</span> <span class="org-keyword">and</span> <span class="org-py-pseudo-keyword">True</span>               <span class="org-comment-delimiter"># </span><span class="org-comment">and (True)
+</span><span class="org-py-pseudo-keyword">False</span> <span class="org-keyword">or</span> <span class="org-py-pseudo-keyword">True</span>               <span class="org-comment-delimiter"># </span><span class="org-comment">or (True)
+</span><span class="org-keyword">not</span> <span class="org-py-pseudo-keyword">True</span>                    <span class="org-comment-delimiter"># </span><span class="org-comment">not (False)</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -255,7 +291,7 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-02 09:40
+               Last modified: 2025-09-03 13:38
              </div>
 </div>
 </body>

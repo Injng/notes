@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-02 Tue 09:40 -->
+<!-- 2025-09-03 Wed 13:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Control</title>
@@ -122,7 +122,7 @@ In a compound statement, the first header determines the statement's type. For e
 </p>
 
 
-<div id="orgae63cda" class="figure">
+<div id="orgef51625" class="figure">
 <p><img src="../static/COMPSCI_61A/control1.png" alt="control1.png" />
 </p>
 </div>
@@ -188,7 +188,7 @@ A <b>boolean context</b> is a context in which we only care if the expression ev
 <h3 id="org3dfca22"><span class="section-number-3">3.1.</span> <code>while</code> Statements</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-The following is a <code>while</code> statement:
+<b>While statements</b> contain statements that are repeated as long as some condition is true. The following is a <code>while</code> statement:
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">i</span>, <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>, <span class="org-py-number">0</span>
@@ -209,6 +209,10 @@ This loop calculates the <code>total</code> sum of the numbers from 1 through 3.
 <li>Evaluate the header's expression.</li>
 <li>If it is a true value, execute the whole suite, then return to step 1.</li>
 </ol>
+
+<p>
+Note that the while condition <i>must eventually become a false value</i> for the statement to end, otherwise you have an infinite loop.
+</p>
 </div>
 </div>
 </div>
@@ -219,7 +223,7 @@ This loop calculates the <code>total</code> sum of the numbers from 1 through 3.
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-02 09:39
+               Last modified: 2025-09-03 13:39
              </div>
 </div>
 </body>
