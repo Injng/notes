@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-08-29 Fri 09:44 -->
+<!-- 2025-09-03 Wed 17:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Systems</title>
@@ -121,6 +121,11 @@
 <ul>
 <li><a href="#orgc00e141">1. Linear Systems</a></li>
 <li><a href="#orgb352e21">2. Elementary Row Operations</a></li>
+<li><a href="#orge7a3527">3. Linear Combinations</a>
+<ul>
+<li><a href="#org0e5ef97">3.1. Span</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -171,13 +176,55 @@ Two matrices are said to be <b>row equivalent</b> if one can be reached from the
 </p>
 </div>
 </div>
+<div id="outline-container-orge7a3527" class="outline-2">
+<h2 id="orge7a3527"><span class="section-number-2">3.</span> Linear Combinations</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Given certain vectors, we can take <b>linear combinations</b> of those vectors. More generally, if we have vectors \(v_1, v_2, \dots, v_k\), we can take a linear combination of the vector with constants \(c\) by finding \(c_1v_1 + c_2v_2 + \cdots + c_kv_k\).
+</p>
+
+<p>
+Multiplying a matrix \(A\) which is mxn and a vector which is nx1 can also be seen as a linear combination of the rows of \(A\):
+</p>
+
+\begin{aligned}
+\begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix}
+=
+\begin{bmatrix} a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n \\
+\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n
+\end{bmatrix}
+\end{aligned}
+</div>
+<div id="outline-container-org0e5ef97" class="outline-3">
+<h3 id="org0e5ef97"><span class="section-number-3">3.1.</span> Span</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+A natural question is to ask what vectors we can obtain by taking linear combinations of a certain set of vectors. For example, for two vectors \(v_1\) and \(v_2\) in \(\mathbb{R}^2\), do linear combinations of those two vectors create all of \(\mathbb{R}^2\)? We call the space created by all these linear combinations the <b>span</b> of the vector set.
+</p>
+
+<p>
+Realize that this is equivalent to asking if each \(Ax=b\), where \(A\) is the matrix of the set of vectors, and \(b\) is any vector in \(\mathbb{R}^n\), is consistent. Therefore, the following 4 statements are equivalent:
+</p>
+
+<ol class="org-ol">
+<li>For all \(b\) in \(\mathbb{R}^m\), the equation \(Ax=b\) has a solution.</li>
+<li>Each \(b\) is a linear combination of the columns of \(A\).</li>
+<li>The columns of \(A\) span \(\mathbb{R}^m\).</li>
+<li>\(A\) has a pivot position in every row.</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-29 09:41
+               Last modified: 2025-09-03 17:29
              </div>
 </div>
 </body>
