@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-02 Tue 08:44 -->
+<!-- 2025-09-04 Thu 12:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functions</title>
@@ -100,6 +100,7 @@
 </li>
 <li><a href="#orga50f087">3. None</a></li>
 <li><a href="#orgb4766f9">4. Pure and Non-Pure Functions</a></li>
+<li><a href="#org79a551a">5. Higher-Order Functions</a></li>
 </ul>
 </div>
 </div>
@@ -148,7 +149,7 @@ While we can use assignment to bind names to values, we can use a <b>function de
 </p>
 
 
-<div id="org5bad18b" class="figure">
+<div id="org82e677c" class="figure">
 <p><img src="../static/COMPSCI_61A/functions2.png" alt="functions2.png" />
 </p>
 </div>
@@ -215,13 +216,46 @@ On the other hand, <b>non-pure functions</b> have <i>side effects</i>. For examp
 </p>
 </div>
 </div>
+<div id="outline-container-org79a551a" class="outline-2">
+<h2 id="org79a551a"><span class="section-number-2">5.</span> Higher-Order Functions</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Sometimes, we may want to generalize <i>computational processes</i>, not just numbers, over different functions. To do this, we can use <b>higher-order functions</b>, which allow us to pass in functions as a formal parameter, or allow us to use functions as a return value.
+</p>
+
+<p>
+For example, we can pass a function in as an argument:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">greet</span><span class="org-rainbow-delimiters-depth-1">(</span>func<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">return</span> func<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Hello"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-py-def-class">def</span> <span class="org-py-def">uppercase</span><span class="org-rainbow-delimiters-depth-1">(</span>text<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">return</span> text.upper<span class="org-rainbow-delimiters-depth-1">()</span>
+
+print<span class="org-rainbow-delimiters-depth-1">(</span>greet<span class="org-rainbow-delimiters-depth-2">(</span>uppercase<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+We can also return a function:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">make_adder</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-py-def-class">def</span> <span class="org-py-def">adder</span><span class="org-rainbow-delimiters-depth-1">(</span>k<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-keyword">return</span> k + n
+    <span class="org-keyword">return</span> adder
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-02 08:44
+               Last modified: 2025-09-04 12:27
              </div>
 </div>
 </body>

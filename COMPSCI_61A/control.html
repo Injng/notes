@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-03 Wed 13:54 -->
+<!-- 2025-09-04 Thu 12:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Control</title>
@@ -103,6 +103,11 @@
 </li>
 </ul>
 </li>
+<li><a href="#orgd341d89">4. Control Expressions</a>
+<ul>
+<li><a href="#org33a71c0">4.1. Logical Operators</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -122,7 +127,7 @@ In a compound statement, the first header determines the statement's type. For e
 </p>
 
 
-<div id="orgef51625" class="figure">
+<div id="orgf82f9a8" class="figure">
 <p><img src="../static/COMPSCI_61A/control1.png" alt="control1.png" />
 </p>
 </div>
@@ -201,6 +206,39 @@ A <b>boolean context</b> is a context in which we only care if the expression ev
 <p>
 This loop calculates the <code>total</code> sum of the numbers from 1 through 3.
 </p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         The Fibonacci sequence
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We can write a function using a <code>while</code> loop to find the nth Fibonacci number:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">fib</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-doc">"""Compute the nth Fibonacci number, for N &gt;= 1."""</span>
+    <span class="org-py-variable-name">pred</span>, <span class="org-py-variable-name">curr</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>, <span class="org-py-number">1</span>
+    <span class="org-py-variable-name">k</span> <span class="org-operator">=</span> <span class="org-py-number">1</span>
+    <span class="org-keyword">while</span> k &lt; n:
+        <span class="org-py-variable-name">pred</span>, <span class="org-py-variable-name">curr</span> <span class="org-operator">=</span> curr, pred + curr
+        <span class="org-py-variable-name">k</span> <span class="org-operator">=</span> k + <span class="org-py-number">1</span>
+    <span class="org-keyword">return</span> curr
+</pre>
+</div>
+
+
+</details>
 </div>
 <div id="outline-container-orge967daa" class="outline-4">
 <h4 id="orge967daa"><span class="section-number-4">3.1.1.</span> Procedure for <code>while</code> Statements</h4>
@@ -217,13 +255,46 @@ Note that the while condition <i>must eventually become a false value</i> for th
 </div>
 </div>
 </div>
+<div id="outline-container-orgd341d89" class="outline-2">
+<h2 id="orgd341d89"><span class="section-number-2">4.</span> Control Expressions</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org33a71c0" class="outline-3">
+<h3 id="org33a71c0"><span class="section-number-3">4.1.</span> Logical Operators</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+To evaluate the expression <code>&lt;left&gt; and &lt;right&gt;</code>:
+</p>
+
+<ol class="org-ol">
+<li>Evaluate the subexpression <code>&lt;left&gt;</code>.</li>
+<li>If the result is a false value <code>v</code>, then the expression evaluates to <code>v</code>.</li>
+<li>Otherwise, the expression evaluates to the value of the subexpression <code>&lt;right&gt;</code>.</li>
+</ol>
+
+<p>
+To evaluate the expression <code>&lt;left&gt; or &lt;right&gt;</code>:
+</p>
+
+<ol class="org-ol">
+<li>Evaluate the subexpression <code>&lt;left&gt;</code>.</li>
+<li>If the result is a true value <code>v</code>, then the expression evaluates to <code>v</code>.</li>
+<li>Otherwise, the expression evaluates to the value of the subexpression <code>&lt;right&gt;</code>.</li>
+</ol>
+
+<p>
+Notice that for these logical operators, once <code>&lt;left&gt;</code> is evaluated to either false for <code>and</code> or true for <code>or</code>, the interpreter does not evaluate <code>&lt;right&gt;</code>. This is important because sometimes, we want to use <code>&lt;left&gt;</code> to check for a condition that would otherwise make evaluating <code>&lt;right&gt;</code> undefined behavior.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-03 13:39
+               Last modified: 2025-09-04 11:33
              </div>
 </div>
 </body>
