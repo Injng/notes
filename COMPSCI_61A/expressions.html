@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-08-27 Wed 22:24 -->
+<!-- 2025-09-05 Fri 15:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Expressions</title>
@@ -90,6 +90,14 @@
 <li><a href="#orgdcaa97a">1. Expressions</a>
 <ul>
 <li><a href="#orgee8accf">1.1. Call Expressions</a></li>
+<li><a href="#org34bbf2d">1.2. Boolean Expressions</a>
+<ul>
+<li><a href="#org3058870">1.2.1. Procedure for <code>and</code></a></li>
+<li><a href="#org05f4f35">1.2.2. Procedure for <code>or</code></a></li>
+<li><a href="#orge607c85">1.2.3. Procedure for <code>not</code></a></li>
+<li><a href="#org92ddbfa">1.2.4. Short-Circuit Evaluation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -132,8 +140,64 @@ We can write out an <b>expression tree</b> with <b>subexpressions</b> as well:
 </p>
 
 
-<div id="org6d7a717" class="figure">
+<div id="orgcb74b73" class="figure">
 <p><img src="../static/COMPSCI_61A/expressions1.png" alt="expressions1.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org34bbf2d" class="outline-3">
+<h3 id="org34bbf2d"><span class="section-number-3">1.2.</span> Boolean Expressions</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+A <b>boolean expression</b> is made up of a left and right subexpression and a boolean operator.
+</p>
+</div>
+<div id="outline-container-org3058870" class="outline-4">
+<h4 id="org3058870"><span class="section-number-4">1.2.1.</span> Procedure for <code>and</code></h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+To evaluate the expression <code>&lt;left&gt; and &lt;right&gt;</code>:
+</p>
+
+<ol class="org-ol">
+<li>Evaluate the subexpression <code>&lt;left&gt;</code>.</li>
+<li>If the result is a false value <code>v</code>, then the expression evaluates to <code>v</code>.</li>
+<li>Otherwise, the expression evaluates to the value of the subexpression <code>&lt;right&gt;</code>.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org05f4f35" class="outline-4">
+<h4 id="org05f4f35"><span class="section-number-4">1.2.2.</span> Procedure for <code>or</code></h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+To evaluate the expression <code>&lt;left&gt; or &lt;right&gt;</code>:
+</p>
+
+<ol class="org-ol">
+<li>Evaluate the subexpression <code>&lt;left&gt;</code>.</li>
+<li>If the result is a true value <code>v</code>, then the expression evaluates to <code>v</code>.</li>
+<li>Otherwise, the expression evaluates to the value of the subexpression <code>&lt;right&gt;</code>.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge607c85" class="outline-4">
+<h4 id="orge607c85"><span class="section-number-4">1.2.3.</span> Procedure for <code>not</code></h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+To evaluate the expression <code>not &lt;expr&gt;</code>:
+</p>
+<ol class="org-ol">
+<li>Evaluate the subexpression <code>&lt;expr&gt;</code>.</li>
+<li>The value is <code>True</code> if the result is a <code>False</code> value, and the value is <code>False</code> if the result is a <code>True</code> value.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org92ddbfa" class="outline-4">
+<h4 id="org92ddbfa"><span class="section-number-4">1.2.4.</span> Short-Circuit Evaluation</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+Notice that for these logical operators, once <code>&lt;left&gt;</code> is evaluated to either false for <code>and</code> or true for <code>or</code>, the interpreter does not evaluate <code>&lt;right&gt;</code>. This is important because sometimes, we want to use <code>&lt;left&gt;</code> to check for a condition that would otherwise make evaluating <code>&lt;right&gt;</code> undefined behavior. This behavior is known as <b>short-circuit evaluation</b>.
 </p>
 </div>
 </div>
@@ -145,7 +209,7 @@ We can write out an <b>expression tree</b> with <b>subexpressions</b> as well:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-08-27 22:12
+               Last modified: 2025-09-05 13:18
              </div>
 </div>
 </body>
