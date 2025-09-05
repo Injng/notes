@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-02 Tue 22:24 -->
+<!-- 2025-09-05 Fri 07:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kinematics</title>
@@ -123,6 +123,7 @@
 <li><a href="#org38bb19a">2. Kinematic Equations</a></li>
 <li><a href="#orgee16627">3. 1D Kinematics</a></li>
 <li><a href="#orgdc9040d">4. 2D Kinematics</a></li>
+<li><a href="#org4e061f0">5. Relative Motion</a></li>
 </ul>
 </div>
 </div>
@@ -146,7 +147,7 @@ The <b>distance</b> is the total distance the system travels. Note that distance
 </p>
 
 
-<div id="org8b86015" class="figure">
+<div id="org97bfd7d" class="figure">
 <p><img src="../static/PHYSICS_7A/1d_kinematics1.png" alt="1d_kinematics1.png" />
 </p>
 </div>
@@ -290,7 +291,7 @@ Consider a ball tossed upward with an initial velocity \(v_0\) from height \(y_0
 </p>
 
 
-<div id="orgdb1a2ff" class="figure">
+<div id="orga6602eb" class="figure">
 <p><img src="../static/PHYSICS_7A/1d_kinematics2.png" alt="1d_kinematics2.png" />
 </p>
 </div>
@@ -346,6 +347,109 @@ In two dimensions, we can do the same thing as one dimension, but we need to con
 <p>
 One new quantity in 2D kinematics is <b>range</b>, which is the total horizontal distance traveled during the fall.
 </p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Tossed ball
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a ball tossed with initial velocity \(\vec{v_0}\):
+</p>
+
+
+<div id="org74bc633" class="figure">
+<p><img src="../static/PHYSICS_7A/kinematics3.png" alt="kinematics3.png" />
+</p>
+</div>
+
+<p>
+We can calculate <b>range</b> by first finding the <b>time of flight</b>. Given time of flight to be \(t_f\), we have:
+</p>
+
+\begin{aligned}
+D = x(t_f) = v_{0_x}t_f + x_0 = v_0\cos{\theta}t_f
+\end{aligned}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org4e061f0" class="outline-2">
+<h2 id="org4e061f0"><span class="section-number-2">5.</span> Relative Motion</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+If object \(A\) is in motion with respect to object \(B\), which itself is in motion with respect to an observer, then:
+</p>
+
+\begin{align}
+\boxed{\vec{v}_{A/\text{obs.}} = \vec{v}_{A/B} + \vec{v}_{B/\text{obs.}}}
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Item dropped out of plane
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a plane that is flying with velocity \(\vec{v}_a\) at height \(H\), and you want to drop an item out of the plane such that it is released at time \(t=0\) from the origin \(x=y=0\) and will hit the ground at a certain point:
+</p>
+
+
+<div id="orgad3b03a" class="figure">
+<p><img src="../static/PHYSICS_7A/kinematics4.png" alt="kinematics4.png" />
+</p>
+</div>
+
+<p>
+We can calculate the <i>time of flight of the item</i> by considering the vertical component. By relative motion, and since when the item is dropped, there is only horizontal velocity, there is no vertical component initially. By (2), we have:
+</p>
+
+\begin{aligned}
+y(t) &= \frac{1}{2}gt^2 + v_{0_y}t + y_0 \\
+&= \frac{1}{2}gt^2
+\end{aligned}
+
+<p>
+We want to solve for time when the item hits the ground, so:
+</p>
+
+\begin{aligned}
+H &= \frac{1}{2}gt_f^2 \\
+t_f^2 &= \frac{2H}{g} \\
+t_f &= \sqrt{\frac{2H}{g}}
+\end{aligned}
+
+<p>
+Now, we can try to determine the distance \(D\) <i>before the ground point the package should be dropped</i>. To do this, we will have to consider the horizontal component. Since we know the time of flight, we just want to calculate how much horizontal distance (the <i>range</i>) the item will travel while it is in the air, and simply release it that much distance before the target point on the ground. Thus, by (2):
+</p>
+
+\begin{aligned}
+x(t_f) &= \frac{1}{2}a_xt_f^2 + v_{0_x}t_f + x_0 \\
+D &= v_at_f \\
+D &= v_a\sqrt{\frac{2H}{g}}
+\end{aligned}
+
+
+</details>
 </div>
 </div>
 </div>
@@ -354,7 +458,7 @@ One new quantity in 2D kinematics is <b>range</b>, which is the total horizontal
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-02 22:24
+               Last modified: 2025-09-05 07:59
              </div>
 </div>
 </body>
