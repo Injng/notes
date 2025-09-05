@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-03 Wed 17:29 -->
+<!-- 2025-09-05 Fri 10:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Systems</title>
@@ -119,13 +119,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc00e141">1. Linear Systems</a></li>
-<li><a href="#orgb352e21">2. Elementary Row Operations</a></li>
-<li><a href="#orge7a3527">3. Linear Combinations</a>
+<li><a href="#orgc00e141">1. Linear Systems</a>
 <ul>
-<li><a href="#org0e5ef97">3.1. Span</a></li>
+<li><a href="#orgb352e21">1.1. Elementary Row Operations</a></li>
 </ul>
 </li>
+<li><a href="#orge7a3527">2. Linear Combinations</a>
+<ul>
+<li><a href="#org0e5ef97">2.1. Span</a></li>
+</ul>
+</li>
+<li><a href="#org9b821d1">3. Solving Homogeneous Systems</a></li>
+<li><a href="#org62385a3">4. Solving Nonhomogeneous Systems</a></li>
 </ul>
 </div>
 </div>
@@ -153,10 +158,9 @@ The first matrix of constants is known as the <b>coefficient matrix</b> because 
 \begin{bmatrix} a_1 & a_2 & c_1 \\ b_1 & b_2 & c_2 \end{bmatrix}
 \end{aligned}
 </div>
-</div>
-<div id="outline-container-orgb352e21" class="outline-2">
-<h2 id="orgb352e21"><span class="section-number-2">2.</span> Elementary Row Operations</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgb352e21" class="outline-3">
+<h3 id="orgb352e21"><span class="section-number-3">1.1.</span> Elementary Row Operations</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 To solve the system, we can look to simplifying the augmented matrix. To do so, we can use <b>row operations</b>, which consist of:
 </p>
@@ -176,9 +180,10 @@ Two matrices are said to be <b>row equivalent</b> if one can be reached from the
 </p>
 </div>
 </div>
+</div>
 <div id="outline-container-orge7a3527" class="outline-2">
-<h2 id="orge7a3527"><span class="section-number-2">3.</span> Linear Combinations</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orge7a3527"><span class="section-number-2">2.</span> Linear Combinations</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 Given certain vectors, we can take <b>linear combinations</b> of those vectors. More generally, if we have vectors \(v_1, v_2, \dots, v_k\), we can take a linear combination of the vector with constants \(c\) by finding \(c_1v_1 + c_2v_2 + \cdots + c_kv_k\).
 </p>
@@ -199,8 +204,8 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n
 \end{aligned}
 </div>
 <div id="outline-container-org0e5ef97" class="outline-3">
-<h3 id="org0e5ef97"><span class="section-number-3">3.1.</span> Span</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org0e5ef97"><span class="section-number-3">2.1.</span> Span</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 A natural question is to ask what vectors we can obtain by taking linear combinations of a certain set of vectors. For example, for two vectors \(v_1\) and \(v_2\) in \(\mathbb{R}^2\), do linear combinations of those two vectors create all of \(\mathbb{R}^2\)? We call the space created by all these linear combinations the <b>span</b> of the vector set.
 </p>
@@ -218,13 +223,79 @@ Realize that this is equivalent to asking if each \(Ax=b\), where \(A\) is the m
 </div>
 </div>
 </div>
+<div id="outline-container-org9b821d1" class="outline-2">
+<h2 id="org9b821d1"><span class="section-number-2">3.</span> Solving Homogeneous Systems</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A <b>homogeneous matrix equation</b> is one that can be represented with an mxn coefficient matrix \(A\) of \(n\) vectors in \(\mathbb{R}^m\), and an nx1 vector \(x\), like so:
+</p>
+
+<p>
+\[
+Ax = 0
+\]
+</p>
+
+<p>
+For a homogenous system like this, there is always the <b>trivial solution</b> \(x=0\). The question is, are there also some nonzero solutions \(x\) that work, i.e. a <b>nontrivial solution</b>? We can do this by putting \(A\) in <a href="triangular_and_echelon_forms.html#orgf375fe6">row echelon form</a> (note: the coefficient matrix, not the augmented one, since the augmented column will be 0 no matter what row operations we do) and solving the linear system.
+</p>
+
+<p>
+We can also write our answers in <b>parametric vector form</b>. For example:
+</p>
+
+\begin{aligned}
+\begin{bmatrix}3x_2 - 2x_3 \\ x_2 \\ x_3\end{bmatrix}
+= 
+x_2\begin{bmatrix}3 \\ 1\\ 0\end{bmatrix} +
+x_3\begin{bmatrix}-2 \\ 0 \\ 1 \end{bmatrix}
+\end{aligned}
+</div>
+</div>
+<div id="outline-container-org62385a3" class="outline-2">
+<h2 id="org62385a3"><span class="section-number-2">4.</span> Solving Nonhomogeneous Systems</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+More generally, a <b>nonhomogeneous matrix equation</b> is one that can be represented by:
+</p>
+
+<p>
+\[
+Ax = b
+\]
+</p>
+
+<p>
+To solve this system, there are two methods:
+</p>
+
+<ol class="org-ol">
+<li>Create augmented matrix and solve by reducing to <a href="triangular_and_echelon_forms.html#orgf375fe6">row echelon form</a> and back substitution.</li>
+<li>Find one solution to \(Ax=b\), and add that to the general solution to \(Ax=0\).</li>
+</ol>
+
+<p>
+The second method works because if we set \(y\) to be that one solution (i.e. \(Ay=b\)), and then for any other solution \(z\) to the system, \(Az=b\), we have:
+</p>
+
+<p>
+\[
+A(y-z) = Ay- Az = b-b = 0
+\]
+</p>
+
+<p>
+Notice that here, \(y-z\) is the general solution to \(Ax=0\), and thus the general solution of \(Ax=b\) is just \((y-z) + z\).
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-03 17:29
+               Last modified: 2025-09-05 10:21
              </div>
 </div>
 </body>
