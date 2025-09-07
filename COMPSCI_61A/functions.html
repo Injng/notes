@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-04 Thu 12:28 -->
+<!-- 2025-09-06 Sat 18:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functions</title>
@@ -98,9 +98,13 @@
 <li><a href="#org1a47016">2.2. Procedure for Calling User-Defined Functions</a></li>
 </ul>
 </li>
-<li><a href="#orga50f087">3. None</a></li>
-<li><a href="#orgb4766f9">4. Pure and Non-Pure Functions</a></li>
-<li><a href="#org79a551a">5. Higher-Order Functions</a></li>
+<li><a href="#orgb4766f9">3. Pure and Non-Pure Functions</a></li>
+<li><a href="#org79a551a">4. Higher-Order Functions</a>
+<ul>
+<li><a href="#org92b976c">4.1. Function Composition</a></li>
+<li><a href="#org69c1a82">4.2. Function Currying</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -149,7 +153,7 @@ While we can use assignment to bind names to values, we can use a <b>function de
 </p>
 
 
-<div id="org82e677c" class="figure">
+<div id="orgf970b1f" class="figure">
 <p><img src="../static/COMPSCI_61A/functions2.png" alt="functions2.png" />
 </p>
 </div>
@@ -165,7 +169,15 @@ For example:
 </div>
 
 <p>
+Functions also return a certain value, which will be the result of evaluating that function. Functions without an explicit <code>return</code> statement will return <code>None</code>, which is a special value that represents nothing in Python.
+</p>
+
+<p>
 We can now use this <b>user-defined function</b> exactly as we would use a built-in function. A function differs from a name as it evaluates the defined expression every time you call it.
+</p>
+
+<p>
+We can also define anonymous functions using <a href="expressions.html#org5e77fc8">lambda expressions</a>.
 </p>
 </div>
 <div id="outline-container-org845dcdf" class="outline-3">
@@ -196,17 +208,9 @@ A function's <i>signature</i> is important because it contains all the informati
 </div>
 </div>
 </div>
-<div id="outline-container-orga50f087" class="outline-2">
-<h2 id="orga50f087"><span class="section-number-2">3.</span> None</h2>
-<div class="outline-text-2" id="text-3">
-<p>
-The special value <code>None</code> represents nothing in Python. A function that does not explicitly return a value will return <code>None</code>.
-</p>
-</div>
-</div>
 <div id="outline-container-orgb4766f9" class="outline-2">
-<h2 id="orgb4766f9"><span class="section-number-2">4.</span> Pure and Non-Pure Functions</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="orgb4766f9"><span class="section-number-2">3.</span> Pure and Non-Pure Functions</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 <b>Pure functions</b> only <i>return values</i>. For example, the built-in function <code>abs</code> is a pure function, as in takes in an argument (e.g. -2) and returns a value (e.g. 2).
 </p>
@@ -217,8 +221,8 @@ On the other hand, <b>non-pure functions</b> have <i>side effects</i>. For examp
 </div>
 </div>
 <div id="outline-container-org79a551a" class="outline-2">
-<h2 id="org79a551a"><span class="section-number-2">5.</span> Higher-Order Functions</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org79a551a"><span class="section-number-2">4.</span> Higher-Order Functions</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 Sometimes, we may want to generalize <i>computational processes</i>, not just numbers, over different functions. To do this, we can use <b>higher-order functions</b>, which allow us to pass in functions as a formal parameter, or allow us to use functions as a return value.
 </p>
@@ -248,6 +252,58 @@ We can also return a function:
 </pre>
 </div>
 </div>
+<div id="outline-container-org92b976c" class="outline-3">
+<h3 id="org92b976c"><span class="section-number-3">4.1.</span> Function Composition</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+We can use <b>function composition</b> to combine two different functions together. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">square</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">return</span> x * x
+
+<span class="org-py-def-class">def</span> <span class="org-py-def">triple</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">return</span> <span class="org-py-number">3</span> * x
+
+<span class="org-py-def-class">def</span> <span class="org-py-def">compose1</span><span class="org-rainbow-delimiters-depth-1">(</span>f, g<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-py-def-class">def</span> <span class="org-py-def">h</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-keyword">return</span> f<span class="org-rainbow-delimiters-depth-1">(</span>g<span class="org-rainbow-delimiters-depth-2">(</span>x<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-keyword">return</span> h
+
+<span class="org-py-variable-name">squiple</span> <span class="org-operator">=</span> compose1<span class="org-rainbow-delimiters-depth-1">(</span>square, triple<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+Here, <code>compose1(square, triple)</code> composes the functions <code>square</code> and <code>triple</code> together and returns a function that would call <code>square(triple(x))</code>. We can also use this composition directly by, for example, evaluating <code>compose1(square, triple)(3)</code> which would return <code>81</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org69c1a82" class="outline-3">
+<h3 id="org69c1a82"><span class="section-number-3">4.2.</span> Function Currying</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+The concept of <b>function currying</b> is where we take a function with several parameters, such as <code>add</code>, and split them into several function calls that each take one parameter, often accomplished using a higher-order function. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">curry</span><span class="org-rainbow-delimiters-depth-1">(</span>f<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-py-def-class">def</span> <span class="org-py-def">g</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-py-def-class">def</span> <span class="org-py-def">h</span><span class="org-rainbow-delimiters-depth-1">(</span>y<span class="org-rainbow-delimiters-depth-1">)</span>:
+            <span class="org-keyword">return</span> f<span class="org-rainbow-delimiters-depth-1">(</span>x, y<span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-keyword">return</span> h
+    <span class="org-keyword">return</span> g
+
+<span class="org-py-variable-name">m</span> <span class="org-operator">=</span> curry<span class="org-rainbow-delimiters-depth-1">(</span>add<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+We now have a function <code>m</code> that does the same thing as <code>add</code> but using currying. Instead of <code>add(2, 3)</code>, we can do <code>m(2)(3)</code>.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -255,7 +311,7 @@ We can also return a function:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-04 12:27
+               Last modified: 2025-09-06 18:30
              </div>
 </div>
 </body>

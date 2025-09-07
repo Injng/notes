@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-01 Mon 10:39 -->
+<!-- 2025-09-06 Sat 18:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Environments</title>
@@ -89,6 +89,7 @@
 <ul>
 <li><a href="#org05aed64">1. Environments</a></li>
 <li><a href="#org4f17896">2. Multiple Environments</a></li>
+<li><a href="#org25019f1">3. Environments for Nested Definitions</a></li>
 </ul>
 </div>
 </div>
@@ -108,7 +109,7 @@ A name evaluates to the value bound to that name in the <i>earliest frame of the
 </p>
 
 
-<div id="orge77396f" class="figure">
+<div id="orgd956d52" class="figure">
 <p><img src="../static/COMPSCI_61A/functions1.png" alt="functions1.png" />
 </p>
 </div>
@@ -123,7 +124,7 @@ As we mentioned, an environment is a sequence of frames. Specifically, it is eit
 
 <ol class="org-ol">
 <li>The global frame</li>
-<li>A local frame, followed by a global frame</li>
+<li>Local frames, followed by a global frame</li>
 </ol>
 
 <p>
@@ -131,13 +132,51 @@ Local frames are added to the environment when a <a href="functions.html#org1a47
 </p>
 
 
-<div id="org6a9fe97" class="figure">
+<div id="org60be08a" class="figure">
 <p><img src="../static/COMPSCI_61A/environments1.png" alt="environments1.png" />
 </p>
 </div>
 
 <p>
 (1) is an environment, but so are both of the environments consisting of (1) and (2) together. Only one of these environments is the active one at any moment, and that is determined based on where the program is executing. For example, if the program is executing within the user-defined function <code>square</code>, then the environment is (1) and (2); otherwise, the environment is the global frame (1).
+</p>
+
+<p>
+A <code>return</code> statement allows us to bind names in local frames to names in global frames. For example, by returning a value from a function and setting that to a name in the global frame, we can now access that value in the global context.
+</p>
+</div>
+</div>
+<div id="outline-container-org25019f1" class="outline-2">
+<h2 id="org25019f1"><span class="section-number-2">3.</span> Environments for <a href="python.html#org5ea3575">Nested Definitions</a></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+When we define a function inside of another function, we add a local frame for the inside function that is a parent of the frame for the outside function. For example, for the nested definition:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">make_adder</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-py-def-class">def</span> <span class="org-py-def">adder</span><span class="org-rainbow-delimiters-depth-1">(</span>k<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-keyword">return</span> k + n
+    <span class="org-keyword">return</span> adder
+</pre>
+</div>
+
+<p>
+The environment diagram when defining <code>adder</code> is:
+</p>
+
+
+<div id="orgf86cabd" class="figure">
+<p><img src="../static/COMPSCI_61A/environments2.png" alt="environments2.png" />
+</p>
+</div>
+
+<p>
+Now, when we are referencing <code>n</code> inside of <code>adder</code>, the interpreter finds the earliest bound name to <code>n</code>, which is in the frame of <code>make_adder</code>.
+</p>
+
+<p>
+Note that when we don't have nested definitions, and a function is returning another function inside of it, the frame of the exterior function is <i>not</i> the parent of the <i>interior function</i>. In fact, while we are evaluating the interior function, the environment only consists of the global frame and the frame of that function, which means that local names of the exterior function are <i>not accessible</i> to the interior function in this scenario.
 </p>
 </div>
 </div>
@@ -147,7 +186,7 @@ Local frames are added to the environment when a <a href="functions.html#org1a47
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-01 10:37
+               Last modified: 2025-09-06 18:07
              </div>
 </div>
 </body>

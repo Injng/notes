@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-04 Thu 12:28 -->
+<!-- 2025-09-06 Sat 18:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -102,9 +102,14 @@
 </li>
 <li><a href="#org35c418d">4. Functions</a>
 <ul>
-<li><a href="#orge13116a">4.1. Defining Functions</a></li>
-<li><a href="#org18d2aaf">4.2. Docstrings</a></li>
-<li><a href="#org95131ae">4.3. Doctests</a></li>
+<li><a href="#orge13116a">4.1. Defining Functions</a>
+<ul>
+<li><a href="#org5ea3575">4.1.1. Nested Definitions</a></li>
+</ul>
+</li>
+<li><a href="#org76e7277">4.2. Lambda Expressions</a></li>
+<li><a href="#org18d2aaf">4.3. Docstrings</a></li>
+<li><a href="#org95131ae">4.4. Doctests</a></li>
 </ul>
 </li>
 <li><a href="#orgeecbff1">5. Conditional Statements</a></li>
@@ -113,6 +118,7 @@
 <li><a href="#org6939d85">6.1. <code>while</code></a></li>
 </ul>
 </li>
+<li><a href="#orgc2c8dd7">7. Assert</a></li>
 </ul>
 </div>
 </div>
@@ -212,10 +218,39 @@ Functions consist of a <b>function signature</b>, which defines the <b>name</b> 
 </pre>
 </div>
 </div>
+<div id="outline-container-org5ea3575" class="outline-4">
+<h4 id="org5ea3575"><span class="section-number-4">4.1.1.</span> Nested Definitions</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+In <a href="functions.html#org79a551a">higher-order functions</a>, we can define new functions inside of a function. These are called <b>nested definitions</b>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">make_adder</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-py-def-class">def</span> <span class="org-py-def">adder</span><span class="org-rainbow-delimiters-depth-1">(</span>k<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-keyword">return</span> k + n
+    <span class="org-keyword">return</span> adder
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org76e7277" class="outline-3">
+<h3 id="org76e7277"><span class="section-number-3">4.2.</span> <a href="expressions.html#org5e77fc8">Lambda Expressions</a></h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+We can use <b>lambda expressions</b> to return anonymous functions:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">square</span> <span class="org-operator">=</span> <span class="org-keyword">lambda</span> x: x * x
+</pre>
+</div>
+</div>
 </div>
 <div id="outline-container-org18d2aaf" class="outline-3">
-<h3 id="org18d2aaf"><span class="section-number-3">4.2.</span> Docstrings</h3>
-<div class="outline-text-3" id="text-4-2">
+<h3 id="org18d2aaf"><span class="section-number-3">4.3.</span> Docstrings</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 You can also add documentation to your functions by using docstrings. For example:
 </p>
@@ -229,8 +264,8 @@ You can also add documentation to your functions by using docstrings. For exampl
 </div>
 </div>
 <div id="outline-container-org95131ae" class="outline-3">
-<h3 id="org95131ae"><span class="section-number-3">4.3.</span> Doctests</h3>
-<div class="outline-text-3" id="text-4-3">
+<h3 id="org95131ae"><span class="section-number-3">4.4.</span> Doctests</h3>
+<div class="outline-text-3" id="text-4-4">
 <p>
 You can also add tests to your docstrings. For example:
 </p>
@@ -285,13 +320,25 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
 </div>
 </div>
 </div>
+<div id="outline-container-orgc2c8dd7" class="outline-2">
+<h2 id="orgc2c8dd7"><span class="section-number-2">7.</span> Assert</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Can use <code>assert</code> to thrown an <code>AssertionError</code> if the assertion is false:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">assert</span> <span class="org-py-number">2</span> &gt; <span class="org-py-number">3</span>, <span class="org-string">'That is false'</span>        <span class="org-comment-delimiter"># </span><span class="org-comment">AssertionError: That is false</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-04 11:37
+               Last modified: 2025-09-06 18:17
              </div>
 </div>
 </body>

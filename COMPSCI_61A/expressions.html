@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-05 Fri 15:24 -->
+<!-- 2025-09-06 Sat 18:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Expressions</title>
@@ -98,6 +98,7 @@
 <li><a href="#org92ddbfa">1.2.4. Short-Circuit Evaluation</a></li>
 </ul>
 </li>
+<li><a href="#org5e77fc8">1.3. Lambda Expressions</a></li>
 </ul>
 </li>
 </ul>
@@ -140,7 +141,7 @@ We can write out an <b>expression tree</b> with <b>subexpressions</b> as well:
 </p>
 
 
-<div id="orgcb74b73" class="figure">
+<div id="org2ee041d" class="figure">
 <p><img src="../static/COMPSCI_61A/expressions1.png" alt="expressions1.png" />
 </p>
 </div>
@@ -202,6 +203,36 @@ Notice that for these logical operators, once <code>&lt;left&gt;</code> is evalu
 </div>
 </div>
 </div>
+<div id="outline-container-org5e77fc8" class="outline-3">
+<h3 id="org5e77fc8"><span class="section-number-3">1.3.</span> Lambda Expressions</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+<b>Lambda expressions</b> allow us to return a function value and bind it to a name. You can think of a lambda expression as an "anonymous" function. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">square</span> <span class="org-operator">=</span> <span class="org-keyword">lambda</span> x: x * x
+</pre>
+</div>
+
+<p>
+This allows us to, for example, immediately call the function without a name:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-keyword">lambda</span> x: x * x<span class="org-rainbow-delimiters-depth-1">)(</span><span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">9</span>
+</pre>
+</div>
+
+<p>
+This is a function with a formal parameter <code>x</code> that returns the value of <code>x * x</code>. Notice that there is no <code>return</code> keyword: it automatically returns the expression evaluated after the colon. This limits lambda expressions to evaluating and returning a single expression.
+</p>
+
+<p>
+Unlike <code>def</code> statements, a <code>lambda</code> expression does not give the function an <b>intrinsic name</b>. When we inspect what <code>square</code> is, we find that is a <code>lambda</code> function, and not a function of name <code>square</code>.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -209,7 +240,7 @@ Notice that for these logical operators, once <code>&lt;left&gt;</code> is evalu
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-05 13:18
+               Last modified: 2025-09-06 18:19
              </div>
 </div>
 </body>
