@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-09 Tue 23:29 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Newton's Laws of Motion</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Newton's Laws of Motion</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2a39975">1. Newton's 1st Law</a></li>
+<li><a href="#org16e80ce">2. Newton's 2nd Law</a></li>
+<li><a href="#org87b2871">3. Newton's 3rd Law</a></li>
+<li><a href="#org55d9e02">4. Solving Problems with Newton's Laws</a></li>
+</ul>
+</div>
+</div>
+<p>
+Newton's laws of motion govern <b>dynamics</b>, which studies forces acting on a mechanical system. These laws must be applied in an <b>inertial frame of reference</b>, which are reference frames with zero acceleration in which objects exhibit inertia. While the surface of Earth is technically not an inertial reference frame due to Earth's rotation, for most purposes it is an adequate approximation and will be treated as such.
+</p>
+<div id="outline-container-org2a39975" class="outline-2">
+<h2 id="org2a39975"><span class="section-number-2">1.</span> Newton's 1st Law</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Newton's 1st Law</b>, also known as the <b>law of inertia</b>, states that a system keeps <i>constant velocity</i> unless acted on by a non-zero net force. The requirement of constant velocity means that the system maintains the same speed and same direction of motion, or in the case of \(\vec{v}=0\), the system remains at rest.
+</p>
+</div>
+</div>
+<div id="outline-container-org16e80ce" class="outline-2">
+<h2 id="org16e80ce"><span class="section-number-2">2.</span> Newton's 2nd Law</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Newton's 2nd Law</b> states that for systems with constant mass, the acceleration is proportional to the net force acting on the system:
+</p>
+
+\begin{align}
+\boxed{\vec{F}_\text{net} = m\vec{a}}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org87b2871" class="outline-2">
+<h2 id="org87b2871"><span class="section-number-2">3.</span> Newton's 3rd Law</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>Newton's 3rd Law</b> states that if object \(A\) acts on object \(B\) with force \(\vec{F}_{A/B}\), then object \(B\) acts on \(A\) with an equal and opposite force \(\boxed{\vec{F}_{B/A} = -\vec{F}_{A/B}}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org55d9e02" class="outline-2">
+<h2 id="org55d9e02"><span class="section-number-2">4.</span> Solving Problems with Newton's Laws</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+In general, we can take the following approach to solve problems with Newton's laws:
+</p>
+
+<ol class="org-ol">
+<li>Identify the system of interest and list all forces acting on that system.</li>
+<li>Draw a free body diagram showing all of the forces on the system.</li>
+<li>Choose a proper coordinate system with one axis pointing along \(\vec{a}\).</li>
+<li>Decompose forces into components and apply Newton's 2nd Law along each axis.</li>
+<li>Solve for the unknowns.</li>
+</ol>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Block on ramp
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a block with mass \(m\) on a ramp with angle \(\theta\) and height \(H\). Assume there is no friction and the block is released from rest:
+</p>
+
+
+<div id="orgb3d9e75" class="figure">
+<p><img src="../static/PHYSICS_7A/newtons_laws1.png" alt="newtons_laws1.png" />
+</p>
+</div>
+
+<p>
+We would like to find the acceleration and normal force. We have chosen our coordinate axes like above, and drawn the free body diagram. Using similar triangles, we know that the x-component of gravity is \(F_g \sin \theta\), and the y-component of gravity is \(F_g \cos \theta\). Thus, we know that:
+</p>
+
+\begin{aligned}
+F_g\sin\theta &= ma_x \\
+mg\sin\theta &= ma_x \\
+a &= g\sin\theta
+\end{aligned}
+
+<p>
+For the normal force:
+</p>
+
+\begin{aligned}
+F_N - F_g\cos\theta = ma_y &= 0 \\
+F_N &= F_g\cos\theta
+\end{aligned}
+
+
+</details>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-09-09 23:29
+             </div>
+</div>
+</body>
+</html>
