@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-08 Mon 11:43 -->
+<!-- 2025-09-10 Wed 09:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Transformations</title>
@@ -124,6 +124,11 @@
 <li><a href="#orgc862fdf">1.1. Contraction/Dilation</a></li>
 </ul>
 </li>
+<li><a href="#orgdb17445">2. Matrix of a Linear Transformation</a>
+<ul>
+<li><a href="#org321d072">2.1. Existence and Uniqueness</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -178,13 +183,73 @@ T(c\mathbf{u} + \mathbf{v}) &= r(c\mathbf{u} + \mathbf{v}) \\
 </div>
 </div>
 </div>
+<div id="outline-container-orgdb17445" class="outline-2">
+<h2 id="orgdb17445"><span class="section-number-2">2.</span> Matrix of a Linear Transformation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Given the <i>standard</i> basis vectors in \(\mathbb{R}^n\), where \(e_i\) has 1 in the i-th position and 0 everywhere else:
+</p>
+
+\begin{aligned}
+\mathbf{e_1} &= (1, 0, 0, \dots, 0, 0) \\
+\mathbf{e_2} &= (0, 1, 0, \dots, 0, 0) \\
+&\vdots \\
+\mathbf{e_n} &= (0, 0, 0, \dots, 0, 1)
+\end{aligned}
+
+<p>
+Notice that we can use these standard vectors to make up any other vector in \(\mathbb{R}^n\); in other words, they <i>span</i> \(\mathbb{R}^n\), as any other vector is a <a href="linear_systems.html#orge7a3527">linear combination</a> of these vectors. Therefore, given constants \(c_1, c_2, \dots, c_n\) that make up the vector \(\mathbf{v}\) and linear transformation \(T\):
+</p>
+
+\begin{aligned}
+T(\mathbf{v}) &= T(c_1\mathbf{e_1} + c_2\mathbf{e_2} + \cdots + c_n\mathbf{e_n}) \\
+&= c_1T(\mathbf{e_1}) + c_2T(\mathbf{e_2}) + \cdots + c_nT(\mathbf{e_n})
+\end{aligned}
+
+<p>
+This is basically a linear combination of the vectors \(T(\mathbf{e_1}), T(\mathbf{e_2}), \dots, T(\mathbf{e_n})\). Thus, we can rewrite any linear combination with a matrix \(A\) made up of these vectors:
+</p>
+
+\begin{align}
+T(\mathbf{x}) = A\mathbf{x}
+\end{align}
+
+<p>
+where \(A = \begin{bmatrix} T(\mathbf{e_1}) & T(\mathbf{e_2}) & \cdots & T(\mathbf{e_n}) \end{bmatrix}\).
+</p>
+</div>
+<div id="outline-container-org321d072" class="outline-3">
+<h3 id="org321d072"><span class="section-number-3">2.1.</span> Existence and Uniqueness</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The concept of a linear transformation allows us to understand <a href="triangular_and_echelon_forms.html#org2167df2">existence and uniqueness</a> through a different perspective.
+</p>
+
+<p>
+We say a function \(f: A \rightarrow B\) is <b>onto</b> (surjective) if the codomain \(B\) is the same as the range; i.e. every point in the codomain is achieved by this function. Equivalently, a transformation \(T: \mathbb{R}^n \rightarrow \mathbb{R}^m\) is onto \(\mathbb{R}^m\) if each \(\mathbf{b}\) in \(\mathbb{R}^m\) is the image of <i>at least one</i> \(\mathbf{x}\) in \(\mathbb{R}^n\). This is a question of <i>existence</i>: the mapping \(T\) is not onto if there is some \(\mathbf{b}\) in \(\mathbb{R}^m\) such that the equation \(T(\mathbf{x}) = \mathbf{b}\) has no solution.
+</p>
+
+<p>
+We can also view this question as, do the columns of \(A\) (the equivalent matrix for \(T\)) span \(\mathbb{R}^m\)? In other words, a linear transformation is onto if there <i>a pivot in every row</i> of the matrix \(A\).
+</p>
+
+<p>
+We say a function \(f: A \rightarrow B\) is said to be <b>one-to-one</b> (injective) if any two inputs give different outputs, i.e. \(a_1 \neq a_2 \Rightarrow f(a_1) \neq f(a_2)\). Equivalently, a transformation \(T: \mathbb{R}^n \rightarrow \mathbb{R}^m\) is one-to-one if each \(\mathbf{b}\) in \(\mathbb{R}^m\) is the image of <i>at most one</i> \(\mathbf{x}\) in \(\mathbb{R}^n\). This is a question of <i>uniqueness</i>: for each \(\mathbf{b}\) in \(\mathbb{R}^m\), the equation \(T(\mathbf{x}) = \mathbf{b}\) has either one solution, or no solution at all.
+</p>
+
+<p>
+To check if a linear transformation is one-to-one, we can check to see if \(T(\mathbf{x_1}) = T(\mathbf{x_2}) \Rightarrow \mathbf{x_1} = \mathbf{x_2}\). This is equivalent to asking whether the equation \(T(\mathbf{x_1} - \mathbf{x_2}) = 0\) has only one solution: the trivial solution. In other words, a linear transformation is one-to-one if there is <i>a pivot in every column</i> of the corresponding matrix \(A\).
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-08 11:43
+               Last modified: 2025-09-10 09:59
              </div>
 </div>
 </body>
