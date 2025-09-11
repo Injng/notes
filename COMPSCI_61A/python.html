@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-06 Sat 18:29 -->
+<!-- 2025-09-11 Thu 09:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -92,7 +92,7 @@
 <li><a href="#orgb6dc17c">1.1. Primitive Types</a></li>
 </ul>
 </li>
-<li><a href="#org374bd13">2. Assignment</a></li>
+<li><a href="#org9df5678">2. Assignment</a></li>
 <li><a href="#org2e0d11d">3. Operators</a>
 <ul>
 <li><a href="#org5931b56">3.1. Mathematical Operators</a></li>
@@ -108,8 +108,9 @@
 </ul>
 </li>
 <li><a href="#org76e7277">4.2. Lambda Expressions</a></li>
-<li><a href="#org18d2aaf">4.3. Docstrings</a></li>
-<li><a href="#org95131ae">4.4. Doctests</a></li>
+<li><a href="#orgf7392a6">4.3. Decorators</a></li>
+<li><a href="#org18d2aaf">4.4. Docstrings</a></li>
+<li><a href="#org95131ae">4.5. Doctests</a></li>
 </ul>
 </li>
 <li><a href="#orgeecbff1">5. Conditional Statements</a></li>
@@ -146,8 +147,8 @@ The <b>primitive</b> types are the most basic types in Python and are <i>immutab
 </div>
 </div>
 </div>
-<div id="outline-container-org374bd13" class="outline-2">
-<h2 id="org374bd13"><span class="section-number-2">2.</span> <a href="functions.html#orgebf4187">Assignment</a></h2>
+<div id="outline-container-org9df5678" class="outline-2">
+<h2 id="org9df5678"><span class="section-number-2">2.</span> <a href="assignment.html#orgd518ffe">Assignment</a></h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">x</span> <span class="org-operator">=</span> <span class="org-py-number">4</span> / <span class="org-py-number">3</span>                   <span class="org-comment-delimiter"># </span><span class="org-comment">assignment
@@ -248,9 +249,34 @@ We can use <b>lambda expressions</b> to return anonymous functions:
 </div>
 </div>
 </div>
-<div id="outline-container-org18d2aaf" class="outline-3">
-<h3 id="org18d2aaf"><span class="section-number-3">4.3.</span> Docstrings</h3>
+<div id="outline-container-orgf7392a6" class="outline-3">
+<h3 id="orgf7392a6"><span class="section-number-3">4.3.</span> Decorators</h3>
 <div class="outline-text-3" id="text-4-3">
+<p>
+We can use <a href="functions.html#org79a551a">higher-order functions</a> to create <b>decorators</b>, which modify the behavior of a function with another function:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">trace</span><span class="org-rainbow-delimiters-depth-1">(</span>fn<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-py-def-class">def</span> <span class="org-py-def">traced</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
+        print<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Calling"</span>, fn, <span class="org-string">"on argument"</span>, x<span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-keyword">return</span> fn<span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-keyword">return</span> traced
+
+<span class="org-py-decorators">@trace</span>
+<span class="org-py-def-class">def</span> <span class="org-py-def">square</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">return</span> x * x
+</pre>
+</div>
+
+<p>
+The <code>@trace</code> is a decorator. Essentially what it does is when you call <code>square(x)</code>, what you're actually doing is <code>trace(square)(x)</code>. In other words, the decorator is a shorthand for writing <code>square = trace(square)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org18d2aaf" class="outline-3">
+<h3 id="org18d2aaf"><span class="section-number-3">4.4.</span> Docstrings</h3>
+<div class="outline-text-3" id="text-4-4">
 <p>
 You can also add documentation to your functions by using docstrings. For example:
 </p>
@@ -264,8 +290,8 @@ You can also add documentation to your functions by using docstrings. For exampl
 </div>
 </div>
 <div id="outline-container-org95131ae" class="outline-3">
-<h3 id="org95131ae"><span class="section-number-3">4.4.</span> Doctests</h3>
-<div class="outline-text-3" id="text-4-4">
+<h3 id="org95131ae"><span class="section-number-3">4.5.</span> Doctests</h3>
+<div class="outline-text-3" id="text-4-5">
 <p>
 You can also add tests to your docstrings. For example:
 </p>
@@ -338,7 +364,7 @@ Can use <code>assert</code> to thrown an <code>AssertionError</code> if the asse
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-06 18:17
+               Last modified: 2025-09-11 09:44
              </div>
 </div>
 </body>
