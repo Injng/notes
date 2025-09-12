@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-12 Fri 09:37 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Matrix Operations</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Matrix Operations</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org962d668">1. Matrix Addition</a></li>
+<li><a href="#org9cc2fda">2. Matrix Multiplication</a>
+<ul>
+<li><a href="#org1ed6c03">2.1. Multiplication Properties</a></li>
+</ul>
+</li>
+<li><a href="#orgcd5d6f9">3. Matrix Transposition</a>
+<ul>
+<li><a href="#orgb1d2dd4">3.1. Transposition Properties</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org962d668" class="outline-2">
+<h2 id="org962d668"><span class="section-number-2">1.</span> Matrix Addition</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+If we think of two matrices as <a href="linear_transformations.html#org86b59ef">linear transformations</a>, <b>matrix addition</b> will only be defined if their codomain and domain are the same; in other words, \(A+B\) is only defined if \(A\) and \(B\) are the same size.
+</p>
+
+<p>
+If \(A = \begin{bmatrix} a_{ij} \end{bmatrix}\) and \(B = \begin{bmatrix} b_{ij}\end{bmatrix}\),
+</p>
+
+\begin{align}
+\boxed{A + B = \begin{bmatrix} a_{ij} + b_{ij} \end{bmatrix}}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org9cc2fda" class="outline-2">
+<h2 id="org9cc2fda"><span class="section-number-2">2.</span> Matrix Multiplication</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+If \(A\) and \(B\) are matrices, then we can consider their associated <a href="linear_transformations.html#org86b59ef">linear transformations</a> \(T\) and \(S\). We define <b>matrix multiplication</b> to be analogous to the composition of two transformations, i.e. \(T \circ S\).
+</p>
+
+<p>
+This requires the codomain of \(S\) to be the domain of \(T\). In other words, if \(A\) is an \(m\times n\) matrix, B must be \(n\times p\).
+</p>
+
+<p>
+We know that multiplying a matrix by a column vector is done by forming a new matrix where each entry in each row is the dot product between the corresponding row in the matrix and the column vector. For matrix-matrix multiplication, we extend that by considering \(B\) to be a matrix of columns \(b_1, b_2, \dots, b_p\). Then,
+</p>
+
+\begin{align}
+\boxed{AB = \begin{bmatrix} Ab_1 & Ab_2 & \cdots & Ab_p \end{bmatrix}}
+\end{align}
+</div>
+<div id="outline-container-org1ed6c03" class="outline-3">
+<h3 id="org1ed6c03"><span class="section-number-3">2.1.</span> Multiplication Properties</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Matrix multiplication is <b>associative</b>:
+</p>
+
+\begin{align}
+A(BC) = (AB)C
+\end{align}
+
+<p>
+However, matrix multiplication is <i>not commutative</i>:
+</p>
+
+\begin{align}
+AB \neq BA
+\end{align}
+
+<p>
+We can understand this through the analogue of the composition of two transformation functions. It can be seen that given two functions \(f\) and \(g\), \(f \circ g \neq g \circ f\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcd5d6f9" class="outline-2">
+<h2 id="orgcd5d6f9"><span class="section-number-2">3.</span> Matrix Transposition</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The <b>transpose</b> \(A^T\) of a matrix \(A\) is \(A\) with the rows and columns switched. Thus, if \(A\) was a \(m \times n\) matrix, then \(A^T\) would be a \(n \times m\) matrix:
+</p>
+
+\begin{align}
+\boxed{A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix} \quad A^T = \begin{bmatrix} a_{11} & \cdots & a_{m1} \\ a_{12} & \cdots & a_{m2} \\ \vdots \\ a_{1n} & \cdots & a_{mn} \end{bmatrix}}
+\end{align}
+</div>
+<div id="outline-container-orgb1d2dd4" class="outline-3">
+<h3 id="orgb1d2dd4"><span class="section-number-3">3.1.</span> Transposition Properties</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Two useful properties of transpose:
+</p>
+
+\begin{align}
+(A+B)^T &= A^T + B^T \\
+(AB)^T &= B^TA^T
+\end{align}
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-09-12 09:37
+             </div>
+</div>
+</body>
+</html>
