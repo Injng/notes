@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-11 Thu 21:43 -->
+<!-- 2025-09-11 Thu 22:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Newton's Laws of Motion</title>
+<title>Friction</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -114,63 +114,108 @@
 <div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Newton's Laws of Motion</h1>
+<h1 class="title">Friction</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2a39975">1. Newton's 1st Law</a></li>
-<li><a href="#org16e80ce">2. Newton's 2nd Law</a></li>
-<li><a href="#org87b2871">3. Newton's 3rd Law</a></li>
-<li><a href="#org55d9e02">4. Solving Problems with Newton's Laws</a></li>
+<li><a href="#org6fbbba1">1. Friction</a>
+<ul>
+<li><a href="#orgb215064">1.1. Kinetic Friction</a></li>
+<li><a href="#orge23bcba">1.2. Static Friction</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<p>
-Newton's laws of motion govern <b>dynamics</b>, which studies forces acting on a mechanical system. These laws must be applied in an <b>inertial frame of reference</b>, which are reference frames with zero acceleration in which objects exhibit inertia. While the surface of Earth is technically not an inertial reference frame due to Earth's rotation, for most purposes it is an adequate approximation and will be treated as such.
-</p>
-<div id="outline-container-org2a39975" class="outline-2">
-<h2 id="org2a39975"><span class="section-number-2">1.</span> Newton's 1st Law</h2>
+<div id="outline-container-org6fbbba1" class="outline-2">
+<h2 id="org6fbbba1"><span class="section-number-2">1.</span> Friction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-<b>Newton's 1st Law</b>, also known as the <b>law of inertia</b>, states that a system keeps <i>constant velocity</i> unless acted on by a non-zero net force. The requirement of constant velocity means that the system maintains the same speed and same direction of motion, or in the case of \(\vec{v}=0\), the system remains at rest.
+<b>Friction</b> results from two objects rubbing against each other, with the general direction parallel to the surface of contact between the two objects. More specifically, friction <i>opposes the relative motion between the two objects</i>.
+</p>
+
+<p>
+It takes a larger amount of force to first overcome <i>static friction</i> than to keep the block moving past <i>kinetic friction</i>.
 </p>
 </div>
-</div>
-<div id="outline-container-org16e80ce" class="outline-2">
-<h2 id="org16e80ce"><span class="section-number-2">2.</span> Newton's 2nd Law</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgb215064" class="outline-3">
+<h3 id="orgb215064"><span class="section-number-3">1.1.</span> Kinetic Friction</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
-<b>Newton's 2nd Law</b> states that for systems with constant mass, the acceleration is proportional to the net force acting on the system:
+<b>Kinetic friction</b> occurs while an object is moving:
 </p>
 
 \begin{align}
-\boxed{\vec{F}_\text{net} = m\vec{a}}
+\boxed{f_k = \mu_k F_N}
 \end{align}
-</div>
-</div>
-<div id="outline-container-org87b2871" class="outline-2">
-<h2 id="org87b2871"><span class="section-number-2">3.</span> Newton's 3rd Law</h2>
-<div class="outline-text-2" id="text-3">
+
 <p>
-<b>Newton's 3rd Law</b> states that if object \(A\) acts on object \(B\) with force \(\vec{F}_{A/B}\), then object \(B\) acts on \(A\) with an equal and opposite force \(\boxed{\vec{F}_{B/A} = -\vec{F}_{A/B}}\).
-</p>
-</div>
-</div>
-<div id="outline-container-org55d9e02" class="outline-2">
-<h2 id="org55d9e02"><span class="section-number-2">4.</span> Solving Problems with Newton's Laws</h2>
-<div class="outline-text-2" id="text-4">
-<p>
-In general, we can take the following approach to solve problems with Newton's laws:
+where \(\mu_k\) is the coefficient of kinetic friction.
 </p>
 
-<ol class="org-ol">
-<li>Identify the system of interest and list all forces acting on that system.</li>
-<li>Draw a free body diagram showing all of the forces on the system.</li>
-<li>Choose a proper coordinate system with one axis pointing along \(\vec{a}\).</li>
-<li>Decompose forces into components and apply Newton's 2nd Law along each axis.</li>
-<li>Solve for the unknowns.</li>
-</ol>
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Block sliding down ramp
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a block sliding down a ramp (from rest), with friction:
+</p>
+
+
+<div id="org795f0b7" class="figure">
+<p><img src="../static/PHYSICS_7A/friction2.png" alt="friction2.png" />
+</p>
+</div>
+
+<p>
+Determine the unknowns, \(\vec{a}\) and \(F_N\), if we are given \(\mu_k\). We have the following two equations:
+</p>
+
+\begin{aligned}
+mg\sin\theta - f_k &= ma \\
+F_N&= mg\cos\theta
+\end{aligned}
+
+<p>
+Simplifying, we have:
+</p>
+
+\begin{aligned}
+mg\sin\theta - \mu_kF_N &= ma \\
+\sin\theta - \mu_k\cos\theta &= a \\
+a &= g\sin\theta - \mu_kg\cos\theta \\
+a &= g(\sin\theta - \mu_k \cos\theta)
+\end{aligned}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orge23bcba" class="outline-3">
+<h3 id="orge23bcba"><span class="section-number-3">1.2.</span> Static Friction</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<b>Static friction</b> occurs while an object is at rest. It increases relative to how much force is applied to the object, and therefore it is an inequality:
+</p>
+
+\begin{align}
+\boxed{f_s \leq \mu_s F_N}
+\end{align}
+
+<p>
+where \(\mu_s\) is the coefficient of static friction. Static friction reaches its maximum (before allowing the object to move) at \(f_{s_\text{max}}=\mu_s F_N\).
+</p>
 
 <details class="code-details"
                  style ="padding: 1em;
@@ -187,117 +232,46 @@ In general, we can take the following approach to solve problems with Newton's l
                     </strong>
                   </summary>
 <p>
-Consider a block with mass \(m\) on a ramp with angle \(\theta\) and height \(H\). Assume there is no friction and the block is released from rest:
+Consider a block on a ramp with angle \(\theta\):
 </p>
 
 
-<div id="orgce1bd1e" class="figure">
-<p><img src="../static/PHYSICS_7A/newtons_laws1.png" alt="newtons_laws1.png" />
+<div id="org9cb0c1e" class="figure">
+<p><img src="../static/PHYSICS_7A/friction1.png" alt="friction1.png" />
 </p>
 </div>
 
 <p>
-We would like to find the acceleration and normal force. We have chosen our coordinate axes like above, and drawn the free body diagram. Using similar triangles, we know that the x-component of gravity is \(F_g \sin \theta\), and the y-component of gravity is \(F_g \cos \theta\). Thus, we know that:
+Determine the maximum angle of the ramp, \(\theta_\text{max}\), to ensure that the block remains stationary.
+</p>
+
+<p>
+Since the block would be moving down and to the right, the direction of friction will oppose this motion by going up and to the left.
+</p>
+
+<p>
+Through Newton's second law, we can write the following equations:
 </p>
 
 \begin{aligned}
-F_g\sin\theta &= ma_x \\
-mg\sin\theta &= ma_x \\
-a &= g\sin\theta
+mg\sin\theta_\text{max} - f_{s_\text{max}} &= 0 \\
+F_N &= mg\cos\theta_\text{max}
 \end{aligned}
 
 <p>
-For the normal force:
+Consider that \(\theta\) reaches \(\theta_\text{max}\) when \(f_s=f_{s_\text{max}}=\mu_sF_N\). Thus,
 </p>
 
 \begin{aligned}
-F_N - F_g\cos\theta = ma_y &= 0 \\
-F_N &= F_g\cos\theta
+mg\sin\theta_\text{max} - \mu_s F_N &= 0 \\
+\sin{\theta_\text{max}} - \mu_s\cos\theta_\text{max} &= 0 \\
+\tan\theta_\text{max} &= \mu_s \\
+\theta_\text{max} &= \tan^{-1}(\mu_s)
 \end{aligned}
 
 
 </details>
-
-<details class="code-details"
-                 style ="padding: 1em;
-                          background-color: #e5f5e5;
-                          border-radius: 15px;
-                          color: hsl(157 75%);
-                          font-size: 0.9em;
-                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
-                  <summary>
-                    <strong>
-                      <font face="Courier" size="3" color="green">
-                         Example: Three blocks
-                      </font>
-                    </strong>
-                  </summary>
-<p>
-Consider three blocks connected to each other with ideal strings and the first is pulled with known force \(\vec{F}\). Assume that there is no friction against the table. We want to find the acceleration of the system of three blocks as well as the tension in the strings in between each of the blocks.
-</p>
-
-<p>
-Since all blocks move with the same acceleration, we can determine this by lumping all three blocks into a big system:
-</p>
-
-
-<div id="org6a80d63" class="figure">
-<p><img src="../static/PHYSICS_7A/newtons_laws2.png" alt="newtons_laws2.png" />
-</p>
 </div>
-
-<p>
-There is no acceleration in the vertical direction as the block remains in contact with the table. As for the horizontal direction, by Newton's second law we have:
-</p>
-
-\begin{aligned}
-\vec{F}_\text{net} &= m\vec{a} \\
-F &= 3ma \\
-a &= \frac{F}{3m}
-\end{aligned}
-
-<p>
-Now, for the tension in the string between each block. For block 1:
-</p>
-
-
-<div id="orge787907" class="figure">
-<p><img src="../static/PHYSICS_7A/newtons_laws3.png" alt="newtons_laws3.png" />
-</p>
-</div>
-
-<p>
-The tension here, \(\vec{T_1}\), can be found using Newton's second law:
-</p>
-
-\begin{aligned}
-F - T_1 &= ma \\
-F - T_1 &= \frac{F}{3} \\
-T_1 &= \frac{2F}{3}
-\end{aligned}
-
-<p>
-Similarly, for the second block:
-</p>
-
-
-<div id="orgffd4085" class="figure">
-<p><img src="../static/PHYSICS_7A/newtons_laws4.png" alt="newtons_laws4.png" />
-</p>
-</div>
-
-<p>
-And, by Newton's second law:
-</p>
-
-\begin{aligned}
-T_1 - T_2 &= ma \\
-\frac{2F}{3} - T_2 &= \frac{F}{3} \\
-T_2 &= \frac{F}{3}
-\end{aligned}
-
-
-</details>
 </div>
 </div>
 </div>
@@ -306,7 +280,7 @@ T_2 &= \frac{F}{3}
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-11 21:43
+               Last modified: 2025-09-11 22:00
              </div>
 </div>
 </body>
