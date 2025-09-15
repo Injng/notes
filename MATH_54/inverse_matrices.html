@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-15 Mon 10:15 -->
+<!-- 2025-09-15 Mon 10:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Matrix Operations</title>
+<title>Inverse Matrices</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -114,133 +114,141 @@
 <div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Matrix Operations</h1>
+<h1 class="title">Inverse Matrices</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org962d668">1. Matrix Addition</a></li>
-<li><a href="#org9cc2fda">2. Matrix Multiplication</a>
+<li><a href="#org89e4c66">1. Inverse Matrices</a>
 <ul>
-<li><a href="#org1ed6c03">2.1. Multiplication Properties</a></li>
-<li><a href="#org7a3bce9">2.2. Identity</a></li>
+<li><a href="#org8911280">1.1. Properties of Inverse Matrices</a></li>
 </ul>
 </li>
-<li><a href="#orgcd5d6f9">3. Matrix Transposition</a>
+<li><a href="#org7b044a8">2. Finding Inverse Matrices</a>
 <ul>
-<li><a href="#orgb1d2dd4">3.1. Transposition Properties</a></li>
+<li><a href="#org6423fdf">2.1. \(2 \times 2\)</a></li>
+<li><a href="#orge5b74c4">2.2. Larger Than \(3 \times 3\)</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org962d668" class="outline-2">
-<h2 id="org962d668"><span class="section-number-2">1.</span> Matrix Addition</h2>
+<div id="outline-container-org89e4c66" class="outline-2">
+<h2 id="org89e4c66"><span class="section-number-2">1.</span> Inverse Matrices</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-If we think of two matrices as <a href="linear_transformations.html#org86b59ef">linear transformations</a>, <b>matrix addition</b> will only be defined if their codomain and domain are the same; in other words, \(A+B\) is only defined if \(A\) and \(B\) are the same size.
+The <b>inverse matrix</b> \(A^{-1}\) of a matrix \(A\) is a matrix such that \(A^{-1}A=I\), where \(I\) is the <a href="matrix_operations.html#org7a3bce9">identity matrix</a>.
 </p>
 
 <p>
-If \(A = \begin{bmatrix} a_{ij} \end{bmatrix}\) and \(B = \begin{bmatrix} b_{ij}\end{bmatrix}\),
-</p>
-
-\begin{align}
-\boxed{A + B = \begin{bmatrix} a_{ij} + b_{ij} \end{bmatrix}}
-\end{align}
-</div>
-</div>
-<div id="outline-container-org9cc2fda" class="outline-2">
-<h2 id="org9cc2fda"><span class="section-number-2">2.</span> Matrix Multiplication</h2>
-<div class="outline-text-2" id="text-2">
-<p>
-If \(A\) and \(B\) are matrices, then we can consider their associated <a href="linear_transformations.html#org86b59ef">linear transformations</a> \(T\) and \(S\). We define <b>matrix multiplication</b> to be analogous to the composition of two transformations, i.e. \(T \circ S\).
-</p>
-
-<p>
-This requires the codomain of \(S\) to be the domain of \(T\). In other words, if \(A\) is an \(m\times n\) matrix, B must be \(n\times p\).
-</p>
-
-<p>
-We know that multiplying a matrix by a column vector is done by forming a new matrix where each entry in each row is the dot product between the corresponding row in the matrix and the column vector. For matrix-matrix multiplication, we extend that by considering \(B\) to be a matrix of columns \(b_1, b_2, \dots, b_p\). Then,
-</p>
-
-\begin{align}
-\boxed{AB = \begin{bmatrix} Ab_1 & Ab_2 & \cdots & Ab_p \end{bmatrix}}
-\end{align}
-</div>
-<div id="outline-container-org1ed6c03" class="outline-3">
-<h3 id="org1ed6c03"><span class="section-number-3">2.1.</span> Multiplication Properties</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-Matrix multiplication is <b>associative</b>:
-</p>
-
-\begin{align}
-A(BC) = (AB)C
-\end{align}
-
-<p>
-However, matrix multiplication is <i>not commutative</i>:
-</p>
-
-\begin{align}
-AB \neq BA
-\end{align}
-
-<p>
-We can understand this through the analogue of the composition of two transformation functions. It can be seen that given two functions \(f\) and \(g\), \(f \circ g \neq g \circ f\).
-</p>
-</div>
-</div>
-<div id="outline-container-org7a3bce9" class="outline-3">
-<h3 id="org7a3bce9"><span class="section-number-3">2.2.</span> Identity</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-The \(n \times n\) <b>identity matrix</b> \(I_n\) is the matrix that implements the identity transformation:
+Inverse matrices are <i>commutative</i>, i.e. \(A^{-1}A = AA^{-1} = I\). This is to say, if we have an inverse matrix \(A^{-1}\) such that \(A^{-1}A=I\), and another matrix \(B\) such that \(AB=I\), then \(A^{-1}\) must equal \(B\):
 </p>
 
 \begin{aligned}
-I_n = \begin{bmatrix}
-1 & 0 & \cdots & 0 \\
-0 & 1 & & 0 \\
-\vdots \\
-0 & & & 1
+AB &= I \\
+A^{-1}AB &= A^{-1}I \\
+B &= A^-1
+\end{aligned}
+
+<p>
+Inverse matrices are also <i>unique</i>. In other words, if \(AB = AC = I\), then \(B=C\):
+</p>
+
+\begin{aligned}
+AB &= AC = I \\
+A^{-1}AB &= A^{-1}AC = A^{-1} \\
+B &= C = A^{-1}
+\end{aligned}
+
+<p>
+Not all matrices have inverses. Matrices that do have inverses are called <b>invertible</b> (or <b>nonsingular</b>). This is useful as when \(A\mathbf{x}=\mathbf{b}\) has a unique solution, and \(A\) is square and invertible, then \(\mathbf{x}=A^{-1}\mathbf{b}\).
+</p>
+</div>
+<div id="outline-container-org8911280" class="outline-3">
+<h3 id="org8911280"><span class="section-number-3">1.1.</span> Properties of Inverse Matrices</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The inverse of an inverse matrix is the original matrix:
+</p>
+
+\begin{align}
+(A^{-1})^{-1} = A
+\end{align}
+
+<p>
+The inverse of two matrices multiplied by each other is:
+</p>
+
+\begin{align}
+(AB)^{-1} = B^{-1}A^{-1}
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org7b044a8" class="outline-2">
+<h2 id="org7b044a8"><span class="section-number-2">2.</span> Finding Inverse Matrices</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org6423fdf" class="outline-3">
+<h3 id="org6423fdf"><span class="section-number-3">2.1.</span> \(2 \times 2\)</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Given a \(2 \times 2\) matrix \(A\) such that:
+</p>
+
+\begin{aligned}
+A = \begin{bmatrix}
+a & b \\
+c & d
 \end{bmatrix}
 \end{aligned}
 
 <p>
-The identity matrix has 1s on the diagonal and 0s everywhere else. It satisfies the following equality for any \(n \times n\) matrix \(A\):
+Call \(ad-bc\) the <b>determinant</b> of \(A\). If \(ad-bc \neq 0\), then:
 </p>
 
 \begin{align}
-A \cdot I_n = I_n \cdot A = A
+A^{-1} = \frac{1}{ad-bc} \begin{bmatrix}
+d & -b \\
+-c & a
+\end{bmatrix}
 \end{align}
-</div>
-</div>
-</div>
-<div id="outline-container-orgcd5d6f9" class="outline-2">
-<h2 id="orgcd5d6f9"><span class="section-number-2">3.</span> Matrix Transposition</h2>
-<div class="outline-text-2" id="text-3">
+
 <p>
-The <b>transpose</b> \(A^T\) of a matrix \(A\) is \(A\) with the rows and columns switched. Thus, if \(A\) was a \(m \times n\) matrix, then \(A^T\) would be a \(n \times m\) matrix:
+Note that if \(ad=bc\), then the matrix is not invertible.
 </p>
-
-\begin{align}
-\boxed{A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix} \quad A^T = \begin{bmatrix} a_{11} & \cdots & a_{m1} \\ a_{12} & \cdots & a_{m2} \\ \vdots \\ a_{1n} & \cdots & a_{mn} \end{bmatrix}}
-\end{align}
 </div>
-<div id="outline-container-orgb1d2dd4" class="outline-3">
-<h3 id="orgb1d2dd4"><span class="section-number-3">3.1.</span> Transposition Properties</h3>
-<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-orge5b74c4" class="outline-3">
+<h3 id="orge5b74c4"><span class="section-number-3">2.2.</span> Larger Than \(3 \times 3\)</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
-Two useful properties of transpose:
+Consider the <b>elementary matrix</b> \(E\): a matrix obtained from \(I\) by performing a single row operation. Notice that applying that single row operation to another matrix \(A\) is equivalent to computing \(EA\).
+</p>
+
+<p>
+If \(A\) is invertible, then its <a href="triangular_and_echelon_forms.html#org0dee72b">reduced row echelon form</a> is \(I\). This is because if \(A\) is invertible, then there is a unique solution to \(A\mathbf{x}=\mathbf{b}\) (which is \(A^{-1}\mathbf{b}\)), which means that there must be a pivot in every column of the RREF of \(A\). If there is a pivot in every column of \(A\), then by the definition of RREF those pivots must be 1, and every other number is 0, which becomes the identity matrix.
+</p>
+
+<p>
+Therefore, if \(A\) is invertible, then we can row reduce \(A\) to \(I\) using row operations. We can encode these row operations using elementary matrices like so:
+</p>
+
+\begin{aligned}
+E_kE_{k-1}\cdots E_1A &= I
+\end{aligned}
+
+<p>
+Thus, it can be seen that in general, the inverse of \(A\) is:
 </p>
 
 \begin{align}
-(A+B)^T &= A^T + B^T \\
-(AB)^T &= B^TA^T
+A^{-1} = E_kE_{k-1}\cdots E_1
 \end{align}
+
+<p>
+To find this series of elementary matrices, we can create the augmented matrix \(\begin{bmatrix} A & I \end{bmatrix}\). When we row reduce this augmented matrix such that the \(A\) part becomes \(I\), the \(I\) part of the augmented matrix will become \(A^{-1}\) (the series of row operations encoded as the product of elementary matrices).
+</p>
 </div>
 </div>
 </div>
@@ -250,7 +258,7 @@ Two useful properties of transpose:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-15 10:15
+               Last modified: 2025-09-15 10:52
              </div>
 </div>
 </body>
