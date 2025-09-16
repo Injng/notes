@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-15 Mon 10:52 -->
+<!-- 2025-09-16 Tue 09:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Inverse Matrices</title>
@@ -144,21 +144,21 @@ The <b>inverse matrix</b> \(A^{-1}\) of a matrix \(A\) is a matrix such that \(A
 Inverse matrices are <i>commutative</i>, i.e. \(A^{-1}A = AA^{-1} = I\). This is to say, if we have an inverse matrix \(A^{-1}\) such that \(A^{-1}A=I\), and another matrix \(B\) such that \(AB=I\), then \(A^{-1}\) must equal \(B\):
 </p>
 
-\begin{aligned}
-AB &= I \\
-A^{-1}AB &= A^{-1}I \\
-B &= A^-1
-\end{aligned}
+\begin{align}
+AB &= I \notag \\
+A^{-1}AB &= A^{-1}I \notag \\
+B &= A^-1 \notag
+\end{align}
 
 <p>
 Inverse matrices are also <i>unique</i>. In other words, if \(AB = AC = I\), then \(B=C\):
 </p>
 
-\begin{aligned}
-AB &= AC = I \\
-A^{-1}AB &= A^{-1}AC = A^{-1} \\
-B &= C = A^{-1}
-\end{aligned}
+\begin{align}
+AB &= AC = I \notag \\
+A^{-1}AB &= A^{-1}AC = A^{-1} \notag \\
+B &= C = A^{-1} \notag
+\end{align}
 
 <p>
 Not all matrices have inverses. Matrices that do have inverses are called <b>invertible</b> (or <b>nonsingular</b>). This is useful as when \(A\mathbf{x}=\mathbf{b}\) has a unique solution, and \(A\) is square and invertible, then \(\mathbf{x}=A^{-1}\mathbf{b}\).
@@ -196,12 +196,13 @@ The inverse of two matrices multiplied by each other is:
 Given a \(2 \times 2\) matrix \(A\) such that:
 </p>
 
-\begin{aligned}
+\begin{align}
 A = \begin{bmatrix}
 a & b \\
 c & d
 \end{bmatrix}
-\end{aligned}
+\notag
+\end{align}
 
 <p>
 Call \(ad-bc\) the <b>determinant</b> of \(A\). If \(ad-bc \neq 0\), then:
@@ -234,9 +235,9 @@ If \(A\) is invertible, then its <a href="triangular_and_echelon_forms.html#org0
 Therefore, if \(A\) is invertible, then we can row reduce \(A\) to \(I\) using row operations. We can encode these row operations using elementary matrices like so:
 </p>
 
-\begin{aligned}
-E_kE_{k-1}\cdots E_1A &= I
-\end{aligned}
+\begin{align}
+E_kE_{k-1}\cdots E_1A &= I \notag
+\end{align}
 
 <p>
 Thus, it can be seen that in general, the inverse of \(A\) is:
@@ -258,7 +259,7 @@ To find this series of elementary matrices, we can create the augmented matrix \
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-15 10:52
+               Last modified: 2025-09-16 09:55
              </div>
 </div>
 </body>
