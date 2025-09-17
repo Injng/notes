@@ -6,7 +6,7 @@
 <!-- 2025-09-16 Tue 22:59 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>COMPSCI 61A</title>
+<title>Springs</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -76,13 +76,133 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/static/index.html">static</a> <span>→</span> <a href="/static/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">COMPSCI 61A</h1>
+<h1 class="title">Springs</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org98482f1">1. Spring Force</a>
+<ul>
+<li><a href="#org8245feb">1.1. Hooke's Law</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org98482f1" class="outline-2">
+<h2 id="org98482f1"><span class="section-number-2">1.</span> Spring Force</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Consider a spring with negligible mass and natural length \(L_0\) displaced to a new length \(L\) by a block:
+</p>
+
+
+<div id="org1354a84" class="figure">
+<p><img src="../static/PHYSICS_7A/springs1.png" alt="springs1.png" />
+</p>
+</div>
+
+<p>
+The point at which the head of the spring is at the natural length is called the <b>equilibrium position</b>. When the block moves away from this position, it experiences a <b>spring force</b>, which is a restoring force that points back to the equilibrium position of the spring.
+</p>
+</div>
+<div id="outline-container-org8245feb" class="outline-3">
+<h3 id="org8245feb"><span class="section-number-3">1.1.</span> Hooke's Law</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+This spring force is given by <b>Hooke's law</b>, which states:
+</p>
+
+\begin{align}
+\vec{F}_S = -k\vec{x}
+\end{align}
+
+<p>
+where \(k\) is the spring constant, and $\vec{x} is the displacement vector that points in the direction of displacement and has magnitude \(L-L_0\). The spring constant also measures how "stiff" the spring is: the greater the spring constant, the more stiff the spring.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Block on spring
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a hanging spring with natural length \(L_0\) that is extended to a new length \(L\) with a block of mass \(m\):
+</p>
+
+
+<div id="org94e512e" class="figure">
+<p><img src="../static/PHYSICS_7A/springs2.png" alt="springs2.png" />
+</p>
+</div>
+
+<p>
+The origin is set at the equilibrium position of the spring. We want to determine the new length \(L\) after a block of mass \(m\) is placed on the end and is stationary.
+</p>
+
+<p>
+For a stationary block, we know that \(F_\text{net} = 0\). Thus, by Hooke's law and Newton's 2nd law, we have:
+</p>
+
+\begin{align}
+mg - k(L-L_0) &= 0 \notag \\
+k(L-L_0) &= mg \notag \\
+L-L_0 &= \frac{mg}{k} \notag \\
+L &= L_0 + \frac{mg}{k} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
