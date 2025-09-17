@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-16 Tue 09:57 -->
+<!-- 2025-09-17 Wed 09:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Inverse Matrices</title>
@@ -130,6 +130,7 @@
 <li><a href="#orge5b74c4">2.2. Larger Than \(3 \times 3\)</a></li>
 </ul>
 </li>
+<li><a href="#org8e42efc">3. Invertible Matrix Theorem</a></li>
 </ul>
 </div>
 </div>
@@ -253,13 +254,40 @@ To find this series of elementary matrices, we can create the augmented matrix \
 </div>
 </div>
 </div>
+<div id="outline-container-org8e42efc" class="outline-2">
+<h2 id="org8e42efc"><span class="section-number-2">3.</span> Invertible Matrix Theorem</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+We can view matrices and their inverses as <a href="linear_transformations.html#org86b59ef">linear transformations</a> and their inverses. If a transformation \(T: \mathbb{R}^n \rightarrow \mathbb{R}^n\) is a linear one-to-one transformation (which also implies onto), then there exists an inverse \(T^{-1}\), which is also the inverse of the associated matrix of \(T\). Therefore, we can say that a matrix has an inverse if its associated transformation is one-to-one.
+</p>
+
+<p>
+Thus, the <b>invertible matrix theorem</b> states that the following statements are all equivalent for a given \(n\times n\) real matrix \(A\) and its associated linear transformation \(T\):
+</p>
+
+<ol class="org-ol">
+<li>\(A\) is an invertible matrix.</li>
+<li>\(A\) has \(n\) <a href="triangular_and_echelon_forms.html#orga835972">pivot</a> positions.</li>
+<li>The columns of \(A\) <a href="linear_systems.html#org0e5ef97">span</a> \(\mathbb{R}^n\).</li>
+<li>The equation \(A\mathbf{x}=0\) has only the <a href="linear_systems.html#org9b821d1">trivial solution</a>.</li>
+<li>The columns of \(A\) are <a href="linear_independence.html#org42c49fc">linearly independent</a>.</li>
+<li>The linear transformation \(T\) is <a href="linear_transformations.html#org321d072">one-to-one</a>.</li>
+<li>The linear transformation \(T\) is <a href="linear_transformations.html#org321d072">onto</a>.</li>
+<li>The linear transformation \(T\) is invertible.</li>
+</ol>
+
+<p>
+These statements can all be viewed as ways for checking if the associated linear transformation \(T\) is one-to-one, or if the columns are linearly independent.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-16 09:55
+               Last modified: 2025-09-17 09:37
              </div>
 </div>
 </body>

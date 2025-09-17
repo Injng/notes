@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-17 Wed 10:45 -->
+<!-- 2025-09-17 Wed 09:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PHYSICS 7A</title>
+<title>Drag</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -76,31 +76,97 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
 <div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">PHYSICS 7A</h1>
+<h1 class="title">Drag</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgcf33a21">1. Drag Force</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcf33a21" class="outline-2">
+<h2 id="orgcf33a21"><span class="section-number-2">1.</span> Drag Force</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Notes:</b></b>
+<b>Drag force</b> exists when there is relative motion between a solid and a fluid. It points in the direciton that opposes relative motion, and is given by the following equation:
 </p>
 
-<ul class="org-ul">
-<li><a href="drag.html">Drag</a></li>
-<li><a href="springs.html">Springs</a></li>
-<li><a href="kinematics.html">Kinematics</a></li>
-<li><a href="newtons_laws.html">Newton's Laws of Motion</a></li>
-<li><a href="friction.html">Friction</a></li>
-</ul>
+\begin{align}
+F_D = bv^n
+\end{align}
+
+<p>
+where \(b\) is the drag coefficient, \(v\) is speed, and \(n\) is an integer that is empirically determined and primarily depends on speed regime.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Bead in oil jar
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a bead of mass \(m\) dropping in a jar filled with oil, with the drag force given by \(F_D=bv\):
+</p>
+
+
+</details>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-17 10:45
+               Last modified: 2025-09-16 23:23
              </div>
 </div>
 </body>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-17 Wed 10:45 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Determinants</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Determinants</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5d83c27">1. Determinants</a>
+<ul>
+<li><a href="#orgeedcec5">1.1. Determinant of \(2 \times 2\)</a></li>
+<li><a href="#org2c6ef26">1.2. Determinant of \(3 \times 3\)</a></li>
+<li><a href="#orgbc453c9">1.3. Determinant of \(n \times n\)</a>
+<ul>
+<li><a href="#orgfbda77c">1.3.1. Proof</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5d83c27" class="outline-2">
+<h2 id="org5d83c27"><span class="section-number-2">1.</span> Determinants</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The <b>determinant</b> of a matrix serves as a method for checking if a given square matrix is invertible or not. The fundamental principle of the determinant rests on the fact that a square matrix is invertible if <i>all the diagonal entries are nonzero</i> for its <a href="triangular_and_echelon_forms.html#orgcf84996">upper triangular form</a>, as this implies there is a <i>pivot in every row</i>.
+</p>
+
+<p>
+That's what the determinant does: it yields a nonzero value only if all the diagonal entries for the upper triangular form of the square matrix are nonzero.
+</p>
+</div>
+<div id="outline-container-orgeedcec5" class="outline-3">
+<h3 id="orgeedcec5"><span class="section-number-3">1.1.</span> Determinant of \(2 \times 2\)</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Given a \(2 \times 2\) matrix with the upper left entry nonzero, we can simplify the matrix to be upper triangular like so:
+</p>
+
+\begin{align}
+\begin{bmatrix}
+a & b \\ c & d
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+a & b \\ ac & ad
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+a & b \\
+0 & ad-bc
+\end{bmatrix}
+\notag
+\end{align}
+
+<p>
+We want \(ad-bc \neq 0\). Thus, we call \(ad-bc\) the determinant of a \(2 \times 2\) matrix, where the matrix is invertible if and only if \(ad-bc \neq 0\).
+</p>
+</div>
+</div>
+<div id="outline-container-org2c6ef26" class="outline-3">
+<h3 id="org2c6ef26"><span class="section-number-3">1.2.</span> Determinant of \(3 \times 3\)</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We can also try to turn a \(3 \times 3\) matrix into an upper triangular form, if the top left entry is nonzero (this can always be the case, unless the first entry for all the rows are zero, in which case it is clear that the matrix is not invertible):
+</p>
+
+\begin{align}
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{11}a_{21} & a_{11}a_{22} & a_{11}a_{23} \\
+a_{11}a_{31} & a_{11}a_{32} & a_{11}a_{33}
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+0 & a_{11}a_{22} - a_{12}a_{21} & a_{11}a_{23}-a_{13}a_{21} \\
+0 & a_{11}a_{32} - a_{12}a_{31} & a_{11}a_{33} - a_{13}a_{31}
+\end{bmatrix}
+\notag
+\end{align}
+
+<p>
+Since we know that \(a_{11}\) is nonzero, we want to know if the diagonal of the \(2 \times 2\) matrix formed by removing the first column and row have entries that are all nonzero.  However, this is exactly what the determinant does, so we can just find the determinant of that submatrix.
+</p>
+
+<p>
+Therefore, calculating this determinant gives us:
+</p>
+
+\begin{align}
+(a_{11}a_{22} - a_{12}a_{21})(a_{11}a_{33} - a_{13}a_{31}) - (a_{11}a_{23}-a_{13}a_{21})(a_{11}a_{32} - a_{12}a_{31}) \neq 0 \notag \\ a_{11}^{2}a_{22}a_{33}-a_{11}a_{12}a_{21}a_{33}-a_{11}a_{13}a_{22}a_{31}+a_{12}a_{13}a_{21}a_{31}-[a_{11}^{2}a_{23}a_{32}-a_{11}a_{13}a_{21}a_{32}-a_{11}a_{12}a_{23}a_{31}+a_{12}a_{13}a_{21}a_{31}] \neq 0 \notag \\
+a_{11}[a_{11}a_{22}a_{33}+a_{13}a_{21}a_{32}+a_{12}a_{23}a_{31}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}-a_{11}a_{23}a_{32}]+a_{12}a_{13}a_{21}a_{31}-a_{12}a_{13}a_{21}a_{31} \neq 0\notag \\
+a_{11}[a_{11}a_{22}a_{33}+a_{13}a_{21}a_{32}+a_{12}a_{23}a_{31}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}-a_{11}a_{23}a_{32}] \neq 0 \notag \\
+a_{11}a_{22}a_{33}+a_{13}a_{21}a_{32}+a_{12}a_{23}a_{31}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}-a_{11}a_{23}a_{32} \neq 0 \notag
+\end{align}
+
+<p>
+This is precisely the determinant of a \(3 \times 3\) matrix. We can view this, alternatively, as:
+</p>
+
+\begin{align}
+\det(A) = a_{11} \begin{vmatrix} a_{22} & a_{23} \\ a_{32} & a_{33} \end{vmatrix}
+- a_{12} \begin{vmatrix} a_{21} & a_{23} \\ a_{31} & a_{33} \end{vmatrix}
++ a_{13} \begin{vmatrix} a_{21} & a_{22} \\ a_{31} & a_{32} \end{vmatrix}
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgbc453c9" class="outline-3">
+<h3 id="orgbc453c9"><span class="section-number-3">1.3.</span> Determinant of \(n \times n\)</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+We can generalize our method to any \(n \times n\) matrix \(A=[a_{ij}]\). We call the determinant of the submatrix with the i-th row and j-th column removed the <b>minor</b> of an entry \(a_{ij}\), or \(M_{ij}\). Then, define the <b>cofactor</b> \(C_{ij}\) of entry \(a_{ij}\) to be \((-1)^{i+j}M_{ij}\).
+</p>
+
+<p>
+We claim that we can apply <b>cofactor expansion</b> to any row and column to find the determinant like so:
+</p>
+
+\begin{align}
+\det(A) = \sum a_{ij}C_{ij}
+\end{align}
+
+<p>
+where \(i\) and \(j\) iterate along some row or column of \(A\).
+</p>
+</div>
+<div id="outline-container-orgfbda77c" class="outline-4">
+<h4 id="orgfbda77c"><span class="section-number-4">1.3.1.</span> Proof</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+We can prove that cofactor expansion works using induction. We know that the base case, \(2 \times 2\), is true. The inductive hypothesis will assume that for any \(k \times k\) matrix, the cofactor expansion will find the determinant that will be non-zero if and only if it is invertible, that is, it will correctly determine invertibility.
+</p>
+
+<p>
+For the inductive step, we must prove that this still holds for any \((k+1) \times (k+1)\) matrix \(A\). Without loss of generality, we will use the first row to perform our expansion.
+</p>
+
+<p>
+We know that the first entry in the first row must be nonzero, because if it is zero, then we can simply do a row exchange. If all first entries are zero, then this matrix is clearly not invertible as there cannot be a pivot in every row.
+</p>
+
+<p>
+We can now create a matrix \(A'\) by applying row operations on \(A\) that eliminate the first entries for every row other than the first, such that we get a matrix like so:
+</p>
+
+\begin{align}
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots  & a_{1,k+1} \\
+0 \\
+\vdots & & B \\
+0
+\end{bmatrix}
+\notag
+\end{align}
+
+<p>
+We know that the determinant of \(A\) is the same as the determinant of \(A'\). We can now compute the determinant of \(A\) by doing cofactor expansion on \(A'\):
+</p>
+
+\begin{align}
+\det(A) &= det(A') = a_{11}C'_{11} + a_{12}C'_{12} + \cdots + a_{1, k+1}C'_{1,k+1} \notag \\
+&=  a_{11}\det(B) + a_{12}C'_{12} + \cdots + a_{1, k+1}C'_{1,k+1} \notag \\
+\end{align}
+
+<p>
+However, notice that except for the minor \(B\), all the other minors have their first column as all zeroes (because every first entry except for the first row is zero). This implies that except for \(B\), all the other minors have a zero determinant because they are not invertible. Knowing this, we can simplify the determinant \(A\) to just:
+</p>
+
+\begin{align}
+\det(A) &= a_{11}\det(B) + a_{12}C'_{12} + \cdots + a_{1, k+1}C'_{1,k+1} \notag \\
+&= a_{11}\det(B) + a_{12}\cdot 0 + \cdots + a_{1, k+1} \cdot 0 \notag \\
+&= a_{11}\det(B) \notag
+\end{align}
+
+<p>
+Now, let's prove that this determinant works. Since \(a_{11}\) is nonzero, \(A\) is invertible if and only if \(B\) is invertible. Since by our inductive hypothesis we know that the determinant of \(B\) given by cofactor expansion works, this means that the matrix \(B\) is invertible if and only if \(\det(B) \neq 0\).
+</p>
+
+<p>
+Therefore, if \(A\) is not invertible, then \(B\) is also not invertible, and \(\det(B) = 0\) which implies \(\det(A) = a_{11}\det(B) = 0\). However, if \(A\) is invertible, then \(B\) is also invertible, which means \(\det(A)\) is nonzero.
+</p>
+
+<p>
+Thus, \(A\) is invertible if and only if \(\det(A) \neq 0\), given by cofactor expansion, which completes the inductive step.
+</p>
+
+<p>
+Since the base case of \(2 \times 2\) is true, and the inductive step has shown that if \(k \times k\) is true then \((k+1) \times (k+1)\) is also true, then we conclude by induction that the cofactor expansion formula for determinants is valid for all matrices greater than \(2 \times 2\). \(\quad \blacksquare\)
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-09-17 10:45
+             </div>
+</div>
+</body>
+</html>
