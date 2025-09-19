@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-19 Fri 10:07 -->
+<!-- 2025-09-19 Fri 09:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>COMPSCI 61A</title>
+<title>Recursion</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -82,27 +82,91 @@
 <div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">COMPSCI 61A</h1>
+<h1 class="title">Recursion</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0b45948">1. Recursive Functions</a>
+<ul>
+<li><a href="#orgd643e07">1.1. Verifying Recursive Functions</a></li>
+</ul>
+</li>
+<li><a href="#org331453a">2. Tree Recursion</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0b45948" class="outline-2">
+<h2 id="org0b45948"><span class="section-number-2">1.</span> Recursive Functions</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Notes:</b></b>
+A function is called <b>recursive</b> if the body of that function calls itself, either directly or indirectly. This means that when you call a recursive function, executing the body of that function may require applying that function again.
 </p>
 
-<ul class="org-ul">
-<li><a href="environments.html">Environments</a></li>
-<li><a href="python.html">Python</a></li>
-<li><a href="expressions.html">Expressions</a></li>
-<li><a href="recursion.html">Recursion</a></li>
-<li><a href="control.html">Control</a></li>
-<li><a href="assignment.html">Assignment</a></li>
-<li><a href="functions.html">Functions</a></li>
-</ul>
+<p>
+Recursive functions often have two parts: a <b>base case</b> and a <b>recursive case</b>. The base case is evaluated <i>without recursive calls</i>, and is usually used to break out of recursion. The recursive case is evaluated with recursive calls, which makes <i>progress towards the base case</i>.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Factorial
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We can define the factorial function recursively like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">fact</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-comment-delimiter"># </span><span class="org-comment">base case
+</span>    <span class="org-keyword">if</span> n == <span class="org-py-number">1</span> <span class="org-keyword">or</span> n == <span class="org-py-number">0</span>:
+        <span class="org-keyword">return</span> <span class="org-py-number">1</span>
+    <span class="org-comment-delimiter"># </span><span class="org-comment">recursive case
+</span>    <span class="org-keyword">return</span> n * fact<span class="org-rainbow-delimiters-depth-1">(</span>n - <span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+</details>
+</div>
+<div id="outline-container-orgd643e07" class="outline-3">
+<h3 id="orgd643e07"><span class="section-number-3">1.1.</span> Verifying Recursive Functions</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+To verify that a recursive function `func` will do what it is supposed to do, you can follow the following steps:
+</p>
+<ol class="org-ol">
+<li>Verify the base case.</li>
+<li>Treat `func` as a functional abstraction, assuming it will do what it is supposed to do.</li>
+<li>Verify that `func(n)` is correct, assuming that `func(n - 1)` is correct.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org331453a" class="outline-2">
+<h2 id="org331453a"><span class="section-number-2">2.</span> Tree Recursion</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+When the body of a function that makes multiple recursive calls is executed, we have <b>tree recursion</b>.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-19 10:06
+               Last modified: 2025-09-18 19:54
              </div>
 </div>
 </body>

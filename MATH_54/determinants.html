@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-17 Wed 10:45 -->
+<!-- 2025-09-19 Fri 10:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Determinants</title>
@@ -128,6 +128,21 @@
 <li><a href="#orgfbda77c">1.3.1. Proof</a></li>
 </ul>
 </li>
+<li><a href="#org4eaee27">1.4. Determinant of Triangular Matrix</a></li>
+<li><a href="#org79a9d17">1.5. Determinant of Identity Matrix</a></li>
+<li><a href="#org482cafd">1.6. Product of Determinants</a></li>
+</ul>
+</li>
+<li><a href="#org153b572">2. Row Operations with Determinants</a>
+<ul>
+<li><a href="#orge6c6a89">2.1. Scaling</a></li>
+<li><a href="#org192d23b">2.2. Interchanging</a></li>
+<li><a href="#orgeb9b753">2.3. Addition</a></li>
+</ul>
+</li>
+<li><a href="#orgbc459f3">3. Cramer's Rule</a>
+<ul>
+<li><a href="#org56d30fe">3.1. Proof</a></li>
 </ul>
 </li>
 </ul>
@@ -249,7 +264,7 @@ where \(i\) and \(j\) iterate along some row or column of \(A\).
 <h4 id="orgfbda77c"><span class="section-number-4">1.3.1.</span> Proof</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
-We can prove that cofactor expansion works using induction. We know that the base case, \(2 \times 2\), is true. The inductive hypothesis will assume that for any \(k \times k\) matrix, the cofactor expansion will find the determinant that will be non-zero if and only if it is invertible, that is, it will correctly determine invertibility.
+We can see that cofactor expansion works using induction. We know that the base case, \(2 \times 2\), is true. The inductive hypothesis will assume that for any \(k \times k\) matrix, the cofactor expansion will find the determinant that will be non-zero if and only if it is invertible, that is, it will correctly determine invertibility.
 </p>
 
 <p>
@@ -311,6 +326,178 @@ Since the base case of \(2 \times 2\) is true, and the inductive step has shown 
 </div>
 </div>
 </div>
+<div id="outline-container-org4eaee27" class="outline-3">
+<h3 id="org4eaee27"><span class="section-number-3">1.4.</span> Determinant of Triangular Matrix</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+We want to consider the general determinant of an upper triangular matrix, like so:
+</p>
+
+\begin{align}
+A = \begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+0 & a_{22} & \cdots & a_{2n} \\
+\vdots & & \ddots \\
+0 & 0 & \cdots & a_{nn}
+\end{vmatrix}
+\notag
+\end{align}
+
+<p>
+If we do cofactor expansion on the first column, notice that we only need to consider \(a_{11}\) because all the other entries are \(0\). Thus, the cofactor expansion of this matrix is just:
+</p>
+
+\begin{align}
+\det A &= a_{11} \begin{vmatrix}a_{22} & \cdots & a_{2n} \\ 0 & \ddots \\ 0 & \cdots & a_{nn} \end{vmatrix} \notag \\
+&= a_{11} \cdot a_{22} \begin{vmatrix}a_{32} & \cdots & a_{2n} \\ 0 & \ddots \\ 0 & \cdots & a_{nn}\end{vmatrix} \notag \\
+&\vdots \notag \\
+&= a_{11} \cdot a_{22} \cdot \cdots \cdot a_{nn}
+\end{align}
+
+<p>
+So, the determinant of a triangular matrix is just the <i>product of the diagonal entries</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org79a9d17" class="outline-3">
+<h3 id="org79a9d17"><span class="section-number-3">1.5.</span> Determinant of Identity Matrix</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Since the identity matrix is in triangular form, with ones on the diagonal and zeroes everywhere else, the determinant of any identity matrix is just \(1\).
+</p>
+</div>
+</div>
+<div id="outline-container-org482cafd" class="outline-3">
+<h3 id="org482cafd"><span class="section-number-3">1.6.</span> Product of Determinants</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+A property of the product of determinants, if \(A, B\) are square matrices:
+</p>
+
+\begin{align}
+\det (AB) = \det A \cdot \det B
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org153b572" class="outline-2">
+<h2 id="org153b572"><span class="section-number-2">2.</span> Row Operations with Determinants</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We would like to understand how row operations would affect the determinant of a matrix. We will consider the three basic row operations: scaling, interchanging two rows, and adding a multiple of one row to another.
+</p>
+</div>
+<div id="outline-container-orge6c6a89" class="outline-3">
+<h3 id="orge6c6a89"><span class="section-number-3">2.1.</span> Scaling</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Consider the \(2 \times 2\) case:
+</p>
+
+\begin{align}
+\begin{vmatrix} a & b \\ c & d \end{vmatrix} &= ad - bc \notag \\
+\begin{vmatrix} ra & rb \\ c & d \end{vmatrix} &= rad - rbc = r(ad - bc) \notag
+\end{align}
+
+<p>
+We see that <i>scaling a row in a matrix by \(r\) scales the determinant by \(r\) as well</i>. This can be generalized to any size square matrix as by cofactor expansion, their determinant can all be represented by a sum of \(2 \times 2\) determinants, whose \(r\) can then be factored out.
+</p>
+</div>
+</div>
+<div id="outline-container-org192d23b" class="outline-3">
+<h3 id="org192d23b"><span class="section-number-3">2.2.</span> Interchanging</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Consider the \(2 \times 2\) case:
+</p>
+
+\begin{align}
+\begin{vmatrix} a & b \\ c & d \end{vmatrix} &= ad - bc \notag \\
+\begin{vmatrix} c & d \\ a & b \end{vmatrix} &= bc - ad \notag
+\end{align}
+
+<p>
+We see that <i>interchanging a row makes the determinant the negative of the original</i>. To see why this applies to any size square matrix, consider the following two cases.
+</p>
+
+<p>
+In the first case, we interchange two adjacent rows. We can keep the minors in the cofactor expansion the same by simply swapping which row to expand on. However, the only thing that changes is the sign of \((-1)^{i+j}\): since \(i\) changes by one, the determinant changes by a factor of \(-1\). In other words, interchanging two adjacent rows in a square matrix makes the new determinant the negative of the original.
+</p>
+
+<p>
+The second case would be interchanging two non-adjacent rows. However, realize that we reach the same result of interchanging two non-adjacent rows by chaining together interchanges of adjacent rows. Let's say their are \(n\) rows between the two non-adjacent rows we want to interchange. It can be shown that it takes \(n+1\) interchanges to get the first row to the place of the second row, and another \(n\) interchanges to get the second row back to the place of the first row. Therefore, in total, there will always be \(2n+1\) adjacent row interchanges, which is always an odd number. Since multiplying the original determinant by a factor of \({-1}^{2n+1}\) will always yield \(-1\), interchanging two non-adjacent rows will also make the new determinant the negative of the original.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeb9b753" class="outline-3">
+<h3 id="orgeb9b753"><span class="section-number-3">2.3.</span> Addition</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Consider the following \(3 \times 3\) matrix where the first row has been added to a multiple of the second row:
+</p>
+
+\begin{align}
+\begin{vmatrix}
+a_{11} + ra_{21} & a_{12} + ra_{22} & a_{13} + ra_{23} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{vmatrix}
+=
+\begin{vmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{vmatrix}
++
+\begin{vmatrix}
+ra_{21} & ra_{22} & ra_{23} \\
+a_{21} & a_{22} & a_{23} \\
+a_{31} & a_{32} & a_{33}
+\end{vmatrix}
+\notag
+\end{align}
+
+<p>
+We can break this up into these two matrices by considering how cofactor expansion on the first row works: the minors are the same, and we can break apart each of the entries and distribute.
+</p>
+
+<p>
+Notice that the first matrix is simply the determinant of the original matrix, and the second matrix has the first row as a multiple of the second row. This means the determinant of the second matrix must be \(0\), since if one row is the multiple of another, it is impossible to have a pivot in every row and thus the matrix is not invertible.
+</p>
+
+<p>
+In other words, the determinant of a matrix that has one row added to the multiple of another is <i>just the determinant of the original matrix</i>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbc459f3" class="outline-2">
+<h2 id="orgbc459f3"><span class="section-number-2">3.</span> Cramer's Rule</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>Cramer's rule</b> can be used to solve \(n \times n\) systems which have a unique solution. If \(A\) is \(n \times n\) and invertible, \(\mathbf{b}\) is \(n \times 1\), and we want to solve \(A\mathbf{x} = \mathbf{b}\), denote \(A_i(\mathbf{b})\) as the matrix \(A\) with its i-th column replaced by \(\mathbf{b}\). Then, Cramer's rule states that for \(A\mathbf{x} = \mathbf{b}\), where \(\mathbf{X} = (x_1, x_2, \dots, x_n)\), the solution is:
+</p>
+
+\begin{align}
+x_i = \frac{\det[A_i(\mathbf{b})]}{\det A}
+\end{align}
+</div>
+<div id="outline-container-org56d30fe" class="outline-3">
+<h3 id="org56d30fe"><span class="section-number-3">3.1.</span> Proof</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Consider \(A \cdot I_i(\mathbf{x})\). We know that due to <a href="matrix_operations.html#org9cc2fda">matrix multiplication</a> by columns, we have the following:
+</p>
+
+\begin{align}
+AI_i(\mathbf{x}) &= A_i(\mathbf{b}) \notag \\
+\det[AI_i(\mathbf{x})] &= \det[A_i(\mathbf{b})] \notag \\
+\det A \cdot \det I_i(\mathbf{x}) &= \det[A_i(\mathbf{b})] \notag \\
+\det A \cdot x_i &= \det[A_i(\mathbf{b})] \notag \\
+x_i &=  \frac{\det[A_i(\mathbf{b})]}{\det A} \notag
+\end{align}
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -318,7 +505,7 @@ Since the base case of \(2 \times 2\) is true, and the inductive step has shown 
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-17 10:45
+               Last modified: 2025-09-19 10:06
              </div>
 </div>
 </body>
