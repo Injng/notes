@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-19 Fri 09:23 -->
+<!-- 2025-09-20 Sat 21:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Recursion</title>
@@ -90,9 +90,11 @@
 <li><a href="#org0b45948">1. Recursive Functions</a>
 <ul>
 <li><a href="#orgd643e07">1.1. Verifying Recursive Functions</a></li>
+<li><a href="#orgc12f6b7">1.2. Mutually Recursive Functions</a></li>
 </ul>
 </li>
-<li><a href="#org331453a">2. Tree Recursion</a></li>
+<li><a href="#orga01ba69">2. Recursion and Iteration</a></li>
+<li><a href="#org331453a">3. Tree Recursion</a></li>
 </ul>
 </div>
 </div>
@@ -151,13 +153,176 @@ To verify that a recursive function `func` will do what it is supposed to do, yo
 </ol>
 </div>
 </div>
+<div id="outline-container-orgc12f6b7" class="outline-3">
+<h3 id="orgc12f6b7"><span class="section-number-3">1.2.</span> Mutually Recursive Functions</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Two functions <code>f</code> and <code>g</code> are <b>mutually recursive</b> if <code>f</code> calls <code>g</code> and <code>g</code> calls <code>f</code>.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Luhn algorithm
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+The Luhn algorithm is used to verify credit card numbers using a check digit, which is the rightmost digit. It consists of the following steps:
+</p>
+
+<ol class="org-ol">
+<li>From the rightmost digit (the check digit) moving left, double the value of every second digit; if the doubled value is greater than 9, then sum the digits of the doubled value.</li>
+<li>Take the sum of all the digits, which is called the <i>Luhn sum</i>.</li>
+<li>The Luhn sum of a valid credit card number will always be a multiple of 10.</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">sum_digits</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">if</span> n &lt; <span class="org-py-number">10</span>:
+        <span class="org-keyword">return</span> n
+    <span class="org-keyword">else</span>:
+        <span class="org-py-variable-name">all_but_last</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
+        <span class="org-keyword">return</span> sum_digits<span class="org-rainbow-delimiters-depth-1">(</span>all_but_last<span class="org-rainbow-delimiters-depth-1">)</span> + last
+
+<span class="org-py-def-class">def</span> <span class="org-py-def">luhn_sum</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">if</span> n &lt; <span class="org-py-number">10</span>:
+        <span class="org-keyword">return</span> n
+    <span class="org-keyword">else</span>:
+        <span class="org-py-variable-name">all_but_last</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
+        <span class="org-keyword">return</span> luhn_sum_double<span class="org-rainbow-delimiters-depth-1">(</span>all_but_last<span class="org-rainbow-delimiters-depth-1">)</span> + last
+
+<span class="org-py-def-class">def</span> <span class="org-py-def">luhn_sum_double</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-py-variable-name">all_but_last</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
+    <span class="org-py-variable-name">luhn_digit</span> <span class="org-operator">=</span> sum_digits<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">2</span> * last<span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-keyword">if</span> n &lt; <span class="org-py-number">10</span>:
+        <span class="org-keyword">return</span> luhn_digit
+    <span class="org-keyword">else</span>:
+        <span class="org-keyword">return</span> luhn_sum<span class="org-rainbow-delimiters-depth-1">(</span>all_but_last<span class="org-rainbow-delimiters-depth-1">)</span> + luhn_digit
+</pre>
 </div>
-<div id="outline-container-org331453a" class="outline-2">
-<h2 id="org331453a"><span class="section-number-2">2.</span> Tree Recursion</h2>
+
+<p>
+Here, <code>luhn_sum</code> and <code>luhn_sum_double</code> are mutually recursive.
+</p>
+
+
+</details>
+</div>
+</div>
+</div>
+<div id="outline-container-orga01ba69" class="outline-2">
+<h2 id="orga01ba69"><span class="section-number-2">2.</span> Recursion and Iteration</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-When the body of a function that makes multiple recursive calls is executed, we have <b>tree recursion</b>.
+We can often convert recursion to <a href="control.html#orgeec7d8a">iteration</a>, as iteration is just a special case of recursion. The main thing we need to keep in mind is to figure out what state must be maintained by the iterative function.
 </p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Sum digits
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Here is the recursive version of <code>sum_digits</code>, which takes in a number <code>n</code> and returns the sum of its digits:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">sum_digits</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">if</span> n &lt; <span class="org-py-number">10</span>:
+        <span class="org-keyword">return</span> n
+    <span class="org-keyword">else</span>:
+        <span class="org-py-variable-name">all_but_last</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
+        <span class="org-keyword">return</span> sum_digits<span class="org-rainbow-delimiters-depth-1">(</span>all_but_last<span class="org-rainbow-delimiters-depth-1">)</span> + last
+</pre>
+</div>
+
+<p>
+We want to write an iterative version of this function, <code>sum_digits_iter</code>. In this case, the state we need to keep track of is the digit sum so far as we iterate:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">sum_digits_iter</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-py-variable-name">digit_sum</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>
+    <span class="org-keyword">while</span> n &gt; <span class="org-py-number">0</span>:
+        <span class="org-py-variable-name">n</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
+        <span class="org-py-variable-name">digit_sum</span> <span class="org-operator">=</span> digit_sum + last
+    <span class="org-keyword">return</span> digit_sum
+</pre>
+</div>
+
+
+</details>
+
+<p>
+We can also convert iteration to recursion. In this case, we can pass in the state of an iteration as arguments to a recursive function. In the <code>sum_digits</code> example, to convert the iterative version to a recursive version, we can pass in the <code>digit_sum</code> state as an argument to a recursive call, <code>sum_digits_rec(n, digit_sum)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org331453a" class="outline-2">
+<h2 id="org331453a"><span class="section-number-2">3.</span> Tree Recursion</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+When the body of a function that makes multiple recursive calls is executed, we have <b>tree recursion</b>. This is because the computational process of a function that makes multiple recursive calls evolves into a tree structure. For example, for the <code>fib</code> function in the below example that calculates Fibonacci numbers, we can see that a call to <code>fib(5)</code> has the following call tree:
+</p>
+
+
+<div id="orgfceabfb" class="figure">
+<p><img src="../static/COMPSCI_61A/recursion1.png" alt="recursion1.png" />
+</p>
+</div>
+
+<p>
+We then traverse the tree in a depth-first manner, until we have computed all the necessary functions for <code>fib(5)</code>.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Fibonacci numbers
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We can use a function that makes multiple recursive calls to find the n-th Fibonacci number:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">fib</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">if</span> n == <span class="org-py-number">0</span>:
+        <span class="org-keyword">return</span> <span class="org-py-number">0</span>
+    <span class="org-keyword">elif</span> n == <span class="org-py-number">1</span>:
+        <span class="org-keyword">return</span> <span class="org-py-number">1</span>
+    <span class="org-keyword">else</span>:
+        <span class="org-keyword">return</span> fib<span class="org-rainbow-delimiters-depth-1">(</span>n - <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">)</span> + fib<span class="org-rainbow-delimiters-depth-1">(</span>n - <span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+</details>
 </div>
 </div>
 </div>
@@ -166,7 +331,7 @@ When the body of a function that makes multiple recursive calls is executed, we 
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-18 19:54
+               Last modified: 2025-09-20 21:15
              </div>
 </div>
 </body>

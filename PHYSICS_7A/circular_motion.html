@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-21 Sun 15:55 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Circular Motion</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Circular Motion</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2330e9a">1. Circular Motion</a>
+<ul>
+<li><a href="#org45d85ad">1.1. Position and Velocity</a></li>
+<li><a href="#org52bae36">1.2. Acceleration</a></li>
+<li><a href="#org6ac13a2">1.3. Centripetal Force</a></li>
+</ul>
+</li>
+<li><a href="#org3d5fbc0">2. Highway Curves</a>
+<ul>
+<li><a href="#org4d42bc7">2.1. Unbanked Curves</a></li>
+<li><a href="#orgc9b748e">2.2. Banked Curves</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2330e9a" class="outline-2">
+<h2 id="org2330e9a"><span class="section-number-2">1.</span> Circular Motion</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Circular motion</b> occurs when an object moves at a constant radius around a center:
+</p>
+
+
+<div id="org8d2e522" class="figure">
+<p><img src="../static/PHYSICS_7A/circular_motion1.png" alt="circular_motion1.png" />
+</p>
+</div>
+
+<p>
+We have two unit vectors here, one pointing in the <b>radial</b> direction (\(\hat{r}\)), and one pointing in the <b>tangential</b> direction (\(\hat{\theta}\)).
+</p>
+</div>
+<div id="outline-container-org45d85ad" class="outline-3">
+<h3 id="org45d85ad"><span class="section-number-3">1.1.</span> Position and Velocity</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The position vector \(\vec{r}(t)\) points from the center to the location of the object. As such, we can write it as:
+</p>
+
+\begin{align}
+\vec{r}(t) &= r\hat{r} \\
+&= r\cos\theta\hat{i} + r\sin\theta\hat{j} \notag \\
+&= r(\cos\theta\hat{i} + \sin\theta\hat{j}) \notag
+\end{align}
+
+<p>
+We can also use this to derive <b>tangential velocity</b>:
+</p>
+
+\begin{align}
+\vec{v}(t) &= r\frac{\text{d}\theta}{\text{d}t}(-\sin\theta\hat{i}+\cos\theta\hat{j}) \notag
+\end{align}
+
+<p>
+Which yields:
+</p>
+
+\begin{align}
+\boxed{\vec{v}(t) = r\omega \hat{\theta}}
+\end{align}
+
+<p>
+Here, \(\omega\) is <b>angular velocity</b>, which is defined to be \(\frac{\text{d}\theta}{\text{d}t}\) (how fast the angle \(\theta\) is changing).
+</p>
+</div>
+</div>
+<div id="outline-container-org52bae36" class="outline-3">
+<h3 id="org52bae36"><span class="section-number-3">1.2.</span> Acceleration</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We can also derive the acceleration from the velocity:
+</p>
+
+\begin{align}
+\vec{a}(t) &= \frac{\text{d}\vec{v}}{\text{d}t} \notag \\
+&= \frac{\text{d}}{\text{d}t}(r\omega \hat{\theta}) \notag \\
+&= r \frac{\text{d}\omega}{\text{d}t}\hat{\theta} + r\omega\frac{\text{d}\hat{\theta}}{\text{d}t} \notag
+\end{align}
+
+<p>
+To find \(\frac{\text{d}\hat{\theta}}{\text{d}t}\), we do:
+</p>
+
+\begin{align}
+\frac{\text{d}\hat{\theta}}{\text{d}t} &= \frac{\text{d}}{\text{d}t}(-\sin\theta\hat{i} + \cos\theta\hat{j}) \notag \\
+&= \frac{\text{d}\theta}{\text{d}t}(-\cos\theta)\hat{i} - \frac{\text{d}\theta}{\text{d}t} \sin \theta \hat{j} \notag \\
+&= -\omega(\cos\theta\hat{i} + \sin\theta\hat{j}) \notag \\
+&= -\omega\hat{r} \notag
+\end{align}
+
+<p>
+Therefore, acceleration is:
+</p>
+
+\begin{align}
+\boxed{\vec{a} = r\frac{\text{d}\omega}{\text{d}t}\hat{\theta} - r\omega^2\hat{r}}
+\end{align}
+
+<p>
+We can see that the acceleration is made up of a tangential component (\(\hat{\theta}\)) and a radial component (\(\hat{r}\)). However, for <b>uniform circular motion</b> (i.e. when \(\omega\) is constant), there is no tangential acceleration, so we only have <b>centripetal acceleration</b>, which points toward the center of the circle:
+</p>
+
+\begin{align}
+\boxed{a_r = r\omega^2 = \frac{v^2}{r}}
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Concial pendulum
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a ball of mass \(m\) spun around on a string:
+</p>
+
+
+<div id="org3a52fe9" class="figure">
+<p><img src="../static/PHYSICS_7A/circular_motion2.png" alt="circular_motion2.png" />
+</p>
+</div>
+
+<p>
+Assume uniform circular motion with angle \(\theta\). We want to find the speed \(v\) of the ball as it is spinning. Assume that there is no air resistance.
+</p>
+
+<p>
+We choose the x-axis pointing toward the center because \(\vec{a}\) points toward the center. By Newton's 2nd law, we have:
+</p>
+
+\begin{align}
+T\sin\theta &= ma_x \notag \\
+T\cos\theta - mg = ma_y \notag
+\end{align}
+
+<p>
+Since the ball remains in the same horizontal plane as it is spinning, \(a_y=0\), thus:
+</p>
+
+\begin{align}
+T\cos\theta &= mg \notag \\
+T &= \frac{mg}{\cos\theta} \notag
+\end{align}
+
+<p>
+By (4), we know that \(a_x = \frac{v^2}{r}\) with \(r=L\sin\theta\), so:
+</p>
+
+\begin{align}
+T\sin\theta &= ma_x \notag \\
+\frac{mg}{\cos\theta}\sin\theta &= m \frac{v^2}{L\sin\theta} \notag \\
+g\tan\theta &= \frac{v^2}{L\sin\theta} \notag \\
+v^2 &= g\tan\theta L\sin\theta \notag
+\end{align}
+
+<p>
+Thus, the velocity is:
+</p>
+
+\begin{align}
+\boxed{v=\sqrt{Lg\sin\theta\tan\theta}} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org6ac13a2" class="outline-3">
+<h3 id="org6ac13a2"><span class="section-number-3">1.3.</span> Centripetal Force</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+In order for an object to stay in circular motion, there must be some <b>centripetal force</b> pointing <i>towards the center</i> that is acting on the object (otherwise, the object would just fly away). In the conical pendulum example above, that centripetal force was provided by a component of the tension force in the string. In the unbanked curve example below, the centripetal force would be provided by static friction acting on the car.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3d5fbc0" class="outline-2">
+<h2 id="org3d5fbc0"><span class="section-number-2">2.</span> Highway Curves</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+An example of circular motion occurs when a car rounds a curve. We shall consider two types of curves: unbanked and banked curves.
+</p>
+</div>
+<div id="outline-container-org4d42bc7" class="outline-3">
+<h3 id="org4d42bc7"><span class="section-number-3">2.1.</span> Unbanked Curves</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Unbanked curves are curves where there is no elevation change between the inner and outer side, i.e. the curve is flat. As a car rounds the curve, the car's inertia attempts to pull it away from the curve in a straight line. In order to counteract this tendency, <a href="friction.html#orge23bcba">static friction</a> must pull the tires in towards the center of the curve, providing the <i>centripetal force</i> to keep the car on the turn:
+</p>
+
+
+<div id="org9f2e014" class="figure">
+<p><img src="../static/PHYSICS_7A/circular_motion3.png" alt="circular_motion3.png" />
+</p>
+</div>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Car on flat curve
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to find the maximum velocity such that the car would still stay in a turn, i.e. the static friction is enough to keep the car from sliding. Using Newton's 2nd law, we can find the normal force on the car:
+</p>
+
+\begin{align}
+F_N - mg &= 0 \notag \\
+F_N &= mg \notag
+\end{align}
+
+<p>
+By Newton's 2nd law on the x-direction, we have:
+</p>
+
+\begin{align}
+mg\mu_s &= m\frac{v^2}{r} \notag \\
+\mu_sg &= \frac{v^2}{r} \notag \\
+v^2 &= r\mu_s g \notag
+\end{align}
+
+<p>
+Therefore, the maximum velocity the car could go at without sliding is:
+</p>
+
+\begin{align}
+\boxed{v_{\text{max}} = \sqrt{\mu_s gr}} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgc9b748e" class="outline-3">
+<h3 id="orgc9b748e"><span class="section-number-3">2.2.</span> Banked Curves</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+A car can also round a <i>banked curve</i>, which as opposed to a flat curve is angled toward teh center, like so:
+</p>
+
+
+<div id="org1da9dee" class="figure">
+<p><img src="../static/PHYSICS_7A/circular_motion4.png" alt="circular_motion4.png" />
+</p>
+</div>
+
+<p>
+Notice that in this one, the normal force on the car provides a radial component that can be used as the centripetal force. This means that at a particular speed, we do not need any friction on the tires in order to keep the car in a curve.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Car on banked curve
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a car rounding a banked curve with angle \(\theta\), as shown in the figure above. We want to find the ideal speed \(v_0\) such that there is no static friction necessary to maintain uniform circular motion.
+</p>
+
+<p>
+By Newton's 2nd law, we have:
+</p>
+
+\begin{align}
+F_N\sin\theta &= m\frac{v_0^2}{r} \notag \\
+F_N\cos\theta &= mg \notag
+\end{align}
+
+<p>
+From the second equation, we see that \(F_N = \frac{mg}{\cos\theta}\). Therefore, substituting this into the first equation, we have:
+</p>
+
+\begin{align}
+mg\tan\theta &= m\frac{v_0^2}{r} \notag \\
+rg\tan\theta &= v_0^2 \notag
+\end{align}
+
+<p>
+Therefore, the ideal speed \(v_0\) is:
+</p>
+
+\begin{align}
+\boxed{v_0 = \sqrt{gr\tan\theta}} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-09-21 15:55
+             </div>
+</div>
+</body>
+</html>

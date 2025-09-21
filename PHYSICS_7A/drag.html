@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-17 Wed 09:38 -->
+<!-- 2025-09-21 Sun 12:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Drag</title>
@@ -157,6 +157,69 @@ Consider a bead of mass \(m\) dropping in a jar filled with oil, with the drag f
 </p>
 
 
+<div id="org4be2727" class="figure">
+<p><img src="../static/PHYSICS_7A/drag1.png" alt="drag1.png" />
+</p>
+</div>
+
+<p>
+Since the object is of small size, we can assume that buoyant force is negligible. We would like to find the velocity of the bead. By Newton's 2nd law, we have:
+</p>
+
+\begin{align}
+F_g - F_D &= ma \notag \\
+mg - bv &= ma \notag \\
+mg - bv &= m \frac{\text{d}v}{\text{d}t} \notag \\
+\frac{\text{d}v}{\text{d}t} &= g - \frac{bv}{m} \notag \\
+\frac{\text{d}v}{\text{d}t} &= -\frac{b}{m}(v-\frac{mg}{b}) \notag
+\end{align}
+
+<p>
+Since \(\frac{\text{d}v}{\text{d}t} = \frac{\text{d}(v-\frac{mg}{b})}{dt}\), we can write this as:
+</p>
+
+\begin{align}
+\frac{\text{d}(v-\frac{mg}{b})}{dt} = -\frac{b}{m}(v-\frac{mg}{b}) \notag
+\end{align}
+
+<p>
+Solving this differential equation by separation of variables, we have:
+</p>
+
+\begin{align}
+\frac{\text{d}(v-\frac{mg}{b})}{v-\frac{mg}{b}} &= -\frac{b}{m}\text{ d}t \notag \\
+\int_{v_0}^{v(t)} \frac{\text{d}(v'-\frac{mg}{b})}{v'-\frac{mg}{b}} &= \int_0^t -\frac{b}{m} \text{ d}t' \notag \\
+\left[\ln(v'-\frac{mg}{b})\right]_{v_0}^{v(t)} &= -\frac{b}{m}[t']_0^t \notag \\
+\ln\left(\frac{v(t) - \frac{mg}{b}}{v_0 - \frac{mg}{b}}\right) &= -\frac{b}{m}t \notag
+\end{align}
+
+<p>
+Taking the exponent of both sides:
+</p>
+
+\begin{align}
+\frac{v(t) - \frac{mg}{b}}{v_0 - \frac{mg}{b}} &= e^{-\frac{b}{m}t} \notag \\
+v(t) - \frac{mg}{b} &= (v_0 - \frac{mg}{b})e^{-\frac{b}{m}t} \notag
+\end{align}
+
+<p>
+Therefore we can isolate \(v(t)\) to find that:
+</p>
+
+\begin{align}
+\boxed{v(t) = \frac{mg}{b} + (v_0 - \frac{mg}{b})e^{-\frac{b}{m}t}} \notag
+\end{align}
+
+<p>
+We can find the <b>terminal velocity</b> of the bead by taking the limit of \(v(t)\) as \(t\) approaches infinity, which would yield \(\frac{mg}{b}\). However, we can also note that at terminal velocity, \(a=0\), thus:
+</p>
+
+\begin{align}
+mg - bv_T &= 0 \notag \\
+v_T &= \frac{mg}{b} \notag
+\end{align}
+
+
 </details>
 </div>
 </div>
@@ -166,7 +229,7 @@ Consider a bead of mass \(m\) dropping in a jar filled with oil, with the drag f
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-16 23:23
+               Last modified: 2025-09-21 12:26
              </div>
 </div>
 </body>
