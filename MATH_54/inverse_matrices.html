@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-17 Wed 09:38 -->
+<!-- 2025-09-22 Mon 09:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Inverse Matrices</title>
@@ -128,6 +128,7 @@
 <ul>
 <li><a href="#org6423fdf">2.1. \(2 \times 2\)</a></li>
 <li><a href="#orge5b74c4">2.2. Larger Than \(3 \times 3\)</a></li>
+<li><a href="#orgfe8274e">2.3. Using Cramer's Rule</a></li>
 </ul>
 </li>
 <li><a href="#org8e42efc">3. Invertible Matrix Theorem</a></li>
@@ -253,6 +254,72 @@ To find this series of elementary matrices, we can create the augmented matrix \
 </p>
 </div>
 </div>
+<div id="outline-container-orgfe8274e" class="outline-3">
+<h3 id="orgfe8274e"><span class="section-number-3">2.3.</span> Using <a href="determinants.html#orgbc459f3">Cramer's Rule</a></h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+We can use Cramer's rule to find inverses of matrices as well. We want to find the inverse of a square matrix \(A\) such that \(A\cdot A^{-1}=I\).
+</p>
+
+<p>
+Let the first column of \(A^{-1}\) be:
+</p>
+
+\begin{align}
+\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{bmatrix} \notag
+\end{align}
+
+<p>
+Then, by <a href="matrix_operations.html#org9cc2fda">matrix multiplication</a> of the columns, we see that:
+</p>
+
+\begin{align}
+A\mathbf{x} = e_1 \notag
+\end{align}
+
+<p>
+We can then find each entry in \(\mathbf{x}\) using Cramer's rule. Without loss of generality, consider \(x_3\):
+</p>
+
+\begin{align}
+x_3 = \frac{\det[A_3(e_1)]}{\det A} \notag
+\end{align}
+
+<p>
+Doing cofactor expansion in the third column of \(A_3(e_1)\) shows us that \(\det[A_3(e_1)]\) is \(C_{13}\), the cofactor of the entry corresponding to the first row and third column. Therefore,
+</p>
+
+\begin{align}
+x_3 = \frac{C_{13}}{\det A} \notag
+\end{align}
+
+<p>
+Similarly, for the others, we get:
+</p>
+
+\begin{align}
+A^{-1} = \frac{1}{\det A} \begin{bmatrix}
+C_{11} & C_{21} & \cdots & C_{n1} \\
+C_{12} & \ddots \\
+\vdots \\
+C_{1n} & & & C_{nn}
+\end{bmatrix}
+\notag
+\end{align}
+
+<p>
+The matrix above in the equation is called \(\text{adj }A\), the <b>adjugate</b> matrix of \(A\). This is where you replace every entry of \(A\) by its cofactor and then take its <a href="matrix_operations.html#orgcd5d6f9">transpose</a>. Thus, we can simplify this formula to:
+</p>
+
+\begin{align}
+\boxed{A^{-1} = \frac{\text{adj }A}{\det A}}
+\end{align}
+
+<p>
+This can also be used to derive the base formula for the inverse of a \(2 \times 2\) matrix.
+</p>
+</div>
+</div>
 </div>
 <div id="outline-container-org8e42efc" class="outline-2">
 <h2 id="org8e42efc"><span class="section-number-2">3.</span> Invertible Matrix Theorem</h2>
@@ -287,7 +354,7 @@ These statements can all be viewed as ways for checking if the associated linear
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-17 09:37
+               Last modified: 2025-09-22 09:38
              </div>
 </div>
 </body>
