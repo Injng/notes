@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-05 Fri 15:24 -->
+<!-- 2025-09-21 Sun 17:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Control</title>
@@ -94,15 +94,6 @@
 <li><a href="#org04ad25e">2.2. Boolean Contexts</a></li>
 </ul>
 </li>
-<li><a href="#orgeec7d8a">3. Iteration</a>
-<ul>
-<li><a href="#org3dfca22">3.1. <code>while</code> Statements</a>
-<ul>
-<li><a href="#orge967daa">3.1.1. Procedure for <code>while</code> Statements</a></li>
-</ul>
-</li>
-</ul>
-</li>
 </ul>
 </div>
 </div>
@@ -122,7 +113,7 @@ In a compound statement, the first header determines the statement's type. For e
 </p>
 
 
-<div id="orgc87132f" class="figure">
+<div id="org600e1bf" class="figure">
 <p><img src="../static/COMPSCI_61A/control1.png" alt="control1.png" />
 </p>
 </div>
@@ -180,83 +171,13 @@ A <b>boolean context</b> is a context in which we only care if the expression ev
 </div>
 </div>
 </div>
-<div id="outline-container-orgeec7d8a" class="outline-2">
-<h2 id="orgeec7d8a"><span class="section-number-2">3.</span> Iteration</h2>
-<div class="outline-text-2" id="text-3">
-</div>
-<div id="outline-container-org3dfca22" class="outline-3">
-<h3 id="org3dfca22"><span class="section-number-3">3.1.</span> <code>while</code> Statements</h3>
-<div class="outline-text-3" id="text-3-1">
-<p>
-<b>While statements</b> contain statements that are repeated as long as some condition is true. The following is a <code>while</code> statement:
-</p>
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">i</span>, <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>, <span class="org-py-number">0</span>
-<span class="org-keyword">while</span> i &lt; <span class="org-py-number">3</span>:
-    <span class="org-py-variable-name">i</span> <span class="org-operator">=</span> i + <span class="org-py-number">1</span>
-    <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> total + i
-</pre>
-</div>
-
-<p>
-This loop calculates the <code>total</code> sum of the numbers from 1 through 3.
-</p>
-
-<details class="code-details"
-                 style ="padding: 1em;
-                          background-color: #e5f5e5;
-                          border-radius: 15px;
-                          color: hsl(157 75%);
-                          font-size: 0.9em;
-                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
-                  <summary>
-                    <strong>
-                      <font face="Courier" size="3" color="green">
-                         The Fibonacci sequence
-                      </font>
-                    </strong>
-                  </summary>
-<p>
-We can write a function using a <code>while</code> loop to find the nth Fibonacci number:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">fib</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-doc">"""Compute the nth Fibonacci number, for N &gt;= 1."""</span>
-    <span class="org-py-variable-name">pred</span>, <span class="org-py-variable-name">curr</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>, <span class="org-py-number">1</span>
-    <span class="org-py-variable-name">k</span> <span class="org-operator">=</span> <span class="org-py-number">1</span>
-    <span class="org-keyword">while</span> k &lt; n:
-        <span class="org-py-variable-name">pred</span>, <span class="org-py-variable-name">curr</span> <span class="org-operator">=</span> curr, pred + curr
-        <span class="org-py-variable-name">k</span> <span class="org-operator">=</span> k + <span class="org-py-number">1</span>
-    <span class="org-keyword">return</span> curr
-</pre>
-</div>
-
-
-</details>
-</div>
-<div id="outline-container-orge967daa" class="outline-4">
-<h4 id="orge967daa"><span class="section-number-4">3.1.1.</span> Procedure for <code>while</code> Statements</h4>
-<div class="outline-text-4" id="text-3-1-1">
-<ol class="org-ol">
-<li>Evaluate the header's expression.</li>
-<li>If it is a true value, execute the whole suite, then return to step 1.</li>
-</ol>
-
-<p>
-Note that the while condition <i>must eventually become a false value</i> for the statement to end, otherwise you have an infinite loop.
-</p>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-05 13:15
+               Last modified: 2025-09-21 17:06
              </div>
 </div>
 </body>

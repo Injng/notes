@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-20 Sat 21:15 -->
+<!-- 2025-09-21 Sun 17:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Recursion</title>
@@ -139,6 +139,36 @@ We can define the factorial function recursively like so:
 
 
 </details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Sum of list
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We can take advantage of list <a href="sequences.html#orgeca1d32">slicing</a> to implement a recurisve function that sums all the elements in a list:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">sum_list</span><span class="org-rainbow-delimiters-depth-1">(</span>s<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">if</span> <span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">(</span>s<span class="org-rainbow-delimiters-depth-1">)</span> == <span class="org-py-number">0</span>:
+        <span class="org-keyword">return</span> <span class="org-py-number">0</span>
+    <span class="org-keyword">else</span>:
+        <span class="org-keyword">return</span> s<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span> + sum_list<span class="org-rainbow-delimiters-depth-1">(</span>s<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">1</span>:<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+</details>
 </div>
 <div id="outline-container-orgd643e07" class="outline-3">
 <h3 id="orgd643e07"><span class="section-number-3">1.1.</span> Verifying Recursive Functions</h3>
@@ -222,7 +252,7 @@ Here, <code>luhn_sum</code> and <code>luhn_sum_double</code> are mutually recurs
 <h2 id="orga01ba69"><span class="section-number-2">2.</span> Recursion and Iteration</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-We can often convert recursion to <a href="control.html#orgeec7d8a">iteration</a>, as iteration is just a special case of recursion. The main thing we need to keep in mind is to figure out what state must be maintained by the iterative function.
+We can often convert recursion to <a href="iteration.html">iteration</a>, as iteration is just a special case of recursion. The main thing we need to keep in mind is to figure out what state must be maintained by the iterative function.
 </p>
 
 <details class="code-details"
@@ -283,7 +313,7 @@ When the body of a function that makes multiple recursive calls is executed, we 
 </p>
 
 
-<div id="orgfceabfb" class="figure">
+<div id="org4dc5820" class="figure">
 <p><img src="../static/COMPSCI_61A/recursion1.png" alt="recursion1.png" />
 </p>
 </div>
@@ -331,7 +361,7 @@ We can use a function that makes multiple recursive calls to find the n-th Fibon
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-20 21:15
+               Last modified: 2025-09-21 17:39
              </div>
 </div>
 </body>

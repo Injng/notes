@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-11 Thu 09:44 -->
+<!-- 2025-09-21 Sun 17:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -114,12 +114,24 @@
 </ul>
 </li>
 <li><a href="#orgeecbff1">5. Conditional Statements</a></li>
-<li><a href="#org738a95b">6. Iteration</a>
+<li><a href="#org93fd774">6. Iteration</a>
 <ul>
 <li><a href="#org6939d85">6.1. <code>while</code></a></li>
+<li><a href="#orgc01c509">6.2. <code>for</code></a></li>
 </ul>
 </li>
 <li><a href="#orgc2c8dd7">7. Assert</a></li>
+<li><a href="#orgd99e4be">8. Sequences</a>
+<ul>
+<li><a href="#orgdb443b0">8.1. Slicing</a></li>
+<li><a href="#org8b0e1c7">8.2. Lists</a>
+<ul>
+<li><a href="#org3033786">8.2.1. List Comprehension</a></li>
+</ul>
+</li>
+<li><a href="#org80330e7">8.3. Ranges</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -329,8 +341,8 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
 </div>
 </div>
 </div>
-<div id="outline-container-org738a95b" class="outline-2">
-<h2 id="org738a95b"><span class="section-number-2">6.</span> <a href="control.html#orgeec7d8a">Iteration</a></h2>
+<div id="outline-container-org93fd774" class="outline-2">
+<h2 id="org93fd774"><span class="section-number-2">6.</span> <a href="iteration.html">Iteration</a></h2>
 <div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-org6939d85" class="outline-3">
@@ -340,6 +352,17 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
 <pre class="src src-python"><span class="org-py-variable-name">i</span>, <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>, <span class="org-py-number">0</span>
 <span class="org-keyword">while</span> i &lt; <span class="org-py-number">3</span>:
     <span class="org-py-variable-name">i</span> <span class="org-operator">=</span> i + <span class="org-py-number">1</span>
+    <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> total + i
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc01c509" class="outline-3">
+<h3 id="orgc01c509"><span class="section-number-3">6.2.</span> <code>for</code></h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">total</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>
+<span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">1</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-1">)</span>:
     <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> total + i
 </pre>
 </div>
@@ -358,13 +381,57 @@ Can use <code>assert</code> to thrown an <code>AssertionError</code> if the asse
 </div>
 </div>
 </div>
+<div id="outline-container-orgd99e4be" class="outline-2">
+<h2 id="orgd99e4be"><span class="section-number-2">8.</span> <a href="sequences.html">Sequences</a></h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-orgdb443b0" class="outline-3">
+<h3 id="orgdb443b0"><span class="section-number-3">8.1.</span> <a href="sequences.html#orgeca1d32">Slicing</a></h3>
+<div class="outline-text-3" id="text-8-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">digits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">subdigits</span> <span class="org-operator">=</span> digits<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>:<span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">]</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">[2, 3]</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org8b0e1c7" class="outline-3">
+<h3 id="org8b0e1c7"><span class="section-number-3">8.2.</span> <a href="sequences.html#org6a52fc6">Lists</a></h3>
+<div class="outline-text-3" id="text-8-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">odds</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">41</span>, <span class="org-py-number">43</span>, <span class="org-py-number">47</span>, <span class="org-py-number">49</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">a</span> <span class="org-operator">=</span> odds<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span>                      <span class="org-comment-delimiter"># </span><span class="org-comment">41
+</span><span class="org-py-variable-name">length</span> <span class="org-operator">=</span> <span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">(</span>odds<span class="org-rainbow-delimiters-depth-1">)</span>               <span class="org-comment-delimiter"># </span><span class="org-comment">4</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org3033786" class="outline-4">
+<h4 id="org3033786"><span class="section-number-4">8.2.1.</span> <a href="sequences.html#org61bb0d3">List Comprehension</a></h4>
+<div class="outline-text-4" id="text-8-2-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">newlist</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>&lt;expression&gt; <span class="org-keyword">for</span> &lt;item&gt; <span class="org-keyword">in</span> &lt;iterable&gt; <span class="org-keyword">if</span> &lt;condition&gt;<span class="org-rainbow-delimiters-depth-1">]</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org80330e7" class="outline-3">
+<h3 id="org80330e7"><span class="section-number-3">8.3.</span> <a href="sequences.html#orgf9b62eb">Ranges</a></h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">nums</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>i <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-py-builtins">range</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">]</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-11 09:44
+               Last modified: 2025-09-21 17:50
              </div>
 </div>
 </body>
