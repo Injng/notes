@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-09 Tue 13:24 -->
+<!-- 2025-09-23 Tue 12:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Environments</title>
@@ -94,6 +94,11 @@
 </li>
 <li><a href="#org25019f1">2. Environments for Nested Definitions</a></li>
 <li><a href="#orga8804a6">3. Environments for Lambda Expressions</a></li>
+<li><a href="#orgd3a0a0a">4. Environments for Sequences</a>
+<ul>
+<li><a href="#org959c194">4.1. Box-and-Pointer Notation</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -124,7 +129,7 @@ A name evaluates to the value bound to that name in the <i>earliest frame of the
 </p>
 
 
-<div id="orgd908db5" class="figure">
+<div id="orgc68561d" class="figure">
 <p><img src="../static/COMPSCI_61A/functions1.png" alt="functions1.png" />
 </p>
 </div>
@@ -146,7 +151,7 @@ Local frames are added to the environment when a <a href="functions.html#org1a47
 </p>
 
 
-<div id="org8081a0d" class="figure">
+<div id="org8b465eb" class="figure">
 <p><img src="../static/COMPSCI_61A/environments1.png" alt="environments1.png" />
 </p>
 </div>
@@ -181,7 +186,7 @@ The environment diagram when defining <code>adder</code> is:
 </p>
 
 
-<div id="org1cd294d" class="figure">
+<div id="org1f920f2" class="figure">
 <p><img src="../static/COMPSCI_61A/environments2.png" alt="environments2.png" />
 </p>
 </div>
@@ -216,13 +221,39 @@ In the last line, the <code>lambda y: a + y</code> is evaluated within the globa
 </p>
 </div>
 </div>
+<div id="outline-container-orgd3a0a0a" class="outline-2">
+<h2 id="orgd3a0a0a"><span class="section-number-2">4.</span> Environments for <a href="sequences.html#org6e57dfb">Sequences</a></h2>
+<div class="outline-text-2" id="text-4">
+<p>
+It is often hard to represent the environment when there are sequences involved due to the <i>closure property</i>. A method for combining data values satsifies this property if the result of combination can itself be combined using the same method.
+</p>
+
+<p>
+In other words, this means that, for example, lists can be elements of lists. Closure is powerful because it permits us to create hierarchical structures. However, this also makes representing sequences in environment diagrams hard.
+</p>
+</div>
+<div id="outline-container-org959c194" class="outline-3">
+<h3 id="org959c194"><span class="section-number-3">4.1.</span> Box-and-Pointer Notation</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+To solve this problem, we use <b>box-and-pointer notation</b>. Lists are represented as a row of index-labeled adjacent boxes, one per element. Each box either contains a primitive value or points to another compound value (such as a list):
+</p>
+
+
+<div id="orgf623102" class="figure">
+<p><img src="../static/COMPSCI_61A/environments3.png" alt="environments3.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-09 13:17
+               Last modified: 2025-09-23 11:34
              </div>
 </div>
 </body>

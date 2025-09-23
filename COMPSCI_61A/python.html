@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-22 Mon 13:15 -->
+<!-- 2025-09-23 Tue 12:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -130,9 +130,16 @@
 </ul>
 </li>
 <li><a href="#org80330e7">8.3. Ranges</a></li>
+<li><a href="#org74dc428">8.4. Strings</a></li>
+<li><a href="#org6a30cd1">8.5. Aggregation</a></li>
 </ul>
 </li>
-<li><a href="#orgb5d7b31">9. Type Hints</a></li>
+<li><a href="#org2cd1347">9. Dictionaries</a>
+<ul>
+<li><a href="#org14e601f">9.1. Dictionary Comprehensions</a></li>
+</ul>
+</li>
+<li><a href="#orgb5d7b31">10. Type Hints</a></li>
 </ul>
 </div>
 </div>
@@ -391,7 +398,9 @@ Can use <code>assert</code> to thrown an <code>AssertionError</code> if the asse
 <div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">digits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-py-variable-name">subdigits</span> <span class="org-operator">=</span> digits<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>:<span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">]</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">[2, 3]</span>
+<span class="org-py-variable-name">subdigits</span> <span class="org-operator">=</span> digits<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>:<span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">]</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">[2, 3]
+</span><span class="org-py-variable-name">from_start</span> <span class="org-operator">=</span> digits<span class="org-rainbow-delimiters-depth-1">[</span>:<span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">]</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">[1, 2, 3]
+</span><span class="org-py-variable-name">to_end</span> <span class="org-operator">=</span> digits<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">3</span>:<span class="org-rainbow-delimiters-depth-1">]</span>              <span class="org-comment-delimiter"># </span><span class="org-comment">[4, 5]</span>
 </pre>
 </div>
 </div>
@@ -425,10 +434,78 @@ Can use <code>assert</code> to thrown an <code>AssertionError</code> if the asse
 </div>
 </div>
 </div>
+<div id="outline-container-org74dc428" class="outline-3">
+<h3 id="org74dc428"><span class="section-number-3">8.4.</span> <a href="sequences.html#org4372574">Strings</a></h3>
+<div class="outline-text-3" id="text-8-4">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">single</span> <span class="org-operator">=</span> <span class="org-string">'I am a string!'</span>
+<span class="org-py-variable-name">double</span> <span class="org-operator">=</span> <span class="org-string">"I've got an apostrophe"</span>
+<span class="org-py-variable-name">hi</span> <span class="org-operator">=</span> <span class="org-string">'&#24744;&#22909;'</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">'The Zen of Python\nclaims, Readability counts.\nRead more: import this.'
+</span><span class="org-py-variable-name">multi</span> <span class="org-operator">=</span> <span class="org-string">"""The Zen of Python
+           claims, Readability counts.
+           Read more: import this."""</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6a30cd1" class="outline-3">
+<h3 id="org6a30cd1"><span class="section-number-3">8.5.</span> <a href="sequences.html#org9d13f6c">Aggregation</a></h3>
+<div class="outline-text-3" id="text-8-5">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-comment-delimiter"># </span><span class="org-comment">sum(iterable[, start] -&gt; value
+</span><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">9
+</span><span class="org-py-variable-name">b</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">)</span>       <span class="org-comment-delimiter"># </span><span class="org-comment">14
+</span><span class="org-py-variable-name">c</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[]</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">[2, 3, 4]
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">max(iterable[, key=func]) -&gt; value
+</span><span class="org-py-variable-name">d</span> <span class="org-operator">=</span> <span class="org-py-builtins">max</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">range</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">4
+</span><span class="org-py-variable-name">s</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'a'</span>, <span class="org-string">'aaa'</span>, <span class="org-string">'aa'</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">longest</span> <span class="org-operator">=</span> <span class="org-py-builtins">max</span><span class="org-rainbow-delimiters-depth-1">(</span>s, key=<span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">)</span>   <span class="org-comment-delimiter"># </span><span class="org-comment">'aaa'
+</span>
+<span class="org-comment-delimiter"># </span><span class="org-comment">all(iterable) -&gt; bool
+</span><span class="org-py-variable-name">trues</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">True</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">istrue</span> <span class="org-operator">=</span> <span class="org-py-builtins">all</span><span class="org-rainbow-delimiters-depth-1">(</span>trues<span class="org-rainbow-delimiters-depth-1">)</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">True</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org2cd1347" class="outline-2">
+<h2 id="org2cd1347"><span class="section-number-2">9.</span> <a href="dictionaries.html#orga603839">Dictionaries</a></h2>
+<div class="outline-text-2" id="text-9">
+<p>
+<b>Dictionaries</b> are collections of key-value pairs: they <i>map keys to values</i>. There are two restrictions on dictionary keys:
+</p>
+
+<ol class="org-ol">
+<li>A key cannot be a list or a dictionary (or any <i>mutable type</i>)</li>
+<li>Two keys cannot be equal: there is only one value for one key</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">numerals</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">{</span><span class="org-string">'I'</span>: <span class="org-py-number">1</span>, <span class="org-string">'V'</span>: <span class="org-py-number">5</span>, <span class="org-string">'X'</span>: <span class="org-py-number">10</span><span class="org-rainbow-delimiters-depth-1">}</span>
+<span class="org-py-variable-name">val</span> <span class="org-operator">=</span> numerals<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'X'</span><span class="org-rainbow-delimiters-depth-1">]</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">10
+</span><span class="org-py-variable-name">keys</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span>numerals<span class="org-rainbow-delimiters-depth-1">)</span>        <span class="org-comment-delimiter"># </span><span class="org-comment">['I', 'V', 'X']
+</span><span class="org-py-variable-name">vals</span> <span class="org-operator">=</span> numerals.values<span class="org-rainbow-delimiters-depth-1">()</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">dict_values([1, 5, 10])
+</span><span class="org-py-variable-name">length</span> <span class="org-operator">=</span> <span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">(</span>numerals<span class="org-rainbow-delimiters-depth-1">)</span>       <span class="org-comment-delimiter"># </span><span class="org-comment">3</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org14e601f" class="outline-3">
+<h3 id="org14e601f"><span class="section-number-3">9.1.</span> <a href="dictionaries.html#org1062486">Dictionary Comprehensions</a></h3>
+<div class="outline-text-3" id="text-9-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-rainbow-delimiters-depth-1">{</span>&lt;key&gt;: &lt;value&gt; <span class="org-keyword">for</span> &lt;name&gt; <span class="org-keyword">in</span> &lt;iterable&gt; <span class="org-keyword">if</span> &lt;condition&gt;<span class="org-rainbow-delimiters-depth-1">}</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-orgb5d7b31" class="outline-2">
-<h2 id="orgb5d7b31"><span class="section-number-2">9.</span> Type Hints</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="orgb5d7b31"><span class="section-number-2">10.</span> Type Hints</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 Python is <i>dynamically typed</i>, which means that names do not have types. A name can be assigned to something of one type and later assigned to a value of a different type.
 </p>
@@ -441,6 +518,7 @@ However, it is often useful to use <i>type hints</i>, which tell a reader what t
 <pre class="src src-python"><span class="org-py-variable-name">x</span>: <span class="org-py-builtins">int</span> <span class="org-operator">=</span> <span class="org-py-number">6</span>
 <span class="org-py-variable-name">y</span>: <span class="org-py-variable-name">string</span> <span class="org-operator">=</span> <span class="org-string">"seven"</span>
 <span class="org-py-variable-name">z</span>: <span class="org-py-builtins">float</span> <span class="org-operator">=</span> <span class="org-py-number">1</span>.<span class="org-py-number">5</span>
+<span class="org-py-variable-name">digits</span>: <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-builtins">int</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">]</span>
 
 <span class="org-py-def-class">def</span> <span class="org-py-def">identity</span><span class="org-rainbow-delimiters-depth-1">(</span>n: <span class="org-py-builtins">int</span><span class="org-rainbow-delimiters-depth-1">)</span> -&gt; <span class="org-py-builtins">int</span>:
     <span class="org-keyword">return</span> n
@@ -458,7 +536,7 @@ Python will not <i>enforce</i> the type hints, but it will warn you of any incon
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-22 13:15
+               Last modified: 2025-09-23 12:19
              </div>
 </div>
 </body>

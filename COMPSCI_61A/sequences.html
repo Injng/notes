@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-21 Sun 17:49 -->
+<!-- 2025-09-23 Tue 12:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sequences</title>
@@ -93,6 +93,7 @@
 <li><a href="#org94c78ae">1.2. Indexing</a></li>
 <li><a href="#org0384fe6">1.3. <code>in</code> Operator</a></li>
 <li><a href="#orgeca1d32">1.4. Slicing</a></li>
+<li><a href="#org9d13f6c">1.5. Sequence Aggregation</a></li>
 </ul>
 </li>
 <li><a href="#org6a52fc6">2. Lists</a>
@@ -101,6 +102,7 @@
 </ul>
 </li>
 <li><a href="#orgf9b62eb">3. Ranges</a></li>
+<li><a href="#org4372574">4. Strings</a></li>
 </ul>
 </div>
 </div>
@@ -160,7 +162,8 @@ The built-in operator <code>in</code> tests whether an element appears in a comp
 
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">digits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">8</span>, <span class="org-py-number">2</span>, <span class="org-py-number">8</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-keyword">assert</span> <span class="org-py-number">1</span> <span class="org-keyword">in</span> digits          <span class="org-comment-delimiter"># </span><span class="org-comment">True</span>
+<span class="org-keyword">assert</span> <span class="org-py-number">1</span> <span class="org-keyword">in</span> digits          <span class="org-comment-delimiter"># </span><span class="org-comment">True
+</span><span class="org-keyword">assert</span> <span class="org-string">'here'</span> <span class="org-keyword">in</span> <span class="org-string">'Where'</span>    <span class="org-comment-delimiter"># </span><span class="org-comment">True</span>
 </pre>
 </div>
 </div>
@@ -171,6 +174,46 @@ The built-in operator <code>in</code> tests whether an element appears in a comp
 <p>
 We can <i>slice</i> a sequence to obtain a sub-sequence of that sequence. For example, the expression <code>s[1:]</code> is a slice from index <code>1</code> to the end of <code>s</code>, containing all the elements of <code>s</code> except <code>s[0]</code>.
 </p>
+
+<p>
+More formally, a slice <code>s[a:b]</code> returns a sub-sequence of <code>s</code> starting from the index <code>a</code> and up to <i>but not including</i> the index <code>b</code>. We can also leave out <code>a</code> or <code>b</code> as shorthand to represent the beginning or the end of the list, respectively. Slicing will <i>always create new values</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org9d13f6c" class="outline-3">
+<h3 id="org9d13f6c"><span class="section-number-3">1.5.</span> Sequence Aggregation</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+The function <code>sum(iterable[, start]) -&gt; value</code> returns the sum of an iterable of numbers (not strings) plus the value of parameter <code>start</code> (which defaults to 0). When the iterable is empty, return start:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">9
+</span><span class="org-py-variable-name">b</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">)</span>       <span class="org-comment-delimiter"># </span><span class="org-comment">14
+</span><span class="org-py-variable-name">c</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[]</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">[2, 3, 4]</span>
+</pre>
+</div>
+
+<p>
+The function <code>max(iterable[, key=func]) -&gt; value</code> and <code>max(a, b, c, ...[, key=func]) -&gt; value</code> returns either the largest element in the iterable, or the largest argument with two or more arguments. The <code>key</code> function allows you to customize how the maximum value is determined by applying a function to each element before comparison:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">d</span> <span class="org-operator">=</span> <span class="org-py-builtins">max</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">range</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">4
+</span><span class="org-py-variable-name">s</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'a'</span>, <span class="org-string">'aaa'</span>, <span class="org-string">'aa'</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">longest</span> <span class="org-operator">=</span> <span class="org-py-builtins">max</span><span class="org-rainbow-delimiters-depth-1">(</span>s, key=<span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">)</span>   <span class="org-comment-delimiter"># </span><span class="org-comment">'aaa'</span>
+</pre>
+</div>
+
+<p>
+The function <code>all(iterable) -&gt; bool</code> returns <code>True</code> if <code>bool(x)</code> is <code>True</code> for all values <code>x</code> in the iterable. If the iterable is empty, return <code>True</code>. The <code>bool</code> function converts an expression to a boolean by evaluating it to either a <code>True</code> or <code>False</code> value.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">trues</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">True</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">istrue</span> <span class="org-operator">=</span> <span class="org-py-builtins">all</span><span class="org-rainbow-delimiters-depth-1">(</span>trues<span class="org-rainbow-delimiters-depth-1">)</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">True</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -240,13 +283,37 @@ We can turn a range into a list by calling a list constructor on it:
 </div>
 </div>
 </div>
+<div id="outline-container-org4372574" class="outline-2">
+<h2 id="org4372574"><span class="section-number-2">4.</span> Strings</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+A <b>string</b> is a sequence of characters. String literals can be single-quoted, double-quoted, or multi-line:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">single</span> <span class="org-operator">=</span> <span class="org-string">'I am a string!'</span>
+<span class="org-py-variable-name">double</span> <span class="org-operator">=</span> <span class="org-string">"I've got an apostrophe"</span>
+<span class="org-py-variable-name">hi</span> <span class="org-operator">=</span> <span class="org-string">'&#24744;&#22909;'</span>
+
+<span class="org-comment-delimiter"># </span><span class="org-comment">'The Zen of Python\nclaims, Readability counts.\nRead more: import this.'
+</span><span class="org-py-variable-name">multi</span> <span class="org-operator">=</span> <span class="org-string">"""The Zen of Python
+           claims, Readability counts.
+           Read more: import this."""</span>
+</pre>
+</div>
+
+<p>
+We can use a backslash, <code>\</code>, to <b>escape</b> the following character, which allows Python to treat both it and the following character as one element. Escaping characters have several uses: for example, <code>\n</code> is a <i>line feed character</i>, which represents a new line.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-21 17:44
+               Last modified: 2025-09-23 12:06
              </div>
 </div>
 </body>
