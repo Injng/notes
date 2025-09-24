@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-21 Sun 15:55 -->
+<!-- 2025-09-24 Wed 10:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Circular Motion</title>
@@ -132,6 +132,7 @@
 <li><a href="#orgc9b748e">2.2. Banked Curves</a></li>
 </ul>
 </li>
+<li><a href="#org389f12f">3. Non-Uniform Circular Motion</a></li>
 </ul>
 </div>
 </div>
@@ -143,7 +144,7 @@
 </p>
 
 
-<div id="org8d2e522" class="figure">
+<div id="org4d5db8d" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion1.png" alt="circular_motion1.png" />
 </p>
 </div>
@@ -219,7 +220,11 @@ Therefore, acceleration is:
 \end{align}
 
 <p>
-We can see that the acceleration is made up of a tangential component (\(\hat{\theta}\)) and a radial component (\(\hat{r}\)). However, for <b>uniform circular motion</b> (i.e. when \(\omega\) is constant), there is no tangential acceleration, so we only have <b>centripetal acceleration</b>, which points toward the center of the circle:
+We can see that the acceleration is made up of a tangential component (\(\hat{\theta}\)) and a radial component (\(\hat{r}\)).
+</p>
+
+<p>
+However, for <b>uniform circular motion</b> (i.e. when \(\omega\) is constant), there is no tangential acceleration, so we only have <b>centripetal acceleration</b>, which points toward the center of the circle:
 </p>
 
 \begin{align}
@@ -245,7 +250,7 @@ Consider a ball of mass \(m\) spun around on a string:
 </p>
 
 
-<div id="org3a52fe9" class="figure">
+<div id="orgce0a80a" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion2.png" alt="circular_motion2.png" />
 </p>
 </div>
@@ -308,7 +313,7 @@ In order for an object to stay in circular motion, there must be some <b>centrip
 <h2 id="org3d5fbc0"><span class="section-number-2">2.</span> Highway Curves</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-An example of circular motion occurs when a car rounds a curve. We shall consider two types of curves: unbanked and banked curves.
+An example of uniform circular motion occurs when a car rounds a curve at constant velocity. We shall consider two types of curves: unbanked and banked curves.
 </p>
 </div>
 <div id="outline-container-org4d42bc7" class="outline-3">
@@ -319,7 +324,7 @@ Unbanked curves are curves where there is no elevation change between the inner 
 </p>
 
 
-<div id="org9f2e014" class="figure">
+<div id="org19818a7" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion3.png" alt="circular_motion3.png" />
 </p>
 </div>
@@ -373,11 +378,11 @@ Therefore, the maximum velocity the car could go at without sliding is:
 <h3 id="orgc9b748e"><span class="section-number-3">2.2.</span> Banked Curves</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-A car can also round a <i>banked curve</i>, which as opposed to a flat curve is angled toward teh center, like so:
+A car can also round a <i>banked curve</i>, which as opposed to a flat curve is angled toward the center, like so:
 </p>
 
 
-<div id="org1da9dee" class="figure">
+<div id="org3e5ceb8" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion4.png" alt="circular_motion4.png" />
 </p>
 </div>
@@ -408,10 +413,10 @@ Consider a car rounding a banked curve with angle \(\theta\), as shown in the fi
 By Newton's 2nd law, we have:
 </p>
 
-\begin{align}
-F_N\sin\theta &= m\frac{v_0^2}{r} \notag \\
-F_N\cos\theta &= mg \notag
-\end{align}
+\begin{cases}
+F_N\sin\theta = m\frac{v_0^2}{r} \\
+F_N\cos\theta = mg
+\end{cases}
 
 <p>
 From the second equation, we see that \(F_N = \frac{mg}{\cos\theta}\). Therefore, substituting this into the first equation, we have:
@@ -432,7 +437,181 @@ Therefore, the ideal speed \(v_0\) is:
 
 
 </details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Car on banked curve with friction
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a car rounding a banked curve, this time with static friction involved:
+</p>
+
+
+<div id="orgb256301" class="figure">
+<p><img src="../static/PHYSICS_7A/circular_motion5.png" alt="circular_motion5.png" />
+</p>
 </div>
+
+<p>
+This implies that the car is going faster than the ideal speed for its tires, i.e. without any friction. By Newton's 2nd law, in the presence of static friction we have:
+</p>
+
+\begin{cases}
+F_N\sin\theta + f_s\cos\theta = m\frac{v_\text{max}^2}{r} \\
+F_N\cos\theta - f_s\sin\theta - mg = 0
+\end{cases}
+
+<p>
+Solving for \(F_N\), we have:
+</p>
+
+\begin{align}
+F_N\cos\theta - \mu F_N \sin\theta &= mg \notag \\
+F_N(\cos\theta - \mu sin\theta) &= mg \notag
+\end{align}
+
+<p>
+Thus, isolating \(F_N\):
+</p>
+
+\begin{align}
+F_N = \frac{mg}{\cos\theta - \mu\sin\theta} \notag
+\end{align}
+
+<p>
+We can now simplify the first equation:
+</p>
+
+\begin{align}
+F_N\sin\theta + \mu F_N \cos\theta &= m\frac{v_\text{max}^2}{r} \notag \\
+\frac{g}{\cos\theta - \mu\sin\theta}(\sin\theta + \mu\cos\theta) &
+= \frac{v_{max}^2}{r} \notag
+\end{align}
+
+<p>
+Therefore, for \(v_\text{max}\) we get:
+</p>
+
+\begin{align}
+\boxed{v_\text{max} = \sqrt{\frac{gr(\sin\theta+\mu\cos\theta)}{\cos\theta - \mu\sin\theta}}} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
+<div id="outline-container-org389f12f" class="outline-2">
+<h2 id="org389f12f"><span class="section-number-2">3.</span> Non-Uniform Circular Motion</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>Non-uniform circular motion</b> occurs when velocity is not constant. In these cases, since there is a velocity change, there will also be tangential acceleration: the change in tangential velocity. We can often find tangential acceleration by considering Newton's 2nd law with respect to a tangential force.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Block spinning on table
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a block spinning on a table in the horizontal plane with kinetic friction, which slows its velocity down:
+</p>
+
+
+<div id="orgc985f84" class="figure">
+<p><img src="../static/PHYSICS_7A/circular_motion6.png" alt="circular_motion6.png" />
+</p>
+</div>
+
+<p>
+Since the tangential force is friction, Newton's 2nd law tells us that:
+</p>
+
+\begin{align}
+-\mu F_N &= ma_T \notag \\
+a_T &= \frac{-\mu F_N}{m} \notag
+\end{align}
+
+<p>
+Since the block moves on a horizontal plane, we know that \(F_N = mg\), so:
+</p>
+
+\begin{align}
+\boxed{a_T = -\mu g} \notag
+\end{align}
+
+<p>
+Notice how since the tangential acceleration is less than 0, the system is slowing down.
+</p>
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Block spinning in air
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We can also have a block spinning in the vertical plane in air, like so:
+</p>
+
+
+<div id="org23a11ff" class="figure">
+<p><img src="../static/PHYSICS_7A/circular_motion7.png" alt="circular_motion7.png" />
+</p>
+</div>
+
+<p>
+In this case, a component of gravity provides a force that slows the system down or speeds it up. If the positive tangential direction is in the direction of motion, then at point (1) we have:
+</p>
+
+\begin{align}
+a_T = \frac{-mg\cos\theta}{m} = -g\cos\theta < 0 \notag
+\end{align}
+
+<p>
+This means that the block is slowing down at (1). However, at (2) we have:
+</p>
+
+\begin{align}
+a_T = \frac{mg\cos\theta}{m} = g\cos\theta > 0 \notag
+\end{align}
+
+<p>
+This means that the block is speeding up at (2). Notice how there are two points of <i>local</i> uniform circular motion at the top and bottom of the trajectory where the net force is purely centripetal.
+</p>
+
+
+</details>
 </div>
 </div>
 </div>
@@ -441,7 +620,7 @@ Therefore, the ideal speed \(v_0\) is:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-21 15:55
+               Last modified: 2025-09-24 10:40
              </div>
 </div>
 </body>
