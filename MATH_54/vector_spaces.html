@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-22 Mon 10:05 -->
+<!-- 2025-09-24 Wed 09:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vector Spaces</title>
@@ -119,7 +119,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4727dc9">1. Vector Spaces</a></li>
+<li><a href="#org4727dc9">1. Vector Spaces</a>
+<ul>
+<li><a href="#org221128d">1.1. Subspaces</a></li>
+</ul>
+</li>
+<li><a href="#orgd648b78">2. Column Space</a></li>
+<li><a href="#org19a34e1">3. Row Space</a></li>
+<li><a href="#orgfa61325">4. Nullspace</a></li>
 </ul>
 </div>
 </div>
@@ -138,7 +145,7 @@ In the definition of a vector space, vector addition and scalar multiplication m
 <li>\(\mathbf{x} + \mathbf{y} = \mathbf{y} + \mathbf{x}\)</li>
 <li>\(\mathbf{x} + (\mathbf{y} + \mathbf{z}) = (\mathbf{x} + \mathbf{y}) + \mathbf{z}\)</li>
 <li>There is a "zero vector" such that \(\mathbf{x} + \mathbf{0} = \mathbf{x}\) for all \(\mathbf{x}\)</li>
-<li>For each \(\mathbf{x}\) there is a unique vector \(-\mathbf{x}\) such that \(\mathbf{x} + (-\mathbf{x}\) = \mathbf{0}$</li>
+<li>For each \(\mathbf{x}\) there is a unique vector \(-\mathbf{x}\) such that \(\mathbf{x} + (-\mathbf{x}) = \mathbf{0}\)</li>
 <li>There exists a scalar "1" such that \(1 \cdot \mathbf{x} = \mathbf{x}\)</li>
 <li>\((c_1c_2) \mathbf{x} = c_1(c_2\mathbf{x})\)</li>
 <li>\(c(\mathbf{x} + \mathbf{y}) = c\mathbf{x} + c\mathbf{y}\)</li>
@@ -148,10 +155,110 @@ In the definition of a vector space, vector addition and scalar multiplication m
 <p>
 One important requirement is that <i>all linear combinations stay in the vector space</i>. This means that the set of all positive vectors is <i>not</i> a vector space (because some linear combinations yield negative vectors). Similarly, a line in \(\mathbb{R}^n\) is not a vector space unless it goes through the origin.
 </p>
-
+</div>
+<div id="outline-container-org221128d" class="outline-3">
+<h3 id="org221128d"><span class="section-number-3">1.1.</span> Subspaces</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 If that line does go through \(\mathbf{0}\), then we can multiply points on the line by any number \(c\) and still stay within the line. We can also add points on the line without ever leaving the line. This line through \(\mathbf{0}\) in \(\mathbb{R}^n\) is an example of a <b>subspace</b>: a <i>vector space inside another vector space</i>.
 </p>
+
+<p>
+In a vector space \(V\), say we have the set of vectors \({\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_p}\). Then the <i>set of all linear combinations of those vectors is a subspace</i> of \(V\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd648b78" class="outline-2">
+<h2 id="orgd648b78"><span class="section-number-2">2.</span> Column Space</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The <b>column space</b> of a matrix \(A\) is the subspace <a href="linear_systems.html#org0e5ef97">spanned</a> by the columns of \(A\), denoted \(\text{Col }A\). In other words, it consists of <i>all linear combinations of the columns</i>. To solve the equation \(A\mathbf{x} = \mathbf{b}\) is to express \(\mathbf{b}\) as a combination of the columns — the system is consistent if and only if \(\mathbf{b}\) is <i>in the column space</i> of \(A\).
+</p>
+</div>
+</div>
+<div id="outline-container-org19a34e1" class="outline-2">
+<h2 id="org19a34e1"><span class="section-number-2">3.</span> Row Space</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The <b>row space</b> is the subspace spanned by the rows of \(A\), denoted \(\text{Row }A\). Since we usually work with column vectors, we can also say that the row space of \(A\) is the column space of the transpose matrix \(A^T\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgfa61325" class="outline-2">
+<h2 id="orgfa61325"><span class="section-number-2">4.</span> Nullspace</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The <b>nullspace</b> of \(A\) is the space consisting of all the solutions \(\mathbf{x}\) to the <a href="linear_systems.html#org9b821d1">homogeneous system</a> \(A\mathbf{x}=0\), denoted \(\text{Nul }A\). To get the nullspace, we can solve for \(A\mathbf{x}=0\) for <a href="linear_systems.html#orgb50f3dd">parametric vector form</a>, and then the vectors in that form span \(\text{Nul }A\).
+</p>
+
+<p>
+We can see that the nullspace is a subspace with the following demonstration. Say \(\mathbf{x}\) and \(\mathbf{y}\) are in the nullspace of \(A\). Then \(\mathbf{x} + \mathbf{y}\) is also in the nullspace, since:
+</p>
+
+\begin{align}
+A(\mathbf{x}+\mathbf{y}) &= A\mathbf{x}+A\mathbf{y} \notag \\
+&= 0 + 0 \notag \\
+&= 0
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Nullspace as a subspace
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Given the set of all vectors \((a, b, c, d)\) such that it satisfies the following two equations:
+</p>
+
+\begin{cases}
+a - 2b = 4c \\
+2a = c + 3d
+\end{cases}
+
+<p>
+We want to know if this set is a subspace. To do so, notice that we can rewrite the equations as:
+</p>
+
+\begin{align}
+a - 2b - 4c &= 0 \notag \\
+2a - c - 3d &= 0 \notag
+\end{align}
+
+<p>
+This is simply a system of linear equations with \(a, b, c, d\) as the variables, which means we can write this like so:
+</p>
+
+\begin{align}
+\begin{bmatrix}
+1 & -2 & -4 & 0 \\
+2 & 0 & -1 & -3
+\end{bmatrix}
+\begin{bmatrix}
+a \\ b \\ c \\ d
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 \\ 0
+\end{bmatrix}
+\notag
+\end{align}
+
+<p>
+Now, it is clear that \((a, b, c, d)\) is the nullspace, and so therefore it is a subspace.
+</p>
+
+
+</details>
 </div>
 </div>
 </div>
@@ -160,7 +267,7 @@ If that line does go through \(\mathbf{0}\), then we can multiply points on the 
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-22 10:05
+               Last modified: 2025-09-24 09:50
              </div>
 </div>
 </body>

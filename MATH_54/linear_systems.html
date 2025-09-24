@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-17 Wed 09:38 -->
+<!-- 2025-09-24 Wed 09:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Systems</title>
@@ -129,7 +129,11 @@
 <li><a href="#org0e5ef97">2.1. Span</a></li>
 </ul>
 </li>
-<li><a href="#org9b821d1">3. Solving Homogeneous Systems</a></li>
+<li><a href="#org9b821d1">3. Solving Homogeneous Systems</a>
+<ul>
+<li><a href="#orgb50f3dd">3.1. Parametric Vector Form</a></li>
+</ul>
+</li>
 <li><a href="#org62385a3">4. Solving Nonhomogeneous Systems</a></li>
 </ul>
 </div>
@@ -239,7 +243,10 @@ Ax = 0
 <p>
 For a homogenous system like this, there is always the <b>trivial solution</b> \(x=0\). The question is, are there also some nonzero solutions \(x\) that work, i.e. a <b>nontrivial solution</b>? We can do this by putting \(A\) in <a href="triangular_and_echelon_forms.html#orgf375fe6">row echelon form</a> (note: the coefficient matrix, not the augmented one, since the augmented column will be 0 no matter what row operations we do) and solving the linear system. The system has a nontrivial solution <i>if and only if there is at least one free variable</i>.
 </p>
-
+</div>
+<div id="outline-container-orgb50f3dd" class="outline-3">
+<h3 id="orgb50f3dd"><span class="section-number-3">3.1.</span> Parametric Vector Form</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 We can also write our answers in <b>parametric vector form</b>. For example:
 </p>
@@ -250,6 +257,7 @@ We can also write our answers in <b>parametric vector form</b>. For example:
 x_2\begin{bmatrix}3 \\ 1\\ 0\end{bmatrix} +
 x_3\begin{bmatrix}-2 \\ 0 \\ 1 \end{bmatrix}
 \end{aligned}
+</div>
 </div>
 </div>
 <div id="outline-container-org62385a3" class="outline-2">
@@ -295,7 +303,7 @@ Notice that here, \(y-z\) is the general solution to \(Ax=0\), and thus the gene
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-17 09:32
+               Last modified: 2025-09-24 09:38
              </div>
 </div>
 </body>
