@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-24 Wed 17:52 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Work and Energy</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Work and Energy</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7a13a72">1. Work</a>
+<ul>
+<li><a href="#org369d6f0">1.1. Changing Angle</a></li>
+<li><a href="#orga406499">1.2. Net Work</a></li>
+</ul>
+</li>
+<li><a href="#org402d1e6">2. Kinetic Energy</a></li>
+<li><a href="#org5cd69cf">3. Work-Energy Theorem</a></li>
+</ul>
+</div>
+</div>
+<p>
+Since energy is a scalar quantity, it is a lot easier to manipulate than forces. Therefore, there is the possibility that we can make a lot of dynamics problems easier by using energy instead of Newton's laws.
+</p>
+<div id="outline-container-org7a13a72" class="outline-2">
+<h2 id="org7a13a72"><span class="section-number-2">1.</span> Work</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Work</b> is a measure of energy transferred to a system to perform a <i>displacement</i> (no displacement, no work):
+</p>
+
+\begin{align}
+\boxed{W = \int_A^B \vec{F} \cdot \text{d}\vec{r}}
+\end{align}
+
+<p>
+Note that work depends on a <i>process</i> from a point A to a point B; it is <i>not</i> a measure of energy at a given point. Work is represented by a <a href="../Multivariable_Calculus/line_integrals.html#org8590bcd">line integral</a> that depends on the magnitude of \(\vec{F}\), the distance from A to B, and the relative direction between \(\vec{F}\) and \(\text{d}\vec{r}\).
+</p>
+
+<p>
+For work with a constant magnitude and constant angle \(\theta\) with the direction of motion, we can simplify the formula for work to:
+</p>
+
+\begin{align}
+W_{AB} = \int_A^B F\cos\theta \text{ d}r = \boxed{F\cos\theta L_{AB}} \notag
+\end{align}
+
+<p>
+where \(L\) is the length of the path from \(A\) to \(B\). 
+</p>
+</div>
+<div id="outline-container-org369d6f0" class="outline-3">
+<h3 id="org369d6f0"><span class="section-number-3">1.1.</span> Changing Angle</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Consider a more complicated path where the angle and force changes:
+</p>
+
+
+<div id="orgb15930c" class="figure">
+<p><img src="../static/PHYSICS_7A/work_and_energy1.png" alt="work_and_energy1.png" />
+</p>
+</div>
+
+<p>
+The key insight here is that we can split up \(\text{d}\vec{r}\) into \(\text{d}x\hat{x} + \text{ d}y\hat{y}\). Then:
+</p>
+
+\begin{align}
+W_{AB} &= \int_A^B -mg\hat{y} \cdot (\text{d}x\hat{x} + \text{d}y\hat{y}) \notag \\
+&= \int_A^B -mg\text{ d}y \notag \\
+&= -mg\Delta y \notag
+\end{align}
+
+<p>
+If we call \(y\) the height \(h\), with positive \(h\) pointing in the upward direction, then we have:
+</p>
+
+\begin{align}
+W_{AB} = -mg\Delta h
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Spring force
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a block on the end of the spring moving from point \(A\) to point \(B\):
+</p>
+
+
+<div id="org505b813" class="figure">
+<p><img src="../static/PHYSICS_7A/work_and_energy2.png" alt="work_and_energy2.png" />
+</p>
+</div>
+
+<p>
+Since we only have one direction of motion \(\hat{x}\), we can write the work as:
+</p>
+
+\begin{align}
+W_{AB} &= \int_A^B -kx\hat{x} \cdot \text{d}x\hat{x} \notag \\
+&= -k \int_A^B x\text{ d}x \notag \\
+&= -k \left[ \frac{x^2}{2} \right]_A^B \notag
+\end{align}
+
+<p>
+Then, the work is just:
+</p>
+
+\begin{align}
+\boxed{W_{AB} = -\frac{1}{2}k(x_B^2 - x_A^2)} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orga406499" class="outline-3">
+<h3 id="orga406499"><span class="section-number-3">1.2.</span> Net Work</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We can find the net work done by all the forces on a system by summing up all of the individual works:
+</p>
+
+\begin{align}
+W_\text{net} &= \sum_i W_i = \sum_i \int \vec{F}_i \cdot \text{d}\vec{r} \notag \\
+&= \int \sum_i \vec{F}_i \cdot \text{d}\vec{r} \notag
+\end{align}
+
+<p>
+Then, the sum of all the forces is just the net force, so:
+</p>
+
+\begin{align}
+\boxed{W_\text{net} = \int \vec{F}_\text{net} \cdot \text{d}\vec{r}}
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org402d1e6" class="outline-2">
+<h2 id="org402d1e6"><span class="section-number-2">2.</span> Kinetic Energy</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We define <b>kinetic energy</b>, the energy related to motion, as:
+</p>
+
+\begin{align}
+\boxed{K = \frac{1}{2}mv^2}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org5cd69cf" class="outline-2">
+<h2 id="org5cd69cf"><span class="section-number-2">3.</span> Work-Energy Theorem</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Since <a href="newtons_laws.html#org16e80ce">Newton's 2nd Law</a> tells us that \(\vec{F}_\text{net} = m\vec{a}\), then from (3) we have:
+</p>
+
+\begin{align}
+W_\text{net} &= \int_A^B m\vec{a} \cdot \text{d}\vec{r} \notag \\
+&= m\int_A^B \frac{\text{d}\vec{v} \cdot \text{d}\vec{r}}{\text{d}t} \notag \\
+&= m \int_A^B \text{d}\vec{v} \cdot \frac{\text{d}\vec{r}}{\text{d}t} \notag \\
+&= m \int_A^B \vec{v} \cdot \text{d}\vec{v} \notag \\
+&= m \left[ \frac{v^2}{2} \right]_A^B \notag \\
+&= \frac{1}{2}mv_B^2 - \frac{1}{2}mv_A^2 \notag
+\end{align}
+
+<p>
+By (4), the definition of kinetic energy, we just have:
+</p>
+
+\begin{align}
+\boxed{W_\text{net} = \Delta K}
+\end{align}
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-09-24 17:52
+             </div>
+</div>
+</body>
+</html>
