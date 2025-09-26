@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-24 Wed 09:50 -->
+<!-- 2025-09-26 Fri 09:35 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vector Spaces</title>
@@ -124,9 +124,16 @@
 <li><a href="#org221128d">1.1. Subspaces</a></li>
 </ul>
 </li>
-<li><a href="#orgd648b78">2. Column Space</a></li>
-<li><a href="#org19a34e1">3. Row Space</a></li>
-<li><a href="#orgfa61325">4. Nullspace</a></li>
+<li><a href="#org462b7ce">2. Column Space</a></li>
+<li><a href="#orga58ce23">3. Row Space</a></li>
+<li><a href="#orge9ec699">4. Nullspace</a></li>
+<li><a href="#org0c12072">5. Basis</a>
+<ul>
+<li><a href="#orgddc27f7">5.1. Nullspace</a></li>
+<li><a href="#org2205312">5.2. Column Space</a></li>
+<li><a href="#org6953640">5.3. Row Space</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -169,24 +176,24 @@ In a vector space \(V\), say we have the set of vectors \({\mathbf{v}_1, \mathbf
 </div>
 </div>
 </div>
-<div id="outline-container-orgd648b78" class="outline-2">
-<h2 id="orgd648b78"><span class="section-number-2">2.</span> Column Space</h2>
+<div id="outline-container-org462b7ce" class="outline-2">
+<h2 id="org462b7ce"><span class="section-number-2">2.</span> Column Space</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The <b>column space</b> of a matrix \(A\) is the subspace <a href="linear_systems.html#org0e5ef97">spanned</a> by the columns of \(A\), denoted \(\text{Col }A\). In other words, it consists of <i>all linear combinations of the columns</i>. To solve the equation \(A\mathbf{x} = \mathbf{b}\) is to express \(\mathbf{b}\) as a combination of the columns — the system is consistent if and only if \(\mathbf{b}\) is <i>in the column space</i> of \(A\).
 </p>
 </div>
 </div>
-<div id="outline-container-org19a34e1" class="outline-2">
-<h2 id="org19a34e1"><span class="section-number-2">3.</span> Row Space</h2>
+<div id="outline-container-orga58ce23" class="outline-2">
+<h2 id="orga58ce23"><span class="section-number-2">3.</span> Row Space</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The <b>row space</b> is the subspace spanned by the rows of \(A\), denoted \(\text{Row }A\). Since we usually work with column vectors, we can also say that the row space of \(A\) is the column space of the transpose matrix \(A^T\).
 </p>
 </div>
 </div>
-<div id="outline-container-orgfa61325" class="outline-2">
-<h2 id="orgfa61325"><span class="section-number-2">4.</span> Nullspace</h2>
+<div id="outline-container-orge9ec699" class="outline-2">
+<h2 id="orge9ec699"><span class="section-number-2">4.</span> Nullspace</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The <b>nullspace</b> of \(A\) is the space consisting of all the solutions \(\mathbf{x}\) to the <a href="linear_systems.html#org9b821d1">homogeneous system</a> \(A\mathbf{x}=0\), denoted \(\text{Nul }A\). To get the nullspace, we can solve for \(A\mathbf{x}=0\) for <a href="linear_systems.html#orgb50f3dd">parametric vector form</a>, and then the vectors in that form span \(\text{Nul }A\).
@@ -261,13 +268,63 @@ Now, it is clear that \((a, b, c, d)\) is the nullspace, and so therefore it is 
 </details>
 </div>
 </div>
+<div id="outline-container-org0c12072" class="outline-2">
+<h2 id="org0c12072"><span class="section-number-2">5.</span> Basis</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+For a vector space/subspace, a <b>basis</b> is a set of linearly independent vectors that <a href="linear_systems.html#org0e5ef97">span</a> the space. <i>Every vector in the space is a unique combination of the basis vectors</i>.
+</p>
+
+<p>
+To see why there is only one way to write a vector as a combination of basis vectors, suppose there were two different ways to form the linear combination: \(\mathbf{v} = a_1\mathbf{v}_1 + \cdots + a_n\mathbf{v}_n\) and also \(\mathbf{v} = b_1\mathbf{v}_1 + \cdots + b_n\mathbf{v}_n\). By subtraction, \(0 = (a_1-b_1)\mathbf{v}_1 + \cdots + (a_n-b_n)\mathbf{v}_n\). Since each of the basis vectors are nonzero, we know that \(a_i=b_i\), and hence there are no two ways to form \(\mathbf{v}\).
+</p>
+</div>
+<div id="outline-container-orgddc27f7" class="outline-3">
+<h3 id="orgddc27f7"><span class="section-number-3">5.1.</span> Nullspace</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+To find the basis for \(\text{Nul }A\), we can use the <a href="triangular_and_echelon_forms.html#org3c760c5">REF/RREF</a> to locate free variables, solve \(A\mathbf{x} = 0\), and the parametric vector form of the solution gives us the basis.
+</p>
+</div>
+</div>
+<div id="outline-container-org2205312" class="outline-3">
+<h3 id="org2205312"><span class="section-number-3">5.2.</span> Column Space</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+The basis for \(\text{Col }A\) is the set of the <i>pivot columns</i> of \(A\). To see why this is, consider the RREF of the matrix. Using RREF, we see that each pivot column is not a linear combination of the other pivot columns, as for any pivot column, the entry that has a \(1\) in that pivot column has a \(0\) in the corresponding entry of the other pivot coumns, and so the pivot columns themselves are linearly independent. 
+</p>
+
+<p>
+Now, take a non-pivot column in RREF:
+</p>
+
+\begin{align}
+\begin{bmatrix}
+a_1 \\  \vdots \\ a_m \\ 0 \\ \vdots \\ 0
+\end{bmatrix} \notag
+\end{align}
+
+<p>
+This non-pivot column can be written as a linear combination of the other pivot columns, and as such the pivot columns of \(A\) form the basis for the column space.
+</p>
+</div>
+</div>
+<div id="outline-container-org6953640" class="outline-3">
+<h3 id="org6953640"><span class="section-number-3">5.3.</span> Row Space</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+The basis for \(\text{Row }A\) are the pivot rows in the <a href="triangular_and_echelon_forms.html#orgf375fe6">row echelon form</a> of \(A\).
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-24 09:50
+               Last modified: 2025-09-26 09:35
              </div>
 </div>
 </body>
