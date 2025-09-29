@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-09-28 Sun 23:12 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trees</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Trees</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5e7bbf9">1. Trees</a>
+<ul>
+<li><a href="#org6a80309">1.1. Tree Abstraction Implementation</a></li>
+<li><a href="#org2ce4626">1.2. Tree Processing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5e7bbf9" class="outline-2">
+<h2 id="org5e7bbf9"><span class="section-number-2">1.</span> Trees</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A <b>tree</b> is a hierarchical data structure that is used to represent data. Every tree has a <b>root</b> as well as a list of <b>branches</b>, where every branch is another tree. A tree with zero branches is called a <b>leaf</b>. Each location in a tree is called a <b>node</b>, which contains some value that is its <b>label</b>. One node can be the <b>parent</b> or <b>child</b> of another node:
+</p>
+
+
+<div id="orga267a80" class="figure">
+<p><img src="../static/COMPSCI_61A/trees1.png" alt="trees1.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org6a80309" class="outline-3">
+<h3 id="org6a80309"><span class="section-number-3">1.1.</span> Tree Abstraction Implementation</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+We can implement a tree by considering that each tree consists of a root label and a list of branches:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">tree</span><span class="org-rainbow-delimiters-depth-1">(</span>label, branches=<span class="org-rainbow-delimiters-depth-2">[]</span><span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">for</span> branch <span class="org-keyword">in</span> branches:
+        <span class="org-keyword">assert</span> is_tree<span class="org-rainbow-delimiters-depth-1">(</span>branch<span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-keyword">return</span> <span class="org-rainbow-delimiters-depth-1">[</span>label<span class="org-rainbow-delimiters-depth-1">]</span> + <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span>branches<span class="org-rainbow-delimiters-depth-1">)</span>
+
+<span class="org-py-def-class">def</span> <span class="org-py-def">label</span><span class="org-rainbow-delimiters-depth-1">(</span>tree<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">return</span> tree<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span>
+
+<span class="org-py-def-class">def</span> <span class="org-py-def">branches</span><span class="org-rainbow-delimiters-depth-1">(</span>tree<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">return</span> tree<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>:<span class="org-rainbow-delimiters-depth-1">]</span>
+
+<span class="org-py-def-class">def</span> <span class="org-py-def">is_tree</span><span class="org-rainbow-delimiters-depth-1">(</span>tree<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">if</span> <span class="org-py-builtins">type</span><span class="org-rainbow-delimiters-depth-1">(</span>tree<span class="org-rainbow-delimiters-depth-1">)</span> != <span class="org-py-builtins">list</span> <span class="org-keyword">or</span> <span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">(</span>tree<span class="org-rainbow-delimiters-depth-1">)</span> &lt; <span class="org-py-number">1</span>:
+        <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+    <span class="org-keyword">for</span> branch <span class="org-keyword">in</span> branches<span class="org-rainbow-delimiters-depth-1">(</span>tree<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-keyword">if</span> <span class="org-keyword">not</span> is_tree<span class="org-rainbow-delimiters-depth-1">(</span>branch<span class="org-rainbow-delimiters-depth-1">)</span>:
+            <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
+    <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2ce4626" class="outline-3">
+<h3 id="org2ce4626"><span class="section-number-3">1.2.</span> Tree Processing</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+In practice, one does not usually manually define trees; instead, they are generated programmatically. Processing trees are also generally done using recursion, with the base case typically being processing a leaf.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Fibonacci tree
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+An example of generating a tree programmatically is with the Fibonacci sequence:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">fib_tree</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">if</span> n &lt;= <span class="org-py-number">1</span>:
+        <span class="org-keyword">return</span> tree<span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>
+    <span class="org-keyword">else</span>:
+        <span class="org-py-variable-name">left</span>, <span class="org-py-variable-name">right</span> <span class="org-operator">=</span> fib_tree<span class="org-rainbow-delimiters-depth-1">(</span>n - <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">)</span>, fib_tree<span class="org-rainbow-delimiters-depth-1">(</span>n - <span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-keyword">return</span> tree<span class="org-rainbow-delimiters-depth-1">(</span>label<span class="org-rainbow-delimiters-depth-2">(</span>left<span class="org-rainbow-delimiters-depth-2">)</span> + label<span class="org-rainbow-delimiters-depth-2">(</span>right<span class="org-rainbow-delimiters-depth-2">)</span>, <span class="org-rainbow-delimiters-depth-2">[</span>left, right<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Counting leaves
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We can use recursion over a tree to count the number of leaves in the tree:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">count_leaves</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">if</span> is_leaf<span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-keyword">return</span> <span class="org-py-number">1</span>
+    <span class="org-keyword">else</span>:
+        <span class="org-keyword">return</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span>count_leaves<span class="org-rainbow-delimiters-depth-3">(</span>b<span class="org-rainbow-delimiters-depth-3">)</span> <span class="org-keyword">for</span> b <span class="org-keyword">in</span> branches<span class="org-rainbow-delimiters-depth-3">(</span>t<span class="org-rainbow-delimiters-depth-3">)</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+</details>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-09-28 23:12
+             </div>
+</div>
+</body>
+</html>
