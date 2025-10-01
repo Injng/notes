@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-29 Mon 10:35 -->
+<!-- 2025-10-01 Wed 10:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vector Spaces</title>
@@ -122,17 +122,22 @@
 <li><a href="#org4727dc9">1. Vector Spaces</a>
 <ul>
 <li><a href="#org221128d">1.1. Subspaces</a></li>
-<li><a href="#orga891f46">1.2. Column Space</a></li>
-<li><a href="#orgad46d7f">1.3. Row Space</a></li>
-<li><a href="#org3556c5c">1.4. Nullspace</a></li>
+<li><a href="#org662a745">1.2. Column Space</a></li>
+<li><a href="#org10c677d">1.3. Row Space</a></li>
+<li><a href="#org63cfb6c">1.4. Nullspace</a></li>
 </ul>
 </li>
 <li><a href="#org0c12072">2. Basis</a>
 <ul>
-<li><a href="#org388071f">2.1. Nullspace</a></li>
-<li><a href="#org540e83a">2.2. Column Space</a></li>
-<li><a href="#org1892e6d">2.3. Row Space</a></li>
-<li><a href="#orge9b328e">2.4. Coordinate System</a></li>
+<li><a href="#org5a45d87">2.1. Nullspace</a></li>
+<li><a href="#org892fa84">2.2. Column Space</a></li>
+<li><a href="#org849885b">2.3. Row Space</a></li>
+<li><a href="#org4f3b513">2.4. Change of Basis</a>
+<ul>
+<li><a href="#org5b31e4d">2.4.1. With Standard Basis</a></li>
+<li><a href="#orgf62ce91">2.4.2. With Arbitrary Basis</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org78ab100">3. Dimension</a>
@@ -181,24 +186,24 @@ In a vector space \(V\), say we have the set of vectors \({\mathbf{v}_1, \mathbf
 </p>
 </div>
 </div>
-<div id="outline-container-orga891f46" class="outline-3">
-<h3 id="orga891f46"><span class="section-number-3">1.2.</span> Column Space</h3>
+<div id="outline-container-org662a745" class="outline-3">
+<h3 id="org662a745"><span class="section-number-3">1.2.</span> Column Space</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The <b>column space</b> of a matrix \(A\) is the subspace <a href="linear_systems.html#org0e5ef97">spanned</a> by the columns of \(A\), denoted \(\text{Col }A\). In other words, it consists of <i>all linear combinations of the columns</i>. To solve the equation \(A\mathbf{x} = \mathbf{b}\) is to express \(\mathbf{b}\) as a combination of the columns — the system is consistent if and only if \(\mathbf{b}\) is <i>in the column space</i> of \(A\).
 </p>
 </div>
 </div>
-<div id="outline-container-orgad46d7f" class="outline-3">
-<h3 id="orgad46d7f"><span class="section-number-3">1.3.</span> Row Space</h3>
+<div id="outline-container-org10c677d" class="outline-3">
+<h3 id="org10c677d"><span class="section-number-3">1.3.</span> Row Space</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 The <b>row space</b> is the subspace spanned by the rows of \(A\), denoted \(\text{Row }A\). Since we usually work with column vectors, we can also say that the row space of \(A\) is the column space of the transpose matrix \(A^T\).
 </p>
 </div>
 </div>
-<div id="outline-container-org3556c5c" class="outline-3">
-<h3 id="org3556c5c"><span class="section-number-3">1.4.</span> Nullspace</h3>
+<div id="outline-container-org63cfb6c" class="outline-3">
+<h3 id="org63cfb6c"><span class="section-number-3">1.4.</span> Nullspace</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 The <b>nullspace</b> of \(A\) is the space consisting of all the solutions \(\mathbf{x}\) to the <a href="linear_systems.html#org9b821d1">homogeneous system</a> \(A\mathbf{x}=0\), denoted \(\text{Nul }A\). To get the nullspace, we can solve for \(A\mathbf{x}=0\) for <a href="linear_systems.html#orgb50f3dd">parametric vector form</a>, and then the vectors in that form span \(\text{Nul }A\).
@@ -289,16 +294,16 @@ To see why there is only one way to write a vector as a combination of basis vec
 However, there are many different choices for a basis vector (in fact, it can be seen that if \(n\) vectors form a basis, then any \(n\) linearly independent vectors in the vector space also form a basis). Critically, though, <i>the number of basis vectors</i> does not change.
 </p>
 </div>
-<div id="outline-container-org388071f" class="outline-3">
-<h3 id="org388071f"><span class="section-number-3">2.1.</span> Nullspace</h3>
+<div id="outline-container-org5a45d87" class="outline-3">
+<h3 id="org5a45d87"><span class="section-number-3">2.1.</span> Nullspace</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 To find the basis for \(\text{Nul }A\), we can use the <a href="triangular_and_echelon_forms.html#org3c760c5">REF/RREF</a> to locate free variables, solve \(A\mathbf{x} = 0\), and the parametric vector form of the solution gives us the basis.
 </p>
 </div>
 </div>
-<div id="outline-container-org540e83a" class="outline-3">
-<h3 id="org540e83a"><span class="section-number-3">2.2.</span> Column Space</h3>
+<div id="outline-container-org892fa84" class="outline-3">
+<h3 id="org892fa84"><span class="section-number-3">2.2.</span> Column Space</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The basis for \(\text{Col }A\) is the set of the <i>pivot columns</i> of \(A\). To see why this is, consider the RREF of the matrix. Using RREF, we see that each pivot column is not a linear combination of the other pivot columns, as for any pivot column, the entry that has a \(1\) in that pivot column has a \(0\) in the corresponding entry of the other pivot coumns, and so the pivot columns themselves are linearly independent. 
@@ -319,17 +324,21 @@ This non-pivot column can be written as a linear combination of the other pivot 
 </p>
 </div>
 </div>
-<div id="outline-container-org1892e6d" class="outline-3">
-<h3 id="org1892e6d"><span class="section-number-3">2.3.</span> Row Space</h3>
+<div id="outline-container-org849885b" class="outline-3">
+<h3 id="org849885b"><span class="section-number-3">2.3.</span> Row Space</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The basis for \(\text{Row }A\) are the pivot rows in the <a href="triangular_and_echelon_forms.html#orgf375fe6">row echelon form</a> of \(A\).
 </p>
 </div>
 </div>
-<div id="outline-container-orge9b328e" class="outline-3">
-<h3 id="orge9b328e"><span class="section-number-3">2.4.</span> Coordinate System</h3>
+<div id="outline-container-org4f3b513" class="outline-3">
+<h3 id="org4f3b513"><span class="section-number-3">2.4.</span> Change of Basis</h3>
 <div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-org5b31e4d" class="outline-4">
+<h4 id="org5b31e4d"><span class="section-number-4">2.4.1.</span> With Standard Basis</h4>
+<div class="outline-text-4" id="text-2-4-1">
 <p>
 Consider a real vector space \(V\) with basis \(B = {v_1, v_2, \dots , v_n}\). For any vector \(x\) in \(V\), we can write it as a linear combination of the basis of \(V\): \(x = c_1v_1 + c_2v_2 + \cdots + c_nv_n\), where \(c_i\) is any real scalar. However, if we form a matrix \(P_B\) using the basis vectors as column vectors, then we can rewrite this relationship as:
 </p>
@@ -353,6 +362,39 @@ We can see that in (2), by multiplying the basis matrix \(P_B\) with the vector 
 <p>
 We can also convert from the standard basis to the coordinate system of another basis by solving (2) for \([\mathbf{x}]_B\).
 </p>
+</div>
+</div>
+<div id="outline-container-orgf62ce91" class="outline-4">
+<h4 id="orgf62ce91"><span class="section-number-4">2.4.2.</span> With Arbitrary Basis</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+The key here is to recognize the assumption we are making in (2). The reason why it works is because we assume \(P_B\) to be written <i>in the standard basis</i>, since we write basis vectors in the standard basis. In other words, in order to change from a basis \(B\) to another basis \(C\), we have to write \(P_B\) in the basis \(C\):
+</p>
+
+\begin{align}
+P_{C \leftarrow B} [\mathbf{x}]_B = [\mathbf{x}]_C \notag
+\end{align}
+
+<p>
+where \(P_{C\leftarrow B}\) is our change of basis matrix, formed by the column vectors of the basis of \(B\) <i>written in the basis of \(C\)</i>.
+</p>
+
+<p>
+The issue now becomes how we rewrite the basis of \(B\) in the basis of \(C\). If \(P_C\) is the matrix formed by the vectors in the basis of \(C\) <i>written in the standard basis</i>, then by (2) we can solve for \([\mathbf{b}_i]_C\) like so:
+</p>
+
+\begin{align}
+P_C [\mathbf{b}_i]_C = \mathbf{b}_i \notag
+\end{align}
+
+<p>
+Realize that all of the \([\mathbf{b}_i]_C\) in a matrix is simply the basis vectors of \(B\) written in the basis of \(C\), or \(P_{C\leftarrow B}\). Therefore, to find this matrix, we can solve the equation above by reducing the augmented matrix:
+</p>
+
+\begin{align}
+\boxed{[ P_C \; | \; P_B ] \sim [ I \; | \; P_{C\leftarrow B} ]}
+\end{align}
+</div>
 </div>
 </div>
 </div>
@@ -396,7 +438,7 @@ If \(A\) is a real \(m\times n\) matrix, we have:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-29 10:35
+               Last modified: 2025-10-01 10:10
              </div>
 </div>
 </body>
