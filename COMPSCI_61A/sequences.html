@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-28 Sun 23:10 -->
+<!-- 2025-09-30 Tue 21:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sequences</title>
@@ -103,6 +103,7 @@
 </li>
 <li><a href="#orgf9b62eb">3. Ranges</a></li>
 <li><a href="#org4372574">4. Strings</a></li>
+<li><a href="#orgdf244f0">5. Tuples</a></li>
 </ul>
 </div>
 </div>
@@ -221,7 +222,7 @@ The function <code>all(iterable) -&gt; bool</code> returns <code>True</code> if 
 <h2 id="org6a52fc6"><span class="section-number-2">2.</span> Lists</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-A <b>list</b> is a type of sequence which can be of different data types. Lists are mutable, meaning you can modify them by adding, removing, or changing elements. We can define a list using literals like so:
+A <b>list</b> is a type of sequence which can be of different data types. Lists are <a href="mutation.html#orgedfe0c4">mutable</a>, meaning you can modify them by adding, removing, or changing elements. We can define a list using literals like so:
 </p>
 
 <div class="org-src-container">
@@ -246,6 +247,23 @@ We can nest lists like so:
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">pairs</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">10</span>, <span class="org-py-number">20</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">30</span>, <span class="org-py-number">40</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>
 <span class="org-keyword">assert</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">10</span>, <span class="org-py-number">20</span><span class="org-rainbow-delimiters-depth-1">]</span> == pairs<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span>
+</pre>
+</div>
+
+<p>
+We can mutate lists:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">suits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'coin'</span>, <span class="org-string">'string'</span>, <span class="org-string">'myriad'</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">original_suits</span> <span class="org-operator">=</span> suits
+<span class="org-py-variable-name">s</span> <span class="org-operator">=</span> suits.pop<span class="org-rainbow-delimiters-depth-1">()</span>                           <span class="org-comment-delimiter"># </span><span class="org-comment">'myriad', suits is now ['coin', 'string']
+</span>suits.remove<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'string'</span><span class="org-rainbow-delimiters-depth-1">)</span>                    <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin']
+</span>suits.append<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'cup'</span><span class="org-rainbow-delimiters-depth-1">)</span>                       <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin', 'cup']
+</span>suits.extend<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">'sword'</span>, <span class="org-string">'club'</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin', 'cup', 'sword', 'club']
+</span><span class="org-py-variable-name">suits</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-string">'spade'</span>                        <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin', 'cup', 'spade', 'club']
+</span><span class="org-py-variable-name">suits</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span>:<span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'heart'</span>, <span class="org-string">'diamond'</span><span class="org-rainbow-delimiters-depth-1">]</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['heart', 'diamond', 'spade', 'club']
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">original_suits is also ['heart', 'diamond', 'spade', 'club']</span>
 </pre>
 </div>
 
@@ -321,13 +339,28 @@ We can use a backslash, <code>\</code>, to <b>escape</b> the following character
 </p>
 </div>
 </div>
+<div id="outline-container-orgdf244f0" class="outline-2">
+<h2 id="orgdf244f0"><span class="section-number-2">5.</span> Tuples</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Tuples are an <a href="mutation.html#orgedfe0c4">immutable</a> sequence. You can define tuples with literals like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">t</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span>, <span class="org-py-number">6</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">tuple</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">(3, 4, 5)
+</span><span class="org-py-variable-name">single</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">2</span>,<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-28 23:05
+               Last modified: 2025-09-30 21:44
              </div>
 </div>
 </body>

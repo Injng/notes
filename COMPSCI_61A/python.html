@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-28 Sun 23:10 -->
+<!-- 2025-09-30 Tue 21:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -128,11 +128,13 @@
 <li><a href="#org8b0e1c7">8.2. Lists</a>
 <ul>
 <li><a href="#org3033786">8.2.1. List Comprehension</a></li>
+<li><a href="#org9f3c39a">8.2.2. List Mutation</a></li>
 </ul>
 </li>
 <li><a href="#org80330e7">8.3. Ranges</a></li>
 <li><a href="#org74dc428">8.4. Strings</a></li>
-<li><a href="#org6a30cd1">8.5. Aggregation</a></li>
+<li><a href="#org9539be7">8.5. Tuples</a></li>
+<li><a href="#org6a30cd1">8.6. Aggregation</a></li>
 </ul>
 </li>
 <li><a href="#org2cd1347">9. Dictionaries</a>
@@ -445,6 +447,23 @@ Can use <code>assert</code> to thrown an <code>AssertionError</code> if the asse
 </div>
 </div>
 </div>
+<div id="outline-container-org9f3c39a" class="outline-4">
+<h4 id="org9f3c39a"><span class="section-number-4">8.2.2.</span> List Mutation</h4>
+<div class="outline-text-4" id="text-8-2-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">suits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'coin'</span>, <span class="org-string">'string'</span>, <span class="org-string">'myriad'</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">original_suits</span> <span class="org-operator">=</span> suits
+<span class="org-py-variable-name">s</span> <span class="org-operator">=</span> suits.pop<span class="org-rainbow-delimiters-depth-1">()</span>                           <span class="org-comment-delimiter"># </span><span class="org-comment">'myriad', suits is now ['coin', 'string']
+</span>suits.remove<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'string'</span><span class="org-rainbow-delimiters-depth-1">)</span>                    <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin']
+</span>suits.append<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'cup'</span><span class="org-rainbow-delimiters-depth-1">)</span>                       <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin', 'cup']
+</span>suits.extend<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">'sword'</span>, <span class="org-string">'club'</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin', 'cup', 'sword', 'club']
+</span><span class="org-py-variable-name">suits</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-string">'spade'</span>                        <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin', 'cup', 'spade', 'club']
+</span><span class="org-py-variable-name">suits</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span>:<span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'heart'</span>, <span class="org-string">'diamond'</span><span class="org-rainbow-delimiters-depth-1">]</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['heart', 'diamond', 'spade', 'club']
+</span><span class="org-comment-delimiter"># </span><span class="org-comment">original_suits is also ['heart', 'diamond', 'spade', 'club']</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-org80330e7" class="outline-3">
 <h3 id="org80330e7"><span class="section-number-3">8.3.</span> <a href="sequences.html#orgf9b62eb">Ranges</a></h3>
@@ -471,9 +490,20 @@ Can use <code>assert</code> to thrown an <code>AssertionError</code> if the asse
 </div>
 </div>
 </div>
-<div id="outline-container-org6a30cd1" class="outline-3">
-<h3 id="org6a30cd1"><span class="section-number-3">8.5.</span> <a href="sequences.html#org9d13f6c">Aggregation</a></h3>
+<div id="outline-container-org9539be7" class="outline-3">
+<h3 id="org9539be7"><span class="section-number-3">8.5.</span> <a href="sequences.html#orgdf244f0">Tuples</a></h3>
 <div class="outline-text-3" id="text-8-5">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">t</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span>, <span class="org-py-number">6</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">tuple</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">(3, 4, 5)
+</span><span class="org-py-variable-name">single</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">2</span>,<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6a30cd1" class="outline-3">
+<h3 id="org6a30cd1"><span class="section-number-3">8.6.</span> <a href="sequences.html#org9d13f6c">Aggregation</a></h3>
+<div class="outline-text-3" id="text-8-6">
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-comment-delimiter"># </span><span class="org-comment">sum(iterable[, start] -&gt; value
 </span><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">9
@@ -557,7 +587,7 @@ Python will not <i>enforce</i> the type hints, but it will warn you of any incon
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-28 23:09
+               Last modified: 2025-09-30 21:45
              </div>
 </div>
 </body>

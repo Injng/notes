@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-30 Tue 21:57 -->
+<!-- 2025-09-30 Tue 21:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PHYSICS 7A</title>
+<title>Objects</title>
 <meta name="generator" content="Org Mode" />
 <link rel="stylesheet" href="/style.css" type="text/css"/>
 
@@ -79,30 +79,51 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">PHYSICS 7A</h1>
+<h1 class="title">Objects</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org637f3f4">1. Objects</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org637f3f4" class="outline-2">
+<h2 id="org637f3f4"><span class="section-number-2">1.</span> Objects</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Notes:</b></b>
+An <b>object</b> can be thought of as a type of complex value that represents information consisting of data and behavior, bundled together to create abstractions. Objects can represent things, but also properties, interactions, and processes. 
 </p>
 
-<ul class="org-ul">
-<li><a href="drag.html">Drag</a></li>
-<li><a href="work_and_energy.html">Work and Energy</a></li>
-<li><a href="springs.html">Springs</a></li>
-<li><a href="kinematics.html">Kinematics</a></li>
-<li><a href="circular_motion.html">Circular Motion</a></li>
-<li><a href="newtons_laws.html">Newton's Laws of Motion</a></li>
-<li><a href="friction.html">Friction</a></li>
-</ul>
+<p>
+Objects can have <b>attributes</b> that are bound to values, which can be accessed through a dot expression, as well as <b>methods</b>, which are like attributes that are bound to functions:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-comment-delimiter"># </span><span class="org-comment">Example: Date object
+</span><span class="org-py-import-from">from</span> datetime <span class="org-py-import-from">import</span> date
+<span class="org-py-variable-name">day</span> <span class="org-operator">=</span> date<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">2025</span>, <span class="org-py-number">9</span>, <span class="org-py-number">30</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">Date object
+</span><span class="org-py-variable-name">y</span> <span class="org-operator">=</span> day.year                     <span class="org-comment-delimiter"># </span><span class="org-comment">year attribute: 2025
+</span><span class="org-py-variable-name">m</span> <span class="org-operator">=</span> day.month                    <span class="org-comment-delimiter"># </span><span class="org-comment">month attribute: 9
+</span><span class="org-py-variable-name">s</span> <span class="org-operator">=</span> day.strftime<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'%A %B %d'</span><span class="org-rainbow-delimiters-depth-1">)</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">strftime() method: 'Tuesday September 30'</span>
+</pre>
+</div>
+
+<p>
+This kind of behavior underpins <b>object-oriented programming</b>, which is a way for organizing large programs around the interaction of objects. In Python, every value is an object.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-30 21:57
+               Last modified: 2025-09-30 13:20
              </div>
 </div>
 </body>
