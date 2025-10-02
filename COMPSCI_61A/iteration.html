@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-21 Sun 17:42 -->
+<!-- 2025-10-02 Thu 13:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Iteration</title>
@@ -87,24 +87,101 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga66ffc4">1. <code>while</code> Statements</a>
+<li><a href="#orga4f15ae">1. Iterators</a>
 <ul>
-<li><a href="#orgf053a61">1.1. Procedure for <code>while</code> Statements</a></li>
+<li><a href="#org1bc6a84">1.1. Built-In Functions</a></li>
 </ul>
 </li>
-<li><a href="#orga43c66f">2. <code>for</code> Statements</a>
+<li><a href="#orga66ffc4">2. <code>while</code> Statements</a>
 <ul>
-<li><a href="#org63fa18b">2.1. Procedure for <code>for</code> Statements</a></li>
-<li><a href="#org2f81808">2.2. Sequence Unpacking</a></li>
-<li><a href="#org67bf298">2.3. Ranges</a></li>
+<li><a href="#orgf053a61">2.1. Procedure for <code>while</code> Statements</a></li>
+</ul>
+</li>
+<li><a href="#orga43c66f">3. <code>for</code> Statements</a>
+<ul>
+<li><a href="#org63fa18b">3.1. Procedure for <code>for</code> Statements</a></li>
+<li><a href="#org2f81808">3.2. Sequence Unpacking</a></li>
+<li><a href="#org67bf298">3.3. Ranges</a></li>
+<li><a href="#org3c15489">3.4. Iterators</a></li>
 </ul>
 </li>
 </ul>
+</div>
+</div>
+<div id="outline-container-orga4f15ae" class="outline-2">
+<h2 id="orga4f15ae"><span class="section-number-2">1.</span> Iterators</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A container can provide an <b>iterator</b> that provides access to its elements in some order. Iterators are <a href="mutation.html#orgedfe0c4">mutable</a> values. The function <code>iter(&lt;iterable&gt;)</code> returns an iterator over the elements of an iterable value (such as any <a href="sequences.html#org6e57dfb">sequence</a>), and the function <code>next(&lt;iterator&gt;)</code> returns the next element in an iterator. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">s</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">t</span> <span class="org-operator">=</span> <span class="org-py-builtins">iter</span><span class="org-rainbow-delimiters-depth-1">(</span>s<span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-py-variable-name">first</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">3
+</span><span class="org-py-variable-name">second</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">4</span>
+</pre>
+</div>
+
+<p>
+When the iterator reaches the end of the sequence, it throws a <code>Stopiteration</code> error.
+</p>
+
+<p>
+An iterator is useful because it bundles together a sequence and it position within that sequence as one object. This allows you to retain the position while passing the object around, which is useful for ensuring that each element is processed only once.
+</p>
+</div>
+<div id="outline-container-org1bc6a84" class="outline-3">
+<h3 id="org1bc6a84"><span class="section-number-3">1.1.</span> Built-In Functions</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Many built-in Python sequence functions return iterators that compute results lazily:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-builtins">map</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;func&gt;, &lt;iterable&gt;<span class="org-rainbow-delimiters-depth-1">)</span>             <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over func(x) for x in iterable
+</span><span class="org-py-builtins">filter</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;func&gt;, &lt;iterable&gt;<span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over x in iterable if func(x)
+</span><span class="org-py-builtins">zip</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;first_iter&gt;, &lt;second_iter&gt;<span class="org-rainbow-delimiters-depth-1">)</span>    <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over co-indexed (x, y) pairs
+</span><span class="org-py-builtins">reversed</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;sequence&gt;<span class="org-rainbow-delimiters-depth-1">)</span>                <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over x in a sequence in reverse order</span>
+</pre>
+</div>
+
+<p>
+In particular, the <code>zip()</code> function returns an iterator over co-indexed tuples. In other words, it will take a series of iterables, and return an iterator over tuples in which each tuple contains values from the corresponding index in each iterable. Thus, the first tuple in the iterator, would contain the first element of each iterable, then the second for the second tuple, and so on:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">zip</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>       <span class="org-comment-delimiter"># </span><span class="org-comment">[(1, 3), (2, 4)]</span>
+</pre>
+</div>
+
+<p>
+If one iterable is longer than the other, <code>zip</code> only iterates over matches and skips any remaining elements. 
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">zip</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>    <span class="org-comment-delimiter"># </span><span class="org-comment">[(1, 3), (2, 4)]</span>
+</pre>
+</div>
+
+<p>
+More than two iterables can be passed to <code>zip</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">zip</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">6</span>, <span class="org-py-number">7</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">[(1, 3, 6), (2, 4, 7)]</span>
+</pre>
+</div>
+
+<p>
+To view the contents of an iterator, we can place the resulting elements into a container using functions such as <code>list()</code>, <code>tuple()</code>, or <code>sorted()</code>.
+</p>
+</div>
 </div>
 </div>
 <div id="outline-container-orga66ffc4" class="outline-2">
-<h2 id="orga66ffc4"><span class="section-number-2">1.</span> <code>while</code> Statements</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="orga66ffc4"><span class="section-number-2">2.</span> <code>while</code> Statements</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 <b>While statements</b> contain statements that are repeated as long as some condition is true. The following is a <code>while</code> statement:
 </p>
@@ -154,8 +231,8 @@ We can write a function using a <code>while</code> loop to find the nth Fibonacc
 </details>
 </div>
 <div id="outline-container-orgf053a61" class="outline-3">
-<h3 id="orgf053a61"><span class="section-number-3">1.1.</span> Procedure for <code>while</code> Statements</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="orgf053a61"><span class="section-number-3">2.1.</span> Procedure for <code>while</code> Statements</h3>
+<div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Evaluate the header's expression.</li>
 <li>If it is a true value, execute the whole suite, then return to step 1.</li>
@@ -168,8 +245,8 @@ Note that the while condition <i>must eventually become a false value</i> for th
 </div>
 </div>
 <div id="outline-container-orga43c66f" class="outline-2">
-<h2 id="orga43c66f"><span class="section-number-2">2.</span> <code>for</code> Statements</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="orga43c66f"><span class="section-number-2">3.</span> <code>for</code> Statements</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 <b>For statements</b> allows us to iterate over an object that is <i>iterable</i>. For example, a <a href="sequences.html">sequence</a> is iterable, so if we have a list, we can iterate over that list using a <code>for</code> loop. In general, a <code>for</code> statement is written like so:
 </p>
@@ -181,8 +258,8 @@ Note that the while condition <i>must eventually become a false value</i> for th
 </div>
 </div>
 <div id="outline-container-org63fa18b" class="outline-3">
-<h3 id="org63fa18b"><span class="section-number-3">2.1.</span> Procedure for <code>for</code> Statements</h3>
-<div class="outline-text-3" id="text-2-1">
+<h3 id="org63fa18b"><span class="section-number-3">3.1.</span> Procedure for <code>for</code> Statements</h3>
+<div class="outline-text-3" id="text-3-1">
 <ol class="org-ol">
 <li>Evaluate the header's expression, which must yield an iterable value.</li>
 <li>For each element in that sequence, bind <code>&lt;name&gt;</code> to that element in the current frame, and then execute the suite.</li>
@@ -190,8 +267,8 @@ Note that the while condition <i>must eventually become a false value</i> for th
 </div>
 </div>
 <div id="outline-container-org2f81808" class="outline-3">
-<h3 id="org2f81808"><span class="section-number-3">2.2.</span> Sequence Unpacking</h3>
-<div class="outline-text-3" id="text-2-2">
+<h3 id="org2f81808"><span class="section-number-3">3.2.</span> Sequence Unpacking</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 We can also do <b>sequence unpacking</b> in <code>for</code> statements. If we have a sequence of fixed-length sequences, then we can give a name for each element in a fixed-length sequence, similar to the syntax of <a href="assignment.html#orgd518ffe">multiple assignment</a>:
 </p>
@@ -205,8 +282,8 @@ We can also do <b>sequence unpacking</b> in <code>for</code> statements. If we h
 </div>
 </div>
 <div id="outline-container-org67bf298" class="outline-3">
-<h3 id="org67bf298"><span class="section-number-3">2.3.</span> Ranges</h3>
-<div class="outline-text-3" id="text-2-3">
+<h3 id="org67bf298"><span class="section-number-3">3.3.</span> Ranges</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 Since <a href="sequences.html#orgf9b62eb">ranges</a> are an iterable value, we can iterate over ranges in a <code>for</code> loop. This is especially helpful for controlling the number of times we iterate, or when we don't care what the element is. When we don't need to bind a name to an element, we can use the underscore <code>_</code> to make our code more readable by telling other programmers that the name will not be used:
 </p>
@@ -218,6 +295,14 @@ Since <a href="sequences.html#orgf9b62eb">ranges</a> are an iterable value, we c
 </div>
 </div>
 </div>
+<div id="outline-container-org3c15489" class="outline-3">
+<h3 id="org3c15489"><span class="section-number-3">3.4.</span> Iterators</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+We can also use iterators in a for statement. However, it is important to note that the for statement will advance the iterator, which means you cannot use values that were already processed again.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -225,7 +310,7 @@ Since <a href="sequences.html#orgf9b62eb">ranges</a> are an iterable value, we c
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-21 17:42
+               Last modified: 2025-10-02 13:35
              </div>
 </div>
 </body>

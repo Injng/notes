@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-30 Tue 21:54 -->
+<!-- 2025-10-02 Thu 13:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dictionaries</title>
@@ -90,6 +90,7 @@
 <li><a href="#orga603839">1. Dictionaries</a>
 <ul>
 <li><a href="#org1062486">1.1. Dictionary Comprehensions</a></li>
+<li><a href="#orgaf6da42">1.2. Dictionary Iteration</a></li>
 </ul>
 </li>
 </ul>
@@ -161,6 +162,27 @@ Just like list comprehensions, the filter <code>&lt;condition&gt;</code> is opti
 </p>
 </div>
 </div>
+<div id="outline-container-orgaf6da42" class="outline-3">
+<h3 id="orgaf6da42"><span class="section-number-3">1.2.</span> Dictionary Iteration</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+In a dictionary, its keys, values, and items are all iterable values and can produce <a href="iteration.html#orga4f15ae">iterators</a> using <code>iter()</code>. Note that in modern versions of Python (3.6+) the order of items in a dictionary is <i>the order in which they were added</i>, but in older versions items appeared in an arbitrary order. For example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">d</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">{</span><span class="org-string">'one'</span>: <span class="org-py-number">1</span>, <span class="org-string">'two'</span>: <span class="org-py-number">2</span>, <span class="org-string">'three'</span>: <span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">}</span>
+<span class="org-py-variable-name">d</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'zero'</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>
+<span class="org-py-variable-name">k</span> <span class="org-operator">=</span> <span class="org-py-builtins">iter</span><span class="org-rainbow-delimiters-depth-1">(</span>d.keys<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">Iterator over keys of dictionary
+</span><span class="org-py-variable-name">v</span> <span class="org-operator">=</span> <span class="org-py-builtins">iter</span><span class="org-rainbow-delimiters-depth-1">(</span>d.values<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">Iterator over values of dictionary
+</span><span class="org-py-variable-name">i</span> <span class="org-operator">=</span> <span class="org-py-builtins">iter</span><span class="org-rainbow-delimiters-depth-1">(</span>d.items<span class="org-rainbow-delimiters-depth-2">()</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">Iterator over itmes of dictionary: returns tuple (key, value)</span>
+</pre>
+</div>
+
+<p>
+Additionally, changing the size of the dictionary will <i>invalidate the iterator</i>.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -168,7 +190,7 @@ Just like list comprehensions, the filter <code>&lt;condition&gt;</code> is opti
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-30 13:53
+               Last modified: 2025-10-02 13:21
              </div>
 </div>
 </body>
