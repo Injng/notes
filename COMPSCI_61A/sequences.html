@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-30 Tue 21:54 -->
+<!-- 2025-10-02 Thu 16:06 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sequences</title>
@@ -215,6 +215,16 @@ The function <code>all(iterable) -&gt; bool</code> returns <code>True</code> if 
 <span class="org-py-variable-name">istrue</span> <span class="org-operator">=</span> <span class="org-py-builtins">all</span><span class="org-rainbow-delimiters-depth-1">(</span>trues<span class="org-rainbow-delimiters-depth-1">)</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">True</span>
 </pre>
 </div>
+
+<p>
+Similarly, the function <code>any(iterable) -&gt; bool</code> returns <code>True</code> if <code>bool(x)</code> is <code>True</code> for any value in the iterable. If the iterable is empty, return <code>False</code>.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">some</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">False</span>, <span class="org-py-pseudo-keyword">False</span><span class="org-rainbow-delimiters-depth-1">]</span>
+<span class="org-py-variable-name">istrue</span> <span class="org-operator">=</span> <span class="org-py-builtins">any</span><span class="org-rainbow-delimiters-depth-1">(</span>some<span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">True</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -360,7 +370,7 @@ Tuples are an <a href="mutation.html#orgedfe0c4">immutable</a> sequence. You can
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-30 21:44
+               Last modified: 2025-10-02 16:03
              </div>
 </div>
 </body>
