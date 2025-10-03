@@ -335,7 +335,7 @@ img {
   --pagefind-ui-tag: var(--mantle);
   --pagefind-ui-border-width: 1px;
   --pagefind-ui-border-radius: 6px;
-  --pagefind-ui-font: inherit;
+  --pagefind-ui-font: serif;
 }
 
 /* Container for the search bar in the preamble */
