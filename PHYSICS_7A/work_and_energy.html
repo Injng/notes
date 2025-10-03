@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-27 Sat 00:05 -->
+<!-- 2025-10-03 Fri 10:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Work and Energy</title>
@@ -131,6 +131,11 @@
 <li><a href="#org509ffba">4.1. Gravitational Potential Energy</a></li>
 <li><a href="#orgce09877">4.2. Elastic Potential Energy</a></li>
 <li><a href="#org2fd0ae4">4.3. Conservation of Mechanical Energy</a></li>
+<li><a href="#orgeb7db93">4.4. Potential Energy Diagrams</a>
+<ul>
+<li><a href="#org9572878">4.4.1. Stability of Equilibrium</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -243,7 +248,7 @@ Consider a block dragged with a rope:
 </p>
 
 
-<div id="orgd723040" class="figure">
+<div id="orgf1c7af9" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy3.png" alt="work_and_energy3.png" />
 </p>
 </div>
@@ -308,6 +313,27 @@ For such forces, we can define a new type of energy called <b>potential energy</
 <p>
 where \(W_{C}\) is the work done by conservative forces.
 </p>
+
+<p>
+We can also relate potential energy to work by considering that \(\text{d}U = -\vec{F} \cdot \text{d}\vec{r}\). Then, writing this using <a href="../Multivariable_Calculus/differentials.html#org974a5d5">differentials</a>, we have:
+</p>
+
+\begin{align}
+\text{d}U &= \frac{\partial U}{\partial x}\text{d}x + \frac{\partial U}{\partial y}\text{d}y + \frac{\partial U}{\partial z}\text{d}z \notag \\
+-\vec{F} \cdot \text{d}\vec{r} &= -F_x\text{d}x - F_y\text{d}y - F_z\text{d}z \notag
+\end{align}
+
+<p>
+Matching the differentials, we get that:
+</p>
+
+\begin{align}
+\boxed{F = - \nabla U}
+\end{align}
+
+<p>
+We can intuitively understand this by considering a landscape of hills and valleys, with gravitational potential energy as representative of potential energy. Since the <a href="../Multivariable_Calculus/gradient.html#org5fd85d7">gradient</a> points in the direction of the fastest increase, the gradient of the potential energy would point in the "steepest" direction. However, force would drive "downhill," towards the point of less potential energy, and so therefore it would be the opposite of the gradient.
+</p>
 </div>
 <div id="outline-container-org509ffba" class="outline-3">
 <h3 id="org509ffba"><span class="section-number-3">4.1.</span> Gravitational Potential Energy</h3>
@@ -317,7 +343,7 @@ Consider a path where gravity acts on the system:
 </p>
 
 
-<div id="org9f9327d" class="figure">
+<div id="org8723654" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy1.png" alt="work_and_energy1.png" />
 </p>
 </div>
@@ -357,7 +383,7 @@ This potential energy is spring-related. Consider a block on the end of the spri
 </p>
 
 
-<div id="orgc001780" class="figure">
+<div id="orgf4ded5a" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy2.png" alt="work_and_energy2.png" />
 </p>
 </div>
@@ -441,7 +467,7 @@ Consider a block held by a spring on a ramp, with point 0 being the equilibrium 
 </p>
 
 
-<div id="orgf775462" class="figure">
+<div id="orgd49ab1f" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy4.png" alt="work_and_energy4.png" />
 </p>
 </div>
@@ -507,6 +533,54 @@ Thus, we find the velocity to be:
 </details>
 </div>
 </div>
+<div id="outline-container-orgeb7db93" class="outline-3">
+<h3 id="orgeb7db93"><span class="section-number-3">4.4.</span> Potential Energy Diagrams</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+If only conservative forces act on an object, we can examine a <b>potential energy diagram</b> like the one below:
+</p>
+
+
+<div id="org0edf023" class="figure">
+<p><img src="../static/PHYSICS_7A/work_and_energy5.png" alt="work_and_energy5.png" />
+</p>
+</div>
+
+<p>
+In the diagram, we have two <b>potential wells</b>: areas where the potential energy is at a local minimum. We can intuitively understand this by considering gravitational potential energy and the diagram to be a visual representation of hills and valleys.
+</p>
+
+<p>
+Using this intuitive interpretation, we can define <b>turning points</b> where an object moving along the curve would reverse motion, thus going back through the potential well.
+</p>
+
+<p>
+If the system has mechanical energy \(E_1\), then the system can only exist between the points \(a\) and \(b\) which are the two <i>turning points</i>, since the velocity is zero at those points instantaneously.
+</p>
+
+<p>
+If the system has mechanical energy \(E_2\), then the system can exist in the broader region from \(c\) to \(d\). Similarly, if mechanical energy is at \(E_3\), the line crosses two potential wells, but since there is a "hill" in between, the system will only remain in the area it started in.
+</p>
+</div>
+<div id="outline-container-org9572878" class="outline-4">
+<h4 id="org9572878"><span class="section-number-4">4.4.1.</span> Stability of Equilibrium</h4>
+<div class="outline-text-4" id="text-4-4-1">
+<p>
+At points where the slope is zero (at the top and bottom of the hills), the system is said to be in <b>equilibrium</b>. The <i>degree of stability</i> depends on whether the point corresponds to a minimum or maximum of \(U(X)\):
+</p>
+
+<ol class="org-ol">
+<li>If it is a <i>maximum</i>, we are in <b>unstable equilibrium</b>.</li>
+<li>if it is a <i>local minimum</i>, we are in <b>metastable equilibrium</b>.</li>
+<li>If it is an <i>absolute minimum</i>, we are in <b>stable equilibrium</b>.</li>
+</ol>
+
+<p>
+Systems at unstable equilibrium will not return to the equilibrium point if moved slightly, but systems at stable equilibrium will return. Metastable equilibrium is when a system is stable under small disturbances but can transition to a more stable state if sufficiently disturbed.
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -514,7 +588,7 @@ Thus, we find the velocity to be:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-27 00:05
+               Last modified: 2025-10-03 10:47
              </div>
 </div>
 </body>

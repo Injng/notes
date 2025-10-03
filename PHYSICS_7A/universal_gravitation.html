@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-10-03 Fri 11:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Universal Gravitation</title>
+<meta name="generator" content="Org Mode" />
+<link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Universal Gravitation</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga4ce11b">1. Law of Universal Gravitation</a></li>
+<li><a href="#org24484e7">2. Gravitational Field</a></li>
+<li><a href="#orgab804d1">3. Circular Orbit</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga4ce11b" class="outline-2">
+<h2 id="orga4ce11b"><span class="section-number-2">1.</span> Law of Universal Gravitation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Newton's <b>Law of Universal Gravitation</b> states that \(\vec{F}_{G_{1\to 2}}\), the force of \(m_1\) acting on \(m_2\), is:
+</p>
+
+\begin{align}
+\boxed{\vec{F}_{G_{1\to 2}} = -\frac{Gm_1m_2}{r^2}\hat{r}_{12}}
+\end{align}
+
+<p>
+where \(\hat{r}_{12}\) points from \(m_1\) to \(m_2\), and thus the force points from \(m_2\) to \(m_1\), like so:
+</p>
+
+
+<div id="orgb75371e" class="figure">
+<p><img src="../static/PHYSICS_7A/universal_gravitation1.png" alt="universal_gravitation1.png" />
+</p>
+</div>
+
+<p>
+Realize that gravitational force is <i>always attractive</i> because mass is always positive. By convention, \(\hat{r}\) always points from the attractor to the test mass. By <a href="newtons_laws.html#org87b2871">Newton's 3rd Law</a>, we also have a 3rd Law pair since \(\vec{F}_{G_{1 \to 2}} = -\vec{F}_{G_{2 \to 1}}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org24484e7" class="outline-2">
+<h2 id="org24484e7"><span class="section-number-2">2.</span> Gravitational Field</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The existence of some interaction without physical contact implies the existence of some quantity in space that mediates the gravitational interaction. This quantity can be defined as the <b>gravitational field</b>, which is the force of gravity from an attractor of mass \(M\) to a "test mass" of <i>unit mass</i>:
+</p>
+
+\begin{align}
+\boxed{\vec{g}(r) = - \frac{GM}{r^2}\hat{r}}
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgab804d1" class="outline-2">
+<h2 id="orgab804d1"><span class="section-number-2">3.</span> Circular Orbit</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Consider a mass \(m\) orbiting an attractor with mass \(M\):
+</p>
+
+
+<div id="orgf969be0" class="figure">
+<p><img src="../static/PHYSICS_7A/universal_gravitation2.png" alt="universal_gravitation2.png" />
+</p>
+</div>
+
+<p>
+If gravity is the only force present, we find that the acceleration is purely centripetal, so the object is in <a href="circular_motion.html#org2330e9a">uniform circular motion</a>. By <a href="newtons_laws.html#org16e80ce">Newton's second law</a>, we have:
+</p>
+
+\begin{align}
+\frac{GmM}{r^2} = m\frac{v_{\text{orb}}^2}{r} \notag
+\end{align}
+
+<p>
+Therefore, the orbital speed \(v_{\text{orb}}\) is:
+</p>
+
+\begin{align}
+v_{\text{orb}} = \sqrt{\frac{GM}{r}}
+\end{align}
+
+<p>
+The angular speed is \(\omega = \frac{v}{r}\), so we have:
+</p>
+
+\begin{align}
+\omega_{\text{orb}} = \frac{\sqrt{GM}}{r^{\frac{3}{2}}}
+\end{align}
+
+<p>
+We can also find the <b>period</b>, the time required to complete one full revolution, which can be found as either the circumference over the orbital velocity, or one revolution (\(2\pi\) radians) over the angular speed:
+</p>
+
+\begin{align}
+T = \frac{2\pi r}{v_{\text{orb}}} = \frac{2\pi}{\omega_{\text{orb}}}
+\end{align}
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-10-03 11:08
+             </div>
+</div>
+</body>
+</html>
