@@ -7,6 +7,7 @@ This is the `org-publish` configuration used to publish these notes:
 ```elisp
 ;; Custom preamble with navigation and breadcrumbs
 (defun my-org-html-preamble (plist)
+  "Generate custom preamble with search bar, navigation, and breadcrumbs."
   (let* ((file (plist-get plist :input-file))
          (base-dir (plist-get plist :base-directory))
          (breadcrumbs nil))
@@ -15,7 +16,9 @@ This is the `org-publish` configuration used to publish these notes:
              (rel-file (file-relative-name file base-dir-clean)))
         (setq breadcrumbs (my-generate-breadcrumbs rel-file base-dir-clean))))
     (concat
-     ""
+     ;; This div is where the Pagefind search bar will be rendered
+     "<div id=\"search\"></div>"
+     ;; Your existing breadcrumbs
      (when breadcrumbs
        (concat "<div class=\"breadcrumb\">" breadcrumbs "</div>")))))
 
@@ -26,6 +29,7 @@ This is the `org-publish` configuration used to publish these notes:
 
 ;; Generate breadcrumbs
 (defun my-generate-breadcrumbs (rel-file base-dir)
+  "Generate breadcrumb navigation for REL-FILE relative to BASE-DIR."
   (let* ((dir-path (file-name-directory rel-file))
          (parts (when dir-path (split-string dir-path "/" t)))
          (current-path "")
@@ -43,8 +47,8 @@ This is the `org-publish` configuration used to publish these notes:
     (when (> (length breadcrumbs) 1)
       (mapconcat 'identity (reverse breadcrumbs) " <span>→</span> "))))
 
-;; Custom postamble with author and modified timestamp
 (defun my-org-html-postamble (plist)
+  "Generate custom postamble with last modified date."
   (let* ((file (plist-get plist :input-file))
          (mod-time (format-time-string "%Y-%m-%d %H:%M" 
                                        (nth 5 (file-attributes file)))))
@@ -55,8 +59,35 @@ This is the `org-publish` configuration used to publish these notes:
                Last modified: %s
              </div>" mod-time)))
 
-;; Format sitemap headings with links to index files
+(defun my-org-html-postamble-with-search (plist)
+  "Combines original postamble with Pagefind JS initialization."
+  (concat
+   (my-org-html-postamble plist)
+   "<script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>"))
+
+(defun my-run-pagefind-indexer ()
+  "Run the Pagefind indexer on the published site."
+  (interactive)
+  (let* ((project (assoc "lnjng-notes" org-publish-project-alist))
+         (publishing-dir (plist-get (cdr project) :publishing-directory)))
+    (when publishing-dir
+      (message "Running Pagefind indexer on %s..." publishing-dir)
+      (shell-command
+       (format "/home/lnjng/.nvm/versions/node/v23.5.0/bin/pagefind --site %s"
+               (shell-quote-argument publishing-dir))
+       "*Pagefind Output*" "*Pagefind Errors*")
+      (message "Pagefind indexing complete. See *Pagefind Output* / *Pagefind Errors*."))))
+
 (defun my-org-sitemap-format-entry (entry style project)
+  "Format sitemap entries with cleaned directory names and linked directory headings."
   (cond ((not (directory-name-p entry))
          ;; Regular file - use default behavior
          (format "[[file:%s][%s]]"
@@ -73,12 +104,12 @@ This is the `org-publish` configuration used to publish these notes:
 (use-package htmlize
   :ensure t
   :init (setq org-html-htmlize-output-type 'css))
-  
+
 ;; More blocks
 (use-package org-special-block-extras
   :ensure t
   :init (org-special-block-extras-mode))
-
+    
 ;; Main publish configuration
 (setq org-publish-project-alist
       '(("lnjng-notes"
@@ -92,8 +123,10 @@ This is the `org-publish` configuration used to publish these notes:
          :html-extension "html"
          :with-toc t
          :html-preamble my-org-html-preamble
-         :html-postamble my-org-html-postamble 
-         :html-head "<link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>"
+         :html-postamble my-org-html-postamble-with-search
+         :html-head "<link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>
+                      <link href=\"/pagefind/pagefind-ui.css\" rel=\"stylesheet\">
+                      <script src=\"/pagefind/pagefind-ui.js\"></script>"
          :html-head-include-default-style nil
          
          ;; Sitemap generation
@@ -115,8 +148,10 @@ This is the `org-publish` configuration used to publish these notes:
          :html-extension "html"
          :with-toc t
          :html-preamble my-org-html-preamble
-         :html-postamble my-org-html-postamble 
-         :html-head "<link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>"
+         :html-postamble my-org-html-postamble-with-search
+         :html-head "<link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>
+                      <link href=\"/pagefind/pagefind-ui.css\" rel=\"stylesheet\">
+                      <script src=\"/pagefind/pagefind-ui.js\"></script>"
          :html-head-include-default-style nil)
 
         ("lnjng-static"
@@ -128,14 +163,15 @@ This is the `org-publish` configuration used to publish these notes:
 
 (setq org-export-with-sub-superscripts nil)
 
-;; Function to create directory index files
+;; Simple function to create directory index files
 (defun my-create-directory-indices ()
+  "Create simple index.org files for each directory."
   (interactive)
   (let ((base-dir "/home/lnjng/Org/notes/"))
     (my-create-indices-recursive base-dir base-dir)))
 
-;; Recursively create index files for each directory
 (defun my-create-indices-recursive (current-dir base-dir)
+  "Recursively create index files for directories."
   (let ((dirs (directory-files current-dir t "^[^.]" t)))
     (dolist (item dirs)
       (when (file-directory-p item)
@@ -149,9 +185,9 @@ This is the `org-publish` configuration used to publish these notes:
           
           ;; Recurse into subdirectories
           (my-create-indices-recursive item base-dir))))))
-
-;; Write each index file with list of subdirectories and notes
+    
 (defun my-write-simple-index (index-file clean-name dir-path base-dir)
+  "Write a simple index file for a directory."
   (let ((content (format "#+TITLE: %s\n#+OPTIONS: toc:nil\n\n" clean-name))
         (files (directory-files dir-path nil "\\.org$" t))
         (subdirs (seq-filter (lambda (f) 
@@ -184,8 +220,8 @@ This is the `org-publish` configuration used to publish these notes:
     (with-temp-file index-file
       (insert content))))
 
-;; Extract title from org file
 (defun my-get-org-title (file-path)
+  "Extract title from org file, return nil if not found."
   (when (file-readable-p file-path)
     (with-temp-buffer
       (insert-file-contents file-path)
@@ -195,7 +231,7 @@ This is the `org-publish` configuration used to publish these notes:
 
 ;; Publish function
 (defun my-publish-site ()
-  "Publish the entire site."
+  "Publish the entire site and run the search indexer."
   (interactive)
   (my-create-directory-indices)
   (dolist (buffer (buffer-list))
@@ -203,5 +239,6 @@ This is the `org-publish` configuration used to publish these notes:
                (string-match "index\\.org$" (buffer-file-name buffer)))
       (with-current-buffer buffer
         (revert-buffer t t t))))
-  (org-publish-all))
-```
+  (org-publish-all)
+  (my-run-pagefind-indexer))
+  ```
