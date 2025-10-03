@@ -124,9 +124,9 @@ This is the `org-publish` configuration used to publish these notes:
          :with-toc t
          :html-preamble my-org-html-preamble
          :html-postamble my-org-html-postamble-with-search
-         :html-head "<link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>
-                      <link href=\"/pagefind/pagefind-ui.css\" rel=\"stylesheet\">
-                      <script src=\"/pagefind/pagefind-ui.js\"></script>"
+         :html-head "<link href=\"/pagefind/pagefind-ui.css\" rel=\"stylesheet\">
+                     <script src=\"/pagefind/pagefind-ui.js\"></script>
+                     <link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>"
          :html-head-include-default-style nil
          
          ;; Sitemap generation
@@ -149,9 +149,9 @@ This is the `org-publish` configuration used to publish these notes:
          :with-toc t
          :html-preamble my-org-html-preamble
          :html-postamble my-org-html-postamble-with-search
-         :html-head "<link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>
-                      <link href=\"/pagefind/pagefind-ui.css\" rel=\"stylesheet\">
-                      <script src=\"/pagefind/pagefind-ui.js\"></script>"
+         :html-head "<link href=\"/pagefind/pagefind-ui.css\" rel=\"stylesheet\">
+                     <script src=\"/pagefind/pagefind-ui.js\"></script>
+                     <link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>"
          :html-head-include-default-style nil)
 
         ("lnjng-static"

@@ -29,6 +29,15 @@
   --pink: #ea76cb;
   --flamingo: #dd7878;
   --rosewater: #dc8a78;
+
+  --pagefind-ui-primary: var(--blue);
+  --pagefind-ui-text: var(--text);
+  --pagefind-ui-background: var(--base);
+  --pagefind-ui-border: var(--surface1);
+  --pagefind-ui-tag: var(--mantle);
+  --pagefind-ui-border-width: 1px;
+  --pagefind-ui-border-radius: 6px;
+  --pagefind-ui-font: serif;
 }
 
 /* Base Styles */
@@ -326,17 +335,6 @@ img {
 }
 
 /* --- Pagefind Search Styling --- */
-:root {
-  /* Pagefind UI Theming - Catppuccin Latte */
-  --pagefind-ui-primary: var(--blue);
-  --pagefind-ui-text: var(--text);
-  --pagefind-ui-background: var(--base);
-  --pagefind-ui-border: var(--surface1);
-  --pagefind-ui-tag: var(--mantle);
-  --pagefind-ui-border-width: 1px;
-  --pagefind-ui-border-radius: 6px;
-  --pagefind-ui-font: serif;
-}
 
 /* Container for the search bar in the preamble */
 #search {
