@@ -3,12 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-02 Thu 13:40 -->
+<!-- 2025-10-06 Mon 10:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Iteration</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -79,7 +81,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Iteration</h1>
@@ -87,9 +89,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga4f15ae">1. Iterators</a>
+<li><a href="#orgb8efead">1. Iterators</a>
 <ul>
 <li><a href="#org1bc6a84">1.1. Built-In Functions</a></li>
+<li><a href="#org8cb5e79">1.2. Generators</a>
+<ul>
+<li><a href="#org8b76544">1.2.1. Yielding From Iterators</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#orga66ffc4">2. <code>while</code> Statements</a>
@@ -102,14 +109,14 @@
 <li><a href="#org63fa18b">3.1. Procedure for <code>for</code> Statements</a></li>
 <li><a href="#org2f81808">3.2. Sequence Unpacking</a></li>
 <li><a href="#org67bf298">3.3. Ranges</a></li>
-<li><a href="#org3c15489">3.4. Iterators</a></li>
+<li><a href="#org8c621dd">3.4. Iterators</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga4f15ae" class="outline-2">
-<h2 id="orga4f15ae"><span class="section-number-2">1.</span> Iterators</h2>
+<div id="outline-container-orgb8efead" class="outline-2">
+<h2 id="orgb8efead"><span class="section-number-2">1.</span> Iterators</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A container can provide an <b>iterator</b> that provides access to its elements in some order. Iterators are <a href="mutation.html#orgedfe0c4">mutable</a> values. The function <code>iter(&lt;iterable&gt;)</code> returns an iterator over the elements of an iterable value (such as any <a href="sequences.html#org6e57dfb">sequence</a>), and the function <code>next(&lt;iterator&gt;)</code> returns the next element in an iterator. For example:
@@ -176,6 +183,82 @@ More than two iterables can be passed to <code>zip</code>:
 <p>
 To view the contents of an iterator, we can place the resulting elements into a container using functions such as <code>list()</code>, <code>tuple()</code>, or <code>sorted()</code>.
 </p>
+</div>
+</div>
+<div id="outline-container-org8cb5e79" class="outline-3">
+<h3 id="org8cb5e79"><span class="section-number-3">1.2.</span> Generators</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+A <b>generator</b> is a special type of iterator that is returned with a <b>generator function</b>. Instead of returning a value, generator functions use the <code>yield</code> keyword to "yield" values as <code>next()</code> is called on the generator that it returns. Unlike normal functions which can only return one value, generator functions can yield multiple values in succession, like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">plus_minus</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">yield</span> x
+    <span class="org-keyword">yield</span> -x
+
+<span class="org-py-variable-name">t</span> <span class="org-operator">=</span> plus_minus<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">)</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">generator
+</span><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">3
+</span><span class="org-py-variable-name">b</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">-3</span>
+</pre>
+</div>
+
+<p>
+We can think of a generator function as <i>pausing execution</i> after each <code>yield</code>, such that it retains its state when it needs to yield the next value. Generators can be useful for lazy evaluation, supporting infinite sequences, and memory efficiency.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: List partitions
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to create a generator function <code>partitions(n, m)</code> that yields all of the unique ways we can partition <code>n</code> using numbers up to and including <code>m</code> using a string:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">partitions</span><span class="org-rainbow-delimiters-depth-1">(</span>n, m<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">if</span> n &gt; <span class="org-py-number">0</span> <span class="org-keyword">and</span> m &gt; <span class="org-py-number">0</span>:
+        <span class="org-keyword">if</span> n == m:
+            <span class="org-keyword">yield</span> <span class="org-py-builtins">str</span><span class="org-rainbow-delimiters-depth-1">(</span>m<span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-keyword">for</span> p <span class="org-keyword">in</span> partitions<span class="org-rainbow-delimiters-depth-1">(</span>n - m, m<span class="org-rainbow-delimiters-depth-1">)</span>:
+            <span class="org-keyword">yield</span> p + <span class="org-string">' + '</span> + <span class="org-py-builtins">str</span><span class="org-rainbow-delimiters-depth-1">(</span>m<span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-keyword">yield</span> <span class="org-py-import-from">from</span> partitions<span class="org-rainbow-delimiters-depth-1">(</span>n, m - <span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+<p>
+Here, using <code>yield</code> instead of returning all of the partitions at once means we can efficiently find part or just a few of the partitions without having to calculate all of them.
+</p>
+
+
+</details>
+</div>
+<div id="outline-container-org8b76544" class="outline-4">
+<h4 id="org8b76544"><span class="section-number-4">1.2.1.</span> Yielding From Iterators</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+A generator can also yield directly from another iterator by using the <code>yield from</code> syntax:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">a_then_b</span><span class="org-rainbow-delimiters-depth-1">(</span>a, b<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">yield</span> <span class="org-py-import-from">from</span> a
+    <span class="org-keyword">yield</span> <span class="org-py-import-from">from</span> b
+
+<span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span>a_then_b<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">5</span>, <span class="org-py-number">6</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">[3, 4, 5, 6]</span>
+</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -295,8 +378,8 @@ Since <a href="sequences.html#orgf9b62eb">ranges</a> are an iterable value, we c
 </div>
 </div>
 </div>
-<div id="outline-container-org3c15489" class="outline-3">
-<h3 id="org3c15489"><span class="section-number-3">3.4.</span> Iterators</h3>
+<div id="outline-container-org8c621dd" class="outline-3">
+<h3 id="org8c621dd"><span class="section-number-3">3.4.</span> Iterators</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 We can also use iterators in a for statement. However, it is important to note that the for statement will advance the iterator, which means you cannot use values that were already processed again.
@@ -310,8 +393,16 @@ We can also use iterators in a for statement. However, it is important to note t
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-02 13:35
-             </div>
+               Last modified: 2025-10-06 10:38
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

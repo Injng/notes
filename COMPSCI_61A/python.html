@@ -3,12 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-02 Thu 16:06 -->
+<!-- 2025-10-06 Mon 10:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -79,7 +81,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Python</h1>
@@ -132,6 +134,7 @@
 <li><a href="#orga6cec49">6.1. Iterators</a>
 <ul>
 <li><a href="#org5c0fc57">6.1.1. Built-In Functions</a></li>
+<li><a href="#orga6bdb7b">6.1.2. Generators</a></li>
 </ul>
 </li>
 <li><a href="#org6939d85">6.2. <code>while</code></a></li>
@@ -520,7 +523,7 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
 <div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-orga6cec49" class="outline-3">
-<h3 id="orga6cec49"><span class="section-number-3">6.1.</span> <a href="iteration.html#org3c15489">Iterators</a></h3>
+<h3 id="orga6cec49"><span class="section-number-3">6.1.</span> <a href="iteration.html#orgbd9498f">Iterators</a></h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">s</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">]</span>
@@ -538,6 +541,27 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
 </span><span class="org-py-builtins">filter</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;func&gt;, &lt;iterable&gt;<span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over x in iterable if func(x)
 </span><span class="org-py-builtins">zip</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;first_iter&gt;, &lt;second_iter&gt;<span class="org-rainbow-delimiters-depth-1">)</span>    <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over co-indexed (x, y) pairs
 </span><span class="org-py-builtins">reversed</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;sequence&gt;<span class="org-rainbow-delimiters-depth-1">)</span>                <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over x in a sequence in reverse order</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga6bdb7b" class="outline-4">
+<h4 id="orga6bdb7b"><span class="section-number-4">6.1.2.</span> <a href="iteration.html#org8cb5e79">Generators</a></h4>
+<div class="outline-text-4" id="text-6-1-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">plus_minus</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">yield</span> x
+    <span class="org-keyword">yield</span> -x
+
+<span class="org-py-variable-name">t</span> <span class="org-operator">=</span> plus_minus<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">)</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">generator
+</span><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">3
+</span><span class="org-py-variable-name">b</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">-3
+</span>
+<span class="org-py-def-class">def</span> <span class="org-py-def">a_then_b</span><span class="org-rainbow-delimiters-depth-1">(</span>a, b<span class="org-rainbow-delimiters-depth-1">)</span>:
+    <span class="org-keyword">yield</span> <span class="org-py-import-from">from</span> a
+    <span class="org-keyword">yield</span> <span class="org-py-import-from">from</span> b
+
+<span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span>a_then_b<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">5</span>, <span class="org-py-number">6</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">[3, 4, 5, 6]</span>
 </pre>
 </div>
 </div>
@@ -612,8 +636,16 @@ Python will not <i>enforce</i> the type hints, but it will warn you of any incon
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-02 16:05
-             </div>
+               Last modified: 2025-10-06 10:25
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>
