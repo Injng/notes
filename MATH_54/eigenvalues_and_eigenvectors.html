@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-10-06 Mon 10:04 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Eigenvalues and Eigenvectors</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Eigenvalues and Eigenvectors</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgfc06d50">1. Eigenvalues and Eigenvectors</a>
+<ul>
+<li><a href="#orga50d358">1.1. Checking Eigenvalues</a></li>
+<li><a href="#org1278dcd">1.2. Finding Eigenvalues</a></li>
+<li><a href="#org94a3ae2">1.3. Properties of Eigenvalues and Eigenvectors</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfc06d50" class="outline-2">
+<h2 id="orgfc06d50"><span class="section-number-2">1.</span> Eigenvalues and Eigenvectors</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Say \(A\) is some \(n \times n\) matrix. For most vectors \(\mathbf{x}\), the product \(A\mathbf{x}\) will result in a <i>change of direction</i> — in other words, the resulting product is not in the same direction (i.e. on the same line) as \(\mathbf{x}\). However, certain exceptional vectors, called the <b>eigenvectors</b>, <i>are</i> in the same direction as \(\mathbf{x}\). Thus we can write the following equation:
+</p>
+
+\begin{align}
+A\mathbf{x} = \lambda \mathbf{x} \notag
+\end{align}
+
+<p>
+where \(\lambda\) is an <b>eigenvalue</b> of \(A\).
+</p>
+
+<p>
+This equation isn't in a very useful form. Instead, we can write it as the following <a href="linear_systems.html#org9b821d1">homogeneous system</a>:
+</p>
+
+\begin{align}
+\boxed{(A - \lambda I)\mathbf{x} = 0}
+\end{align}
+
+<p>
+This gives us a new way to look at eigenvalues and eigenvectors. The question is, does this system have a <i>nontrivial nullspace</i>? If so, then that space is called the <b>eigenspace</b> of some \(\lambda\), and all nonzero vectors in that eigenspace are the eigenvectors of \(\lambda\).
+</p>
+</div>
+<div id="outline-container-orga50d358" class="outline-3">
+<h3 id="orga50d358"><span class="section-number-3">1.1.</span> Checking Eigenvalues</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+To check if some \(\lambda\) is an eigenvalue of \(A\), we can check if the system defined by (1) has any nontrivial solutions. This can be done either through row reduction of \(A - \lambda I\) or checking if the determinant of \(A - \lambda I\) is equal to zero.
+</p>
+</div>
+</div>
+<div id="outline-container-org1278dcd" class="outline-3">
+<h3 id="org1278dcd"><span class="section-number-3">1.2.</span> Finding Eigenvalues</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The condition for an eigenvalue is that the system defined by (1) must have nontrivial solutions: in other words, it cannot be invertible. Therefore, we can say that the determinant of the matrix is zero:
+</p>
+
+\begin{align}
+\det (A-\lambda I) = 0
+\end{align}
+
+<p>
+This is known as the <b>characteristic equation</b>, with \(\det (A-\lambda I)\) the <b>characteristic polynomial</b>. To find eigenvalues \(\lambda\), we would solve the characteristic equation for \(\lambda\).
+</p>
+</div>
+</div>
+<div id="outline-container-org94a3ae2" class="outline-3">
+<h3 id="org94a3ae2"><span class="section-number-3">1.3.</span> Properties of Eigenvalues and Eigenvectors</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+If the set \({ v_1, v_2, \dots, v_p, v_{p+1} }\) are eigenvectors of \(A\) each corresponding to a <i>different eigenvalue</i>, then that set of vectors is linearly independent.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-10-06 10:04
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
