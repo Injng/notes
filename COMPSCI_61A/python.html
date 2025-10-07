@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-06 Mon 10:25 -->
+<!-- 2025-10-07 Tue 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -143,6 +143,7 @@
 </li>
 <li><a href="#orgc2c8dd7">7. Assert</a></li>
 <li><a href="#orgb5d7b31">8. Type Hints</a></li>
+<li><a href="#org2652000">9. Classes</a></li>
 </ul>
 </div>
 </div>
@@ -523,7 +524,7 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
 <div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-orga6cec49" class="outline-3">
-<h3 id="orga6cec49"><span class="section-number-3">6.1.</span> <a href="iteration.html#orgbd9498f">Iterators</a></h3>
+<h3 id="orga6cec49"><span class="section-number-3">6.1.</span> <a href="iteration.html#org8c621dd">Iterators</a></h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">s</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">]</span>
@@ -630,13 +631,40 @@ Python will not <i>enforce</i> the type hints, but it will warn you of any incon
 </p>
 </div>
 </div>
+<div id="outline-container-org2652000" class="outline-2">
+<h2 id="org2652000"><span class="section-number-2">9.</span> <a href="objects.html#orgfaa49bc">Classes</a></h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Account</span>:
+    <span class="org-py-def-class">def</span> <span class="org-py-def">__init__</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, account_holder<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">holder</span> <span class="org-operator">=</span> account_holder
+
+    <span class="org-py-def-class">def</span> <span class="org-py-def">deposit</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-object-reference">self</span>.balance + amount
+        <span class="org-keyword">return</span> <span class="org-py-object-reference">self</span>.balance
+
+    <span class="org-py-def-class">def</span> <span class="org-py-def">withdraw</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-keyword">if</span> amount &gt; <span class="org-py-object-reference">self</span>.balance:
+            <span class="org-keyword">return</span> <span class="org-string">'Insufficient funds'</span>
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-object-reference">self</span>.balance - amount
+        <span class="org-keyword">return</span> <span class="org-py-object-reference">self</span>.balance
+
+<span class="org-py-variable-name">a</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'John'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-py-variable-name">b</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Jack'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-keyword">assert</span> a <span class="org-keyword">is</span> <span class="org-keyword">not</span> b
+a.deposit<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">100</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-06 10:25
+               Last modified: 2025-10-07 13:31
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

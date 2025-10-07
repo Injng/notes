@@ -3,12 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-30 Tue 21:54 -->
+<!-- 2025-10-07 Tue 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Objects</title>
+<title>Objects and Classes</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -79,15 +81,23 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Objects</h1>
+<h1 class="title">Objects and Classes</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org637f3f4">1. Objects</a></li>
+<li><a href="#org1de3eeb">2. Object-Oriented Programming</a></li>
+<li><a href="#orgfaa49bc">3. Classes</a>
+<ul>
+<li><a href="#org70bd465">3.1. Object Construction</a></li>
+<li><a href="#org20119e6">3.2. Object Identity</a></li>
+<li><a href="#org4a1b04c">3.3. Methods</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -117,14 +127,113 @@ This kind of behavior underpins <b>object-oriented programming</b>, which is a w
 </p>
 </div>
 </div>
+<div id="outline-container-org1de3eeb" class="outline-2">
+<h2 id="org1de3eeb"><span class="section-number-2">2.</span> Object-Oriented Programming</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Object-oriented programming</b> is a method for organizing programs that emphasizes data abstraction and bundles together information and related behavior. It operates using a metaphor for computation:
+</p>
+
+<ul class="org-ul">
+<li>Each object has and manages its own local state</li>
+<li>You can interact with an object using its <b>methods</b></li>
+<li>Several objects may all be instances of a common <b>class</b></li>
+<li>Different classes may relate to each other</li>
+</ul>
+
+<p>
+A <b>class</b> defines how objects of a particular type behave. An <b>object</b> is an instance of a class, with the class as its type. A <b>method</b> is a function called on an object using a dot expression, such as <code>.append()</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfaa49bc" class="outline-2">
+<h2 id="orgfaa49bc"><span class="section-number-2">3.</span> Classes</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A <b>class</b> describes the behavior of its instances. We can create classes using class statements, like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Account</span>:
+    <span class="org-py-def-class">def</span> <span class="org-py-def">__init__</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, account_holder<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">holder</span> <span class="org-operator">=</span> account_holder
+
+    <span class="org-py-def-class">def</span> <span class="org-py-def">deposit</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-object-reference">self</span>.balance + amount
+        <span class="org-keyword">return</span> <span class="org-py-object-reference">self</span>.balance
+
+    <span class="org-py-def-class">def</span> <span class="org-py-def">withdraw</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount<span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-keyword">if</span> amount &gt; <span class="org-py-object-reference">self</span>.balance:
+            <span class="org-keyword">return</span> <span class="org-string">'Insufficient funds'</span>
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-object-reference">self</span>.balance - amount
+        <span class="org-keyword">return</span> <span class="org-py-object-reference">self</span>.balance
+</pre>
+</div>
+
+<p>
+The <code>__init__</code> method is a special method for the function that constructs an instance for that class. <code>deposit</code> is an example of a method for the <code>Account</code> class: notice that it contains <code>self</code> as a parameter, which gives us access to the instance of the class on which the method was invoked.
+</p>
+</div>
+<div id="outline-container-org70bd465" class="outline-3">
+<h3 id="org70bd465"><span class="section-number-3">3.1.</span> Object Construction</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+To create an instance of a class, we use a <b>constructor</b>. The <code>__init__</code> method defines the constructor of the class, like so:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Alan'</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">instance of the class Account</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org20119e6" class="outline-3">
+<h3 id="org20119e6"><span class="section-number-3">3.2.</span> Object Identity</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Every object that is an instance of a user-defined class has a unique identity. In other words:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'John'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-py-variable-name">b</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Jack'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-keyword">assert</span> a <span class="org-keyword">is</span> <span class="org-keyword">not</span> b
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4a1b04c" class="outline-3">
+<h3 id="org4a1b04c"><span class="section-number-3">3.3.</span> Methods</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+All invoked methods have access to the object via the <code>self</code> parameter, and so they can all access and manipulate the object's attributes. When using methods, however, the dot notation automatically supplies the first argument, the instance of the class, to the method:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">tom</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Tom'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+tom.deposit<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">100</span><span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-30 13:20
-             </div>
+               Last modified: 2025-10-07 13:29
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>
