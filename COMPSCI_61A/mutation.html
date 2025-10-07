@@ -3,12 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-30 Tue 21:57 -->
+<!-- 2025-10-07 Tue 15:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mutation</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -79,7 +81,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Mutation</h1>
@@ -116,7 +118,7 @@ In this way, if we have two variables pointing to the same mutable data type, li
 <h3 id="org9601dc1"><span class="section-number-3">1.1.</span> Identity Operators</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-We can use the <code>is</code> operator to check if two varaibles have the same identity, i.e. they evaluate to the same object: <code>&lt;exp0&gt; is &lt;exp1&gt;</code>.
+We can use the <code>is</code> operator to check if two variables have the same identity, i.e. they evaluate to the same object: <code>&lt;exp0&gt; is &lt;exp1&gt;</code>.
 </p>
 
 <p>
@@ -170,8 +172,16 @@ We can use mutable values to keep track of a persistent local state. To do so, w
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-30 21:57
-             </div>
+               Last modified: 2025-10-07 15:52
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>
