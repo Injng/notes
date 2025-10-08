@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-08 Wed 10:26 -->
+<!-- 2025-10-08 Wed 10:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matrix Similarity</title>
@@ -134,7 +134,7 @@
 <h2 id="org10c6629"><span class="section-number-2">1.</span> Matrix Similarity</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-We call two \(n \times n\) matrices <b>similar</b> if there exists an invertible matrix \(P\) such that:
+We call two \(n \times n\) matrices <b>similar</b> if there exists an <a href="inverse_matrices.html#org89e4c66">invertible matrix</a> \(P\) such that:
 </p>
 
 \begin{align}
@@ -142,7 +142,7 @@ A = PBP^{-1}
 \end{align}
 
 <p>
-Two similar matrices will always have the same characteristic equation, and therefore the same eigenvalues. This can be seen like so:
+Two similar matrices will always have the same <a href="eigenvalues_and_eigenvectors.html#org1278dcd">characteristic equation</a>, and therefore the same <a href="eigenvalues_and_eigenvectors.html#orgfc06d50">eigenvalues</a>. This can be seen like so:
 </p>
 
 \begin{align}
@@ -153,7 +153,7 @@ A - \lambda I &= P(B - \lambda I)P^{-1} \notag \\
 \end{align}
 
 <p>
-Taking the determinant on both sides and simplifying, we get:
+Taking the <a href="determinants.html#org5d83c27">determinant</a> on both sides and simplifying, we get:
 </p>
 
 \begin{align}
@@ -185,7 +185,7 @@ A^k &= (PBP^{-1})^k \notag \\
 <h2 id="org18184bb"><span class="section-number-2">2.</span> Diagonalization</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-If two matrices are similar and one of them is a diagonal matrix, then we call the matrix <b>diagonalizable</b>. To understand when a matrix \(A\) is diagonalizable, consider the matrix \(X\) formed with its columns as eigenvectors of \(A\), and \(\Lambda\) the diagonal matrix with eigenvalues of \(A\) as its diagonal entries. Then:
+If two matrices are similar and one of them is a diagonal matrix, then we call the matrix <b>diagonalizable</b>. To understand when a matrix \(A\) is diagonalizable, consider the matrix \(X\) formed with its columns as <a href="eigenvalues_and_eigenvectors.html#orgfc06d50">eigenvectors</a> of \(A\), and \(\Lambda\) the diagonal matrix with eigenvalues of \(A\) as its diagonal entries. Then:
 </p>
 
 \begin{align}
@@ -211,7 +211,7 @@ Since \(X\) is formed out of the eigenvectors of \(A\), and \(X\) has to be inve
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-08 10:26
+               Last modified: 2025-10-08 10:33
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
