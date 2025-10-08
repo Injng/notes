@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-10-08 Wed 10:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Matrix Similarity</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Matrix Similarity</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org10c6629">1. Matrix Similarity</a>
+<ul>
+<li><a href="#org5c34480">1.1. Matrix Powers</a></li>
+</ul>
+</li>
+<li><a href="#org18184bb">2. Diagonalization</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org10c6629" class="outline-2">
+<h2 id="org10c6629"><span class="section-number-2">1.</span> Matrix Similarity</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We call two \(n \times n\) matrices <b>similar</b> if there exists an invertible matrix \(P\) such that:
+</p>
+
+\begin{align}
+A = PBP^{-1}
+\end{align}
+
+<p>
+Two similar matrices will always have the same characteristic equation, and therefore the same eigenvalues. This can be seen like so:
+</p>
+
+\begin{align}
+A &= PBP^{-1} \notag \\
+A - \lambda I &= PBP^{-1} - \lambda I \notag \\
+A - \lambda I &= PBP^{-1} - \lambda P P^{-1} \notag \\
+A - \lambda I &= P(B - \lambda I)P^{-1} \notag \\
+\end{align}
+
+<p>
+Taking the determinant on both sides and simplifying, we get:
+</p>
+
+\begin{align}
+\det (A - \lambda I) &= \det (P(B-\lambda I)P^{-1}) \notag \\
+\det (A - \lambda I) &= \det (PP^{-1}) \det (B - \lambda I) \notag \\
+\det (a - \lambda I) &= \det (B - \lambda I) \notag
+\end{align}
+
+<p>
+Thus, \(A\) and \(B\) must have the same characteristic polynomial. Note that this doesn't mean that two matrices with the same characteristic polynomial are guaranteed to be similar. For example, the two matrices \(\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix}\) and \(\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\) have the same eigenvalues, but they are not similar.
+</p>
+</div>
+<div id="outline-container-org5c34480" class="outline-3">
+<h3 id="org5c34480"><span class="section-number-3">1.1.</span> Matrix Powers</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Similar matrices can be helpful in computing powers of matrices. Consider the k-th power of a matrix \(A\):
+</p>
+
+\begin{align}
+A^k &= (PBP^{-1})^k \notag \\
+&= (PBP^{-1})(PBP^{-1}) \cdots (PBP^{-1}) \notag \\
+&= PB^kP^{-1} \notag
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org18184bb" class="outline-2">
+<h2 id="org18184bb"><span class="section-number-2">2.</span> Diagonalization</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+If two matrices are similar and one of them is a diagonal matrix, then we call the matrix <b>diagonalizable</b>. To understand when a matrix \(A\) is diagonalizable, consider the matrix \(X\) formed with its columns as eigenvectors of \(A\), and \(\Lambda\) the diagonal matrix with eigenvalues of \(A\) as its diagonal entries. Then:
+</p>
+
+\begin{align}
+AX = \begin{bmatrix} \\ A\textbf{x}_1 & \cdots & A\textbf{x}_n \\ \: \end{bmatrix} = \begin{bmatrix} \\ \lambda_1 \textbf{x}_1 & \cdots & \lambda_n \textbf{x}_n \\ \: \end{bmatrix} = \begin{bmatrix} \\ \textbf{x}_1 & \cdots & \textbf{x}_n \\ \: \end{bmatrix} \begin{bmatrix} \lambda_1 \\  & \ddots \\  & & \lambda_n \end{bmatrix} = X \Lambda \notag
+\end{align}
+
+<p>
+Thus, if \(AX = X\Lambda\), then a diagonalization of \(A\) is:
+</p>
+
+\begin{align}
+\boxed{A = X \Lambda X^{-1}}
+\end{align}
+
+<p>
+Since \(X\) is formed out of the eigenvectors of \(A\), and \(X\) has to be invertible, then the condition for this diagonalization to exist must be that <i>there has to exist \(n\) linearly independent eigenvectors</i> for an \(n \times n\) matrix \(A\).
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-10-08 10:15
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
