@@ -3,12 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-03 Fri 11:09 -->
+<!-- 2025-10-08 Wed 17:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Universal Gravitation</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -111,7 +113,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Universal Gravitation</h1>
@@ -119,9 +121,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga4ce11b">1. Law of Universal Gravitation</a></li>
-<li><a href="#org24484e7">2. Gravitational Field</a></li>
-<li><a href="#orgab804d1">3. Circular Orbit</a></li>
+<li><a href="#orga4ce11b">1. Law of Universal Gravitation</a>
+<ul>
+<li><a href="#org24484e7">1.1. Gravitational Field</a></li>
+<li><a href="#org6e8f247">1.2. Potential Energy</a></li>
+</ul>
+</li>
+<li><a href="#org995ddca">2. Satellite Orbit</a>
+<ul>
+<li><a href="#orgab804d1">2.1. Circular Orbit</a></li>
+<li><a href="#orgfcc7887">2.2. Escape Speed</a></li>
+<li><a href="#orgd6cbcde">2.3. Throwing Objects</a></li>
+<li><a href="#orgeedb314">2.4. Apparent Weightlessness</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -141,7 +154,7 @@ where \(\hat{r}_{12}\) points from \(m_1\) to \(m_2\), and thus the force points
 </p>
 
 
-<div id="orgb75371e" class="figure">
+<div id="orgd99cf7f" class="figure">
 <p><img src="../static/PHYSICS_7A/universal_gravitation1.png" alt="universal_gravitation1.png" />
 </p>
 </div>
@@ -150,10 +163,9 @@ where \(\hat{r}_{12}\) points from \(m_1\) to \(m_2\), and thus the force points
 Realize that gravitational force is <i>always attractive</i> because mass is always positive. By convention, \(\hat{r}\) always points from the attractor to the test mass. By <a href="newtons_laws.html#org87b2871">Newton's 3rd Law</a>, we also have a 3rd Law pair since \(\vec{F}_{G_{1 \to 2}} = -\vec{F}_{G_{2 \to 1}}\).
 </p>
 </div>
-</div>
-<div id="outline-container-org24484e7" class="outline-2">
-<h2 id="org24484e7"><span class="section-number-2">2.</span> Gravitational Field</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org24484e7" class="outline-3">
+<h3 id="org24484e7"><span class="section-number-3">1.1.</span> Gravitational Field</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 The existence of some interaction without physical contact implies the existence of some quantity in space that mediates the gravitational interaction. This quantity can be defined as the <b>gravitational field</b>, which is the force of gravity from an attractor of mass \(M\) to a "test mass" of <i>unit mass</i>:
 </p>
@@ -163,15 +175,50 @@ The existence of some interaction without physical contact implies the existence
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgab804d1" class="outline-2">
-<h2 id="orgab804d1"><span class="section-number-2">3.</span> Circular Orbit</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org6e8f247" class="outline-3">
+<h3 id="org6e8f247"><span class="section-number-3">1.2.</span> Potential Energy</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+In the context of universal gravitation, our calculations for <a href="work_and_energy.html#org509ffba">gravitational potential energy</a> no longer apply. We can recalculate using the law of universal gravitation for our force:
+</p>
+
+\begin{align}
+\Delta U_G &= -\int_A^B \vec{F}_G \cdot \text{d}\vec{r} \notag \\
+&= -\int_A^B - \frac{GMm}{r^2} \hat{r} \cdot \text{d}\vec{r} \notag
+\end{align}
+
+<p>
+Since \(\hat{r} \cdot \text{d}\vec{r}\) is just the <a href="../Multivariable_Calculus/vectors.html#orgecdabaf">projection</a> of \(\text{d}\vec{r}\) in the radial direction, so we can just call \(\hat{r} \cdot \text{d}\vec{r} = \text{d}r\) just the change in the radial direction:
+</p>
+
+\begin{align}
+\Delta U_G &= -GMm \int_A^B - \frac{\text{d}r}{r^2} \notag \\
+&= -GMm\left ( \frac{1}{r_B} - \frac{1}{r_A} \right ) \notag
+\end{align}
+
+<p>
+The gravitational potential energy \(U_G\) is defined with reference to some zero point. By convention, we set the zero reference point for potential energy at any particular point to be infinity (i.e. \(U_G(\infty) = 0\)), thus:
+</p>
+
+\begin{align}
+\boxed{U_G(r) = -\frac{GMm}{r}}
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org995ddca" class="outline-2">
+<h2 id="org995ddca"><span class="section-number-2">2.</span> Satellite Orbit</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgab804d1" class="outline-3">
+<h3 id="orgab804d1"><span class="section-number-3">2.1.</span> Circular Orbit</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 Consider a mass \(m\) orbiting an attractor with mass \(M\):
 </p>
 
 
-<div id="orgf969be0" class="figure">
+<div id="org0ca01a3" class="figure">
 <p><img src="../static/PHYSICS_7A/universal_gravitation2.png" alt="universal_gravitation2.png" />
 </p>
 </div>
@@ -207,6 +254,125 @@ We can also find the <b>period</b>, the time required to complete one full revol
 \begin{align}
 T = \frac{2\pi r}{v_{\text{orb}}} = \frac{2\pi}{\omega_{\text{orb}}}
 \end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Geostationary satellite
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to calculate how high a satellite must orbit the Earth in order for it to remain above the same point. For this to occur, it must have the same time period as Earth about its own axis. Thus, we can write:
+</p>
+
+\begin{align}
+T &= \frac{2 \pi r^{\frac{3}{2}}}{\sqrt{GM_E}} \notag \\
+r &= \left ( \frac{T \sqrt{GM_E}}{2\pi} \right ) ^{\frac{2}{3}} \notag
+\end{align}
+
+<p>
+Therefore, the altitude of the orbiting satellite is this radius minus the radius of the earth, \(R_E\):
+</p>
+
+\begin{align}
+H = r - R_E \approx 35800 \text{ km} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgfcc7887" class="outline-3">
+<h3 id="orgfcc7887"><span class="section-number-3">2.2.</span> Escape Speed</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+There is a particular speed, called the <b>escape speed</b>, such that an object would leave the orbit of another object. Consider the total mechanical energy of an object in orbit:
+</p>
+
+\begin{align}
+E &= U_G + K \notag \\
+ &= -\frac{GMm}{r} + \frac{1}{2}mv^2 \notag
+\end{align}
+
+<p>
+In celestial mechanics, the total mechanical energy determines the type of orbit:
+</p>
+
+<ol class="org-ol">
+<li>\(E < 0\): <b>closed orbit</b></li>
+<li>\(E = 0\): <b>open orbit</b>, parabolic</li>
+<li>\(E > 0\): <b>open orbit</b>, hyperbolic</li>
+</ol>
+
+
+<div id="orgef8fdcb" class="figure">
+<p><img src="../static/PHYSICS_7A/universal_gravitation3.png" alt="universal_gravitation3.png" />
+</p>
+</div>
+
+<p>
+The critical point is when \(E = 0\):
+</p>
+
+\begin{align}
+E &= 0 \notag \\
+\frac{1}{2} m v^2_{\text{esc}} &= \frac{GMm}{r} \notag \\
+\end{align}
+
+<p>
+Thus, the escape speed is:
+</p>
+
+\begin{align}
+\boxed{v_{\text{esc}} = \sqrt{\frac{2GM}{r}}}
+\end{align}
+
+<p>
+We can then say that if \(v < v_{\text{esc}}\), then we have a closed orbit, otherwise if \(v \geq v_{\text{esc}}\), then we have an open orbit.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd6cbcde" class="outline-3">
+<h3 id="orgd6cbcde"><span class="section-number-3">2.3.</span> Throwing Objects</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+A natural question concerning orbits is, why doesn't an object thrown an Earth enter an orbit? And why isn't the path of the object as described in <a href="kinematics.html#org38bb19a">kinematics</a> elliptical?
+</p>
+
+<p>
+A ball thrown in the air does not go into orbit because the Earth is not a <i>point mass</i>:
+</p>
+
+
+<div id="orgcf2a90c" class="figure">
+<p><img src="../static/PHYSICS_7A/universal_gravitation4.png" alt="universal_gravitation4.png" />
+</p>
+</div>
+
+<p>
+When we throw an object, it doesn't orbit the Earth because the Earth's radius intercepts the orbit and stops it. Additionally, the previously described parabolic trajectory is only an <i>approximation</i> of the elliptical path it would take if it were in orbit.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeedb314" class="outline-3">
+<h3 id="orgeedb314"><span class="section-number-3">2.4.</span> Apparent Weightlessness</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+"True" weightlessness would require gravitational field to be zero, which doesn't exist. Instead, weightlessness felt by astronauts in orbit is a type of <i>apparent weightlessness</i>. Apparent weightlessness occurs when you feel no response from your surroundings; in other words, the <i>normal force is zero</i>. 
+</p>
+
+<p>
+This occurs when both you and your surroundings are in free fall at the same time. This is the scenario for astronauts in spacecraft feeling weightlessness in outer space: both the spacecraft and astronaut are in free fall around the Earth.
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -215,8 +381,16 @@ T = \frac{2\pi r}{v_{\text{orb}}} = \frac{2\pi}{\omega_{\text{orb}}}
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-03 11:08
-             </div>
+               Last modified: 2025-10-08 17:47
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>
