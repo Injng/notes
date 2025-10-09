@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-07 Tue 13:31 -->
+<!-- 2025-10-09 Thu 14:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Objects and Classes</title>
@@ -89,13 +89,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org637f3f4">1. Objects</a></li>
-<li><a href="#org1de3eeb">2. Object-Oriented Programming</a></li>
-<li><a href="#orgfaa49bc">3. Classes</a>
+<li><a href="#org637f3f4">1. Objects</a>
 <ul>
-<li><a href="#org70bd465">3.1. Object Construction</a></li>
-<li><a href="#org20119e6">3.2. Object Identity</a></li>
-<li><a href="#org4a1b04c">3.3. Methods</a></li>
+<li><a href="#org1de3eeb">1.1. Object-Oriented Programming</a></li>
+</ul>
+</li>
+<li><a href="#orgfaa49bc">2. Classes</a>
+<ul>
+<li><a href="#org70bd465">2.1. Object Construction</a></li>
+<li><a href="#org20119e6">2.2. Object Identity</a></li>
+<li><a href="#org2342f69">2.3. Attributes</a>
+<ul>
+<li><a href="#org18a30b7">2.3.1. Attribute Lookup</a></li>
+<li><a href="#org0b9202d">2.3.2. Attribute Assignment</a></li>
+</ul>
+</li>
+<li><a href="#org4a1b04c">2.4. Methods</a>
+<ul>
+<li><a href="#orgdb161c6">2.4.1. Method Calls</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -126,10 +139,9 @@ Objects can have <b>attributes</b> that are bound to values, which can be access
 This kind of behavior underpins <b>object-oriented programming</b>, which is a way for organizing large programs around the interaction of objects. In Python, every value is an object.
 </p>
 </div>
-</div>
-<div id="outline-container-org1de3eeb" class="outline-2">
-<h2 id="org1de3eeb"><span class="section-number-2">2.</span> Object-Oriented Programming</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org1de3eeb" class="outline-3">
+<h3 id="org1de3eeb"><span class="section-number-3">1.1.</span> Object-Oriented Programming</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 <b>Object-oriented programming</b> is a method for organizing programs that emphasizes data abstraction and bundles together information and related behavior. It operates using a metaphor for computation:
 </p>
@@ -146,9 +158,10 @@ A <b>class</b> defines how objects of a particular type behave. An <b>object</b>
 </p>
 </div>
 </div>
+</div>
 <div id="outline-container-orgfaa49bc" class="outline-2">
-<h2 id="orgfaa49bc"><span class="section-number-2">3.</span> Classes</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgfaa49bc"><span class="section-number-2">2.</span> Classes</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 A <b>class</b> describes the behavior of its instances. We can create classes using class statements, like so:
 </p>
@@ -176,8 +189,8 @@ The <code>__init__</code> method is a special method for the function that const
 </p>
 </div>
 <div id="outline-container-org70bd465" class="outline-3">
-<h3 id="org70bd465"><span class="section-number-3">3.1.</span> Object Construction</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org70bd465"><span class="section-number-3">2.1.</span> Object Construction</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 To create an instance of a class, we use a <b>constructor</b>. The <code>__init__</code> method defines the constructor of the class, like so:
 </p>
@@ -189,8 +202,8 @@ To create an instance of a class, we use a <b>constructor</b>. The <code>__init_
 </div>
 </div>
 <div id="outline-container-org20119e6" class="outline-3">
-<h3 id="org20119e6"><span class="section-number-3">3.2.</span> Object Identity</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org20119e6"><span class="section-number-3">2.2.</span> Object Identity</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 Every object that is an instance of a user-defined class has a unique identity. In other words:
 </p>
@@ -203,17 +216,90 @@ Every object that is an instance of a user-defined class has a unique identity. 
 </div>
 </div>
 </div>
-<div id="outline-container-org4a1b04c" class="outline-3">
-<h3 id="org4a1b04c"><span class="section-number-3">3.3.</span> Methods</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org2342f69" class="outline-3">
+<h3 id="org2342f69"><span class="section-number-3">2.3.</span> Attributes</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
-All invoked methods have access to the object via the <code>self</code> parameter, and so they can all access and manipulate the object's attributes. When using methods, however, the dot notation automatically supplies the first argument, the instance of the class, to the method:
+Both instances and classes have <b>attributes</b>, which store variables within the object. Attributes defined by an instance are local <i>only to that instance</i>, whereas <b>class attributes</b> are shared across all instances of a class because they are attributes of the class, not the instance:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Account</span>:
+    <span class="org-py-variable-name">interest</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>.<span class="org-py-number">02</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">A class attribute</span>
+</pre>
+</div>
+</div>
+<div id="outline-container-org18a30b7" class="outline-4">
+<h4 id="org18a30b7"><span class="section-number-4">2.3.1.</span> Attribute Lookup</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+Attributes can be looked up by dot expressions of the form <code>&lt;expression&gt;.&lt;name&gt;</code>. To evaluate a dot expression:
+</p>
+
+<ol class="org-ol">
+<li>Evaluate the <code>&lt;expression&gt;</code>, which yields the object of the dot expression.</li>
+<li><code>&lt;name&gt;</code> is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned.</li>
+<li>If not, <code>&lt;name&gt;</code> is looked up in the class, which yields a class attribute value.</li>
+<li>That value is returned unless it is a function, in which case a bound method is returned instead.</li>
+</ol>
+
+<p>
+In addition to dot expressions, the function <code>getattr(&lt;object&gt;, &lt;name&gt;)</code> can get the attribute <code>&lt;name&gt;</code> within an <code>&lt;object&gt;</code>, and the function <code>hasattr(&lt;object&gt;, &lt;name&gt;)</code> returns a boolean for whether an attribute exists in an object.
+</p>
+</div>
+</div>
+<div id="outline-container-org0b9202d" class="outline-4">
+<h4 id="org0b9202d"><span class="section-number-4">2.3.2.</span> Attribute Assignment</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+<a href="assignment.html#orgd518ffe">Assignment statements</a> with a dot expression on their left-hand side are attribute assignments. If the object is an instance, then the assignment sets an instance attribute. if the object is a class, then the assignment sets a class attribute:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">tom</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Tom'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+tom.<span class="org-py-variable-name">interest</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>.<span class="org-py-number">08</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4a1b04c" class="outline-3">
+<h3 id="org4a1b04c"><span class="section-number-3">2.4.</span> Methods</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Python distinguishes between <a href="functions.html#orgd154346">functions</a>, and <b>bound methods</b>, which couple together a function and the object on which that method will be invoked. A function defined in a class is a normal function, but calling that function on an instance would result in a bound method:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">tom</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Tom'</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<span class="org-py-variable-name">func</span> <span class="org-operator">=</span> <span class="org-py-builtins">type</span><span class="org-rainbow-delimiters-depth-1">(</span>Account.deposit<span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">&lt;class 'function'&gt;
+</span><span class="org-py-variable-name">method</span> <span class="org-operator">=</span> <span class="org-py-builtins">type</span><span class="org-rainbow-delimiters-depth-1">(</span>tom.deposit<span class="org-rainbow-delimiters-depth-1">)</span>            <span class="org-comment-delimiter"># </span><span class="org-comment">&lt;class 'method'&gt;</span>
+</pre>
+</div>
+
+<p>
+The main difference comes in calling a function versus calling a method. All invoked methods have access to the object via the <code>self</code> parameter, and so they can all access and manipulate the object's attributes. When using methods, however, the dot notation automatically supplies the first argument, the instance of the class, to the method:
 </p>
 
 <div class="org-src-container">
 <pre class="src src-python"><span class="org-py-variable-name">tom</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Tom'</span><span class="org-rainbow-delimiters-depth-1">)</span>
 tom.deposit<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">100</span><span class="org-rainbow-delimiters-depth-1">)</span>
+Account.deposit<span class="org-rainbow-delimiters-depth-1">(</span>tom, <span class="org-py-number">100</span><span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
+</div>
+</div>
+<div id="outline-container-orgdb161c6" class="outline-4">
+<h4 id="orgdb161c6"><span class="section-number-4">2.4.1.</span> Method Calls</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+Methods are invoked using the dot notation. The way Python evaluates this is by first evaluating the dot expression to get a <i>bound method</i>, and then evaluating the call expression on the result:
+</p>
+
+
+<div id="org9e8b9ce" class="figure">
+<p><img src="../static/COMPSCI_61A/objects1.png" alt="objects1.png" />
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -224,7 +310,7 @@ tom.deposit<span class="org-rainbow-delimiters-depth-1">(</span><span class="org
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-07 13:29
+               Last modified: 2025-10-09 14:00
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
