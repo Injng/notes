@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-08 Wed 10:33 -->
+<!-- 2025-10-10 Fri 10:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matrix Similarity</title>
@@ -126,7 +126,12 @@
 <li><a href="#org5c34480">1.1. Matrix Powers</a></li>
 </ul>
 </li>
-<li><a href="#org18184bb">2. Diagonalization</a></li>
+<li><a href="#org18184bb">2. Diagonalization</a>
+<ul>
+<li><a href="#org4563f06">2.1. Multiplicity</a></li>
+<li><a href="#org7bc4199">2.2. Basis of a Linear Transformation</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -204,6 +209,88 @@ Thus, if \(AX = X\Lambda\), then a diagonalization of \(A\) is:
 Since \(X\) is formed out of the eigenvectors of \(A\), and \(X\) has to be invertible, then the condition for this diagonalization to exist must be that <i>there has to exist \(n\) linearly independent eigenvectors</i> for an \(n \times n\) matrix \(A\).
 </p>
 </div>
+<div id="outline-container-org4563f06" class="outline-3">
+<h3 id="org4563f06"><span class="section-number-3">2.1.</span> Multiplicity</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+For an \(n \times n\) real matrix \(A\), the eigenvalues of \(A\) are the roots of the <a href="eigenvalues_and_eigenvectors.html#org1278dcd">characteristic polynomial</a> \(\det (A-\lambda I)\). For certain exceptional matrices, it is possible that some roots are <i>repeated</i>. Then, we can define two different ways to count its <i>multiplicity</i>:
+</p>
+
+<ol class="org-ol">
+<li><b>Algebraic multiplicity</b> (GM) is the number of times the eigenvalue is repeated. This can be found from the power of the root in the characteristic polynomial.</li>
+<li><b>Geometric multiplicity</b> (AM) is the number of <i>independent eigenvectors</i> for a particular eigenvalue. This can be found from the dimension of the nullspace of \(A - \lambda I\).</li>
+</ol>
+
+<p>
+In general, we always have \(\text{AM} \geq \text{GM} \geq 1\). Thus, we know that an \(n \times n\) matrix is diagonalizable if the <i>algebraic multiplicity of each eigenvalue matches its geometric multiplicity</i>. This is since the total of algebraic multiplicity has to be \(n\) (since \(\det (A - \lambda I)\) is of degree \(n\)), then this forces the total of geometric multiplicity to also be \(n\), which satisfies the condition that there must be \(n\) linearly independent eigenvectors for a diagonalization.
+</p>
+
+<p>
+So, when \(n \times n\) real matrix \(A\) has \(n\) distinct real eigenvalues, it is always diagonalizable.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Multiplicity
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to know if the matrix $A = \begin{bmatrix} 2 &amp; 2 &amp; -1 \\ 1 &amp; 3 &amp; -1 \\ -1 &amp; 2 &amp; 2 \end{bmatrix}$1 is diagonalizable if its eigenvalues are \(\lambda = 1, 5\).
+</p>
+
+<p>
+Firstly, we know that one of the eigenvalues must have multiplicity greater than one, since there are only two of them. For \(\lambda = 1\), reducing \(A - \lambda I\) gives:
+</p>
+
+\begin{align}
+A - 1 \cdot I = \begin{bmatrix} 1 & 2 & - 1 \\ 1 & 2 & -1 \\ -1 & 2 & 1 \end{bmatrix} \sim \begin{bmatrix} 1 & 2 & -1 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix} \notag
+\end{align}
+
+<p>
+Thus, for \(\lambda = 1\), the geometric multiplicity is \(2\) since the dimension of the nullspace is \(2\). This forces the geometric multiplicity of the other eigenvalue to be \(1\), since the geometric multiplicity must be at least one and cannot exceed the algebraic multiplicity. Then, we see that the total geometric multiplicity is \(3\), which means that there are \(3\) linearly independent eigenvectors, so this matrix is diagonalizable.
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org7bc4199" class="outline-3">
+<h3 id="org7bc4199"><span class="section-number-3">2.2.</span> Basis of a Linear Transformation</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+When a linear transformation is in the <a href="vector_spaces.html#org0c12072">standard basis</a>, we can use the standard basis vectors to find the <a href="linear_transformations.html#orgdb17445">matrix of a linear transformation</a>. Similarly, if we want to represent a linear transformation in a different basis \(\mathcal{B} = {\mathbf{b}_1, \mathbf{b}_2, \dots, \mathbf{b}_n}\), the matrix of this linear transformation <i>in the basis \(\mathcal{B}\)</i> (called the <b>B-matrix</b>) would be:
+</p>
+
+\begin{align}
+\begin{bmatrix} \\ T(\mathbf{b}_1) & T(\mathbf{b}_2) & \cdots & T(\mathbf{b}_n) \\ \: \end{bmatrix} \notag
+\end{align}
+
+<p>
+Now suppose that an \(n \times n\) matrix \(A\) is diagonalizable over \(\mathbb{R}\), i.e. \(A = X\Lambda X^{-1}\). Then if we take the columns of \(X\) as the basis for a linear transformation \(T(\mathbf{x}) = A\mathbf{x}\), the B-matrix is:
+</p>
+
+\begin{align}
+\begin{bmatrix} T(\mathbf{b}_1) & T(\mathbf{b}_2) & \cdots & T(\mathbf{b}_n) \end{bmatrix} &= \begin{bmatrix} A\mathbf{b}_1 & A\mathbf{b}_2 & \cdots & A\mathbf{b}_n \end{bmatrix} \notag \\
+&= \begin{bmatrix} X^{-1}A\mathbf{b}_1 & X^{-1} \mathbf{b}_2 & \cdots & X^{-1}A\mathbf{b}_n \end{bmatrix} \notag \\
+&= X^{-1}A \begin{bmatrix} \mathbf{b}_1 & \mathbf{b}_2 & \cdots & \mathbf{b}_n \end{bmatrix} \notag \\
+&= X^{-1} A X \notag \\
+&= \Lambda \notag
+\end{align}
+
+<p>
+Thus, for a diagonalizable matrix \(A = X\Lambda X^{-1}\), if \(\mathcal{B}\) is the basis formed from the columns of \(X\), then \(\Lambda\) is the B-matrix for the transformation \(T(\mathbf{x}) = A\mathbf{x}\).
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -211,7 +298,7 @@ Since \(X\) is formed out of the eigenvectors of \(A\), and \(X\) has to be inve
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-08 10:33
+               Last modified: 2025-10-10 10:17
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
