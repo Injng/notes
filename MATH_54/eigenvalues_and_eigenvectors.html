@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-13 Mon 09:30 -->
+<!-- 2025-10-13 Mon 09:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Eigenvalues and Eigenvectors</title>
@@ -128,7 +128,11 @@
 <li><a href="#org94a3ae2">1.3. Properties of Eigenvalues and Eigenvectors</a></li>
 </ul>
 </li>
-<li><a href="#org6870fbd">2. Nonreal Eigenvalues</a></li>
+<li><a href="#org6870fbd">2. Nonreal Eigenvalues</a>
+<ul>
+<li><a href="#org7a5f1e2">2.1. Matrix Powers</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -196,6 +200,60 @@ This is known as the <b>characteristic equation</b>, with \(\det (A-\lambda I)\)
 </div>
 <div id="outline-container-org6870fbd" class="outline-2">
 <h2 id="org6870fbd"><span class="section-number-2">2.</span> Nonreal Eigenvalues</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Consider a \(2 \times 2\) real matrix \(A\) with nonreal eigenvalues. This is possible because we can have nonreal roots from a polynomial, which means that for these roots, we cannot diagonalize over \(\mathbb{R}\).
+</p>
+
+<p>
+The key point here is that complex eigenvalues come in <i>conjugate pairs</i> \(a \pm bi\). Additionally, for a \(2 \times 2\) real matrix, when eigenvalues are conjugates of each other, then the corresponding eigenvectors are also conjugates of each other.
+</p>
+</div>
+<div id="outline-container-org7a5f1e2" class="outline-3">
+<h3 id="org7a5f1e2"><span class="section-number-3">2.1.</span> Matrix Powers</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Unfortunately, since matrices with nonreal eigenvalues cannot be <a href="matrix_similarity.html#org18184bb">diagonalized</a> over \(\mathbb{R}\), we have to find another way. Fortunately, there is another matrix that is <a href="matrix_similarity.html#org10c6629">similar</a> to these matrices that can help.
+</p>
+
+<p>
+Consider \(C = \begin{bmatrix} a & -b \\ b & a \end{bmatrix}, \: b \neq 0\). Then, the eigenvalues of this matrix are \(\lambda = a \pm bi\). We can express this matrix using two transformations in polar coordinates, where \(a = r \cos \phi\) and \(b = r \sin \phi\):
+</p>
+
+\begin{align}
+C = \begin{bmatrix} a & -b \\ b & a \end{bmatrix}
+ = \begin{bmatrix} r & 0 \\ 0 & r \end{bmatrix} \begin{bmatrix} \cos \phi & -\sin \phi \\ \sin \phi & \cos \phi \end{bmatrix} \notag
+\end{align}
+
+<p>
+Geometrically, this is applying a scaling transformation and then a rotation. Since this is the same as first applying a rotation and then a scaling, we can say this product is commutative. Then, taking \(C^k\):
+</p>
+
+\begin{align}
+\begin{bmatrix} a & -b \\ b & a \end{bmatrix} ^k = \left ( \begin{bmatrix} r & 0 \\ 0 & r \end{bmatrix} \begin{bmatrix} \cos \phi & -\sin \phi \\ \sin \phi & \cos \phi \end{bmatrix} \right ) ^k \notag
+\end{align}
+
+<p>
+Since applying a rotation by \(\phi\) \(k\) times is the same as applying one \(k \phi\) rotation, we can write this as:
+</p>
+
+\begin{align}
+\boxed{\begin{bmatrix} a & -b \\ b & a \end{bmatrix} ^k = \begin{bmatrix} r^k & 0 \\ 0 & r^k \end{bmatrix} \begin{bmatrix} \cos (k\phi) & -\sin (k\phi) \\ \sin (k\phi) & \cos (k\phi) \end{bmatrix}}
+\end{align}
+
+<p>
+Critically, for a \(2 \times 2\) real matrix \(A\) with nonreal eigenvalues \(\lambda = a \pm bi, \: b \neq 0\), if for eigenvalue \(a - bi\) we have eigenvector \(\begin{bmatrix} c + di \\ e + fi \end{bmatrix}\), then \(A\) is similar to \(C\):
+</p>
+
+\begin{align}
+A = PCP^{-1}
+\end{align}
+
+<p>
+where \(P = \begin{bmatrix} c & d \\ e & f \end{bmatrix}\) and \(C = \begin{bmatrix} a & -b \\ b & a \end{bmatrix}\).
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -203,7 +261,7 @@ This is known as the <b>characteristic equation</b>, with \(\det (A-\lambda I)\)
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-13 09:30
+               Last modified: 2025-10-13 09:50
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
