@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-10-12 Sun 19:00 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Center of Mass</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Center of Mass</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga01c389">1. Center of Mass</a>
+<ul>
+<li><a href="#org18cd857">1.1. Collection of Point Masses</a></li>
+<li><a href="#org1a95525">1.2. Continuous Mass Distribution</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga01c389" class="outline-2">
+<h2 id="orga01c389"><span class="section-number-2">1.</span> Center of Mass</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The <b>center of mass</b> is the single point of a system whose trajectory is described by <a href="newtons_laws.html#org16e80ce">Newton's 2nd law</a>.
+</p>
+</div>
+<div id="outline-container-org18cd857" class="outline-3">
+<h3 id="org18cd857"><span class="section-number-3">1.1.</span> Collection of Point Masses</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The center of mass for a collection of point masses can be found by:
+</p>
+
+\begin{align}
+\boxed{\vec{r}_{\text{CM}} = \frac{\sum m_i \vec{r}_i}{\sum m_i}}
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Center of mass for point masses
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider three point masses, each of mass \(m\), at \((0, 0)\), \((a, 0)\), and \((0, a)\):
+</p>
+
+
+<div id="org0ddb469" class="figure">
+<p><img src="../static/PHYSICS_7A/center_of_mass2.png" alt="center_of_mass2.png" />
+</p>
+</div>
+
+<p>
+We can find the coordinate of the center of mass by considering each component separately:
+</p>
+
+\begin{align}
+x_{\text{CM}} &= \frac{m(0) + m(a) + m(0)}{3m} = \frac{a}{3} \notag \\
+y_{\text{CM}} &= \frac{m(0) + m(a) + m(0)}{3m} = \frac{a}{3} \notag
+\end{align}
+
+<p>
+Thus,
+</p>
+
+\begin{align}
+\boxed{\vec{r}_{\text{CM}} = \frac{a}{3}\hat{x} + \frac{a}{3}\hat{y}} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org1a95525" class="outline-3">
+<h3 id="org1a95525"><span class="section-number-3">1.2.</span> Continuous Mass Distribution</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The center of mass when given a continuous mass distribution can be found by:
+</p>
+
+\begin{align}
+\boxed{\vec{r}_{\text{CM}} = \frac{\int \text{d}m \: \vec{r}}{M}}
+\end{align}
+
+<p>
+where \(M\) is the total mass.
+</p>
+
+
+<div id="org810fca6" class="figure">
+<p><img src="../static/PHYSICS_7A/center_of_mass1.png" alt="center_of_mass1.png" />
+</p>
+</div>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Center of mass of dumbbell
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a dumbbell like so:
+</p>
+
+
+<div id="org23a3d4b" class="figure">
+<p><img src="../static/PHYSICS_7A/center_of_mass3.png" alt="center_of_mass3.png" />
+</p>
+</div>
+
+<p>
+We can consider each elementary shape individually: two spheres and a rod. We can find the center of mass for each of them, and thus the problem becomes:
+</p>
+
+
+<div id="orgf0a46d0" class="figure">
+<p><img src="../static/PHYSICS_7A/center_of_mass4.png" alt="center_of_mass4.png" />
+</p>
+</div>
+
+<p>
+Finally:
+</p>
+
+\begin{align}
+x_{\text{CM}} &= \frac{m(a) + \frac{m}{2}(0) + m(a)}{2m + \frac{m}{2}} \notag \\
+&= 0 \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-10-12 19:00
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
