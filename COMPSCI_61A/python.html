@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-09 Thu 13:58 -->
+<!-- 2025-10-14 Tue 13:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -144,6 +144,7 @@
 <li><a href="#orgc2c8dd7">7. Assert</a></li>
 <li><a href="#orgb5d7b31">8. Type Hints</a></li>
 <li><a href="#org2652000">9. Classes</a></li>
+<li><a href="#org08f9324">10. String Interpolation</a></li>
 </ul>
 </div>
 </div>
@@ -660,13 +661,27 @@ a.deposit<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-p
 </div>
 </div>
 </div>
+<div id="outline-container-org08f9324" class="outline-2">
+<h2 id="org08f9324"><span class="section-number-2">10.</span> String Interpolation</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+<b>String interpolation</b> in Python is achieved by evaluating a <b>f-string</b>, which is a string literal that contains expressions:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-variable-name">pi_string</span> <span class="org-operator">=</span> f<span class="org-string">'pi starts with {pi}...'</span>   <span class="org-comment-delimiter"># </span><span class="org-comment">'pi starts with 3.141592653589793...'
+</span><span class="org-py-variable-name">num</span> <span class="org-operator">=</span> f<span class="org-string">'2 + 2 = {(lambda x: x + x)(2)}'</span> <span class="org-comment-delimiter"># </span><span class="org-comment">'2 + 2 = 4'</span>
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-09 13:57
+               Last modified: 2025-10-14 13:04
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

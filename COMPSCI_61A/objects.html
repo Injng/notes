@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-13 Mon 10:35 -->
+<!-- 2025-10-14 Tue 13:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Objects and Classes</title>
@@ -92,6 +92,7 @@
 <li><a href="#org637f3f4">1. Objects</a>
 <ul>
 <li><a href="#org1de3eeb">1.1. Object-Oriented Programming</a></li>
+<li><a href="#org40dcd9b">1.2. String Representations</a></li>
 </ul>
 </li>
 <li><a href="#orgfaa49bc">2. Classes</a>
@@ -100,13 +101,14 @@
 <li><a href="#org20119e6">2.2. Object Identity</a></li>
 <li><a href="#org2342f69">2.3. Attributes</a>
 <ul>
-<li><a href="#org18a30b7">2.3.1. Attribute Lookup</a></li>
+<li><a href="#org916a91a">2.3.1. Attribute Lookup</a></li>
 <li><a href="#org0b9202d">2.3.2. Attribute Assignment</a></li>
 </ul>
 </li>
 <li><a href="#org4a1b04c">2.4. Methods</a>
 <ul>
 <li><a href="#orgdb161c6">2.4.1. Method Calls</a></li>
+<li><a href="#orgd650b97">2.4.2. Special Methods</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +116,7 @@
 <li><a href="#orgc7f9875">3. Inheritance</a>
 <ul>
 <li><a href="#orgb41b83f">3.1. Multiple Inheritance</a></li>
-<li><a href="#orgccb7a73">3.2. Attribute Lookup</a></li>
+<li><a href="#org8cda8f5">3.2. Attribute Lookup</a></li>
 </ul>
 </li>
 </ul>
@@ -161,6 +163,18 @@ This kind of behavior underpins <b>object-oriented programming</b>, which is a w
 
 <p>
 A <b>class</b> defines how objects of a particular type behave. An <b>object</b> is an instance of a class, with the class as its type. A <b>method</b> is a function called on an object using a dot expression, such as <code>.append()</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org40dcd9b" class="outline-3">
+<h3 id="org40dcd9b"><span class="section-number-3">1.2.</span> String Representations</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+In python, all objects produce two <b>string representations</b>: the <code>str</code> which is legible to humans, and the <code>repr</code> which is legible to the Python interpreter. The <code>str</code> and <code>repr</code> strings are often the same, but not always; the <code>repr</code> string is what you see in the Python interpreter.
+</p>
+
+<p>
+The <code>repr(object) -&gt; string</code> function returns the canonical string representation of the object. Some objects do not have a simple Python-readable string (often for compound types) — for example, <code>repr(min)</code> returns the placeholder <code>&lt;built-in function min&gt;</code>.
 </p>
 </div>
 </div>
@@ -235,8 +249,8 @@ Both instances and classes have <b>attributes</b>, which store variables within 
 </pre>
 </div>
 </div>
-<div id="outline-container-org18a30b7" class="outline-4">
-<h4 id="org18a30b7"><span class="section-number-4">2.3.1.</span> Attribute Lookup</h4>
+<div id="outline-container-org916a91a" class="outline-4">
+<h4 id="org916a91a"><span class="section-number-4">2.3.1.</span> Attribute Lookup</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 Attributes can be looked up by dot expressions of the form <code>&lt;expression&gt;.&lt;name&gt;</code>. To evaluate a dot expression:
@@ -302,10 +316,30 @@ Methods are invoked using the dot notation. The way Python evaluates this is by 
 </p>
 
 
-<div id="org67b3499" class="figure">
+<div id="org8537d73" class="figure">
 <p><img src="../static/COMPSCI_61A/objects1.png" alt="objects1.png" />
 </p>
 </div>
+</div>
+</div>
+<div id="outline-container-orgd650b97" class="outline-4">
+<h4 id="orgd650b97"><span class="section-number-4">2.4.2.</span> Special Methods</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+Certain names that start and end with two underscores are special because they relate to some predefined built-in behavior:
+</p>
+
+<ol class="org-ol">
+<li><code>__init__</code> is a method that is invoked automatically when an object is constructed.</li>
+<li><code>__repr__</code> is the method invoked to display and object as a Python expression.</li>
+<li><code>__add__</code> is the method invoked to add one object to another.</li>
+<li><code>__bool__</code> is the method invoked to convert an object to <code>True</code> or <code>False</code>.</li>
+<li><code>__float__</code> is the method invoked to convert an object to a float.</li>
+</ol>
+
+<p>
+For example, if we want to implement the addition operation between two instances of some user-defined class, we would need to implement the <code>__add__(self, other)</code> method in the class.
+</p>
 </div>
 </div>
 </div>
@@ -373,8 +407,8 @@ Here, <code>MultipleAccount</code> inherits from both <code>CheckingAccount</cod
 </p>
 </div>
 </div>
-<div id="outline-container-orgccb7a73" class="outline-3">
-<h3 id="orgccb7a73"><span class="section-number-3">3.2.</span> Attribute Lookup</h3>
+<div id="outline-container-org8cda8f5" class="outline-3">
+<h3 id="org8cda8f5"><span class="section-number-3">3.2.</span> Attribute Lookup</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 To look up a name in a class:
@@ -396,7 +430,7 @@ In other words, when we try to access attributes or bound methods on a subclass,
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-13 10:32
+               Last modified: 2025-10-14 13:20
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
