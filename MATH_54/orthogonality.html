@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-13 Mon 10:13 -->
+<!-- 2025-10-15 Wed 10:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Orthogonality</title>
@@ -121,7 +121,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbcac686">1. Orthogonality</a></li>
+<li><a href="#orgbcac686">1. Orthogonality</a>
+<ul>
+<li><a href="#org172b8e8">1.1. Orthogonal Sets</a></li>
+<li><a href="#org4005254">1.2. Orthogonal Basis</a></li>
+<li><a href="#org59bc7b5">1.3. Orthogonal Matrices</a></li>
+<li><a href="#org5d10faf">1.4. Orthogonal Projections</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -129,11 +136,11 @@
 <h2 id="orgbcac686"><span class="section-number-2">1.</span> Orthogonality</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Two vectors \(u\) and \(v\) are called <b>orthogonal</b> when \(u \cdot v = 0\), or when the <b>norm</b> (magnitude) of the two vectors satisfies the famous rule of Pythagoras: \(\left | u \right |^2 + \left | v \right |^2 = \left | u + v \right |^2\).
+Two vectors \(\mathbf{u}\) and \(\mathbf{v}\) are called <b>orthogonal</b> when \(\mathbf{u} \cdot \mathbf{v} = 0\), or when the <b>norm</b> (magnitude) of the two vectors satisfies the famous rule of Pythagoras: \(\left | \mathbf{u} \right |^2 + \left | \mathbf{v} \right |^2 = \left | \mathbf{u} + \mathbf{v} \right |^2\).
 </p>
 
 <p>
-More broadly, we can say that if \(v \in \mathbb{R}^n\), and \(W\) is a subspace of \(\mathbb{R}^n\), that \(v\) is orthogonal to \(W\) if it is orthogonal to <i>every vector in</i> \(W\). We call \(W^{\perp}\) the <b>orthogonal complement</b> of \(W\), consisting of all the vectors orthogonal to \(W\).
+More broadly, we can say that if \(\mathbf{v} \in \mathbb{R}^n\), and \(W\) is a subspace of \(\mathbb{R}^n\), that \(\mathbf{v}\) is orthogonal to \(W\) if it is orthogonal to <i>every vector in</i> \(W\). We call \(W^{\perp}\) the <b>orthogonal complement</b> of \(W\), consisting of all the vectors orthogonal to \(W\).
 </p>
 
 <p>
@@ -151,6 +158,114 @@ This is because by the definition of the nullspace, vectors in the nullspace, wh
 \begin{align}
 (\text{Col }A)^{\perp}= \text{Nul } (A^T)
 \end{align}
+
+<p>
+Given \(W\) a susbpace of \(\mathbb{R}^n\), we can then use (1) to find \(W^{\perp}\). If \(W\) has \(m\) vectors as its basis, we can write the basis elements of \(W\) as the rows of an \(m \times n\) matrix \(A\). Then, \(W^{\perp}\) is just the nullspace of \(A\).
+</p>
+</div>
+<div id="outline-container-org172b8e8" class="outline-3">
+<h3 id="org172b8e8"><span class="section-number-3">1.1.</span> Orthogonal Sets</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+An <b>orthogonal set</b> is a set of vectors in which every pair of distinct vectors are orthogonal.
+</p>
+
+<p>
+We can say that an orthogonal set of nonzero vectors \(\{\mathbf{u}_1, \dots , \mathbf{u}_n\}\) <i>is always linearly independent</i>. We can prove this by contradiction — say that it is not linearly independent, and then:
+</p>
+
+\begin{align}
+\mathbf{u}_n &= c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + \mathbf{c}_{n-1}\mathbf{u}_{n-1} \notag \\
+\mathbf{u}_n \cdot \mathbf{u}_n &= c_1\mathbf{u}_1 \cdot \mathbf{u}_n + c_2\mathbf{u}_2 \cdot \mathbf{u}_n + \cdots + c_{n-1}\mathbf{u}_{n-1}\cdot \mathbf{u}_{n} \notag \\
+\mathbf{u}_n \cdot \mathbf{u}_n &= 0 \notag
+\end{align}
+
+<p>
+However, this is a contradiction since the only way for \(\mathbf{u}_n \cdot \mathbf{u}_n = 0\) is if \(\mathbf{u}_n=0\), which is not allowed as this is a set of nonzero vectors. Therefore, they must all be linearly independent.
+</p>
+</div>
+</div>
+<div id="outline-container-org4005254" class="outline-3">
+<h3 id="org4005254"><span class="section-number-3">1.2.</span> Orthogonal Basis</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+In a vector space \(V\), an <b>orthogonal basis</b> is a basis for \(V\) that is an orthogonal set.
+</p>
+
+<p>
+If \(\{\mathbf{u}_1, \mathbf{u}_2, \dots ,\mathbf{u}_n\}\) is an orthogonal basis for a vector space \(V\), and we want to write for some \(\mathbf{y} \in V\) as a linear combination of the elements in the orthogonal basis:
+</p>
+
+\begin{align}
+y = c_1\mathbf{u}_1 + c_2\mathbf{u}_2 + \cdots + c_n\mathbf{u}_n \notag
+\end{align}
+
+<p>
+Since the basis is orthogonal, we have a shortcut:
+</p>
+
+\begin{align}
+\boxed{c_j = \frac{\mathbf{y} \cdot \mathbf{u}_j}{\mathbf{u}_j \cdot \mathbf{u}_j} \; \forall \: 1 \leq j \leq n}
+\end{align}
+
+<p>
+We can see that this works if we multiply our original equation by \(\mathbf{u}_j\) on both sides. We then have \(\mathbf{y} \cdot \mathbf{u}_j = 0 + \cdots + c_j \mathbf{u}_j \cdot \mathbf{u}_j + \cdots + 0\), which simplifies to (3) if we isolate \(\mathbf{c}_j\).
+</p>
+</div>
+</div>
+<div id="outline-container-org59bc7b5" class="outline-3">
+<h3 id="org59bc7b5"><span class="section-number-3">1.3.</span> Orthogonal Matrices</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+A set or basis in some subspace of \(\mathbb{R}^n\) is an <b>orthonormal</b> set or basis if it is an orthogonal set in which every vector has length \(1\). We can switch from orthogonal to orthonormal by dividing each vector by its magnitude.
+</p>
+
+<p>
+A real square matrix is an <b>orthogonal matrix</b> if it has <i>orthonormal columns</i>. Such a matrix \(U\) must satisfy \(U^TU = I\), or \(U^T\) is the inverse of \(U\). Additionally, if \(U\) and \(V\) are orthogonal, then \(UV\) is also orthogonal since \((UV)^T = V^TU^T = V^{-1}U^{-1} = (UV)^{-1}\).
+</p>
+
+<p>
+One interesting fact is that if we have any \(m \times n\) orthogonal matrix \(U\), for any \(\mathbf{x} \in \mathbb{R}^n\) we have:
+</p>
+
+\begin{align}
+\left | U\mathbf{x} \right | = \left | \mathbf{x} \right |
+\end{align}
+
+<p>
+In other words, multiplying \(\mathbf{x}\) by an orthogonal matrix doesn't change its length even if \(U\mathbf{x}\) is in a different dimension than \(\mathbf{x}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org5d10faf" class="outline-3">
+<h3 id="org5d10faf"><span class="section-number-3">1.4.</span> Orthogonal Projections</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Say we want to find the projection of some vector \(\mathbf{y}\) on some subspace \(W\). Call this projection \(\mathbf{\hat{y}}\); then, we can express \(\mathbf{y}\) as the sum of this projection with some other vector \(\mathbf{z}\):
+</p>
+
+\begin{align}
+\mathbf{y} = \mathbf{\hat{y}} + \mathbf{z}
+\end{align}
+
+<p>
+where \(\mathbf{\hat{y}} \in W\) and \(\mathbf{z} \in W^{\perp}\). We can intuitively understand that this works for a certain dimension:
+</p>
+
+
+<div id="orgd69945f" class="figure">
+<p><img src="../static/MATH_54/orthogonality1.png" alt="orthogonality1.png" />
+</p>
+</div>
+
+<p>
+To find \(\mathbf{\hat{y}}\), we consider an orthogonal basis \(\{\mathbf{u}_1, \mathbf{u}_2, \dots ,\mathbf{u}_n\}\). The total projection onto \(W\) is the vector sum of all the projections onto each of these basis vectors:
+</p>
+
+\begin{align}
+\boxed{\mathbf{\hat{y}} = \sum_{i = 1}^{n} \frac{\mathbf{y} \cdot \mathbf{u}_i}{\mathbf{u}_i \cdot \mathbf{u}_i} \mathbf{u}_i}
+\end{align}
+</div>
 </div>
 </div>
 </div>
@@ -159,7 +274,7 @@ This is because by the definition of the nullspace, vectors in the nullspace, wh
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-13 10:13
+               Last modified: 2025-10-15 10:36
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
