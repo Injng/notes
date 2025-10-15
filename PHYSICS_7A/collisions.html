@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-13 Mon 16:40 -->
+<!-- 2025-10-15 Wed 15:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Collisions</title>
@@ -121,7 +121,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb358507">1. Collisions</a></li>
+<li><a href="#orgb358507">1. Collisions</a>
+<ul>
+<li><a href="#orge4739a9">1.1. Inelastic Collisions</a></li>
+<li><a href="#orgfdd83d4">1.2. Elastic Collisions</a>
+<ul>
+<li><a href="#org4a49f27">1.2.1. 1D Elastic Collisions</a></li>
+<li><a href="#org225cfab">1.2.2. 2D Elastic Collisions</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -134,6 +144,13 @@ There are two types of collisions. <b>Elastic collisions</b> are collisions that
 
 <p>
 In both types of collisions, <a href="momentum.html#orgfa715ad">momentum</a> is conserved if there is no external force acting on the system.
+</p>
+</div>
+<div id="outline-container-orge4739a9" class="outline-3">
+<h3 id="orge4739a9"><span class="section-number-3">1.1.</span> Inelastic Collisions</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Inelastic collisions do not conserve kinetic energy, as some energy is either lost or added, often due to thermal or chemical events. Collisions that result in deformation are inelastic collisions.
 </p>
 
 <details class="code-details"
@@ -155,7 +172,7 @@ Consider a ball that is shot into the ring of a ballistic pendulum, which causes
 </p>
 
 
-<div id="org4957d9a" class="figure">
+<div id="org0340d20" class="figure">
 <p><img src="../static/PHYSICS_7A/collisions1.png" alt="collisions1.png" />
 </p>
 </div>
@@ -200,6 +217,233 @@ Thus, we find that:
 
 
 </details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Fireworks rocket
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+A fireworks rocket that is launched from the ground with speed \(v_0\) at \(60^{\circ}\) from the horizontal explodes at maximum height into two fragments, one having mass \(\frac{m}{3}\) and expelled with speed \(v_0\) at \(45^{\circ}\) under the horizontal, and another with mass \(\frac{2m}{3}\). Find the speed and direction of the second fragment:
+</p>
+
+
+<div id="org2d4593a" class="figure">
+<p><img src="../static/PHYSICS_7A/collisions2.png" alt="collisions2.png" />
+</p>
+</div>
+
+<p>
+We can apply <a href="momentum.html#orgfa715ad">conservation of linear momentum</a> because gravitational force has negligible <a href="momentum.html#org1289cc3">impulse</a> on the pieces of the rocket after the explosion. We know there is no vertical velocity right before the explosion as the rocket is at its maximum height, and we can find the horizontal velocity as:
+</p>
+
+\begin{align}
+\vec{v}_i &= v_0 \cos\theta \hat{x} \notag \\
+&= v_0 \cos 60^{\circ} \hat{x} \notag \\
+&= \frac{v_0}{2} \hat{x} \notag
+\end{align}
+
+<p>
+Therefore, the initial momentum is \(M\frac{v_0}{2}\hat{x}\). From conservation of momentum, we know that:
+</p>
+
+\begin{align}
+\vec{p}_i &= \vec{p}_f \notag \\
+\vec{p}_i &= \vec{p}_1 + \vec{p}_2 \notag
+\end{align}
+
+<p>
+Considering each axis separately:
+</p>
+
+\begin{align}
+M\frac{v_0}{2} &= \frac{M}{3}v_0\cos 45^{\circ} + \frac{2M}{3}v_2 \cos \theta_2 \notag \\
+0 &= -\frac{M}{3}v_0\sin 45^{\circ} + \frac{2M}{3}v_2 \sin \theta_2 \notag
+\end{align}
+
+<p>
+Simplifying the system we have:
+</p>
+
+\begin{align}
+\frac{v_0}{2} &= \frac{1}{3}v_0\frac{\sqrt{2}}{2} + \frac{2}{3}v_2\cos\theta_2 \notag \\
+0 &= -\frac{1}{3}v_0\frac{\sqrt{2}}{2} + \frac{2}{3}v_2\sin\theta_2 \notag
+\end{align}
+
+<p>
+Isolating \(v_2\cos\theta_2\) and \(v_2\sin\theta_2\), we get:
+</p>
+
+\begin{align}
+v_2\cos\theta_2 &= \left ( \frac{3 - \sqrt{2}}{4} \right ) v_0 \notag \\
+v_2\sin\theta_2 &= \frac{\sqrt{2}}{4}v_0 \notag
+\end{align}
+
+<p>
+Dividing the two equations, we have:
+</p>
+
+\begin{align}
+\tan\theta_2 = \frac{\sqrt{2}}{3-\sqrt{2}} \notag
+\end{align}
+
+<p>
+Thus, we can take the inverse tangent to find that:
+</p>
+
+\begin{align}
+\boxed{\theta_2 = 41.73^{\circ}} \notag
+\end{align}
+
+<p>
+Now, adding the squares of the equations, we obtain:
+</p>
+
+\begin{align}
+v_2^2 \left(\sin^2\theta_2 + \cos^2\theta_2\right) &= \frac{2}{16}v_0^2 + \left(\frac{3-\sqrt{2}}{4}\right)^2v_0^2 \notag \\
+v_2^2 &= \frac{2v_0^2}{16} + \frac{11-6\sqrt{2}}{16}v_0^2 \notag \\
+v_2^2 &= \left(\frac{13 - 6\sqrt{2}}{16}\right)v_0^2 \notag
+\end{align}
+
+<p>
+Thus, the velocity of the second particle is:
+</p>
+
+\begin{align}
+\boxed{v_2 = \frac{v_0}{4}\sqrt{13-6\sqrt{2}}} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgfdd83d4" class="outline-3">
+<h3 id="orgfdd83d4"><span class="section-number-3">1.2.</span> Elastic Collisions</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+For elastic collisions, kinetic energy is conserved in addition to linear momentum. We can separate our study of elastic collisions into two types: 1D and 2D elastic collisions.
+</p>
+</div>
+<div id="outline-container-org4a49f27" class="outline-4">
+<h4 id="org4a49f27"><span class="section-number-4">1.2.1.</span> 1D Elastic Collisions</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+When a collision is head-on, when the line joining the center of masses is in the direction of momentum, then the whole process is along one single direction — i.e. the collision is 1D.
+</p>
+
+<p>
+For two masses \(m_1\) and \(m_2\) colliding elastically along one axis, we can derive using conservation of kinetic energy and linear momentum the following two equations relating the masses and velocities:
+</p>
+
+\begin{align}
+\boxed{v_{1f} = \frac{m_1-m_2}{m_1+m_2}v_{1i} + \frac{2m_2}{m_1+m_2}v_{2i}} \\
+\boxed{v_{2f} = \frac{2m_1}{m_1+m_2}v_{1i} + \frac{m_2-m_1}{m_1+m_2}v_{2i}}
+\end{align}
+
+<p>
+Note that all the velocities have a sign, so we need to choose a consistent coordinate system.
+</p>
+</div>
+</div>
+<div id="outline-container-org225cfab" class="outline-4">
+<h4 id="org225cfab"><span class="section-number-4">1.2.2.</span> 2D Elastic Collisions</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+2D collisions occur when the event is not head-on. We can study one special case of 2D collisions, namely that where both objects are of equal mass:
+</p>
+
+
+<div id="org456acac" class="figure">
+<p><img src="../static/PHYSICS_7A/collisions3.png" alt="collisions3.png" />
+</p>
+</div>
+
+<p>
+Knowing \(m\) and \(\theta\), we would like to determine \(v_1\), \(v_2\), and \(\phi\). We will use <a href="momentum.html#orgfa715ad">conservation of momentum</a>, then square the equations in order to compare with <a href="work_and_energy.html#org2fd0ae4">conservation of kinetic energy</a>.
+</p>
+
+<p>
+Conservation of momentum gives us:
+</p>
+
+\begin{align}
+m\vec{v}_0 &= m\vec{v}_1 + m\vec{v}_2 \notag \\
+\vec{v}_0^2 &= \vec{v}_1^2 + 2\vec{v}_1\cdot \vec{v}_2 + \vec{v}_2^2 \notag
+\end{align}
+
+<p>
+Conservation of kinetic energy gives us:
+</p>
+
+\begin{align}
+\frac{1}{2}mv_0^2 &= \frac{1}{2}mv_1^2 + \frac{1}{2}mv_2^2 \notag \\
+v_0^2 &= v_1^2 + v_2^2 \notag
+\end{align}
+
+<p>
+Comparing with momentum, we realize that \(2\vec{v}_1 \cdot \vec{v}_2 = 0\), which means that \(\vec{v}_1\) and \(\vec{v}_2\) must form a \(90^{\circ}\) angle, thus:
+</p>
+
+\begin{align}
+\boxed{\phi = 90^{\circ} - \theta} \notag
+\end{align}
+
+<p>
+Now, to find the velocities. Using conservation of linear momentum along both axes:
+</p>
+
+\begin{align}
+mv_0 &= mv_1\cos\theta + mv_2\cos\left(90^{\circ}-\theta\right) \notag \\
+0 &= -mv_1\sin\theta + mv_2\sin\left(90^{\circ}-\theta\right) \notag
+\end{align}
+
+<p>
+This can be simplified to:
+</p>
+
+\begin{align}
+v_0 &= v_1\cos\theta + v_2\sin\theta \notag \\
+0 &= -v_1\sin\theta + v_2\cos\theta \notag
+\end{align}
+
+<p>
+Using the second equation, we can express \(v_2\) in terms of \(v_1\):
+</p>
+
+\begin{align}
+v_2\cos\theta &= v_1\sin\theta \notag \\
+v_2 &= v_1\tan\theta \notag
+\end{align}
+
+<p>
+Substituting back into the first equation, we obtain:
+</p>
+
+\begin{align}
+v_0 &= v_1\cos\theta + v_1\tan\theta\sin\theta \notag \\
+v_0 &= v_1\left(\cos\theta + \frac{\sin^2\theta}{\cos\theta}\right) \notag \\
+v_0 &= \frac{v_1}{\cos\theta} \notag
+\end{align}
+
+<p>
+Therefore, the two velocities are:
+</p>
+
+\begin{align}
+\boxed{v_1 = v_0\cos\theta} \notag \\
+\boxed{v_2 = v_0\sin\theta} \notag
+\end{align}
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -208,7 +452,7 @@ Thus, we find that:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-13 16:40
+               Last modified: 2025-10-15 15:34
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
