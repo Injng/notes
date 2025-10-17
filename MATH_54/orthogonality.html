@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-15 Wed 10:36 -->
+<!-- 2025-10-17 Fri 10:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Orthogonality</title>
@@ -126,9 +126,14 @@
 <li><a href="#org172b8e8">1.1. Orthogonal Sets</a></li>
 <li><a href="#org4005254">1.2. Orthogonal Basis</a></li>
 <li><a href="#org59bc7b5">1.3. Orthogonal Matrices</a></li>
-<li><a href="#org5d10faf">1.4. Orthogonal Projections</a></li>
+<li><a href="#org5d10faf">1.4. Orthogonal Projections</a>
+<ul>
+<li><a href="#orgdde6018">1.4.1. With Orthonormal Basis</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#org5fa006d">2. Gram-Schmidt Process</a></li>
 </ul>
 </div>
 </div>
@@ -253,19 +258,93 @@ where \(\mathbf{\hat{y}} \in W\) and \(\mathbf{z} \in W^{\perp}\). We can intuit
 </p>
 
 
-<div id="orgd69945f" class="figure">
+<div id="orgb8ba8b6" class="figure">
 <p><img src="../static/MATH_54/orthogonality1.png" alt="orthogonality1.png" />
 </p>
 </div>
 
 <p>
-To find \(\mathbf{\hat{y}}\), we consider an orthogonal basis \(\{\mathbf{u}_1, \mathbf{u}_2, \dots ,\mathbf{u}_n\}\). The total projection onto \(W\) is the vector sum of all the projections onto each of these basis vectors:
+To find \(\mathbf{\hat{y}}\), we consider an orthogonal basis \(\{\mathbf{u}_1, \mathbf{u}_2, \dots ,\mathbf{u}_n\}\). We know that the dot product of a vector and a unit vector is the <a href="Multivariable_Calculus/vectors.html#orgecdabaf">projection</a> of that vector in the direction of the unit vector. For the projection along a non-unit vector, then, we must divide by the magnitude:
+</p>
+
+\begin{align}
+(\mathbf{y} \cdot \mathbf{\hat{u}}_i) \mathbf{\hat{u}}_i = \left(\frac{\mathbf{y} \cdot \mathbf{u}_i}{\left|\mathbf{u}_i\right|}\right)\frac{\mathbf{u}_i}{\left|\mathbf{u}_i\right|} = \frac{\mathbf{y} \cdot \mathbf{u}_i}{\left|\mathbf{u}_i\right|\left|\mathbf{u}_i\right|} \mathbf{u}_i = \frac{\mathbf{y} \cdot \mathbf{u}_i}{\mathbf{u}_i \cdot \mathbf{u}_i} \mathbf{u}_i \notag
+\end{align}
+
+<p>
+The total projection onto \(W\) is the vector sum of all the projections onto each of these basis vectors:
 </p>
 
 \begin{align}
 \boxed{\mathbf{\hat{y}} = \sum_{i = 1}^{n} \frac{\mathbf{y} \cdot \mathbf{u}_i}{\mathbf{u}_i \cdot \mathbf{u}_i} \mathbf{u}_i}
 \end{align}
 </div>
+<div id="outline-container-orgdde6018" class="outline-4">
+<h4 id="orgdde6018"><span class="section-number-4">1.4.1.</span> With Orthonormal Basis</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+If we have an orthonormal basis \(\{ \mathbf{u}_1, \mathbf{u}_2, \dots , \mathbf{u}_k \}\) for W, then we can just directly take the dot product of \(y\) with each of the basis vectors to obtain the projection of \(y\) onto each basis vector (since they are unit vectors). We can write \(\hat{y}\) as:
+</p>
+
+\begin{align}
+\mathbf{\hat{y}} = \begin{bmatrix} \: \\ \mathbf{u}_1 & \mathbf{u}_2 & \cdots & \mathbf{u}_k \\ \: 
+\end{bmatrix}
+\begin{bmatrix} \mathbf{y} \cdot \mathbf{u}_1 \\ \mathbf{y} \cdot \mathbf{u}_2 \\ \vdots \\ \mathbf{y} \cdot \mathbf{u}_k\end{bmatrix} \notag
+\end{align}
+
+<p>
+If we call the matrix \(U\) the matrix whose columns are the basis vectors, then we can write this as:
+</p>
+
+\begin{align}
+\boxed{\mathbf{\hat{y}} = UU^T\mathbf{y}}
+\end{align}
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5fa006d" class="outline-2">
+<h2 id="org5fa006d"><span class="section-number-2">2.</span> Gram-Schmidt Process</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Since projections only work for an orthogonal basis, there comes an issue when we are given a basis that is not orthogonal, yet we still want to find the projection. Thus, we need the <b>Gram-Schmidt process</b> to turn an arbitrary basis for \(W\), \(\{\mathbf{x}_1, \mathbf{x}_2, \dots , \mathbf{x}_k\}\), into an orthogonal basis \(\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_k\}\).
+</p>
+
+<p>
+First, we take:
+</p>
+
+\begin{align}
+\mathbf{v}_1 = \mathbf{x}_1 \notag
+\end{align}
+
+<p>
+Then, we want the \(\mathbf{v}_2\) to be perpendicular to \(\mathbf{v}_1\). To do this, we start with \(\mathbf{x}_2\) and subtract its projection along \(\mathbf{v}_1\) — this gives us a vector perpendicular to \(\mathbf{v}_1\):
+</p>
+
+\begin{align}
+\mathbf{v}_2 = \mathbf{x}_2 - \frac{\mathbf{x}_2 \cdot \mathbf{v}_1}{\mathbf{v}_1 \cdot \mathbf{v}_1}\mathbf{v}_1 \notag
+\end{align}
+
+<p>
+Now, \(\{\mathbf{v}_1, \mathbf{v}_2\}\) has the same span as \(\{\mathbf{x}_1, \mathbf{x}_2\}\), but now \(\mathbf{v}_1\) and \(\mathbf{v}_2\) are orthogonal. We can proceed with \(\mathbf{v}_3\), taking \(\mathbf{x}_3\) and subtracting from it its projection on the subspace defined by \(\{\mathbf{v}_1, \mathbf{v}_2\}\):
+</p>
+
+\begin{align}
+\mathbf{v}_3 = \mathbf{x}_3 - \frac{\mathbf{x}_3 \cdot \mathbf{v}_1}{\mathbf{v}_1 \cdot \mathbf{v}_1}\mathbf{v}_1 - \frac{\mathbf{x}_3 \cdot \mathbf{v}_2}{\mathbf{v}_2 \cdot \mathbf{v}_2}\mathbf{v}_2 \notag
+\end{align}
+
+<p>
+This is the central idea to Gram-Schmidt: <i>subtract from every new vector its projections in the directions already set</i>. In general, we have:
+</p>
+
+\begin{align}
+\boxed{\mathbf{v}_k = \mathbf{x}_k - \sum_{i = 1}^{k-1} \frac{\mathbf{x}_k \cdot \mathbf{v}_i}{\mathbf{v}_i \cdot \mathbf{v}_i}\mathbf{v}_i}
+\end{align}
+
+<p>
+Usefully, the space spanned by the first \(j\) vectors in the new orthogonal basis is the same as the span of the first \(j\) vectors in the original basis.
+</p>
 </div>
 </div>
 </div>
@@ -274,7 +353,7 @@ To find \(\mathbf{\hat{y}}\), we consider an orthogonal basis \(\{\mathbf{u}_1, 
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-15 10:36
+               Last modified: 2025-10-17 10:03
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
