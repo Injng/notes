@@ -3,13 +3,84 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-07-11 Fri 09:53 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Double Integrals</title>
-<meta name="author" content="Lin Jiang" />
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
 <script>
   window.MathJax = {
     tex: {
@@ -45,7 +116,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Double Integrals</h1>
@@ -53,33 +124,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org10b7dc9">1. Intuition</a></li>
-<li><a href="#orgbd754eb">2. Definition</a></li>
-<li><a href="#org043e375">3. Computation</a>
+<li><a href="#orgc80bd69">1. Intuition</a></li>
+<li><a href="#org2ceae7c">2. Definition</a></li>
+<li><a href="#orgfefcb88">3. Computation</a>
 <ul>
-<li><a href="#org17a3bf8">3.1. Exchanging the Order of Integration</a></li>
+<li><a href="#org4931a22">3.1. Exchanging the Order of Integration</a></li>
 </ul>
 </li>
-<li><a href="#orgaaad16c">4. Polar Coordinates</a></li>
-<li><a href="#orgec7a5a3">5. Applications</a>
+<li><a href="#org817a625">4. Polar Coordinates</a></li>
+<li><a href="#orgbccb6a8">5. Applications</a>
 <ul>
-<li><a href="#org9ad6eef">5.1. Mass</a></li>
-<li><a href="#orga807340">5.2. Continuous Average</a></li>
-<li><a href="#orga6f0154">5.3. Moment of Inertia</a></li>
+<li><a href="#orga8fe3f0">5.1. Mass</a></li>
+<li><a href="#orgc5c64b4">5.2. Continuous Average</a></li>
+<li><a href="#org018b7bf">5.3. Moment of Inertia</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org10b7dc9" class="outline-2">
-<h2 id="org10b7dc9"><span class="section-number-2">1.</span> Intuition</h2>
+<div id="outline-container-orgc80bd69" class="outline-2">
+<h2 id="orgc80bd69"><span class="section-number-2">1.</span> Intuition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Similar to how an integral in single-variable calculus is defined as the area underneath a curve, we can rouhgly define a <b>double integral</b> as the <i>volume underneath a surface</i>. In other words, the double integral of a function \(z=f(x,y)\) is such that we choose a region \(R\) in the \(xy\) plane and we compute the volume underneath the surface for the region \(R\):
 </p>
 
 
-<div id="orgd26dc65" class="figure">
+<div id="org3666038" class="figure">
 <p><img src="../static/double_integrals1.png" alt="double_integrals1.png" />
 </p>
 </div>
@@ -95,15 +166,15 @@ We can write this as:
 </p>
 </div>
 </div>
-<div id="outline-container-orgbd754eb" class="outline-2">
-<h2 id="orgbd754eb"><span class="section-number-2">2.</span> Definition</h2>
+<div id="outline-container-org2ceae7c" class="outline-2">
+<h2 id="org2ceae7c"><span class="section-number-2">2.</span> Definition</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 However, we need a more rigorous definition. Remember how we cut the area into small rectangles in order to calculate the integral for single-variable calculus. Similarly for double integrals, we can divide the volume up into small rectangular prisms, like so:
 </p>
 
 
-<div id="org4b8155c" class="figure">
+<div id="org7b6dc70" class="figure">
 <p><img src="../static/double_integrals2.png" alt="double_integrals2.png" />
 </p>
 </div>
@@ -123,15 +194,15 @@ What the double integral does, then, is the limit as all of these rectangular pr
 </p>
 </div>
 </div>
-<div id="outline-container-org043e375" class="outline-2">
-<h2 id="org043e375"><span class="section-number-2">3.</span> Computation</h2>
+<div id="outline-container-orgfefcb88" class="outline-2">
+<h2 id="orgfefcb88"><span class="section-number-2">3.</span> Computation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Computing double integrals actually involves reducing it to the computation of two single variable integrals. Realize that we can take a plane and "scan" from the back to the front; for each plane, the integral will give us the area underneath the curve for the surface intersected by that plane, and then the next integral will sum up all of these areas in turn:
 </p>
 
 
-<div id="org0169dac" class="figure">
+<div id="org9cb1932" class="figure">
 <p><img src="../static/double_integrals3.png" alt="double_integrals3.png" />  
 </p>
 </div>
@@ -170,8 +241,8 @@ Critically, remember that our bounds of integration here actually depend on what
 We have now turned our double integral expression into what we call <b>iterated integrals</b> — reducing our calculation to the repeated application of two single integrals.
 </p>
 </div>
-<div id="outline-container-org17a3bf8" class="outline-3">
-<h3 id="org17a3bf8"><span class="section-number-3">3.1.</span> Exchanging the Order of Integration</h3>
+<div id="outline-container-org4931a22" class="outline-3">
+<h3 id="org4931a22"><span class="section-number-3">3.1.</span> Exchanging the Order of Integration</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Sometimes, it may be helpful to exchange the order of integration: instead of \(\text{d}y\text{ d}x\), we take \(\text{d}x\text{ d}y\) instead. To do this, however, we must be extremely careful about how we set up the bounds. In general, we need to draw a picture of our slices in order to understand the bounds going the other way.
@@ -179,8 +250,8 @@ Sometimes, it may be helpful to exchange the order of integration: instead of \(
 </div>
 </div>
 </div>
-<div id="outline-container-orgaaad16c" class="outline-2">
-<h2 id="orgaaad16c"><span class="section-number-2">4.</span> Polar Coordinates</h2>
+<div id="outline-container-org817a625" class="outline-2">
+<h2 id="org817a625"><span class="section-number-2">4.</span> Polar Coordinates</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Sometimes, when we're working with things like circles, it might be easier to integrate instead in <b><b>polar coordinates</b></b>. Polar coordinates are defined by:
@@ -196,7 +267,7 @@ Instead of integrating \(\text{d}x\) and then \(\text{d}y\), we will instead int
 </p>
 
 
-<div id="org64cbcd2" class="figure">
+<div id="orgdb5dfdb" class="figure">
 <p><img src="../static/double_integrals4.png" alt="double_integrals4.png" />
 </p>
 </div>
@@ -216,12 +287,12 @@ Therefore, to compute a double integral in polar coordinates, replace the bounds
 </p>
 </div>
 </div>
-<div id="outline-container-orgec7a5a3" class="outline-2">
-<h2 id="orgec7a5a3"><span class="section-number-2">5.</span> Applications</h2>
+<div id="outline-container-orgbccb6a8" class="outline-2">
+<h2 id="orgbccb6a8"><span class="section-number-2">5.</span> Applications</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org9ad6eef" class="outline-3">
-<h3 id="org9ad6eef"><span class="section-number-3">5.1.</span> Mass</h3>
+<div id="outline-container-orga8fe3f0" class="outline-3">
+<h3 id="orga8fe3f0"><span class="section-number-3">5.1.</span> Mass</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 We can use double integrals to find the mass of a flat object by using the density \(\delta\), which is the mass per unit area. Then, we can integrate this over the flat region to find the mass like so:
@@ -234,8 +305,8 @@ M = \iint_R \delta \text{ d}A
 </p>
 </div>
 </div>
-<div id="outline-container-orga807340" class="outline-3">
-<h3 id="orga807340"><span class="section-number-3">5.2.</span> Continuous Average</h3>
+<div id="outline-container-orgc5c64b4" class="outline-3">
+<h3 id="orgc5c64b4"><span class="section-number-3">5.2.</span> Continuous Average</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 We can define the average of \(f\) over a continuous region \(R\) as the double integral of \(f\) on \(R\) divided by the total area of \(R\):
@@ -257,8 +328,8 @@ We can also calculate where the <b>center of mass</b> of a flat object is \((\ba
 \end{aligned}
 </div>
 </div>
-<div id="outline-container-orga6f0154" class="outline-3">
-<h3 id="orga6f0154"><span class="section-number-3">5.3.</span> Moment of Inertia</h3>
+<div id="outline-container-org018b7bf" class="outline-3">
+<h3 id="org018b7bf"><span class="section-number-3">5.3.</span> Moment of Inertia</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 The <b>moment of inertia</b> is to rotational motion as mass is to translational motion. In other words, mass determines how hard it is to impart translational motion on an object, and the moment of inertia is the same but for rotational motion about a certain axis.
@@ -297,7 +368,15 @@ I_0 = \iint_R r^2 \delta \text{ d}A
              </div>
              <div class="last-modified">
                Last modified: 2025-07-11 09:53
-             </div>
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

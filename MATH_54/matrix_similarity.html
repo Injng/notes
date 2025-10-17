@@ -3,14 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-13 Mon 09:30 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matrix Similarity</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -121,25 +124,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org10c6629">1. Matrix Similarity</a>
+<li><a href="#orgad370c3">1. Matrix Similarity</a>
 <ul>
-<li><a href="#org5c34480">1.1. Matrix Powers</a></li>
+<li><a href="#org119a746">1.1. Matrix Powers</a></li>
 </ul>
 </li>
-<li><a href="#org18184bb">2. Diagonalization</a>
+<li><a href="#org20043a2">2. Diagonalization</a>
 <ul>
-<li><a href="#org4563f06">2.1. Multiplicity</a></li>
-<li><a href="#org7bc4199">2.2. Basis of a Linear Transformation</a></li>
+<li><a href="#org91be7ed">2.1. Multiplicity</a></li>
+<li><a href="#org77d6b20">2.2. Basis of a Linear Transformation</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org10c6629" class="outline-2">
-<h2 id="org10c6629"><span class="section-number-2">1.</span> Matrix Similarity</h2>
+<div id="outline-container-orgad370c3" class="outline-2">
+<h2 id="orgad370c3"><span class="section-number-2">1.</span> Matrix Similarity</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-We call two \(n \times n\) matrices <b>similar</b> if there exists an <a href="inverse_matrices.html#org89e4c66">invertible matrix</a> \(P\) such that:
+We call two \(n \times n\) matrices <b>similar</b> if there exists an <a href="inverse_matrices.html#orgdd41970">invertible matrix</a> \(P\) such that:
 </p>
 
 \begin{align}
@@ -147,7 +150,7 @@ A = PBP^{-1}
 \end{align}
 
 <p>
-Two similar matrices will always have the same <a href="eigenvalues_and_eigenvectors.html#org1278dcd">characteristic equation</a>, and therefore the same <a href="eigenvalues_and_eigenvectors.html#orgfc06d50">eigenvalues</a>. This can be seen like so:
+Two similar matrices will always have the same <a href="eigenvalues_and_eigenvectors.html#org3a25850">characteristic equation</a>, and therefore the same <a href="eigenvalues_and_eigenvectors.html#org0678c23">eigenvalues</a>. This can be seen like so:
 </p>
 
 \begin{align}
@@ -158,7 +161,7 @@ A - \lambda I &= P(B - \lambda I)P^{-1} \notag \\
 \end{align}
 
 <p>
-Taking the <a href="determinants.html#org5d83c27">determinant</a> on both sides and simplifying, we get:
+Taking the <a href="determinants.html#orgb1a2c5c">determinant</a> on both sides and simplifying, we get:
 </p>
 
 \begin{align}
@@ -171,8 +174,8 @@ Taking the <a href="determinants.html#org5d83c27">determinant</a> on both sides 
 Thus, \(A\) and \(B\) must have the same characteristic polynomial. Note that this doesn't mean that two matrices with the same characteristic polynomial are guaranteed to be similar. For example, the two matrices \(\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix}\) and \(\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\) have the same eigenvalues, but they are not similar.
 </p>
 </div>
-<div id="outline-container-org5c34480" class="outline-3">
-<h3 id="org5c34480"><span class="section-number-3">1.1.</span> Matrix Powers</h3>
+<div id="outline-container-org119a746" class="outline-3">
+<h3 id="org119a746"><span class="section-number-3">1.1.</span> Matrix Powers</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Similar matrices can be helpful in computing powers of matrices. Consider the k-th power of a matrix \(A\):
@@ -186,11 +189,11 @@ A^k &= (PBP^{-1})^k \notag \\
 </div>
 </div>
 </div>
-<div id="outline-container-org18184bb" class="outline-2">
-<h2 id="org18184bb"><span class="section-number-2">2.</span> Diagonalization</h2>
+<div id="outline-container-org20043a2" class="outline-2">
+<h2 id="org20043a2"><span class="section-number-2">2.</span> Diagonalization</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-If two matrices are similar and one of them is a diagonal matrix, then we call the matrix <b>diagonalizable</b>. To understand when a matrix \(A\) is diagonalizable, consider the matrix \(X\) formed with its columns as <a href="eigenvalues_and_eigenvectors.html#orgfc06d50">eigenvectors</a> of \(A\), and \(\Lambda\) the diagonal matrix with eigenvalues of \(A\) as its diagonal entries. Then:
+If two matrices are similar and one of them is a diagonal matrix, then we call the matrix <b>diagonalizable</b>. To understand when a matrix \(A\) is diagonalizable, consider the matrix \(X\) formed with its columns as <a href="eigenvalues_and_eigenvectors.html#org0678c23">eigenvectors</a> of \(A\), and \(\Lambda\) the diagonal matrix with eigenvalues of \(A\) as its diagonal entries. Then:
 </p>
 
 \begin{align}
@@ -209,11 +212,11 @@ Thus, if \(AX = X\Lambda\), then a diagonalization of \(A\) is:
 Since \(X\) is formed out of the eigenvectors of \(A\), and \(X\) has to be invertible, then the condition for this diagonalization to exist must be that <i>there has to exist \(n\) linearly independent eigenvectors</i> for an \(n \times n\) matrix \(A\).
 </p>
 </div>
-<div id="outline-container-org4563f06" class="outline-3">
-<h3 id="org4563f06"><span class="section-number-3">2.1.</span> Multiplicity</h3>
+<div id="outline-container-org91be7ed" class="outline-3">
+<h3 id="org91be7ed"><span class="section-number-3">2.1.</span> Multiplicity</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-For an \(n \times n\) real matrix \(A\), the eigenvalues of \(A\) are the roots of the <a href="eigenvalues_and_eigenvectors.html#org1278dcd">characteristic polynomial</a> \(\det (A-\lambda I)\). For certain exceptional matrices, it is possible that some roots are <i>repeated</i>. Then, we can define two different ways to count its <i>multiplicity</i>:
+For an \(n \times n\) real matrix \(A\), the eigenvalues of \(A\) are the roots of the <a href="eigenvalues_and_eigenvectors.html#org3a25850">characteristic polynomial</a> \(\det (A-\lambda I)\). For certain exceptional matrices, it is possible that some roots are <i>repeated</i>. Then, we can define two different ways to count its <i>multiplicity</i>:
 </p>
 
 <ol class="org-ol">
@@ -263,11 +266,11 @@ Thus, for \(\lambda = 1\), the geometric multiplicity is \(2\) since the dimensi
 </details>
 </div>
 </div>
-<div id="outline-container-org7bc4199" class="outline-3">
-<h3 id="org7bc4199"><span class="section-number-3">2.2.</span> Basis of a Linear Transformation</h3>
+<div id="outline-container-org77d6b20" class="outline-3">
+<h3 id="org77d6b20"><span class="section-number-3">2.2.</span> Basis of a Linear Transformation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-When a linear transformation is in the <a href="vector_spaces.html#org0c12072">standard basis</a>, we can use the standard basis vectors to find the <a href="linear_transformations.html#orgdb17445">matrix of a linear transformation</a>. Similarly, if we want to represent a linear transformation in a different basis \(\mathcal{B} = {\mathbf{b}_1, \mathbf{b}_2, \dots, \mathbf{b}_n}\), the matrix of this linear transformation <i>in the basis \(\mathcal{B}\)</i> (called the <b>B-matrix</b>) would be:
+When a linear transformation is in the <a href="vector_spaces.html#orgf3cacce">standard basis</a>, we can use the standard basis vectors to find the <a href="linear_transformations.html#org832f3a3">matrix of a linear transformation</a>. Similarly, if we want to represent a linear transformation in a different basis \(\mathcal{B} = {\mathbf{b}_1, \mathbf{b}_2, \dots, \mathbf{b}_n}\), the matrix of this linear transformation <i>in the basis \(\mathcal{B}\)</i> (called the <b>B-matrix</b>) would be:
 </p>
 
 \begin{align}

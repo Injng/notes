@@ -100,10 +100,12 @@ This is the `org-publish` configuration used to publish these notes:
                 (index-link (concat dir-path "/index.html")))
            (format "[[file:%s][%s]]" index-link clean-name)))))
 
-;; Use htmlize for syntax highlighting
-(use-package htmlize
-  :ensure t
-  :init (setq org-html-htmlize-output-type 'css))
+;; Add code tags for highlight.js to do syntax highlighting
+(advice-add 'org-html-src-block :override
+            (lambda (src-block contents info)
+              (let* ((lang (org-element-property :language src-block))
+                     (code (org-html-format-code src-block info)))
+                (format "<pre><code class=\"language-%s\">%s</code></pre>" lang code))))
 
 ;; More blocks
 (use-package org-special-block-extras
@@ -126,7 +128,10 @@ This is the `org-publish` configuration used to publish these notes:
          :html-postamble my-org-html-postamble-with-search
          :html-head "<link href=\"/pagefind/pagefind-ui.css\" rel=\"stylesheet\">
                      <script src=\"/pagefind/pagefind-ui.js\"></script>
-                     <link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>"
+                     <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css\">
+                     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js\"></script>
+                     <link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>
+                     <script>hljs.highlightAll();</script>"
          :html-head-include-default-style nil
          
          ;; Sitemap generation
@@ -151,7 +156,10 @@ This is the `org-publish` configuration used to publish these notes:
          :html-postamble my-org-html-postamble-with-search
          :html-head "<link href=\"/pagefind/pagefind-ui.css\" rel=\"stylesheet\">
                      <script src=\"/pagefind/pagefind-ui.js\"></script>
-                     <link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>"
+                     <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css\">
+                     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js\"></script>
+                     <link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>
+                     <script>hljs.highlightAll();</script>"
          :html-head-include-default-style nil)
 
         ("lnjng-static"

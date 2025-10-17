@@ -3,14 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-14 Tue 13:18 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functions</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -89,33 +92,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd154346">1. Defining Functions</a>
+<li><a href="#org7aa6758">1. Defining Functions</a>
 <ul>
-<li><a href="#org845dcdf">1.1. Procedure for <code>def</code> Statements</a></li>
-<li><a href="#org1a47016">1.2. Procedure for Calling User-Defined Functions</a></li>
-<li><a href="#org27cff68">1.3. Return Statements</a></li>
+<li><a href="#orgacf7316">1.1. Procedure for <code>def</code> Statements</a></li>
+<li><a href="#org78e8caf">1.2. Procedure for Calling User-Defined Functions</a></li>
+<li><a href="#org8930ab8">1.3. Return Statements</a></li>
 </ul>
 </li>
-<li><a href="#orgb4766f9">2. Pure and Non-Pure Functions</a></li>
-<li><a href="#org79a551a">3. Higher-Order Functions</a>
+<li><a href="#orgaa0faa2">2. Pure and Non-Pure Functions</a></li>
+<li><a href="#org8c246b8">3. Higher-Order Functions</a>
 <ul>
-<li><a href="#org92b976c">3.1. Function Composition</a></li>
-<li><a href="#org69c1a82">3.2. Function Currying</a></li>
+<li><a href="#org61fe7c4">3.1. Function Composition</a></li>
+<li><a href="#org1a339e1">3.2. Function Currying</a></li>
 </ul>
 </li>
-<li><a href="#org1cfcbca">4. Polymorphic Functions</a></li>
+<li><a href="#orgacfe34b">4. Polymorphic Functions</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd154346" class="outline-2">
-<h2 id="orgd154346"><span class="section-number-2">1.</span> Defining Functions</h2>
+<div id="outline-container-org7aa6758" class="outline-2">
+<h2 id="org7aa6758"><span class="section-number-2">1.</span> Defining Functions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-While we can use <a href="assignment.html#orgd518ffe">assignment</a> to bind names to values, we can use a <b>function definition</b> to bind names to <i>expressions</i>. The function definition consists of a <b>function signature</b> composed of a name and <b>formal parameters</b>, and a <b>function body</b> that defines the computational process of the function:
+While we can use <a href="assignment.html#org1761a6c">assignment</a> to bind names to values, we can use a <b>function definition</b> to bind names to <i>expressions</i>. The function definition consists of a <b>function signature</b> composed of a name and <b>formal parameters</b>, and a <b>function body</b> that defines the computational process of the function:
 </p>
 
 
-<div id="orge4bb6e4" class="figure">
+<div id="orgb7b8497" class="figure">
 <p><img src="../static/COMPSCI_61A/functions2.png" alt="functions2.png" />
 </p>
 </div>
@@ -124,18 +127,16 @@ While we can use <a href="assignment.html#orgd518ffe">assignment</a> to bind nam
 For example:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">square</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">return</span> mul<span class="org-rainbow-delimiters-depth-1">(</span>x, x<span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+<pre><code class="language-python">def square(x):
+    return mul(x, x)
+</code></pre>
 
 <p>
-We can also define anonymous functions using <a href="expressions.html#org5e77fc8">lambda expressions</a>.
+We can also define anonymous functions using <a href="expressions.html#org253460a">lambda expressions</a>.
 </p>
 </div>
-<div id="outline-container-org845dcdf" class="outline-3">
-<h3 id="org845dcdf"><span class="section-number-3">1.1.</span> Procedure for <code>def</code> Statements</h3>
+<div id="outline-container-orgacf7316" class="outline-3">
+<h3 id="orgacf7316"><span class="section-number-3">1.1.</span> Procedure for <code>def</code> Statements</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Python also has an execution rule for evaluating function definitions:
@@ -143,15 +144,15 @@ Python also has an execution rule for evaluating function definitions:
 <ol class="org-ol">
 <li>Create a function with the given signature</li>
 <li>Set the body of that function to be everything indented after the first line</li>
-<li>Bind the name to that function in the current <a href="environments.html#org05aed64">frame</a></li>
+<li>Bind the name to that function in the current <a href="environments.html#org28b3404">frame</a></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-org1a47016" class="outline-3">
-<h3 id="org1a47016"><span class="section-number-3">1.2.</span> Procedure for Calling User-Defined Functions</h3>
+<div id="outline-container-org78e8caf" class="outline-3">
+<h3 id="org78e8caf"><span class="section-number-3">1.2.</span> Procedure for Calling User-Defined Functions</h3>
 <div class="outline-text-3" id="text-1-2">
 <ol class="org-ol">
-<li>Add a <b>local frame</b>, forming a <i>new</i> <a href="environments.html#org05aed64">environment</a></li>
+<li>Add a <b>local frame</b>, forming a <i>new</i> <a href="environments.html#org28b3404">environment</a></li>
 <li>Bind the function's formal parameters to its arguments in that frame</li>
 <li>Execute the body of the function in that new environment</li>
 </ol>
@@ -161,8 +162,8 @@ A function's <i>signature</i> is important because it contains all the informati
 </p>
 </div>
 </div>
-<div id="outline-container-org27cff68" class="outline-3">
-<h3 id="org27cff68"><span class="section-number-3">1.3.</span> Return Statements</h3>
+<div id="outline-container-org8930ab8" class="outline-3">
+<h3 id="org8930ab8"><span class="section-number-3">1.3.</span> Return Statements</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 A return statement completes the evaluation of a call expression and provide its value. When a <code>return</code> is reached, we switch back to the previous environment in which the function was called, and now <code>f(x)</code> in that environment has a value. This also implies that we can use <code>return</code> statements to end execution of a function, for example while doing <a href="iteration.html">iteration</a>.
@@ -174,8 +175,8 @@ Only one return statement is ever executed while executing the body of a functio
 </div>
 </div>
 </div>
-<div id="outline-container-orgb4766f9" class="outline-2">
-<h2 id="orgb4766f9"><span class="section-number-2">2.</span> Pure and Non-Pure Functions</h2>
+<div id="outline-container-orgaa0faa2" class="outline-2">
+<h2 id="orgaa0faa2"><span class="section-number-2">2.</span> Pure and Non-Pure Functions</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>Pure functions</b> only <i>return values</i>. For example, the built-in function <code>abs</code> is a pure function, as in takes in an argument (e.g. -2) and returns a value (e.g. 2).
@@ -186,8 +187,8 @@ On the other hand, <b>non-pure functions</b> have <i>side effects</i>. For examp
 </p>
 </div>
 </div>
-<div id="outline-container-org79a551a" class="outline-2">
-<h2 id="org79a551a"><span class="section-number-2">3.</span> Higher-Order Functions</h2>
+<div id="outline-container-org8c246b8" class="outline-2">
+<h2 id="org8c246b8"><span class="section-number-2">3.</span> Higher-Order Functions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Sometimes, we may want to generalize <i>computational processes</i>, not just numbers, over different functions. To do this, we can use <b>higher-order functions</b>, which allow us to pass in functions as a formal parameter, or allow us to use functions as a return value.
@@ -196,74 +197,66 @@ Sometimes, we may want to generalize <i>computational processes</i>, not just nu
 <p>
 For example, we can pass a function in as an argument:
 </p>
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">greet</span><span class="org-rainbow-delimiters-depth-1">(</span>func<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">return</span> func<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Hello"</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre><code class="language-python">def greet(func):
+    return func("Hello")
 
-<span class="org-py-def-class">def</span> <span class="org-py-def">uppercase</span><span class="org-rainbow-delimiters-depth-1">(</span>text<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">return</span> text.upper<span class="org-rainbow-delimiters-depth-1">()</span>
+def uppercase(text):
+    return text.upper()
 
-print<span class="org-rainbow-delimiters-depth-1">(</span>greet<span class="org-rainbow-delimiters-depth-2">(</span>uppercase<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+print(greet(uppercase))
+</code></pre>
 
 <p>
 We can also return a function:
 </p>
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">make_adder</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-py-def-class">def</span> <span class="org-py-def">adder</span><span class="org-rainbow-delimiters-depth-1">(</span>k<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-keyword">return</span> k + n
-    <span class="org-keyword">return</span> adder
-</pre>
+<pre><code class="language-python">def make_adder(n):
+    def adder(k):
+        return k + n
+    return adder
+</code></pre>
 </div>
-</div>
-<div id="outline-container-org92b976c" class="outline-3">
-<h3 id="org92b976c"><span class="section-number-3">3.1.</span> Function Composition</h3>
+<div id="outline-container-org61fe7c4" class="outline-3">
+<h3 id="org61fe7c4"><span class="section-number-3">3.1.</span> Function Composition</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We can use <b>function composition</b> to combine two different functions together. For example:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">square</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">return</span> x * x
+<pre><code class="language-python">def square(x):
+    return x * x
 
-<span class="org-py-def-class">def</span> <span class="org-py-def">triple</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">return</span> <span class="org-py-number">3</span> * x
+def triple(x):
+    return 3 * x
 
-<span class="org-py-def-class">def</span> <span class="org-py-def">compose1</span><span class="org-rainbow-delimiters-depth-1">(</span>f, g<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-py-def-class">def</span> <span class="org-py-def">h</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-keyword">return</span> f<span class="org-rainbow-delimiters-depth-1">(</span>g<span class="org-rainbow-delimiters-depth-2">(</span>x<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
-    <span class="org-keyword">return</span> h
+def compose1(f, g):
+    def h(x):
+        return f(g(x))
+    return h
 
-<span class="org-py-variable-name">squiple</span> <span class="org-operator">=</span> compose1<span class="org-rainbow-delimiters-depth-1">(</span>square, triple<span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+squiple = compose1(square, triple)
+</code></pre>
 
 <p>
 Here, <code>compose1(square, triple)</code> composes the functions <code>square</code> and <code>triple</code> together and returns a function that would call <code>square(triple(x))</code>. We can also use this composition directly by, for example, evaluating <code>compose1(square, triple)(3)</code> which would return <code>81</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org69c1a82" class="outline-3">
-<h3 id="org69c1a82"><span class="section-number-3">3.2.</span> Function Currying</h3>
+<div id="outline-container-org1a339e1" class="outline-3">
+<h3 id="org1a339e1"><span class="section-number-3">3.2.</span> Function Currying</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 The concept of <b>function currying</b> is where we take a function with several parameters, such as <code>add</code>, and split them into several function calls that each take one parameter, often accomplished using a higher-order function. For example:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">curry</span><span class="org-rainbow-delimiters-depth-1">(</span>f<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-py-def-class">def</span> <span class="org-py-def">g</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-py-def-class">def</span> <span class="org-py-def">h</span><span class="org-rainbow-delimiters-depth-1">(</span>y<span class="org-rainbow-delimiters-depth-1">)</span>:
-            <span class="org-keyword">return</span> f<span class="org-rainbow-delimiters-depth-1">(</span>x, y<span class="org-rainbow-delimiters-depth-1">)</span>
-        <span class="org-keyword">return</span> h
-    <span class="org-keyword">return</span> g
+<pre><code class="language-python">def curry(f):
+    def g(x):
+        def h(y):
+            return f(x, y)
+        return h
+    return g
 
-<span class="org-py-variable-name">m</span> <span class="org-operator">=</span> curry<span class="org-rainbow-delimiters-depth-1">(</span>add<span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+m = curry(add)
+</code></pre>
 
 <p>
 We now have a function <code>m</code> that does the same thing as <code>add</code> but using currying. Instead of <code>add(2, 3)</code>, we can do <code>m(2)(3)</code>.
@@ -271,8 +264,8 @@ We now have a function <code>m</code> that does the same thing as <code>add</cod
 </div>
 </div>
 </div>
-<div id="outline-container-org1cfcbca" class="outline-2">
-<h2 id="org1cfcbca"><span class="section-number-2">4.</span> Polymorphic Functions</h2>
+<div id="outline-container-orgacfe34b" class="outline-2">
+<h2 id="orgacfe34b"><span class="section-number-2">4.</span> Polymorphic Functions</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <b>Polymorphic functions</b> are functions that can be executed on many different types of objects or classes. This is often achieved through designing an <b>interface</b>: a specification for a shared set of attributes between different classes such that the same attributes can be looked up even when the classes are different.

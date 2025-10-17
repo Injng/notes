@@ -3,12 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-05 Fri 10:20 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Independence</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -111,7 +116,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Linear Independence</h1>
@@ -119,12 +124,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org42c49fc">1. Linear Independence</a></li>
+<li><a href="#org9a11019">1. Linear Independence</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org42c49fc" class="outline-2">
-<h2 id="org42c49fc"><span class="section-number-2">1.</span> Linear Independence</h2>
+<div id="outline-container-org9a11019" class="outline-2">
+<h2 id="org9a11019"><span class="section-number-2">1.</span> Linear Independence</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We want to know how "big" of a piece of the full space a set of vectors would span. To do this, we say that a set of vectors \({v_1, v_2, \dots, v_n}\) is <b>linearly independent</b> if scalars \(c_1, c_2, c_3, \dots, c_n\):
@@ -141,11 +146,11 @@ has only the <i>trivial solution</i> \(c_1=c_2=\cdots=c_n=0\).
 </p>
 
 <p>
-This is because if it had nontrivial solutions, then one of the vectors could be written as a <a href="linear_systems.html#orge7a3527">linear combination</a> of the other vectors; i.e., the vectors become <b>linearly dependent</b>.
+This is because if it had nontrivial solutions, then one of the vectors could be written as a <a href="linear_systems.html#org319e208">linear combination</a> of the other vectors; i.e., the vectors become <b>linearly dependent</b>.
 </p>
 
 <p>
-In this way, linear independence can be seen as measuring "redundancy": if one vector is a linear combination of the others, then it is redundant. To check for linear independence, we can simply take a matrix \(A\) whose columns are our set of vectors, and ask if the <a href="linear_systems.html#org9b821d1">homogeneous system</a> \(Ax=0\) has any nontrivial solutions.
+In this way, linear independence can be seen as measuring "redundancy": if one vector is a linear combination of the others, then it is redundant. To check for linear independence, we can simply take a matrix \(A\) whose columns are our set of vectors, and ask if the <a href="linear_systems.html#orgf2603cc">homogeneous system</a> \(Ax=0\) has any nontrivial solutions.
 </p>
 </div>
 </div>
@@ -156,7 +161,15 @@ In this way, linear independence can be seen as measuring "redundancy": if one v
              </div>
              <div class="last-modified">
                Last modified: 2025-09-05 10:10
-             </div>
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

@@ -3,13 +3,84 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-02 Mon 05:41 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vectors</title>
-<meta name="author" content="Lin Jiang" />
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
 <script>
   window.MathJax = {
     tex: {
@@ -45,7 +116,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Vectors</h1>
@@ -53,27 +124,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org643f358">1. Vectors</a></li>
-<li><a href="#orgb7ca25d">2. Vector Operations</a>
+<li><a href="#orgb2309b4">1. Vectors</a></li>
+<li><a href="#orgf269400">2. Vector Operations</a>
 <ul>
-<li><a href="#orga124e08">2.1. Vector Addition</a></li>
-<li><a href="#org708a290">2.2. Multiplying by a Scalar</a></li>
-<li><a href="#orgc416e0f">2.3. Dot Product</a>
+<li><a href="#org9f0a5ee">2.1. Vector Addition</a></li>
+<li><a href="#org08c8f3d">2.2. Multiplying by a Scalar</a></li>
+<li><a href="#org19aba80">2.3. Dot Product</a>
 <ul>
-<li><a href="#org9ad1fe6">2.3.1. Computing Lengths and Angles</a></li>
-<li><a href="#orgf7c6a7c">2.3.2. Sign of Dot Product</a></li>
-<li><a href="#org406de60">2.3.3. Projections</a></li>
+<li><a href="#org02cb864">2.3.1. Computing Lengths and Angles</a></li>
+<li><a href="#org6b5325a">2.3.2. Sign of Dot Product</a></li>
+<li><a href="#org1ccf550">2.3.3. Projections</a></li>
 </ul>
 </li>
-<li><a href="#orgc361803">2.4. Determinants</a>
+<li><a href="#orgaca66e2">2.4. Determinants</a>
 <ul>
-<li><a href="#orgc50120e">2.4.1. Determinants in Space</a></li>
+<li><a href="#orgdd778d3">2.4.1. Determinants in Space</a></li>
 </ul>
 </li>
-<li><a href="#orge3b5899">2.5. Cross Product</a>
+<li><a href="#org3a496c4">2.5. Cross Product</a>
 <ul>
-<li><a href="#orgae41a8b">2.5.1. Volume</a></li>
-<li><a href="#orgcf43e74">2.5.2. Equation of a Plane</a></li>
+<li><a href="#org11903af">2.5.1. Volume</a></li>
+<li><a href="#orgf583d0e">2.5.2. Equation of a Plane</a></li>
 </ul>
 </li>
 </ul>
@@ -81,15 +152,15 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org643f358" class="outline-2">
-<h2 id="org643f358"><span class="section-number-2">1.</span> Vectors</h2>
+<div id="outline-container-orgb2309b4" class="outline-2">
+<h2 id="orgb2309b4"><span class="section-number-2">1.</span> Vectors</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Vectors are values that have both a <b>direction</b> and a <b>magnitude</b> (or length). 
 </p>
 
 
-<div id="org21d82ba" class="figure">
+<div id="orga3d2907" class="figure">
 <p><img src="../static/vectors1.png" alt="vectors1.png" />
 </p>
 </div>
@@ -131,19 +202,19 @@ To find the magnitude of a vector given in component form, we can use the follow
 </p>
 </div>
 </div>
-<div id="outline-container-orgb7ca25d" class="outline-2">
-<h2 id="orgb7ca25d"><span class="section-number-2">2.</span> Vector Operations</h2>
+<div id="outline-container-orgf269400" class="outline-2">
+<h2 id="orgf269400"><span class="section-number-2">2.</span> Vector Operations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orga124e08" class="outline-3">
-<h3 id="orga124e08"><span class="section-number-3">2.1.</span> Vector Addition</h3>
+<div id="outline-container-org9f0a5ee" class="outline-3">
+<h3 id="org9f0a5ee"><span class="section-number-3">2.1.</span> Vector Addition</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Vectors can be added both geometrically and numerically. Starting with the geometric version, to add two vectors \(\vec{A}\) and \(\vec{B}\), we can use the "tip-to-tail" method or the parallelogram method shown below:
 </p>
 
 
-<div id="orgc7daaa5" class="figure">
+<div id="org0e79e6d" class="figure">
 <p><img src="../static/vectors2.png" alt="vectors2.png" />
 </p>
 </div>
@@ -159,15 +230,15 @@ To numerically add two vectors, simply add the values of their components:
 </p>
 </div>
 </div>
-<div id="outline-container-org708a290" class="outline-3">
-<h3 id="org708a290"><span class="section-number-3">2.2.</span> Multiplying by a Scalar</h3>
+<div id="outline-container-org08c8f3d" class="outline-3">
+<h3 id="org08c8f3d"><span class="section-number-3">2.2.</span> Multiplying by a Scalar</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Geometrically, multiplying by a scalar simply scales the length of the vector, like so:
 </p>
 
 
-<div id="org98bacc4" class="figure">
+<div id="org887028c" class="figure">
 <p><img src="../static/vectors3.png" alt="vectors3.png" />
 </p>
 </div>
@@ -183,8 +254,8 @@ c\langle a_1,a_2,a_3 \rangle = \langle ca_1,ca_2,ca_3 \rangle
 </p>
 </div>
 </div>
-<div id="outline-container-orgc416e0f" class="outline-3">
-<h3 id="orgc416e0f"><span class="section-number-3">2.3.</span> Dot Product</h3>
+<div id="outline-container-org19aba80" class="outline-3">
+<h3 id="org19aba80"><span class="section-number-3">2.3.</span> Dot Product</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The <b>dot product</b> is a way to multiply two vectors to get a scalar. It is the pairwise multiplication of corresponding componenets between two vectors:
@@ -207,7 +278,7 @@ Geometrically, what we're doing is:
 </p>
 
 
-<div id="org352dcaf" class="figure">
+<div id="org81e40e0" class="figure">
 <p><img src="../static/vectors4.png" alt="vectors4.png" />
 </p>
 </div>
@@ -221,7 +292,7 @@ To prove this result, we can use the Law of Cosines. Given two vectors \(\vec{A}
 </p>
 
 
-<div id="orgb539cb3" class="figure">
+<div id="orgf343ab1" class="figure">
 <p><img src="../static/vectors5.png" alt="vectors5.png" />
 </p>
 </div>
@@ -255,8 +326,8 @@ Equating these two expressions together, we get that
 \]
 </p>
 </div>
-<div id="outline-container-org9ad1fe6" class="outline-4">
-<h4 id="org9ad1fe6"><span class="section-number-4">2.3.1.</span> Computing Lengths and Angles</h4>
+<div id="outline-container-org02cb864" class="outline-4">
+<h4 id="org02cb864"><span class="section-number-4">2.3.1.</span> Computing Lengths and Angles</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 If we know the components that make up two vectors, then we can use this dot product relationship in order to find the angle between the two vectors, and vice versa.
@@ -268,8 +339,8 @@ If we know the components that make up two vectors, then we can use this dot pro
 \end{aligned}
 </div>
 </div>
-<div id="outline-container-orgf7c6a7c" class="outline-4">
-<h4 id="orgf7c6a7c"><span class="section-number-4">2.3.2.</span> Sign of Dot Product</h4>
+<div id="outline-container-org6b5325a" class="outline-4">
+<h4 id="org6b5325a"><span class="section-number-4">2.3.2.</span> Sign of Dot Product</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 Since the magnitudes will always be positive in the dot product, the sign of the dot product is solely dependent on the sign of \(\cos{\theta}\). This means that the dot product:
@@ -286,15 +357,15 @@ Therefore, we can use the dot product to <i>detect orthogonality</i>. If two vec
 </p>
 </div>
 </div>
-<div id="outline-container-org406de60" class="outline-4">
-<h4 id="org406de60"><span class="section-number-4">2.3.3.</span> Projections</h4>
+<div id="outline-container-org1ccf550" class="outline-4">
+<h4 id="org1ccf550"><span class="section-number-4">2.3.3.</span> Projections</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 We can use the dot product to <i>find the component of a vector along a certain direction</i>. This is otherwise known as the projection of a vector, \(\vec{A}\), along the direction defined by a unit vector \(\hat{u}\):
 </p>
 
 
-<div id="orgeb310a6" class="figure">
+<div id="org214d08b" class="figure">
 <p><img src="../static/vectors6.png" alt="vectors6.png" />
 </p>
 </div>
@@ -309,8 +380,8 @@ In other words, the projection of \(\vec{A}\) along \(\hat{u}\) is \(\vec{A} \cd
 </div>
 </div>
 </div>
-<div id="outline-container-orgc361803" class="outline-3">
-<h3 id="orgc361803"><span class="section-number-3">2.4.</span> Determinants</h3>
+<div id="outline-container-orgaca66e2" class="outline-3">
+<h3 id="orgaca66e2"><span class="section-number-3">2.4.</span> Determinants</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 To understand <b>determinants</b>, we must first look at calculating <i>area</i> using vectors. We know that the area of a triangle, determine by two adjacent vectors \(\vec{A}\) and \(\vec{B}\) with an angle \(\theta\) between them, is:
@@ -346,8 +417,8 @@ A &= \frac{1}{2} \langle -a_2,a_1 \rangle \cdot \langle b_1,b_2 \rangle \\ \nota
 This is defined as the determinant. Since the determinant is twice the area of this triangle, geometrically the <i>determinant of two vectors is equal to the area of the parallelogram bounded by those two vectors</i>.
 </p>
 </div>
-<div id="outline-container-orgc50120e" class="outline-4">
-<h4 id="orgc50120e"><span class="section-number-4">2.4.1.</span> Determinants in Space</h4>
+<div id="outline-container-orgdd778d3" class="outline-4">
+<h4 id="orgdd778d3"><span class="section-number-4">2.4.1.</span> Determinants in Space</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 Determinants can also be done with 3 vectors, \(\vec{A}\), \(\vec{B}\), and \(\vec{C}\). It is defined as:
@@ -369,8 +440,8 @@ Geometrically, the magnitude of the determinant is equivalent to <i>the volume o
 </div>
 </div>
 </div>
-<div id="outline-container-orge3b5899" class="outline-3">
-<h3 id="orge3b5899"><span class="section-number-3">2.5.</span> Cross Product</h3>
+<div id="outline-container-org3a496c4" class="outline-3">
+<h3 id="org3a496c4"><span class="section-number-3">2.5.</span> Cross Product</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 The <b><b>cross product</b></b> of two vectors in 3 dimensional space results in a <i>vector</i> defined as:
@@ -386,15 +457,15 @@ The <b><b>cross product</b></b> of two vectors in 3 dimensional space results in
 Geometrically, the <i>magnitude of the cross product of two vectors is equal to the area of the parallelogram formed by those two vectors</i>. Additionally, the <i>direction of the cross product is perpendicular to the plane of the parallelogram</i>. However, realize that there are two ways you can be perpendicular to a plane. In order to determine which exactly is the right direction for a cross product, we use the <b>right-hand rule</b>.
 </p>
 </div>
-<div id="outline-container-orgae41a8b" class="outline-4">
-<h4 id="orgae41a8b"><span class="section-number-4">2.5.1.</span> Volume</h4>
+<div id="outline-container-org11903af" class="outline-4">
+<h4 id="org11903af"><span class="section-number-4">2.5.1.</span> Volume</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 With this new operation, we can have some fresh insights on volumes of parallelepipeds. Let three vectors \(\vec{A}\), \(\vec{B}\), and \(\vec{C}\) bound a parallelepiped like in the image below:
 </p>
 
 
-<div id="orgb70967e" class="figure">
+<div id="orgb1f2d5c" class="figure">
 <p><img src="../static/vectors7.png" alt="vectors7.png" />
 </p>
 </div>
@@ -428,15 +499,15 @@ This is known as a <b>triple product</b>. Additionally, as a determinant of thre
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgcf43e74" class="outline-4">
-<h4 id="orgcf43e74"><span class="section-number-4">2.5.2.</span> Equation of a Plane</h4>
+<div id="outline-container-orgf583d0e" class="outline-4">
+<h4 id="orgf583d0e"><span class="section-number-4">2.5.2.</span> Equation of a Plane</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <p>
 Given three points in a plane, \(P_1\), \(P_2\), and \(P_3\), we can find a condition on another point \(P\) with coordinates \((x,y,z)\) that tells us whether or not \(P\) is in this plane.
 </p>
 
 
-<div id="org4435962" class="figure">
+<div id="orgc454794" class="figure">
 <p><img src="../static/vectors8.png" alt="vectors8.png" />
 </p>
 </div>
@@ -450,7 +521,7 @@ Another way to do this is by considering a normal vector to the plane as shown b
 </p>
 
 
-<div id="org19ac2cb" class="figure">
+<div id="orgcde737b" class="figure">
 <p><img src="../static/vectors9.png" alt="vectors9.png" />
 </p>
 </div>
@@ -488,8 +559,16 @@ Realize that this is a triple product, and by (1), this is the exact same as our
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-02 05:41
-             </div>
+               Last modified: 2025-06-01 14:41
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

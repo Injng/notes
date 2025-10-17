@@ -3,12 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-05 Fri 07:59 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kinematics</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -111,7 +116,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Kinematics</h1>
@@ -119,16 +124,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd603407">1. Terminology</a></li>
-<li><a href="#org38bb19a">2. Kinematic Equations</a></li>
-<li><a href="#orgee16627">3. 1D Kinematics</a></li>
-<li><a href="#orgdc9040d">4. 2D Kinematics</a></li>
-<li><a href="#org4e061f0">5. Relative Motion</a></li>
+<li><a href="#org209d866">1. Terminology</a></li>
+<li><a href="#org87bb43d">2. Kinematic Equations</a></li>
+<li><a href="#org7ed3481">3. 1D Kinematics</a></li>
+<li><a href="#org8492d37">4. 2D Kinematics</a></li>
+<li><a href="#org681526a">5. Relative Motion</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd603407" class="outline-2">
-<h2 id="orgd603407"><span class="section-number-2">1.</span> Terminology</h2>
+<div id="outline-container-org209d866" class="outline-2">
+<h2 id="org209d866"><span class="section-number-2">1.</span> Terminology</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Position</b> is the location of a system. It requires the choice of an <i>origin</i>, <i>units</i> to describe the location, an <i>axis</i>, and the <i>orientation</i> (positive direction) of that axis.
@@ -147,7 +152,7 @@ The <b>distance</b> is the total distance the system travels. Note that distance
 </p>
 
 
-<div id="org97bfd7d" class="figure">
+<div id="org0e97cac" class="figure">
 <p><img src="../static/PHYSICS_7A/1d_kinematics1.png" alt="1d_kinematics1.png" />
 </p>
 </div>
@@ -189,8 +194,8 @@ Its units are \(\frac{\text{m}}{\text{s}^2}\).
 </p>
 </div>
 </div>
-<div id="outline-container-org38bb19a" class="outline-2">
-<h2 id="org38bb19a"><span class="section-number-2">2.</span> Kinematic Equations</h2>
+<div id="outline-container-org87bb43d" class="outline-2">
+<h2 id="org87bb43d"><span class="section-number-2">2.</span> Kinematic Equations</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Assuming that acceleration is constant, we can derive several kinematic equations. Starting with:
@@ -266,8 +271,8 @@ Note that in (4), \(\frac{v_0 + v(t)}{2}\) is just average velocity.
 </p>
 </div>
 </div>
-<div id="outline-container-orgee16627" class="outline-2">
-<h2 id="orgee16627"><span class="section-number-2">3.</span> 1D Kinematics</h2>
+<div id="outline-container-org7ed3481" class="outline-2">
+<h2 id="org7ed3481"><span class="section-number-2">3.</span> 1D Kinematics</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 We can apply the kinematic equations to problems in one dimension. These problems generally involve objects in free fall.
@@ -291,7 +296,7 @@ Consider a ball tossed upward with an initial velocity \(v_0\) from height \(y_0
 </p>
 
 
-<div id="orga6602eb" class="figure">
+<div id="org479a133" class="figure">
 <p><img src="../static/PHYSICS_7A/1d_kinematics2.png" alt="1d_kinematics2.png" />
 </p>
 </div>
@@ -337,8 +342,8 @@ Mathematically, there are two solutions, but only the one where \(t > 0\) makes 
 </details>
 </div>
 </div>
-<div id="outline-container-orgdc9040d" class="outline-2">
-<h2 id="orgdc9040d"><span class="section-number-2">4.</span> 2D Kinematics</h2>
+<div id="outline-container-org8492d37" class="outline-2">
+<h2 id="org8492d37"><span class="section-number-2">4.</span> 2D Kinematics</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 In two dimensions, we can do the same thing as one dimension, but we need to consider the vertical and horizontal directions separately. Therefore, we often have to consider two separate equations for each of the directions.
@@ -367,7 +372,7 @@ Consider a ball tossed with initial velocity \(\vec{v_0}\):
 </p>
 
 
-<div id="org74bc633" class="figure">
+<div id="org560afa5" class="figure">
 <p><img src="../static/PHYSICS_7A/kinematics3.png" alt="kinematics3.png" />
 </p>
 </div>
@@ -384,8 +389,8 @@ D = x(t_f) = v_{0_x}t_f + x_0 = v_0\cos{\theta}t_f
 </details>
 </div>
 </div>
-<div id="outline-container-org4e061f0" class="outline-2">
-<h2 id="org4e061f0"><span class="section-number-2">5.</span> Relative Motion</h2>
+<div id="outline-container-org681526a" class="outline-2">
+<h2 id="org681526a"><span class="section-number-2">5.</span> Relative Motion</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 If object \(A\) is in motion with respect to object \(B\), which itself is in motion with respect to an observer, then:
@@ -414,7 +419,7 @@ Consider a plane that is flying with velocity \(\vec{v}_a\) at height \(H\), and
 </p>
 
 
-<div id="orgad3b03a" class="figure">
+<div id="orgeeea126" class="figure">
 <p><img src="../static/PHYSICS_7A/kinematics4.png" alt="kinematics4.png" />
 </p>
 </div>
@@ -459,7 +464,15 @@ D &= v_a\sqrt{\frac{2H}{g}}
              </div>
              <div class="last-modified">
                Last modified: 2025-09-05 07:59
-             </div>
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

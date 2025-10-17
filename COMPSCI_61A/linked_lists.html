@@ -3,14 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:33 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linked Lists</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -89,23 +92,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org44a6a48">1. Linked Lists</a>
+<li><a href="#org7d71a1b">1. Linked Lists</a>
 <ul>
-<li><a href="#org6eb7c71">1.1. Implementation</a></li>
+<li><a href="#org480c06e">1.1. Implementation</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org44a6a48" class="outline-2">
-<h2 id="org44a6a48"><span class="section-number-2">1.</span> Linked Lists</h2>
+<div id="outline-container-org7d71a1b" class="outline-2">
+<h2 id="org7d71a1b"><span class="section-number-2">1.</span> Linked Lists</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>linked list</b> is a way to represent a data sequence. A linked list is either empty <i>or</i> a first value and a pointer to the rest of the linked list. For example, to represent the sequence <code>3, 4, 5</code>, the structure of the linked list would be:
 </p>
 
 
-<div id="orgfd4428f" class="figure">
+<div id="org1d8db14" class="figure">
 <p><img src="../static/COMPSCI_61A/linked_lists1.png" alt="linked_lists1.png" />
 </p>
 </div>
@@ -114,23 +117,21 @@ A <b>linked list</b> is a way to represent a data sequence. A linked list is eit
 Each node of a linked list, then, is a <i>pair</i>: <code>first</code>, which is the value of its own element, then <code>rest</code>, which points to the next node in the rest of the linked list.
 </p>
 </div>
-<div id="outline-container-org6eb7c71" class="outline-3">
-<h3 id="org6eb7c71"><span class="section-number-3">1.1.</span> Implementation</h3>
+<div id="outline-container-org480c06e" class="outline-3">
+<h3 id="org480c06e"><span class="section-number-3">1.1.</span> Implementation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-Here is an implementation of a linked list <a href="objects.html#orgfaa49bc">class</a>:
+Here is an implementation of a linked list <a href="objects.html#org10f98a7">class</a>:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Link</span>:
-    <span class="org-py-variable-name">empty</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">()</span>
+<pre><code class="language-python">class Link:
+    empty = ()
 
-    <span class="org-py-def-class">def</span> <span class="org-py-def">__init__</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, first, rest=empty<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-keyword">assert</span> rest <span class="org-keyword">is</span> Link.empty <span class="org-keyword">or</span> <span class="org-py-builtins">isinstance</span><span class="org-rainbow-delimiters-depth-1">(</span>rest, Link<span class="org-rainbow-delimiters-depth-1">)</span>
-        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">first</span> <span class="org-operator">=</span> first
-        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">rest</span> <span class="org-operator">=</span> rest
-</pre>
-</div>
+    def __init__(self, first, rest=empty):
+        assert rest is Link.empty or isinstance(rest, Link)
+        self.first = first
+        self.rest = rest
+</code></pre>
 
 <details class="code-details"
                  style ="padding: 1em;
@@ -147,32 +148,30 @@ Here is an implementation of a linked list <a href="objects.html#orgfaa49bc">cla
                     </strong>
                   </summary>
 <p>
-We want to implement our own <code>range_link</code>, <code>map_link</code>, and <code>filter_link</code> functions for our linked list implementation. To do this, we will often need to use <a href="recursion.html#org0b45948">recursion</a>:
+We want to implement our own <code>range_link</code>, <code>map_link</code>, and <code>filter_link</code> functions for our linked list implementation. To do this, we will often need to use <a href="recursion.html#orgb248349">recursion</a>:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">range_link</span><span class="org-rainbow-delimiters-depth-1">(</span>start, end<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">if</span> start &gt;= end:
-        <span class="org-keyword">return</span> Link.empty
-    <span class="org-keyword">else</span>:
-        <span class="org-keyword">return</span> Link<span class="org-rainbow-delimiters-depth-1">(</span>start, range_link<span class="org-rainbow-delimiters-depth-2">(</span>start + <span class="org-py-number">1</span>, end<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+<pre><code class="language-python">def range_link(start, end):
+    if start &gt;= end:
+        return Link.empty
+    else:
+        return Link(start, range_link(start + 1, end))
 
-<span class="org-py-def-class">def</span> <span class="org-py-def">map_link</span><span class="org-rainbow-delimiters-depth-1">(</span>f, s<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">if</span> s <span class="org-keyword">is</span> Link.empty:
-        <span class="org-keyword">return</span> s
-    <span class="org-keyword">else</span>:
-        <span class="org-keyword">return</span> Link<span class="org-rainbow-delimiters-depth-1">(</span>f<span class="org-rainbow-delimiters-depth-2">(</span>s.first<span class="org-rainbow-delimiters-depth-2">)</span>, map_link<span class="org-rainbow-delimiters-depth-2">(</span>f, s.rest<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
+def map_link(f, s):
+    if s is Link.empty:
+        return s
+    else:
+        return Link(f(s.first), map_link(f, s.rest))
 
-<span class="org-py-def-class">def</span> <span class="org-py-def">filter_link</span><span class="org-rainbow-delimiters-depth-1">(</span>f, s<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">if</span> s <span class="org-keyword">is</span> Link.empty:
-        <span class="org-keyword">return</span> s
-    <span class="org-py-variable-name">filtered_rest</span> <span class="org-operator">=</span> filter_link<span class="org-rainbow-delimiters-depth-1">(</span>f, s.rest<span class="org-rainbow-delimiters-depth-1">)</span>
-    <span class="org-keyword">if</span> f<span class="org-rainbow-delimiters-depth-1">(</span>s.first<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-keyword">return</span> Link<span class="org-rainbow-delimiters-depth-1">(</span>s.first, filtered_rest<span class="org-rainbow-delimiters-depth-1">)</span>
-    <span class="org-keyword">else</span>:
-        <span class="org-keyword">return</span> filtered_rest
-</pre>
-</div>
+def filter_link(f, s):
+    if s is Link.empty:
+        return s
+    filtered_rest = filter_link(f, s.rest)
+    if f(s.first):
+        return Link(s.first, filtered_rest)
+    else:
+        return filtered_rest
+</code></pre>
 
 
 </details>
@@ -185,7 +184,7 @@ We want to implement our own <code>range_link</code>, <code>map_link</code>, and
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-17 10:33
+               Last modified: 2025-10-17 10:52
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

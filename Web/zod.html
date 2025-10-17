@@ -3,17 +3,88 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-01 Sun 14:28 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zod</title>
-<meta name="author" content="Lin Jiang" />
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Web/index.html">Web</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Web/index.html">Web</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Zod</h1>
@@ -21,21 +92,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org63b5d93">1. Schemas</a></li>
-<li><a href="#org2455962">2. Validations</a>
+<li><a href="#org5295bf6">1. Schemas</a></li>
+<li><a href="#org97ff8ab">2. Validations</a>
 <ul>
-<li><a href="#org2275256">2.1. Strings</a>
+<li><a href="#org65a0fc8">2.1. Strings</a>
 <ul>
-<li><a href="#org5e9b7f8">2.1.1. Example: ZIP Code</a></li>
+<li><a href="#org6f92f1f">2.1.1. Example: ZIP Code</a></li>
 </ul>
 </li>
-<li><a href="#org50f1d90">2.2. Date</a></li>
-<li><a href="#org61c64cc">2.3. Enums</a></li>
-<li><a href="#org1035d20">2.4. Numbers</a></li>
-<li><a href="#orgff729e7">2.5. Refinements</a></li>
-<li><a href="#orgbe8cd71">2.6. Instanceof</a>
+<li><a href="#org5e85dce">2.2. Date</a></li>
+<li><a href="#org914b5b4">2.3. Enums</a></li>
+<li><a href="#org491c149">2.4. Numbers</a></li>
+<li><a href="#orgf34b759">2.5. Refinements</a></li>
+<li><a href="#org2c1acb7">2.6. Instanceof</a>
 <ul>
-<li><a href="#orgb75cdb6">2.6.1. Example: File Input</a></li>
+<li><a href="#orgae4f299">2.6.1. Example: File Input</a></li>
 </ul>
 </li>
 </ul>
@@ -43,165 +114,147 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org63b5d93" class="outline-2">
-<h2 id="org63b5d93"><span class="section-number-2">1.</span> Schemas</h2>
+<div id="outline-container-org5295bf6" class="outline-2">
+<h2 id="org5295bf6"><span class="section-number-2">1.</span> Schemas</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Define and export a <code>zod</code> schema like so:
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-keyword">export</span> <span class="org-keyword">const</span> <span class="org-variable-name">personalInformationSchema</span> <span class="org-operator">=</span> z<span class="org-delimiter">.</span><span class="org-function-call">object</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span>
-  <span class="org-property-use">name</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">,</span>
-  <span class="org-property-use">email</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">email</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">,</span>
-  <span class="org-property-use">phone</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span><span class="org-delimiter">,</span>
-  <span class="org-property-use">birthday</span><span class="org-delimiter">:</span> z<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">()</span></span>
-<span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-</pre>
+<pre><code class="language-typescript-ts">export const personalInformationSchema = z.object({
+  name: z.string(),
+  email: z.email(),
+  phone: z.string(),
+  birthday: z.date()
+});
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org2455962" class="outline-2">
-<h2 id="org2455962"><span class="section-number-2">2.</span> Validations</h2>
+<div id="outline-container-org97ff8ab" class="outline-2">
+<h2 id="org97ff8ab"><span class="section-number-2">2.</span> Validations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org2275256" class="outline-3">
-<h3 id="org2275256"><span class="section-number-3">2.1.</span> Strings</h3>
+<div id="outline-container-org65a0fc8" class="outline-3">
+<h3 id="org65a0fc8"><span class="section-number-3">2.1.</span> Strings</h3>
 <div class="outline-text-3" id="text-2-1">
-<div class="org-src-container">
-<pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">max</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">min</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">length</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">regex</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-regexp">/^[a-z]+$/</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">startsWith</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"aaa"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">endsWith</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"zzz"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">includes</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"---"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">uppercase</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">lowercase</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">email</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>         <span class="org-comment">// zod v3: z.string().email()</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">uuid</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">url</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">emoji</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>         <span class="org-comment">// validates a single emoji character</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">base64</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">base64url</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">nanoid</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">cuid</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">cuid2</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">ulid</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">ipv4</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">ipv6</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">cidrv4</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>        <span class="org-comment">// ipv4 CIDR block</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">cidrv6</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>        <span class="org-comment">// ipv6 CIDR block</span>
-z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>      <span class="org-comment">// YYYY-MM-DD, zod v3: z.string().date()</span>
-z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">time</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">datetime</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span>iso<span class="org-delimiter">.</span><span class="org-function-call">duration</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-</pre>
+<pre><code class="language-typescript-ts">z.string().max(5);
+z.string().min(5);
+z.string().length(5);
+z.string().regex(/^[a-z]+$/);
+z.string().startsWith("aaa");
+z.string().endsWith("zzz");
+z.string().includes("---");
+z.string().uppercase();
+z.string().lowercase();
+z.email();         // zod v3: z.string().email()
+z.uuid();
+z.url();
+z.emoji();         // validates a single emoji character
+z.base64();
+z.base64url();
+z.nanoid();
+z.cuid();
+z.cuid2();
+z.ulid();
+z.ipv4();
+z.ipv6();
+z.cidrv4();        // ipv4 CIDR block
+z.cidrv6();        // ipv6 CIDR block
+z.iso.date();      // YYYY-MM-DD, zod v3: z.string().date()
+z.iso.time();
+z.iso.datetime();
+z.iso.duration();
+</code></pre>
 </div>
-</div>
-<div id="outline-container-org5e9b7f8" class="outline-4">
-<h4 id="org5e9b7f8"><span class="section-number-4">2.1.1.</span> Example: ZIP Code</h4>
+<div id="outline-container-org6f92f1f" class="outline-4">
+<h4 id="org6f92f1f"><span class="section-number-4">2.1.1.</span> Example: ZIP Code</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Use <code>string().regex()</code> for ZIP code validation:
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">regex</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-regexp">/^\d{5}(-\d{4})?$/</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-</pre>
+<pre><code class="language-typescript-ts">z.string().regex(/^\d{5}(-\d{4})?$/);
+</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-org50f1d90" class="outline-3">
-<h3 id="org50f1d90"><span class="section-number-3">2.2.</span> Date</h3>
+<div id="outline-container-org5e85dce" class="outline-3">
+<h3 id="org5e85dce"><span class="section-number-3">2.2.</span> Date</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Validates a <code>Date</code> instance. For HTML input, use the string validation <code>z.iso.date()</code> instead.
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">safeParse</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-keyword">new</span> <span class="org-type">Date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">()</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>                 <span class="org-comment">// success: true</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">date</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">safeParse</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"2022-01-12T00:00:00.000Z"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span> <span class="org-comment">// success: false</span>
-</pre>
+<pre><code class="language-typescript-ts">z.date();
+z.date().safeParse(new Date());                 // success: true
+z.date().safeParse("2022-01-12T00:00:00.000Z"); // success: false
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org61c64cc" class="outline-3">
-<h3 id="org61c64cc"><span class="section-number-3">2.3.</span> Enums</h3>
+<div id="outline-container-org914b5b4" class="outline-3">
+<h3 id="org914b5b4"><span class="section-number-3">2.3.</span> Enums</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Ensures input is within a collection of allowable inputs.
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-keyword">const</span> <span class="org-variable-name">fish</span> <span class="org-operator">=</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">[</span></span><span class="org-string">"Salmon"</span><span class="org-delimiter">,</span> <span class="org-string">"Tuna"</span><span class="org-delimiter">,</span> <span class="org-string">"Trout"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">]</span></span> <span class="org-keyword">as</span> <span class="org-keyword">const</span><span class="org-delimiter">;</span>   <span class="org-comment">// as const needed for type inference</span>
+<pre><code class="language-typescript-ts">const fish = ["Salmon", "Tuna", "Trout"] as const;   // as const needed for type inference
 
-<span class="org-keyword">const</span> <span class="org-variable-name">FishEnum</span> <span class="org-operator">=</span> z<span class="org-delimiter">.</span><span class="org-function-call">enum</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span>fish<span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-</pre>
+const FishEnum = z.enum(fish);
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org1035d20" class="outline-3">
-<h3 id="org1035d20"><span class="section-number-3">2.4.</span> Numbers</h3>
+<div id="outline-container-org491c149" class="outline-3">
+<h3 id="org491c149"><span class="section-number-3">2.4.</span> Numbers</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 <code>z.number()</code> allows any finite number.
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts">z<span class="org-delimiter">.</span><span class="org-function-call">number</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">gt</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">number</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">gte</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>                     <span class="org-comment">// alias .min(5)</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">number</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">lt</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">number</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">lte</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>                     <span class="org-comment">// alias .max(5)</span>
-z<span class="org-delimiter">.</span><span class="org-function-call">number</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">positive</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>       
-z<span class="org-delimiter">.</span><span class="org-function-call">number</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">nonnegative</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>    
-z<span class="org-delimiter">.</span><span class="org-function-call">number</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">negative</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span> 
-z<span class="org-delimiter">.</span><span class="org-function-call">number</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">nonpositive</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span> 
-z<span class="org-delimiter">.</span><span class="org-function-call">number</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">multipleOf</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-number">5</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>              <span class="org-comment">// alias .step(5)</span>
-</pre>
+<pre><code class="language-typescript-ts">z.number().gt(5);
+z.number().gte(5);                     // alias .min(5)
+z.number().lt(5);
+z.number().lte(5);                     // alias .max(5)
+z.number().positive();       
+z.number().nonnegative();    
+z.number().negative(); 
+z.number().nonpositive(); 
+z.number().multipleOf(5);              // alias .step(5)
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-orgff729e7" class="outline-3">
-<h3 id="orgff729e7"><span class="section-number-3">2.5.</span> Refinements</h3>
+<div id="outline-container-orgf34b759" class="outline-3">
+<h3 id="orgf34b759"><span class="section-number-3">2.5.</span> Refinements</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Every <code>zod</code> schema has an array of refinements, which allow for performing custom validation that <code>zod</code> doesn't provide an API for. Refinements should return a falsy value to signal validation failure.
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-keyword">const</span> <span class="org-variable-name">myString</span> <span class="org-operator">=</span> z<span class="org-delimiter">.</span><span class="org-function-call">string</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span><span class="org-function-call">refine</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">(</span></span><span class="org-variable-name">val</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">)</span></span> =&gt; val<span class="org-delimiter">.</span>length <span class="org-operator">&gt;</span> <span class="org-number">8</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span> 
-  <span class="org-property-use">error</span><span class="org-delimiter">:</span> <span class="org-string">"Too short!"</span> 
-<span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-</pre>
+<pre><code class="language-typescript-ts">const myString = z.string().refine((val) =&gt; val.length &gt; 8, { 
+  error: "Too short!" 
+});
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-orgbe8cd71" class="outline-3">
-<h3 id="orgbe8cd71"><span class="section-number-3">2.6.</span> Instanceof</h3>
+<div id="outline-container-org2c1acb7" class="outline-3">
+<h3 id="org2c1acb7"><span class="section-number-3">2.6.</span> Instanceof</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 Use <code>z.instanceof()</code> to check if input is an instance of a class.
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-keyword">class</span> <span class="org-type">Test</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span>
-  <span class="org-property-name">name</span><span class="org-delimiter">:</span> <span class="org-type">string</span><span class="org-delimiter">;</span>
-<span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span>
+<pre><code class="language-typescript-ts">class Test {
+  name: string;
+}
 
-<span class="org-keyword">const</span> <span class="org-variable-name">TestSchema</span> <span class="org-operator">=</span> z<span class="org-delimiter">.</span><span class="org-function-call">instanceof</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span>Test<span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-</pre>
+const TestSchema = z.instanceof(Test);
+</code></pre>
 </div>
-</div>
-<div id="outline-container-orgb75cdb6" class="outline-4">
-<h4 id="orgb75cdb6"><span class="section-number-4">2.6.1.</span> Example: File Input</h4>
+<div id="outline-container-orgae4f299" class="outline-4">
+<h4 id="orgae4f299"><span class="section-number-4">2.6.1.</span> Example: File Input</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <p>
 We can ensure the input is a file and validate the size of the file using <code>z.instanceof()</code> and <code>refine()</code>:
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-keyword">const</span> <span class="org-variable-name">schema</span> <span class="org-operator">=</span> z<span class="org-delimiter">.</span><span class="org-function-call">object</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span>
-  <span class="org-property-use">image</span><span class="org-delimiter">:</span> z
-    <span class="org-delimiter">.</span><span class="org-function-call">instanceof</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">(</span></span>File<span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-4">{</span></span> <span class="org-property-use">message</span><span class="org-delimiter">:</span> <span class="org-string">'Please upload a file.'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-4">}</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">)</span></span>
-    <span class="org-delimiter">.</span><span class="org-function-call">refine</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-4">(</span></span><span class="org-variable-name">f</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-4">)</span></span> =&gt; f<span class="org-delimiter">.</span>size <span class="org-operator">&lt;</span> <span class="org-number">100_000</span><span class="org-delimiter">,</span> <span class="org-string">'Max 100 kB upload size.'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-3">)</span></span>
-<span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span><span class="org-delimiter">;</span>
-</pre>
-</div>
+<pre><code class="language-typescript-ts">const schema = z.object({
+  image: z
+    .instanceof(File, { message: 'Please upload a file.'})
+    .refine((f) =&gt; f.size &lt; 100_000, 'Max 100 kB upload size.')
+});
+</code></pre>
 </div>
 </div>
 </div>
@@ -212,8 +265,16 @@ We can ensure the input is a file and validate the size of the file using <code>
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-01 14:21
-             </div>
+               Last modified: 2025-05-31 23:21
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

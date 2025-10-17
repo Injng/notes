@@ -3,12 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-21 Sun 17:42 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Recursion</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -79,7 +84,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Recursion</h1>
@@ -87,19 +92,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0b45948">1. Recursive Functions</a>
+<li><a href="#orgb248349">1. Recursive Functions</a>
 <ul>
-<li><a href="#orgd643e07">1.1. Verifying Recursive Functions</a></li>
-<li><a href="#orgc12f6b7">1.2. Mutually Recursive Functions</a></li>
+<li><a href="#orgfe40b45">1.1. Verifying Recursive Functions</a></li>
+<li><a href="#orga9f4f2b">1.2. Mutually Recursive Functions</a></li>
 </ul>
 </li>
-<li><a href="#orga01ba69">2. Recursion and Iteration</a></li>
-<li><a href="#org331453a">3. Tree Recursion</a></li>
+<li><a href="#org985675e">2. Recursion and Iteration</a></li>
+<li><a href="#orgaf1bd7b">3. Tree Recursion</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0b45948" class="outline-2">
-<h2 id="org0b45948"><span class="section-number-2">1.</span> Recursive Functions</h2>
+<div id="outline-container-orgb248349" class="outline-2">
+<h2 id="orgb248349"><span class="section-number-2">1.</span> Recursive Functions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A function is called <b>recursive</b> if the body of that function calls itself, either directly or indirectly. This means that when you call a recursive function, executing the body of that function may require applying that function again.
@@ -127,15 +132,13 @@ Recursive functions often have two parts: a <b>base case</b> and a <b>recursive 
 We can define the factorial function recursively like so:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">fact</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-comment-delimiter"># </span><span class="org-comment">base case
-</span>    <span class="org-keyword">if</span> n == <span class="org-py-number">1</span> <span class="org-keyword">or</span> n == <span class="org-py-number">0</span>:
-        <span class="org-keyword">return</span> <span class="org-py-number">1</span>
-    <span class="org-comment-delimiter"># </span><span class="org-comment">recursive case
-</span>    <span class="org-keyword">return</span> n * fact<span class="org-rainbow-delimiters-depth-1">(</span>n - <span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+<pre><code class="language-python">def fact(n):
+    # base case
+    if n == 1 or n == 0:
+        return 1
+    # recursive case
+    return n * fact(n - 1)
+</code></pre>
 
 
 </details>
@@ -155,23 +158,21 @@ We can define the factorial function recursively like so:
                     </strong>
                   </summary>
 <p>
-We can take advantage of list <a href="sequences.html#orgeca1d32">slicing</a> to implement a recurisve function that sums all the elements in a list:
+We can take advantage of list <a href="sequences.html#org533876d">slicing</a> to implement a recurisve function that sums all the elements in a list:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">sum_list</span><span class="org-rainbow-delimiters-depth-1">(</span>s<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">if</span> <span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">(</span>s<span class="org-rainbow-delimiters-depth-1">)</span> == <span class="org-py-number">0</span>:
-        <span class="org-keyword">return</span> <span class="org-py-number">0</span>
-    <span class="org-keyword">else</span>:
-        <span class="org-keyword">return</span> s<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span> + sum_list<span class="org-rainbow-delimiters-depth-1">(</span>s<span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">1</span>:<span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+<pre><code class="language-python">def sum_list(s):
+    if len(s) == 0:
+        return 0
+    else:
+        return s[0] + sum_list(s[1:])
+</code></pre>
 
 
 </details>
 </div>
-<div id="outline-container-orgd643e07" class="outline-3">
-<h3 id="orgd643e07"><span class="section-number-3">1.1.</span> Verifying Recursive Functions</h3>
+<div id="outline-container-orgfe40b45" class="outline-3">
+<h3 id="orgfe40b45"><span class="section-number-3">1.1.</span> Verifying Recursive Functions</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To verify that a recursive function `func` will do what it is supposed to do, you can follow the following steps:
@@ -183,8 +184,8 @@ To verify that a recursive function `func` will do what it is supposed to do, yo
 </ol>
 </div>
 </div>
-<div id="outline-container-orgc12f6b7" class="outline-3">
-<h3 id="orgc12f6b7"><span class="section-number-3">1.2.</span> Mutually Recursive Functions</h3>
+<div id="outline-container-orga9f4f2b" class="outline-3">
+<h3 id="orga9f4f2b"><span class="section-number-3">1.2.</span> Mutually Recursive Functions</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Two functions <code>f</code> and <code>g</code> are <b>mutually recursive</b> if <code>f</code> calls <code>g</code> and <code>g</code> calls <code>f</code>.
@@ -214,30 +215,28 @@ The Luhn algorithm is used to verify credit card numbers using a check digit, wh
 <li>The Luhn sum of a valid credit card number will always be a multiple of 10.</li>
 </ol>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">sum_digits</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">if</span> n &lt; <span class="org-py-number">10</span>:
-        <span class="org-keyword">return</span> n
-    <span class="org-keyword">else</span>:
-        <span class="org-py-variable-name">all_but_last</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
-        <span class="org-keyword">return</span> sum_digits<span class="org-rainbow-delimiters-depth-1">(</span>all_but_last<span class="org-rainbow-delimiters-depth-1">)</span> + last
+<pre><code class="language-python">def sum_digits(n):
+    if n &lt; 10:
+        return n
+    else:
+        all_but_last, last = n // 10, n % 10
+        return sum_digits(all_but_last) + last
 
-<span class="org-py-def-class">def</span> <span class="org-py-def">luhn_sum</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">if</span> n &lt; <span class="org-py-number">10</span>:
-        <span class="org-keyword">return</span> n
-    <span class="org-keyword">else</span>:
-        <span class="org-py-variable-name">all_but_last</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
-        <span class="org-keyword">return</span> luhn_sum_double<span class="org-rainbow-delimiters-depth-1">(</span>all_but_last<span class="org-rainbow-delimiters-depth-1">)</span> + last
+def luhn_sum(n):
+    if n &lt; 10:
+        return n
+    else:
+        all_but_last, last = n // 10, n % 10
+        return luhn_sum_double(all_but_last) + last
 
-<span class="org-py-def-class">def</span> <span class="org-py-def">luhn_sum_double</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-py-variable-name">all_but_last</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
-    <span class="org-py-variable-name">luhn_digit</span> <span class="org-operator">=</span> sum_digits<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">2</span> * last<span class="org-rainbow-delimiters-depth-1">)</span>
-    <span class="org-keyword">if</span> n &lt; <span class="org-py-number">10</span>:
-        <span class="org-keyword">return</span> luhn_digit
-    <span class="org-keyword">else</span>:
-        <span class="org-keyword">return</span> luhn_sum<span class="org-rainbow-delimiters-depth-1">(</span>all_but_last<span class="org-rainbow-delimiters-depth-1">)</span> + luhn_digit
-</pre>
-</div>
+def luhn_sum_double(n):
+    all_but_last, last = n // 10, n % 10
+    luhn_digit = sum_digits(2 * last)
+    if n &lt; 10:
+        return luhn_digit
+    else:
+        return luhn_sum(all_but_last) + luhn_digit
+</code></pre>
 
 <p>
 Here, <code>luhn_sum</code> and <code>luhn_sum_double</code> are mutually recursive.
@@ -248,8 +247,8 @@ Here, <code>luhn_sum</code> and <code>luhn_sum_double</code> are mutually recurs
 </div>
 </div>
 </div>
-<div id="outline-container-orga01ba69" class="outline-2">
-<h2 id="orga01ba69"><span class="section-number-2">2.</span> Recursion and Iteration</h2>
+<div id="outline-container-org985675e" class="outline-2">
+<h2 id="org985675e"><span class="section-number-2">2.</span> Recursion and Iteration</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We can often convert recursion to <a href="iteration.html">iteration</a>, as iteration is just a special case of recursion. The main thing we need to keep in mind is to figure out what state must be maintained by the iterative function.
@@ -273,29 +272,25 @@ We can often convert recursion to <a href="iteration.html">iteration</a>, as ite
 Here is the recursive version of <code>sum_digits</code>, which takes in a number <code>n</code> and returns the sum of its digits:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">sum_digits</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">if</span> n &lt; <span class="org-py-number">10</span>:
-        <span class="org-keyword">return</span> n
-    <span class="org-keyword">else</span>:
-        <span class="org-py-variable-name">all_but_last</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
-        <span class="org-keyword">return</span> sum_digits<span class="org-rainbow-delimiters-depth-1">(</span>all_but_last<span class="org-rainbow-delimiters-depth-1">)</span> + last
-</pre>
-</div>
+<pre><code class="language-python">def sum_digits(n):
+    if n &lt; 10:
+        return n
+    else:
+        all_but_last, last = n // 10, n % 10
+        return sum_digits(all_but_last) + last
+</code></pre>
 
 <p>
 We want to write an iterative version of this function, <code>sum_digits_iter</code>. In this case, the state we need to keep track of is the digit sum so far as we iterate:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">sum_digits_iter</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-py-variable-name">digit_sum</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>
-    <span class="org-keyword">while</span> n &gt; <span class="org-py-number">0</span>:
-        <span class="org-py-variable-name">n</span>, <span class="org-py-variable-name">last</span> <span class="org-operator">=</span> n // <span class="org-py-number">10</span>, n % <span class="org-py-number">10</span>
-        <span class="org-py-variable-name">digit_sum</span> <span class="org-operator">=</span> digit_sum + last
-    <span class="org-keyword">return</span> digit_sum
-</pre>
-</div>
+<pre><code class="language-python">def sum_digits_iter(n):
+    digit_sum = 0
+    while n &gt; 0:
+        n, last = n // 10, n % 10
+        digit_sum = digit_sum + last
+    return digit_sum
+</code></pre>
 
 
 </details>
@@ -305,15 +300,15 @@ We can also convert iteration to recursion. In this case, we can pass in the sta
 </p>
 </div>
 </div>
-<div id="outline-container-org331453a" class="outline-2">
-<h2 id="org331453a"><span class="section-number-2">3.</span> Tree Recursion</h2>
+<div id="outline-container-orgaf1bd7b" class="outline-2">
+<h2 id="orgaf1bd7b"><span class="section-number-2">3.</span> Tree Recursion</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 When the body of a function that makes multiple recursive calls is executed, we have <b>tree recursion</b>. This is because the computational process of a function that makes multiple recursive calls evolves into a tree structure. For example, for the <code>fib</code> function in the below example that calculates Fibonacci numbers, we can see that a call to <code>fib(5)</code> has the following call tree:
 </p>
 
 
-<div id="org4dc5820" class="figure">
+<div id="org1178dbf" class="figure">
 <p><img src="../static/COMPSCI_61A/recursion1.png" alt="recursion1.png" />
 </p>
 </div>
@@ -340,16 +335,14 @@ We then traverse the tree in a depth-first manner, until we have computed all th
 We can use a function that makes multiple recursive calls to find the n-th Fibonacci number:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">fib</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">if</span> n == <span class="org-py-number">0</span>:
-        <span class="org-keyword">return</span> <span class="org-py-number">0</span>
-    <span class="org-keyword">elif</span> n == <span class="org-py-number">1</span>:
-        <span class="org-keyword">return</span> <span class="org-py-number">1</span>
-    <span class="org-keyword">else</span>:
-        <span class="org-keyword">return</span> fib<span class="org-rainbow-delimiters-depth-1">(</span>n - <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">)</span> + fib<span class="org-rainbow-delimiters-depth-1">(</span>n - <span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+<pre><code class="language-python">def fib(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n - 2) + fib(n - 1)
+</code></pre>
 
 
 </details>
@@ -362,7 +355,15 @@ We can use a function that makes multiple recursive calls to find the n-th Fibon
              </div>
              <div class="last-modified">
                Last modified: 2025-09-21 17:39
-             </div>
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

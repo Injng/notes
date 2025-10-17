@@ -3,17 +3,88 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-11 Wed 12:33 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SvelteKit</title>
-<meta name="author" content="Lin Jiang" />
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Web/index.html">Web</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Web/index.html">Web</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">SvelteKit</h1>
@@ -21,41 +92,37 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org79c202c">1. Error Handling</a></li>
-<li><a href="#org0772a0e">2. Props</a></li>
+<li><a href="#org3ea45b9">1. Error Handling</a></li>
+<li><a href="#orgd496715">2. Props</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org79c202c" class="outline-2">
-<h2 id="org79c202c"><span class="section-number-2">1.</span> Error Handling</h2>
+<div id="outline-container-org3ea45b9" class="outline-2">
+<h2 id="org3ea45b9"><span class="section-number-2">1.</span> Error Handling</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 If an error occurs during load, the nearest <code>+error.svelte</code> file will be loaded. For example:
 </p>
-<div class="org-src-container">
-<pre class="src src-svelte"><span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">script</span> <span class="org-variable-name">lang</span>=<span class="org-string">"ts"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
-    <span class="org-keyword">import</span> <span class="org-rainbow-delimiters-depth-1">{</span> page <span class="org-rainbow-delimiters-depth-1">}</span> <span class="org-keyword">from</span> '$app/state';
-<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">script</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+<pre><code class="language-svelte">&lt;script lang="ts"&gt;
+    import { page } from '$app/state';
+&lt;/script&gt;
 
-<span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">h1</span><span class="org-rainbow-delimiters-depth-1">&gt;</span><span class="org-type"><span class="org-underline"><span class="org-bold"><span class="org-rainbow-delimiters-depth-1">{</span></span></span></span><span class="org-underline"><span class="org-bold">page.status</span></span><span class="org-type"><span class="org-underline"><span class="org-bold"><span class="org-rainbow-delimiters-depth-1">}</span></span></span></span><span class="org-underline"><span class="org-bold">: </span></span><span class="org-type"><span class="org-underline"><span class="org-bold"><span class="org-rainbow-delimiters-depth-1">{</span></span></span></span><span class="org-underline"><span class="org-bold">page.error.message</span></span><span class="org-type"><span class="org-underline"><span class="org-bold"><span class="org-rainbow-delimiters-depth-1">}</span></span></span></span><span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">h1</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
-</pre>
+&lt;h1&gt;{page.status}: {page.error.message}&lt;/h1&gt;
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org0772a0e" class="outline-2">
-<h2 id="org0772a0e"><span class="section-number-2">2.</span> Props</h2>
+<div id="outline-container-orgd496715" class="outline-2">
+<h2 id="orgd496715"><span class="section-number-2">2.</span> Props</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Use the <code>$props</code> rune to pass properties to components:
 </p>
-<div class="org-src-container">
-<pre class="src src-svelte"><span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">script</span> <span class="org-variable-name">lang</span>=<span class="org-string">"ts"</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
-    <span class="org-keyword">let</span> <span class="org-rainbow-delimiters-depth-1">{</span> adjective <span class="org-rainbow-delimiters-depth-1">}</span> = <span class="org-function-call">$props</span><span class="org-rainbow-delimiters-depth-1">()</span>;
-<span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">script</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
+<pre><code class="language-svelte">&lt;script lang="ts"&gt;
+    let { adjective } = $props();
+&lt;/script&gt;
 
-<span class="org-rainbow-delimiters-depth-1">&lt;</span><span class="org-function-name">p</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>this component is <span class="org-type"><span class="org-rainbow-delimiters-depth-1">{</span></span>adjective<span class="org-type"><span class="org-rainbow-delimiters-depth-1">}</span></span><span class="org-rainbow-delimiters-depth-1">&lt;</span>/<span class="org-function-name">p</span><span class="org-rainbow-delimiters-depth-1">&gt;</span>
-</pre>
-</div>
+&lt;p&gt;this component is {adjective}&lt;/p&gt;
+</code></pre>
 </div>
 </div>
 </div>
@@ -64,8 +131,16 @@ Use the <code>$props</code> rune to pass properties to components:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-09 08:02
-             </div>
+               Last modified: 2025-06-08 17:02
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

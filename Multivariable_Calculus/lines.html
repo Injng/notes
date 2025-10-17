@@ -3,13 +3,84 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-05 Thu 05:41 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lines and Parametric Curves</title>
-<meta name="author" content="Lin Jiang" />
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
 <script>
   window.MathJax = {
     tex: {
@@ -45,7 +116,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Lines and Parametric Curves</h1>
@@ -53,33 +124,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5f9d36d">1. Equations of Lines</a>
+<li><a href="#orgf0c6b5a">1. Equations of Lines</a>
 <ul>
-<li><a href="#orga1939c8">1.1. Given Two Points</a></li>
-<li><a href="#org7d999a7">1.2. Intersection with a Plane</a></li>
+<li><a href="#org27bd70c">1.1. Given Two Points</a></li>
+<li><a href="#org5d35512">1.2. Intersection with a Plane</a></li>
 </ul>
 </li>
-<li><a href="#orgd911f2e">2. General Parametric Equations</a>
+<li><a href="#org150525a">2. General Parametric Equations</a>
 <ul>
-<li><a href="#orgec49d42">2.1. Cycloid</a></li>
+<li><a href="#org6579d6d">2.1. Cycloid</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5f9d36d" class="outline-2">
-<h2 id="org5f9d36d"><span class="section-number-2">1.</span> Equations of Lines</h2>
+<div id="outline-container-orgf0c6b5a" class="outline-2">
+<h2 id="orgf0c6b5a"><span class="section-number-2">1.</span> Equations of Lines</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-<a href="planes.html#orga7fd9ff">We have seen that</a> a line is formed from the intersection of two planes. Therefore, it is possible to define a line as the intersection between two equations of planes.
+<a href="planes.html#org245e825">We have seen that</a> a line is formed from the intersection of two planes. Therefore, it is possible to define a line as the intersection between two equations of planes.
 </p>
 
 <p>
 However, this isn't particularly convenient. Another way of thinking about this is by considering the trajectory of a moving point, in other words, <b>parametric equations</b>.
 </p>
 </div>
-<div id="outline-container-orga1939c8" class="outline-3">
-<h3 id="orga1939c8"><span class="section-number-3">1.1.</span> Given Two Points</h3>
+<div id="outline-container-org27bd70c" class="outline-3">
+<h3 id="org27bd70c"><span class="section-number-3">1.1.</span> Given Two Points</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 A line can be defined by two points in space, say \(Q_0\) and \(Q_1\). We can define a parametric equation with time variable \(t\), where \(Q(t)\) is our moving point which we shall say moves at constant speed on the line. This speed will be chosen such that at \(Q(0)=Q_0\) and \(Q(1)=Q_1\).
@@ -116,8 +187,8 @@ z(t) &= c_0+(c_1-c_0)t
 \end{aligned}
 </div>
 </div>
-<div id="outline-container-org7d999a7" class="outline-3">
-<h3 id="org7d999a7"><span class="section-number-3">1.2.</span> Intersection with a Plane</h3>
+<div id="outline-container-org5d35512" class="outline-3">
+<h3 id="org5d35512"><span class="section-number-3">1.2.</span> Intersection with a Plane</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 We can use our parametric equations to consider the question: given a plane, does the line intersect with the plane, and if so, where?
@@ -137,22 +208,22 @@ There are also cases when we plug our equations for \(x(t),y(t),z(t)\), we get a
 </div>
 </div>
 </div>
-<div id="outline-container-orgd911f2e" class="outline-2">
-<h2 id="orgd911f2e"><span class="section-number-2">2.</span> General Parametric Equations</h2>
+<div id="outline-container-org150525a" class="outline-2">
+<h2 id="org150525a"><span class="section-number-2">2.</span> General Parametric Equations</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Now, we shall explore parametric equations more generally. A <b>parametric equation</b> is a function that describes some characteristic, such as the coordinates of a point, using one or more <i>independent variables</i>, known as <b>parameters</b>, such as time \(t\) or angle \(\theta\).
 </p>
 </div>
-<div id="outline-container-orgec49d42" class="outline-3">
-<h3 id="orgec49d42"><span class="section-number-3">2.1.</span> Cycloid</h3>
+<div id="outline-container-org6579d6d" class="outline-3">
+<h3 id="org6579d6d"><span class="section-number-3">2.1.</span> Cycloid</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Consider a <b>cycloid</b> function, which is the trajectory when you consider a fixed point on a wheel as it rolls forward, like so:
 </p>
 
 
-<div id="org9fee850" class="figure">
+<div id="org4674698" class="figure">
 <p><img src="../static/cycloid.gif" alt="cycloid.gif" />
 </p>
 </div>
@@ -166,7 +237,7 @@ Now, consider the vector \(\vec{OP}\), where \(O\) is the origin and \(P\) is th
 </p>
 
 
-<div id="org6506d82" class="figure">
+<div id="orgbb6b6c2" class="figure">
 <p><img src="../static/cycloid2.png" alt="cycloid2.png" />
 </p>
 </div>
@@ -186,7 +257,7 @@ Now, let's call the radius of the wheel \(a\). As the ball moves without slippin
 </p>
 
 
-<div id="orgf5fdc83" class="figure">
+<div id="org714149f" class="figure">
 <p><img src="../static/cycloid3.png" alt="cycloid3.png" />
 </p>
 </div>
@@ -205,7 +276,7 @@ Now, consider \(\vec{BP}\):
 </p>
 
 
-<div id="org615c5ba" class="figure">
+<div id="org6aacdc4" class="figure">
 <p><img src="../static/cycloid4.png" alt="cycloid4.png" />
 </p>
 </div>
@@ -257,8 +328,16 @@ r(t) = \langle t-\sin t, 1- \cos t \rangle
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-05 05:37
-             </div>
+               Last modified: 2025-06-04 14:37
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

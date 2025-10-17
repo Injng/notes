@@ -3,12 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-07-31 Thu 10:19 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Triple Integrals</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -111,7 +116,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Triple Integrals</h1>
@@ -119,22 +124,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge4abcd8">1. Triple Integral</a></li>
-<li><a href="#org8703e9f">2. Cylindrical Coordinates</a></li>
-<li><a href="#orgd4fc952">3. Spherical Coordinates</a></li>
-<li><a href="#orgdabd70b">4. Applications</a>
+<li><a href="#org0ef6032">1. Triple Integral</a></li>
+<li><a href="#orgb624ccb">2. Cylindrical Coordinates</a></li>
+<li><a href="#orgf203f0a">3. Spherical Coordinates</a></li>
+<li><a href="#orgaea8581">4. Applications</a>
 <ul>
-<li><a href="#orgfa09b13">4.1. Mass</a></li>
-<li><a href="#orgb126718">4.2. Average Value</a></li>
-<li><a href="#org52cc857">4.3. Center of Mass</a></li>
-<li><a href="#orgf8b7352">4.4. Moment of Inertia</a></li>
+<li><a href="#org38102b1">4.1. Mass</a></li>
+<li><a href="#org729d207">4.2. Average Value</a></li>
+<li><a href="#org72b6d4e">4.3. Center of Mass</a></li>
+<li><a href="#orgf499c5f">4.4. Moment of Inertia</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge4abcd8" class="outline-2">
-<h2 id="orge4abcd8"><span class="section-number-2">1.</span> Triple Integral</h2>
+<div id="outline-container-org0ef6032" class="outline-2">
+<h2 id="org0ef6032"><span class="section-number-2">1.</span> Triple Integral</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The <b>triple integral</b> is defined as the integral for a function depending on three variables, \(x\), \(y\), and \(z\), enclosing some region \(R\) in space, such that we can take the integral over the region with respect to \(\text{d}V\), the volume element:
@@ -165,7 +170,7 @@ We want to find the region between the paraboloids \(z=x^2 + y^2\) and \(z=4-x^2
 </p>
 
 
-<div id="org048a94c" class="figure">
+<div id="org84d288f" class="figure">
 <p><img src="../static/triple_integrals1.png" alt="triple_integrals1.png" />
 </p>
 </div>
@@ -208,15 +213,15 @@ The smarter thing to do here, however, would be to evaluate this in polar coordi
 </details>
 </div>
 </div>
-<div id="outline-container-org8703e9f" class="outline-2">
-<h2 id="org8703e9f"><span class="section-number-2">2.</span> Cylindrical Coordinates</h2>
+<div id="outline-container-orgb624ccb" class="outline-2">
+<h2 id="orgb624ccb"><span class="section-number-2">2.</span> Cylindrical Coordinates</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Sometimes, it is easier to express things in <b>cylindrical coordinates</b> in order to integrate. Cylindrical coordinates in \((r,\theta,z)\) work by first expressing a point in space by using polar coordinates to pinpoint its projection in the \(xy\) plane, and then using \(z\) to describe its height:
 </p>
 
 
-<div id="orgbbd2adb" class="figure">
+<div id="org86ec562" class="figure">
 <p><img src="../static/triple_integrals2.png" alt="triple_integrals2.png" />
 </p>
 </div>
@@ -230,15 +235,15 @@ The volume element then becomes \(\text{d}x\text{ d}y\text{ d}z = r\text{ d}r\te
 </p>
 </div>
 </div>
-<div id="outline-container-orgd4fc952" class="outline-2">
-<h2 id="orgd4fc952"><span class="section-number-2">3.</span> Spherical Coordinates</h2>
+<div id="outline-container-orgf203f0a" class="outline-2">
+<h2 id="orgf203f0a"><span class="section-number-2">3.</span> Spherical Coordinates</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Similar to polar coordinates, <b>spherical coordinates</b> use the distance from the origin \(\rho\) and two angles to determine the location of a point in space. These two angles are \(\phi\), the angle downwards from the z-axis, and \(\theta\), the angle counterclockwise from the x-axis:
 </p>
 
 
-<div id="org16a72bf" class="figure">
+<div id="orgb537e06" class="figure">
 <p><img src="../static/triple_integrals5.png" alt="triple_integrals5.png" />
 </p>
 </div>
@@ -252,7 +257,7 @@ We can think of this system as a "double polar" system: we first project the poi
 </p>
 
 
-<div id="org8a57023" class="figure">
+<div id="org46c2ad0" class="figure">
 <p><img src="../static/triple_integrals6.png" alt="triple_integrals6.png" />
 </p>
 </div>
@@ -286,7 +291,7 @@ In other words, we have a "box" shape between two concentric spheres, where the 
 </p>
 
 
-<div id="org6e57edf" class="figure">
+<div id="org869c718" class="figure">
 <p><img src="../static/triple_integrals7.png" alt="triple_integrals7.png" />
 </p>
 </div>
@@ -326,7 +331,7 @@ We would like to set up a triple integral for the portion of the unit sphere abo
 </p>
 
 
-<div id="org19b7eab" class="figure">
+<div id="org4114b8e" class="figure">
 <p><img src="../static/triple_integrals4.png" alt="triple_integrals4.png" />
 </p>
 </div>
@@ -363,12 +368,12 @@ Finally, since we are going all the way around the sphere, \(\theta\) is simply 
 </details>
 </div>
 </div>
-<div id="outline-container-orgdabd70b" class="outline-2">
-<h2 id="orgdabd70b"><span class="section-number-2">4.</span> Applications</h2>
+<div id="outline-container-orgaea8581" class="outline-2">
+<h2 id="orgaea8581"><span class="section-number-2">4.</span> Applications</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgfa09b13" class="outline-3">
-<h3 id="orgfa09b13"><span class="section-number-3">4.1.</span> Mass</h3>
+<div id="outline-container-org38102b1" class="outline-3">
+<h3 id="org38102b1"><span class="section-number-3">4.1.</span> Mass</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 We know that density is \(\delta = \frac{\Delta m}{\Delta V}\), so the mass element is equal to \(\text{d}m = \delta \text{ d}V\). Therefore, mass \(M\) is:
@@ -381,8 +386,8 @@ M= \iiint_R \delta \text{ d}V
 </p>
 </div>
 </div>
-<div id="outline-container-orgb126718" class="outline-3">
-<h3 id="orgb126718"><span class="section-number-3">4.2.</span> Average Value</h3>
+<div id="outline-container-org729d207" class="outline-3">
+<h3 id="org729d207"><span class="section-number-3">4.2.</span> Average Value</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 The average value of \(f(x,y,z)\) in the region \(R\) is the triple integral of the function over the volume of the region:
@@ -405,8 +410,8 @@ We can also calculate a <i>weighted average</i> with the density and mass:
 </p>
 </div>
 </div>
-<div id="outline-container-org52cc857" class="outline-3">
-<h3 id="org52cc857"><span class="section-number-3">4.3.</span> Center of Mass</h3>
+<div id="outline-container-org72b6d4e" class="outline-3">
+<h3 id="org72b6d4e"><span class="section-number-3">4.3.</span> Center of Mass</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 The <b>center of mass</b> is calculated by finding the weighted average values of each coordinate: \((\bar{x},\bar{y},\bar{z})\). For example, \(\bar{x}\) would be calculated by:
@@ -419,11 +424,11 @@ The <b>center of mass</b> is calculated by finding the weighted average values o
 </p>
 </div>
 </div>
-<div id="outline-container-orgf8b7352" class="outline-3">
-<h3 id="orgf8b7352"><span class="section-number-3">4.4.</span> Moment of Inertia</h3>
+<div id="outline-container-orgf499c5f" class="outline-3">
+<h3 id="orgf499c5f"><span class="section-number-3">4.4.</span> Moment of Inertia</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
-The <b>moment of inertia</b> around an axis is similar to <a href="double_integrals.html#org0f27336">what we had for double integrals</a>, where \(r\) is the distance to the axis:
+The <b>moment of inertia</b> around an axis is similar to <a href="double_integrals.html#org018b7bf">what we had for double integrals</a>, where \(r\) is the distance to the axis:
 </p>
 
 <p>
@@ -455,7 +460,7 @@ We would like to find the moment of inertia \(I_z\) about the z-axis of a solid 
 </p>
 
 
-<div id="org8e3691a" class="figure">
+<div id="org9ecabdd" class="figure">
 <p><img src="../static/triple_integrals3.png" alt="triple_integrals3.png" />
 </p>
 </div>
@@ -482,7 +487,15 @@ I_z = \iiint r^2 r \text{ d}r\text{ d}\theta\text{ d}z
              </div>
              <div class="last-modified">
                Last modified: 2025-07-31 10:19
-             </div>
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

@@ -3,14 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-07 Tue 15:52 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mutation</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -89,33 +92,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgedfe0c4">1. Mutation</a>
+<li><a href="#orgc9964a3">1. Mutation</a>
 <ul>
-<li><a href="#org9601dc1">1.1. Identity Operators</a></li>
-<li><a href="#orgc94e8d3">1.2. Mutable Default Arguments</a></li>
-<li><a href="#orgbb532b7">1.3. Persistent Local State</a></li>
+<li><a href="#orgfae0f62">1.1. Identity Operators</a></li>
+<li><a href="#org9ee03d2">1.2. Mutable Default Arguments</a></li>
+<li><a href="#org34e492d">1.3. Persistent Local State</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgedfe0c4" class="outline-2">
-<h2 id="orgedfe0c4"><span class="section-number-2">1.</span> Mutation</h2>
+<div id="outline-container-orgc9964a3" class="outline-2">
+<h2 id="orgc9964a3"><span class="section-number-2">1.</span> Mutation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-<b>Mutation</b> is the ability of certain data types, like <a href="sequences.html#org6a52fc6">lists</a>, to be changed or modified after they are created. This means that their contents can be altered <i>without creating a new object</i>.
+<b>Mutation</b> is the ability of certain data types, like <a href="sequences.html#org0b1993e">lists</a>, to be changed or modified after they are created. This means that their contents can be altered <i>without creating a new object</i>.
 </p>
 
 <p>
-In Python, everything is an <a href="objects.html#org637f3f4">object</a> and variables are pointers to those objects. A data type that is mutable changes the object itself without the need to create a new object (and thereby modifying the pointer). These pointers are known as the <b>identity</b> of the variable. When two variables point to the same object, we say those variables have the <i>same identity</i>.
+In Python, everything is an <a href="objects.html#org88e8209">object</a> and variables are pointers to those objects. A data type that is mutable changes the object itself without the need to create a new object (and thereby modifying the pointer). These pointers are known as the <b>identity</b> of the variable. When two variables point to the same object, we say those variables have the <i>same identity</i>.
 </p>
 
 <p>
 In this way, if we have two variables pointing to the same mutable data type, like a list, changing one of the variables will change the other. However, the reason why if we do <code>a = 3</code>, <code>b = a</code>, but then <code>b = 5</code> doesn't change <code>a</code> to be <code>5</code> is because integers are <b>immutable</b>, which means the assignment <code>b = 5</code> created a new object independent of the original <code>a</code> object.
 </p>
 </div>
-<div id="outline-container-org9601dc1" class="outline-3">
-<h3 id="org9601dc1"><span class="section-number-3">1.1.</span> Identity Operators</h3>
+<div id="outline-container-orgfae0f62" class="outline-3">
+<h3 id="orgfae0f62"><span class="section-number-3">1.1.</span> Identity Operators</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can use the <code>is</code> operator to check if two variables have the same identity, i.e. they evaluate to the same object: <code>&lt;exp0&gt; is &lt;exp1&gt;</code>.
@@ -126,43 +129,39 @@ We can use the <code>==</code> operator to check if two variables evaluate to th
 </p>
 </div>
 </div>
-<div id="outline-container-orgc94e8d3" class="outline-3">
-<h3 id="orgc94e8d3"><span class="section-number-3">1.2.</span> Mutable Default Arguments</h3>
+<div id="outline-container-org9ee03d2" class="outline-3">
+<h3 id="org9ee03d2"><span class="section-number-3">1.2.</span> Mutable Default Arguments</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-A mutable <a href="python.html#org856f910">default argument</a> is dangerous because it stays as part of the function value. In other words, the following function's default argument mutates every time you call it:
+A mutable <a href="python.html#org2ea5562">default argument</a> is dangerous because it stays as part of the function value. In other words, the following function's default argument mutates every time you call it:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">f</span><span class="org-rainbow-delimiters-depth-1">(</span>s=<span class="org-rainbow-delimiters-depth-2">[]</span><span class="org-rainbow-delimiters-depth-1">)</span>:
-    s.append<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">)</span>
-    <span class="org-keyword">return</span> <span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">(</span>S<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre><code class="language-python">def f(s=[]):
+    s.append(5)
+    return len(S)
 
-<span class="org-py-variable-name">one</span> <span class="org-operator">=</span> f<span class="org-rainbow-delimiters-depth-1">()</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">1
-</span><span class="org-py-variable-name">two</span> <span class="org-operator">=</span> f<span class="org-rainbow-delimiters-depth-1">()</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">2
-</span><span class="org-py-variable-name">three</span> <span class="org-operator">=</span> f<span class="org-rainbow-delimiters-depth-1">()</span>   <span class="org-comment-delimiter"># </span><span class="org-comment">3</span>
-</pre>
+one = f()     # 1
+two = f()     # 2
+three = f()   # 3
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-orgbb532b7" class="outline-3">
-<h3 id="orgbb532b7"><span class="section-number-3">1.3.</span> Persistent Local State</h3>
+<div id="outline-container-org34e492d" class="outline-3">
+<h3 id="org34e492d"><span class="section-number-3">1.3.</span> Persistent Local State</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 We can use mutable values to keep track of a persistent local state. To do so, we can define a mutable sequence in the parent frame of a function, which can change over time as the function mutates it:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">make_withdraw_list</span><span class="org-rainbow-delimiters-depth-1">(</span>balance<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-py-variable-name">b</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>balance<span class="org-rainbow-delimiters-depth-1">]</span>
-    <span class="org-py-def-class">def</span> <span class="org-py-def">withdraw</span><span class="org-rainbow-delimiters-depth-1">(</span>amount<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-keyword">if</span> amount &gt; b<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span>:
-            <span class="org-keyword">return</span> <span class="org-string">'Insufficient funds'</span>
-        <span class="org-py-variable-name">b</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> b<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span> - amount
-        <span class="org-keyword">return</span> b<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span>
-    <span class="org-keyword">return</span> withdraw
-</pre>
-</div>
+<pre><code class="language-python">def make_withdraw_list(balance):
+    b = [balance]
+    def withdraw(amount):
+        if amount &gt; b[0]:
+            return 'Insufficient funds'
+        b[0] = b[0] - amount
+        return b[0]
+    return withdraw
+</code></pre>
 </div>
 </div>
 </div>

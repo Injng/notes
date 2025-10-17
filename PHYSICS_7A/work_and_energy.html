@@ -3,14 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-08 Wed 17:23 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Work and Energy</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -121,21 +124,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7a13a72">1. Work</a>
+<li><a href="#orgc3cc1fe">1. Work</a>
 <ul>
-<li><a href="#orga406499">1.1. Net Work</a></li>
+<li><a href="#org6cd2451">1.1. Net Work</a></li>
 </ul>
 </li>
-<li><a href="#org402d1e6">2. Kinetic Energy</a></li>
-<li><a href="#org5cd69cf">3. Work-Energy Theorem</a></li>
-<li><a href="#org4bac564">4. Potential Energy</a>
+<li><a href="#org5434af2">2. Kinetic Energy</a></li>
+<li><a href="#org29300a8">3. Work-Energy Theorem</a></li>
+<li><a href="#orgbc3f551">4. Potential Energy</a>
 <ul>
-<li><a href="#org509ffba">4.1. Gravitational Potential Energy</a></li>
-<li><a href="#orgce09877">4.2. Elastic Potential Energy</a></li>
-<li><a href="#org2fd0ae4">4.3. Conservation of Mechanical Energy</a></li>
-<li><a href="#orgeb7db93">4.4. Potential Energy Diagrams</a>
+<li><a href="#org9441c0d">4.1. Gravitational Potential Energy</a></li>
+<li><a href="#orgbaa4625">4.2. Elastic Potential Energy</a></li>
+<li><a href="#org9afc614">4.3. Conservation of Mechanical Energy</a></li>
+<li><a href="#org29acc1a">4.4. Potential Energy Diagrams</a>
 <ul>
-<li><a href="#org9572878">4.4.1. Stability of Equilibrium</a></li>
+<li><a href="#orgc514e0c">4.4.1. Stability of Equilibrium</a></li>
 </ul>
 </li>
 </ul>
@@ -146,8 +149,8 @@
 <p>
 Since energy is a scalar quantity, it is a lot easier to manipulate than forces. Therefore, there is the possibility that we can make a lot of dynamics problems easier by using energy instead of Newton's laws.
 </p>
-<div id="outline-container-org7a13a72" class="outline-2">
-<h2 id="org7a13a72"><span class="section-number-2">1.</span> Work</h2>
+<div id="outline-container-orgc3cc1fe" class="outline-2">
+<h2 id="orgc3cc1fe"><span class="section-number-2">1.</span> Work</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Work</b> is a measure of energy transferred to a system to perform a <i>displacement</i> (no displacement, no work):
@@ -158,7 +161,7 @@ Since energy is a scalar quantity, it is a lot easier to manipulate than forces.
 \end{align}
 
 <p>
-Note that work depends on a <i>process</i> from a point A to a point B; it is <i>not</i> a measure of energy at a given point. Work is represented by a <a href="../Multivariable_Calculus/line_integrals.html#org8590bcd">line integral</a> that depends on the magnitude of \(\vec{F}\), the distance from A to B, and the relative direction between \(\vec{F}\) and \(\text{d}\vec{r}\).
+Note that work depends on a <i>process</i> from a point A to a point B; it is <i>not</i> a measure of energy at a given point. Work is represented by a <a href="../Multivariable_Calculus/line_integrals.html#orga2c1b84">line integral</a> that depends on the magnitude of \(\vec{F}\), the distance from A to B, and the relative direction between \(\vec{F}\) and \(\text{d}\vec{r}\).
 </p>
 
 <p>
@@ -173,8 +176,8 @@ W_{AB} = \int_A^B F\cos\theta \text{ d}r = \boxed{F\cos\theta L_{AB}} \notag
 where \(L\) is the length of the path from \(A\) to \(B\). 
 </p>
 </div>
-<div id="outline-container-orga406499" class="outline-3">
-<h3 id="orga406499"><span class="section-number-3">1.1.</span> Net Work</h3>
+<div id="outline-container-org6cd2451" class="outline-3">
+<h3 id="org6cd2451"><span class="section-number-3">1.1.</span> Net Work</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can find the net work done by all the forces on a system by summing up all of the individual works:
@@ -195,8 +198,8 @@ Then, the sum of all the forces is just the net force, so:
 </div>
 </div>
 </div>
-<div id="outline-container-org402d1e6" class="outline-2">
-<h2 id="org402d1e6"><span class="section-number-2">2.</span> Kinetic Energy</h2>
+<div id="outline-container-org5434af2" class="outline-2">
+<h2 id="org5434af2"><span class="section-number-2">2.</span> Kinetic Energy</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We define <b>kinetic energy</b>, the energy related to motion, as:
@@ -207,11 +210,11 @@ We define <b>kinetic energy</b>, the energy related to motion, as:
 \end{align}
 </div>
 </div>
-<div id="outline-container-org5cd69cf" class="outline-2">
-<h2 id="org5cd69cf"><span class="section-number-2">3.</span> Work-Energy Theorem</h2>
+<div id="outline-container-org29300a8" class="outline-2">
+<h2 id="org29300a8"><span class="section-number-2">3.</span> Work-Energy Theorem</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Since <a href="newtons_laws.html#org16e80ce">Newton's 2nd Law</a> tells us that \(\vec{F}_\text{net} = m\vec{a}\), then from (3) we have:
+Since <a href="newtons_laws.html#org6877430">Newton's 2nd Law</a> tells us that \(\vec{F}_\text{net} = m\vec{a}\), then from (3) we have:
 </p>
 
 \begin{align}
@@ -250,7 +253,7 @@ Consider a block dragged with a rope:
 </p>
 
 
-<div id="orgedcf94f" class="figure">
+<div id="org1a221ed" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy3.png" alt="work_and_energy3.png" />
 </p>
 </div>
@@ -297,11 +300,11 @@ Thus,
 </details>
 </div>
 </div>
-<div id="outline-container-org4bac564" class="outline-2">
-<h2 id="org4bac564"><span class="section-number-2">4.</span> Potential Energy</h2>
+<div id="outline-container-orgbc3f551" class="outline-2">
+<h2 id="orgbc3f551"><span class="section-number-2">4.</span> Potential Energy</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-Forces like gravity and spring force are called <b>conservative forces</b> because the work only depends on the start and end points, but <i>not</i> the path followed from the start to the end (<a href="../Multivariable_Calculus/vector_fields.html#orgebe13bc">path independent</a>).
+Forces like gravity and spring force are called <b>conservative forces</b> because the work only depends on the start and end points, but <i>not</i> the path followed from the start to the end (<a href="../Multivariable_Calculus/vector_fields.html#org565fb24">path independent</a>).
 </p>
 
 <p>
@@ -317,7 +320,7 @@ where \(W_{C}\) is the work done by conservative forces.
 </p>
 
 <p>
-We can also relate potential energy to work by considering that \(\text{d}U = -\vec{F} \cdot \text{d}\vec{r}\). Then, writing this using <a href="../Multivariable_Calculus/differentials.html#org974a5d5">differentials</a>, we have:
+We can also relate potential energy to work by considering that \(\text{d}U = -\vec{F} \cdot \text{d}\vec{r}\). Then, writing this using <a href="../Multivariable_Calculus/differentials.html#org21f0500">differentials</a>, we have:
 </p>
 
 \begin{align}
@@ -334,18 +337,18 @@ Matching the differentials, we get that:
 \end{align}
 
 <p>
-We can intuitively understand this by considering a landscape of hills and valleys, with gravitational potential energy as representative of potential energy. Since the <a href="../Multivariable_Calculus/gradient.html#org5fd85d7">gradient</a> points in the direction of the fastest increase, the gradient of the potential energy would point in the "steepest" direction. However, force would drive "downhill," towards the point of less potential energy, and so therefore it would be the opposite of the gradient.
+We can intuitively understand this by considering a landscape of hills and valleys, with gravitational potential energy as representative of potential energy. Since the <a href="../Multivariable_Calculus/gradient.html#orge5bb67b">gradient</a> points in the direction of the fastest increase, the gradient of the potential energy would point in the "steepest" direction. However, force would drive "downhill," towards the point of less potential energy, and so therefore it would be the opposite of the gradient.
 </p>
 </div>
-<div id="outline-container-org509ffba" class="outline-3">
-<h3 id="org509ffba"><span class="section-number-3">4.1.</span> Gravitational Potential Energy</h3>
+<div id="outline-container-org9441c0d" class="outline-3">
+<h3 id="org9441c0d"><span class="section-number-3">4.1.</span> Gravitational Potential Energy</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Consider a path where gravity acts on the system:
 </p>
 
 
-<div id="orgc89958d" class="figure">
+<div id="org18d96ce" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy1.png" alt="work_and_energy1.png" />
 </p>
 </div>
@@ -377,19 +380,19 @@ Therefore, <b>gravitational potential energy</b> \(U_g\) is the following if hei
 \end{align}
 
 <p>
-Note that this is only true for objects on Earth; in the context of <a href="universal_gravitation.html#orga4ce11b">universal gravitation</a>, we must use <a href="universal_gravitation.html#org6e8f247">a different calculation</a>.
+Note that this is only true for objects on Earth; in the context of <a href="universal_gravitation.html#orgcbc6385">universal gravitation</a>, we must use <a href="universal_gravitation.html#org34bb16f">a different calculation</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgce09877" class="outline-3">
-<h3 id="orgce09877"><span class="section-number-3">4.2.</span> Elastic Potential Energy</h3>
+<div id="outline-container-orgbaa4625" class="outline-3">
+<h3 id="orgbaa4625"><span class="section-number-3">4.2.</span> Elastic Potential Energy</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 This potential energy is spring-related. Consider a block on the end of the spring moving from point \(A\) to point \(B\):
 </p>
 
 
-<div id="org3618570" class="figure">
+<div id="org314effe" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy2.png" alt="work_and_energy2.png" />
 </p>
 </div>
@@ -421,8 +424,8 @@ Therefore, the <b>elastic potential energy</b> \(U_{el}\) is:
 \end{align}
 </div>
 </div>
-<div id="outline-container-org2fd0ae4" class="outline-3">
-<h3 id="org2fd0ae4"><span class="section-number-3">4.3.</span> Conservation of Mechanical Energy</h3>
+<div id="outline-container-org9afc614" class="outline-3">
+<h3 id="org9afc614"><span class="section-number-3">4.3.</span> Conservation of Mechanical Energy</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 From the work-energy theorem, we can split up the work into work done by conservative forces, \(W_C\), and work done by non-conservative forces, \(W_{NC}\):
@@ -473,7 +476,7 @@ Consider a block held by a spring on a ramp, with point 0 being the equilibrium 
 </p>
 
 
-<div id="org09d117e" class="figure">
+<div id="org26d4ec4" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy4.png" alt="work_and_energy4.png" />
 </p>
 </div>
@@ -539,15 +542,15 @@ Thus, we find the velocity to be:
 </details>
 </div>
 </div>
-<div id="outline-container-orgeb7db93" class="outline-3">
-<h3 id="orgeb7db93"><span class="section-number-3">4.4.</span> Potential Energy Diagrams</h3>
+<div id="outline-container-org29acc1a" class="outline-3">
+<h3 id="org29acc1a"><span class="section-number-3">4.4.</span> Potential Energy Diagrams</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 If only conservative forces act on an object, we can examine a <b>potential energy diagram</b> like the one below:
 </p>
 
 
-<div id="org97f5e16" class="figure">
+<div id="org948f6df" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy5.png" alt="work_and_energy5.png" />
 </p>
 </div>
@@ -568,8 +571,8 @@ If the system has mechanical energy \(E_1\), then the system can only exist betw
 If the system has mechanical energy \(E_2\), then the system can exist in the broader region from \(c\) to \(d\). Similarly, if mechanical energy is at \(E_3\), the line crosses two potential wells, but since there is a "hill" in between, the system will only remain in the area it started in.
 </p>
 </div>
-<div id="outline-container-org9572878" class="outline-4">
-<h4 id="org9572878"><span class="section-number-4">4.4.1.</span> Stability of Equilibrium</h4>
+<div id="outline-container-orgc514e0c" class="outline-4">
+<h4 id="orgc514e0c"><span class="section-number-4">4.4.1.</span> Stability of Equilibrium</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 At points where the slope is zero (at the top and bottom of the hills), the system is said to be in <b>equilibrium</b>. The <i>degree of stability</i> depends on whether the point corresponds to a minimum or maximum of \(U(X)\):

@@ -3,12 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-09 Tue 13:24 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Assignment</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -79,7 +84,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Assignment</h1>
@@ -87,16 +92,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd518ffe">1. Assignment</a>
+<li><a href="#org1761a6c">1. Assignment</a>
 <ul>
-<li><a href="#org4d068e7">1.1. Procedure for Assignment Statements</a></li>
+<li><a href="#org8122060">1.1. Procedure for Assignment Statements</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd518ffe" class="outline-2">
-<h2 id="orgd518ffe"><span class="section-number-2">1.</span> Assignment</h2>
+<div id="outline-container-org1761a6c" class="outline-2">
+<h2 id="org1761a6c"><span class="section-number-2">1.</span> Assignment</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 An <b>assignment statement</b> requires a <i>name</i> on the left side of the assignment operator, <code>=</code>, and an expression on the right side: e.g. <code>radius = 10</code>. We can then use this name in other expressions.
@@ -106,10 +111,8 @@ An <b>assignment statement</b> requires a <i>name</i> on the left side of the as
 We can also assign multiple names to multiple expressions at the same time. For example, we can write:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">area</span>, <span class="org-py-variable-name">circ</span> <span class="org-operator">=</span> pi * radius * radius, <span class="org-py-number">2</span> * pi * radius
-</pre>
-</div>
+<pre><code class="language-python">area, circ = pi * radius * radius, 2 * pi * radius
+</code></pre>
 
 <p>
 We can also use the assignment operator to give names to functions. For example, we can set the name of a built-in function to something else, like <code>f = max</code>, which sets the name <code>f</code> to the built-in function <code>max</code>. Now, we can write <code>f(1, 2, 3)</code> to do the same thing as <code>max(1, 2, 3)</code>.
@@ -119,15 +122,15 @@ We can also use the assignment operator to give names to functions. For example,
 If we set <code>max</code> to something else, like <code>max = 3</code>, then we can <code>max</code> is no longer set to the built-in function and running <code>max(1, 2, 3)</code> will throw an error. However, we can fix this by doing <code>max = f</code>, which sets <code>max</code> back to the built-in function.
 </p>
 </div>
-<div id="outline-container-org4d068e7" class="outline-3">
-<h3 id="org4d068e7"><span class="section-number-3">1.1.</span> Procedure for Assignment Statements</h3>
+<div id="outline-container-org8122060" class="outline-3">
+<h3 id="org8122060"><span class="section-number-3">1.1.</span> Procedure for Assignment Statements</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Python has an execution rule for evaluating assignment statements:
 </p>
 <ol class="org-ol">
 <li>Evaluate all expressions to the right of <code>=</code> from left to right</li>
-<li>Bind all names to the left of <code>=</code> to the resulting values in the current <a href="environments.html#org05aed64">frame</a></li>
+<li>Bind all names to the left of <code>=</code> to the resulting values in the current <a href="environments.html#org28b3404">frame</a></li>
 </ol>
 </div>
 </div>
@@ -139,7 +142,15 @@ Python has an execution rule for evaluating assignment statements:
              </div>
              <div class="last-modified">
                Last modified: 2025-09-09 13:22
-             </div>
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

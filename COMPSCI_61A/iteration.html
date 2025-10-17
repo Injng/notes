@@ -3,14 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-06 Mon 10:38 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Iteration</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -89,46 +92,44 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb8efead">1. Iterators</a>
+<li><a href="#orgc5cb7dc">1. Iterators</a>
 <ul>
-<li><a href="#org1bc6a84">1.1. Built-In Functions</a></li>
-<li><a href="#org8cb5e79">1.2. Generators</a>
+<li><a href="#org05efdad">1.1. Built-In Functions</a></li>
+<li><a href="#org5d042bf">1.2. Generators</a>
 <ul>
-<li><a href="#org8b76544">1.2.1. Yielding From Iterators</a></li>
+<li><a href="#orga00fdbd">1.2.1. Yielding From Iterators</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orga66ffc4">2. <code>while</code> Statements</a>
+<li><a href="#orgbbbb7e6">2. <code>while</code> Statements</a>
 <ul>
-<li><a href="#orgf053a61">2.1. Procedure for <code>while</code> Statements</a></li>
+<li><a href="#org28cf000">2.1. Procedure for <code>while</code> Statements</a></li>
 </ul>
 </li>
-<li><a href="#orga43c66f">3. <code>for</code> Statements</a>
+<li><a href="#org87c7add">3. <code>for</code> Statements</a>
 <ul>
-<li><a href="#org63fa18b">3.1. Procedure for <code>for</code> Statements</a></li>
-<li><a href="#org2f81808">3.2. Sequence Unpacking</a></li>
-<li><a href="#org67bf298">3.3. Ranges</a></li>
-<li><a href="#org8c621dd">3.4. Iterators</a></li>
+<li><a href="#org2ab8d21">3.1. Procedure for <code>for</code> Statements</a></li>
+<li><a href="#org64d5eb9">3.2. Sequence Unpacking</a></li>
+<li><a href="#orgff14bd8">3.3. Ranges</a></li>
+<li><a href="#org6f31abd">3.4. Iterators</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb8efead" class="outline-2">
-<h2 id="orgb8efead"><span class="section-number-2">1.</span> Iterators</h2>
+<div id="outline-container-orgc5cb7dc" class="outline-2">
+<h2 id="orgc5cb7dc"><span class="section-number-2">1.</span> Iterators</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-A container can provide an <b>iterator</b> that provides access to its elements in some order. Iterators are <a href="mutation.html#orgedfe0c4">mutable</a> values. The function <code>iter(&lt;iterable&gt;)</code> returns an iterator over the elements of an iterable value (such as any <a href="sequences.html#org6e57dfb">sequence</a>), and the function <code>next(&lt;iterator&gt;)</code> returns the next element in an iterator. For example:
+A container can provide an <b>iterator</b> that provides access to its elements in some order. Iterators are <a href="mutation.html#orgc9964a3">mutable</a> values. The function <code>iter(&lt;iterable&gt;)</code> returns an iterator over the elements of an iterable value (such as any <a href="sequences.html#org5d28bbf">sequence</a>), and the function <code>next(&lt;iterator&gt;)</code> returns the next element in an iterator. For example:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">s</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-py-variable-name">t</span> <span class="org-operator">=</span> <span class="org-py-builtins">iter</span><span class="org-rainbow-delimiters-depth-1">(</span>s<span class="org-rainbow-delimiters-depth-1">)</span>
-<span class="org-py-variable-name">first</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">3
-</span><span class="org-py-variable-name">second</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">4</span>
-</pre>
-</div>
+<pre><code class="language-python">s = [3, 4, 5]
+t = iter(s)
+first = next(t)          # 3
+second = next(t)         # 4
+</code></pre>
 
 <p>
 When the iterator reaches the end of the sequence, it throws a <code>Stopiteration</code> error.
@@ -138,70 +139,60 @@ When the iterator reaches the end of the sequence, it throws a <code>Stopiterati
 An iterator is useful because it bundles together a sequence and it position within that sequence as one object. This allows you to retain the position while passing the object around, which is useful for ensuring that each element is processed only once.
 </p>
 </div>
-<div id="outline-container-org1bc6a84" class="outline-3">
-<h3 id="org1bc6a84"><span class="section-number-3">1.1.</span> Built-In Functions</h3>
+<div id="outline-container-org05efdad" class="outline-3">
+<h3 id="org05efdad"><span class="section-number-3">1.1.</span> Built-In Functions</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Many built-in Python sequence functions return iterators that compute results lazily:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-builtins">map</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;func&gt;, &lt;iterable&gt;<span class="org-rainbow-delimiters-depth-1">)</span>             <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over func(x) for x in iterable
-</span><span class="org-py-builtins">filter</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;func&gt;, &lt;iterable&gt;<span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over x in iterable if func(x)
-</span><span class="org-py-builtins">zip</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;first_iter&gt;, &lt;second_iter&gt;<span class="org-rainbow-delimiters-depth-1">)</span>    <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over co-indexed (x, y) pairs
-</span><span class="org-py-builtins">reversed</span><span class="org-rainbow-delimiters-depth-1">(</span>&lt;sequence&gt;<span class="org-rainbow-delimiters-depth-1">)</span>                <span class="org-comment-delimiter"># </span><span class="org-comment">Iterate over x in a sequence in reverse order</span>
-</pre>
-</div>
+<pre><code class="language-python">map(&lt;func&gt;, &lt;iterable&gt;)             # Iterate over func(x) for x in iterable
+filter(&lt;func&gt;, &lt;iterable&gt;)          # Iterate over x in iterable if func(x)
+zip(&lt;first_iter&gt;, &lt;second_iter&gt;)    # Iterate over co-indexed (x, y) pairs
+reversed(&lt;sequence&gt;)                # Iterate over x in a sequence in reverse order
+</code></pre>
 
 <p>
 In particular, the <code>zip()</code> function returns an iterator over co-indexed tuples. In other words, it will take a series of iterables, and return an iterator over tuples in which each tuple contains values from the corresponding index in each iterable. Thus, the first tuple in the iterator, would contain the first element of each iterable, then the second for the second tuple, and so on:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">zip</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>       <span class="org-comment-delimiter"># </span><span class="org-comment">[(1, 3), (2, 4)]</span>
-</pre>
-</div>
+<pre><code class="language-python">l = list(zip([1, 2], [3, 4]))       # [(1, 3), (2, 4)]
+</code></pre>
 
 <p>
 If one iterable is longer than the other, <code>zip</code> only iterates over matches and skips any remaining elements. 
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">zip</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>    <span class="org-comment-delimiter"># </span><span class="org-comment">[(1, 3), (2, 4)]</span>
-</pre>
-</div>
+<pre><code class="language-python">l = list(zip([1, 2], [3, 4, 5]))    # [(1, 3), (2, 4)]
+</code></pre>
 
 <p>
 More than two iterables can be passed to <code>zip</code>:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">zip</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">6</span>, <span class="org-py-number">7</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">[(1, 3, 6), (2, 4, 7)]</span>
-</pre>
-</div>
+<pre><code class="language-python">l = list(zip([1, 2], [3, 4, 5], [6, 7]))     # [(1, 3, 6), (2, 4, 7)]
+</code></pre>
 
 <p>
 To view the contents of an iterator, we can place the resulting elements into a container using functions such as <code>list()</code>, <code>tuple()</code>, or <code>sorted()</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org8cb5e79" class="outline-3">
-<h3 id="org8cb5e79"><span class="section-number-3">1.2.</span> Generators</h3>
+<div id="outline-container-org5d042bf" class="outline-3">
+<h3 id="org5d042bf"><span class="section-number-3">1.2.</span> Generators</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 A <b>generator</b> is a special type of iterator that is returned with a <b>generator function</b>. Instead of returning a value, generator functions use the <code>yield</code> keyword to "yield" values as <code>next()</code> is called on the generator that it returns. Unlike normal functions which can only return one value, generator functions can yield multiple values in succession, like so:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">plus_minus</span><span class="org-rainbow-delimiters-depth-1">(</span>x<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">yield</span> x
-    <span class="org-keyword">yield</span> -x
+<pre><code class="language-python">def plus_minus(x):
+    yield x
+    yield -x
 
-<span class="org-py-variable-name">t</span> <span class="org-operator">=</span> plus_minus<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">)</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">generator
-</span><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">3
-</span><span class="org-py-variable-name">b</span> <span class="org-operator">=</span> <span class="org-py-builtins">next</span><span class="org-rainbow-delimiters-depth-1">(</span>t<span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">-3</span>
-</pre>
-</div>
+t = plus_minus(3)     # generator
+a = next(t)           # 3
+b = next(t)           # -3
+</code></pre>
 
 <p>
 We can think of a generator function as <i>pausing execution</i> after each <code>yield</code>, such that it retains its state when it needs to yield the next value. Generators can be useful for lazy evaluation, supporting infinite sequences, and memory efficiency.
@@ -225,16 +216,14 @@ We can think of a generator function as <i>pausing execution</i> after each <cod
 We want to create a generator function <code>partitions(n, m)</code> that yields all of the unique ways we can partition <code>n</code> using numbers up to and including <code>m</code> using a string:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">partitions</span><span class="org-rainbow-delimiters-depth-1">(</span>n, m<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">if</span> n &gt; <span class="org-py-number">0</span> <span class="org-keyword">and</span> m &gt; <span class="org-py-number">0</span>:
-        <span class="org-keyword">if</span> n == m:
-            <span class="org-keyword">yield</span> <span class="org-py-builtins">str</span><span class="org-rainbow-delimiters-depth-1">(</span>m<span class="org-rainbow-delimiters-depth-1">)</span>
-        <span class="org-keyword">for</span> p <span class="org-keyword">in</span> partitions<span class="org-rainbow-delimiters-depth-1">(</span>n - m, m<span class="org-rainbow-delimiters-depth-1">)</span>:
-            <span class="org-keyword">yield</span> p + <span class="org-string">' + '</span> + <span class="org-py-builtins">str</span><span class="org-rainbow-delimiters-depth-1">(</span>m<span class="org-rainbow-delimiters-depth-1">)</span>
-        <span class="org-keyword">yield</span> <span class="org-py-import-from">from</span> partitions<span class="org-rainbow-delimiters-depth-1">(</span>n, m - <span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+<pre><code class="language-python">def partitions(n, m):
+    if n &gt; 0 and m &gt; 0:
+        if n == m:
+            yield str(m)
+        for p in partitions(n - m, m):
+            yield p + ' + ' + str(m)
+        yield from partitions(n, m - 1)
+</code></pre>
 
 <p>
 Here, using <code>yield</code> instead of returning all of the partitions at once means we can efficiently find part or just a few of the partitions without having to calculate all of them.
@@ -243,38 +232,34 @@ Here, using <code>yield</code> instead of returning all of the partitions at onc
 
 </details>
 </div>
-<div id="outline-container-org8b76544" class="outline-4">
-<h4 id="org8b76544"><span class="section-number-4">1.2.1.</span> Yielding From Iterators</h4>
+<div id="outline-container-orga00fdbd" class="outline-4">
+<h4 id="orga00fdbd"><span class="section-number-4">1.2.1.</span> Yielding From Iterators</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 A generator can also yield directly from another iterator by using the <code>yield from</code> syntax:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">a_then_b</span><span class="org-rainbow-delimiters-depth-1">(</span>a, b<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-keyword">yield</span> <span class="org-py-import-from">from</span> a
-    <span class="org-keyword">yield</span> <span class="org-py-import-from">from</span> b
+<pre><code class="language-python">def a_then_b(a, b):
+    yield from a
+    yield from b
 
-<span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span>a_then_b<span class="org-rainbow-delimiters-depth-2">(</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">5</span>, <span class="org-py-number">6</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">[3, 4, 5, 6]</span>
-</pre>
+l = list(a_then_b([3, 4], [5, 6]))          # [3, 4, 5, 6]
+</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-orga66ffc4" class="outline-2">
-<h2 id="orga66ffc4"><span class="section-number-2">2.</span> <code>while</code> Statements</h2>
+<div id="outline-container-orgbbbb7e6" class="outline-2">
+<h2 id="orgbbbb7e6"><span class="section-number-2">2.</span> <code>while</code> Statements</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>While statements</b> contain statements that are repeated as long as some condition is true. The following is a <code>while</code> statement:
 </p>
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">i</span>, <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>, <span class="org-py-number">0</span>
-<span class="org-keyword">while</span> i &lt; <span class="org-py-number">3</span>:
-    <span class="org-py-variable-name">i</span> <span class="org-operator">=</span> i + <span class="org-py-number">1</span>
-    <span class="org-py-variable-name">total</span> <span class="org-operator">=</span> total + i
-</pre>
-</div>
+<pre><code class="language-python">i, total = 0, 0
+while i &lt; 3:
+    i = i + 1
+    total = total + i
+</code></pre>
 
 <p>
 This loop calculates the <code>total</code> sum of the numbers from 1 through 3.
@@ -298,23 +283,21 @@ This loop calculates the <code>total</code> sum of the numbers from 1 through 3.
 We can write a function using a <code>while</code> loop to find the nth Fibonacci number:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">fib</span><span class="org-rainbow-delimiters-depth-1">(</span>n<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-doc">"""Compute the nth Fibonacci number, for N &gt;= 1."""</span>
-    <span class="org-py-variable-name">pred</span>, <span class="org-py-variable-name">curr</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>, <span class="org-py-number">1</span>
-    <span class="org-py-variable-name">k</span> <span class="org-operator">=</span> <span class="org-py-number">1</span>
-    <span class="org-keyword">while</span> k &lt; n:
-        <span class="org-py-variable-name">pred</span>, <span class="org-py-variable-name">curr</span> <span class="org-operator">=</span> curr, pred + curr
-        <span class="org-py-variable-name">k</span> <span class="org-operator">=</span> k + <span class="org-py-number">1</span>
-    <span class="org-keyword">return</span> curr
-</pre>
-</div>
+<pre><code class="language-python">def fib(n):
+    """Compute the nth Fibonacci number, for N &gt;= 1."""
+    pred, curr = 0, 1
+    k = 1
+    while k &lt; n:
+        pred, curr = curr, pred + curr
+        k = k + 1
+    return curr
+</code></pre>
 
 
 </details>
 </div>
-<div id="outline-container-orgf053a61" class="outline-3">
-<h3 id="orgf053a61"><span class="section-number-3">2.1.</span> Procedure for <code>while</code> Statements</h3>
+<div id="outline-container-org28cf000" class="outline-3">
+<h3 id="org28cf000"><span class="section-number-3">2.1.</span> Procedure for <code>while</code> Statements</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Evaluate the header's expression.</li>
@@ -327,21 +310,19 @@ Note that the while condition <i>must eventually become a false value</i> for th
 </div>
 </div>
 </div>
-<div id="outline-container-orga43c66f" class="outline-2">
-<h2 id="orga43c66f"><span class="section-number-2">3.</span> <code>for</code> Statements</h2>
+<div id="outline-container-org87c7add" class="outline-2">
+<h2 id="org87c7add"><span class="section-number-2">3.</span> <code>for</code> Statements</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>For statements</b> allows us to iterate over an object that is <i>iterable</i>. For example, a <a href="sequences.html">sequence</a> is iterable, so if we have a list, we can iterate over that list using a <code>for</code> loop. In general, a <code>for</code> statement is written like so:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-keyword">for</span> &lt;name&gt; <span class="org-keyword">in</span> &lt;expression&gt;:
+<pre><code class="language-python">for &lt;name&gt; in &lt;expression&gt;:
     &lt;suite&gt;
-</pre>
+</code></pre>
 </div>
-</div>
-<div id="outline-container-org63fa18b" class="outline-3">
-<h3 id="org63fa18b"><span class="section-number-3">3.1.</span> Procedure for <code>for</code> Statements</h3>
+<div id="outline-container-org2ab8d21" class="outline-3">
+<h3 id="org2ab8d21"><span class="section-number-3">3.1.</span> Procedure for <code>for</code> Statements</h3>
 <div class="outline-text-3" id="text-3-1">
 <ol class="org-ol">
 <li>Evaluate the header's expression, which must yield an iterable value.</li>
@@ -349,37 +330,33 @@ Note that the while condition <i>must eventually become a false value</i> for th
 </ol>
 </div>
 </div>
-<div id="outline-container-org2f81808" class="outline-3">
-<h3 id="org2f81808"><span class="section-number-3">3.2.</span> Sequence Unpacking</h3>
+<div id="outline-container-org64d5eb9" class="outline-3">
+<h3 id="org64d5eb9"><span class="section-number-3">3.2.</span> Sequence Unpacking</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-We can also do <b>sequence unpacking</b> in <code>for</code> statements. If we have a sequence of fixed-length sequences, then we can give a name for each element in a fixed-length sequence, similar to the syntax of <a href="assignment.html#orgd518ffe">multiple assignment</a>:
+We can also do <b>sequence unpacking</b> in <code>for</code> statements. If we have a sequence of fixed-length sequences, then we can give a name for each element in a fixed-length sequence, similar to the syntax of <a href="assignment.html#org1761a6c">multiple assignment</a>:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">pairs</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">2</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">3</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">4</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-keyword">for</span> x, y <span class="org-keyword">in</span> pairs:
-    print<span class="org-rainbow-delimiters-depth-1">(</span>x, y<span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
+<pre><code class="language-python">pairs = [[1, 2], [2, 2], [3, 2], [4, 4]]
+for x, y in pairs:
+    print(x, y)
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org67bf298" class="outline-3">
-<h3 id="org67bf298"><span class="section-number-3">3.3.</span> Ranges</h3>
+<div id="outline-container-orgff14bd8" class="outline-3">
+<h3 id="orgff14bd8"><span class="section-number-3">3.3.</span> Ranges</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
-Since <a href="sequences.html#orgf9b62eb">ranges</a> are an iterable value, we can iterate over ranges in a <code>for</code> loop. This is especially helpful for controlling the number of times we iterate, or when we don't care what the element is. When we don't need to bind a name to an element, we can use the underscore <code>_</code> to make our code more readable by telling other programmers that the name will not be used:
+Since <a href="sequences.html#org3478d82">ranges</a> are an iterable value, we can iterate over ranges in a <code>for</code> loop. This is especially helpful for controlling the number of times we iterate, or when we don't care what the element is. When we don't need to bind a name to an element, we can use the underscore <code>_</code> to make our code more readable by telling other programmers that the name will not be used:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-keyword">for</span> <span class="org-py-builtins">_</span> <span class="org-keyword">in</span> <span class="org-py-builtins">range</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">)</span>:
-    print<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">"Go Bears!"</span><span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
+<pre><code class="language-python">for _ in range(3):
+    print("Go Bears!")
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org8c621dd" class="outline-3">
-<h3 id="org8c621dd"><span class="section-number-3">3.4.</span> Iterators</h3>
+<div id="outline-container-org6f31abd" class="outline-3">
+<h3 id="org6f31abd"><span class="section-number-3">3.4.</span> Iterators</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 We can also use iterators in a for statement. However, it is important to note that the for statement will advance the iterator, which means you cannot use values that were already processed again.

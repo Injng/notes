@@ -3,14 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-14 Tue 13:20 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Objects and Classes</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -89,41 +92,41 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org637f3f4">1. Objects</a>
+<li><a href="#org88e8209">1. Objects</a>
 <ul>
-<li><a href="#org1de3eeb">1.1. Object-Oriented Programming</a></li>
-<li><a href="#org40dcd9b">1.2. String Representations</a></li>
+<li><a href="#orgb0664c0">1.1. Object-Oriented Programming</a></li>
+<li><a href="#org45b3f30">1.2. String Representations</a></li>
 </ul>
 </li>
-<li><a href="#orgfaa49bc">2. Classes</a>
+<li><a href="#org10f98a7">2. Classes</a>
 <ul>
-<li><a href="#org70bd465">2.1. Object Construction</a></li>
-<li><a href="#org20119e6">2.2. Object Identity</a></li>
-<li><a href="#org2342f69">2.3. Attributes</a>
+<li><a href="#org39bd7ef">2.1. Object Construction</a></li>
+<li><a href="#org45efeab">2.2. Object Identity</a></li>
+<li><a href="#org53fd5b0">2.3. Attributes</a>
 <ul>
-<li><a href="#org916a91a">2.3.1. Attribute Lookup</a></li>
-<li><a href="#org0b9202d">2.3.2. Attribute Assignment</a></li>
+<li><a href="#org3ba3b86">2.3.1. Attribute Lookup</a></li>
+<li><a href="#orgde8820c">2.3.2. Attribute Assignment</a></li>
 </ul>
 </li>
-<li><a href="#org4a1b04c">2.4. Methods</a>
+<li><a href="#org152945b">2.4. Methods</a>
 <ul>
-<li><a href="#orgdb161c6">2.4.1. Method Calls</a></li>
-<li><a href="#orgd650b97">2.4.2. Special Methods</a></li>
+<li><a href="#org495ca70">2.4.1. Method Calls</a></li>
+<li><a href="#orgfc23b53">2.4.2. Special Methods</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgc7f9875">3. Inheritance</a>
+<li><a href="#orga999731">3. Inheritance</a>
 <ul>
-<li><a href="#orgb41b83f">3.1. Multiple Inheritance</a></li>
-<li><a href="#org8cda8f5">3.2. Attribute Lookup</a></li>
+<li><a href="#orga8ee460">3.1. Multiple Inheritance</a></li>
+<li><a href="#orgfc1a241">3.2. Attribute Lookup</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org637f3f4" class="outline-2">
-<h2 id="org637f3f4"><span class="section-number-2">1.</span> Objects</h2>
+<div id="outline-container-org88e8209" class="outline-2">
+<h2 id="org88e8209"><span class="section-number-2">1.</span> Objects</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 An <b>object</b> can be thought of as a type of complex value that represents information consisting of data and behavior, bundled together to create abstractions. Objects can represent things, but also properties, interactions, and processes. 
@@ -133,22 +136,20 @@ An <b>object</b> can be thought of as a type of complex value that represents in
 Objects can have <b>attributes</b> that are bound to values, which can be accessed through a dot expression, as well as <b>methods</b>, which are like attributes that are bound to functions:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-comment-delimiter"># </span><span class="org-comment">Example: Date object
-</span><span class="org-py-import-from">from</span> datetime <span class="org-py-import-from">import</span> date
-<span class="org-py-variable-name">day</span> <span class="org-operator">=</span> date<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">2025</span>, <span class="org-py-number">9</span>, <span class="org-py-number">30</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">Date object
-</span><span class="org-py-variable-name">y</span> <span class="org-operator">=</span> day.year                     <span class="org-comment-delimiter"># </span><span class="org-comment">year attribute: 2025
-</span><span class="org-py-variable-name">m</span> <span class="org-operator">=</span> day.month                    <span class="org-comment-delimiter"># </span><span class="org-comment">month attribute: 9
-</span><span class="org-py-variable-name">s</span> <span class="org-operator">=</span> day.strftime<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'%A %B %d'</span><span class="org-rainbow-delimiters-depth-1">)</span>     <span class="org-comment-delimiter"># </span><span class="org-comment">strftime() method: 'Tuesday September 30'</span>
-</pre>
-</div>
+<pre><code class="language-python"># Example: Date object
+from datetime import date
+day = date(2025, 9, 30)          # Date object
+y = day.year                     # year attribute: 2025
+m = day.month                    # month attribute: 9
+s = day.strftime('%A %B %d')     # strftime() method: 'Tuesday September 30'
+</code></pre>
 
 <p>
 This kind of behavior underpins <b>object-oriented programming</b>, which is a way for organizing large programs around the interaction of objects. In Python, every value is an object.
 </p>
 </div>
-<div id="outline-container-org1de3eeb" class="outline-3">
-<h3 id="org1de3eeb"><span class="section-number-3">1.1.</span> Object-Oriented Programming</h3>
+<div id="outline-container-orgb0664c0" class="outline-3">
+<h3 id="orgb0664c0"><span class="section-number-3">1.1.</span> Object-Oriented Programming</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <b>Object-oriented programming</b> is a method for organizing programs that emphasizes data abstraction and bundles together information and related behavior. It operates using a metaphor for computation:
@@ -166,8 +167,8 @@ A <b>class</b> defines how objects of a particular type behave. An <b>object</b>
 </p>
 </div>
 </div>
-<div id="outline-container-org40dcd9b" class="outline-3">
-<h3 id="org40dcd9b"><span class="section-number-3">1.2.</span> String Representations</h3>
+<div id="outline-container-org45b3f30" class="outline-3">
+<h3 id="org45b3f30"><span class="section-number-3">1.2.</span> String Representations</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 In python, all objects produce two <b>string representations</b>: the <code>str</code> which is legible to humans, and the <code>repr</code> which is legible to the Python interpreter. The <code>str</code> and <code>repr</code> strings are often the same, but not always; the <code>repr</code> string is what you see in the Python interpreter.
@@ -179,78 +180,70 @@ The <code>repr(object) -&gt; string</code> function returns the canonical string
 </div>
 </div>
 </div>
-<div id="outline-container-orgfaa49bc" class="outline-2">
-<h2 id="orgfaa49bc"><span class="section-number-2">2.</span> Classes</h2>
+<div id="outline-container-org10f98a7" class="outline-2">
+<h2 id="org10f98a7"><span class="section-number-2">2.</span> Classes</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A <b>class</b> describes the behavior of its instances. We can create classes using class statements, like so:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Account</span>:
-    <span class="org-py-def-class">def</span> <span class="org-py-def">__init__</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, account_holder<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>
-        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">holder</span> <span class="org-operator">=</span> account_holder
+<pre><code class="language-python">class Account:
+    def __init__(self, account_holder):
+        self.balance = 0
+        self.holder = account_holder
 
-    <span class="org-py-def-class">def</span> <span class="org-py-def">deposit</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-object-reference">self</span>.balance + amount
-        <span class="org-keyword">return</span> <span class="org-py-object-reference">self</span>.balance
+    def deposit(self, amount):
+        self.balance = self.balance + amount
+        return self.balance
 
-    <span class="org-py-def-class">def</span> <span class="org-py-def">withdraw</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-keyword">if</span> amount &gt; <span class="org-py-object-reference">self</span>.balance:
-            <span class="org-keyword">return</span> <span class="org-string">'Insufficient funds'</span>
-        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-object-reference">self</span>.balance - amount
-        <span class="org-keyword">return</span> <span class="org-py-object-reference">self</span>.balance
-</pre>
-</div>
+    def withdraw(self, amount):
+        if amount &gt; self.balance:
+            return 'Insufficient funds'
+        self.balance = self.balance - amount
+        return self.balance
+</code></pre>
 
 <p>
 The <code>__init__</code> method is a special method for the function that constructs an instance for that class. <code>deposit</code> is an example of a method for the <code>Account</code> class: notice that it contains <code>self</code> as a parameter, which gives us access to the instance of the class on which the method was invoked.
 </p>
 </div>
-<div id="outline-container-org70bd465" class="outline-3">
-<h3 id="org70bd465"><span class="section-number-3">2.1.</span> Object Construction</h3>
+<div id="outline-container-org39bd7ef" class="outline-3">
+<h3 id="org39bd7ef"><span class="section-number-3">2.1.</span> Object Construction</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 To create an instance of a class, we use a <b>constructor</b>. The <code>__init__</code> method defines the constructor of the class, like so:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Alan'</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">instance of the class Account</span>
-</pre>
+<pre><code class="language-python">a = Account('Alan')          # instance of the class Account
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org20119e6" class="outline-3">
-<h3 id="org20119e6"><span class="section-number-3">2.2.</span> Object Identity</h3>
+<div id="outline-container-org45efeab" class="outline-3">
+<h3 id="org45efeab"><span class="section-number-3">2.2.</span> Object Identity</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Every object that is an instance of a user-defined class has a unique identity. In other words:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'John'</span><span class="org-rainbow-delimiters-depth-1">)</span>
-<span class="org-py-variable-name">b</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Jack'</span><span class="org-rainbow-delimiters-depth-1">)</span>
-<span class="org-keyword">assert</span> a <span class="org-keyword">is</span> <span class="org-keyword">not</span> b
-</pre>
+<pre><code class="language-python">a = Account('John')
+b = Account('Jack')
+assert a is not b
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org2342f69" class="outline-3">
-<h3 id="org2342f69"><span class="section-number-3">2.3.</span> Attributes</h3>
+<div id="outline-container-org53fd5b0" class="outline-3">
+<h3 id="org53fd5b0"><span class="section-number-3">2.3.</span> Attributes</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Both instances and classes have <b>attributes</b>, which store variables within the object. Attributes defined by an instance are local <i>only to that instance</i>, whereas <b>class attributes</b> are shared across all instances of a class because they are attributes of the class, not the instance:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Account</span>:
-    <span class="org-py-variable-name">interest</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>.<span class="org-py-number">02</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">A class attribute</span>
-</pre>
+<pre><code class="language-python">class Account:
+    interest = 0.02          # A class attribute
+</code></pre>
 </div>
-</div>
-<div id="outline-container-org916a91a" class="outline-4">
-<h4 id="org916a91a"><span class="section-number-4">2.3.1.</span> Attribute Lookup</h4>
+<div id="outline-container-org3ba3b86" class="outline-4">
+<h4 id="org3ba3b86"><span class="section-number-4">2.3.1.</span> Attribute Lookup</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 Attributes can be looked up by dot expressions of the form <code>&lt;expression&gt;.&lt;name&gt;</code>. To evaluate a dot expression:
@@ -268,62 +261,56 @@ In addition to dot expressions, the function <code>getattr(&lt;object&gt;, &lt;n
 </p>
 </div>
 </div>
-<div id="outline-container-org0b9202d" class="outline-4">
-<h4 id="org0b9202d"><span class="section-number-4">2.3.2.</span> Attribute Assignment</h4>
+<div id="outline-container-orgde8820c" class="outline-4">
+<h4 id="orgde8820c"><span class="section-number-4">2.3.2.</span> Attribute Assignment</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
-<a href="assignment.html#orgd518ffe">Assignment statements</a> with a dot expression on their left-hand side are attribute assignments. If the object is an instance, then the assignment sets an instance attribute. if the object is a class, then the assignment sets a class attribute:
+<a href="assignment.html#org1761a6c">Assignment statements</a> with a dot expression on their left-hand side are attribute assignments. If the object is an instance, then the assignment sets an instance attribute. if the object is a class, then the assignment sets a class attribute:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">tom</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Tom'</span><span class="org-rainbow-delimiters-depth-1">)</span>
-tom.<span class="org-py-variable-name">interest</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>.<span class="org-py-number">08</span>
-</pre>
+<pre><code class="language-python">tom = Account('Tom')
+tom.interest = 0.08
+</code></pre>
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-org4a1b04c" class="outline-3">
-<h3 id="org4a1b04c"><span class="section-number-3">2.4.</span> Methods</h3>
+<div id="outline-container-org152945b" class="outline-3">
+<h3 id="org152945b"><span class="section-number-3">2.4.</span> Methods</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
-Python distinguishes between <a href="functions.html#orgd154346">functions</a>, and <b>bound methods</b>, which couple together a function and the object on which that method will be invoked. A function defined in a class is a normal function, but calling that function on an instance would result in a bound method:
+Python distinguishes between <a href="functions.html#org7aa6758">functions</a>, and <b>bound methods</b>, which couple together a function and the object on which that method will be invoked. A function defined in a class is a normal function, but calling that function on an instance would result in a bound method:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">tom</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Tom'</span><span class="org-rainbow-delimiters-depth-1">)</span>
-<span class="org-py-variable-name">func</span> <span class="org-operator">=</span> <span class="org-py-builtins">type</span><span class="org-rainbow-delimiters-depth-1">(</span>Account.deposit<span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">&lt;class 'function'&gt;
-</span><span class="org-py-variable-name">method</span> <span class="org-operator">=</span> <span class="org-py-builtins">type</span><span class="org-rainbow-delimiters-depth-1">(</span>tom.deposit<span class="org-rainbow-delimiters-depth-1">)</span>            <span class="org-comment-delimiter"># </span><span class="org-comment">&lt;class 'method'&gt;</span>
-</pre>
-</div>
+<pre><code class="language-python">tom = Account('Tom')
+func = type(Account.deposit)          # &lt;class 'function'&gt;
+method = type(tom.deposit)            # &lt;class 'method'&gt;
+</code></pre>
 
 <p>
 The main difference comes in calling a function versus calling a method. All invoked methods have access to the object via the <code>self</code> parameter, and so they can all access and manipulate the object's attributes. When using methods, however, the dot notation automatically supplies the first argument, the instance of the class, to the method:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">tom</span> <span class="org-operator">=</span> Account<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'Tom'</span><span class="org-rainbow-delimiters-depth-1">)</span>
-tom.deposit<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">100</span><span class="org-rainbow-delimiters-depth-1">)</span>
-Account.deposit<span class="org-rainbow-delimiters-depth-1">(</span>tom, <span class="org-py-number">100</span><span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
+<pre><code class="language-python">tom = Account('Tom')
+tom.deposit(100)
+Account.deposit(tom, 100)
+</code></pre>
 </div>
-</div>
-<div id="outline-container-orgdb161c6" class="outline-4">
-<h4 id="orgdb161c6"><span class="section-number-4">2.4.1.</span> Method Calls</h4>
+<div id="outline-container-org495ca70" class="outline-4">
+<h4 id="org495ca70"><span class="section-number-4">2.4.1.</span> Method Calls</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 Methods are invoked using the dot notation. The way Python evaluates this is by first evaluating the dot expression to get a <i>bound method</i>, and then evaluating the call expression on the result:
 </p>
 
 
-<div id="org8537d73" class="figure">
+<div id="org8900822" class="figure">
 <p><img src="../static/COMPSCI_61A/objects1.png" alt="objects1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd650b97" class="outline-4">
-<h4 id="orgd650b97"><span class="section-number-4">2.4.2.</span> Special Methods</h4>
+<div id="outline-container-orgfc23b53" class="outline-4">
+<h4 id="orgfc23b53"><span class="section-number-4">2.4.2.</span> Special Methods</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <p>
 Certain names that start and end with two underscores are special because they relate to some predefined built-in behavior:
@@ -344,18 +331,16 @@ For example, if we want to implement the addition operation between two instance
 </div>
 </div>
 </div>
-<div id="outline-container-orgc7f9875" class="outline-2">
-<h2 id="orgc7f9875"><span class="section-number-2">3.</span> Inheritance</h2>
+<div id="outline-container-orga999731" class="outline-2">
+<h2 id="orga999731"><span class="section-number-2">3.</span> Inheritance</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>Inheritance</b> is a method for relating classes together, often when two similar classes have the same broad purpose but differ in their degree of specialization. The specialized class may have the same attributes as a <i>general class</i>, along with some special-case behavior that is specific to that specialized class:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> &lt;name&gt;<span class="org-rainbow-delimiters-depth-1">(</span>&lt;base <span class="org-py-def-class">class</span>&gt;<span class="org-rainbow-delimiters-depth-1">)</span>:
+<pre><code class="language-python">class &lt;name&gt;(&lt;base class&gt;):
     &lt;suite&gt;
-</pre>
-</div>
+</code></pre>
 
 <p>
 Here, the class <code>&lt;name&gt;</code> <i>inherits</i> from a general class <code>&lt;base class&gt;</code>. Conceptually, the new <i>subclass</i> shares attributes with its base class, but may also override certain inherited attributes.
@@ -369,46 +354,42 @@ Defining inherited classes is helpful because we can reuse certain shared functi
 For example, a <code>CheckingAccount</code> is a specialized type of <code>Account</code> (defined in the previous section):
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">CheckingAccount</span><span class="org-rainbow-delimiters-depth-1">(</span>Account<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-py-variable-name">withdraw_fee</span> <span class="org-operator">=</span> <span class="org-py-number">1</span>
-    <span class="org-py-variable-name">interest</span> <span class="org-operator">=</span> <span class="org-py-number">0</span>.<span class="org-py-number">01</span>
-    <span class="org-py-def-class">def</span> <span class="org-py-def">withdraw</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-keyword">return</span> Account.withdraw<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount + <span class="org-py-object-reference">self</span>.withdraw_fee<span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+<pre><code class="language-python">class CheckingAccount(Account):
+    withdraw_fee = 1
+    interest = 0.01
+    def withdraw(self, amount):
+        return Account.withdraw(self, amount + self.withdraw_fee)
+</code></pre>
 
 <p>
 Notice that we can pass in an instance of a subclass into a function that expects an instance of the base class, because the <i>subclass inherits functionality from the base class</i>.
 </p>
 </div>
-<div id="outline-container-orgb41b83f" class="outline-3">
-<h3 id="orgb41b83f"><span class="section-number-3">3.1.</span> Multiple Inheritance</h3>
+<div id="outline-container-orga8ee460" class="outline-3">
+<h3 id="orga8ee460"><span class="section-number-3">3.1.</span> Multiple Inheritance</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <b>Multiple inheritance</b> is when a class inherits from <i>multiple base classes</i>:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">SavingsAccount</span><span class="org-rainbow-delimiters-depth-1">(</span>Account<span class="org-rainbow-delimiters-depth-1">)</span>:
-    <span class="org-py-variable-name">deposit_fee</span> <span class="org-operator">=</span> <span class="org-py-number">2</span>
-    <span class="org-py-def-class">def</span> <span class="org-py-def">deposit</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-keyword">return</span> Account.deposity<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, amount - <span class="org-py-object-reference">self</span>.deposit_fee<span class="org-rainbow-delimiters-depth-1">)</span>
+<pre><code class="language-python">class SavingsAccount(Account):
+    deposit_fee = 2
+    def deposit(self, amount):
+        return Account.deposity(self, amount - self.deposit_fee)
 
-<span class="org-py-def-class">class</span> <span class="org-py-class-name">MultipleAccount</span><span class="org-rainbow-delimiters-depth-1">(</span>CheckingAccount, SavingsAccount<span class="org-rainbow-delimiters-depth-1">)</span>:          <span class="org-comment-delimiter"># </span><span class="org-comment">multiple inheritance
-</span>    <span class="org-py-def-class">def</span> <span class="org-py-def">__init__</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, account_holder<span class="org-rainbow-delimiters-depth-1">)</span>:
-        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">holder</span> <span class="org-operator">=</span> account_holder
-        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">balance</span> <span class="org-operator">=</span> <span class="org-py-number">1</span>             <span class="org-comment-delimiter"># </span><span class="org-comment">a free dollar!</span>
-</pre>
-</div>
+class MultipleAccount(CheckingAccount, SavingsAccount):          # multiple inheritance
+    def __init__(self, account_holder):
+        self.holder = account_holder
+        self.balance = 1             # a free dollar!
+</code></pre>
 
 <p>
 Here, <code>MultipleAccount</code> inherits from both <code>CheckingAccount</code> and <code>SavingsAccount</code>.
 </p>
 </div>
 </div>
-<div id="outline-container-org8cda8f5" class="outline-3">
-<h3 id="org8cda8f5"><span class="section-number-3">3.2.</span> Attribute Lookup</h3>
+<div id="outline-container-orgfc1a241" class="outline-3">
+<h3 id="orgfc1a241"><span class="section-number-3">3.2.</span> Attribute Lookup</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 To look up a name in a class:

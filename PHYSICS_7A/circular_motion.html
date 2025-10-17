@@ -3,12 +3,17 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-24 Wed 10:40 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Circular Motion</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -111,7 +116,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Circular Motion</h1>
@@ -119,32 +124,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2330e9a">1. Circular Motion</a>
+<li><a href="#orga8a33ab">1. Circular Motion</a>
 <ul>
-<li><a href="#org45d85ad">1.1. Position and Velocity</a></li>
-<li><a href="#org52bae36">1.2. Acceleration</a></li>
-<li><a href="#org6ac13a2">1.3. Centripetal Force</a></li>
+<li><a href="#orgd0254d3">1.1. Position and Velocity</a></li>
+<li><a href="#orgb043da7">1.2. Acceleration</a></li>
+<li><a href="#org7e3d9e2">1.3. Centripetal Force</a></li>
 </ul>
 </li>
-<li><a href="#org3d5fbc0">2. Highway Curves</a>
+<li><a href="#org711a0c5">2. Highway Curves</a>
 <ul>
-<li><a href="#org4d42bc7">2.1. Unbanked Curves</a></li>
-<li><a href="#orgc9b748e">2.2. Banked Curves</a></li>
+<li><a href="#org7842ee5">2.1. Unbanked Curves</a></li>
+<li><a href="#org0a111b0">2.2. Banked Curves</a></li>
 </ul>
 </li>
-<li><a href="#org389f12f">3. Non-Uniform Circular Motion</a></li>
+<li><a href="#org6f54b66">3. Non-Uniform Circular Motion</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2330e9a" class="outline-2">
-<h2 id="org2330e9a"><span class="section-number-2">1.</span> Circular Motion</h2>
+<div id="outline-container-orga8a33ab" class="outline-2">
+<h2 id="orga8a33ab"><span class="section-number-2">1.</span> Circular Motion</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Circular motion</b> occurs when an object moves at a constant radius around a center:
 </p>
 
 
-<div id="org4d5db8d" class="figure">
+<div id="orgc5e19d4" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion1.png" alt="circular_motion1.png" />
 </p>
 </div>
@@ -153,8 +158,8 @@
 We have two unit vectors here, one pointing in the <b>radial</b> direction (\(\hat{r}\)), and one pointing in the <b>tangential</b> direction (\(\hat{\theta}\)).
 </p>
 </div>
-<div id="outline-container-org45d85ad" class="outline-3">
-<h3 id="org45d85ad"><span class="section-number-3">1.1.</span> Position and Velocity</h3>
+<div id="outline-container-orgd0254d3" class="outline-3">
+<h3 id="orgd0254d3"><span class="section-number-3">1.1.</span> Position and Velocity</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The position vector \(\vec{r}(t)\) points from the center to the location of the object. As such, we can write it as:
@@ -187,8 +192,8 @@ Here, \(\omega\) is <b>angular velocity</b>, which is defined to be \(\frac{\tex
 </p>
 </div>
 </div>
-<div id="outline-container-org52bae36" class="outline-3">
-<h3 id="org52bae36"><span class="section-number-3">1.2.</span> Acceleration</h3>
+<div id="outline-container-orgb043da7" class="outline-3">
+<h3 id="orgb043da7"><span class="section-number-3">1.2.</span> Acceleration</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 We can also derive the acceleration from the velocity:
@@ -250,7 +255,7 @@ Consider a ball of mass \(m\) spun around on a string:
 </p>
 
 
-<div id="orgce0a80a" class="figure">
+<div id="org356cda9" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion2.png" alt="circular_motion2.png" />
 </p>
 </div>
@@ -300,8 +305,8 @@ Thus, the velocity is:
 </details>
 </div>
 </div>
-<div id="outline-container-org6ac13a2" class="outline-3">
-<h3 id="org6ac13a2"><span class="section-number-3">1.3.</span> Centripetal Force</h3>
+<div id="outline-container-org7e3d9e2" class="outline-3">
+<h3 id="org7e3d9e2"><span class="section-number-3">1.3.</span> Centripetal Force</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 In order for an object to stay in circular motion, there must be some <b>centripetal force</b> pointing <i>towards the center</i> that is acting on the object (otherwise, the object would just fly away). In the conical pendulum example above, that centripetal force was provided by a component of the tension force in the string. In the unbanked curve example below, the centripetal force would be provided by static friction acting on the car.
@@ -309,22 +314,22 @@ In order for an object to stay in circular motion, there must be some <b>centrip
 </div>
 </div>
 </div>
-<div id="outline-container-org3d5fbc0" class="outline-2">
-<h2 id="org3d5fbc0"><span class="section-number-2">2.</span> Highway Curves</h2>
+<div id="outline-container-org711a0c5" class="outline-2">
+<h2 id="org711a0c5"><span class="section-number-2">2.</span> Highway Curves</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 An example of uniform circular motion occurs when a car rounds a curve at constant velocity. We shall consider two types of curves: unbanked and banked curves.
 </p>
 </div>
-<div id="outline-container-org4d42bc7" class="outline-3">
-<h3 id="org4d42bc7"><span class="section-number-3">2.1.</span> Unbanked Curves</h3>
+<div id="outline-container-org7842ee5" class="outline-3">
+<h3 id="org7842ee5"><span class="section-number-3">2.1.</span> Unbanked Curves</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-Unbanked curves are curves where there is no elevation change between the inner and outer side, i.e. the curve is flat. As a car rounds the curve, the car's inertia attempts to pull it away from the curve in a straight line. In order to counteract this tendency, <a href="friction.html#orge23bcba">static friction</a> must pull the tires in towards the center of the curve, providing the <i>centripetal force</i> to keep the car on the turn:
+Unbanked curves are curves where there is no elevation change between the inner and outer side, i.e. the curve is flat. As a car rounds the curve, the car's inertia attempts to pull it away from the curve in a straight line. In order to counteract this tendency, <a href="friction.html#org139ec6c">static friction</a> must pull the tires in towards the center of the curve, providing the <i>centripetal force</i> to keep the car on the turn:
 </p>
 
 
-<div id="org19818a7" class="figure">
+<div id="orga5228a5" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion3.png" alt="circular_motion3.png" />
 </p>
 </div>
@@ -374,15 +379,15 @@ Therefore, the maximum velocity the car could go at without sliding is:
 </details>
 </div>
 </div>
-<div id="outline-container-orgc9b748e" class="outline-3">
-<h3 id="orgc9b748e"><span class="section-number-3">2.2.</span> Banked Curves</h3>
+<div id="outline-container-org0a111b0" class="outline-3">
+<h3 id="org0a111b0"><span class="section-number-3">2.2.</span> Banked Curves</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 A car can also round a <i>banked curve</i>, which as opposed to a flat curve is angled toward the center, like so:
 </p>
 
 
-<div id="org3e5ceb8" class="figure">
+<div id="org19a227b" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion4.png" alt="circular_motion4.png" />
 </p>
 </div>
@@ -457,7 +462,7 @@ Consider a car rounding a banked curve, this time with static friction involved:
 </p>
 
 
-<div id="orgb256301" class="figure">
+<div id="org0b7ef48" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion5.png" alt="circular_motion5.png" />
 </p>
 </div>
@@ -511,8 +516,8 @@ Therefore, for \(v_\text{max}\) we get:
 </div>
 </div>
 </div>
-<div id="outline-container-org389f12f" class="outline-2">
-<h2 id="org389f12f"><span class="section-number-2">3.</span> Non-Uniform Circular Motion</h2>
+<div id="outline-container-org6f54b66" class="outline-2">
+<h2 id="org6f54b66"><span class="section-number-2">3.</span> Non-Uniform Circular Motion</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>Non-uniform circular motion</b> occurs when velocity is not constant. In these cases, since there is a velocity change, there will also be tangential acceleration: the change in tangential velocity. We can often find tangential acceleration by considering Newton's 2nd law with respect to a tangential force.
@@ -537,7 +542,7 @@ Consider a block spinning on a table in the horizontal plane with kinetic fricti
 </p>
 
 
-<div id="orgc985f84" class="figure">
+<div id="orgfaf6035" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion6.png" alt="circular_motion6.png" />
 </p>
 </div>
@@ -585,7 +590,7 @@ We can also have a block spinning in the vertical plane in air, like so:
 </p>
 
 
-<div id="org23a11ff" class="figure">
+<div id="org9bca1be" class="figure">
 <p><img src="../static/PHYSICS_7A/circular_motion7.png" alt="circular_motion7.png" />
 </p>
 </div>
@@ -621,7 +626,15 @@ This means that the block is speeding up at (2). Notice how there are two points
              </div>
              <div class="last-modified">
                Last modified: 2025-09-24 10:40
-             </div>
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

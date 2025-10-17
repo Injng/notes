@@ -3,17 +3,88 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-06-01 Sun 14:28 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Supabase</title>
-<meta name="author" content="Lin Jiang" />
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Web/index.html">Web</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Web/index.html">Web</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Supabase</h1>
@@ -21,21 +92,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org780b85f">1. Database</a>
+<li><a href="#org09d78e4">1. Database</a>
 <ul>
-<li><a href="#org2efb590">1.1. Update</a></li>
-<li><a href="#org74fdefa">1.2. Select</a>
+<li><a href="#org16d4520">1.1. Update</a></li>
+<li><a href="#orgafcc81e">1.2. Select</a>
 <ul>
-<li><a href="#orgd92e319">1.2.1. Filtering</a></li>
+<li><a href="#orgf7359ab">1.2.1. Filtering</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6cc2ff1">2. Auth</a>
+<li><a href="#orgeb18435">2. Auth</a>
 <ul>
-<li><a href="#orge070824">2.1. Custom Claims</a>
+<li><a href="#org21b4f7c">2.1. Custom Claims</a>
 <ul>
-<li><a href="#org526598d">2.1.1. Example: Role-Based Access Control</a></li>
+<li><a href="#orgf05837a">2.1.1. Example: Role-Based Access Control</a></li>
 </ul>
 </li>
 </ul>
@@ -43,213 +114,197 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org780b85f" class="outline-2">
-<h2 id="org780b85f"><span class="section-number-2">1.</span> Database</h2>
+<div id="outline-container-org09d78e4" class="outline-2">
+<h2 id="org09d78e4"><span class="section-number-2">1.</span> Database</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org2efb590" class="outline-3">
-<h3 id="org2efb590"><span class="section-number-3">1.1.</span> Update</h3>
+<div id="outline-container-org16d4520" class="outline-3">
+<h3 id="org16d4520"><span class="section-number-3">1.1.</span> Update</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To update a row in a table, use the <code>update</code> method:
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-keyword">const</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-variable-name">data</span><span class="org-delimiter">,</span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
-  <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">update</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span> <span class="org-property-use">other_column</span><span class="org-delimiter">:</span> <span class="org-string">'otherValue'</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">eq</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'some_column'</span><span class="org-delimiter">,</span> <span class="org-string">'someValue'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">select</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span>
-</pre>
+<pre><code class="language-typescript-ts">const { data, error } = await supabase
+  .from('members')
+  .update({ other_column: 'otherValue' })
+  .eq('some_column', 'someValue')
+  .select()
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org74fdefa" class="outline-3">
-<h3 id="org74fdefa"><span class="section-number-3">1.2.</span> Select</h3>
+<div id="outline-container-orgafcc81e" class="outline-3">
+<h3 id="orgafcc81e"><span class="section-number-3">1.2.</span> Select</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 To read rows from a table, use the <code>select</code> method:
 </p>
-<div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-comment">// read all rows</span>
-<span class="org-keyword">let</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-property-use">data</span><span class="org-delimiter">:</span> <span class="org-variable-name">members</span><span class="org-delimiter">,</span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
-  <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">select</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'*'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+<pre><code class="language-typescript-ts">// read all rows
+let { data: members, error } = await supabase
+  .from('members')
+  .select('*')
 
-<span class="org-comment">// read specific columns</span>
-<span class="org-keyword">let</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-property-use">data</span><span class="org-delimiter">:</span> <span class="org-variable-name">members</span><span class="org-delimiter">,</span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
-  <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">select</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'some_column,other_column'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>  
-</pre>
+// read specific columns
+let { data: members, error } = await supabase
+  .from('members')
+  .select('some_column,other_column')  
+</code></pre>
 </div>
-</div>
-<div id="outline-container-orgd92e319" class="outline-4">
-<h4 id="orgd92e319"><span class="section-number-4">1.2.1.</span> Filtering</h4>
+<div id="outline-container-orgf7359ab" class="outline-4">
+<h4 id="orgf7359ab"><span class="section-number-4">1.2.1.</span> Filtering</h4>
 <div class="outline-text-4" id="text-1-2-1">
-<div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-keyword">let</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> <span class="org-property-use">data</span><span class="org-delimiter">:</span> <span class="org-variable-name">members</span><span class="org-delimiter">,</span> <span class="org-variable-name">error</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase
-  <span class="org-delimiter">.</span><span class="org-function-call">from</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'members'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">select</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">"*"</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+<pre><code class="language-typescript-ts">let { data: members, error } = await supabase
+  .from('members')
+  .select("*")
 
-  <span class="org-comment">// Filters</span>
-  <span class="org-delimiter">.</span><span class="org-function-call">eq</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Equal to'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">gt</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Greater than'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">lt</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Less than'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">gte</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Greater than or equal to'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">lte</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Less than or equal to'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">like</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'%CaseSensitive%'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">ilike</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'%CaseInsensitive%'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">is</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-constant">null</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">in</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-string">'Array'</span><span class="org-delimiter">,</span> <span class="org-string">'Values'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">neq</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'Not equal to'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  // Filters
+  .eq('column', 'Equal to')
+  .gt('column', 'Greater than')
+  .lt('column', 'Less than')
+  .gte('column', 'Greater than or equal to')
+  .lte('column', 'Less than or equal to')
+  .like('column', '%CaseSensitive%')
+  .ilike('column', '%CaseInsensitive%')
+  .is('column', null)
+  .in('column', ['Array', 'Values'])
+  .neq('column', 'Not equal to')
 
-  <span class="org-comment">// Arrays</span>
-  <span class="org-delimiter">.</span><span class="org-function-call">contains</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'array_column'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-string">'array'</span><span class="org-delimiter">,</span> <span class="org-string">'cxontains'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">containedBy</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'array_column'</span><span class="org-delimiter">,</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">[</span></span><span class="org-string">'contained'</span><span class="org-delimiter">,</span> <span class="org-string">'by'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">]</span></span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
+  // Arrays
+  .contains('array_column', ['array', 'cxontains'])
+  .containedBy('array_column', ['contained', 'by'])
 
-  <span class="org-comment">// Logical operators</span>
-  <span class="org-delimiter">.</span><span class="org-function-call">not</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'column'</span><span class="org-delimiter">,</span> <span class="org-string">'like'</span><span class="org-delimiter">,</span> <span class="org-string">'Negate filter'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-  <span class="org-delimiter">.</span><span class="org-function-call">or</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">(</span></span><span class="org-string">'some_column.eq.Some value, other_column.eq.Other value'</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">)</span></span>
-</pre>
+  // Logical operators
+  .not('column', 'like', 'Negate filter')
+  .or('some_column.eq.Some value, other_column.eq.Other value')
+</code></pre>
 </div>
 </div>
 </div>
 </div>
-</div>
-<div id="outline-container-org6cc2ff1" class="outline-2">
-<h2 id="org6cc2ff1"><span class="section-number-2">2.</span> Auth</h2>
+<div id="outline-container-orgeb18435" class="outline-2">
+<h2 id="orgeb18435"><span class="section-number-2">2.</span> Auth</h2>
 <div class="outline-text-2" id="text-2">
-<div class="org-src-container">
-<pre class="src src-typescript-ts"><span class="org-comment">// obtain the user from supabase (always use this on server-side)</span>
-<span class="org-keyword">const</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">{</span></span> data<span class="org-delimiter">:</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">{</span></span> <span class="org-variable-name">user</span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-2">}</span></span> <span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">}</span></span> <span class="org-operator">=</span> <span class="org-keyword">await</span> supabase<span class="org-delimiter">.</span>auth<span class="org-delimiter">.</span><span class="org-function-call">getUser</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">;</span>
+<pre><code class="language-typescript-ts">// obtain the user from supabase (always use this on server-side)
+const { data: { user } } = await supabase.auth.getUser();
 
-<span class="org-comment">// obtain the user from supabase (faster client-side option)</span>
-<span class="org-function-call">getSession</span><span class="org-bracket"><span class="org-rainbow-delimiters-depth-1">()</span></span><span class="org-delimiter">.</span>session<span class="org-delimiter">.</span>user
-</pre>
+// obtain the user from supabase (faster client-side option)
+getSession().session.user
+</code></pre>
 </div>
-</div>
-<div id="outline-container-orge070824" class="outline-3">
-<h3 id="orge070824"><span class="section-number-3">2.1.</span> Custom Claims</h3>
+<div id="outline-container-org21b4f7c" class="outline-3">
+<h3 id="org21b4f7c"><span class="section-number-3">2.1.</span> Custom Claims</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Supabase uses JWTs, or JSON Web Tokens, to store information about the identity and authentication of a user. You can add <i>custom claims</i> to these JWTs in order to add more information to the identity of a user, extending your application's functionality.
 To do so, use a <a href="https://supabase.com/docs/guides/auth/auth-hooks/custom-access-token-hook">Custom Access Token Hook</a>. The custom access token hook runs before a token is issued and allows you to add additional claims based on the authentication method used:
 </p>
-<div class="org-src-container">
-<pre class="src src-sql-ts"><span class="org-keyword">CREATE</span> OR <span class="org-keyword">REPLACE</span> <span class="org-keyword">FUNCTION</span> public.<span class="org-type">custom_access_token_hook</span><span class="org-rainbow-delimiters-depth-1">(</span>event <span class="org-type">JSONB</span><span class="org-rainbow-delimiters-depth-1">)</span>
-<span class="org-keyword">RETURNS</span> <span class="org-type">JSONB</span>
-<span class="org-keyword">LANGUAGE</span> plpgsql
-<span class="org-keyword">AS</span> $$
-  <span class="org-keyword">DECLARE</span>
-    claims <span class="org-type">JSONB</span>;
-    new_claim <span class="org-type">JSONB</span>;
-  <span class="org-keyword">BEGIN</span>
+<pre><code class="language-sql-ts">CREATE OR REPLACE FUNCTION public.custom_access_token_hook(event JSONB)
+RETURNS JSONB
+LANGUAGE plpgsql
+AS $$
+  DECLARE
+    claims JSONB;
+    new_claim JSONB;
+  BEGIN
     claims := event-&gt;'claims';
-    claims := jsonb_set<span class="org-rainbow-delimiters-depth-1">(</span>claims, '{new_claim}', new_claim<span class="org-rainbow-delimiters-depth-1">)</span>;
-    event := jsonb_set<span class="org-rainbow-delimiters-depth-1">(</span>event, '{claims}', claims<span class="org-rainbow-delimiters-depth-1">)</span>;
-    <span class="org-keyword">RETURN</span> event;
-  <span class="org-keyword">END</span>;
+    claims := jsonb_set(claims, '{new_claim}', new_claim);
+    event := jsonb_set(event, '{claims}', claims);
+    RETURN event;
+  END;
 $$;
-</pre>
+</code></pre>
 </div>
-</div>
-<div id="outline-container-org526598d" class="outline-4">
-<h4 id="org526598d"><span class="section-number-4">2.1.1.</span> Example: Role-Based Access Control</h4>
+<div id="outline-container-orgf05837a" class="outline-4">
+<h4 id="orgf05837a"><span class="section-number-4">2.1.1.</span> Example: Role-Based Access Control</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 The general idea is we can use certain <i>permissions</i> granted to certain <i>roles</i> for use in RLS to have more fine-grained control over who gets to access what data. To do this, we can create an <code>app_permission</code> enum type to list out all the permissions, and an <code>app_role</code> enum type to list out all of the roles. Then, we can have a <code>user_roles</code> junction table to link a particular UUID with an <code>app_role</code>, and a <code>role_permissions</code> junction table to link specific roles to permissions.
 </p>
-<div class="org-src-container">
-<pre class="src src-sql-ts"><span class="org-comment">-- CUSTOM TYPES</span>
-<span class="org-keyword">CREATE</span> <span class="org-keyword">TYPE</span> public.<span class="org-type">app_permission</span> <span class="org-keyword">AS</span> <span class="org-type">ENUM</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'members.select'</span>, <span class="org-number">'members.update'</span>, <span class="org-number">'members.insert'</span><span class="org-rainbow-delimiters-depth-1">)</span>;
-<span class="org-keyword">CREATE</span> <span class="org-keyword">TYPE</span> public.<span class="org-type">app_role</span> <span class="org-keyword">AS</span> <span class="org-type">ENUM</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'admin'</span>, <span class="org-number">'member'</span><span class="org-rainbow-delimiters-depth-1">)</span>;
+<pre><code class="language-sql-ts">-- CUSTOM TYPES
+CREATE TYPE public.app_permission AS ENUM ('members.select', 'members.update', 'members.insert');
+CREATE TYPE public.app_role AS ENUM ('admin', 'member');
 
-<span class="org-comment">-- USER ROLES</span>
-<span class="org-keyword">CREATE</span> <span class="org-keyword">TABLE</span> public.<span class="org-type">user_roles</span> <span class="org-rainbow-delimiters-depth-1">(</span>
-  id        <span class="org-type">BIGINT</span> <span class="org-keyword">GENERATED</span> BY <span class="org-keyword">DEFAULT</span> <span class="org-keyword">AS</span> IDENTITY <span class="org-keyword">PRIMARY</span> <span class="org-keyword">KEY</span>,
-  user_id   <span class="org-type">UUID</span> <span class="org-keyword">REFERENCES</span> auth.<span class="org-type">users</span> ON <span class="org-keyword">DELETE</span> CASCADE NOT <span class="org-type">NULL</span>,
-  role      <span class="org-type">app_role</span> NOT <span class="org-type">NULL</span>,
-  UNIQUE <span class="org-rainbow-delimiters-depth-2">(</span>user_id, role<span class="org-rainbow-delimiters-depth-2">)</span>
-<span class="org-rainbow-delimiters-depth-1">)</span>;
-<span class="org-keyword">COMMENT</span> ON <span class="org-keyword">TABLE</span> public.<span class="org-type">user_roles</span> <span class="org-keyword">IS</span> <span class="org-number">'Application roles for each user.'</span>;
+-- USER ROLES
+CREATE TABLE public.user_roles (
+  id        BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  user_id   UUID REFERENCES auth.users ON DELETE CASCADE NOT NULL,
+  role      app_role NOT NULL,
+  UNIQUE (user_id, role)
+);
+COMMENT ON TABLE public.user_roles IS 'Application roles for each user.';
 
-<span class="org-comment">-- ROLE PERMISSIONS</span>
-<span class="org-keyword">CREATE</span> <span class="org-keyword">TABLE</span> public.<span class="org-type">role_permissions</span> <span class="org-rainbow-delimiters-depth-1">(</span>
-  id          <span class="org-type">BIGINT</span> <span class="org-keyword">GENERATED</span> BY <span class="org-keyword">DEFAULT</span> <span class="org-keyword">AS</span> IDENTITY <span class="org-keyword">PRIMARY</span> <span class="org-keyword">KEY</span>,
-  role        <span class="org-type">app_role</span> NOT <span class="org-type">NULL</span>,
-  permission  <span class="org-type">app_permission</span> NOT <span class="org-type">NULL</span>,
-  UNIQUE <span class="org-rainbow-delimiters-depth-2">(</span>role, permission<span class="org-rainbow-delimiters-depth-2">)</span>
-<span class="org-rainbow-delimiters-depth-1">)</span>;
-<span class="org-keyword">COMMENT</span> ON <span class="org-keyword">TABLE</span> public.<span class="org-type">role_permissions</span> <span class="org-keyword">IS</span> <span class="org-number">'Application permissions for each role.'</span>;
-</pre>
-</div>
+-- ROLE PERMISSIONS
+CREATE TABLE public.role_permissions (
+  id          BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  role        app_role NOT NULL,
+  permission  app_permission NOT NULL,
+  UNIQUE (role, permission)
+);
+COMMENT ON TABLE public.role_permissions IS 'Application permissions for each role.';
+</code></pre>
 <p>
 We can then insert into <code>public.role_permissions</code> the permissions for each role, like so:
 </p>
-<div class="org-src-container">
-<pre class="src src-sql-ts"><span class="org-keyword">INSERT</span> <span class="org-keyword">INTO</span> public.<span class="org-type">role_permissions</span> <span class="org-rainbow-delimiters-depth-1">(</span>role, permission<span class="org-rainbow-delimiters-depth-1">)</span>
-<span class="org-keyword">VALUES</span>  <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'admin'</span>, <span class="org-number">'members.select'</span><span class="org-rainbow-delimiters-depth-1">)</span>,  
-        <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'admin'</span>, <span class="org-number">'members.update'</span><span class="org-rainbow-delimiters-depth-1">)</span>,
-        <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-number">'admin'</span>, <span class="org-number">'members.insert'</span><span class="org-rainbow-delimiters-depth-1">)</span>;
-</pre>
-</div>
+<pre><code class="language-sql-ts">INSERT INTO public.role_permissions (role, permission)
+VALUES  ('admin', 'members.select'),  
+        ('admin', 'members.update'),
+        ('admin', 'members.insert');
+</code></pre>
 <p>
 In order for Supabase Auth to know what role an user is, we can now take advantage of the custom claims feature to add their role as a claim:
 </p>
-<div class="org-src-container">
-<pre class="src src-sql-ts"><span class="org-comment">-- Create the auth hook function</span>
-<span class="org-keyword">CREATE</span> OR <span class="org-keyword">REPLACE</span> <span class="org-keyword">FUNCTION</span> public.<span class="org-type">custom_access_token_hook</span><span class="org-rainbow-delimiters-depth-1">(</span>event <span class="org-type">jsonb</span><span class="org-rainbow-delimiters-depth-1">)</span>
-<span class="org-keyword">RETURNS</span> <span class="org-type">jsonb</span>
-<span class="org-keyword">LANGUAGE</span> plpgsql
-<span class="org-keyword">STABLE</span>
-<span class="org-keyword">AS</span> $$
-  <span class="org-keyword">DECLARE</span>
-    claims <span class="org-type">jsonb</span>;
-    user_role public.<span class="org-type">app_role</span>;
-  <span class="org-keyword">BEGIN</span>
-    <span class="org-comment">-- Fetch the user role in the user_roles table</span>
-    <span class="org-keyword">SELECT</span> role INTO user_role <span class="org-keyword">FROM</span> public.<span class="org-type">user_roles</span> <span class="org-keyword">WHERE</span> user_id = <span class="org-rainbow-delimiters-depth-1">(</span>event-&gt;&gt;<span class="org-number">'user_id'</span><span class="org-rainbow-delimiters-depth-1">)</span>::<span class="org-type">uuid</span>;
+<pre><code class="language-sql-ts">-- Create the auth hook function
+CREATE OR REPLACE FUNCTION public.custom_access_token_hook(event jsonb)
+RETURNS jsonb
+LANGUAGE plpgsql
+STABLE
+AS $$
+  DECLARE
+    claims jsonb;
+    user_role public.app_role;
+  BEGIN
+    -- Fetch the user role in the user_roles table
+    SELECT role INTO user_role FROM public.user_roles WHERE user_id = (event-&gt;&gt;'user_id')::uuid;
 
     claims := event-&gt;'claims';
 
-    <span class="org-keyword">IF</span> user_role <span class="org-keyword">IS</span> NOT <span class="org-type">NULL</span> <span class="org-keyword">THEN</span>
-      <span class="org-comment">-- Set the claim</span>
-      claims := JSONB_SET<span class="org-rainbow-delimiters-depth-1">(</span>claims, '{user_role}', TO_JSONB<span class="org-rainbow-delimiters-depth-2">(</span>user_role<span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>;
-    <span class="org-keyword">ELSE</span>
-      claims := JSONB_SET<span class="org-rainbow-delimiters-depth-1">(</span>claims, '{user_role}', 'null'<span class="org-rainbow-delimiters-depth-1">)</span>;
-    <span class="org-keyword">END</span> IF;
+    IF user_role IS NOT NULL THEN
+      -- Set the claim
+      claims := JSONB_SET(claims, '{user_role}', TO_JSONB(user_role));
+    ELSE
+      claims := JSONB_SET(claims, '{user_role}', 'null');
+    END IF;
 
-    <span class="org-comment">-- Update the 'claims' object in the original event</span>
-    event := JSONB_SET<span class="org-rainbow-delimiters-depth-1">(</span>event, '{claims}', claims<span class="org-rainbow-delimiters-depth-1">)</span>;
+    -- Update the 'claims' object in the original event
+    event := JSONB_SET(event, '{claims}', claims);
 
-    <span class="org-comment">-- Return the modified or original event</span>
-    <span class="org-keyword">RETURN</span> event;
-  <span class="org-keyword">END</span>;
+    -- Return the modified or original event
+    RETURN event;
+  END;
 $$;
 
-GRANT USAGE ON <span class="org-keyword">SCHEMA</span> public <span class="org-keyword">TO</span> supabase_auth_admin;
+GRANT USAGE ON SCHEMA public TO supabase_auth_admin;
 
-GRANT <span class="org-keyword">EXECUTE</span>
-  ON <span class="org-keyword">FUNCTION</span> public.custom_access_token_hook
-  <span class="org-keyword">TO</span> supabase_auth_admin;
+GRANT EXECUTE
+  ON FUNCTION public.custom_access_token_hook
+  TO supabase_auth_admin;
 
-REVOKE <span class="org-keyword">EXECUTE</span>
-  ON <span class="org-keyword">FUNCTION</span> public.custom_access_token_hook
-  <span class="org-keyword">FROM</span> authenticated, anon, public;
+REVOKE EXECUTE
+  ON FUNCTION public.custom_access_token_hook
+  FROM authenticated, anon, public;
 
-GRANT <span class="org-keyword">ALL</span>
-  ON <span class="org-keyword">TABLE</span> public.user_roles
-<span class="org-keyword">TO</span> supabase_auth_admin;
+GRANT ALL
+  ON TABLE public.user_roles
+TO supabase_auth_admin;
 
-REVOKE <span class="org-keyword">ALL</span>
-  ON <span class="org-keyword">TABLE</span> public.user_roles
-  <span class="org-keyword">FROM</span> authenticated, anon, public;
+REVOKE ALL
+  ON TABLE public.user_roles
+  FROM authenticated, anon, public;
 
-<span class="org-keyword">CREATE</span> POLICY "Allow auth admin to read user roles" ON public.user_roles
-<span class="org-keyword">AS</span> PERMISSIVE <span class="org-keyword">FOR</span> <span class="org-keyword">SELECT</span>
+CREATE POLICY "Allow auth admin to read user roles" ON public.user_roles
+AS PERMISSIVE FOR SELECT
 TO supabase_auth_admin
-<span class="org-keyword">USING</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-constant">TRUE</span><span class="org-rainbow-delimiters-depth-1">)</span>;
-</pre>
-</div>
+USING (TRUE);
+</code></pre>
 <p>
 To enable this function as a hook, in the dashboard, navigate to <a href="https://supabase.com/dashboard/project/_/auth/hooks">Authentication &gt; Hooks</a> and select the appropriate Postgres function from the dropdown menu.
 </p>
@@ -257,51 +312,47 @@ To enable this function as a hook, in the dashboard, navigate to <a href="https:
 <p>
 Now, in order to use this information in our RLS policies, we can create a function called <code>authorize</code> to see if the user has the required permission:
 </p>
-<div class="org-src-container">
-<pre class="src src-sql-ts"><span class="org-keyword">CREATE</span> OR <span class="org-keyword">REPLACE</span> <span class="org-keyword">FUNCTION</span> public.<span class="org-type">authorize</span><span class="org-rainbow-delimiters-depth-1">(</span>
-  requested_permission <span class="org-type">app_permission</span>
-<span class="org-rainbow-delimiters-depth-1">)</span>
-<span class="org-keyword">RETURNS</span> <span class="org-type">boolean</span> <span class="org-keyword">AS</span> $$
-<span class="org-keyword">DECLARE</span>
-  bind_permissions <span class="org-type">int</span>;
-  user_role public.<span class="org-type">app_role</span>;
-<span class="org-keyword">BEGIN</span>
-  <span class="org-keyword">SELECT</span> <span class="org-rainbow-delimiters-depth-1">(</span>auth.<span class="org-type">jwt</span><span class="org-rainbow-delimiters-depth-2">()</span> -&gt;&gt; <span class="org-number">'user_role'</span><span class="org-rainbow-delimiters-depth-1">)</span>::public.<span class="org-type">app_role</span> INTO user_role;
+<pre><code class="language-sql-ts">CREATE OR REPLACE FUNCTION public.authorize(
+  requested_permission app_permission
+)
+RETURNS boolean AS $$
+DECLARE
+  bind_permissions int;
+  user_role public.app_role;
+BEGIN
+  SELECT (auth.jwt() -&gt;&gt; 'user_role')::public.app_role INTO user_role;
 
-  <span class="org-keyword">SELECT</span> <span class="org-type">COUNT</span><span class="org-rainbow-delimiters-depth-1">(</span>*<span class="org-rainbow-delimiters-depth-1">)</span>
+  SELECT COUNT(*)
   INTO bind_permissions
-  <span class="org-keyword">FROM</span> public.<span class="org-type">role_permissions</span>
-  <span class="org-keyword">WHERE</span> <span class="org-type">role_permissions</span>.permission = requested_permission
-    AND <span class="org-type">role_permissions</span>.role = user_role;
+  FROM public.role_permissions
+  WHERE role_permissions.permission = requested_permission
+    AND role_permissions.role = user_role;
 
-  <span class="org-keyword">RETURN</span> bind_permissions &gt; <span class="org-number">0</span>;
-<span class="org-keyword">END</span>;
-$$ <span class="org-keyword">LANGUAGE</span> plpgsql <span class="org-keyword">STABLE</span> <span class="org-keyword">SECURITY</span> <span class="org-keyword">DEFINER</span> SET search_path = '';
-</pre>
-</div>
+  RETURN bind_permissions &gt; 0;
+END;
+$$ LANGUAGE plpgsql STABLE SECURITY DEFINER SET search_path = '';
+</code></pre>
 <p>
 We can now use this function in our RLS policies, like so:
 </p>
-<div class="org-src-container">
-<pre class="src src-sql-ts"><span class="org-keyword">CREATE</span> POLICY "Allow authorized select access"
+<pre><code class="language-sql-ts">CREATE POLICY "Allow authorized select access"
 ON "public"."members"
-<span class="org-keyword">FOR</span> <span class="org-keyword">SELECT</span> TO authenticated <span class="org-keyword">USING</span> <span class="org-rainbow-delimiters-depth-1">(</span>
-  <span class="org-rainbow-delimiters-depth-2">(</span><span class="org-keyword">SELECT</span> <span class="org-type">authorize</span><span class="org-rainbow-delimiters-depth-3">(</span><span class="org-number">'members.select'</span><span class="org-rainbow-delimiters-depth-3">)</span><span class="org-rainbow-delimiters-depth-2">)</span>
-<span class="org-rainbow-delimiters-depth-1">)</span>;
+FOR SELECT TO authenticated USING (
+  (SELECT authorize('members.select'))
+);
 
-<span class="org-keyword">CREATE</span> POLICY "Allow authorized update access"
+CREATE POLICY "Allow authorized update access"
 ON "public"."members"
-<span class="org-keyword">FOR</span> <span class="org-keyword">UPDATE</span> <span class="org-type">TO</span> authenticated <span class="org-keyword">USING</span> <span class="org-rainbow-delimiters-depth-1">(</span>
-  <span class="org-rainbow-delimiters-depth-2">(</span><span class="org-keyword">SELECT</span> <span class="org-type">authorize</span><span class="org-rainbow-delimiters-depth-3">(</span><span class="org-number">'members.update'</span><span class="org-rainbow-delimiters-depth-3">)</span><span class="org-rainbow-delimiters-depth-2">)</span>
-<span class="org-rainbow-delimiters-depth-1">)</span>;
+FOR UPDATE TO authenticated USING (
+  (SELECT authorize('members.update'))
+);
 
-<span class="org-keyword">CREATE</span> POLICY "Allow authorized insert access"
+CREATE POLICY "Allow authorized insert access"
 ON "public"."members"
-<span class="org-keyword">FOR</span> <span class="org-keyword">INSERT</span> <span class="org-type">TO</span> authenticated <span class="org-keyword">WITH</span> CHECK <span class="org-rainbow-delimiters-depth-1">(</span>
-  <span class="org-rainbow-delimiters-depth-2">(</span><span class="org-keyword">SELECT</span> <span class="org-type">authorize</span><span class="org-rainbow-delimiters-depth-3">(</span><span class="org-number">'members.insert'</span><span class="org-rainbow-delimiters-depth-3">)</span><span class="org-rainbow-delimiters-depth-2">)</span>
-<span class="org-rainbow-delimiters-depth-1">)</span>;
-</pre>
-</div>
+FOR INSERT TO authenticated WITH CHECK (
+  (SELECT authorize('members.insert'))
+);
+</code></pre>
 </div>
 </div>
 </div>
@@ -312,8 +363,16 @@ ON "public"."members"
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-06-01 14:21
-             </div>
+               Last modified: 2025-05-31 23:21
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>

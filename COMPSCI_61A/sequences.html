@@ -3,82 +3,18 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-03 Fri 13:57 -->
+<!-- 2025-10-17 Fri 10:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sequences</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
-                      <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-                      <script src="/pagefind/pagefind-ui.js"></script>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -156,28 +92,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6e57dfb">1. Sequences</a>
+<li><a href="#org5d28bbf">1. Sequences</a>
 <ul>
-<li><a href="#orgf2ff019">1.1. Length</a></li>
-<li><a href="#org94c78ae">1.2. Indexing</a></li>
-<li><a href="#org0384fe6">1.3. <code>in</code> Operator</a></li>
-<li><a href="#orgeca1d32">1.4. Slicing</a></li>
-<li><a href="#org9d13f6c">1.5. Sequence Aggregation</a></li>
+<li><a href="#orge21a91c">1.1. Length</a></li>
+<li><a href="#org4c1e3aa">1.2. Indexing</a></li>
+<li><a href="#org379b3d0">1.3. <code>in</code> Operator</a></li>
+<li><a href="#org533876d">1.4. Slicing</a></li>
+<li><a href="#org8c7a872">1.5. Sequence Aggregation</a></li>
 </ul>
 </li>
-<li><a href="#org6a52fc6">2. Lists</a>
+<li><a href="#org0b1993e">2. Lists</a>
 <ul>
-<li><a href="#org61bb0d3">2.1. List Comprehension</a></li>
+<li><a href="#orgff25261">2.1. List Comprehension</a></li>
 </ul>
 </li>
-<li><a href="#orgf9b62eb">3. Ranges</a></li>
-<li><a href="#org4372574">4. Strings</a></li>
-<li><a href="#orgdf244f0">5. Tuples</a></li>
+<li><a href="#org3478d82">3. Ranges</a></li>
+<li><a href="#org1815a22">4. Strings</a></li>
+<li><a href="#orgc1587ea">5. Tuples</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6e57dfb" class="outline-2">
-<h2 id="org6e57dfb"><span class="section-number-2">1.</span> Sequences</h2>
+<div id="outline-container-org5d28bbf" class="outline-2">
+<h2 id="org5d28bbf"><span class="section-number-2">1.</span> Sequences</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>sequence</b> in Python is a type of ordered collection that contains items arranged in order, which you can access by using an integer index. Examples of sequences include <i>lists</i> and <i>tuples</i>.
@@ -195,51 +131,45 @@ Sequences have the following characteristics:
 <li>You can use colon and bracket syntax to perform <b>slicing</b>.</li>
 </ol>
 </div>
-<div id="outline-container-orgf2ff019" class="outline-3">
-<h3 id="orgf2ff019"><span class="section-number-3">1.1.</span> Length</h3>
+<div id="outline-container-orge21a91c" class="outline-3">
+<h3 id="orge21a91c"><span class="section-number-3">1.1.</span> Length</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Every sequence has a <i>length</i>, which can be found by applying the function <code>len()</code> to the sequence:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">digits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-keyword">assert</span> <span class="org-py-number">4</span> == <span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">(</span>digits<span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
+<pre><code class="language-python">digits = [1, 2, 3, 4]
+assert 4 == len(digits)
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org94c78ae" class="outline-3">
-<h3 id="org94c78ae"><span class="section-number-3">1.2.</span> Indexing</h3>
+<div id="outline-container-org4c1e3aa" class="outline-3">
+<h3 id="org4c1e3aa"><span class="section-number-3">1.2.</span> Indexing</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Every sequence can be indexed using bracket notation. Sequences are zero-indexed, which means the first element in a sequence is assigned the index <code>0</code>, the second is <code>1</code>, and so on:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">digits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-keyword">assert</span> <span class="org-py-number">4</span> == digits<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-1">]</span>
-</pre>
+<pre><code class="language-python">digits = [1, 2, 3, 4]
+assert 4 == digits[3]
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org0384fe6" class="outline-3">
-<h3 id="org0384fe6"><span class="section-number-3">1.3.</span> <code>in</code> Operator</h3>
+<div id="outline-container-org379b3d0" class="outline-3">
+<h3 id="org379b3d0"><span class="section-number-3">1.3.</span> <code>in</code> Operator</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 The built-in operator <code>in</code> tests whether an element appears in a compound value:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">digits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">8</span>, <span class="org-py-number">2</span>, <span class="org-py-number">8</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-keyword">assert</span> <span class="org-py-number">1</span> <span class="org-keyword">in</span> digits          <span class="org-comment-delimiter"># </span><span class="org-comment">True
-</span><span class="org-keyword">assert</span> <span class="org-string">'here'</span> <span class="org-keyword">in</span> <span class="org-string">'Where'</span>    <span class="org-comment-delimiter"># </span><span class="org-comment">True</span>
-</pre>
+<pre><code class="language-python">digits = [1, 8, 2, 8]
+assert 1 in digits          # True
+assert 'here' in 'Where'    # True
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-orgeca1d32" class="outline-3">
-<h3 id="orgeca1d32"><span class="section-number-3">1.4.</span> Slicing</h3>
+<div id="outline-container-org533876d" class="outline-3">
+<h3 id="org533876d"><span class="section-number-3">1.4.</span> Slicing</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 We can <i>slice</i> a sequence to obtain a sub-sequence of that sequence. For example, the expression <code>s[1:]</code> is a slice from index <code>1</code> to the end of <code>s</code>, containing all the elements of <code>s</code> except <code>s[0]</code>.
@@ -250,50 +180,42 @@ More formally, a slice <code>s[a:b]</code> returns a sub-sequence of <code>s</co
 </p>
 </div>
 </div>
-<div id="outline-container-org9d13f6c" class="outline-3">
-<h3 id="org9d13f6c"><span class="section-number-3">1.5.</span> Sequence Aggregation</h3>
+<div id="outline-container-org8c7a872" class="outline-3">
+<h3 id="org8c7a872"><span class="section-number-3">1.5.</span> Sequence Aggregation</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 The function <code>sum(iterable[, start]) -&gt; value</code> returns the sum of an iterable of numbers (not strings) plus the value of parameter <code>start</code> (which defaults to 0). When the iterable is empty, return start:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">9
-</span><span class="org-py-variable-name">b</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-1">)</span>       <span class="org-comment-delimiter"># </span><span class="org-comment">14
-</span><span class="org-py-variable-name">c</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[]</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">[2, 3, 4]</span>
-</pre>
-</div>
+<pre><code class="language-python">a = sum([2, 3, 4])          # 9
+b = sum([2, 3, 4], 5)       # 14
+c = sum([[2, 3], [4]], [])  # [2, 3, 4]
+</code></pre>
 
 <p>
 The function <code>max(iterable[, key=func]) -&gt; value</code> and <code>max(a, b, c, ...[, key=func]) -&gt; value</code> returns either the largest element in the iterable, or the largest argument with two or more arguments. The <code>key</code> function allows you to customize how the maximum value is determined by applying a function to each element before comparison:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">d</span> <span class="org-operator">=</span> <span class="org-py-builtins">max</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">range</span><span class="org-rainbow-delimiters-depth-2">(</span><span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">4
-</span><span class="org-py-variable-name">s</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'a'</span>, <span class="org-string">'aaa'</span>, <span class="org-string">'aa'</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-py-variable-name">longest</span> <span class="org-operator">=</span> <span class="org-py-builtins">max</span><span class="org-rainbow-delimiters-depth-1">(</span>s, key=<span class="org-py-builtins">len</span><span class="org-rainbow-delimiters-depth-1">)</span>   <span class="org-comment-delimiter"># </span><span class="org-comment">'aaa'</span>
-</pre>
-</div>
+<pre><code class="language-python">d = max(range(5))           # 4
+s = ['a', 'aaa', 'aa']
+longest = max(s, key=len)   # 'aaa'
+</code></pre>
 
 <p>
 The function <code>all(iterable) -&gt; bool</code> returns <code>True</code> if <code>bool(x)</code> is <code>True</code> for all values <code>x</code> in the iterable. If the iterable is empty, return <code>True</code>. The <code>bool</code> function converts an expression to a boolean by evaluating it to either a <code>True</code> or <code>False</code> value.
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">trues</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">True</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-py-variable-name">istrue</span> <span class="org-operator">=</span> <span class="org-py-builtins">all</span><span class="org-rainbow-delimiters-depth-1">(</span>trues<span class="org-rainbow-delimiters-depth-1">)</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">True</span>
-</pre>
-</div>
+<pre><code class="language-python">trues = [True, True, True]
+istrue = all(trues)         # True
+</code></pre>
 
 <p>
 Similarly, the function <code>any(iterable) -&gt; bool</code> returns <code>True</code> if <code>bool(x)</code> is <code>True</code> for any value in the iterable. If the iterable is empty, return <code>False</code>.
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">some</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-pseudo-keyword">True</span>, <span class="org-py-pseudo-keyword">False</span>, <span class="org-py-pseudo-keyword">False</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-py-variable-name">istrue</span> <span class="org-operator">=</span> <span class="org-py-builtins">any</span><span class="org-rainbow-delimiters-depth-1">(</span>some<span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">True</span>
-</pre>
-</div>
+<pre><code class="language-python">some = [True, False, False]
+istrue = any(some)          # True
+</code></pre>
 
 <p>
 Similar to
@@ -301,80 +223,68 @@ Similar to
 </div>
 </div>
 </div>
-<div id="outline-container-org6a52fc6" class="outline-2">
-<h2 id="org6a52fc6"><span class="section-number-2">2.</span> Lists</h2>
+<div id="outline-container-org0b1993e" class="outline-2">
+<h2 id="org0b1993e"><span class="section-number-2">2.</span> Lists</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-A <b>list</b> is a type of sequence which can be of different data types. Lists are <a href="mutation.html#orgedfe0c4">mutable</a>, meaning you can modify them by adding, removing, or changing elements. We can define a list using literals like so:
+A <b>list</b> is a type of sequence which can be of different data types. Lists are <a href="mutation.html#orgc9964a3">mutable</a>, meaning you can modify them by adding, removing, or changing elements. We can define a list using literals like so:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">digits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">8</span>, <span class="org-py-number">2</span>, <span class="org-py-number">8</span><span class="org-rainbow-delimiters-depth-1">]</span>
-</pre>
-</div>
+<pre><code class="language-python">digits = [1, 8, 2, 8]
+</code></pre>
 
 <p>
 We can also concatenate or repeat lists by using the addition and multiplication operators:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-keyword">assert</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span>, <span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-1">]</span> == <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">]</span> + <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-keyword">assert</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span>, <span class="org-py-number">1</span>, <span class="org-py-number">1</span>, <span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">]</span> == <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">]</span> * <span class="org-py-number">4</span>
-</pre>
-</div>
+<pre><code class="language-python">assert [1, 2, 3, 4] == [1, 2] + [3, 4]
+assert [1, 1, 1, 1] == [1] * 4
+</code></pre>
 
 <p>
 We can nest lists like so:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">pairs</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">10</span>, <span class="org-py-number">20</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">30</span>, <span class="org-py-number">40</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-keyword">assert</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">10</span>, <span class="org-py-number">20</span><span class="org-rainbow-delimiters-depth-1">]</span> == pairs<span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span><span class="org-rainbow-delimiters-depth-1">]</span>
-</pre>
-</div>
+<pre><code class="language-python">pairs = [[10, 20], [30, 40]]
+assert [10, 20] == pairs[0]
+</code></pre>
 
 <p>
 We can mutate lists:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">suits</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'coin'</span>, <span class="org-string">'string'</span>, <span class="org-string">'myriad'</span><span class="org-rainbow-delimiters-depth-1">]</span>
-<span class="org-py-variable-name">original_suits</span> <span class="org-operator">=</span> suits
-<span class="org-py-variable-name">s</span> <span class="org-operator">=</span> suits.pop<span class="org-rainbow-delimiters-depth-1">()</span>                           <span class="org-comment-delimiter"># </span><span class="org-comment">'myriad', suits is now ['coin', 'string']
-</span>suits.remove<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'string'</span><span class="org-rainbow-delimiters-depth-1">)</span>                    <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin']
-</span>suits.append<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-string">'cup'</span><span class="org-rainbow-delimiters-depth-1">)</span>                       <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin', 'cup']
-</span>suits.extend<span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-string">'sword'</span>, <span class="org-string">'club'</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin', 'cup', 'sword', 'club']
-</span><span class="org-py-variable-name">suits</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-string">'spade'</span>                        <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['coin', 'cup', 'spade', 'club']
-</span><span class="org-py-variable-name">suits</span><span class="org-rainbow-delimiters-depth-1">[</span><span class="org-py-number">0</span>:<span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-1">]</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span><span class="org-string">'heart'</span>, <span class="org-string">'diamond'</span><span class="org-rainbow-delimiters-depth-1">]</span>         <span class="org-comment-delimiter"># </span><span class="org-comment">suits is now ['heart', 'diamond', 'spade', 'club']
-</span><span class="org-comment-delimiter"># </span><span class="org-comment">original_suits is also ['heart', 'diamond', 'spade', 'club']</span>
-</pre>
-</div>
+<pre><code class="language-python">suits = ['coin', 'string', 'myriad']
+original_suits = suits
+s = suits.pop()                           # 'myriad', suits is now ['coin', 'string']
+suits.remove('string')                    # suits is now ['coin']
+suits.append('cup')                       # suits is now ['coin', 'cup']
+suits.extend(['sword', 'club'])           # suits is now ['coin', 'cup', 'sword', 'club']
+suits[2] = 'spade'                        # suits is now ['coin', 'cup', 'spade', 'club']
+suits[0:2] = ['heart', 'diamond']         # suits is now ['heart', 'diamond', 'spade', 'club']
+# original_suits is also ['heart', 'diamond', 'spade', 'club']
+</code></pre>
 
 <p>
 We can also sum the integers in a list, and also lists within lists:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">a</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">1</span>, <span class="org-py-number">2</span>, <span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>           <span class="org-comment-delimiter"># </span><span class="org-comment">6
-</span><span class="org-py-variable-name">b</span> <span class="org-operator">=</span> <span class="org-py-builtins">sum</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">2</span>, <span class="org-py-number">3</span><span class="org-rainbow-delimiters-depth-3">]</span>, <span class="org-rainbow-delimiters-depth-3">[</span><span class="org-py-number">4</span><span class="org-rainbow-delimiters-depth-3">]</span><span class="org-rainbow-delimiters-depth-2">]</span>, <span class="org-rainbow-delimiters-depth-2">[]</span><span class="org-rainbow-delimiters-depth-1">)</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">[1, 2, 3, 4]</span>
-</pre>
-</div>
+<pre><code class="language-python">a = sum([1, 2, 3])           # 6
+b = sum([[1], [2, 3], [4]], [])  # [1, 2, 3, 4]
+</code></pre>
 
 <p>
 Notice that when you sum a list of lists with a list, it just removes one level of the list.
 </p>
 </div>
-<div id="outline-container-org61bb0d3" class="outline-3">
-<h3 id="org61bb0d3"><span class="section-number-3">2.1.</span> List Comprehension</h3>
+<div id="outline-container-orgff25261" class="outline-3">
+<h3 id="orgff25261"><span class="section-number-3">2.1.</span> List Comprehension</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We can use a <b>list comprehension</b> to build a list using the following syntax:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">newlist</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>&lt;expression&gt; <span class="org-keyword">for</span> &lt;item&gt; <span class="org-keyword">in</span> &lt;iterable&gt; <span class="org-keyword">if</span> &lt;condition&gt;<span class="org-rainbow-delimiters-depth-1">]</span>
-</pre>
-</div>
+<pre><code class="language-python">newlist = [&lt;expression&gt; for &lt;item&gt; in &lt;iterable&gt; if &lt;condition&gt;]
+</code></pre>
 
 <p>
 The <code>&lt;condition&gt;</code> is optional and may be omitted. What this syntax does is to form a list, applying the <code>&lt;expression&gt;</code> on each <code>&lt;item&gt;</code> in an <code>&lt;iterable&gt;</code> if a <code>&lt;condition&gt;</code> is satisfied for that <code>&lt;item&gt;</code>.
@@ -382,8 +292,8 @@ The <code>&lt;condition&gt;</code> is optional and may be omitted. What this syn
 </div>
 </div>
 </div>
-<div id="outline-container-orgf9b62eb" class="outline-2">
-<h2 id="orgf9b62eb"><span class="section-number-2">3.</span> Ranges</h2>
+<div id="outline-container-org3478d82" class="outline-2">
+<h2 id="org3478d82"><span class="section-number-2">3.</span> Ranges</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A <b>range</b> is a sequence of consecutive integers, but <i>it is not a list</i>. More generally, <code>range(a, b)</code> returns a sequence that starts from <code>a</code> and includes every consecutive integer in order until <code>b</code>, but <i>not including</i> <code>b</code>.
@@ -392,49 +302,43 @@ A <b>range</b> is a sequence of consecutive integers, but <i>it is not a list</i
 <p>
 We can turn a range into a list by calling a list constructor on it:
 </p>
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-keyword">assert</span> <span class="org-rainbow-delimiters-depth-1">[</span>-<span class="org-py-number">2</span>, -<span class="org-py-number">1</span>, <span class="org-py-number">0</span>, -<span class="org-py-number">1</span><span class="org-rainbow-delimiters-depth-1">]</span> == <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-builtins">range</span><span class="org-rainbow-delimiters-depth-2">(</span>-<span class="org-py-number">2</span>, <span class="org-py-number">2</span><span class="org-rainbow-delimiters-depth-2">)</span><span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
+<pre><code class="language-python">assert [-2, -1, 0, -1] == list(range(-2, 2))
+</code></pre>
 </div>
 </div>
-</div>
-<div id="outline-container-org4372574" class="outline-2">
-<h2 id="org4372574"><span class="section-number-2">4.</span> Strings</h2>
+<div id="outline-container-org1815a22" class="outline-2">
+<h2 id="org1815a22"><span class="section-number-2">4.</span> Strings</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 A <b>string</b> is a sequence of characters. String literals can be single-quoted, double-quoted, or multi-line:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">single</span> <span class="org-operator">=</span> <span class="org-string">'I am a string!'</span>
-<span class="org-py-variable-name">double</span> <span class="org-operator">=</span> <span class="org-string">"I've got an apostrophe"</span>
-<span class="org-py-variable-name">hi</span> <span class="org-operator">=</span> <span class="org-string">'&#24744;&#22909;'</span>
+<pre><code class="language-python">single = 'I am a string!'
+double = "I've got an apostrophe"
+hi = '您好'
 
-<span class="org-comment-delimiter"># </span><span class="org-comment">'The Zen of Python\nclaims, Readability counts.\nRead more: import this.'
-</span><span class="org-py-variable-name">multi</span> <span class="org-operator">=</span> <span class="org-string">"""The Zen of Python
+# 'The Zen of Python\nclaims, Readability counts.\nRead more: import this.'
+multi = """The Zen of Python
            claims, Readability counts.
-           Read more: import this."""</span>
-</pre>
-</div>
+           Read more: import this."""
+</code></pre>
 
 <p>
 We can use a backslash, <code>\</code>, to <b>escape</b> the following character, which allows Python to treat both it and the following character as one element. Escaping characters have several uses: for example, <code>\n</code> is a <i>line feed character</i>, which represents a new line.
 </p>
 </div>
 </div>
-<div id="outline-container-orgdf244f0" class="outline-2">
-<h2 id="orgdf244f0"><span class="section-number-2">5.</span> Tuples</h2>
+<div id="outline-container-orgc1587ea" class="outline-2">
+<h2 id="orgc1587ea"><span class="section-number-2">5.</span> Tuples</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-Tuples are an <a href="mutation.html#orgedfe0c4">immutable</a> sequence. You can define tuples with literals like so:
+Tuples are an <a href="mutation.html#orgc9964a3">immutable</a> sequence. You can define tuples with literals like so:
 </p>
 
-<div class="org-src-container">
-<pre class="src src-python"><span class="org-py-variable-name">t</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span>, <span class="org-py-number">6</span><span class="org-rainbow-delimiters-depth-1">)</span>
-<span class="org-py-variable-name">l</span> <span class="org-operator">=</span> <span class="org-py-builtins">tuple</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-rainbow-delimiters-depth-2">[</span><span class="org-py-number">3</span>, <span class="org-py-number">4</span>, <span class="org-py-number">5</span><span class="org-rainbow-delimiters-depth-2">]</span><span class="org-rainbow-delimiters-depth-1">)</span>          <span class="org-comment-delimiter"># </span><span class="org-comment">(3, 4, 5)
-</span><span class="org-py-variable-name">single</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-number">2</span>,<span class="org-rainbow-delimiters-depth-1">)</span>
-</pre>
-</div>
+<pre><code class="language-python">t = (3, 4, 5, 6)
+l = tuple([3, 4, 5])          # (3, 4, 5)
+single = (2,)
+</code></pre>
 </div>
 </div>
 </div>
