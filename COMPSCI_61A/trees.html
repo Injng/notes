@@ -3,12 +3,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-09-28 Sun 23:12 -->
+<!-- 2025-10-17 Fri 10:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Trees</title>
 <meta name="generator" content="Org Mode" />
-<link rel="stylesheet" href="/style.css" type="text/css"/>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
 
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
@@ -79,7 +81,7 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
 <h1 class="title">Trees</h1>
@@ -104,7 +106,7 @@ A <b>tree</b> is a hierarchical data structure that is used to represent data. E
 </p>
 
 
-<div id="orga267a80" class="figure">
+<div id="org462edd9" class="figure">
 <p><img src="../static/COMPSCI_61A/trees1.png" alt="trees1.png" />
 </p>
 </div>
@@ -135,6 +137,20 @@ We can implement a tree by considering that each tree consists of a root label a
         <span class="org-keyword">if</span> <span class="org-keyword">not</span> is_tree<span class="org-rainbow-delimiters-depth-1">(</span>branch<span class="org-rainbow-delimiters-depth-1">)</span>:
             <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">False</span>
     <span class="org-keyword">return</span> <span class="org-py-pseudo-keyword">True</span>
+</pre>
+</div>
+
+<p>
+We can also use a <a href="objects.html#orgfaa49bc">class</a> to implement a tree:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">class</span> <span class="org-py-class-name">Tree</span>:
+    <span class="org-py-def-class">def</span> <span class="org-py-def">__init__</span><span class="org-rainbow-delimiters-depth-1">(</span><span class="org-py-object-reference">self</span>, label, branches=<span class="org-rainbow-delimiters-depth-2">[]</span><span class="org-rainbow-delimiters-depth-1">)</span>:
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">label</span> <span class="org-operator">=</span> label
+        <span class="org-keyword">for</span> branch <span class="org-keyword">in</span> branches:
+            <span class="org-keyword">assert</span> <span class="org-keyword">is</span> instance<span class="org-rainbow-delimiters-depth-1">(</span>branch, Tree<span class="org-rainbow-delimiters-depth-1">)</span>
+        <span class="org-py-object-reference">self</span>.<span class="org-py-variable-name">branches</span> <span class="org-operator">=</span> <span class="org-py-builtins">list</span><span class="org-rainbow-delimiters-depth-1">(</span>branches<span class="org-rainbow-delimiters-depth-1">)</span>
 </pre>
 </div>
 </div>
@@ -206,6 +222,35 @@ We can use recursion over a tree to count the number of leaves in the tree:
 
 
 </details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Pruning trees
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Sometimes, we want to remove subtrees that satisfy certain criteria from a tree: this process is called <i>pruning</i>. Let's say we are given a <code>Tree</code> class, and we want to prune all the sub-trees whose root label is <code>n</code>:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-py-def-class">def</span> <span class="org-py-def">prune</span><span class="org-rainbow-delimiters-depth-1">(</span>t, n<span class="org-rainbow-delimiters-depth-1">)</span>:
+    t.<span class="org-py-variable-name">branches</span> <span class="org-operator">=</span> <span class="org-rainbow-delimiters-depth-1">[</span>b <span class="org-keyword">for</span> b <span class="org-keyword">in</span> t.branches <span class="org-keyword">if</span> b.label != n<span class="org-rainbow-delimiters-depth-1">]</span>
+    <span class="org-keyword">for</span> b <span class="org-keyword">in</span> t.branches:
+        prune<span class="org-rainbow-delimiters-depth-1">(</span>b, n<span class="org-rainbow-delimiters-depth-1">)</span>
+</pre>
+</div>
+
+
+</details>
 </div>
 </div>
 </div>
@@ -215,8 +260,16 @@ We can use recursion over a tree to count the number of leaves in the tree:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-28 23:12
-             </div>
+               Last modified: 2025-10-17 10:34
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
 </div>
 </body>
 </html>
