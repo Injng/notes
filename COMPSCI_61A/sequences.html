@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sequences</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,28 +93,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5d28bbf">1. Sequences</a>
+<li><a href="#orgb4cd23b">1. Sequences</a>
 <ul>
-<li><a href="#orge21a91c">1.1. Length</a></li>
-<li><a href="#org4c1e3aa">1.2. Indexing</a></li>
-<li><a href="#org379b3d0">1.3. <code>in</code> Operator</a></li>
-<li><a href="#org533876d">1.4. Slicing</a></li>
-<li><a href="#org8c7a872">1.5. Sequence Aggregation</a></li>
+<li><a href="#orga1a315b">1.1. Length</a></li>
+<li><a href="#orgccdce6c">1.2. Indexing</a></li>
+<li><a href="#org4b1956f">1.3. <code>in</code> Operator</a></li>
+<li><a href="#orgc5a3d96">1.4. Slicing</a></li>
+<li><a href="#orgf6e8daf">1.5. Sequence Aggregation</a></li>
 </ul>
 </li>
-<li><a href="#org0b1993e">2. Lists</a>
+<li><a href="#org43b402c">2. Lists</a>
 <ul>
-<li><a href="#orgff25261">2.1. List Comprehension</a></li>
+<li><a href="#org5eb0139">2.1. List Comprehension</a></li>
 </ul>
 </li>
-<li><a href="#org3478d82">3. Ranges</a></li>
-<li><a href="#org1815a22">4. Strings</a></li>
-<li><a href="#orgc1587ea">5. Tuples</a></li>
+<li><a href="#org92e3ede">3. Ranges</a></li>
+<li><a href="#org8a0c261">4. Strings</a></li>
+<li><a href="#org6fa00d7">5. Tuples</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5d28bbf" class="outline-2">
-<h2 id="org5d28bbf"><span class="section-number-2">1.</span> Sequences</h2>
+<div id="outline-container-orgb4cd23b" class="outline-2">
+<h2 id="orgb4cd23b"><span class="section-number-2">1.</span> Sequences</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>sequence</b> in Python is a type of ordered collection that contains items arranged in order, which you can access by using an integer index. Examples of sequences include <i>lists</i> and <i>tuples</i>.
@@ -131,45 +132,45 @@ Sequences have the following characteristics:
 <li>You can use colon and bracket syntax to perform <b>slicing</b>.</li>
 </ol>
 </div>
-<div id="outline-container-orge21a91c" class="outline-3">
-<h3 id="orge21a91c"><span class="section-number-3">1.1.</span> Length</h3>
+<div id="outline-container-orga1a315b" class="outline-3">
+<h3 id="orga1a315b"><span class="section-number-3">1.1.</span> Length</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Every sequence has a <i>length</i>, which can be found by applying the function <code>len()</code> to the sequence:
 </p>
 
-<pre><code class="language-python">digits = [1, 2, 3, 4]
-assert 4 == len(digits)
+<pre><code class="language-python"><span style="color: #cdd6f4;">digits</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>1, 2, 3, 4<span style="color: #f38ba8;">]</span>
+<span style="color: #cba6f7;">assert</span> 4 == <span style="color: #f38ba8;">len</span><span style="color: #f38ba8;">(</span>digits<span style="color: #f38ba8;">)</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org4c1e3aa" class="outline-3">
-<h3 id="org4c1e3aa"><span class="section-number-3">1.2.</span> Indexing</h3>
+<div id="outline-container-orgccdce6c" class="outline-3">
+<h3 id="orgccdce6c"><span class="section-number-3">1.2.</span> Indexing</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Every sequence can be indexed using bracket notation. Sequences are zero-indexed, which means the first element in a sequence is assigned the index <code>0</code>, the second is <code>1</code>, and so on:
 </p>
 
-<pre><code class="language-python">digits = [1, 2, 3, 4]
-assert 4 == digits[3]
+<pre><code class="language-python"><span style="color: #cdd6f4;">digits</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>1, 2, 3, 4<span style="color: #f38ba8;">]</span>
+<span style="color: #cba6f7;">assert</span> 4 == digits<span style="color: #f38ba8;">[</span>3<span style="color: #f38ba8;">]</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org379b3d0" class="outline-3">
-<h3 id="org379b3d0"><span class="section-number-3">1.3.</span> <code>in</code> Operator</h3>
+<div id="outline-container-org4b1956f" class="outline-3">
+<h3 id="org4b1956f"><span class="section-number-3">1.3.</span> <code>in</code> Operator</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 The built-in operator <code>in</code> tests whether an element appears in a compound value:
 </p>
 
-<pre><code class="language-python">digits = [1, 8, 2, 8]
-assert 1 in digits          # True
-assert 'here' in 'Where'    # True
+<pre><code class="language-python"><span style="color: #cdd6f4;">digits</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>1, 8, 2, 8<span style="color: #f38ba8;">]</span>
+<span style="color: #cba6f7;">assert</span> 1 <span style="color: #cba6f7;">in</span> digits          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">True
+</span><span style="color: #cba6f7;">assert</span> <span style="color: #a6e3a1;">'here'</span> <span style="color: #cba6f7;">in</span> <span style="color: #a6e3a1;">'Where'</span>    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">True</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org533876d" class="outline-3">
-<h3 id="org533876d"><span class="section-number-3">1.4.</span> Slicing</h3>
+<div id="outline-container-orgc5a3d96" class="outline-3">
+<h3 id="orgc5a3d96"><span class="section-number-3">1.4.</span> Slicing</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 We can <i>slice</i> a sequence to obtain a sub-sequence of that sequence. For example, the expression <code>s[1:]</code> is a slice from index <code>1</code> to the end of <code>s</code>, containing all the elements of <code>s</code> except <code>s[0]</code>.
@@ -180,41 +181,41 @@ More formally, a slice <code>s[a:b]</code> returns a sub-sequence of <code>s</co
 </p>
 </div>
 </div>
-<div id="outline-container-org8c7a872" class="outline-3">
-<h3 id="org8c7a872"><span class="section-number-3">1.5.</span> Sequence Aggregation</h3>
+<div id="outline-container-orgf6e8daf" class="outline-3">
+<h3 id="orgf6e8daf"><span class="section-number-3">1.5.</span> Sequence Aggregation</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 The function <code>sum(iterable[, start]) -&gt; value</code> returns the sum of an iterable of numbers (not strings) plus the value of parameter <code>start</code> (which defaults to 0). When the iterable is empty, return start:
 </p>
 
-<pre><code class="language-python">a = sum([2, 3, 4])          # 9
-b = sum([2, 3, 4], 5)       # 14
-c = sum([[2, 3], [4]], [])  # [2, 3, 4]
+<pre><code class="language-python"><span style="color: #cdd6f4;">a</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span>2, 3, 4<span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">9
+</span><span style="color: #cdd6f4;">b</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span>2, 3, 4<span style="color: #fab387;">]</span>, 5<span style="color: #f38ba8;">)</span>       <span style="color: #6c7086;"># </span><span style="color: #6c7086;">14
+</span><span style="color: #cdd6f4;">c</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span><span style="color: #f9e2af;">[</span>2, 3<span style="color: #f9e2af;">]</span>, <span style="color: #f9e2af;">[</span>4<span style="color: #f9e2af;">]</span><span style="color: #fab387;">]</span>, <span style="color: #fab387;">[]</span><span style="color: #f38ba8;">)</span>  <span style="color: #6c7086;"># </span><span style="color: #6c7086;">[2, 3, 4]</span>
 </code></pre>
 
 <p>
 The function <code>max(iterable[, key=func]) -&gt; value</code> and <code>max(a, b, c, ...[, key=func]) -&gt; value</code> returns either the largest element in the iterable, or the largest argument with two or more arguments. The <code>key</code> function allows you to customize how the maximum value is determined by applying a function to each element before comparison:
 </p>
 
-<pre><code class="language-python">d = max(range(5))           # 4
-s = ['a', 'aaa', 'aa']
-longest = max(s, key=len)   # 'aaa'
+<pre><code class="language-python"><span style="color: #cdd6f4;">d</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">max</span><span style="color: #f38ba8;">(</span><span style="color: #f38ba8;">range</span><span style="color: #fab387;">(</span>5<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">4
+</span><span style="color: #cdd6f4;">s</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">'a'</span>, <span style="color: #a6e3a1;">'aaa'</span>, <span style="color: #a6e3a1;">'aa'</span><span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">longest</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">max</span><span style="color: #f38ba8;">(</span>s, key=<span style="color: #f38ba8;">len</span><span style="color: #f38ba8;">)</span>   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">'aaa'</span>
 </code></pre>
 
 <p>
 The function <code>all(iterable) -&gt; bool</code> returns <code>True</code> if <code>bool(x)</code> is <code>True</code> for all values <code>x</code> in the iterable. If the iterable is empty, return <code>True</code>. The <code>bool</code> function converts an expression to a boolean by evaluating it to either a <code>True</code> or <code>False</code> value.
 </p>
 
-<pre><code class="language-python">trues = [True, True, True]
-istrue = all(trues)         # True
+<pre><code class="language-python"><span style="color: #cdd6f4;">trues</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">True</span>, <span style="color: #cba6f7;">True</span>, <span style="color: #cba6f7;">True</span><span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">istrue</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">all</span><span style="color: #f38ba8;">(</span>trues<span style="color: #f38ba8;">)</span>         <span style="color: #6c7086;"># </span><span style="color: #6c7086;">True</span>
 </code></pre>
 
 <p>
 Similarly, the function <code>any(iterable) -&gt; bool</code> returns <code>True</code> if <code>bool(x)</code> is <code>True</code> for any value in the iterable. If the iterable is empty, return <code>False</code>.
 </p>
 
-<pre><code class="language-python">some = [True, False, False]
-istrue = any(some)          # True
+<pre><code class="language-python"><span style="color: #cdd6f4;">some</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">True</span>, <span style="color: #cba6f7;">False</span>, <span style="color: #cba6f7;">False</span><span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">istrue</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">any</span><span style="color: #f38ba8;">(</span>some<span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">True</span>
 </code></pre>
 
 <p>
@@ -223,67 +224,67 @@ Similar to
 </div>
 </div>
 </div>
-<div id="outline-container-org0b1993e" class="outline-2">
-<h2 id="org0b1993e"><span class="section-number-2">2.</span> Lists</h2>
+<div id="outline-container-org43b402c" class="outline-2">
+<h2 id="org43b402c"><span class="section-number-2">2.</span> Lists</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-A <b>list</b> is a type of sequence which can be of different data types. Lists are <a href="mutation.html#orgc9964a3">mutable</a>, meaning you can modify them by adding, removing, or changing elements. We can define a list using literals like so:
+A <b>list</b> is a type of sequence which can be of different data types. Lists are <a href="mutation.html#org5029254">mutable</a>, meaning you can modify them by adding, removing, or changing elements. We can define a list using literals like so:
 </p>
 
-<pre><code class="language-python">digits = [1, 8, 2, 8]
+<pre><code class="language-python"><span style="color: #cdd6f4;">digits</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>1, 8, 2, 8<span style="color: #f38ba8;">]</span>
 </code></pre>
 
 <p>
 We can also concatenate or repeat lists by using the addition and multiplication operators:
 </p>
 
-<pre><code class="language-python">assert [1, 2, 3, 4] == [1, 2] + [3, 4]
-assert [1, 1, 1, 1] == [1] * 4
+<pre><code class="language-python"><span style="color: #cba6f7;">assert</span> <span style="color: #f38ba8;">[</span>1, 2, 3, 4<span style="color: #f38ba8;">]</span> == <span style="color: #f38ba8;">[</span>1, 2<span style="color: #f38ba8;">]</span> + <span style="color: #f38ba8;">[</span>3, 4<span style="color: #f38ba8;">]</span>
+<span style="color: #cba6f7;">assert</span> <span style="color: #f38ba8;">[</span>1, 1, 1, 1<span style="color: #f38ba8;">]</span> == <span style="color: #f38ba8;">[</span>1<span style="color: #f38ba8;">]</span> * 4
 </code></pre>
 
 <p>
 We can nest lists like so:
 </p>
 
-<pre><code class="language-python">pairs = [[10, 20], [30, 40]]
-assert [10, 20] == pairs[0]
+<pre><code class="language-python"><span style="color: #cdd6f4;">pairs</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #fab387;">[</span>10, 20<span style="color: #fab387;">]</span>, <span style="color: #fab387;">[</span>30, 40<span style="color: #fab387;">]</span><span style="color: #f38ba8;">]</span>
+<span style="color: #cba6f7;">assert</span> <span style="color: #f38ba8;">[</span>10, 20<span style="color: #f38ba8;">]</span> == pairs<span style="color: #f38ba8;">[</span>0<span style="color: #f38ba8;">]</span>
 </code></pre>
 
 <p>
 We can mutate lists:
 </p>
 
-<pre><code class="language-python">suits = ['coin', 'string', 'myriad']
-original_suits = suits
-s = suits.pop()                           # 'myriad', suits is now ['coin', 'string']
-suits.remove('string')                    # suits is now ['coin']
-suits.append('cup')                       # suits is now ['coin', 'cup']
-suits.extend(['sword', 'club'])           # suits is now ['coin', 'cup', 'sword', 'club']
-suits[2] = 'spade'                        # suits is now ['coin', 'cup', 'spade', 'club']
-suits[0:2] = ['heart', 'diamond']         # suits is now ['heart', 'diamond', 'spade', 'club']
-# original_suits is also ['heart', 'diamond', 'spade', 'club']
+<pre><code class="language-python"><span style="color: #cdd6f4;">suits</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">'coin'</span>, <span style="color: #a6e3a1;">'string'</span>, <span style="color: #a6e3a1;">'myriad'</span><span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">original_suits</span> <span style="color: #89dceb;">=</span> suits
+<span style="color: #cdd6f4;">s</span> <span style="color: #89dceb;">=</span> suits.pop<span style="color: #f38ba8;">()</span>                           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">'myriad', suits is now ['coin', 'string']
+</span>suits.remove<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'string'</span><span style="color: #f38ba8;">)</span>                    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['coin']
+</span>suits.append<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'cup'</span><span style="color: #f38ba8;">)</span>                       <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['coin', 'cup']
+</span>suits.extend<span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span><span style="color: #a6e3a1;">'sword'</span>, <span style="color: #a6e3a1;">'club'</span><span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['coin', 'cup', 'sword', 'club']
+</span><span style="color: #cdd6f4;">suits</span><span style="color: #f38ba8;">[</span>2<span style="color: #f38ba8;">]</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">'spade'</span>                        <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['coin', 'cup', 'spade', 'club']
+</span><span style="color: #cdd6f4;">suits</span><span style="color: #f38ba8;">[</span>0:2<span style="color: #f38ba8;">]</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">'heart'</span>, <span style="color: #a6e3a1;">'diamond'</span><span style="color: #f38ba8;">]</span>         <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['heart', 'diamond', 'spade', 'club']
+</span><span style="color: #6c7086;"># </span><span style="color: #6c7086;">original_suits is also ['heart', 'diamond', 'spade', 'club']</span>
 </code></pre>
 
 <p>
 We can also sum the integers in a list, and also lists within lists:
 </p>
 
-<pre><code class="language-python">a = sum([1, 2, 3])           # 6
-b = sum([[1], [2, 3], [4]], [])  # [1, 2, 3, 4]
+<pre><code class="language-python"><span style="color: #cdd6f4;">a</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span>1, 2, 3<span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">6
+</span><span style="color: #cdd6f4;">b</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span><span style="color: #f9e2af;">[</span>1<span style="color: #f9e2af;">]</span>, <span style="color: #f9e2af;">[</span>2, 3<span style="color: #f9e2af;">]</span>, <span style="color: #f9e2af;">[</span>4<span style="color: #f9e2af;">]</span><span style="color: #fab387;">]</span>, <span style="color: #fab387;">[]</span><span style="color: #f38ba8;">)</span>  <span style="color: #6c7086;"># </span><span style="color: #6c7086;">[1, 2, 3, 4]</span>
 </code></pre>
 
 <p>
 Notice that when you sum a list of lists with a list, it just removes one level of the list.
 </p>
 </div>
-<div id="outline-container-orgff25261" class="outline-3">
-<h3 id="orgff25261"><span class="section-number-3">2.1.</span> List Comprehension</h3>
+<div id="outline-container-org5eb0139" class="outline-3">
+<h3 id="org5eb0139"><span class="section-number-3">2.1.</span> List Comprehension</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We can use a <b>list comprehension</b> to build a list using the following syntax:
 </p>
 
-<pre><code class="language-python">newlist = [&lt;expression&gt; for &lt;item&gt; in &lt;iterable&gt; if &lt;condition&gt;]
+<pre><code class="language-python"><span style="color: #cdd6f4;">newlist</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>&lt;expression&gt; <span style="color: #cba6f7;">for</span> &lt;item&gt; <span style="color: #cba6f7;">in</span> &lt;iterable&gt; <span style="color: #cba6f7;">if</span> &lt;condition&gt;<span style="color: #f38ba8;">]</span>
 </code></pre>
 
 <p>
@@ -292,8 +293,8 @@ The <code>&lt;condition&gt;</code> is optional and may be omitted. What this syn
 </div>
 </div>
 </div>
-<div id="outline-container-org3478d82" class="outline-2">
-<h2 id="org3478d82"><span class="section-number-2">3.</span> Ranges</h2>
+<div id="outline-container-org92e3ede" class="outline-2">
+<h2 id="org92e3ede"><span class="section-number-2">3.</span> Ranges</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A <b>range</b> is a sequence of consecutive integers, but <i>it is not a list</i>. More generally, <code>range(a, b)</code> returns a sequence that starts from <code>a</code> and includes every consecutive integer in order until <code>b</code>, but <i>not including</i> <code>b</code>.
@@ -302,25 +303,25 @@ A <b>range</b> is a sequence of consecutive integers, but <i>it is not a list</i
 <p>
 We can turn a range into a list by calling a list constructor on it:
 </p>
-<pre><code class="language-python">assert [-2, -1, 0, -1] == list(range(-2, 2))
+<pre><code class="language-python"><span style="color: #cba6f7;">assert</span> <span style="color: #f38ba8;">[</span>-2, -1, 0, -1<span style="color: #f38ba8;">]</span> == <span style="color: #f38ba8;">list</span><span style="color: #f38ba8;">(</span><span style="color: #f38ba8;">range</span><span style="color: #fab387;">(</span>-2, 2<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org1815a22" class="outline-2">
-<h2 id="org1815a22"><span class="section-number-2">4.</span> Strings</h2>
+<div id="outline-container-org8a0c261" class="outline-2">
+<h2 id="org8a0c261"><span class="section-number-2">4.</span> Strings</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 A <b>string</b> is a sequence of characters. String literals can be single-quoted, double-quoted, or multi-line:
 </p>
 
-<pre><code class="language-python">single = 'I am a string!'
-double = "I've got an apostrophe"
-hi = '您好'
+<pre><code class="language-python"><span style="color: #cdd6f4;">single</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">'I am a string!'</span>
+<span style="color: #cdd6f4;">double</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">"I've got an apostrophe"</span>
+<span style="color: #cdd6f4;">hi</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">'&#24744;&#22909;'</span>
 
-# 'The Zen of Python\nclaims, Readability counts.\nRead more: import this.'
-multi = """The Zen of Python
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">'The Zen of Python\nclaims, Readability counts.\nRead more: import this.'
+</span><span style="color: #cdd6f4;">multi</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">"""The Zen of Python
            claims, Readability counts.
-           Read more: import this."""
+           Read more: import this."""</span>
 </code></pre>
 
 <p>
@@ -328,16 +329,16 @@ We can use a backslash, <code>\</code>, to <b>escape</b> the following character
 </p>
 </div>
 </div>
-<div id="outline-container-orgc1587ea" class="outline-2">
-<h2 id="orgc1587ea"><span class="section-number-2">5.</span> Tuples</h2>
+<div id="outline-container-org6fa00d7" class="outline-2">
+<h2 id="org6fa00d7"><span class="section-number-2">5.</span> Tuples</h2>
 <div class="outline-text-2" id="text-5">
 <p>
-Tuples are an <a href="mutation.html#orgc9964a3">immutable</a> sequence. You can define tuples with literals like so:
+Tuples are an <a href="mutation.html#org5029254">immutable</a> sequence. You can define tuples with literals like so:
 </p>
 
-<pre><code class="language-python">t = (3, 4, 5, 6)
-l = tuple([3, 4, 5])          # (3, 4, 5)
-single = (2,)
+<pre><code class="language-python"><span style="color: #cdd6f4;">t</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">(</span>3, 4, 5, 6<span style="color: #f38ba8;">)</span>
+<span style="color: #cdd6f4;">l</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">tuple</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span>3, 4, 5<span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">(3, 4, 5)
+</span><span style="color: #cdd6f4;">single</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">(</span>2,<span style="color: #f38ba8;">)</span>
 </code></pre>
 </div>
 </div>

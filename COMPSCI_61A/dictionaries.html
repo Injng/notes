@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Dictionaries</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,17 +93,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org62729c9">1. Dictionaries</a>
+<li><a href="#org80c2fb8">1. Dictionaries</a>
 <ul>
-<li><a href="#org345a080">1.1. Dictionary Comprehensions</a></li>
-<li><a href="#org9867f31">1.2. Dictionary Iteration</a></li>
+<li><a href="#org41b9536">1.1. Dictionary Comprehensions</a></li>
+<li><a href="#org29bc253">1.2. Dictionary Iteration</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org62729c9" class="outline-2">
-<h2 id="org62729c9"><span class="section-number-2">1.</span> Dictionaries</h2>
+<div id="outline-container-org80c2fb8" class="outline-2">
+<h2 id="org80c2fb8"><span class="section-number-2">1.</span> Dictionaries</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Dictionaries</b> are collections of key-value pairs: they <i>map keys to values</i>. There are two restrictions on dictionary keys:
@@ -117,39 +118,39 @@
 You can build a dictionary with a literal like so:
 </p>
 
-<pre><code class="language-python">numerals = {'I': 1, 'V': 5, 'X': 10}
+<pre><code class="language-python"><span style="color: #cdd6f4;">numerals</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">{</span><span style="color: #a6e3a1;">'I'</span>: 1, <span style="color: #a6e3a1;">'V'</span>: 5, <span style="color: #a6e3a1;">'X'</span>: 10<span style="color: #f38ba8;">}</span>
 </code></pre>
 
 <p>
 You can also lookup the value for a particular key, similar to indexing syntax:
 </p>
 
-<pre><code class="language-python">val = numerals['X']          # 10
+<pre><code class="language-python"><span style="color: #cdd6f4;">val</span> <span style="color: #89dceb;">=</span> numerals<span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">'X'</span><span style="color: #f38ba8;">]</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">10</span>
 </code></pre>
 
 <p>
-However, we <i>cannot use indices on dictionaries</i>: you must use a key, as dictionaries are not <a href="sequences.html#org5d28bbf">sequences</a>. We can, however, iterate on the dictionary by turning it into a sequence like so:
+However, we <i>cannot use indices on dictionaries</i>: you must use a key, as dictionaries are not <a href="sequences.html#orgb4cd23b">sequences</a>. We can, however, iterate on the dictionary by turning it into a sequence like so:
 </p>
 
-<pre><code class="language-python">keys = list(numerals)        # ['I', 'V', 'X']
-vals = numerals.values()     # dict_values([1, 5, 10])
+<pre><code class="language-python"><span style="color: #cdd6f4;">keys</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">list</span><span style="color: #f38ba8;">(</span>numerals<span style="color: #f38ba8;">)</span>        <span style="color: #6c7086;"># </span><span style="color: #6c7086;">['I', 'V', 'X']
+</span><span style="color: #cdd6f4;">vals</span> <span style="color: #89dceb;">=</span> numerals.values<span style="color: #f38ba8;">()</span>     <span style="color: #6c7086;"># </span><span style="color: #6c7086;">dict_values([1, 5, 10])</span>
 </code></pre>
 
 <p>
 We can also find the length of a dictionary:
 </p>
 
-<pre><code class="language-python">length = len(numerals)       # 3
+<pre><code class="language-python"><span style="color: #cdd6f4;">length</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">len</span><span style="color: #f38ba8;">(</span>numerals<span style="color: #f38ba8;">)</span>       <span style="color: #6c7086;"># </span><span style="color: #6c7086;">3</span>
 </code></pre>
 </div>
-<div id="outline-container-org345a080" class="outline-3">
-<h3 id="org345a080"><span class="section-number-3">1.1.</span> Dictionary Comprehensions</h3>
+<div id="outline-container-org41b9536" class="outline-3">
+<h3 id="org41b9536"><span class="section-number-3">1.1.</span> Dictionary Comprehensions</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 You can build a dictionary using a <b>dictionary comprehension</b>, whose syntax is as follows:
 </p>
 
-<pre><code class="language-python">{&lt;key&gt;: &lt;value&gt; for &lt;name&gt; in &lt;iterable&gt; if &lt;condition&gt;}
+<pre><code class="language-python"><span style="color: #f38ba8;">{</span>&lt;key&gt;: &lt;value&gt; <span style="color: #cba6f7;">for</span> &lt;name&gt; <span style="color: #cba6f7;">in</span> &lt;iterable&gt; <span style="color: #cba6f7;">if</span> &lt;condition&gt;<span style="color: #f38ba8;">}</span>
 </code></pre>
 
 <p>
@@ -157,18 +158,18 @@ Just like list comprehensions, the filter <code>&lt;condition&gt;</code> is opti
 </p>
 </div>
 </div>
-<div id="outline-container-org9867f31" class="outline-3">
-<h3 id="org9867f31"><span class="section-number-3">1.2.</span> Dictionary Iteration</h3>
+<div id="outline-container-org29bc253" class="outline-3">
+<h3 id="org29bc253"><span class="section-number-3">1.2.</span> Dictionary Iteration</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-In a dictionary, its keys, values, and items are all iterable values and can produce <a href="iteration.html#orgc5cb7dc">iterators</a> using <code>iter()</code>. Note that in modern versions of Python (3.6+) the order of items in a dictionary is <i>the order in which they were added</i>, but in older versions items appeared in an arbitrary order. For example:
+In a dictionary, its keys, values, and items are all iterable values and can produce <a href="iteration.html#orgfc7e819">iterators</a> using <code>iter()</code>. Note that in modern versions of Python (3.6+) the order of items in a dictionary is <i>the order in which they were added</i>, but in older versions items appeared in an arbitrary order. For example:
 </p>
 
-<pre><code class="language-python">d = {'one': 1, 'two': 2, 'three': 3}
-d['zero'] = 0
-k = iter(d.keys())           # Iterator over keys of dictionary
-v = iter(d.values())         # Iterator over values of dictionary
-i = iter(d.items())          # Iterator over itmes of dictionary: returns tuple (key, value)
+<pre><code class="language-python"><span style="color: #cdd6f4;">d</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">{</span><span style="color: #a6e3a1;">'one'</span>: 1, <span style="color: #a6e3a1;">'two'</span>: 2, <span style="color: #a6e3a1;">'three'</span>: 3<span style="color: #f38ba8;">}</span>
+<span style="color: #cdd6f4;">d</span><span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">'zero'</span><span style="color: #f38ba8;">]</span> <span style="color: #89dceb;">=</span> 0
+<span style="color: #cdd6f4;">k</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">iter</span><span style="color: #f38ba8;">(</span>d.keys<span style="color: #fab387;">()</span><span style="color: #f38ba8;">)</span>           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Iterator over keys of dictionary
+</span><span style="color: #cdd6f4;">v</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">iter</span><span style="color: #f38ba8;">(</span>d.values<span style="color: #fab387;">()</span><span style="color: #f38ba8;">)</span>         <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Iterator over values of dictionary
+</span><span style="color: #cdd6f4;">i</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">iter</span><span style="color: #f38ba8;">(</span>d.items<span style="color: #fab387;">()</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Iterator over itmes of dictionary: returns tuple (key, value)</span>
 </code></pre>
 
 <p>

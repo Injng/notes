@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,189 +93,189 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9008733">1. Types</a>
+<li><a href="#org814012e">1. Types</a>
 <ul>
-<li><a href="#org5522f37">1.1. Primitive Types</a></li>
-<li><a href="#org413a2a9">1.2. Sequences</a>
+<li><a href="#org20e3ed6">1.1. Primitive Types</a></li>
+<li><a href="#orgdcd2e71">1.2. Sequences</a>
 <ul>
-<li><a href="#org1137403">1.2.1. Slicing</a></li>
-<li><a href="#org00b9ac8">1.2.2. Lists</a></li>
-<li><a href="#org06a3ef4">1.2.3. Ranges</a></li>
-<li><a href="#orgb3f8cef">1.2.4. Strings</a></li>
-<li><a href="#org8b57aa2">1.2.5. Tuples</a></li>
-<li><a href="#orge362250">1.2.6. Aggregation</a></li>
+<li><a href="#orgbd0eaf6">1.2.1. Slicing</a></li>
+<li><a href="#org619a7a8">1.2.2. Lists</a></li>
+<li><a href="#orgd610e76">1.2.3. Ranges</a></li>
+<li><a href="#org243295b">1.2.4. Strings</a></li>
+<li><a href="#org9364f3f">1.2.5. Tuples</a></li>
+<li><a href="#orgd3d41dd">1.2.6. Aggregation</a></li>
 </ul>
 </li>
-<li><a href="#org98f3624">1.3. Dictionaries</a></li>
-<li><a href="#orgc9e793e">1.4. Dictionary Comprehensions</a></li>
+<li><a href="#org3ed7204">1.3. Dictionaries</a></li>
+<li><a href="#org7c604f1">1.4. Dictionary Comprehensions</a></li>
 </ul>
 </li>
-<li><a href="#orgc62ed33">2. Assignment</a></li>
-<li><a href="#orgfc9d9fa">3. Operators</a>
+<li><a href="#orgc2c1472">2. Assignment</a></li>
+<li><a href="#org7d173a3">3. Operators</a>
 <ul>
-<li><a href="#org360c8d6">3.1. Mathematical Operators</a></li>
-<li><a href="#orgc32b7b3">3.2. Comparison Operators</a></li>
-<li><a href="#org60dc230">3.3. Boolean Operators</a></li>
+<li><a href="#org873ec07">3.1. Mathematical Operators</a></li>
+<li><a href="#org7a7e671">3.2. Comparison Operators</a></li>
+<li><a href="#orgdf9bc93">3.3. Boolean Operators</a></li>
 </ul>
 </li>
-<li><a href="#org0337ecc">4. Functions</a>
+<li><a href="#org0cf2161">4. Functions</a>
 <ul>
-<li><a href="#org210bd3b">4.1. Defining Functions</a>
+<li><a href="#orgcbb881f">4.1. Defining Functions</a>
 <ul>
-<li><a href="#orgf03cc72">4.1.1. Nested Definitions</a></li>
-<li><a href="#org2ea5562">4.1.2. Default Values</a></li>
+<li><a href="#orgfff5f96">4.1.1. Nested Definitions</a></li>
+<li><a href="#orgefa2321">4.1.2. Default Values</a></li>
 </ul>
 </li>
-<li><a href="#orga747be1">4.2. Lambda Expressions</a></li>
-<li><a href="#orgabe50ed">4.3. Decorators</a></li>
-<li><a href="#org4dd603a">4.4. Docstrings</a></li>
-<li><a href="#org9f4c449">4.5. Doctests</a></li>
+<li><a href="#orgd70e5c3">4.2. Lambda Expressions</a></li>
+<li><a href="#org0b16b9a">4.3. Decorators</a></li>
+<li><a href="#org11ecfff">4.4. Docstrings</a></li>
+<li><a href="#orgede581d">4.5. Doctests</a></li>
 </ul>
 </li>
-<li><a href="#orga6f4a42">5. Conditional Statements</a></li>
-<li><a href="#org52f374c">6. Iteration</a>
+<li><a href="#org6fb9399">5. Conditional Statements</a></li>
+<li><a href="#org0cc8a1c">6. Iteration</a>
 <ul>
-<li><a href="#orgc13dd44">6.1. Iterators</a>
+<li><a href="#org5daeea8">6.1. Iterators</a>
 <ul>
-<li><a href="#orge9d9d54">6.1.1. Built-In Functions</a></li>
-<li><a href="#org86ebd74">6.1.2. Generators</a></li>
+<li><a href="#orgfe189ad">6.1.1. Built-In Functions</a></li>
+<li><a href="#org29987d7">6.1.2. Generators</a></li>
 </ul>
 </li>
-<li><a href="#org2434e46">6.2. <code>while</code></a></li>
-<li><a href="#org35606fe">6.3. <code>for</code></a></li>
+<li><a href="#orgdb7160c">6.2. <code>while</code></a></li>
+<li><a href="#org02126b7">6.3. <code>for</code></a></li>
 </ul>
 </li>
-<li><a href="#org5413031">7. Assert</a></li>
-<li><a href="#orgd58e092">8. Type Hints</a></li>
-<li><a href="#org3f072e3">9. Classes</a></li>
-<li><a href="#orgc4278a9">10. String Interpolation</a></li>
+<li><a href="#org83ca5ad">7. Assert</a></li>
+<li><a href="#org4f51fd2">8. Type Hints</a></li>
+<li><a href="#org418475c">9. Classes</a></li>
+<li><a href="#orgc91a79a">10. String Interpolation</a></li>
 </ul>
 </div>
 </div>
 <p>
 This is a list of various important and miscellaneous Python features that is helpful throughout the course.
 </p>
-<div id="outline-container-org9008733" class="outline-2">
-<h2 id="org9008733"><span class="section-number-2">1.</span> Types</h2>
+<div id="outline-container-org814012e" class="outline-2">
+<h2 id="org814012e"><span class="section-number-2">1.</span> Types</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org5522f37" class="outline-3">
-<h3 id="org5522f37"><span class="section-number-3">1.1.</span> Primitive Types</h3>
+<div id="outline-container-org20e3ed6" class="outline-3">
+<h3 id="org20e3ed6"><span class="section-number-3">1.1.</span> Primitive Types</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The <b>primitive</b> types are the most basic types in Python and are <i>immutable</i>, which means their value cannot be changed without creating a new instance of that object.
 </p>
 
-<pre><code class="language-python">x = 67          # integer
-y = 3.14        # float
-quit = False    # boolean
-name = "John"   # string
+<pre><code class="language-python"><span style="color: #cdd6f4;">x</span> <span style="color: #89dceb;">=</span> 67          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">integer
+</span><span style="color: #cdd6f4;">y</span> <span style="color: #89dceb;">=</span> 3.14        <span style="color: #6c7086;"># </span><span style="color: #6c7086;">float
+</span><span style="color: #cdd6f4;">quit</span> <span style="color: #89dceb;">=</span> <span style="color: #cba6f7;">False</span>    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">boolean
+</span><span style="color: #cdd6f4;">name</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">"John"</span>   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">string</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org413a2a9" class="outline-3">
-<h3 id="org413a2a9"><span class="section-number-3">1.2.</span> <a href="sequences.html">Sequences</a></h3>
+<div id="outline-container-orgdcd2e71" class="outline-3">
+<h3 id="orgdcd2e71"><span class="section-number-3">1.2.</span> <a href="sequences.html">Sequences</a></h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org1137403" class="outline-4">
-<h4 id="org1137403"><span class="section-number-4">1.2.1.</span> <a href="sequences.html#org533876d">Slicing</a></h4>
+<div id="outline-container-orgbd0eaf6" class="outline-4">
+<h4 id="orgbd0eaf6"><span class="section-number-4">1.2.1.</span> <a href="sequences.html#orgc5a3d96">Slicing</a></h4>
 <div class="outline-text-4" id="text-1-2-1">
-<pre><code class="language-python">digits = [1, 2, 3, 4, 5]
-subdigits = digits[1:3]          # [2, 3]
-from_start = digits[:3]          # [1, 2, 3]
-to_end = digits[3:]              # [4, 5]
+<pre><code class="language-python"><span style="color: #cdd6f4;">digits</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>1, 2, 3, 4, 5<span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">subdigits</span> <span style="color: #89dceb;">=</span> digits<span style="color: #f38ba8;">[</span>1:3<span style="color: #f38ba8;">]</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">[2, 3]
+</span><span style="color: #cdd6f4;">from_start</span> <span style="color: #89dceb;">=</span> digits<span style="color: #f38ba8;">[</span>:3<span style="color: #f38ba8;">]</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">[1, 2, 3]
+</span><span style="color: #cdd6f4;">to_end</span> <span style="color: #89dceb;">=</span> digits<span style="color: #f38ba8;">[</span>3:<span style="color: #f38ba8;">]</span>              <span style="color: #6c7086;"># </span><span style="color: #6c7086;">[4, 5]</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org00b9ac8" class="outline-4">
-<h4 id="org00b9ac8"><span class="section-number-4">1.2.2.</span> <a href="sequences.html#org0b1993e">Lists</a></h4>
+<div id="outline-container-org619a7a8" class="outline-4">
+<h4 id="org619a7a8"><span class="section-number-4">1.2.2.</span> <a href="sequences.html#org43b402c">Lists</a></h4>
 <div class="outline-text-4" id="text-1-2-2">
-<pre><code class="language-python">odds = [41, 43, 47, 49]
-a = odds[0]                      # 41
-length = len(odds)               # 4
-b = sum([1, 2, 3])               # 6
-c = sum([[1], [2, 3], [4]], [])  # [1, 2, 3, 4]
+<pre><code class="language-python"><span style="color: #cdd6f4;">odds</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>41, 43, 47, 49<span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">a</span> <span style="color: #89dceb;">=</span> odds<span style="color: #f38ba8;">[</span>0<span style="color: #f38ba8;">]</span>                      <span style="color: #6c7086;"># </span><span style="color: #6c7086;">41
+</span><span style="color: #cdd6f4;">length</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">len</span><span style="color: #f38ba8;">(</span>odds<span style="color: #f38ba8;">)</span>               <span style="color: #6c7086;"># </span><span style="color: #6c7086;">4
+</span><span style="color: #cdd6f4;">b</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span>1, 2, 3<span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>               <span style="color: #6c7086;"># </span><span style="color: #6c7086;">6
+</span><span style="color: #cdd6f4;">c</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span><span style="color: #f9e2af;">[</span>1<span style="color: #f9e2af;">]</span>, <span style="color: #f9e2af;">[</span>2, 3<span style="color: #f9e2af;">]</span>, <span style="color: #f9e2af;">[</span>4<span style="color: #f9e2af;">]</span><span style="color: #fab387;">]</span>, <span style="color: #fab387;">[]</span><span style="color: #f38ba8;">)</span>  <span style="color: #6c7086;"># </span><span style="color: #6c7086;">[1, 2, 3, 4]</span>
 </code></pre>
 </div>
 <ol class="org-ol">
-<li><a id="org537de39"></a><a href="sequences.html#orgff25261">List Comprehension</a><br />
+<li><a id="org7c84149"></a><a href="sequences.html#org5eb0139">List Comprehension</a><br />
 <div class="outline-text-5" id="text-1-2-2-1">
-<pre><code class="language-python">newlist = [&lt;expression&gt; for &lt;item&gt; in &lt;iterable&gt; if &lt;condition&gt;]
+<pre><code class="language-python"><span style="color: #cdd6f4;">newlist</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>&lt;expression&gt; <span style="color: #cba6f7;">for</span> &lt;item&gt; <span style="color: #cba6f7;">in</span> &lt;iterable&gt; <span style="color: #cba6f7;">if</span> &lt;condition&gt;<span style="color: #f38ba8;">]</span>
 </code></pre>
 </div>
 </li>
-<li><a id="org73e3b63"></a>List Mutation<br />
+<li><a id="orge1530ff"></a>List Mutation<br />
 <div class="outline-text-5" id="text-1-2-2-2">
-<pre><code class="language-python">suits = ['coin', 'string', 'myriad']
-original_suits = suits
-s = suits.pop()                           # 'myriad', suits is now ['coin', 'string']
-suits.remove('string')                    # suits is now ['coin']
-suits.append('cup')                       # suits is now ['coin', 'cup']
-suits.extend(['sword', 'club'])           # suits is now ['coin', 'cup', 'sword', 'club']
-suits[2] = 'spade'                        # suits is now ['coin', 'cup', 'spade', 'club']
-suits[0:2] = ['heart', 'diamond']         # suits is now ['heart', 'diamond', 'spade', 'club']
-# original_suits is also ['heart', 'diamond', 'spade', 'club']
+<pre><code class="language-python"><span style="color: #cdd6f4;">suits</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">'coin'</span>, <span style="color: #a6e3a1;">'string'</span>, <span style="color: #a6e3a1;">'myriad'</span><span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">original_suits</span> <span style="color: #89dceb;">=</span> suits
+<span style="color: #cdd6f4;">s</span> <span style="color: #89dceb;">=</span> suits.pop<span style="color: #f38ba8;">()</span>                           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">'myriad', suits is now ['coin', 'string']
+</span>suits.remove<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'string'</span><span style="color: #f38ba8;">)</span>                    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['coin']
+</span>suits.append<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'cup'</span><span style="color: #f38ba8;">)</span>                       <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['coin', 'cup']
+</span>suits.extend<span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span><span style="color: #a6e3a1;">'sword'</span>, <span style="color: #a6e3a1;">'club'</span><span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['coin', 'cup', 'sword', 'club']
+</span><span style="color: #cdd6f4;">suits</span><span style="color: #f38ba8;">[</span>2<span style="color: #f38ba8;">]</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">'spade'</span>                        <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['coin', 'cup', 'spade', 'club']
+</span><span style="color: #cdd6f4;">suits</span><span style="color: #f38ba8;">[</span>0:2<span style="color: #f38ba8;">]</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">'heart'</span>, <span style="color: #a6e3a1;">'diamond'</span><span style="color: #f38ba8;">]</span>         <span style="color: #6c7086;"># </span><span style="color: #6c7086;">suits is now ['heart', 'diamond', 'spade', 'club']
+</span><span style="color: #6c7086;"># </span><span style="color: #6c7086;">original_suits is also ['heart', 'diamond', 'spade', 'club']</span>
 </code></pre>
 </div>
 </li>
 </ol>
 </div>
-<div id="outline-container-org06a3ef4" class="outline-4">
-<h4 id="org06a3ef4"><span class="section-number-4">1.2.3.</span> <a href="sequences.html#org3478d82">Ranges</a></h4>
+<div id="outline-container-orgd610e76" class="outline-4">
+<h4 id="orgd610e76"><span class="section-number-4">1.2.3.</span> <a href="sequences.html#org92e3ede">Ranges</a></h4>
 <div class="outline-text-4" id="text-1-2-3">
-<pre><code class="language-python">nums = [i for i in range(4)]
+<pre><code class="language-python"><span style="color: #cdd6f4;">nums</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>i <span style="color: #cba6f7;">for</span> i <span style="color: #cba6f7;">in</span> <span style="color: #f38ba8;">range</span><span style="color: #fab387;">(</span>4<span style="color: #fab387;">)</span><span style="color: #f38ba8;">]</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgb3f8cef" class="outline-4">
-<h4 id="orgb3f8cef"><span class="section-number-4">1.2.4.</span> <a href="sequences.html#org1815a22">Strings</a></h4>
+<div id="outline-container-org243295b" class="outline-4">
+<h4 id="org243295b"><span class="section-number-4">1.2.4.</span> <a href="sequences.html#org8a0c261">Strings</a></h4>
 <div class="outline-text-4" id="text-1-2-4">
-<pre><code class="language-python">single = 'I am a string!'
-double = "I've got an apostrophe"
-hi = '您好'
+<pre><code class="language-python"><span style="color: #cdd6f4;">single</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">'I am a string!'</span>
+<span style="color: #cdd6f4;">double</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">"I've got an apostrophe"</span>
+<span style="color: #cdd6f4;">hi</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">'&#24744;&#22909;'</span>
 
-# 'The Zen of Python\nclaims, Readability counts.\nRead more: import this.'
-multi = """The Zen of Python
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">'The Zen of Python\nclaims, Readability counts.\nRead more: import this.'
+</span><span style="color: #cdd6f4;">multi</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">"""The Zen of Python
            claims, Readability counts.
-           Read more: import this."""
+           Read more: import this."""</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org8b57aa2" class="outline-4">
-<h4 id="org8b57aa2"><span class="section-number-4">1.2.5.</span> <a href="sequences.html#orgc1587ea">Tuples</a></h4>
+<div id="outline-container-org9364f3f" class="outline-4">
+<h4 id="org9364f3f"><span class="section-number-4">1.2.5.</span> <a href="sequences.html#org6fa00d7">Tuples</a></h4>
 <div class="outline-text-4" id="text-1-2-5">
-<pre><code class="language-python">t = (3, 4, 5, 6)
-l = tuple([3, 4, 5])          # (3, 4, 5)
-single = (2,)
+<pre><code class="language-python"><span style="color: #cdd6f4;">t</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">(</span>3, 4, 5, 6<span style="color: #f38ba8;">)</span>
+<span style="color: #cdd6f4;">l</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">tuple</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span>3, 4, 5<span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">(3, 4, 5)
+</span><span style="color: #cdd6f4;">single</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">(</span>2,<span style="color: #f38ba8;">)</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orge362250" class="outline-4">
-<h4 id="orge362250"><span class="section-number-4">1.2.6.</span> <a href="sequences.html#org8c7a872">Aggregation</a></h4>
+<div id="outline-container-orgd3d41dd" class="outline-4">
+<h4 id="orgd3d41dd"><span class="section-number-4">1.2.6.</span> <a href="sequences.html#orgf6e8daf">Aggregation</a></h4>
 <div class="outline-text-4" id="text-1-2-6">
-<pre><code class="language-python"># sum(iterable[, start] -&gt; value
-a = sum([2, 3, 4])          # 9
-b = sum([2, 3, 4], 5)       # 14
-c = sum([[2, 3], [4]], [])  # [2, 3, 4]
-
-# max(iterable[, key=func]) -&gt; value
-d = max(range(5))           # 4
-s = ['a', 'aaa', 'aa']
-longest = max(s, key=len)   # 'aaa'
-
-# all(iterable) -&gt; bool
-trues = [True, True, True]
-istrue = all(trues)         # True
-
-# any(iterable) -&gt; bool
-some = [True, False, False]
-istrue = any(some)          # True
+<pre><code class="language-python"><span style="color: #6c7086;"># </span><span style="color: #6c7086;">sum(iterable[, start] -&gt; value
+</span><span style="color: #cdd6f4;">a</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span>2, 3, 4<span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">9
+</span><span style="color: #cdd6f4;">b</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span>2, 3, 4<span style="color: #fab387;">]</span>, 5<span style="color: #f38ba8;">)</span>       <span style="color: #6c7086;"># </span><span style="color: #6c7086;">14
+</span><span style="color: #cdd6f4;">c</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span><span style="color: #f9e2af;">[</span>2, 3<span style="color: #f9e2af;">]</span>, <span style="color: #f9e2af;">[</span>4<span style="color: #f9e2af;">]</span><span style="color: #fab387;">]</span>, <span style="color: #fab387;">[]</span><span style="color: #f38ba8;">)</span>  <span style="color: #6c7086;"># </span><span style="color: #6c7086;">[2, 3, 4]
+</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">max(iterable[, key=func]) -&gt; value
+</span><span style="color: #cdd6f4;">d</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">max</span><span style="color: #f38ba8;">(</span><span style="color: #f38ba8;">range</span><span style="color: #fab387;">(</span>5<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">4
+</span><span style="color: #cdd6f4;">s</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">'a'</span>, <span style="color: #a6e3a1;">'aaa'</span>, <span style="color: #a6e3a1;">'aa'</span><span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">longest</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">max</span><span style="color: #f38ba8;">(</span>s, key=<span style="color: #f38ba8;">len</span><span style="color: #f38ba8;">)</span>   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">'aaa'
+</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">all(iterable) -&gt; bool
+</span><span style="color: #cdd6f4;">trues</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">True</span>, <span style="color: #cba6f7;">True</span>, <span style="color: #cba6f7;">True</span><span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">istrue</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">all</span><span style="color: #f38ba8;">(</span>trues<span style="color: #f38ba8;">)</span>         <span style="color: #6c7086;"># </span><span style="color: #6c7086;">True
+</span>
+<span style="color: #6c7086;"># </span><span style="color: #6c7086;">any(iterable) -&gt; bool
+</span><span style="color: #cdd6f4;">some</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">True</span>, <span style="color: #cba6f7;">False</span>, <span style="color: #cba6f7;">False</span><span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">istrue</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">any</span><span style="color: #f38ba8;">(</span>some<span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">True</span>
 </code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org98f3624" class="outline-3">
-<h3 id="org98f3624"><span class="section-number-3">1.3.</span> <a href="dictionaries.html#org62729c9">Dictionaries</a></h3>
+<div id="outline-container-org3ed7204" class="outline-3">
+<h3 id="org3ed7204"><span class="section-number-3">1.3.</span> <a href="dictionaries.html#org80c2fb8">Dictionaries</a></h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 <b>Dictionaries</b> are collections of key-value pairs: they <i>map keys to values</i>. There are two restrictions on dictionary keys:
@@ -285,107 +286,107 @@ istrue = any(some)          # True
 <li>Two keys cannot be equal: there is only one value for one key</li>
 </ol>
 
-<pre><code class="language-python">numerals = {'I': 1, 'V': 5, 'X': 10}
-val = numerals['X']          # 10
-keys = list(numerals)        # ['I', 'V', 'X']
-vals = numerals.values()     # dict_values([1, 5, 10])
-length = len(numerals)       # 3
+<pre><code class="language-python"><span style="color: #cdd6f4;">numerals</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">{</span><span style="color: #a6e3a1;">'I'</span>: 1, <span style="color: #a6e3a1;">'V'</span>: 5, <span style="color: #a6e3a1;">'X'</span>: 10<span style="color: #f38ba8;">}</span>
+<span style="color: #cdd6f4;">val</span> <span style="color: #89dceb;">=</span> numerals<span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">'X'</span><span style="color: #f38ba8;">]</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">10
+</span><span style="color: #cdd6f4;">keys</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">list</span><span style="color: #f38ba8;">(</span>numerals<span style="color: #f38ba8;">)</span>        <span style="color: #6c7086;"># </span><span style="color: #6c7086;">['I', 'V', 'X']
+</span><span style="color: #cdd6f4;">vals</span> <span style="color: #89dceb;">=</span> numerals.values<span style="color: #f38ba8;">()</span>     <span style="color: #6c7086;"># </span><span style="color: #6c7086;">dict_values([1, 5, 10])
+</span><span style="color: #cdd6f4;">length</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">len</span><span style="color: #f38ba8;">(</span>numerals<span style="color: #f38ba8;">)</span>       <span style="color: #6c7086;"># </span><span style="color: #6c7086;">3</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgc9e793e" class="outline-3">
-<h3 id="orgc9e793e"><span class="section-number-3">1.4.</span> <a href="dictionaries.html#org345a080">Dictionary Comprehensions</a></h3>
+<div id="outline-container-org7c604f1" class="outline-3">
+<h3 id="org7c604f1"><span class="section-number-3">1.4.</span> <a href="dictionaries.html#org41b9536">Dictionary Comprehensions</a></h3>
 <div class="outline-text-3" id="text-1-4">
-<pre><code class="language-python">{&lt;key&gt;: &lt;value&gt; for &lt;name&gt; in &lt;iterable&gt; if &lt;condition&gt;}
+<pre><code class="language-python"><span style="color: #f38ba8;">{</span>&lt;key&gt;: &lt;value&gt; <span style="color: #cba6f7;">for</span> &lt;name&gt; <span style="color: #cba6f7;">in</span> &lt;iterable&gt; <span style="color: #cba6f7;">if</span> &lt;condition&gt;<span style="color: #f38ba8;">}</span>
 </code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc62ed33" class="outline-2">
-<h2 id="orgc62ed33"><span class="section-number-2">2.</span> <a href="assignment.html#org1761a6c">Assignment</a></h2>
+<div id="outline-container-orgc2c1472" class="outline-2">
+<h2 id="orgc2c1472"><span class="section-number-2">2.</span> <a href="assignment.html#orgd41601f">Assignment</a></h2>
 <div class="outline-text-2" id="text-2">
-<pre><code class="language-python">x = 4 / 3                   # assignment
-q, r = 4 // 3, 4 % 3        # multiple assignment
+<pre><code class="language-python"><span style="color: #cdd6f4;">x</span> <span style="color: #89dceb;">=</span> 4 / 3                   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">assignment
+</span><span style="color: #cdd6f4;">q</span>, <span style="color: #cdd6f4;">r</span> <span style="color: #89dceb;">=</span> 4 // 3, 4 % 3        <span style="color: #6c7086;"># </span><span style="color: #6c7086;">multiple assignment</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgfc9d9fa" class="outline-2">
-<h2 id="orgfc9d9fa"><span class="section-number-2">3.</span> Operators</h2>
+<div id="outline-container-org7d173a3" class="outline-2">
+<h2 id="org7d173a3"><span class="section-number-2">3.</span> Operators</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org360c8d6" class="outline-3">
-<h3 id="org360c8d6"><span class="section-number-3">3.1.</span> Mathematical Operators</h3>
+<div id="outline-container-org873ec07" class="outline-3">
+<h3 id="org873ec07"><span class="section-number-3">3.1.</span> Mathematical Operators</h3>
 <div class="outline-text-3" id="text-3-1">
-<pre><code class="language-python">a = 1 + 2                   # addition
-b = 2 - 1                   # subtraction
-c = 3 * 4                   # multiplication
-d = 4 / 3                   # division (1.3333333 ...)
-e = 4 // 3                  # floor division (1)
-f = 4 % 3                   # modulus (1)
-g = (1 + 2) * (3 + 4)       # association
+<pre><code class="language-python"><span style="color: #cdd6f4;">a</span> <span style="color: #89dceb;">=</span> 1 + 2                   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">addition
+</span><span style="color: #cdd6f4;">b</span> <span style="color: #89dceb;">=</span> 2 - 1                   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">subtraction
+</span><span style="color: #cdd6f4;">c</span> <span style="color: #89dceb;">=</span> 3 * 4                   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">multiplication
+</span><span style="color: #cdd6f4;">d</span> <span style="color: #89dceb;">=</span> 4 / 3                   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">division (1.3333333 ...)
+</span><span style="color: #cdd6f4;">e</span> <span style="color: #89dceb;">=</span> 4 // 3                  <span style="color: #6c7086;"># </span><span style="color: #6c7086;">floor division (1)
+</span><span style="color: #cdd6f4;">f</span> <span style="color: #89dceb;">=</span> 4 % 3                   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">modulus (1)
+</span><span style="color: #cdd6f4;">g</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">(</span>1 + 2<span style="color: #f38ba8;">)</span> * <span style="color: #f38ba8;">(</span>3 + 4<span style="color: #f38ba8;">)</span>       <span style="color: #6c7086;"># </span><span style="color: #6c7086;">association</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgc32b7b3" class="outline-3">
-<h3 id="orgc32b7b3"><span class="section-number-3">3.2.</span> Comparison Operators</h3>
+<div id="outline-container-org7a7e671" class="outline-3">
+<h3 id="org7a7e671"><span class="section-number-3">3.2.</span> Comparison Operators</h3>
 <div class="outline-text-3" id="text-3-2">
-<pre><code class="language-python">1 &lt; 2                       # less than
-1 &lt;= 2                      # less than or equal to
-2 &gt; 1                       # greater than
-2 &gt;= 1                      # greater than or equal to
-1 == 1                      # equals to
-2 != 1                      # not equal to
+<pre><code class="language-python">1 &lt; 2                       <span style="color: #6c7086;"># </span><span style="color: #6c7086;">less than
+</span>1 &lt;= 2                      <span style="color: #6c7086;"># </span><span style="color: #6c7086;">less than or equal to
+</span>2 &gt; 1                       <span style="color: #6c7086;"># </span><span style="color: #6c7086;">greater than
+</span>2 &gt;= 1                      <span style="color: #6c7086;"># </span><span style="color: #6c7086;">greater than or equal to
+</span>1 == 1                      <span style="color: #6c7086;"># </span><span style="color: #6c7086;">equals to
+</span>2 != 1                      <span style="color: #6c7086;"># </span><span style="color: #6c7086;">not equal to</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org60dc230" class="outline-3">
-<h3 id="org60dc230"><span class="section-number-3">3.3.</span> Boolean Operators</h3>
+<div id="outline-container-orgdf9bc93" class="outline-3">
+<h3 id="orgdf9bc93"><span class="section-number-3">3.3.</span> Boolean Operators</h3>
 <div class="outline-text-3" id="text-3-3">
-<pre><code class="language-python">True and True               # and (True)
-False or True               # or (True)
-not True                    # not (False)
+<pre><code class="language-python"><span style="color: #cba6f7;">True</span> <span style="color: #cba6f7;">and</span> <span style="color: #cba6f7;">True</span>               <span style="color: #6c7086;"># </span><span style="color: #6c7086;">and (True)
+</span><span style="color: #cba6f7;">False</span> <span style="color: #cba6f7;">or</span> <span style="color: #cba6f7;">True</span>               <span style="color: #6c7086;"># </span><span style="color: #6c7086;">or (True)
+</span><span style="color: #cba6f7;">not</span> <span style="color: #cba6f7;">True</span>                    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">not (False)</span>
 </code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org0337ecc" class="outline-2">
-<h2 id="org0337ecc"><span class="section-number-2">4.</span> Functions</h2>
+<div id="outline-container-org0cf2161" class="outline-2">
+<h2 id="org0cf2161"><span class="section-number-2">4.</span> Functions</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org210bd3b" class="outline-3">
-<h3 id="org210bd3b"><span class="section-number-3">4.1.</span> <a href="functions.html#org7aa6758">Defining Functions</a></h3>
+<div id="outline-container-orgcbb881f" class="outline-3">
+<h3 id="orgcbb881f"><span class="section-number-3">4.1.</span> <a href="functions.html#orgc7d7ac3">Defining Functions</a></h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Functions consist of a <b>function signature</b>, which defines the <b>name</b> and a number of <b>formal parameters</b>. The <b>function body</b> is the part indented after the function signature:
 </p>
 
-<pre><code class="language-python">def square(x):
-    return x ** 2
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">square</span><span style="color: #f38ba8;">(</span>x<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">return</span> x ** 2
 </code></pre>
 </div>
-<div id="outline-container-orgf03cc72" class="outline-4">
-<h4 id="orgf03cc72"><span class="section-number-4">4.1.1.</span> Nested Definitions</h4>
+<div id="outline-container-orgfff5f96" class="outline-4">
+<h4 id="orgfff5f96"><span class="section-number-4">4.1.1.</span> Nested Definitions</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
-In <a href="functions.html#org8c246b8">higher-order functions</a>, we can define new functions inside of a function. These are called <b>nested definitions</b>:
+In <a href="functions.html#org32f03bb">higher-order functions</a>, we can define new functions inside of a function. These are called <b>nested definitions</b>:
 </p>
 
-<pre><code class="language-python">def make_adder(n):
-    def adder(k):
-        return k + n
-    return adder
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">make_adder</span><span style="color: #f38ba8;">(</span>n<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">adder</span><span style="color: #f38ba8;">(</span>k<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">return</span> k + n
+    <span style="color: #cba6f7;">return</span> adder
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org2ea5562" class="outline-4">
-<h4 id="org2ea5562"><span class="section-number-4">4.1.2.</span> Default Values</h4>
+<div id="outline-container-orgefa2321" class="outline-4">
+<h4 id="orgefa2321"><span class="section-number-4">4.1.2.</span> Default Values</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <p>
 We can specify default values for some of the formal parameters to make them <i>optional</i>: if they are not specified, they will take on the default value:
 </p>
 
-<pre><code class="language-python">def hello(name="World"):
-    print("Hello, " + name)
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">hello</span><span style="color: #f38ba8;">(</span>name=<span style="color: #a6e3a1;">"World"</span><span style="color: #f38ba8;">)</span>:
+    print<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"Hello, "</span> + name<span style="color: #f38ba8;">)</span>
 </code></pre>
 
 <p>
@@ -394,33 +395,33 @@ Evaluating just <code>hello()</code> would print <code>Hello, World</code>, but 
 </div>
 </div>
 </div>
-<div id="outline-container-orga747be1" class="outline-3">
-<h3 id="orga747be1"><span class="section-number-3">4.2.</span> <a href="expressions.html#org253460a">Lambda Expressions</a></h3>
+<div id="outline-container-orgd70e5c3" class="outline-3">
+<h3 id="orgd70e5c3"><span class="section-number-3">4.2.</span> <a href="expressions.html#org2482cb7">Lambda Expressions</a></h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 We can use <b>lambda expressions</b> to return anonymous functions:
 </p>
 
-<pre><code class="language-python">square = lambda x: x * x
+<pre><code class="language-python"><span style="color: #cdd6f4;">square</span> <span style="color: #89dceb;">=</span> <span style="color: #cba6f7;">lambda</span> x: x * x
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgabe50ed" class="outline-3">
-<h3 id="orgabe50ed"><span class="section-number-3">4.3.</span> Decorators</h3>
+<div id="outline-container-org0b16b9a" class="outline-3">
+<h3 id="org0b16b9a"><span class="section-number-3">4.3.</span> Decorators</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
-We can use <a href="functions.html#org8c246b8">higher-order functions</a> to create <b>decorators</b>, which modify the behavior of a function with another function:
+We can use <a href="functions.html#org32f03bb">higher-order functions</a> to create <b>decorators</b>, which modify the behavior of a function with another function:
 </p>
 
-<pre><code class="language-python">def trace(fn):
-    def traced(x):
-        print("Calling", fn, "on argument", x)
-        return fn(x)
-    return traced
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">trace</span><span style="color: #f38ba8;">(</span>fn<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">traced</span><span style="color: #f38ba8;">(</span>x<span style="color: #f38ba8;">)</span>:
+        print<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"Calling"</span>, fn, <span style="color: #a6e3a1;">"on argument"</span>, x<span style="color: #f38ba8;">)</span>
+        <span style="color: #cba6f7;">return</span> fn<span style="color: #f38ba8;">(</span>x<span style="color: #f38ba8;">)</span>
+    <span style="color: #cba6f7;">return</span> traced
 
-@trace
-def square(x):
-    return x * x
+<span style="color: #cba6f7;">@trace</span>
+<span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">square</span><span style="color: #f38ba8;">(</span>x<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">return</span> x * x
 </code></pre>
 
 <p>
@@ -428,33 +429,33 @@ The <code>@trace</code> is a decorator. Essentially what it does is when you cal
 </p>
 </div>
 </div>
-<div id="outline-container-org4dd603a" class="outline-3">
-<h3 id="org4dd603a"><span class="section-number-3">4.4.</span> Docstrings</h3>
+<div id="outline-container-org11ecfff" class="outline-3">
+<h3 id="org11ecfff"><span class="section-number-3">4.4.</span> Docstrings</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 You can also add documentation to your functions by using docstrings. For example:
 </p>
 
-<pre><code class="language-python">def square(x):
-    """Returns the square of X."""
-    return x ** 2
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">square</span><span style="color: #f38ba8;">(</span>x<span style="color: #f38ba8;">)</span>:
+    <span style="color: #6c7086;">"""Returns the square of X."""</span>
+    <span style="color: #cba6f7;">return</span> x ** 2
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org9f4c449" class="outline-3">
-<h3 id="org9f4c449"><span class="section-number-3">4.5.</span> Doctests</h3>
+<div id="outline-container-orgede581d" class="outline-3">
+<h3 id="orgede581d"><span class="section-number-3">4.5.</span> Doctests</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 You can also add tests to your docstrings. For example:
 </p>
 
-<pre><code class="language-python">def square(x):
-    """Returns the square of X.
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">square</span><span style="color: #f38ba8;">(</span>x<span style="color: #f38ba8;">)</span>:
+    <span style="color: #6c7086;">"""Returns the square of X.
 
     &gt;&gt;&gt; square(2)
     4
-    """
-    return x ** 2
+    """</span>
+    <span style="color: #cba6f7;">return</span> x ** 2
 </code></pre>
 
 <p>
@@ -463,95 +464,95 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
 </div>
 </div>
 </div>
-<div id="outline-container-orga6f4a42" class="outline-2">
-<h2 id="orga6f4a42"><span class="section-number-2">5.</span> <a href="control.html#org1695239">Conditional Statements</a></h2>
+<div id="outline-container-org6fb9399" class="outline-2">
+<h2 id="org6fb9399"><span class="section-number-2">5.</span> <a href="control.html#orgea79e1e">Conditional Statements</a></h2>
 <div class="outline-text-2" id="text-5">
-<pre><code class="language-python">def absolute_value(x):
-    """Return the absolute value of x."""
-    if x &lt; 0:
-        return -x
-    elif x == 0:
-        return 0
-    else:
-        return x
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">absolute_value</span><span style="color: #f38ba8;">(</span>x<span style="color: #f38ba8;">)</span>:
+    <span style="color: #6c7086;">"""Return the absolute value of x."""</span>
+    <span style="color: #cba6f7;">if</span> x &lt; 0:
+        <span style="color: #cba6f7;">return</span> -x
+    <span style="color: #cba6f7;">elif</span> x == 0:
+        <span style="color: #cba6f7;">return</span> 0
+    <span style="color: #cba6f7;">else</span>:
+        <span style="color: #cba6f7;">return</span> x
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org52f374c" class="outline-2">
-<h2 id="org52f374c"><span class="section-number-2">6.</span> <a href="iteration.html">Iteration</a></h2>
+<div id="outline-container-org0cc8a1c" class="outline-2">
+<h2 id="org0cc8a1c"><span class="section-number-2">6.</span> <a href="iteration.html">Iteration</a></h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgc13dd44" class="outline-3">
-<h3 id="orgc13dd44"><span class="section-number-3">6.1.</span> <a href="iteration.html#orgc5cb7dc">Iterators</a></h3>
+<div id="outline-container-org5daeea8" class="outline-3">
+<h3 id="org5daeea8"><span class="section-number-3">6.1.</span> <a href="iteration.html#orgfc7e819">Iterators</a></h3>
 <div class="outline-text-3" id="text-6-1">
-<pre><code class="language-python">s = [3, 4, 5]
-t = iter(s)
-first = next(t)          # 3
-second = next(t)         # 4
+<pre><code class="language-python"><span style="color: #cdd6f4;">s</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>3, 4, 5<span style="color: #f38ba8;">]</span>
+<span style="color: #cdd6f4;">t</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">iter</span><span style="color: #f38ba8;">(</span>s<span style="color: #f38ba8;">)</span>
+<span style="color: #cdd6f4;">first</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">next</span><span style="color: #f38ba8;">(</span>t<span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">3
+</span><span style="color: #cdd6f4;">second</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">next</span><span style="color: #f38ba8;">(</span>t<span style="color: #f38ba8;">)</span>         <span style="color: #6c7086;"># </span><span style="color: #6c7086;">4</span>
 </code></pre>
 </div>
-<div id="outline-container-orge9d9d54" class="outline-4">
-<h4 id="orge9d9d54"><span class="section-number-4">6.1.1.</span> <a href="iteration.html#org05efdad">Built-In Functions</a></h4>
+<div id="outline-container-orgfe189ad" class="outline-4">
+<h4 id="orgfe189ad"><span class="section-number-4">6.1.1.</span> <a href="iteration.html#orgc739204">Built-In Functions</a></h4>
 <div class="outline-text-4" id="text-6-1-1">
-<pre><code class="language-python">map(&lt;func&gt;, &lt;iterable&gt;)             # Iterate over func(x) for x in iterable
-filter(&lt;func&gt;, &lt;iterable&gt;)          # Iterate over x in iterable if func(x)
-zip(&lt;first_iter&gt;, &lt;second_iter&gt;)    # Iterate over co-indexed (x, y) pairs
-reversed(&lt;sequence&gt;)                # Iterate over x in a sequence in reverse order
+<pre><code class="language-python"><span style="color: #f38ba8;">map</span><span style="color: #f38ba8;">(</span>&lt;func&gt;, &lt;iterable&gt;<span style="color: #f38ba8;">)</span>             <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Iterate over func(x) for x in iterable
+</span><span style="color: #f38ba8;">filter</span><span style="color: #f38ba8;">(</span>&lt;func&gt;, &lt;iterable&gt;<span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Iterate over x in iterable if func(x)
+</span><span style="color: #f38ba8;">zip</span><span style="color: #f38ba8;">(</span>&lt;first_iter&gt;, &lt;second_iter&gt;<span style="color: #f38ba8;">)</span>    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Iterate over co-indexed (x, y) pairs
+</span><span style="color: #f38ba8;">reversed</span><span style="color: #f38ba8;">(</span>&lt;sequence&gt;<span style="color: #f38ba8;">)</span>                <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Iterate over x in a sequence in reverse order</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org86ebd74" class="outline-4">
-<h4 id="org86ebd74"><span class="section-number-4">6.1.2.</span> <a href="iteration.html#org5d042bf">Generators</a></h4>
+<div id="outline-container-org29987d7" class="outline-4">
+<h4 id="org29987d7"><span class="section-number-4">6.1.2.</span> <a href="iteration.html#org3853a17">Generators</a></h4>
 <div class="outline-text-4" id="text-6-1-2">
-<pre><code class="language-python">def plus_minus(x):
-    yield x
-    yield -x
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">plus_minus</span><span style="color: #f38ba8;">(</span>x<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">yield</span> x
+    <span style="color: #cba6f7;">yield</span> -x
 
-t = plus_minus(3)     # generator
-a = next(t)           # 3
-b = next(t)           # -3
+<span style="color: #cdd6f4;">t</span> <span style="color: #89dceb;">=</span> plus_minus<span style="color: #f38ba8;">(</span>3<span style="color: #f38ba8;">)</span>     <span style="color: #6c7086;"># </span><span style="color: #6c7086;">generator
+</span><span style="color: #cdd6f4;">a</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">next</span><span style="color: #f38ba8;">(</span>t<span style="color: #f38ba8;">)</span>           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">3
+</span><span style="color: #cdd6f4;">b</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">next</span><span style="color: #f38ba8;">(</span>t<span style="color: #f38ba8;">)</span>           <span style="color: #6c7086;"># </span><span style="color: #6c7086;">-3
+</span>
+<span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">a_then_b</span><span style="color: #f38ba8;">(</span>a, b<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">yield</span> <span style="color: #cba6f7;">from</span> a
+    <span style="color: #cba6f7;">yield</span> <span style="color: #cba6f7;">from</span> b
 
-def a_then_b(a, b):
-    yield from a
-    yield from b
-
-l = list(a_then_b([3, 4], [5, 6]))          # [3, 4, 5, 6]
+<span style="color: #cdd6f4;">l</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">list</span><span style="color: #f38ba8;">(</span>a_then_b<span style="color: #fab387;">(</span><span style="color: #f9e2af;">[</span>3, 4<span style="color: #f9e2af;">]</span>, <span style="color: #f9e2af;">[</span>5, 6<span style="color: #f9e2af;">]</span><span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">[3, 4, 5, 6]</span>
 </code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org2434e46" class="outline-3">
-<h3 id="org2434e46"><span class="section-number-3">6.2.</span> <code>while</code></h3>
+<div id="outline-container-orgdb7160c" class="outline-3">
+<h3 id="orgdb7160c"><span class="section-number-3">6.2.</span> <code>while</code></h3>
 <div class="outline-text-3" id="text-6-2">
-<pre><code class="language-python">i, total = 0, 0
-while i &lt; 3:
-    i = i + 1
-    total = total + i
+<pre><code class="language-python"><span style="color: #cdd6f4;">i</span>, <span style="color: #cdd6f4;">total</span> <span style="color: #89dceb;">=</span> 0, 0
+<span style="color: #cba6f7;">while</span> i &lt; 3:
+    <span style="color: #cdd6f4;">i</span> <span style="color: #89dceb;">=</span> i + 1
+    <span style="color: #cdd6f4;">total</span> <span style="color: #89dceb;">=</span> total + i
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org35606fe" class="outline-3">
-<h3 id="org35606fe"><span class="section-number-3">6.3.</span> <code>for</code></h3>
+<div id="outline-container-org02126b7" class="outline-3">
+<h3 id="org02126b7"><span class="section-number-3">6.3.</span> <code>for</code></h3>
 <div class="outline-text-3" id="text-6-3">
-<pre><code class="language-python">total = 0
-for i in range(1, 4):
-    total = total + i
+<pre><code class="language-python"><span style="color: #cdd6f4;">total</span> <span style="color: #89dceb;">=</span> 0
+<span style="color: #cba6f7;">for</span> i <span style="color: #cba6f7;">in</span> <span style="color: #f38ba8;">range</span><span style="color: #f38ba8;">(</span>1, 4<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cdd6f4;">total</span> <span style="color: #89dceb;">=</span> total + i
 </code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org5413031" class="outline-2">
-<h2 id="org5413031"><span class="section-number-2">7.</span> Assert</h2>
+<div id="outline-container-org83ca5ad" class="outline-2">
+<h2 id="org83ca5ad"><span class="section-number-2">7.</span> Assert</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 Can use <code>assert</code> to thrown an <code>AssertionError</code> if the assertion is false:
 </p>
-<pre><code class="language-python">assert 2 &gt; 3, 'That is false'        # AssertionError: That is false
+<pre><code class="language-python"><span style="color: #cba6f7;">assert</span> 2 &gt; 3, <span style="color: #a6e3a1;">'That is false'</span>        <span style="color: #6c7086;"># </span><span style="color: #6c7086;">AssertionError: That is false</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgd58e092" class="outline-2">
-<h2 id="orgd58e092"><span class="section-number-2">8.</span> Type Hints</h2>
+<div id="outline-container-org4f51fd2" class="outline-2">
+<h2 id="org4f51fd2"><span class="section-number-2">8.</span> Type Hints</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Python is <i>dynamically typed</i>, which means that names do not have types. A name can be assigned to something of one type and later assigned to a value of a different type.
@@ -561,13 +562,13 @@ Python is <i>dynamically typed</i>, which means that names do not have types. A 
 However, it is often useful to use <i>type hints</i>, which tell a reader what type a program expects to receive/output:
 </p>
 
-<pre><code class="language-python">x: int = 6
-y: string = "seven"
-z: float = 1.5
-digits: list[int] = [1, 2, 3, 4, 5]
+<pre><code class="language-python"><span style="color: #cdd6f4;">x</span>: <span style="color: #f38ba8;">int</span> <span style="color: #89dceb;">=</span> 6
+<span style="color: #cdd6f4;">y</span>: <span style="color: #cdd6f4;">string</span> <span style="color: #89dceb;">=</span> <span style="color: #a6e3a1;">"seven"</span>
+<span style="color: #cdd6f4;">z</span>: <span style="color: #f38ba8;">float</span> <span style="color: #89dceb;">=</span> 1.5
+<span style="color: #cdd6f4;">digits</span>: <span style="color: #f38ba8;">list</span><span style="color: #f38ba8;">[</span><span style="color: #f38ba8;">int</span><span style="color: #f38ba8;">]</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>1, 2, 3, 4, 5<span style="color: #f38ba8;">]</span>
 
-def identity(n: int) -&gt; int:
-    return n
+<span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">identity</span><span style="color: #f38ba8;">(</span>n: <span style="color: #f38ba8;">int</span><span style="color: #f38ba8;">)</span> -&gt; <span style="color: #f38ba8;">int</span>:
+    <span style="color: #cba6f7;">return</span> n
 </code></pre>
 
 <p>
@@ -575,42 +576,42 @@ Python will not <i>enforce</i> the type hints, but it will warn you of any incon
 </p>
 </div>
 </div>
-<div id="outline-container-org3f072e3" class="outline-2">
-<h2 id="org3f072e3"><span class="section-number-2">9.</span> <a href="objects.html#org10f98a7">Classes</a></h2>
+<div id="outline-container-org418475c" class="outline-2">
+<h2 id="org418475c"><span class="section-number-2">9.</span> <a href="objects.html#org454dca1">Classes</a></h2>
 <div class="outline-text-2" id="text-9">
-<pre><code class="language-python">class Account:
-    interest  = 0.02
+<pre><code class="language-python"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Account</span>:
+    <span style="color: #cdd6f4;">interest</span>  <span style="color: #89dceb;">=</span> 0.02
 
-    def __init__(self, account_holder):
-        self.balance = 0
-        self.holder = account_holder
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">__init__</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, account_holder<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">balance</span> <span style="color: #89dceb;">=</span> 0
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">holder</span> <span style="color: #89dceb;">=</span> account_holder
 
-    def deposit(self, amount):
-        self.balance = self.balance + amount
-        return self.balance
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">deposit</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, amount<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">balance</span> <span style="color: #89dceb;">=</span> <span style="color: #cba6f7;">self</span>.balance + amount
+        <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">self</span>.balance
 
-    def withdraw(self, amount):
-        if amount &gt; self.balance:
-            return 'Insufficient funds'
-        self.balance = self.balance - amount
-        return self.balance
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">withdraw</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, amount<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">if</span> amount &gt; <span style="color: #cba6f7;">self</span>.balance:
+            <span style="color: #cba6f7;">return</span> <span style="color: #a6e3a1;">'Insufficient funds'</span>
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">balance</span> <span style="color: #89dceb;">=</span> <span style="color: #cba6f7;">self</span>.balance - amount
+        <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">self</span>.balance
 
-a = Account('John')
-b = Account('Jack')
-assert a is not b
-a.deposit(100)
+<span style="color: #cdd6f4;">a</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'John'</span><span style="color: #f38ba8;">)</span>
+<span style="color: #cdd6f4;">b</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'Jack'</span><span style="color: #f38ba8;">)</span>
+<span style="color: #cba6f7;">assert</span> a <span style="color: #cba6f7;">is</span> <span style="color: #cba6f7;">not</span> b
+a.deposit<span style="color: #f38ba8;">(</span>100<span style="color: #f38ba8;">)</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgc4278a9" class="outline-2">
-<h2 id="orgc4278a9"><span class="section-number-2">10.</span> String Interpolation</h2>
+<div id="outline-container-orgc91a79a" class="outline-2">
+<h2 id="orgc91a79a"><span class="section-number-2">10.</span> String Interpolation</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 <b>String interpolation</b> in Python is achieved by evaluating a <b>f-string</b>, which is a string literal that contains expressions:
 </p>
 
-<pre><code class="language-python">pi_string = f'pi starts with {pi}...'   # 'pi starts with 3.141592653589793...'
-num = f'2 + 2 = {(lambda x: x + x)(2)}' # '2 + 2 = 4'
+<pre><code class="language-python"><span style="color: #cdd6f4;">pi_string</span> <span style="color: #89dceb;">=</span> f<span style="color: #a6e3a1;">'pi starts with {pi}...'</span>   <span style="color: #6c7086;"># </span><span style="color: #6c7086;">'pi starts with 3.141592653589793...'
+</span><span style="color: #cdd6f4;">num</span> <span style="color: #89dceb;">=</span> f<span style="color: #a6e3a1;">'2 + 2 = {(lambda x: x + x)(2)}'</span> <span style="color: #6c7086;"># </span><span style="color: #6c7086;">'2 + 2 = 4'</span>
 </code></pre>
 </div>
 </div>

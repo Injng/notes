@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SvelteKit</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,36 +93,36 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3ea45b9">1. Error Handling</a></li>
-<li><a href="#orgd496715">2. Props</a></li>
+<li><a href="#orga43ad7f">1. Error Handling</a></li>
+<li><a href="#org4e087fb">2. Props</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3ea45b9" class="outline-2">
-<h2 id="org3ea45b9"><span class="section-number-2">1.</span> Error Handling</h2>
+<div id="outline-container-orga43ad7f" class="outline-2">
+<h2 id="orga43ad7f"><span class="section-number-2">1.</span> Error Handling</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 If an error occurs during load, the nearest <code>+error.svelte</code> file will be loaded. For example:
 </p>
-<pre><code class="language-svelte">&lt;script lang="ts"&gt;
-    import { page } from '$app/state';
-&lt;/script&gt;
+<pre><code class="language-svelte"><span style="color: #f38ba8;">&lt;</span><span style="color: #89b4fa;">script</span> <span style="color: #cdd6f4;">lang</span>=<span style="color: #a6e3a1;">"ts"</span><span style="color: #f38ba8;">&gt;</span>
+    <span style="color: #cba6f7;">import</span> <span style="color: #f38ba8;">{</span> page <span style="color: #f38ba8;">}</span> <span style="color: #cba6f7;">from</span> '$app/state';
+<span style="color: #f38ba8;">&lt;</span>/<span style="color: #89b4fa;">script</span><span style="color: #f38ba8;">&gt;</span>
 
-&lt;h1&gt;{page.status}: {page.error.message}&lt;/h1&gt;
+<span style="color: #f38ba8;">&lt;</span><span style="color: #89b4fa;">h1</span><span style="color: #f38ba8;">&gt;</span><span style="color: #f38ba8; font-weight: bold; text-decoration: underline;">{</span><span style="font-weight: bold; text-decoration: underline;">page.status</span><span style="color: #f38ba8; font-weight: bold; text-decoration: underline;">}</span><span style="font-weight: bold; text-decoration: underline;">: </span><span style="color: #f38ba8; font-weight: bold; text-decoration: underline;">{</span><span style="font-weight: bold; text-decoration: underline;">page.error.message</span><span style="color: #f38ba8; font-weight: bold; text-decoration: underline;">}</span><span style="color: #f38ba8;">&lt;</span>/<span style="color: #89b4fa;">h1</span><span style="color: #f38ba8;">&gt;</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgd496715" class="outline-2">
-<h2 id="orgd496715"><span class="section-number-2">2.</span> Props</h2>
+<div id="outline-container-org4e087fb" class="outline-2">
+<h2 id="org4e087fb"><span class="section-number-2">2.</span> Props</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Use the <code>$props</code> rune to pass properties to components:
 </p>
-<pre><code class="language-svelte">&lt;script lang="ts"&gt;
-    let { adjective } = $props();
-&lt;/script&gt;
+<pre><code class="language-svelte"><span style="color: #f38ba8;">&lt;</span><span style="color: #89b4fa;">script</span> <span style="color: #cdd6f4;">lang</span>=<span style="color: #a6e3a1;">"ts"</span><span style="color: #f38ba8;">&gt;</span>
+    <span style="color: #cba6f7;">let</span> <span style="color: #f38ba8;">{</span> adjective <span style="color: #f38ba8;">}</span> = <span style="color: #89b4fa;">$props</span><span style="color: #f38ba8;">()</span>;
+<span style="color: #f38ba8;">&lt;</span>/<span style="color: #89b4fa;">script</span><span style="color: #f38ba8;">&gt;</span>
 
-&lt;p&gt;this component is {adjective}&lt;/p&gt;
+<span style="color: #f38ba8;">&lt;</span><span style="color: #89b4fa;">p</span><span style="color: #f38ba8;">&gt;</span>this component is <span style="color: #f38ba8;">{</span>adjective<span style="color: #f38ba8;">}</span><span style="color: #f38ba8;">&lt;</span>/<span style="color: #89b4fa;">p</span><span style="color: #f38ba8;">&gt;</span>
 </code></pre>
 </div>
 </div>

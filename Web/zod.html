@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zod</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,21 +93,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5295bf6">1. Schemas</a></li>
-<li><a href="#org97ff8ab">2. Validations</a>
+<li><a href="#org611cc84">1. Schemas</a></li>
+<li><a href="#org809b04a">2. Validations</a>
 <ul>
-<li><a href="#org65a0fc8">2.1. Strings</a>
+<li><a href="#orge1d323e">2.1. Strings</a>
 <ul>
-<li><a href="#org6f92f1f">2.1.1. Example: ZIP Code</a></li>
+<li><a href="#org8ce00ac">2.1.1. Example: ZIP Code</a></li>
 </ul>
 </li>
-<li><a href="#org5e85dce">2.2. Date</a></li>
-<li><a href="#org914b5b4">2.3. Enums</a></li>
-<li><a href="#org491c149">2.4. Numbers</a></li>
-<li><a href="#orgf34b759">2.5. Refinements</a></li>
-<li><a href="#org2c1acb7">2.6. Instanceof</a>
+<li><a href="#orgc72aff0">2.2. Date</a></li>
+<li><a href="#orgb266b7f">2.3. Enums</a></li>
+<li><a href="#org9909f9b">2.4. Numbers</a></li>
+<li><a href="#org72bea6d">2.5. Refinements</a></li>
+<li><a href="#org6a649e1">2.6. Instanceof</a>
 <ul>
-<li><a href="#orgae4f299">2.6.1. Example: File Input</a></li>
+<li><a href="#org3c59657">2.6.1. Example: File Input</a></li>
 </ul>
 </li>
 </ul>
@@ -114,146 +115,146 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org5295bf6" class="outline-2">
-<h2 id="org5295bf6"><span class="section-number-2">1.</span> Schemas</h2>
+<div id="outline-container-org611cc84" class="outline-2">
+<h2 id="org611cc84"><span class="section-number-2">1.</span> Schemas</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Define and export a <code>zod</code> schema like so:
 </p>
-<pre><code class="language-typescript-ts">export const personalInformationSchema = z.object({
-  name: z.string(),
-  email: z.email(),
-  phone: z.string(),
-  birthday: z.date()
-});
+<pre><code class="language-typescript-ts"><span style="color: #cba6f7;">export</span> <span style="color: #cba6f7;">const</span> <span style="color: #cdd6f4;">personalInformationSchema</span> <span style="color: #89dceb;">=</span> z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">object</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">{</span>
+  <span style="color: #89b4fa;">name</span><span style="color: #9399b2;">:</span> z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f9e2af;">()</span><span style="color: #9399b2;">,</span>
+  <span style="color: #89b4fa;">email</span><span style="color: #9399b2;">:</span> z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">email</span><span style="color: #f9e2af;">()</span><span style="color: #9399b2;">,</span>
+  <span style="color: #89b4fa;">phone</span><span style="color: #9399b2;">:</span> z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f9e2af;">()</span><span style="color: #9399b2;">,</span>
+  <span style="color: #89b4fa;">birthday</span><span style="color: #9399b2;">:</span> z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">date</span><span style="color: #f9e2af;">()</span>
+<span style="color: #fab387;">}</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org97ff8ab" class="outline-2">
-<h2 id="org97ff8ab"><span class="section-number-2">2.</span> Validations</h2>
+<div id="outline-container-org809b04a" class="outline-2">
+<h2 id="org809b04a"><span class="section-number-2">2.</span> Validations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org65a0fc8" class="outline-3">
-<h3 id="org65a0fc8"><span class="section-number-3">2.1.</span> Strings</h3>
+<div id="outline-container-orge1d323e" class="outline-3">
+<h3 id="orge1d323e"><span class="section-number-3">2.1.</span> Strings</h3>
 <div class="outline-text-3" id="text-2-1">
-<pre><code class="language-typescript-ts">z.string().max(5);
-z.string().min(5);
-z.string().length(5);
-z.string().regex(/^[a-z]+$/);
-z.string().startsWith("aaa");
-z.string().endsWith("zzz");
-z.string().includes("---");
-z.string().uppercase();
-z.string().lowercase();
-z.email();         // zod v3: z.string().email()
-z.uuid();
-z.url();
-z.emoji();         // validates a single emoji character
-z.base64();
-z.base64url();
-z.nanoid();
-z.cuid();
-z.cuid2();
-z.ulid();
-z.ipv4();
-z.ipv6();
-z.cidrv4();        // ipv4 CIDR block
-z.cidrv6();        // ipv6 CIDR block
-z.iso.date();      // YYYY-MM-DD, zod v3: z.string().date()
-z.iso.time();
-z.iso.datetime();
-z.iso.duration();
+<pre><code class="language-typescript-ts">z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">max</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">5</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">min</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">5</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">length</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">5</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">regex</span><span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">/^[a-z]+$/</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">startsWith</span><span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"aaa"</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">endsWith</span><span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"zzz"</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">includes</span><span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"---"</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">uppercase</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">lowercase</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">email</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>         <span style="color: #6c7086;">// zod v3: z.string().email()</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">uuid</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">url</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">emoji</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>         <span style="color: #6c7086;">// validates a single emoji character</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">base64</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">base64url</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">nanoid</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">cuid</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">cuid2</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">ulid</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">ipv4</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">ipv6</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">cidrv4</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>        <span style="color: #6c7086;">// ipv4 CIDR block</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">cidrv6</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>        <span style="color: #6c7086;">// ipv6 CIDR block</span>
+z<span style="color: #9399b2;">.</span>iso<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">date</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>      <span style="color: #6c7086;">// YYYY-MM-DD, zod v3: z.string().date()</span>
+z<span style="color: #9399b2;">.</span>iso<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">time</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span>iso<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">datetime</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span>iso<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">duration</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
 </code></pre>
 </div>
-<div id="outline-container-org6f92f1f" class="outline-4">
-<h4 id="org6f92f1f"><span class="section-number-4">2.1.1.</span> Example: ZIP Code</h4>
+<div id="outline-container-org8ce00ac" class="outline-4">
+<h4 id="org8ce00ac"><span class="section-number-4">2.1.1.</span> Example: ZIP Code</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Use <code>string().regex()</code> for ZIP code validation:
 </p>
-<pre><code class="language-typescript-ts">z.string().regex(/^\d{5}(-\d{4})?$/);
+<pre><code class="language-typescript-ts">z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">regex</span><span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">/^\d{5}(-\d{4})?$/</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
 </code></pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org5e85dce" class="outline-3">
-<h3 id="org5e85dce"><span class="section-number-3">2.2.</span> Date</h3>
+<div id="outline-container-orgc72aff0" class="outline-3">
+<h3 id="orgc72aff0"><span class="section-number-3">2.2.</span> Date</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Validates a <code>Date</code> instance. For HTML input, use the string validation <code>z.iso.date()</code> instead.
 </p>
-<pre><code class="language-typescript-ts">z.date();
-z.date().safeParse(new Date());                 // success: true
-z.date().safeParse("2022-01-12T00:00:00.000Z"); // success: false
+<pre><code class="language-typescript-ts">z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">date</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">date</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">safeParse</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Date</span><span style="color: #fab387;">()</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>                 <span style="color: #6c7086;">// success: true</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">date</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">safeParse</span><span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"2022-01-12T00:00:00.000Z"</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span> <span style="color: #6c7086;">// success: false</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org914b5b4" class="outline-3">
-<h3 id="org914b5b4"><span class="section-number-3">2.3.</span> Enums</h3>
+<div id="outline-container-orgb266b7f" class="outline-3">
+<h3 id="orgb266b7f"><span class="section-number-3">2.3.</span> Enums</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Ensures input is within a collection of allowable inputs.
 </p>
-<pre><code class="language-typescript-ts">const fish = ["Salmon", "Tuna", "Trout"] as const;   // as const needed for type inference
+<pre><code class="language-typescript-ts"><span style="color: #cba6f7;">const</span> <span style="color: #cdd6f4;">fish</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #a6e3a1;">"Salmon"</span><span style="color: #9399b2;">,</span> <span style="color: #a6e3a1;">"Tuna"</span><span style="color: #9399b2;">,</span> <span style="color: #a6e3a1;">"Trout"</span><span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">as</span> <span style="color: #cba6f7;">const</span><span style="color: #9399b2;">;</span>   <span style="color: #6c7086;">// as const needed for type inference</span>
 
-const FishEnum = z.enum(fish);
+<span style="color: #cba6f7;">const</span> <span style="color: #cdd6f4;">FishEnum</span> <span style="color: #89dceb;">=</span> z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">enum</span><span style="color: #f38ba8;">(</span>fish<span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org491c149" class="outline-3">
-<h3 id="org491c149"><span class="section-number-3">2.4.</span> Numbers</h3>
+<div id="outline-container-org9909f9b" class="outline-3">
+<h3 id="org9909f9b"><span class="section-number-3">2.4.</span> Numbers</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 <code>z.number()</code> allows any finite number.
 </p>
-<pre><code class="language-typescript-ts">z.number().gt(5);
-z.number().gte(5);                     // alias .min(5)
-z.number().lt(5);
-z.number().lte(5);                     // alias .max(5)
-z.number().positive();       
-z.number().nonnegative();    
-z.number().negative(); 
-z.number().nonpositive(); 
-z.number().multipleOf(5);              // alias .step(5)
+<pre><code class="language-typescript-ts">z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">number</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">gt</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">5</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">number</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">gte</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">5</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>                     <span style="color: #6c7086;">// alias .min(5)</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">number</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">lt</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">5</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">number</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">lte</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">5</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>                     <span style="color: #6c7086;">// alias .max(5)</span>
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">number</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">positive</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>       
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">number</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">nonnegative</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span>    
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">number</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">negative</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span> 
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">number</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">nonpositive</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">;</span> 
+z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">number</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">multipleOf</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">5</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>              <span style="color: #6c7086;">// alias .step(5)</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgf34b759" class="outline-3">
-<h3 id="orgf34b759"><span class="section-number-3">2.5.</span> Refinements</h3>
+<div id="outline-container-org72bea6d" class="outline-3">
+<h3 id="org72bea6d"><span class="section-number-3">2.5.</span> Refinements</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Every <code>zod</code> schema has an array of refinements, which allow for performing custom validation that <code>zod</code> doesn't provide an API for. Refinements should return a falsy value to signal validation failure.
 </p>
-<pre><code class="language-typescript-ts">const myString = z.string().refine((val) =&gt; val.length &gt; 8, { 
-  error: "Too short!" 
-});
+<pre><code class="language-typescript-ts"><span style="color: #cba6f7;">const</span> <span style="color: #cdd6f4;">myString</span> <span style="color: #89dceb;">=</span> z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">string</span><span style="color: #f38ba8;">()</span><span style="color: #9399b2;">.</span><span style="color: #89b4fa;">refine</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">(</span><span style="color: #cdd6f4;">val</span><span style="color: #fab387;">)</span> =&gt; val<span style="color: #9399b2;">.</span>length <span style="color: #89dceb;">&gt;</span> <span style="color: #fab387;">8</span><span style="color: #9399b2;">,</span> <span style="color: #fab387;">{</span> 
+  <span style="color: #89b4fa;">error</span><span style="color: #9399b2;">:</span> <span style="color: #a6e3a1;">"Too short!"</span> 
+<span style="color: #fab387;">}</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org2c1acb7" class="outline-3">
-<h3 id="org2c1acb7"><span class="section-number-3">2.6.</span> Instanceof</h3>
+<div id="outline-container-org6a649e1" class="outline-3">
+<h3 id="org6a649e1"><span class="section-number-3">2.6.</span> Instanceof</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 Use <code>z.instanceof()</code> to check if input is an instance of a class.
 </p>
-<pre><code class="language-typescript-ts">class Test {
-  name: string;
-}
+<pre><code class="language-typescript-ts"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Test</span> <span style="color: #f38ba8;">{</span>
+  <span style="color: #89b4fa;">name</span><span style="color: #9399b2;">:</span> <span style="color: #f9e2af;">string</span><span style="color: #9399b2;">;</span>
+<span style="color: #f38ba8;">}</span>
 
-const TestSchema = z.instanceof(Test);
+<span style="color: #cba6f7;">const</span> <span style="color: #cdd6f4;">TestSchema</span> <span style="color: #89dceb;">=</span> z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">instanceof</span><span style="color: #f38ba8;">(</span>Test<span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
 </code></pre>
 </div>
-<div id="outline-container-orgae4f299" class="outline-4">
-<h4 id="orgae4f299"><span class="section-number-4">2.6.1.</span> Example: File Input</h4>
+<div id="outline-container-org3c59657" class="outline-4">
+<h4 id="org3c59657"><span class="section-number-4">2.6.1.</span> Example: File Input</h4>
 <div class="outline-text-4" id="text-2-6-1">
 <p>
 We can ensure the input is a file and validate the size of the file using <code>z.instanceof()</code> and <code>refine()</code>:
 </p>
-<pre><code class="language-typescript-ts">const schema = z.object({
-  image: z
-    .instanceof(File, { message: 'Please upload a file.'})
-    .refine((f) =&gt; f.size &lt; 100_000, 'Max 100 kB upload size.')
-});
+<pre><code class="language-typescript-ts"><span style="color: #cba6f7;">const</span> <span style="color: #cdd6f4;">schema</span> <span style="color: #89dceb;">=</span> z<span style="color: #9399b2;">.</span><span style="color: #89b4fa;">object</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">{</span>
+  <span style="color: #89b4fa;">image</span><span style="color: #9399b2;">:</span> z
+    <span style="color: #9399b2;">.</span><span style="color: #89b4fa;">instanceof</span><span style="color: #f9e2af;">(</span>File<span style="color: #9399b2;">,</span> <span style="color: #a6e3a1;">{</span> <span style="color: #89b4fa;">message</span><span style="color: #9399b2;">:</span> <span style="color: #a6e3a1;">'Please upload a file.'</span><span style="color: #a6e3a1;">}</span><span style="color: #f9e2af;">)</span>
+    <span style="color: #9399b2;">.</span><span style="color: #89b4fa;">refine</span><span style="color: #f9e2af;">(</span><span style="color: #a6e3a1;">(</span><span style="color: #cdd6f4;">f</span><span style="color: #a6e3a1;">)</span> =&gt; f<span style="color: #9399b2;">.</span>size <span style="color: #89dceb;">&lt;</span> <span style="color: #fab387;">100_000</span><span style="color: #9399b2;">,</span> <span style="color: #a6e3a1;">'Max 100 kB upload size.'</span><span style="color: #f9e2af;">)</span>
+<span style="color: #fab387;">}</span><span style="color: #f38ba8;">)</span><span style="color: #9399b2;">;</span>
 </code></pre>
 </div>
 </div>

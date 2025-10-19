@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Control</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,18 +93,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge9d48b2">1. Statements</a></li>
-<li><a href="#org1695239">2. Conditional Statements</a>
+<li><a href="#org50df223">1. Statements</a></li>
+<li><a href="#orgea79e1e">2. Conditional Statements</a>
 <ul>
-<li><a href="#orgec603fa">2.1. Procedure for Conditional Statements</a></li>
-<li><a href="#org106f572">2.2. Boolean Contexts</a></li>
+<li><a href="#orgfc7d4e3">2.1. Procedure for Conditional Statements</a></li>
+<li><a href="#org6d55dfc">2.2. Boolean Contexts</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge9d48b2" class="outline-2">
-<h2 id="orge9d48b2"><span class="section-number-2">1.</span> Statements</h2>
+<div id="outline-container-org50df223" class="outline-2">
+<h2 id="org50df223"><span class="section-number-2">1.</span> Statements</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>statement</b> is executed by the interpreter to <i>perform an action</i>.
@@ -114,30 +115,30 @@ We can also define <b>compound statements</b>, which are statements that span mu
 </p>
 
 <p>
-In a compound statement, the first header determines the statement's type. For each clause, the header of that clause <i>controls</i> the suite that follows. An example of a compound statement are <a href="functions.html#org7aa6758">def statements</a>. 
+In a compound statement, the first header determines the statement's type. For each clause, the header of that clause <i>controls</i> the suite that follows. An example of a compound statement are <a href="functions.html#orgc7d7ac3">def statements</a>. 
 </p>
 
 
-<div id="orge59a2fc" class="figure">
+<div id="org01952f9" class="figure">
 <p><img src="../static/COMPSCI_61A/control1.png" alt="control1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org1695239" class="outline-2">
-<h2 id="org1695239"><span class="section-number-2">2.</span> Conditional Statements</h2>
+<div id="outline-container-orgea79e1e" class="outline-2">
+<h2 id="orgea79e1e"><span class="section-number-2">2.</span> Conditional Statements</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A <b>conditional statement</b> is a compound statement that controls execution flow. The following example is a conditional statement that uses <code>if</code>, <code>elif</code>, and <code>else</code>:
 </p>
-<pre><code class="language-python">def absolute_value(x):
-    """Return the absolute value of x."""
-    if x &lt; 0:
-        return -x
-    elif x == 0:
-        return 0
-    else:
-        return x
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">absolute_value</span><span style="color: #f38ba8;">(</span>x<span style="color: #f38ba8;">)</span>:
+    <span style="color: #6c7086;">"""Return the absolute value of x."""</span>
+    <span style="color: #cba6f7;">if</span> x &lt; 0:
+        <span style="color: #cba6f7;">return</span> -x
+    <span style="color: #cba6f7;">elif</span> x == 0:
+        <span style="color: #cba6f7;">return</span> 0
+    <span style="color: #cba6f7;">else</span>:
+        <span style="color: #cba6f7;">return</span> x
 </code></pre>
 
 <p>
@@ -149,8 +150,8 @@ This conditional statement consists of one statement, three clauses, three heade
 <li>Ends with zero or one  <code>else</code> clause.</li>
 </ol>
 </div>
-<div id="outline-container-orgec603fa" class="outline-3">
-<h3 id="orgec603fa"><span class="section-number-3">2.1.</span> Procedure for Conditional Statements</h3>
+<div id="outline-container-orgfc7d4e3" class="outline-3">
+<h3 id="orgfc7d4e3"><span class="section-number-3">2.1.</span> Procedure for Conditional Statements</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Each clause is considered in order. For each clause:
@@ -165,8 +166,8 @@ Notice that a conditional statement only ever executes one clause.
 </p>
 </div>
 </div>
-<div id="outline-container-org106f572" class="outline-3">
-<h3 id="org106f572"><span class="section-number-3">2.2.</span> Boolean Contexts</h3>
+<div id="outline-container-org6d55dfc" class="outline-3">
+<h3 id="org6d55dfc"><span class="section-number-3">2.2.</span> Boolean Contexts</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 A <b>boolean context</b> is a context in which we only care if the expression evaluates to <code>True</code> or <code>False</code>. Examples of <code>False</code> values include <code>False</code>, <code>0</code>, <code>''</code>, <code>None</code>, and others. Anything other than a <code>False</code> value is a <code>True</code> value. Examples of boolean contexts include the headers for conditional statements and <code>while</code>.

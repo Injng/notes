@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linked Lists</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,23 +93,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7d71a1b">1. Linked Lists</a>
+<li><a href="#org6bbd4cc">1. Linked Lists</a>
 <ul>
-<li><a href="#org480c06e">1.1. Implementation</a></li>
+<li><a href="#org1bc42a7">1.1. Implementation</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org7d71a1b" class="outline-2">
-<h2 id="org7d71a1b"><span class="section-number-2">1.</span> Linked Lists</h2>
+<div id="outline-container-org6bbd4cc" class="outline-2">
+<h2 id="org6bbd4cc"><span class="section-number-2">1.</span> Linked Lists</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>linked list</b> is a way to represent a data sequence. A linked list is either empty <i>or</i> a first value and a pointer to the rest of the linked list. For example, to represent the sequence <code>3, 4, 5</code>, the structure of the linked list would be:
 </p>
 
 
-<div id="org1d8db14" class="figure">
+<div id="org9511e2d" class="figure">
 <p><img src="../static/COMPSCI_61A/linked_lists1.png" alt="linked_lists1.png" />
 </p>
 </div>
@@ -117,20 +118,20 @@ A <b>linked list</b> is a way to represent a data sequence. A linked list is eit
 Each node of a linked list, then, is a <i>pair</i>: <code>first</code>, which is the value of its own element, then <code>rest</code>, which points to the next node in the rest of the linked list.
 </p>
 </div>
-<div id="outline-container-org480c06e" class="outline-3">
-<h3 id="org480c06e"><span class="section-number-3">1.1.</span> Implementation</h3>
+<div id="outline-container-org1bc42a7" class="outline-3">
+<h3 id="org1bc42a7"><span class="section-number-3">1.1.</span> Implementation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-Here is an implementation of a linked list <a href="objects.html#org10f98a7">class</a>:
+Here is an implementation of a linked list <a href="objects.html#org454dca1">class</a>:
 </p>
 
-<pre><code class="language-python">class Link:
-    empty = ()
+<pre><code class="language-python"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Link</span>:
+    <span style="color: #cdd6f4;">empty</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">()</span>
 
-    def __init__(self, first, rest=empty):
-        assert rest is Link.empty or isinstance(rest, Link)
-        self.first = first
-        self.rest = rest
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">__init__</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, first, rest=empty<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">assert</span> rest <span style="color: #cba6f7;">is</span> Link.empty <span style="color: #cba6f7;">or</span> <span style="color: #f38ba8;">isinstance</span><span style="color: #f38ba8;">(</span>rest, Link<span style="color: #f38ba8;">)</span>
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">first</span> <span style="color: #89dceb;">=</span> first
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">rest</span> <span style="color: #89dceb;">=</span> rest
 </code></pre>
 
 <details class="code-details"
@@ -148,29 +149,29 @@ Here is an implementation of a linked list <a href="objects.html#org10f98a7">cla
                     </strong>
                   </summary>
 <p>
-We want to implement our own <code>range_link</code>, <code>map_link</code>, and <code>filter_link</code> functions for our linked list implementation. To do this, we will often need to use <a href="recursion.html#orgb248349">recursion</a>:
+We want to implement our own <code>range_link</code>, <code>map_link</code>, and <code>filter_link</code> functions for our linked list implementation. To do this, we will often need to use <a href="recursion.html#orgff74997">recursion</a>:
 </p>
 
-<pre><code class="language-python">def range_link(start, end):
-    if start &gt;= end:
-        return Link.empty
-    else:
-        return Link(start, range_link(start + 1, end))
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">range_link</span><span style="color: #f38ba8;">(</span>start, end<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">if</span> start &gt;= end:
+        <span style="color: #cba6f7;">return</span> Link.empty
+    <span style="color: #cba6f7;">else</span>:
+        <span style="color: #cba6f7;">return</span> Link<span style="color: #f38ba8;">(</span>start, range_link<span style="color: #fab387;">(</span>start + 1, end<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
 
-def map_link(f, s):
-    if s is Link.empty:
-        return s
-    else:
-        return Link(f(s.first), map_link(f, s.rest))
+<span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">map_link</span><span style="color: #f38ba8;">(</span>f, s<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">if</span> s <span style="color: #cba6f7;">is</span> Link.empty:
+        <span style="color: #cba6f7;">return</span> s
+    <span style="color: #cba6f7;">else</span>:
+        <span style="color: #cba6f7;">return</span> Link<span style="color: #f38ba8;">(</span>f<span style="color: #fab387;">(</span>s.first<span style="color: #fab387;">)</span>, map_link<span style="color: #fab387;">(</span>f, s.rest<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
 
-def filter_link(f, s):
-    if s is Link.empty:
-        return s
-    filtered_rest = filter_link(f, s.rest)
-    if f(s.first):
-        return Link(s.first, filtered_rest)
-    else:
-        return filtered_rest
+<span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">filter_link</span><span style="color: #f38ba8;">(</span>f, s<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">if</span> s <span style="color: #cba6f7;">is</span> Link.empty:
+        <span style="color: #cba6f7;">return</span> s
+    <span style="color: #cdd6f4;">filtered_rest</span> <span style="color: #89dceb;">=</span> filter_link<span style="color: #f38ba8;">(</span>f, s.rest<span style="color: #f38ba8;">)</span>
+    <span style="color: #cba6f7;">if</span> f<span style="color: #f38ba8;">(</span>s.first<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">return</span> Link<span style="color: #f38ba8;">(</span>s.first, filtered_rest<span style="color: #f38ba8;">)</span>
+    <span style="color: #cba6f7;">else</span>:
+        <span style="color: #cba6f7;">return</span> filtered_rest
 </code></pre>
 
 

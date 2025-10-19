@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Green's Theorem</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,16 +125,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4f9bd08">1. Green's Theorem</a></li>
-<li><a href="#orgab592b1">2. Proof</a></li>
+<li><a href="#orgb2c0c2b">1. Green's Theorem</a></li>
+<li><a href="#org4cf0215">2. Proof</a></li>
 </ul>
 </div>
 </div>
 <p>
-We know that if a field is <a href="vector_fields.html#org584aba1">conservative</a>, then it only depends on the endpoints and therefore the <a href="line_integrals.html#orga2c1b84">line integral</a> of a closed conservative curve will be zero. However, for general curves, apart from calculating it directly, we can also use another method.
+We know that if a field is <a href="vector_fields.html#org76ee9b9">conservative</a>, then it only depends on the endpoints and therefore the <a href="line_integrals.html#org84fcadc">line integral</a> of a closed conservative curve will be zero. However, for general curves, apart from calculating it directly, we can also use another method.
 </p>
-<div id="outline-container-org4f9bd08" class="outline-2">
-<h2 id="org4f9bd08"><span class="section-number-2">1.</span> Green's Theorem</h2>
+<div id="outline-container-orgb2c0c2b" class="outline-2">
+<h2 id="orgb2c0c2b"><span class="section-number-2">1.</span> Green's Theorem</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Green's Theorem</b> states that if \(C\) is a <i>closed curve</i> enclosing a region \(R\), counterclockwise, and \(\vec{F}\) is a <a href="vector_fields.html">vector field</a> defined and differentiable in \(R\), then:
@@ -152,8 +153,8 @@ In terms of vector components, this is:
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgab592b1" class="outline-2">
-<h2 id="orgab592b1"><span class="section-number-2">2.</span> Proof</h2>
+<div id="outline-container-org4cf0215" class="outline-2">
+<h2 id="org4cf0215"><span class="section-number-2">2.</span> Proof</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The first observation is that we can split this theorem up into two simpler identities, that once proved, the sum will give us Green's Theorem:
@@ -173,7 +174,7 @@ The second observation is that we can split larger, more complicated regions, do
 </p>
 
 
-<div id="org20ab997" class="figure">
+<div id="orge0442bc" class="figure">
 <p><img src="../static/greens_theorem1.png" alt="greens_theorem1.png" />
 </p>
 </div>
@@ -187,7 +188,7 @@ The implication is that we can cut any curve \(C\) into "vertically simple" piec
 </p>
 
 
-<div id="orgf89dd76" class="figure">
+<div id="orgcf883fb" class="figure">
 <p><img src="../static/greens_theorem2.png" alt="greens_theorem2.png" />
 </p>
 </div>
@@ -197,7 +198,7 @@ This reduces what we need to prove down to: prove that \(\oint_C M \text{ d}x = 
 </p>
 
 
-<div id="orgb829f16" class="figure">
+<div id="org1291946" class="figure">
 <p><img src="../static/greens_theorem3.png" alt="greens_theorem3.png" />
 </p>
 </div>

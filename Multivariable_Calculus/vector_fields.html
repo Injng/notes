@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vector Fields</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,9 +125,9 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org54a6a37">1. Gradient Field</a></li>
-<li><a href="#org565fb24">2. Path Independence</a></li>
-<li><a href="#org584aba1">3. Conservative Fields</a></li>
+<li><a href="#orgaeee346">1. Gradient Field</a></li>
+<li><a href="#orge70f95d">2. Path Independence</a></li>
+<li><a href="#org76ee9b9">3. Conservative Fields</a></li>
 </ul>
 </div>
 </div>
@@ -143,11 +144,11 @@ A <b>vector field</b> is something of the form:
 <p>
 where \(M\) and \(N\) are functions of \(x\) and \(y\). Concretely, this means that for each point in the plane \((x,y)\), you have a vector \(\vec{F}\) that depends on \((x,y)\): hence, a vector field or a <i>field of vectors</i>.
 </p>
-<div id="outline-container-org54a6a37" class="outline-2">
-<h2 id="org54a6a37"><span class="section-number-2">1.</span> Gradient Field</h2>
+<div id="outline-container-orgaeee346" class="outline-2">
+<h2 id="orgaeee346"><span class="section-number-2">1.</span> Gradient Field</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The <a href="gradient.html#orge5bb67b">gradient</a> of a function, \(\nabla f\), can also be considered to be a vector field. In physics, the <b>gradient field</b> is directly related to the concept of <b>potential</b>.
+The <a href="gradient.html#orged099a0">gradient</a> of a function, \(\nabla f\), can also be considered to be a vector field. In physics, the <b>gradient field</b> is directly related to the concept of <b>potential</b>.
 </p>
 
 <p>
@@ -159,15 +160,15 @@ M_y = N_x
 \end{align}
 
 <p>
-The converse is only true if the vector field is <i>defined everywhere</i>, or in a simply-connected region, and in those cases we can use this property to show that we have a gradient field. This is summarized with <a href="curl.html#orga24fcde">curl</a>.
+The converse is only true if the vector field is <i>defined everywhere</i>, or in a simply-connected region, and in those cases we can use this property to show that we have a gradient field. This is summarized with <a href="curl.html#orgb64c556">curl</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-org565fb24" class="outline-2">
-<h2 id="org565fb24"><span class="section-number-2">2.</span> Path Independence</h2>
+<div id="outline-container-orge70f95d" class="outline-2">
+<h2 id="orge70f95d"><span class="section-number-2">2.</span> Path Independence</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-The gradient field is a good example of a field that exhibits the property of <b>path independence</b>. Path independence means that the <a href="line_integrals.html#orga2c1b84">line integral</a> of a curve with this field is <i>independent of the path between the endpoints</i>. 
+The gradient field is a good example of a field that exhibits the property of <b>path independence</b>. Path independence means that the <a href="line_integrals.html#org84fcadc">line integral</a> of a curve with this field is <i>independent of the path between the endpoints</i>. 
 </p>
 
 <p>
@@ -181,15 +182,15 @@ In other words, if we have two curves \(C_1\) and \(C_2\) that have the same end
 </p>
 
 <p>
-This is due to the result obtained from the <a href="line_integrals.html#org0ea277b">fundamental theorem of calculus for line integrals</a>.
+This is due to the result obtained from the <a href="line_integrals.html#org8b3ea49">fundamental theorem of calculus for line integrals</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-org584aba1" class="outline-2">
-<h2 id="org584aba1"><span class="section-number-2">3.</span> Conservative Fields</h2>
+<div id="outline-container-org76ee9b9" class="outline-2">
+<h2 id="org76ee9b9"><span class="section-number-2">3.</span> Conservative Fields</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-The gradient field is also a good example of a <b>conservative field</b>. A conservative field is defined as a field such that the line integral of the field on a <i>closed loop</i> \(C\) is equal to zero. This directly follows from the concept of <a href="#org565fb24">path independence</a>:
+The gradient field is also a good example of a <b>conservative field</b>. A conservative field is defined as a field such that the line integral of the field on a <i>closed loop</i> \(C\) is equal to zero. This directly follows from the concept of <a href="#orge70f95d">path independence</a>:
 </p>
 
 <p>

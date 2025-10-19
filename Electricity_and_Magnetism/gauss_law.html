@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Gauss's Law</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,23 +125,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org116cc19">1. Electric Flux</a>
+<li><a href="#org552aacf">1. Electric Flux</a>
 <ul>
-<li><a href="#org32c25b4">1.1. Introduction to Flux</a></li>
-<li><a href="#orgb30c501">1.2. Introduction to Electric Flux</a>
+<li><a href="#org316c49b">1.1. Introduction to Flux</a></li>
+<li><a href="#orgf9216fc">1.2. Introduction to Electric Flux</a>
 <ul>
-<li><a href="#orge7de8e4">1.2.1. Area as a Vector</a></li>
-<li><a href="#org477c821">1.2.2. The Dot Product</a></li>
-<li><a href="#orgefc7960">1.2.3. Electric Flux on a Surface</a></li>
+<li><a href="#orgc37bf82">1.2.1. Area as a Vector</a></li>
+<li><a href="#org1f370ef">1.2.2. The Dot Product</a></li>
+<li><a href="#orgf0baf98">1.2.3. Electric Flux on a Surface</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org68db1ec">2. Gauss's Law</a>
+<li><a href="#org3f459e3">2. Gauss's Law</a>
 <ul>
 <li>
 <ul>
-<li><a href="#orgbd08ff3">2.0.1. For Continuous Charges</a></li>
+<li><a href="#org455214c">2.0.1. For Continuous Charges</a></li>
 </ul>
 </li>
 </ul>
@@ -148,12 +149,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org116cc19" class="outline-2">
-<h2 id="org116cc19"><span class="section-number-2">1.</span> Electric Flux</h2>
+<div id="outline-container-org552aacf" class="outline-2">
+<h2 id="org552aacf"><span class="section-number-2">1.</span> Electric Flux</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org32c25b4" class="outline-3">
-<h3 id="org32c25b4"><span class="section-number-3">1.1.</span> Introduction to Flux</h3>
+<div id="outline-container-org316c49b" class="outline-3">
+<h3 id="org316c49b"><span class="section-number-3">1.1.</span> Introduction to Flux</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 In order to understand electric flux, it is important to attain an intuitive understanding of what flux itself is first.
@@ -170,8 +171,8 @@ In other words, here flux can be seen as <b>flow rate per unit area</b>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgb30c501" class="outline-3">
-<h3 id="orgb30c501"><span class="section-number-3">1.2.</span> Introduction to Electric Flux</h3>
+<div id="outline-container-orgf9216fc" class="outline-3">
+<h3 id="orgf9216fc"><span class="section-number-3">1.2.</span> Introduction to Electric Flux</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Electric flux is a bit different. You can think of electric flux as the <b>number of field lines passing through an area</b>. Remember, field line
@@ -214,8 +215,8 @@ Now, this is not precisely our definition of electric flux, but it is close. The
 Firstly, this is necessary because we are working with vectors. Vectors have direction, and we need a way to deal with that.
 </p>
 </div>
-<div id="outline-container-orge7de8e4" class="outline-4">
-<h4 id="orge7de8e4"><span class="section-number-4">1.2.1.</span> Area as a Vector</h4>
+<div id="outline-container-orgc37bf82" class="outline-4">
+<h4 id="orgc37bf82"><span class="section-number-4">1.2.1.</span> Area as a Vector</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 One interesting thing that this brings up is that I just asserted that \(E\) and \(A\) are vectors. But how can area, which is a purely numerical
@@ -248,8 +249,8 @@ rule for the vectors bounding the area.
 </p>
 </div>
 </div>
-<div id="outline-container-org477c821" class="outline-4">
-<h4 id="org477c821"><span class="section-number-4">1.2.2.</span> The Dot Product</h4>
+<div id="outline-container-org1f370ef" class="outline-4">
+<h4 id="org1f370ef"><span class="section-number-4">1.2.2.</span> The Dot Product</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 But why is it that we use a  dot product, you ask? Well, consider how 
@@ -261,7 +262,7 @@ This \(\cos{\theta}\) is key:
 </p>
 
 
-<div id="orga1daff7" class="figure">
+<div id="org2ddec9e" class="figure">
 <p><img src="../static/flux_surface.png" alt="flux_surface.png" />
 </p>
 </div>
@@ -290,8 +291,8 @@ the area is tilted or not with the extra \(\cos{\theta}\) term.
 </p>
 </div>
 </div>
-<div id="outline-container-orgefc7960" class="outline-4">
-<h4 id="orgefc7960"><span class="section-number-4">1.2.3.</span> Electric Flux on a Surface</h4>
+<div id="outline-container-orgf0baf98" class="outline-4">
+<h4 id="orgf0baf98"><span class="section-number-4">1.2.3.</span> Electric Flux on a Surface</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 Now that we have established that electric flux is \(\vec{E} \cdot \vec{A}\), we have to face an uncomfortable truth: in the real-world,
@@ -317,8 +318,8 @@ This is also  electric flux.
 </div>
 </div>
 </div>
-<div id="outline-container-org68db1ec" class="outline-2">
-<h2 id="org68db1ec"><span class="section-number-2">2.</span> Gauss's Law</h2>
+<div id="outline-container-org3f459e3" class="outline-2">
+<h2 id="org3f459e3"><span class="section-number-2">2.</span> Gauss's Law</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Remember that the double integral expression for electric flux, (2),  holds <i>for any closed surface</i>. One particular closed surface of interest is the sphere.
@@ -353,8 +354,8 @@ This result is known as <b>Gauss's Law</b>. Notice that by the superposition pri
 surface; by this definition \(q\) is just the total charge enclosed by the surface.
 </p>
 </div>
-<div id="outline-container-orgbd08ff3" class="outline-4">
-<h4 id="orgbd08ff3"><span class="section-number-4">2.0.1.</span> For Continuous Charges</h4>
+<div id="outline-container-org455214c" class="outline-4">
+<h4 id="org455214c"><span class="section-number-4">2.0.1.</span> For Continuous Charges</h4>
 <div class="outline-text-4" id="text-2-0-1">
 <p>
 What if we don't have discrete charges, however? Let's say we have a continuous charge distribution with a <i>charge density function</i> 

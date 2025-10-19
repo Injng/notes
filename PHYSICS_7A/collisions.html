@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Collisions</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,13 +125,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org19a906a">1. Collisions</a>
+<li><a href="#org05db1af">1. Collisions</a>
 <ul>
-<li><a href="#orga475bc3">1.1. Inelastic Collisions</a></li>
-<li><a href="#org662006a">1.2. Elastic Collisions</a>
+<li><a href="#org8bdb4c0">1.1. Inelastic Collisions</a></li>
+<li><a href="#org2099d28">1.2. Elastic Collisions</a>
 <ul>
-<li><a href="#org64f01bc">1.2.1. 1D Elastic Collisions</a></li>
-<li><a href="#org254593b">1.2.2. 2D Elastic Collisions</a></li>
+<li><a href="#org15071e1">1.2.1. 1D Elastic Collisions</a></li>
+<li><a href="#orge111943">1.2.2. 2D Elastic Collisions</a></li>
 </ul>
 </li>
 </ul>
@@ -138,19 +139,19 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org19a906a" class="outline-2">
-<h2 id="org19a906a"><span class="section-number-2">1.</span> Collisions</h2>
+<div id="outline-container-org05db1af" class="outline-2">
+<h2 id="org05db1af"><span class="section-number-2">1.</span> Collisions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-There are two types of collisions. <b>Elastic collisions</b> are collisions that conserve <a href="work_and_energy.html#org9afc614">mechanical energy</a>, thus the kinetic energy is conserved in all <i>kinetic</i> events. <b>Inelastic collisions</b> are collisions in which kinetic energy is not conserved. The energy that is lost during an inelastic collision is transformed into some other type of energy, often thermal energy.
+There are two types of collisions. <b>Elastic collisions</b> are collisions that conserve <a href="work_and_energy.html#org01391e9">mechanical energy</a>, thus the kinetic energy is conserved in all <i>kinetic</i> events. <b>Inelastic collisions</b> are collisions in which kinetic energy is not conserved. The energy that is lost during an inelastic collision is transformed into some other type of energy, often thermal energy.
 </p>
 
 <p>
-In both types of collisions, <a href="momentum.html#org9e30ba3">momentum</a> is conserved if there is no external force acting on the system.
+In both types of collisions, <a href="momentum.html#orgbffd634">momentum</a> is conserved if there is no external force acting on the system.
 </p>
 </div>
-<div id="outline-container-orga475bc3" class="outline-3">
-<h3 id="orga475bc3"><span class="section-number-3">1.1.</span> Inelastic Collisions</h3>
+<div id="outline-container-org8bdb4c0" class="outline-3">
+<h3 id="org8bdb4c0"><span class="section-number-3">1.1.</span> Inelastic Collisions</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Inelastic collisions do not conserve kinetic energy, as some energy is either lost or added, often due to thermal or chemical events. Collisions that result in deformation are inelastic collisions.
@@ -175,7 +176,7 @@ Consider a ball that is shot into the ring of a ballistic pendulum, which causes
 </p>
 
 
-<div id="org2119e31" class="figure">
+<div id="orgc4ac003" class="figure">
 <p><img src="../static/PHYSICS_7A/collisions1.png" alt="collisions1.png" />
 </p>
 </div>
@@ -240,13 +241,13 @@ A fireworks rocket that is launched from the ground with speed \(v_0\) at \(60^{
 </p>
 
 
-<div id="org9dd0090" class="figure">
+<div id="orgd1fabab" class="figure">
 <p><img src="../static/PHYSICS_7A/collisions2.png" alt="collisions2.png" />
 </p>
 </div>
 
 <p>
-We can apply <a href="momentum.html#org9e30ba3">conservation of linear momentum</a> because gravitational force has negligible <a href="momentum.html#org872f71e">impulse</a> on the pieces of the rocket after the explosion. We know there is no vertical velocity right before the explosion as the rocket is at its maximum height, and we can find the horizontal velocity as:
+We can apply <a href="momentum.html#orgbffd634">conservation of linear momentum</a> because gravitational force has negligible <a href="momentum.html#orge4ca7a0">impulse</a> on the pieces of the rocket after the explosion. We know there is no vertical velocity right before the explosion as the rocket is at its maximum height, and we can find the horizontal velocity as:
 </p>
 
 \begin{align}
@@ -329,15 +330,15 @@ Thus, the velocity of the second particle is:
 </details>
 </div>
 </div>
-<div id="outline-container-org662006a" class="outline-3">
-<h3 id="org662006a"><span class="section-number-3">1.2.</span> Elastic Collisions</h3>
+<div id="outline-container-org2099d28" class="outline-3">
+<h3 id="org2099d28"><span class="section-number-3">1.2.</span> Elastic Collisions</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 For elastic collisions, kinetic energy is conserved in addition to linear momentum. We can separate our study of elastic collisions into two types: 1D and 2D elastic collisions.
 </p>
 </div>
-<div id="outline-container-org64f01bc" class="outline-4">
-<h4 id="org64f01bc"><span class="section-number-4">1.2.1.</span> 1D Elastic Collisions</h4>
+<div id="outline-container-org15071e1" class="outline-4">
+<h4 id="org15071e1"><span class="section-number-4">1.2.1.</span> 1D Elastic Collisions</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 When a collision is head-on, when the line joining the center of masses is in the direction of momentum, then the whole process is along one single direction — i.e. the collision is 1D.
@@ -357,21 +358,21 @@ Note that all the velocities have a sign, so we need to choose a consistent coor
 </p>
 </div>
 </div>
-<div id="outline-container-org254593b" class="outline-4">
-<h4 id="org254593b"><span class="section-number-4">1.2.2.</span> 2D Elastic Collisions</h4>
+<div id="outline-container-orge111943" class="outline-4">
+<h4 id="orge111943"><span class="section-number-4">1.2.2.</span> 2D Elastic Collisions</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 2D collisions occur when the event is not head-on. We can study one special case of 2D collisions, namely that where both objects are of equal mass:
 </p>
 
 
-<div id="org4f5f384" class="figure">
+<div id="org5add625" class="figure">
 <p><img src="../static/PHYSICS_7A/collisions3.png" alt="collisions3.png" />
 </p>
 </div>
 
 <p>
-Knowing \(m\) and \(\theta\), we would like to determine \(v_1\), \(v_2\), and \(\phi\). We will use <a href="momentum.html#org9e30ba3">conservation of momentum</a>, then square the equations in order to compare with <a href="work_and_energy.html#org9afc614">conservation of kinetic energy</a>.
+Knowing \(m\) and \(\theta\), we would like to determine \(v_1\), \(v_2\), and \(\phi\). We will use <a href="momentum.html#orgbffd634">conservation of momentum</a>, then square the equations in order to compare with <a href="work_and_energy.html#org01391e9">conservation of kinetic energy</a>.
 </p>
 
 <p>

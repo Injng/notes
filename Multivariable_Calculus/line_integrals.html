@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Line Integrals</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,16 +125,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga2c1b84">1. Work and Line Integrals</a></li>
-<li><a href="#org0ea277b">2. Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="#org84fcadc">1. Work and Line Integrals</a></li>
+<li><a href="#org8b3ea49">2. Fundamental Theorem of Calculus for Line Integrals</a></li>
 </ul>
 </div>
 </div>
 <p>
 A line integral is a way to integrate a function over a line or a path, rather than an interval or a region. Critically, the integral shows that it is dependent not only on the start and end points, but also the specific path taken to get between these two points.
 </p>
-<div id="outline-container-orga2c1b84" class="outline-2">
-<h2 id="orga2c1b84"><span class="section-number-2">1.</span> Work and Line Integrals</h2>
+<div id="outline-container-org84fcadc" class="outline-2">
+<h2 id="org84fcadc"><span class="section-number-2">1.</span> Work and Line Integrals</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Recall that <b>work</b> is defined as the dot product between force and displacement, the amount of energy provided by the force to perform the displacement:
@@ -150,7 +151,7 @@ However, we may be dealing with more complicated trajectories, or when the force
 </p>
 
 
-<div id="org29d241f" class="figure">
+<div id="orgcb8cfa7" class="figure">
 <p><img src="../static/line_integrals1.png" alt="line_integrals1.png" />
 </p>
 </div>
@@ -186,11 +187,11 @@ Critically, note that <i>we cannot split this into two integrals</i> as the nota
 </p>
 </div>
 </div>
-<div id="outline-container-org0ea277b" class="outline-2">
-<h2 id="org0ea277b"><span class="section-number-2">2.</span> Fundamental Theorem of Calculus for Line Integrals</h2>
+<div id="outline-container-org8b3ea49" class="outline-2">
+<h2 id="org8b3ea49"><span class="section-number-2">2.</span> Fundamental Theorem of Calculus for Line Integrals</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-When our line integral is done on a <a href="vector_fields.html#org54a6a37">gradient field</a>, then we have a special case of the <b>fundamental theorem of calculus</b>. Specifically, if we have a trajectory \(C\) that runs from point \(P_0\) to point \(P_1\), then we have:
+When our line integral is done on a <a href="vector_fields.html#orgaeee346">gradient field</a>, then we have a special case of the <b>fundamental theorem of calculus</b>. Specifically, if we have a trajectory \(C\) that runs from point \(P_0\) to point \(P_1\), then we have:
 </p>
 
 <p>
@@ -204,7 +205,7 @@ In other words, the <i>line integral of the gradient of a function gives you bac
 </p>
 
 <p>
-To see that this is true, we can split it up into coordinate form. The gradient field can be written as \(\langle f_x, f_y \rangle\), and so by the <a href="differentials.html#org21f0500">total differential</a>, we have:
+To see that this is true, we can split it up into coordinate form. The gradient field can be written as \(\langle f_x, f_y \rangle\), and so by the <a href="differentials.html#orgda1fe94">total differential</a>, we have:
 </p>
 
 <p>
@@ -218,13 +219,13 @@ This can make the calculation of many line integrals much easier. For example, i
 </p>
 
 <p>
-The consequences of this theorem, such as this trick, is known as <a href="vector_fields.html#org584aba1">conservative fields</a> and <a href="vector_fields.html#org565fb24">path independence</a>. To summarize, we have four equivalent properties:
+The consequences of this theorem, such as this trick, is known as <a href="vector_fields.html#org76ee9b9">conservative fields</a> and <a href="vector_fields.html#orge70f95d">path independence</a>. To summarize, we have four equivalent properties:
 </p>
 
 <ol class="org-ol">
-<li>\(\vec{F}\) is <a href="vector_fields.html#org584aba1">conservative</a></li>
-<li>\(\int F \cdot \text{ d}\vec{r}\) is <a href="vector_fields.html#org565fb24">path independent</a></li>
-<li>\(\vec{F}\) is a <a href="vector_fields.html#org54a6a37">gradient field</a></li>
+<li>\(\vec{F}\) is <a href="vector_fields.html#org76ee9b9">conservative</a></li>
+<li>\(\int F \cdot \text{ d}\vec{r}\) is <a href="vector_fields.html#orge70f95d">path independent</a></li>
+<li>\(\vec{F}\) is a <a href="vector_fields.html#orgaeee346">gradient field</a></li>
 <li>\(M \text{ d}x + N \text{ d}y = \text{d}f\)</li>
 </ol>
 </div>

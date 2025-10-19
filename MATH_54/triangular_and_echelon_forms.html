@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Triangular and Echelon Forms</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,20 +93,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org500af14">1. Triangular Form</a></li>
-<li><a href="#org1efa5f5">2. Echelon Forms</a>
+<li><a href="#org6526e0c">1. Triangular Form</a></li>
+<li><a href="#orgb5ca009">2. Echelon Forms</a>
 <ul>
-<li><a href="#org145b480">2.1. Row Echelon Form</a></li>
-<li><a href="#org55bbdb3">2.2. Reduced Row Echelon Form</a></li>
-<li><a href="#org80b72e0">2.3. Pivots</a></li>
+<li><a href="#org7229ddb">2.1. Row Echelon Form</a></li>
+<li><a href="#org66818e2">2.2. Reduced Row Echelon Form</a></li>
+<li><a href="#org3889734">2.3. Pivots</a></li>
 </ul>
 </li>
-<li><a href="#org194300a">3. Existence/Uniqueness Theorem</a></li>
+<li><a href="#orgce54cb8">3. Existence/Uniqueness Theorem</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org500af14" class="outline-2">
-<h2 id="org500af14"><span class="section-number-2">1.</span> Triangular Form</h2>
+<div id="outline-container-org6526e0c" class="outline-2">
+<h2 id="org6526e0c"><span class="section-number-2">1.</span> Triangular Form</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 For any square matrix, the <b>main diagonal</b> are the entries where the row # = column #. A square matrix is called <b>upper triangular</b> if all the entries below the diagonal are 0, or <b>lower triangular</b> if all the entries above the diagonal are 0.
@@ -122,12 +123,12 @@ When a matrix is simplified to triangular form it becomes much easier to solve a
 </ol>
 </div>
 </div>
-<div id="outline-container-org1efa5f5" class="outline-2">
-<h2 id="org1efa5f5"><span class="section-number-2">2.</span> Echelon Forms</h2>
+<div id="outline-container-orgb5ca009" class="outline-2">
+<h2 id="orgb5ca009"><span class="section-number-2">2.</span> Echelon Forms</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org145b480" class="outline-3">
-<h3 id="org145b480"><span class="section-number-3">2.1.</span> Row Echelon Form</h3>
+<div id="outline-container-org7229ddb" class="outline-3">
+<h3 id="org7229ddb"><span class="section-number-3">2.1.</span> Row Echelon Form</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The analogue to triangular form for non-square matrices is the <b>row echelon form</b> (REF). Matrices in REF satisfy the following two conditions:
@@ -147,8 +148,8 @@ Note that a key difference between REF and upper triangular form is that the upp
 </p>
 </div>
 </div>
-<div id="outline-container-org55bbdb3" class="outline-3">
-<h3 id="org55bbdb3"><span class="section-number-3">2.2.</span> Reduced Row Echelon Form</h3>
+<div id="outline-container-org66818e2" class="outline-3">
+<h3 id="org66818e2"><span class="section-number-3">2.2.</span> Reduced Row Echelon Form</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 A <i>more</i> simplified form of this is the <b>reduced row echelon form</b>, or RREF. Matrices in RREF satisfy all the conditions of REF, plus the following two conditions:
@@ -164,8 +165,8 @@ An important property of the RREF is that every matrix has a unique RREF, which 
 </p>
 </div>
 </div>
-<div id="outline-container-org80b72e0" class="outline-3">
-<h3 id="org80b72e0"><span class="section-number-3">2.3.</span> Pivots</h3>
+<div id="outline-container-org3889734" class="outline-3">
+<h3 id="org3889734"><span class="section-number-3">2.3.</span> Pivots</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 A <b>pivot position</b> is a location in a matrix which has a leading 1 in its RREF. We can find the <b>pivots</b> by locating the leading entries in a matrix that is in REF.
@@ -173,8 +174,8 @@ A <b>pivot position</b> is a location in a matrix which has a leading 1 in its R
 </div>
 </div>
 </div>
-<div id="outline-container-org194300a" class="outline-2">
-<h2 id="org194300a"><span class="section-number-2">3.</span> Existence/Uniqueness Theorem</h2>
+<div id="outline-container-orgce54cb8" class="outline-2">
+<h2 id="orgce54cb8"><span class="section-number-2">3.</span> Existence/Uniqueness Theorem</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Given the augmented matrix of a system,

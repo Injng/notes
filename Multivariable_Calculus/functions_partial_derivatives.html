@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functions and Partial Derivatives</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,20 +125,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org23b44ae">1. Functions of Multiple Variables</a>
+<li><a href="#org0f09191">1. Functions of Multiple Variables</a>
 <ul>
-<li><a href="#org21d01af">1.1. Visualizing a Function of Two Variables</a>
+<li><a href="#org76f6935">1.1. Visualizing a Function of Two Variables</a>
 <ul>
-<li><a href="#org7e1e518">1.1.1. Contour Plot</a></li>
+<li><a href="#org8f76751">1.1.1. Contour Plot</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5a5fb5f">2. Partial Derivatives</a>
+<li><a href="#org044f644">2. Partial Derivatives</a>
 <ul>
-<li><a href="#orgbd7cfa1">2.1. Non-Independent Variables</a>
+<li><a href="#org80f184d">2.1. Non-Independent Variables</a>
 <ul>
-<li><a href="#org6e965a0">2.1.1. A Note on Notation</a></li>
+<li><a href="#orgcd8f5a0">2.1.1. A Note on Notation</a></li>
 </ul>
 </li>
 </ul>
@@ -145,8 +146,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org23b44ae" class="outline-2">
-<h2 id="org23b44ae"><span class="section-number-2">1.</span> Functions of Multiple Variables</h2>
+<div id="outline-container-org0f09191" class="outline-2">
+<h2 id="org0f09191"><span class="section-number-2">1.</span> Functions of Multiple Variables</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We have seen and know how to take the derivative of functions of one variable, for example:
@@ -172,15 +173,15 @@ f(x,y) = x^2+y^2
 Just like functions of one variable, functions fo multiple variables need not be defined at all points: there can be a <i>domain</i> for which inputs the functions is defined. For example, \(f(x,y) = \frac{1}{x+y}\) is only defined if \(x+y \neq 0\). 
 </p>
 </div>
-<div id="outline-container-org21d01af" class="outline-3">
-<h3 id="org21d01af"><span class="section-number-3">1.1.</span> Visualizing a Function of Two Variables</h3>
+<div id="outline-container-org76f6935" class="outline-3">
+<h3 id="org76f6935"><span class="section-number-3">1.1.</span> Visualizing a Function of Two Variables</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 First, we can visualize a function of two variables by plotting its <b>graph</b>. We can define a third dimension \(z=f(x,y)\), such that the graph is now a surface in space:
 </p>
 
 
-<div id="org20c08a8" class="figure">
+<div id="org23fea12" class="figure">
 <p><img src="../static/functions_partial_derivatives1.png" alt="functions_partial_derivatives1.png" />
 </p>
 </div>
@@ -200,7 +201,7 @@ With this information, we can see the graph will look somewhat like this:
 </p>
 
 
-<div id="org913d355" class="figure">
+<div id="org95663fa" class="figure">
 <p><img src="../static/functions_partial_derivatives2.png" alt="functions_partial_derivatives2.png" />
 </p>
 </div>
@@ -209,15 +210,15 @@ With this information, we can see the graph will look somewhat like this:
 However, notice that it is very difficult to draw three dimensional graphs on a two dimensional surface. To do this, we can use another tool.
 </p>
 </div>
-<div id="outline-container-org7e1e518" class="outline-4">
-<h4 id="org7e1e518"><span class="section-number-4">1.1.1.</span> Contour Plot</h4>
+<div id="outline-container-org8f76751" class="outline-4">
+<h4 id="org8f76751"><span class="section-number-4">1.1.1.</span> Contour Plot</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 The <b>contour plot</b> is similar to a topographic map: each curve on the contour plot shows the function at a certain constant elevation:
 </p>
 
 
-<div id="org9f7e3e8" class="figure">
+<div id="org4b1ba7a" class="figure">
 <p><img src="../static/contour1.png" alt="contour1.png" />
 </p>
 </div>
@@ -229,8 +230,8 @@ In other words, each <b>contour</b> on the contour plot shows all the points whe
 </div>
 </div>
 </div>
-<div id="outline-container-org5a5fb5f" class="outline-2">
-<h2 id="org5a5fb5f"><span class="section-number-2">2.</span> Partial Derivatives</h2>
+<div id="outline-container-org044f644" class="outline-2">
+<h2 id="org044f644"><span class="section-number-2">2.</span> Partial Derivatives</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 While the contour plot can tell us qualitatively the rate of change with respect to \(x\) and \(y\), this is also a tool for the derivative. However, for functions of multiple variables, we need to introduce the <b>partial derivative</b>. It is defined like so:
@@ -255,8 +256,8 @@ f_x &= 3x^2y \\
 f_y &= x^3 + 2y
 \end{aligned}
 </div>
-<div id="outline-container-orgbd7cfa1" class="outline-3">
-<h3 id="orgbd7cfa1"><span class="section-number-3">2.1.</span> Non-Independent Variables</h3>
+<div id="outline-container-org80f184d" class="outline-3">
+<h3 id="org80f184d"><span class="section-number-3">2.1.</span> Non-Independent Variables</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Sometimes, we want to take the partial derivative of a function \(f(x,y,z)\) such that we have the constraint \(g(x,y,z)=c\).
@@ -267,7 +268,7 @@ It follows then that we can write a function for a variable in terms of the othe
 </p>
 
 <p>
-Taking the <a href="differentials.html#org21f0500">total differential</a> of \(g\), we get that:
+Taking the <a href="differentials.html#orgda1fe94">total differential</a> of \(g\), we get that:
 </p>
 
 <p>
@@ -309,8 +310,8 @@ Therefore, we get that:
 We can go a step further and find things like \(f_y\) with \(x\) held constant by considering the total differential of \(f\). Then, since \(\text{d}x=0\), we can plug in what we found for \(\text{d}z\) to get a total differential that only has \(\text{d}y\).
 </p>
 </div>
-<div id="outline-container-org6e965a0" class="outline-4">
-<h4 id="org6e965a0"><span class="section-number-4">2.1.1.</span> A Note on Notation</h4>
+<div id="outline-container-orgcd8f5a0" class="outline-4">
+<h4 id="orgcd8f5a0"><span class="section-number-4">2.1.1.</span> A Note on Notation</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Consider the function \(f(x,y)=x+y\). Then, apply the change of variables \(x=u\), \(y=u+v\). Since \(f=x+y\) now becomes \(f=2u+v\), we know that these two things are true:

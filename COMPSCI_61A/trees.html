@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Trees</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,70 +93,70 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2d37beb">1. Trees</a>
+<li><a href="#org489cc9f">1. Trees</a>
 <ul>
-<li><a href="#org89e3c9c">1.1. Tree Abstraction Implementation</a></li>
-<li><a href="#org647214a">1.2. Tree Processing</a></li>
+<li><a href="#org798a7c7">1.1. Tree Abstraction Implementation</a></li>
+<li><a href="#orgc9620e8">1.2. Tree Processing</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2d37beb" class="outline-2">
-<h2 id="org2d37beb"><span class="section-number-2">1.</span> Trees</h2>
+<div id="outline-container-org489cc9f" class="outline-2">
+<h2 id="org489cc9f"><span class="section-number-2">1.</span> Trees</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>tree</b> is a hierarchical data structure that is used to represent data. Every tree has a <b>root</b> as well as a list of <b>branches</b>, where every branch is another tree. A tree with zero branches is called a <b>leaf</b>. Each location in a tree is called a <b>node</b>, which contains some value that is its <b>label</b>. One node can be the <b>parent</b> or <b>child</b> of another node:
 </p>
 
 
-<div id="org752ca78" class="figure">
+<div id="orgd54d101" class="figure">
 <p><img src="../static/COMPSCI_61A/trees1.png" alt="trees1.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-org89e3c9c" class="outline-3">
-<h3 id="org89e3c9c"><span class="section-number-3">1.1.</span> Tree Abstraction Implementation</h3>
+<div id="outline-container-org798a7c7" class="outline-3">
+<h3 id="org798a7c7"><span class="section-number-3">1.1.</span> Tree Abstraction Implementation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can implement a tree by considering that each tree consists of a root label and a list of branches:
 </p>
 
-<pre><code class="language-python">def tree(label, branches=[]):
-    for branch in branches:
-        assert is_tree(branch)
-    return [label] + list(branches)
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">tree</span><span style="color: #f38ba8;">(</span>label, branches=<span style="color: #fab387;">[]</span><span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">for</span> branch <span style="color: #cba6f7;">in</span> branches:
+        <span style="color: #cba6f7;">assert</span> is_tree<span style="color: #f38ba8;">(</span>branch<span style="color: #f38ba8;">)</span>
+    <span style="color: #cba6f7;">return</span> <span style="color: #f38ba8;">[</span>label<span style="color: #f38ba8;">]</span> + <span style="color: #f38ba8;">list</span><span style="color: #f38ba8;">(</span>branches<span style="color: #f38ba8;">)</span>
 
-def label(tree):
-    return tree[0]
+<span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">label</span><span style="color: #f38ba8;">(</span>tree<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">return</span> tree<span style="color: #f38ba8;">[</span>0<span style="color: #f38ba8;">]</span>
 
-def branches(tree):
-    return tree[1:]
+<span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">branches</span><span style="color: #f38ba8;">(</span>tree<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">return</span> tree<span style="color: #f38ba8;">[</span>1:<span style="color: #f38ba8;">]</span>
 
-def is_tree(tree):
-    if type(tree) != list or len(tree) &lt; 1:
-        return False
-    for branch in branches(tree):
-        if not is_tree(branch):
-            return False
-    return True
+<span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">is_tree</span><span style="color: #f38ba8;">(</span>tree<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">if</span> <span style="color: #f38ba8;">type</span><span style="color: #f38ba8;">(</span>tree<span style="color: #f38ba8;">)</span> != <span style="color: #f38ba8;">list</span> <span style="color: #cba6f7;">or</span> <span style="color: #f38ba8;">len</span><span style="color: #f38ba8;">(</span>tree<span style="color: #f38ba8;">)</span> &lt; 1:
+        <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">False</span>
+    <span style="color: #cba6f7;">for</span> branch <span style="color: #cba6f7;">in</span> branches<span style="color: #f38ba8;">(</span>tree<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">if</span> <span style="color: #cba6f7;">not</span> is_tree<span style="color: #f38ba8;">(</span>branch<span style="color: #f38ba8;">)</span>:
+            <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">False</span>
+    <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">True</span>
 </code></pre>
 
 <p>
-We can also use a <a href="objects.html#org10f98a7">class</a> to implement a tree:
+We can also use a <a href="objects.html#org454dca1">class</a> to implement a tree:
 </p>
 
-<pre><code class="language-python">class Tree:
-    def __init__(self, label, branches=[]):
-        self.label = label
-        for branch in branches:
-            assert is instance(branch, Tree)
-        self.branches = list(branches)
+<pre><code class="language-python"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Tree</span>:
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">__init__</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, label, branches=<span style="color: #fab387;">[]</span><span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">label</span> <span style="color: #89dceb;">=</span> label
+        <span style="color: #cba6f7;">for</span> branch <span style="color: #cba6f7;">in</span> branches:
+            <span style="color: #cba6f7;">assert</span> <span style="color: #cba6f7;">is</span> instance<span style="color: #f38ba8;">(</span>branch, Tree<span style="color: #f38ba8;">)</span>
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">branches</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">list</span><span style="color: #f38ba8;">(</span>branches<span style="color: #f38ba8;">)</span>
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org647214a" class="outline-3">
-<h3 id="org647214a"><span class="section-number-3">1.2.</span> Tree Processing</h3>
+<div id="outline-container-orgc9620e8" class="outline-3">
+<h3 id="orgc9620e8"><span class="section-number-3">1.2.</span> Tree Processing</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 In practice, one does not usually manually define trees; instead, they are generated programmatically. Processing trees are also generally done using recursion, with the base case typically being processing a leaf.
@@ -179,12 +180,12 @@ In practice, one does not usually manually define trees; instead, they are gener
 An example of generating a tree programmatically is with the Fibonacci sequence:
 </p>
 
-<pre><code class="language-python">def fib_tree(n):
-    if n &lt;= 1:
-        return tree(n)
-    else:
-        left, right = fib_tree(n - 2), fib_tree(n - 1)
-        return tree(label(left) + label(right), [left, right])
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">fib_tree</span><span style="color: #f38ba8;">(</span>n<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">if</span> n &lt;= 1:
+        <span style="color: #cba6f7;">return</span> tree<span style="color: #f38ba8;">(</span>n<span style="color: #f38ba8;">)</span>
+    <span style="color: #cba6f7;">else</span>:
+        <span style="color: #cdd6f4;">left</span>, <span style="color: #cdd6f4;">right</span> <span style="color: #89dceb;">=</span> fib_tree<span style="color: #f38ba8;">(</span>n - 2<span style="color: #f38ba8;">)</span>, fib_tree<span style="color: #f38ba8;">(</span>n - 1<span style="color: #f38ba8;">)</span>
+        <span style="color: #cba6f7;">return</span> tree<span style="color: #f38ba8;">(</span>label<span style="color: #fab387;">(</span>left<span style="color: #fab387;">)</span> + label<span style="color: #fab387;">(</span>right<span style="color: #fab387;">)</span>, <span style="color: #fab387;">[</span>left, right<span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>
 </code></pre>
 
 
@@ -208,11 +209,11 @@ An example of generating a tree programmatically is with the Fibonacci sequence:
 We can use recursion over a tree to count the number of leaves in the tree:
 </p>
 
-<pre><code class="language-python">def count_leaves(t):
-    if is_leaf(t):
-        return 1
-    else:
-        return sum([count_leaves(b) for b in branches(t)])
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">count_leaves</span><span style="color: #f38ba8;">(</span>t<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cba6f7;">if</span> is_leaf<span style="color: #f38ba8;">(</span>t<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">return</span> 1
+    <span style="color: #cba6f7;">else</span>:
+        <span style="color: #cba6f7;">return</span> <span style="color: #f38ba8;">sum</span><span style="color: #f38ba8;">(</span><span style="color: #fab387;">[</span>count_leaves<span style="color: #f9e2af;">(</span>b<span style="color: #f9e2af;">)</span> <span style="color: #cba6f7;">for</span> b <span style="color: #cba6f7;">in</span> branches<span style="color: #f9e2af;">(</span>t<span style="color: #f9e2af;">)</span><span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>
 </code></pre>
 
 
@@ -236,10 +237,10 @@ We can use recursion over a tree to count the number of leaves in the tree:
 Sometimes, we want to remove subtrees that satisfy certain criteria from a tree: this process is called <i>pruning</i>. Let's say we are given a <code>Tree</code> class, and we want to prune all the sub-trees whose root label is <code>n</code>:
 </p>
 
-<pre><code class="language-python">def prune(t, n):
-    t.branches = [b for b in t.branches if b.label != n]
-    for b in t.branches:
-        prune(b, n)
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">prune</span><span style="color: #f38ba8;">(</span>t, n<span style="color: #f38ba8;">)</span>:
+    t.<span style="color: #cdd6f4;">branches</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>b <span style="color: #cba6f7;">for</span> b <span style="color: #cba6f7;">in</span> t.branches <span style="color: #cba6f7;">if</span> b.label != n<span style="color: #f38ba8;">]</span>
+    <span style="color: #cba6f7;">for</span> b <span style="color: #cba6f7;">in</span> t.branches:
+        prune<span style="color: #f38ba8;">(</span>b, n<span style="color: #f38ba8;">)</span>
 </code></pre>
 
 

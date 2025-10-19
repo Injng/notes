@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Velocity and Acceleration</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,21 +125,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org647c9d7">1. Velocity and Acceleration</a>
+<li><a href="#org29d39b8">1. Velocity and Acceleration</a>
 <ul>
-<li><a href="#orgb049384">1.1. Arc Length</a></li>
-<li><a href="#org82d12dc">1.2. Unit Tangent Vector</a></li>
+<li><a href="#orgae3334e">1.1. Arc Length</a></li>
+<li><a href="#orgd821098">1.2. Unit Tangent Vector</a></li>
 </ul>
 </li>
-<li><a href="#orgdad7532">2. Kepler's Second Law</a></li>
+<li><a href="#org42ac93f">2. Kepler's Second Law</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org647c9d7" class="outline-2">
-<h2 id="org647c9d7"><span class="section-number-2">1.</span> Velocity and Acceleration</h2>
+<div id="outline-container-org29d39b8" class="outline-2">
+<h2 id="org29d39b8"><span class="section-number-2">1.</span> Velocity and Acceleration</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Recall that we can use <a href="lines.html#org150525a">parametric equations</a> to obtain a position vector. To get the <b>velocity</b> from our position vector, we take the derivative with respect to time:
+Recall that we can use <a href="lines.html#org0e23fdb">parametric equations</a> to obtain a position vector. To get the <b>velocity</b> from our position vector, we take the derivative with respect to time:
 </p>
 
 <p>
@@ -165,8 +166,8 @@ The <b>acceleration</b> is how fast the velocity is changing; in other words, th
 Realize that even if the speed is not changing, if the direction is changing then there is acceleration.
 </p>
 </div>
-<div id="outline-container-orgb049384" class="outline-3">
-<h3 id="orgb049384"><span class="section-number-3">1.1.</span> Arc Length</h3>
+<div id="outline-container-orgae3334e" class="outline-3">
+<h3 id="orgae3334e"><span class="section-number-3">1.1.</span> Arc Length</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The <b>arc length</b>, \(s\), is the distance travelled along a trajectory. We can take the derivative of this to obtain speed:
@@ -183,15 +184,15 @@ It is also possible to recover the length of the trajectory by integrating \(\fr
 </p>
 </div>
 </div>
-<div id="outline-container-org82d12dc" class="outline-3">
-<h3 id="org82d12dc"><span class="section-number-3">1.2.</span> Unit Tangent Vector</h3>
+<div id="outline-container-orgd821098" class="outline-3">
+<h3 id="orgd821098"><span class="section-number-3">1.2.</span> Unit Tangent Vector</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The velocity vector points tangent along the trajectory, and the <b>unit tangent vector</b> is simply that rescaled to a unit:
 </p>
 
 
-<div id="org0fc5fe6" class="figure">
+<div id="org8a76a0a" class="figure">
 <p><img src="../static/velocity1.png" alt="velocity1.png" />
 </p>
 </div>
@@ -228,8 +229,8 @@ This reveals an identity:
 </div>
 </div>
 </div>
-<div id="outline-container-orgdad7532" class="outline-2">
-<h2 id="orgdad7532"><span class="section-number-2">2.</span> Kepler's Second Law</h2>
+<div id="outline-container-org42ac93f" class="outline-2">
+<h2 id="org42ac93f"><span class="section-number-2">2.</span> Kepler's Second Law</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We can use <b>Kepler's Second Law</b> to illustrate the use of velocity and position vectors. Kepler's Second Law states that the <i>motion of planets is in a plane</i>, and that <i>the area swept out by the line from the Sun to the planets is at a constant rate</i>.
@@ -244,13 +245,13 @@ Now, consider the following diagram and vectors of the system:
 </p>
 
 
-<div id="orgf338ea7" class="figure">
+<div id="org2e41a7c" class="figure">
 <p><img src="../static/kepler1.png" alt="kepler1.png" />
 </p>
 </div>
 
 <p>
-The position vector, \(\vec{r}\), changes by \(\Delta \vec{r}\). Realize that to find the area of this space, we can approximate it to be a triangle when \(\Delta \vec{r}\) is small. Therefore, we can use <a href="vectors.html#org3a496c4">cross product</a> to find the area:
+The position vector, \(\vec{r}\), changes by \(\Delta \vec{r}\). Realize that to find the area of this space, we can approximate it to be a triangle when \(\Delta \vec{r}\) is small. Therefore, we can use <a href="vectors.html#orge9b8eb6">cross product</a> to find the area:
 </p>
 
 <p>

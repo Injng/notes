@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Determinants</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,48 +125,48 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb1a2c5c">1. Determinants</a>
+<li><a href="#org51792a6">1. Determinants</a>
 <ul>
-<li><a href="#orgf3750fe">1.1. Determinant of \(2 \times 2\)</a></li>
-<li><a href="#org93424b8">1.2. Determinant of \(3 \times 3\)</a></li>
-<li><a href="#org059032f">1.3. Determinant of \(n \times n\)</a>
+<li><a href="#orgf6c1e53">1.1. Determinant of \(2 \times 2\)</a></li>
+<li><a href="#orga40f809">1.2. Determinant of \(3 \times 3\)</a></li>
+<li><a href="#org1eb943c">1.3. Determinant of \(n \times n\)</a>
 <ul>
-<li><a href="#org5ce07a7">1.3.1. Proof</a></li>
+<li><a href="#org837d0c5">1.3.1. Proof</a></li>
 </ul>
 </li>
-<li><a href="#orgc1563c9">1.4. Determinant of Triangular Matrix</a></li>
-<li><a href="#org98a478c">1.5. Determinant of Identity Matrix</a></li>
-<li><a href="#orge2c0332">1.6. Product of Determinants</a></li>
+<li><a href="#org632ee18">1.4. Determinant of Triangular Matrix</a></li>
+<li><a href="#org5257db4">1.5. Determinant of Identity Matrix</a></li>
+<li><a href="#org7a6d709">1.6. Product of Determinants</a></li>
 </ul>
 </li>
-<li><a href="#org7a01fb9">2. Row Operations with Determinants</a>
+<li><a href="#org277a6df">2. Row Operations with Determinants</a>
 <ul>
-<li><a href="#orgd1bfa7b">2.1. Scaling</a></li>
-<li><a href="#orgeec5610">2.2. Interchanging</a></li>
-<li><a href="#org96a1d46">2.3. Addition</a></li>
+<li><a href="#orgde2efad">2.1. Scaling</a></li>
+<li><a href="#org8aa11d8">2.2. Interchanging</a></li>
+<li><a href="#orgfdc9dc1">2.3. Addition</a></li>
 </ul>
 </li>
-<li><a href="#orge465149">3. Cramer's Rule</a>
+<li><a href="#orge504d66">3. Cramer's Rule</a>
 <ul>
-<li><a href="#org6d773b0">3.1. Proof</a></li>
+<li><a href="#org815678f">3.1. Proof</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb1a2c5c" class="outline-2">
-<h2 id="orgb1a2c5c"><span class="section-number-2">1.</span> Determinants</h2>
+<div id="outline-container-org51792a6" class="outline-2">
+<h2 id="org51792a6"><span class="section-number-2">1.</span> Determinants</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The <b>determinant</b> of a matrix serves as a method for checking if a given square matrix is invertible or not. The fundamental principle of the determinant rests on the fact that a square matrix is invertible if <i>all the diagonal entries are nonzero</i> for its <a href="triangular_and_echelon_forms.html#org500af14">upper triangular form</a>, as this implies there is a <i>pivot in every row</i>.
+The <b>determinant</b> of a matrix serves as a method for checking if a given square matrix is invertible or not. The fundamental principle of the determinant rests on the fact that a square matrix is invertible if <i>all the diagonal entries are nonzero</i> for its <a href="triangular_and_echelon_forms.html#org6526e0c">upper triangular form</a>, as this implies there is a <i>pivot in every row</i>.
 </p>
 
 <p>
 That's what the determinant does: it yields a nonzero value only if all the diagonal entries for the upper triangular form of the square matrix are nonzero.
 </p>
 </div>
-<div id="outline-container-orgf3750fe" class="outline-3">
-<h3 id="orgf3750fe"><span class="section-number-3">1.1.</span> Determinant of \(2 \times 2\)</h3>
+<div id="outline-container-orgf6c1e53" class="outline-3">
+<h3 id="orgf6c1e53"><span class="section-number-3">1.1.</span> Determinant of \(2 \times 2\)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Given a \(2 \times 2\) matrix with the upper left entry nonzero, we can simplify the matrix to be upper triangular like so:
@@ -192,8 +193,8 @@ We want \(ad-bc \neq 0\). Thus, we call \(ad-bc\) the determinant of a \(2 \time
 </p>
 </div>
 </div>
-<div id="outline-container-org93424b8" class="outline-3">
-<h3 id="org93424b8"><span class="section-number-3">1.2.</span> Determinant of \(3 \times 3\)</h3>
+<div id="outline-container-orga40f809" class="outline-3">
+<h3 id="orga40f809"><span class="section-number-3">1.2.</span> Determinant of \(3 \times 3\)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 We can also try to turn a \(3 \times 3\) matrix into an upper triangular form, if the top left entry is nonzero (this can always be the case, unless the first entry for all the rows are zero, in which case it is clear that the matrix is not invertible):
@@ -246,8 +247,8 @@ This is precisely the determinant of a \(3 \times 3\) matrix. We can view this, 
 \end{align}
 </div>
 </div>
-<div id="outline-container-org059032f" class="outline-3">
-<h3 id="org059032f"><span class="section-number-3">1.3.</span> Determinant of \(n \times n\)</h3>
+<div id="outline-container-org1eb943c" class="outline-3">
+<h3 id="org1eb943c"><span class="section-number-3">1.3.</span> Determinant of \(n \times n\)</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 We can generalize our method to any \(n \times n\) matrix \(A=[a_{ij}]\). We call the determinant of the submatrix with the i-th row and j-th column removed the <b>minor</b> of an entry \(a_{ij}\), or \(M_{ij}\). Then, define the <b>cofactor</b> \(C_{ij}\) of entry \(a_{ij}\) to be \((-1)^{i+j}M_{ij}\).
@@ -265,8 +266,8 @@ We claim that we can apply <b>cofactor expansion</b> to any row and column to fi
 where \(i\) and \(j\) iterate along some row or column of \(A\).
 </p>
 </div>
-<div id="outline-container-org5ce07a7" class="outline-4">
-<h4 id="org5ce07a7"><span class="section-number-4">1.3.1.</span> Proof</h4>
+<div id="outline-container-org837d0c5" class="outline-4">
+<h4 id="org837d0c5"><span class="section-number-4">1.3.1.</span> Proof</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 We can see that cofactor expansion works using induction. We know that the base case, \(2 \times 2\), is true. The inductive hypothesis will assume that for any \(k \times k\) matrix, the cofactor expansion will find the determinant that will be non-zero if and only if it is invertible, that is, it will correctly determine invertibility.
@@ -331,8 +332,8 @@ Since the base case of \(2 \times 2\) is true, and the inductive step has shown 
 </div>
 </div>
 </div>
-<div id="outline-container-orgc1563c9" class="outline-3">
-<h3 id="orgc1563c9"><span class="section-number-3">1.4.</span> Determinant of Triangular Matrix</h3>
+<div id="outline-container-org632ee18" class="outline-3">
+<h3 id="org632ee18"><span class="section-number-3">1.4.</span> Determinant of Triangular Matrix</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 We want to consider the general determinant of an upper triangular matrix, like so:
@@ -364,16 +365,16 @@ So, the determinant of a triangular matrix is just the <i>product of the diagona
 </p>
 </div>
 </div>
-<div id="outline-container-org98a478c" class="outline-3">
-<h3 id="org98a478c"><span class="section-number-3">1.5.</span> Determinant of Identity Matrix</h3>
+<div id="outline-container-org5257db4" class="outline-3">
+<h3 id="org5257db4"><span class="section-number-3">1.5.</span> Determinant of Identity Matrix</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Since the identity matrix is in triangular form, with ones on the diagonal and zeroes everywhere else, the determinant of any identity matrix is just \(1\).
 </p>
 </div>
 </div>
-<div id="outline-container-orge2c0332" class="outline-3">
-<h3 id="orge2c0332"><span class="section-number-3">1.6.</span> Product of Determinants</h3>
+<div id="outline-container-org7a6d709" class="outline-3">
+<h3 id="org7a6d709"><span class="section-number-3">1.6.</span> Product of Determinants</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 A property of the product of determinants, if \(A, B\) are square matrices:
@@ -385,15 +386,15 @@ A property of the product of determinants, if \(A, B\) are square matrices:
 </div>
 </div>
 </div>
-<div id="outline-container-org7a01fb9" class="outline-2">
-<h2 id="org7a01fb9"><span class="section-number-2">2.</span> Row Operations with Determinants</h2>
+<div id="outline-container-org277a6df" class="outline-2">
+<h2 id="org277a6df"><span class="section-number-2">2.</span> Row Operations with Determinants</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We would like to understand how row operations would affect the determinant of a matrix. We will consider the three basic row operations: scaling, interchanging two rows, and adding a multiple of one row to another.
 </p>
 </div>
-<div id="outline-container-orgd1bfa7b" class="outline-3">
-<h3 id="orgd1bfa7b"><span class="section-number-3">2.1.</span> Scaling</h3>
+<div id="outline-container-orgde2efad" class="outline-3">
+<h3 id="orgde2efad"><span class="section-number-3">2.1.</span> Scaling</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Consider the \(2 \times 2\) case:
@@ -409,8 +410,8 @@ We see that <i>scaling a row in a matrix by \(r\) scales the determinant by \(r\
 </p>
 </div>
 </div>
-<div id="outline-container-orgeec5610" class="outline-3">
-<h3 id="orgeec5610"><span class="section-number-3">2.2.</span> Interchanging</h3>
+<div id="outline-container-org8aa11d8" class="outline-3">
+<h3 id="org8aa11d8"><span class="section-number-3">2.2.</span> Interchanging</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Consider the \(2 \times 2\) case:
@@ -434,8 +435,8 @@ The second case would be interchanging two non-adjacent rows. However, realize t
 </p>
 </div>
 </div>
-<div id="outline-container-org96a1d46" class="outline-3">
-<h3 id="org96a1d46"><span class="section-number-3">2.3.</span> Addition</h3>
+<div id="outline-container-orgfdc9dc1" class="outline-3">
+<h3 id="orgfdc9dc1"><span class="section-number-3">2.3.</span> Addition</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Consider the following \(3 \times 3\) matrix where the first row has been added to a multiple of the second row:
@@ -476,8 +477,8 @@ In other words, the determinant of a matrix that has one row added to the multip
 </div>
 </div>
 </div>
-<div id="outline-container-orge465149" class="outline-2">
-<h2 id="orge465149"><span class="section-number-2">3.</span> Cramer's Rule</h2>
+<div id="outline-container-orge504d66" class="outline-2">
+<h2 id="orge504d66"><span class="section-number-2">3.</span> Cramer's Rule</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>Cramer's rule</b> can be used to solve \(n \times n\) systems which have a unique solution. If \(A\) is \(n \times n\) and invertible, \(\mathbf{b}\) is \(n \times 1\), and we want to solve \(A\mathbf{x} = \mathbf{b}\), denote \(A_i(\mathbf{b})\) as the matrix \(A\) with its i-th column replaced by \(\mathbf{b}\). Then, Cramer's rule states that for \(A\mathbf{x} = \mathbf{b}\), where \(\mathbf{X} = (x_1, x_2, \dots, x_n)\), the solution is:
@@ -487,11 +488,11 @@ In other words, the determinant of a matrix that has one row added to the multip
 x_i = \frac{\det[A_i(\mathbf{b})]}{\det A}
 \end{align}
 </div>
-<div id="outline-container-org6d773b0" class="outline-3">
-<h3 id="org6d773b0"><span class="section-number-3">3.1.</span> Proof</h3>
+<div id="outline-container-org815678f" class="outline-3">
+<h3 id="org815678f"><span class="section-number-3">3.1.</span> Proof</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-Consider \(A \cdot I_i(\mathbf{x})\). We know that due to <a href="matrix_operations.html#orgf5e650e">matrix multiplication</a> by columns, we have the following:
+Consider \(A \cdot I_i(\mathbf{x})\). We know that due to <a href="matrix_operations.html#org60e74c2">matrix multiplication</a> by columns, we have the following:
 </p>
 
 \begin{align}

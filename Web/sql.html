@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SQL</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -92,18 +93,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf33c8df">1. Create Table</a></li>
+<li><a href="#org7d4503a">1. Create Table</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf33c8df" class="outline-2">
-<h2 id="orgf33c8df"><span class="section-number-2">1.</span> Create Table</h2>
+<div id="outline-container-org7d4503a" class="outline-2">
+<h2 id="org7d4503a"><span class="section-number-2">1.</span> Create Table</h2>
 <div class="outline-text-2" id="text-1">
-<pre><code class="language-sql-ts">CREATE TABLE members (
-    id SERIAL PRIMARY KEY,
-    email TEXT NOT NULL,
-    birthday DATE
-);
+<pre><code class="language-sql-ts"><span style="color: #cba6f7;">CREATE</span> <span style="color: #cba6f7;">TABLE</span> <span style="color: #f9e2af;">members</span> <span style="color: #f38ba8;">(</span>
+    id <span style="color: #f9e2af;">SERIAL</span> <span style="color: #cba6f7;">PRIMARY</span> <span style="color: #cba6f7;">KEY</span>,
+    email <span style="color: #f9e2af;">TEXT</span> NOT <span style="color: #f9e2af;">NULL</span>,
+    birthday <span style="color: #f9e2af;">DATE</span>
+<span style="color: #f38ba8;">)</span>;
 </code></pre>
 </div>
 </div>

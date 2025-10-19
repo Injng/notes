@@ -76,23 +76,16 @@ code {
   color: var(--red);
 }
 
-pre {
-  background-color: var(--mantle);
-  border: 1px solid var(--surface1);
-  border-radius: 6px;
-  padding: 1em;
+.hljs {
+  display: block;
   overflow-x: auto;
-  margin: 1em 0;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-  font-size: 0.85em;
-  line-height: 1.4;
-}
-
-pre code {
-  background: none;
-  padding: 0;
-  border-radius: 0;
+  padding: 1em;
+  background: var(--base);
   color: var(--text);
+  border-radius: 0.75rem;
+  border: 1px solid var(--surface1);
+  line-height: 1.5;
+  font-family: "JetBrains Mono", "Fira Code", monospace;
 }
 
 /* Org-mode specific elements */
@@ -135,33 +128,6 @@ pre code {
   margin: 0 0 2em 0;
 }
 
-/* Core Htmlize Syntax Highlighting Classes */
-.org-keyword { color: var(--mauve); font-weight: bold; }
-.org-string { color: var(--green); }
-.org-comment { color: var(--overlay1); font-style: italic; }
-.org-comment-delimiter { color: var(--overlay1); }
-.org-type { color: var(--yellow); }
-.org-variable-name { color: var(--text); }
-.org-function-name { color: var(--blue); font-weight: bold; }
-.org-constant { color: var(--peach); }
-.org-builtin { color: var(--red); }
-.org-preprocessor { color: var(--pink); }
-.org-doc { color: var(--green); font-style: italic; }
-
-/* Additional Core Syntax Elements */
-.org-negation-char { color: var(--red); }
-.org-regexp-grouping-backslash { color: var(--yellow); }
-.org-regexp-grouping-construct { color: var(--mauve); }
-.org-escape-glyph { color: var(--peach); }
-.org-number { color: var(--peach); }
-.org-float { color: var(--peach); }
-.org-boolean { color: var(--peach); }
-.org-symbol { color: var(--text); }
-.org-operator { color: var(--sky); }
-.org-delimiter { color: var(--overlay2); }
-.org-bracket { color: var(--overlay2); }
-.org-parenthesis { color: var(--overlay2); }
-
 /* Font Lock Faces */
 .org-font-lock-builtin-face { color: var(--red); }
 .org-font-lock-comment-delimiter-face { color: var(--overlay1); }
@@ -178,100 +144,6 @@ pre code {
 .org-font-lock-type-face { color: var(--yellow); }
 .org-font-lock-variable-name-face { color: var(--text); }
 .org-font-lock-warning-face { color: var(--yellow); background-color: var(--mantle); }
-
-/* Language-Specific Syntax Highlighting */
-.org-sh-quoted-exec { color: var(--green); }
-.org-sh-heredoc { color: var(--green); font-style: italic; }
-.org-sh-variable { color: var(--text); }
-
-.org-lisp-keyword { color: var(--mauve); }
-.org-lisp-symbol { color: var(--text); }
-.org-lisp-function { color: var(--blue); }
-
-.org-python-keyword { color: var(--mauve); }
-.org-python-builtin { color: var(--red); }
-.org-python-decorator { color: var(--pink); }
-.org-python-exception { color: var(--red); }
-
-.org-javascript-keyword { color: var(--mauve); }
-.org-javascript-builtin { color: var(--red); }
-.org-javascript-function { color: var(--blue); }
-
-.org-c-keyword { color: var(--mauve); }
-.org-c-type { color: var(--yellow); }
-.org-c-constant { color: var(--peach); }
-.org-c-preprocessor { color: var(--pink); }
-
-.org-cpp-keyword { color: var(--mauve); }
-.org-cpp-type { color: var(--yellow); }
-.org-cpp-constant { color: var(--peach); }
-
-.org-java-keyword { color: var(--mauve); }
-.org-java-type { color: var(--yellow); }
-.org-java-constant { color: var(--peach); }
-
-.org-rust-keyword { color: var(--mauve); }
-.org-rust-type { color: var(--yellow); }
-.org-rust-constant { color: var(--peach); }
-.org-rust-macro { color: var(--pink); }
-
-.org-go-keyword { color: var(--mauve); }
-.org-go-type { color: var(--yellow); }
-.org-go-constant { color: var(--peach); }
-
-.org-ruby-keyword { color: var(--mauve); }
-.org-ruby-constant { color: var(--peach); }
-.org-ruby-symbol { color: var(--sky); }
-
-.org-php-keyword { color: var(--mauve); }
-.org-php-variable { color: var(--text); }
-.org-php-constant { color: var(--peach); }
-
-.org-css-selector { color: var(--blue); }
-.org-css-property { color: var(--sky); }
-.org-css-pseudo-class { color: var(--mauve); }
-.org-css-at-rule { color: var(--pink); }
-
-.org-html-tag { color: var(--red); }
-.org-html-tag-name { color: var(--blue); }
-.org-html-attribute-name { color: var(--yellow); }
-.org-html-attribute-value { color: var(--green); }
-
-.org-xml-tag { color: var(--red); }
-.org-xml-attribute-name { color: var(--yellow); }
-.org-xml-attribute-value { color: var(--green); }
-
-.org-json-keyword { color: var(--mauve); }
-.org-json-string { color: var(--green); }
-.org-json-number { color: var(--peach); }
-.org-json-boolean { color: var(--peach); }
-
-.org-yaml-key { color: var(--blue); }
-.org-yaml-value { color: var(--green); }
-.org-yaml-anchor { color: var(--pink); }
-
-.org-sql-keyword { color: var(--mauve); }
-.org-sql-builtin { color: var(--red); }
-.org-sql-table { color: var(--yellow); }
-
-/* Additional Syntax Highlighting Classes */
-.org-warning { color: var(--yellow); background-color: var(--mantle); }
-.org-error { color: var(--red); background-color: var(--mantle); }
-.org-success { color: var(--green); }
-.org-info { color: var(--blue); }
-.org-function-call { color: var(--blue); }
-.org-method-call { color: var(--blue); }
-.org-class-name { color: var(--yellow); }
-.org-interface-name { color: var(--yellow); }
-.org-namespace { color: var(--sky); }
-.org-module { color: var(--sky); }
-.org-package { color: var(--sky); }
-.org-import { color: var(--pink); }
-.org-annotation { color: var(--pink); }
-.org-attribute { color: var(--pink); }
-.org-label { color: var(--flamingo); }
-.org-macro { color: var(--pink); }
-.org-template { color: var(--pink); }
 
 /* Org-mode Specific Elements */
 .org-drawer { color: var(--overlay1); }

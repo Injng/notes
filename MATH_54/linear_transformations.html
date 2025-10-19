@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Transformations</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,24 +125,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org884b008">1. Linear Transformations</a>
+<li><a href="#orgfc8d851">1. Linear Transformations</a>
 <ul>
-<li><a href="#org4147b62">1.1. Contraction/Dilation</a></li>
+<li><a href="#orge709ca0">1.1. Contraction/Dilation</a></li>
 </ul>
 </li>
-<li><a href="#org832f3a3">2. Matrix of a Linear Transformation</a>
+<li><a href="#orgc1e75e0">2. Matrix of a Linear Transformation</a>
 <ul>
-<li><a href="#orgb3ea7d9">2.1. Existence and Uniqueness</a></li>
+<li><a href="#orgab3918f">2.1. Existence and Uniqueness</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org884b008" class="outline-2">
-<h2 id="org884b008"><span class="section-number-2">1.</span> Linear Transformations</h2>
+<div id="outline-container-orgfc8d851" class="outline-2">
+<h2 id="orgfc8d851"><span class="section-number-2">1.</span> Linear Transformations</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-We can think of matrices not just as <a href="linear_systems.html#org319e208">linear combinations</a>, but also as transformations: when a matrix \(A\) multiplies a vector \(\mathbf{v}\), it transforms that vector into another vector \(A\mathbf{v}\). More precisely, a <b>transformation</b> \(T: \mathbb{R}^n \rightarrow \mathbb{R}^m\) is a function that takes vectors \(\mathbf{v}\) to vectors \(T(\mathbf{v})\) whose <b>domain</b> is \(\mathbb{R}^n\) and whose <b>codomain</b> is \(\mathbb{R}^m\).
+We can think of matrices not just as <a href="linear_systems.html#org32d3fa3">linear combinations</a>, but also as transformations: when a matrix \(A\) multiplies a vector \(\mathbf{v}\), it transforms that vector into another vector \(A\mathbf{v}\). More precisely, a <b>transformation</b> \(T: \mathbb{R}^n \rightarrow \mathbb{R}^m\) is a function that takes vectors \(\mathbf{v}\) to vectors \(T(\mathbf{v})\) whose <b>domain</b> is \(\mathbb{R}^n\) and whose <b>codomain</b> is \(\mathbb{R}^m\).
 </p>
 
 <p>
@@ -165,8 +166,8 @@ To check if some \(T\) is a linear transformation, we can combine both of the co
 \boxed{T(c\mathbf{u} + \mathbf{v}) = c \cdot T(\mathbf{u}) + T(\mathbf{v}) \quad \forall \: c \in \mathbb{R}, \: \mathbf{u}, \mathbf{v} \in \mathbb{R}^n}
 \end{align}
 </div>
-<div id="outline-container-org4147b62" class="outline-3">
-<h3 id="org4147b62"><span class="section-number-3">1.1.</span> Contraction/Dilation</h3>
+<div id="outline-container-orge709ca0" class="outline-3">
+<h3 id="orge709ca0"><span class="section-number-3">1.1.</span> Contraction/Dilation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 One common type of linear transformation is a <b>contraction/dilation</b> transformation. This is represented by:
@@ -188,8 +189,8 @@ T(c\mathbf{u} + \mathbf{v}) &= r(c\mathbf{u} + \mathbf{v}) \\
 </div>
 </div>
 </div>
-<div id="outline-container-org832f3a3" class="outline-2">
-<h2 id="org832f3a3"><span class="section-number-2">2.</span> Matrix of a Linear Transformation</h2>
+<div id="outline-container-orgc1e75e0" class="outline-2">
+<h2 id="orgc1e75e0"><span class="section-number-2">2.</span> Matrix of a Linear Transformation</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Given the <i>standard</i> basis vectors in \(\mathbb{R}^n\), where \(e_i\) has 1 in the i-th position and 0 everywhere else:
@@ -203,7 +204,7 @@ Given the <i>standard</i> basis vectors in \(\mathbb{R}^n\), where \(e_i\) has 1
 \end{aligned}
 
 <p>
-Notice that we can use these standard vectors to make up any other vector in \(\mathbb{R}^n\); in other words, they <i>span</i> \(\mathbb{R}^n\), as any other vector is a <a href="linear_systems.html#org319e208">linear combination</a> of these vectors. Therefore, given constants \(c_1, c_2, \dots, c_n\) that make up the vector \(\mathbf{v}\) and linear transformation \(T\):
+Notice that we can use these standard vectors to make up any other vector in \(\mathbb{R}^n\); in other words, they <i>span</i> \(\mathbb{R}^n\), as any other vector is a <a href="linear_systems.html#org32d3fa3">linear combination</a> of these vectors. Therefore, given constants \(c_1, c_2, \dots, c_n\) that make up the vector \(\mathbf{v}\) and linear transformation \(T\):
 </p>
 
 \begin{aligned}
@@ -223,11 +224,11 @@ T(\mathbf{x}) = A\mathbf{x}
 where \(A = \begin{bmatrix} T(\mathbf{e_1}) & T(\mathbf{e_2}) & \cdots & T(\mathbf{e_n}) \end{bmatrix}\).
 </p>
 </div>
-<div id="outline-container-orgb3ea7d9" class="outline-3">
-<h3 id="orgb3ea7d9"><span class="section-number-3">2.1.</span> Existence and Uniqueness</h3>
+<div id="outline-container-orgab3918f" class="outline-3">
+<h3 id="orgab3918f"><span class="section-number-3">2.1.</span> Existence and Uniqueness</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-The concept of a linear transformation allows us to understand <a href="triangular_and_echelon_forms.html#org194300a">existence and uniqueness</a> through a different perspective.
+The concept of a linear transformation allows us to understand <a href="triangular_and_echelon_forms.html#orgce54cb8">existence and uniqueness</a> through a different perspective.
 </p>
 
 <p>

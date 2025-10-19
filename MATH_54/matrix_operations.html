@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matrix Operations</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,26 +125,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgeb5de9b">1. Matrix Addition</a></li>
-<li><a href="#orgf5e650e">2. Matrix Multiplication</a>
+<li><a href="#org3384f8f">1. Matrix Addition</a></li>
+<li><a href="#org60e74c2">2. Matrix Multiplication</a>
 <ul>
-<li><a href="#org913a730">2.1. Multiplication Properties</a></li>
-<li><a href="#orgf3ebb08">2.2. Identity</a></li>
+<li><a href="#orga2a4f48">2.1. Multiplication Properties</a></li>
+<li><a href="#org48003c1">2.2. Identity</a></li>
 </ul>
 </li>
-<li><a href="#orga845f9c">3. Matrix Transposition</a>
+<li><a href="#org7bb1bb5">3. Matrix Transposition</a>
 <ul>
-<li><a href="#org3f876ba">3.1. Transposition Properties</a></li>
+<li><a href="#org95c1cd8">3.1. Transposition Properties</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeb5de9b" class="outline-2">
-<h2 id="orgeb5de9b"><span class="section-number-2">1.</span> Matrix Addition</h2>
+<div id="outline-container-org3384f8f" class="outline-2">
+<h2 id="org3384f8f"><span class="section-number-2">1.</span> Matrix Addition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-If we think of two matrices as <a href="linear_transformations.html#org884b008">linear transformations</a>, <b>matrix addition</b> will only be defined if their codomain and domain are the same; in other words, \(A+B\) is only defined if \(A\) and \(B\) are the same size.
+If we think of two matrices as <a href="linear_transformations.html#orgfc8d851">linear transformations</a>, <b>matrix addition</b> will only be defined if their codomain and domain are the same; in other words, \(A+B\) is only defined if \(A\) and \(B\) are the same size.
 </p>
 
 <p>
@@ -155,11 +156,11 @@ If \(A = \begin{bmatrix} a_{ij} \end{bmatrix}\) and \(B = \begin{bmatrix} b_{ij}
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgf5e650e" class="outline-2">
-<h2 id="orgf5e650e"><span class="section-number-2">2.</span> Matrix Multiplication</h2>
+<div id="outline-container-org60e74c2" class="outline-2">
+<h2 id="org60e74c2"><span class="section-number-2">2.</span> Matrix Multiplication</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-If \(A\) and \(B\) are matrices, then we can consider their associated <a href="linear_transformations.html#org884b008">linear transformations</a> \(T\) and \(S\). We define <b>matrix multiplication</b> to be analogous to the composition of two transformations, i.e. \(T \circ S\).
+If \(A\) and \(B\) are matrices, then we can consider their associated <a href="linear_transformations.html#orgfc8d851">linear transformations</a> \(T\) and \(S\). We define <b>matrix multiplication</b> to be analogous to the composition of two transformations, i.e. \(T \circ S\).
 </p>
 
 <p>
@@ -174,8 +175,8 @@ We know that multiplying a matrix by a column vector is done by forming a new ma
 \boxed{AB = \begin{bmatrix} Ab_1 & Ab_2 & \cdots & Ab_p \end{bmatrix}}
 \end{align}
 </div>
-<div id="outline-container-org913a730" class="outline-3">
-<h3 id="org913a730"><span class="section-number-3">2.1.</span> Multiplication Properties</h3>
+<div id="outline-container-orga2a4f48" class="outline-3">
+<h3 id="orga2a4f48"><span class="section-number-3">2.1.</span> Multiplication Properties</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Matrix multiplication is <b>associative</b>:
@@ -198,8 +199,8 @@ We can understand this through the analogue of the composition of two transforma
 </p>
 </div>
 </div>
-<div id="outline-container-orgf3ebb08" class="outline-3">
-<h3 id="orgf3ebb08"><span class="section-number-3">2.2.</span> Identity</h3>
+<div id="outline-container-org48003c1" class="outline-3">
+<h3 id="org48003c1"><span class="section-number-3">2.2.</span> Identity</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The \(n \times n\) <b>identity matrix</b> \(I_n\) is the matrix that implements the identity transformation:
@@ -225,8 +226,8 @@ A \cdot I_n = I_n \cdot A = A
 </div>
 </div>
 </div>
-<div id="outline-container-orga845f9c" class="outline-2">
-<h2 id="orga845f9c"><span class="section-number-2">3.</span> Matrix Transposition</h2>
+<div id="outline-container-org7bb1bb5" class="outline-2">
+<h2 id="org7bb1bb5"><span class="section-number-2">3.</span> Matrix Transposition</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The <b>transpose</b> \(A^T\) of a matrix \(A\) is \(A\) with the rows and columns switched. Thus, if \(A\) was a \(m \times n\) matrix, then \(A^T\) would be a \(n \times m\) matrix:
@@ -236,8 +237,8 @@ The <b>transpose</b> \(A^T\) of a matrix \(A\) is \(A\) with the rows and column
 \boxed{A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix} \quad A^T = \begin{bmatrix} a_{11} & \cdots & a_{m1} \\ a_{12} & \cdots & a_{m2} \\ \vdots \\ a_{1n} & \cdots & a_{mn} \end{bmatrix}}
 \end{align}
 </div>
-<div id="outline-container-org3f876ba" class="outline-3">
-<h3 id="org3f876ba"><span class="section-number-3">3.1.</span> Transposition Properties</h3>
+<div id="outline-container-org95c1cd8" class="outline-3">
+<h3 id="org95c1cd8"><span class="section-number-3">3.1.</span> Transposition Properties</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Two useful properties of transpose:

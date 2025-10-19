@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-17 Fri 10:55 -->
+<!-- 2025-10-19 Sun 13:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lines and Parametric Curves</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
@@ -124,33 +125,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf0c6b5a">1. Equations of Lines</a>
+<li><a href="#orgb9a22f0">1. Equations of Lines</a>
 <ul>
-<li><a href="#org27bd70c">1.1. Given Two Points</a></li>
-<li><a href="#org5d35512">1.2. Intersection with a Plane</a></li>
+<li><a href="#org70bfe01">1.1. Given Two Points</a></li>
+<li><a href="#org7a56431">1.2. Intersection with a Plane</a></li>
 </ul>
 </li>
-<li><a href="#org150525a">2. General Parametric Equations</a>
+<li><a href="#org0e23fdb">2. General Parametric Equations</a>
 <ul>
-<li><a href="#org6579d6d">2.1. Cycloid</a></li>
+<li><a href="#org29facec">2.1. Cycloid</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf0c6b5a" class="outline-2">
-<h2 id="orgf0c6b5a"><span class="section-number-2">1.</span> Equations of Lines</h2>
+<div id="outline-container-orgb9a22f0" class="outline-2">
+<h2 id="orgb9a22f0"><span class="section-number-2">1.</span> Equations of Lines</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-<a href="planes.html#org245e825">We have seen that</a> a line is formed from the intersection of two planes. Therefore, it is possible to define a line as the intersection between two equations of planes.
+<a href="planes.html#orgdcd0a53">We have seen that</a> a line is formed from the intersection of two planes. Therefore, it is possible to define a line as the intersection between two equations of planes.
 </p>
 
 <p>
 However, this isn't particularly convenient. Another way of thinking about this is by considering the trajectory of a moving point, in other words, <b>parametric equations</b>.
 </p>
 </div>
-<div id="outline-container-org27bd70c" class="outline-3">
-<h3 id="org27bd70c"><span class="section-number-3">1.1.</span> Given Two Points</h3>
+<div id="outline-container-org70bfe01" class="outline-3">
+<h3 id="org70bfe01"><span class="section-number-3">1.1.</span> Given Two Points</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 A line can be defined by two points in space, say \(Q_0\) and \(Q_1\). We can define a parametric equation with time variable \(t\), where \(Q(t)\) is our moving point which we shall say moves at constant speed on the line. This speed will be chosen such that at \(Q(0)=Q_0\) and \(Q(1)=Q_1\).
@@ -187,8 +188,8 @@ z(t) &= c_0+(c_1-c_0)t
 \end{aligned}
 </div>
 </div>
-<div id="outline-container-org5d35512" class="outline-3">
-<h3 id="org5d35512"><span class="section-number-3">1.2.</span> Intersection with a Plane</h3>
+<div id="outline-container-org7a56431" class="outline-3">
+<h3 id="org7a56431"><span class="section-number-3">1.2.</span> Intersection with a Plane</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 We can use our parametric equations to consider the question: given a plane, does the line intersect with the plane, and if so, where?
@@ -208,22 +209,22 @@ There are also cases when we plug our equations for \(x(t),y(t),z(t)\), we get a
 </div>
 </div>
 </div>
-<div id="outline-container-org150525a" class="outline-2">
-<h2 id="org150525a"><span class="section-number-2">2.</span> General Parametric Equations</h2>
+<div id="outline-container-org0e23fdb" class="outline-2">
+<h2 id="org0e23fdb"><span class="section-number-2">2.</span> General Parametric Equations</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Now, we shall explore parametric equations more generally. A <b>parametric equation</b> is a function that describes some characteristic, such as the coordinates of a point, using one or more <i>independent variables</i>, known as <b>parameters</b>, such as time \(t\) or angle \(\theta\).
 </p>
 </div>
-<div id="outline-container-org6579d6d" class="outline-3">
-<h3 id="org6579d6d"><span class="section-number-3">2.1.</span> Cycloid</h3>
+<div id="outline-container-org29facec" class="outline-3">
+<h3 id="org29facec"><span class="section-number-3">2.1.</span> Cycloid</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Consider a <b>cycloid</b> function, which is the trajectory when you consider a fixed point on a wheel as it rolls forward, like so:
 </p>
 
 
-<div id="org4674698" class="figure">
+<div id="orgefd62a3" class="figure">
 <p><img src="../static/cycloid.gif" alt="cycloid.gif" />
 </p>
 </div>
@@ -237,7 +238,7 @@ Now, consider the vector \(\vec{OP}\), where \(O\) is the origin and \(P\) is th
 </p>
 
 
-<div id="orgbb6b6c2" class="figure">
+<div id="org6c75c4a" class="figure">
 <p><img src="../static/cycloid2.png" alt="cycloid2.png" />
 </p>
 </div>
@@ -257,7 +258,7 @@ Now, let's call the radius of the wheel \(a\). As the ball moves without slippin
 </p>
 
 
-<div id="org714149f" class="figure">
+<div id="orgeb5e7a5" class="figure">
 <p><img src="../static/cycloid3.png" alt="cycloid3.png" />
 </p>
 </div>
@@ -276,7 +277,7 @@ Now, consider \(\vec{BP}\):
 </p>
 
 
-<div id="org6aacdc4" class="figure">
+<div id="orgf5f247e" class="figure">
 <p><img src="../static/cycloid4.png" alt="cycloid4.png" />
 </p>
 </div>
