@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 13:31 -->
+<!-- 2025-10-19 Sun 17:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Electric Fields</title>
@@ -12,10 +12,211 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -125,29 +326,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org538307e">1. Introduction to Electrostatics</a>
+<li><a href="#orgb1814c3">1. Introduction to Electrostatics</a>
 <ul>
-<li><a href="#org5e5738f">1.1. Charges</a></li>
-<li><a href="#org9771256">1.2. Coulomb's Law</a></li>
+<li><a href="#orgcff836d">1.1. Charges</a></li>
+<li><a href="#org7ab7049">1.2. Coulomb's Law</a></li>
 </ul>
 </li>
-<li><a href="#org294a0ec">2. Electric Fields</a>
+<li><a href="#org4db08b5">2. Electric Fields</a>
 <ul>
-<li><a href="#org3b06704">2.1. Electric Field Lines</a></li>
-<li><a href="#org0815b7b">2.2. Electric Field Due to an Infinite Line of Charge</a></li>
-<li><a href="#orgde9c832">2.3. Electric Field Due to an Infinite Plane of Charge</a></li>
+<li><a href="#org50e1d97">2.1. Electric Field Lines</a></li>
+<li><a href="#orgf9b053c">2.2. Electric Field Due to an Infinite Line of Charge</a></li>
+<li><a href="#org215c46f">2.3. Electric Field Due to an Infinite Plane of Charge</a></li>
 </ul>
 </li>
-<li><a href="#org9013566">3. Conductors and Insulators</a>
+<li><a href="#orgece00eb">3. Conductors and Insulators</a>
 <ul>
-<li><a href="#orgcf7ad34">3.1. Conductors</a></li>
+<li><a href="#orgd9e07c2">3.1. Conductors</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org538307e" class="outline-2">
-<h2 id="org538307e"><span class="section-number-2">1.</span> Introduction to Electrostatics</h2>
+<div id="outline-container-orgb1814c3" class="outline-2">
+<h2 id="orgb1814c3"><span class="section-number-2">1.</span> Introduction to Electrostatics</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 To begin our discussion of electric fields, we should first consider the study of <b>electrostatics</b>
@@ -161,8 +362,8 @@ Electrostatics is the study of charges that are not moving (the opposite of that
 One law upholds the entirety of electrostatics, and that law is known as Coulomb's Law.
 </p>
 </div>
-<div id="outline-container-org5e5738f" class="outline-3">
-<h3 id="org5e5738f"><span class="section-number-3">1.1.</span> Charges</h3>
+<div id="outline-container-orgcff836d" class="outline-3">
+<h3 id="orgcff836d"><span class="section-number-3">1.1.</span> Charges</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Charges are the gateway to electricity and magnetism. To be able to play this game, you must have charge. In a way, charge can be seen as a physical property.
@@ -181,8 +382,8 @@ Charge is also conserved locally.  Charge cannot be universally conserved, as th
 </p>
 </div>
 </div>
-<div id="outline-container-org9771256" class="outline-3">
-<h3 id="org9771256"><span class="section-number-3">1.2.</span> Coulomb's Law</h3>
+<div id="outline-container-org7ab7049" class="outline-3">
+<h3 id="org7ab7049"><span class="section-number-3">1.2.</span> Coulomb's Law</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Now onto this great law known as Coulomb's Law. It basically states that the force experienced by a charged particle due to another charged particle is directly proportional to their charges and inversely proportional to their squared distance:
@@ -194,8 +395,8 @@ Notice its similarities with the Universal Law of Gravitation.
 </div>
 </div>
 </div>
-<div id="outline-container-org294a0ec" class="outline-2">
-<h2 id="org294a0ec"><span class="section-number-2">2.</span> Electric Fields</h2>
+<div id="outline-container-org4db08b5" class="outline-2">
+<h2 id="org4db08b5"><span class="section-number-2">2.</span> Electric Fields</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Electric fields are basically just a generalization of Coulomb's Law. We remove the actual physical charge from the law, and consider only a "test charge" — theorizing "what would happen" if a charge was actually there.
@@ -225,8 +426,8 @@ F_C = qE
 Very convenient!
 </p>
 </div>
-<div id="outline-container-org3b06704" class="outline-3">
-<h3 id="org3b06704"><span class="section-number-3">2.1.</span> Electric Field Lines</h3>
+<div id="outline-container-org50e1d97" class="outline-3">
+<h3 id="org50e1d97"><span class="section-number-3">2.1.</span> Electric Field Lines</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Now, some genius thought of a method to visualize electric fields by drawing lines to represent the force vectors.
@@ -237,15 +438,15 @@ This is particularly ingenious because the density of the lines directly correla
 </p>
 </div>
 </div>
-<div id="outline-container-org0815b7b" class="outline-3">
-<h3 id="org0815b7b"><span class="section-number-3">2.2.</span> Electric Field Due to an Infinite Line of Charge</h3>
+<div id="outline-container-orgf9b053c" class="outline-3">
+<h3 id="orgf9b053c"><span class="section-number-3">2.2.</span> Electric Field Due to an Infinite Line of Charge</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Now we will attempt to calculate the electric field due to an infinite wire containing charge of density \(\lambda\) Coulombs per meter:
 </p>
 
 
-<div id="orgdb7dcff" class="figure">
+<div id="orgf885ac8" class="figure">
 <p><img src="../static/infinite_line_charge.png" alt="infinite_line_charge.png" />
 </p>
 </div>
@@ -321,8 +522,8 @@ There is something interesting about this. How does this field get weaker as dis
 </p>
 </div>
 </div>
-<div id="outline-container-orgde9c832" class="outline-3">
-<h3 id="orgde9c832"><span class="section-number-3">2.3.</span> Electric Field Due to an Infinite Plane of Charge</h3>
+<div id="outline-container-org215c46f" class="outline-3">
+<h3 id="org215c46f"><span class="section-number-3">2.3.</span> Electric Field Due to an Infinite Plane of Charge</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Now we will consider the electric field due to an infinite sheet of positive charge, with charge density \(\sigma\) (notice the \(\sigma\) is used for Coulombs per area, and \(\lambda\) is used for Coulombs per length).
@@ -333,7 +534,7 @@ Now, notice by symmetry arguments similar to what we did for an infinite line, t
 </p>
 
 
-<div id="orgb09e092" class="figure">
+<div id="org81a19e8" class="figure">
 <p><img src="../static/infinite_plane_charge.png" alt="infinite_plane_charge.png" />
 </p>
 </div>
@@ -418,12 +619,12 @@ Intuitively, you could look at the perpendicular component and reach a viable ar
 </div>
 </div>
 </div>
-<div id="outline-container-org9013566" class="outline-2">
-<h2 id="org9013566"><span class="section-number-2">3.</span> Conductors and Insulators</h2>
+<div id="outline-container-orgece00eb" class="outline-2">
+<h2 id="orgece00eb"><span class="section-number-2">3.</span> Conductors and Insulators</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgcf7ad34" class="outline-3">
-<h3 id="orgcf7ad34"><span class="section-number-3">3.1.</span> Conductors</h3>
+<div id="outline-container-orgd9e07c2" class="outline-3">
+<h3 id="orgd9e07c2"><span class="section-number-3">3.1.</span> Conductors</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Another important application of electric field is to conductors and insulators. Conductors conduct electricity by allowing free-moving electrons to pass through. This, through the perspective of charges and electric fields, brings up two interesting results.

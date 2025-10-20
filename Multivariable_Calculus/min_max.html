@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 13:31 -->
+<!-- 2025-10-19 Sun 17:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Min/Max Problems</title>
@@ -12,10 +12,211 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -125,25 +326,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgca62f34">1. Linear Approximations</a></li>
-<li><a href="#orgabee6b1">2. Min/Max Problems</a>
+<li><a href="#orgdd6436a">1. Linear Approximations</a></li>
+<li><a href="#org708e3dd">2. Min/Max Problems</a>
 <ul>
-<li><a href="#orgbda9d98">2.1. Saddle Point</a></li>
-<li><a href="#orgfee38e8">2.2. Second Derivative Test</a>
+<li><a href="#org8911681">2.1. Saddle Point</a></li>
+<li><a href="#orgf3135fc">2.2. Second Derivative Test</a>
 <ul>
-<li><a href="#org3f22b64">2.2.1. Special Case</a></li>
-<li><a href="#org8ae4d4c">2.2.2. General Case</a></li>
-<li><a href="#orgd17bf93">2.2.3. Intuition to General Case</a></li>
+<li><a href="#org1349ef8">2.2.1. Special Case</a></li>
+<li><a href="#org606cf30">2.2.2. General Case</a></li>
+<li><a href="#org4ad4d4b">2.2.3. Intuition to General Case</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgf484cdb">3. Least-Squares Interpolation</a></li>
+<li><a href="#org25934e0">3. Least-Squares Interpolation</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgca62f34" class="outline-2">
-<h2 id="orgca62f34"><span class="section-number-2">1.</span> Linear Approximations</h2>
+<div id="outline-container-orgdd6436a" class="outline-2">
+<h2 id="orgdd6436a"><span class="section-number-2">1.</span> Linear Approximations</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Just like with one variable, we can also do linear approximations on two or more variables. If we change \(x\) by a small amount \(\Delta x\), and \(y\) by a small amount \(\Delta y\), then we can say that if \(z=f(x,y)\):
@@ -160,7 +361,7 @@ The intuition for this is that the effects add up. By changing \(x\) by a small 
 </p>
 
 
-<div id="org6213ee5" class="figure">
+<div id="org0e4c970" class="figure">
 <p><img src="../static/min_max1.png" alt="min_max1.png" />
 </p>
 </div>
@@ -210,8 +411,8 @@ z = z_0 + a(x-x_0) + b(y-y_0)
 </p>
 </div>
 </div>
-<div id="outline-container-orgabee6b1" class="outline-2">
-<h2 id="orgabee6b1"><span class="section-number-2">2.</span> Min/Max Problems</h2>
+<div id="outline-container-org708e3dd" class="outline-2">
+<h2 id="org708e3dd"><span class="section-number-2">2.</span> Min/Max Problems</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The first observation we shall make is that <i>at a local minimum or maximum</i>, \(f_x=0\) <i>and</i> \(f_y=0\). This can be seen as because if either partial derivative is not 0, then you can still move in that direction to obtain a value that is either greater than or less than the current value, thus making it not a minimum of maximum.
@@ -221,22 +422,22 @@ The first observation we shall make is that <i>at a local minimum or maximum</i>
 More generally, we call \((x_0,y_0)\) to be a <b>critical point</b> of \(f\) if \(f_x(x_0,y_0)=0\) and \(f_y(x_0,y_0)=0\). To find these critical points, we can take the partial derivatives, set their results to zero, and solve their resulting system of equations for the points.
 </p>
 </div>
-<div id="outline-container-orgbda9d98" class="outline-3">
-<h3 id="orgbda9d98"><span class="section-number-3">2.1.</span> Saddle Point</h3>
+<div id="outline-container-org8911681" class="outline-3">
+<h3 id="org8911681"><span class="section-number-3">2.1.</span> Saddle Point</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 It is interesting to note that in three dimensions, there could be a case where a critical point is <i>neither a local min or a local max</i>. This is known as a <b>saddle point</b> (so-called because it looks like a saddle, see below), where moving along one direction would be a local minimum, yet moving along the other direction would be a local maximum:
 </p>
 
 
-<div id="orgc1af566" class="figure">
+<div id="org76a5047" class="figure">
 <p><img src="../static/min_max2.png" alt="min_max2.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfee38e8" class="outline-3">
-<h3 id="orgfee38e8"><span class="section-number-3">2.2.</span> Second Derivative Test</h3>
+<div id="outline-container-orgf3135fc" class="outline-3">
+<h3 id="orgf3135fc"><span class="section-number-3">2.2.</span> Second Derivative Test</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Once we find the critical points, however, we still have no way of telling if it is a local minimum, a local maximum, or a saddle point. In addition, we would also like to know the <i>global</i> minimum and maximum.
@@ -250,8 +451,8 @@ Note that the global min and max doesn't have to be at a critical point: it can 
 To find the type of critical point we have, we use what is known as the <b>second derivative test</b>. 
 </p>
 </div>
-<div id="outline-container-org3f22b64" class="outline-4">
-<h4 id="org3f22b64"><span class="section-number-4">2.2.1.</span> Special Case</h4>
+<div id="outline-container-org1349ef8" class="outline-4">
+<h4 id="org1349ef8"><span class="section-number-4">2.2.1.</span> Special Case</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 We will use the quadratic function \(w=ax^2 + bxy + cy^2\), where \(a \neq 0\), for intuition. First, we complete the square:
@@ -294,8 +495,8 @@ The term inside the brackets is a quadratic equation, with variable \(\frac{x}{y
 </p>
 </div>
 </div>
-<div id="outline-container-org8ae4d4c" class="outline-4">
-<h4 id="org8ae4d4c"><span class="section-number-4">2.2.2.</span> General Case</h4>
+<div id="outline-container-org606cf30" class="outline-4">
+<h4 id="org606cf30"><span class="section-number-4">2.2.2.</span> General Case</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 In general, we look at the <b>second partial derivative</b>. At a critical point \((x_0,y_0)\) of a function \(f\), the second derivative test says that if:
@@ -319,8 +520,8 @@ Note that \(f_{xy}=f_{yx}\). Now, we look at \(AC-B^2\):
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd17bf93" class="outline-4">
-<h4 id="orgd17bf93"><span class="section-number-4">2.2.3.</span> Intuition to General Case</h4>
+<div id="outline-container-org4ad4d4b" class="outline-4">
+<h4 id="org4ad4d4b"><span class="section-number-4">2.2.3.</span> Intuition to General Case</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 The intuition here lies in <b>Taylor approximations</b>. Notice that our linear approximation is simply the first-order terms of a Taylor approximation; however, at a critical point, the first-order derivatives are zero. Therefore, we need to add in the second-derivative terms to be more accurate:
@@ -339,8 +540,8 @@ Suddenly, realize that this approximation is <i>exactly the same as our special 
 </div>
 </div>
 </div>
-<div id="outline-container-orgf484cdb" class="outline-2">
-<h2 id="orgf484cdb"><span class="section-number-2">3.</span> Least-Squares Interpolation</h2>
+<div id="outline-container-org25934e0" class="outline-2">
+<h2 id="org25934e0"><span class="section-number-2">3.</span> Least-Squares Interpolation</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Oftentimes in scientific research, a set of discrete data points is collected and plotted, and we want to obtain a line of best fit through those points, \(y=ax+b\). In other words, we want to solve for the unknowns \(a\) and \(b\).

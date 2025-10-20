@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 13:31 -->
+<!-- 2025-10-19 Sun 17:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Environments</title>
@@ -12,10 +12,211 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -93,23 +294,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge8e5342">1. Environments</a>
+<li><a href="#orgdcc52fd">1. Environments</a>
 <ul>
-<li><a href="#org9ef1e79">1.1. Multiple Environments</a></li>
+<li><a href="#org94869ff">1.1. Multiple Environments</a></li>
 </ul>
 </li>
-<li><a href="#orge456309">2. Environments for Nested Definitions</a></li>
-<li><a href="#orgbb17cae">3. Environments for Lambda Expressions</a></li>
-<li><a href="#orgea5b610">4. Environments for Sequences</a>
+<li><a href="#orga39b5ef">2. Environments for Nested Definitions</a></li>
+<li><a href="#org29a0cfc">3. Environments for Lambda Expressions</a></li>
+<li><a href="#orgee31976">4. Environments for Sequences</a>
 <ul>
-<li><a href="#org72259ee">4.1. Box-and-Pointer Notation</a></li>
+<li><a href="#org7cf02c1">4.1. Box-and-Pointer Notation</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge8e5342" class="outline-2">
-<h2 id="orge8e5342"><span class="section-number-2">1.</span> Environments</h2>
+<div id="outline-container-orgdcc52fd" class="outline-2">
+<h2 id="orgdcc52fd"><span class="section-number-2">1.</span> Environments</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Every expression is evaluated in the context of an <b>environment</b>. An environment consists of a sequence of <b>frames</b>, which keeps track of the names bound to values. Every expression is evaluated in the context of an environment.
@@ -120,7 +321,7 @@ When it comes to assigning frames:
 </p>
 
 <ol class="org-ol">
-<li>Every <a href="functions.html#orgc7d7ac3">user-defined function</a> has a <i>parent frame</i></li>
+<li>Every <a href="functions.html#orgffd52aa">user-defined function</a> has a <i>parent frame</i></li>
 <li>The parent of a function is the frame in which it was defined</li>
 <li>Every <i>local frame</i> has a <i>parent frame</i></li>
 <li>The parent of a frame is the parent of the function called</li>
@@ -135,13 +336,13 @@ A name evaluates to the value bound to that name in the <i>earliest frame of the
 </p>
 
 
-<div id="org9269f2d" class="figure">
+<div id="org91c93ed" class="figure">
 <p><img src="../static/COMPSCI_61A/functions1.png" alt="functions1.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-org9ef1e79" class="outline-3">
-<h3 id="org9ef1e79"><span class="section-number-3">1.1.</span> Multiple Environments</h3>
+<div id="outline-container-org94869ff" class="outline-3">
+<h3 id="org94869ff"><span class="section-number-3">1.1.</span> Multiple Environments</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 As we mentioned, an environment is a sequence of frames. Specifically, it is either:
@@ -153,11 +354,11 @@ As we mentioned, an environment is a sequence of frames. Specifically, it is eit
 </ol>
 
 <p>
-Local frames are added to the environment when a <a href="functions.html#org8cd2ae8">user-defined function is called</a>. If another user-defined function is called within that function, there is also the possibility to create yet another environment. For example, in the environment diagram below:
+Local frames are added to the environment when a <a href="functions.html#orgde74b6b">user-defined function is called</a>. If another user-defined function is called within that function, there is also the possibility to create yet another environment. For example, in the environment diagram below:
 </p>
 
 
-<div id="org82ab87e" class="figure">
+<div id="org78726cb" class="figure">
 <p><img src="../static/COMPSCI_61A/environments1.png" alt="environments1.png" />
 </p>
 </div>
@@ -172,8 +373,8 @@ A <code>return</code> statement allows us to bind names in local frames to names
 </div>
 </div>
 </div>
-<div id="outline-container-orge456309" class="outline-2">
-<h2 id="orge456309"><span class="section-number-2">2.</span> Environments for <a href="python.html#orgfff5f96">Nested Definitions</a></h2>
+<div id="outline-container-orga39b5ef" class="outline-2">
+<h2 id="orga39b5ef"><span class="section-number-2">2.</span> Environments for <a href="python.html#org772894c">Nested Definitions</a></h2>
 <div class="outline-text-2" id="text-2">
 <p>
 When we define a function inside of another function, we add a local frame for the inside function that is a parent of the frame for the outside function. For example, for the nested definition:
@@ -190,7 +391,7 @@ The environment diagram when defining <code>adder</code> is:
 </p>
 
 
-<div id="org356ce54" class="figure">
+<div id="org687cd65" class="figure">
 <p><img src="../static/COMPSCI_61A/environments2.png" alt="environments2.png" />
 </p>
 </div>
@@ -204,8 +405,8 @@ Note that when we don't have nested definitions, and a function is returning ano
 </p>
 </div>
 </div>
-<div id="outline-container-orgbb17cae" class="outline-2">
-<h2 id="orgbb17cae"><span class="section-number-2">3.</span> Environments for <a href="expressions.html#org2482cb7">Lambda Expressions</a></h2>
+<div id="outline-container-org29a0cfc" class="outline-2">
+<h2 id="org29a0cfc"><span class="section-number-2">3.</span> Environments for <a href="expressions.html#org71b8a5e">Lambda Expressions</a></h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A lambda function's parent frame is the frame in which the lambda expression was created. In the following example:
@@ -223,8 +424,8 @@ In the last line, the <code>lambda y: a + y</code> is evaluated within the globa
 </p>
 </div>
 </div>
-<div id="outline-container-orgea5b610" class="outline-2">
-<h2 id="orgea5b610"><span class="section-number-2">4.</span> Environments for <a href="sequences.html#orgb4cd23b">Sequences</a></h2>
+<div id="outline-container-orgee31976" class="outline-2">
+<h2 id="orgee31976"><span class="section-number-2">4.</span> Environments for <a href="sequences.html#orgc509253">Sequences</a></h2>
 <div class="outline-text-2" id="text-4">
 <p>
 It is often hard to represent the environment when there are sequences involved due to the <i>closure property</i>. A method for combining data values satsifies this property if the result of combination can itself be combined using the same method.
@@ -234,15 +435,15 @@ It is often hard to represent the environment when there are sequences involved 
 In other words, this means that, for example, lists can be elements of lists. Closure is powerful because it permits us to create hierarchical structures. However, this also makes representing sequences in environment diagrams hard.
 </p>
 </div>
-<div id="outline-container-org72259ee" class="outline-3">
-<h3 id="org72259ee"><span class="section-number-3">4.1.</span> Box-and-Pointer Notation</h3>
+<div id="outline-container-org7cf02c1" class="outline-3">
+<h3 id="org7cf02c1"><span class="section-number-3">4.1.</span> Box-and-Pointer Notation</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 To solve this problem, we use <b>box-and-pointer notation</b>. Lists are represented as a row of index-labeled adjacent boxes, one per element. Each box either contains a primitive value or points to another compound value (such as a list):
 </p>
 
 
-<div id="orge0aa075" class="figure">
+<div id="org2aa589e" class="figure">
 <p><img src="../static/COMPSCI_61A/environments3.png" alt="environments3.png" />
 </p>
 </div>

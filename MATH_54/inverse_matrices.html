@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 13:31 -->
+<!-- 2025-10-19 Sun 17:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Inverse Matrices</title>
@@ -12,10 +12,211 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -125,27 +326,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb236ccd">1. Inverse Matrices</a>
+<li><a href="#org69fa124">1. Inverse Matrices</a>
 <ul>
-<li><a href="#orgd2206ef">1.1. Properties of Inverse Matrices</a></li>
+<li><a href="#orga8aab0c">1.1. Properties of Inverse Matrices</a></li>
 </ul>
 </li>
-<li><a href="#org6c8ed93">2. Finding Inverse Matrices</a>
+<li><a href="#org880d12e">2. Finding Inverse Matrices</a>
 <ul>
-<li><a href="#org00d5d07">2.1. \(2 \times 2\)</a></li>
-<li><a href="#orgd5d00a6">2.2. Larger Than \(3 \times 3\)</a></li>
-<li><a href="#org2d6d4dc">2.3. Using Cramer's Rule</a></li>
+<li><a href="#org7c8b8df">2.1. \(2 \times 2\)</a></li>
+<li><a href="#orgcdec364">2.2. Larger Than \(3 \times 3\)</a></li>
+<li><a href="#orgbe9406f">2.3. Using Cramer's Rule</a></li>
 </ul>
 </li>
-<li><a href="#orgce542b6">3. Invertible Matrix Theorem</a></li>
+<li><a href="#orgb192466">3. Invertible Matrix Theorem</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb236ccd" class="outline-2">
-<h2 id="orgb236ccd"><span class="section-number-2">1.</span> Inverse Matrices</h2>
+<div id="outline-container-org69fa124" class="outline-2">
+<h2 id="org69fa124"><span class="section-number-2">1.</span> Inverse Matrices</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The <b>inverse matrix</b> \(A^{-1}\) of a matrix \(A\) is a matrix such that \(A^{-1}A=I\), where \(I\) is the <a href="matrix_operations.html#org48003c1">identity matrix</a>.
+The <b>inverse matrix</b> \(A^{-1}\) of a matrix \(A\) is a matrix such that \(A^{-1}A=I\), where \(I\) is the <a href="matrix_operations.html#org16aac03">identity matrix</a>.
 </p>
 
 <p>
@@ -172,8 +373,8 @@ B &= C = A^{-1} \notag
 Not all matrices have inverses. Matrices that do have inverses are called <b>invertible</b> (or <b>nonsingular</b>). This is useful as when \(A\mathbf{x}=\mathbf{b}\) has a unique solution, and \(A\) is square and invertible, then \(\mathbf{x}=A^{-1}\mathbf{b}\).
 </p>
 </div>
-<div id="outline-container-orgd2206ef" class="outline-3">
-<h3 id="orgd2206ef"><span class="section-number-3">1.1.</span> Properties of Inverse Matrices</h3>
+<div id="outline-container-orga8aab0c" class="outline-3">
+<h3 id="orga8aab0c"><span class="section-number-3">1.1.</span> Properties of Inverse Matrices</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The inverse of an inverse matrix is the original matrix:
@@ -193,12 +394,12 @@ The inverse of two matrices multiplied by each other is:
 </div>
 </div>
 </div>
-<div id="outline-container-org6c8ed93" class="outline-2">
-<h2 id="org6c8ed93"><span class="section-number-2">2.</span> Finding Inverse Matrices</h2>
+<div id="outline-container-org880d12e" class="outline-2">
+<h2 id="org880d12e"><span class="section-number-2">2.</span> Finding Inverse Matrices</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org00d5d07" class="outline-3">
-<h3 id="org00d5d07"><span class="section-number-3">2.1.</span> \(2 \times 2\)</h3>
+<div id="outline-container-org7c8b8df" class="outline-3">
+<h3 id="org7c8b8df"><span class="section-number-3">2.1.</span> \(2 \times 2\)</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Given a \(2 \times 2\) matrix \(A\) such that:
@@ -228,15 +429,15 @@ Note that if \(ad=bc\), then the matrix is not invertible.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd5d00a6" class="outline-3">
-<h3 id="orgd5d00a6"><span class="section-number-3">2.2.</span> Larger Than \(3 \times 3\)</h3>
+<div id="outline-container-orgcdec364" class="outline-3">
+<h3 id="orgcdec364"><span class="section-number-3">2.2.</span> Larger Than \(3 \times 3\)</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Consider the <b>elementary matrix</b> \(E\): a matrix obtained from \(I\) by performing a single row operation. Notice that applying that single row operation to another matrix \(A\) is equivalent to computing \(EA\).
 </p>
 
 <p>
-If \(A\) is invertible, then its <a href="triangular_and_echelon_forms.html#org66818e2">reduced row echelon form</a> is \(I\). This is because if \(A\) is invertible, then there is a unique solution to \(A\mathbf{x}=\mathbf{b}\) (which is \(A^{-1}\mathbf{b}\)), which means that there must be a pivot in every column of the RREF of \(A\). If there is a pivot in every column of \(A\), then by the definition of RREF those pivots must be 1, and every other number is 0, which becomes the identity matrix.
+If \(A\) is invertible, then its <a href="triangular_and_echelon_forms.html#org8375205">reduced row echelon form</a> is \(I\). This is because if \(A\) is invertible, then there is a unique solution to \(A\mathbf{x}=\mathbf{b}\) (which is \(A^{-1}\mathbf{b}\)), which means that there must be a pivot in every column of the RREF of \(A\). If there is a pivot in every column of \(A\), then by the definition of RREF those pivots must be 1, and every other number is 0, which becomes the identity matrix.
 </p>
 
 <p>
@@ -260,8 +461,8 @@ To find this series of elementary matrices, we can create the augmented matrix \
 </p>
 </div>
 </div>
-<div id="outline-container-org2d6d4dc" class="outline-3">
-<h3 id="org2d6d4dc"><span class="section-number-3">2.3.</span> Using <a href="determinants.html#orge504d66">Cramer's Rule</a></h3>
+<div id="outline-container-orgbe9406f" class="outline-3">
+<h3 id="orgbe9406f"><span class="section-number-3">2.3.</span> Using <a href="determinants.html#org4c7eec6">Cramer's Rule</a></h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 We can use Cramer's rule to find inverses of matrices as well. We want to find the inverse of a square matrix \(A\) such that \(A\cdot A^{-1}=I\).
@@ -276,7 +477,7 @@ Let the first column of \(A^{-1}\) be:
 \end{align}
 
 <p>
-Then, by <a href="matrix_operations.html#org60e74c2">matrix multiplication</a> of the columns, we see that:
+Then, by <a href="matrix_operations.html#orgf5ce1a2">matrix multiplication</a> of the columns, we see that:
 </p>
 
 \begin{align}
@@ -314,7 +515,7 @@ C_{1n} & & & C_{nn}
 \end{align}
 
 <p>
-The matrix above in the equation is called \(\text{adj }A\), the <b>adjugate</b> matrix of \(A\). This is where you replace every entry of \(A\) by its cofactor and then take its <a href="matrix_operations.html#org7bb1bb5">transpose</a>. Thus, we can simplify this formula to:
+The matrix above in the equation is called \(\text{adj }A\), the <b>adjugate</b> matrix of \(A\). This is where you replace every entry of \(A\) by its cofactor and then take its <a href="matrix_operations.html#orge45628f">transpose</a>. Thus, we can simplify this formula to:
 </p>
 
 \begin{align}
@@ -327,11 +528,11 @@ This can also be used to derive the base formula for the inverse of a \(2 \times
 </div>
 </div>
 </div>
-<div id="outline-container-orgce542b6" class="outline-2">
-<h2 id="orgce542b6"><span class="section-number-2">3.</span> Invertible Matrix Theorem</h2>
+<div id="outline-container-orgb192466" class="outline-2">
+<h2 id="orgb192466"><span class="section-number-2">3.</span> Invertible Matrix Theorem</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-We can view matrices and their inverses as <a href="linear_transformations.html#orgfc8d851">linear transformations</a> and their inverses. If a transformation \(T: \mathbb{R}^n \rightarrow \mathbb{R}^n\) is a linear one-to-one transformation (which also implies onto), then there exists an inverse \(T^{-1}\), which is also the inverse of the associated matrix of \(T\). Therefore, we can say that a matrix has an inverse if its associated transformation is one-to-one.
+We can view matrices and their inverses as <a href="linear_transformations.html#org1dbf8fe">linear transformations</a> and their inverses. If a transformation \(T: \mathbb{R}^n \rightarrow \mathbb{R}^n\) is a linear one-to-one transformation (which also implies onto), then there exists an inverse \(T^{-1}\), which is also the inverse of the associated matrix of \(T\). Therefore, we can say that a matrix has an inverse if its associated transformation is one-to-one.
 </p>
 
 <p>
@@ -340,12 +541,12 @@ Thus, the <b>invertible matrix theorem</b> states that the following statements 
 
 <ol class="org-ol">
 <li>\(A\) is an invertible matrix.</li>
-<li>\(A\) has \(n\) <a href="triangular_and_echelon_forms.html#org3889734">pivot</a> positions.</li>
-<li>The columns of \(A\) <a href="linear_systems.html#orgfb95101">span</a> \(\mathbb{R}^n\).</li>
-<li>The equation \(A\mathbf{x}=0\) has only the <a href="linear_systems.html#org62c1dfb">trivial solution</a>.</li>
-<li>The columns of \(A\) are <a href="linear_independence.html#orgd8224ee">linearly independent</a>.</li>
-<li>The linear transformation \(T\) is <a href="linear_transformations.html#orgab3918f">one-to-one</a>.</li>
-<li>The linear transformation \(T\) is <a href="linear_transformations.html#orgab3918f">onto</a>.</li>
+<li>\(A\) has \(n\) <a href="triangular_and_echelon_forms.html#org0291059">pivot</a> positions.</li>
+<li>The columns of \(A\) <a href="linear_systems.html#org225be8f">span</a> \(\mathbb{R}^n\).</li>
+<li>The equation \(A\mathbf{x}=0\) has only the <a href="linear_systems.html#org05c80d0">trivial solution</a>.</li>
+<li>The columns of \(A\) are <a href="linear_independence.html#orgb100123">linearly independent</a>.</li>
+<li>The linear transformation \(T\) is <a href="linear_transformations.html#orge0bb026">one-to-one</a>.</li>
+<li>The linear transformation \(T\) is <a href="linear_transformations.html#orge0bb026">onto</a>.</li>
 <li>The linear transformation \(T\) is invertible.</li>
 </ol>
 

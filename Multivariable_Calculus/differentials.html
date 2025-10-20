@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 13:31 -->
+<!-- 2025-10-19 Sun 17:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Differentials and Chain Rule</title>
@@ -12,10 +12,211 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -125,24 +326,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgda1fe94">1. Total Differential</a></li>
-<li><a href="#orgec783b7">2. Chain Rule</a>
+<li><a href="#orga7a17da">1. Total Differential</a></li>
+<li><a href="#org96c195b">2. Chain Rule</a>
 <ul>
-<li><a href="#orgf775c3b">2.1. Proof</a></li>
+<li><a href="#org24ed814">2.1. Proof</a></li>
 </ul>
 </li>
-<li><a href="#orgc5b1746">3. Applications of Chain Rule</a>
+<li><a href="#orga6c6a49">3. Applications of Chain Rule</a>
 <ul>
-<li><a href="#org00c2893">3.1. Product Rule</a></li>
-<li><a href="#orga1f9124">3.2. Quotient Rule</a></li>
-<li><a href="#org34026ce">3.3. Multiple Intermediate Variables</a></li>
+<li><a href="#orgb59d19b">3.1. Product Rule</a></li>
+<li><a href="#org3878d6d">3.2. Quotient Rule</a></li>
+<li><a href="#orgdaf1727">3.3. Multiple Intermediate Variables</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgda1fe94" class="outline-2">
-<h2 id="orgda1fe94"><span class="section-number-2">1.</span> Total Differential</h2>
+<div id="outline-container-orga7a17da" class="outline-2">
+<h2 id="orga7a17da"><span class="section-number-2">1.</span> Total Differential</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Given function \(f(x,y,z)\), we have
@@ -155,12 +356,12 @@ Given function \(f(x,y,z)\), we have
 </p>
 
 <p>
-In this way, these differentials encode how changes in \(x\), \(y\), and \(z\) affect the function \(f\). Notice that it is similar to our formula for <a href="min_max.html#orgca62f34">linear approximations</a>, and so they can also be thought of as a placeholder for the small variations \(\Delta x\), \(\Delta y\), and \(\Delta z\).
+In this way, these differentials encode how changes in \(x\), \(y\), and \(z\) affect the function \(f\). Notice that it is similar to our formula for <a href="min_max.html#orgdd6436a">linear approximations</a>, and so they can also be thought of as a placeholder for the small variations \(\Delta x\), \(\Delta y\), and \(\Delta z\).
 </p>
 </div>
 </div>
-<div id="outline-container-orgec783b7" class="outline-2">
-<h2 id="orgec783b7"><span class="section-number-2">2.</span> Chain Rule</h2>
+<div id="outline-container-org96c195b" class="outline-2">
+<h2 id="org96c195b"><span class="section-number-2">2.</span> Chain Rule</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We can also divide by something like \(\text{d}t\) to get a rate of change if they depend on some external parameter \(t\), such as when \(x=x(t)\), \(y=y(t)\), and \(z=z(t)\), to get the <b>chain rule</b>:
@@ -172,8 +373,8 @@ We can also divide by something like \(\text{d}t\) to get a rate of change if th
 \]
 </p>
 </div>
-<div id="outline-container-orgf775c3b" class="outline-3">
-<h3 id="orgf775c3b"><span class="section-number-3">2.1.</span> Proof</h3>
+<div id="outline-container-org24ed814" class="outline-3">
+<h3 id="org24ed814"><span class="section-number-3">2.1.</span> Proof</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 From our formula for linear approximation, we have that:
@@ -207,12 +408,12 @@ Now, as we take the limit as \(\Delta t\) tends to zero, we get the following eq
 </div>
 </div>
 </div>
-<div id="outline-container-orgc5b1746" class="outline-2">
-<h2 id="orgc5b1746"><span class="section-number-2">3.</span> Applications of Chain Rule</h2>
+<div id="outline-container-orga6c6a49" class="outline-2">
+<h2 id="orga6c6a49"><span class="section-number-2">3.</span> Applications of Chain Rule</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org00c2893" class="outline-3">
-<h3 id="org00c2893"><span class="section-number-3">3.1.</span> Product Rule</h3>
+<div id="outline-container-orgb59d19b" class="outline-3">
+<h3 id="orgb59d19b"><span class="section-number-3">3.1.</span> Product Rule</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We can use multivariable calculus and the chain rule to justify the product rule. Given a function \(f=uv\), where \(u=u(t)\) and \(v=v(t)\), we have that:
@@ -225,8 +426,8 @@ We can use multivariable calculus and the chain rule to justify the product rule
 </p>
 </div>
 </div>
-<div id="outline-container-orga1f9124" class="outline-3">
-<h3 id="orga1f9124"><span class="section-number-3">3.2.</span> Quotient Rule</h3>
+<div id="outline-container-org3878d6d" class="outline-3">
+<h3 id="org3878d6d"><span class="section-number-3">3.2.</span> Quotient Rule</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Given a function \(g=\frac{u}{v}\), where \(u=u(t)\) and \(v=v(t)\), we have:
@@ -239,8 +440,8 @@ Given a function \(g=\frac{u}{v}\), where \(u=u(t)\) and \(v=v(t)\), we have:
 </p>
 </div>
 </div>
-<div id="outline-container-org34026ce" class="outline-3">
-<h3 id="org34026ce"><span class="section-number-3">3.3.</span> Multiple Intermediate Variables</h3>
+<div id="outline-container-orgdaf1727" class="outline-3">
+<h3 id="orgdaf1727"><span class="section-number-3">3.3.</span> Multiple Intermediate Variables</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 If we have a function \(f(u,v)\) where we have \(u(x,y)\) and \(v(x,y)\), we now have two intermediate variables \(x\) and \(y\). If we actually calculate the chain rule out, we have the following formulas:

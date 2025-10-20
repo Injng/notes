@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 13:31 -->
+<!-- 2025-10-19 Sun 17:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matrix Similarity</title>
@@ -12,10 +12,211 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -125,25 +326,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga711204">1. Matrix Similarity</a>
+<li><a href="#org3d903a3">1. Matrix Similarity</a>
 <ul>
-<li><a href="#orgd6e3ed5">1.1. Matrix Powers</a></li>
+<li><a href="#org8f9e049">1.1. Matrix Powers</a></li>
 </ul>
 </li>
-<li><a href="#org6d0f650">2. Diagonalization</a>
+<li><a href="#orgf0f1c7c">2. Diagonalization</a>
 <ul>
-<li><a href="#orgb967f07">2.1. Multiplicity</a></li>
-<li><a href="#org8e99656">2.2. Basis of a Linear Transformation</a></li>
+<li><a href="#org4a1029c">2.1. Multiplicity</a></li>
+<li><a href="#org627c3cc">2.2. Basis of a Linear Transformation</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga711204" class="outline-2">
-<h2 id="orga711204"><span class="section-number-2">1.</span> Matrix Similarity</h2>
+<div id="outline-container-org3d903a3" class="outline-2">
+<h2 id="org3d903a3"><span class="section-number-2">1.</span> Matrix Similarity</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-We call two \(n \times n\) matrices <b>similar</b> if there exists an <a href="inverse_matrices.html#orgb236ccd">invertible matrix</a> \(P\) such that:
+We call two \(n \times n\) matrices <b>similar</b> if there exists an <a href="inverse_matrices.html#org69fa124">invertible matrix</a> \(P\) such that:
 </p>
 
 \begin{align}
@@ -151,7 +352,7 @@ A = PBP^{-1}
 \end{align}
 
 <p>
-Two similar matrices will always have the same <a href="eigenvalues_and_eigenvectors.html#org3bb705e">characteristic equation</a>, and therefore the same <a href="eigenvalues_and_eigenvectors.html#orgc3fd4e9">eigenvalues</a>. This can be seen like so:
+Two similar matrices will always have the same <a href="eigenvalues_and_eigenvectors.html#orgf7d9740">characteristic equation</a>, and therefore the same <a href="eigenvalues_and_eigenvectors.html#org784a18b">eigenvalues</a>. This can be seen like so:
 </p>
 
 \begin{align}
@@ -162,7 +363,7 @@ A - \lambda I &= P(B - \lambda I)P^{-1} \notag \\
 \end{align}
 
 <p>
-Taking the <a href="determinants.html#org51792a6">determinant</a> on both sides and simplifying, we get:
+Taking the <a href="determinants.html#orge05beec">determinant</a> on both sides and simplifying, we get:
 </p>
 
 \begin{align}
@@ -175,8 +376,8 @@ Taking the <a href="determinants.html#org51792a6">determinant</a> on both sides 
 Thus, \(A\) and \(B\) must have the same characteristic polynomial. Note that this doesn't mean that two matrices with the same characteristic polynomial are guaranteed to be similar. For example, the two matrices \(\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix}\) and \(\begin{bmatrix} 1 & 1 \\ 0 & 1 \end{bmatrix}\) have the same eigenvalues, but they are not similar.
 </p>
 </div>
-<div id="outline-container-orgd6e3ed5" class="outline-3">
-<h3 id="orgd6e3ed5"><span class="section-number-3">1.1.</span> Matrix Powers</h3>
+<div id="outline-container-org8f9e049" class="outline-3">
+<h3 id="org8f9e049"><span class="section-number-3">1.1.</span> Matrix Powers</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Similar matrices can be helpful in computing powers of matrices. Consider the k-th power of a matrix \(A\):
@@ -190,11 +391,11 @@ A^k &= (PBP^{-1})^k \notag \\
 </div>
 </div>
 </div>
-<div id="outline-container-org6d0f650" class="outline-2">
-<h2 id="org6d0f650"><span class="section-number-2">2.</span> Diagonalization</h2>
+<div id="outline-container-orgf0f1c7c" class="outline-2">
+<h2 id="orgf0f1c7c"><span class="section-number-2">2.</span> Diagonalization</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-If two matrices are similar and one of them is a diagonal matrix, then we call the matrix <b>diagonalizable</b>. To understand when a matrix \(A\) is diagonalizable, consider the matrix \(X\) formed with its columns as <a href="eigenvalues_and_eigenvectors.html#orgc3fd4e9">eigenvectors</a> of \(A\), and \(\Lambda\) the diagonal matrix with eigenvalues of \(A\) as its diagonal entries. Then:
+If two matrices are similar and one of them is a diagonal matrix, then we call the matrix <b>diagonalizable</b>. To understand when a matrix \(A\) is diagonalizable, consider the matrix \(X\) formed with its columns as <a href="eigenvalues_and_eigenvectors.html#org784a18b">eigenvectors</a> of \(A\), and \(\Lambda\) the diagonal matrix with eigenvalues of \(A\) as its diagonal entries. Then:
 </p>
 
 \begin{align}
@@ -213,11 +414,11 @@ Thus, if \(AX = X\Lambda\), then a diagonalization of \(A\) is:
 Since \(X\) is formed out of the eigenvectors of \(A\), and \(X\) has to be invertible, then the condition for this diagonalization to exist must be that <i>there has to exist \(n\) linearly independent eigenvectors</i> for an \(n \times n\) matrix \(A\).
 </p>
 </div>
-<div id="outline-container-orgb967f07" class="outline-3">
-<h3 id="orgb967f07"><span class="section-number-3">2.1.</span> Multiplicity</h3>
+<div id="outline-container-org4a1029c" class="outline-3">
+<h3 id="org4a1029c"><span class="section-number-3">2.1.</span> Multiplicity</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-For an \(n \times n\) real matrix \(A\), the eigenvalues of \(A\) are the roots of the <a href="eigenvalues_and_eigenvectors.html#org3bb705e">characteristic polynomial</a> \(\det (A-\lambda I)\). For certain exceptional matrices, it is possible that some roots are <i>repeated</i>. Then, we can define two different ways to count its <i>multiplicity</i>:
+For an \(n \times n\) real matrix \(A\), the eigenvalues of \(A\) are the roots of the <a href="eigenvalues_and_eigenvectors.html#orgf7d9740">characteristic polynomial</a> \(\det (A-\lambda I)\). For certain exceptional matrices, it is possible that some roots are <i>repeated</i>. Then, we can define two different ways to count its <i>multiplicity</i>:
 </p>
 
 <ol class="org-ol">
@@ -267,11 +468,11 @@ Thus, for \(\lambda = 1\), the geometric multiplicity is \(2\) since the dimensi
 </details>
 </div>
 </div>
-<div id="outline-container-org8e99656" class="outline-3">
-<h3 id="org8e99656"><span class="section-number-3">2.2.</span> Basis of a Linear Transformation</h3>
+<div id="outline-container-org627c3cc" class="outline-3">
+<h3 id="org627c3cc"><span class="section-number-3">2.2.</span> Basis of a Linear Transformation</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-When a linear transformation is in the <a href="vector_spaces.html#orgcb48802">standard basis</a>, we can use the standard basis vectors to find the <a href="linear_transformations.html#orgc1e75e0">matrix of a linear transformation</a>. Similarly, if we want to represent a linear transformation in a different basis \(\mathcal{B} = {\mathbf{b}_1, \mathbf{b}_2, \dots, \mathbf{b}_n}\), the matrix of this linear transformation <i>in the basis \(\mathcal{B}\)</i> (called the <b>B-matrix</b>) would be:
+When a linear transformation is in the <a href="vector_spaces.html#org9548c6a">standard basis</a>, we can use the standard basis vectors to find the <a href="linear_transformations.html#org69236fa">matrix of a linear transformation</a>. Similarly, if we want to represent a linear transformation in a different basis \(\mathcal{B} = {\mathbf{b}_1, \mathbf{b}_2, \dots, \mathbf{b}_n}\), the matrix of this linear transformation <i>in the basis \(\mathcal{B}\)</i> (called the <b>B-matrix</b>) would be:
 </p>
 
 \begin{align}

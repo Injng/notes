@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 13:31 -->
+<!-- 2025-10-19 Sun 17:15 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Gauss's Law</title>
@@ -12,10 +12,211 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-mocha.css">
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -125,23 +326,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org552aacf">1. Electric Flux</a>
+<li><a href="#org8e2fcb4">1. Electric Flux</a>
 <ul>
-<li><a href="#org316c49b">1.1. Introduction to Flux</a></li>
-<li><a href="#orgf9216fc">1.2. Introduction to Electric Flux</a>
+<li><a href="#org79de0af">1.1. Introduction to Flux</a></li>
+<li><a href="#orgd8222f7">1.2. Introduction to Electric Flux</a>
 <ul>
-<li><a href="#orgc37bf82">1.2.1. Area as a Vector</a></li>
-<li><a href="#org1f370ef">1.2.2. The Dot Product</a></li>
-<li><a href="#orgf0baf98">1.2.3. Electric Flux on a Surface</a></li>
+<li><a href="#org102dc3d">1.2.1. Area as a Vector</a></li>
+<li><a href="#org7b6e7ba">1.2.2. The Dot Product</a></li>
+<li><a href="#orgfa8e0fb">1.2.3. Electric Flux on a Surface</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org3f459e3">2. Gauss's Law</a>
+<li><a href="#org82631ea">2. Gauss's Law</a>
 <ul>
 <li>
 <ul>
-<li><a href="#org455214c">2.0.1. For Continuous Charges</a></li>
+<li><a href="#orge25cebc">2.0.1. For Continuous Charges</a></li>
 </ul>
 </li>
 </ul>
@@ -149,12 +350,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org552aacf" class="outline-2">
-<h2 id="org552aacf"><span class="section-number-2">1.</span> Electric Flux</h2>
+<div id="outline-container-org8e2fcb4" class="outline-2">
+<h2 id="org8e2fcb4"><span class="section-number-2">1.</span> Electric Flux</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org316c49b" class="outline-3">
-<h3 id="org316c49b"><span class="section-number-3">1.1.</span> Introduction to Flux</h3>
+<div id="outline-container-org79de0af" class="outline-3">
+<h3 id="org79de0af"><span class="section-number-3">1.1.</span> Introduction to Flux</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 In order to understand electric flux, it is important to attain an intuitive understanding of what flux itself is first.
@@ -171,8 +372,8 @@ In other words, here flux can be seen as <b>flow rate per unit area</b>.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf9216fc" class="outline-3">
-<h3 id="orgf9216fc"><span class="section-number-3">1.2.</span> Introduction to Electric Flux</h3>
+<div id="outline-container-orgd8222f7" class="outline-3">
+<h3 id="orgd8222f7"><span class="section-number-3">1.2.</span> Introduction to Electric Flux</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Electric flux is a bit different. You can think of electric flux as the <b>number of field lines passing through an area</b>. Remember, field line
@@ -215,8 +416,8 @@ Now, this is not precisely our definition of electric flux, but it is close. The
 Firstly, this is necessary because we are working with vectors. Vectors have direction, and we need a way to deal with that.
 </p>
 </div>
-<div id="outline-container-orgc37bf82" class="outline-4">
-<h4 id="orgc37bf82"><span class="section-number-4">1.2.1.</span> Area as a Vector</h4>
+<div id="outline-container-org102dc3d" class="outline-4">
+<h4 id="org102dc3d"><span class="section-number-4">1.2.1.</span> Area as a Vector</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 One interesting thing that this brings up is that I just asserted that \(E\) and \(A\) are vectors. But how can area, which is a purely numerical
@@ -249,8 +450,8 @@ rule for the vectors bounding the area.
 </p>
 </div>
 </div>
-<div id="outline-container-org1f370ef" class="outline-4">
-<h4 id="org1f370ef"><span class="section-number-4">1.2.2.</span> The Dot Product</h4>
+<div id="outline-container-org7b6e7ba" class="outline-4">
+<h4 id="org7b6e7ba"><span class="section-number-4">1.2.2.</span> The Dot Product</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 But why is it that we use a  dot product, you ask? Well, consider how 
@@ -262,7 +463,7 @@ This \(\cos{\theta}\) is key:
 </p>
 
 
-<div id="org2ddec9e" class="figure">
+<div id="orgf7ef394" class="figure">
 <p><img src="../static/flux_surface.png" alt="flux_surface.png" />
 </p>
 </div>
@@ -291,8 +492,8 @@ the area is tilted or not with the extra \(\cos{\theta}\) term.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf0baf98" class="outline-4">
-<h4 id="orgf0baf98"><span class="section-number-4">1.2.3.</span> Electric Flux on a Surface</h4>
+<div id="outline-container-orgfa8e0fb" class="outline-4">
+<h4 id="orgfa8e0fb"><span class="section-number-4">1.2.3.</span> Electric Flux on a Surface</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 Now that we have established that electric flux is \(\vec{E} \cdot \vec{A}\), we have to face an uncomfortable truth: in the real-world,
@@ -318,8 +519,8 @@ This is also  electric flux.
 </div>
 </div>
 </div>
-<div id="outline-container-org3f459e3" class="outline-2">
-<h2 id="org3f459e3"><span class="section-number-2">2.</span> Gauss's Law</h2>
+<div id="outline-container-org82631ea" class="outline-2">
+<h2 id="org82631ea"><span class="section-number-2">2.</span> Gauss's Law</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Remember that the double integral expression for electric flux, (2),  holds <i>for any closed surface</i>. One particular closed surface of interest is the sphere.
@@ -354,8 +555,8 @@ This result is known as <b>Gauss's Law</b>. Notice that by the superposition pri
 surface; by this definition \(q\) is just the total charge enclosed by the surface.
 </p>
 </div>
-<div id="outline-container-org455214c" class="outline-4">
-<h4 id="org455214c"><span class="section-number-4">2.0.1.</span> For Continuous Charges</h4>
+<div id="outline-container-orge25cebc" class="outline-4">
+<h4 id="orge25cebc"><span class="section-number-4">2.0.1.</span> For Continuous Charges</h4>
 <div class="outline-text-4" id="text-2-0-1">
 <p>
 What if we don't have discrete charges, however? Let's say we have a continuous charge distribution with a <i>charge density function</i> 
