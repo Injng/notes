@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 17:15 -->
+<!-- 2025-10-19 Sun 17:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Objects and Classes</title>
@@ -283,6 +283,73 @@
                         color:red;
                         text-decoration: none;}
           </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -290,15 +357,334 @@
 </div>
 <div id="content" class="content">
 <h1 class="title">Objects and Classes</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgbebb417">1. Objects</a>
+<ul>
+<li><a href="#orgb5f30bf">1.1. Object-Oriented Programming</a></li>
+<li><a href="#org27ae38f">1.2. String Representations</a></li>
+</ul>
+</li>
+<li><a href="#org9895c56">2. Classes</a>
+<ul>
+<li><a href="#org50b0112">2.1. Object Construction</a></li>
+<li><a href="#orgd7014b7">2.2. Object Identity</a></li>
+<li><a href="#org02570bc">2.3. Attributes</a>
+<ul>
+<li><a href="#orgde6530b">2.3.1. Attribute Lookup</a></li>
+<li><a href="#orge19b40f">2.3.2. Attribute Assignment</a></li>
+</ul>
+</li>
+<li><a href="#org33e0c20">2.4. Methods</a>
+<ul>
+<li><a href="#org9f49639">2.4.1. Method Calls</a></li>
+<li><a href="#orgc5e9ad0">2.4.2. Special Methods</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org4694f9a">3. Inheritance</a>
+<ul>
+<li><a href="#orgb78ac94">3.1. Multiple Inheritance</a></li>
+<li><a href="#orgf631a35">3.2. Attribute Lookup</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbebb417" class="outline-2">
+<h2 id="orgbebb417"><span class="section-number-2">1.</span> Objects</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-t</p>
+An <b>object</b> can be thought of as a type of complex value that represents information consisting of data and behavior, bundled together to create abstractions. Objects can represent things, but also properties, interactions, and processes. 
+</p>
+
+<p>
+Objects can have <b>attributes</b> that are bound to values, which can be accessed through a dot expression, as well as <b>methods</b>, which are like attributes that are bound to functions:
+</p>
+
+<pre><code class="language-python"><span style="color: #6c7086;"># </span><span style="color: #6c7086;">Example: Date object
+</span><span style="color: #cba6f7;">from</span> datetime <span style="color: #cba6f7;">import</span> date
+<span style="color: #cdd6f4;">day</span> <span style="color: #89dceb;">=</span> date<span style="color: #f38ba8;">(</span>2025, 9, 30<span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">Date object
+</span><span style="color: #cdd6f4;">y</span> <span style="color: #89dceb;">=</span> day.year                     <span style="color: #6c7086;"># </span><span style="color: #6c7086;">year attribute: 2025
+</span><span style="color: #cdd6f4;">m</span> <span style="color: #89dceb;">=</span> day.month                    <span style="color: #6c7086;"># </span><span style="color: #6c7086;">month attribute: 9
+</span><span style="color: #cdd6f4;">s</span> <span style="color: #89dceb;">=</span> day.strftime<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'%A %B %d'</span><span style="color: #f38ba8;">)</span>     <span style="color: #6c7086;"># </span><span style="color: #6c7086;">strftime() method: 'Tuesday September 30'</span>
+</code></pre>
+
+<p>
+This kind of behavior underpins <b>object-oriented programming</b>, which is a way for organizing large programs around the interaction of objects. In Python, every value is an object.
+</p>
+</div>
+<div id="outline-container-orgb5f30bf" class="outline-3">
+<h3 id="orgb5f30bf"><span class="section-number-3">1.1.</span> Object-Oriented Programming</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<b>Object-oriented programming</b> is a method for organizing programs that emphasizes data abstraction and bundles together information and related behavior. It operates using a metaphor for computation:
+</p>
+
+<ul class="org-ul">
+<li>Each object has and manages its own local state</li>
+<li>You can interact with an object using its <b>methods</b></li>
+<li>Several objects may all be instances of a common <b>class</b></li>
+<li>Different classes may relate to each other</li>
+</ul>
+
+<p>
+A <b>class</b> defines how objects of a particular type behave. An <b>object</b> is an instance of a class, with the class as its type. A <b>method</b> is a function called on an object using a dot expression, such as <code>.append()</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org27ae38f" class="outline-3">
+<h3 id="org27ae38f"><span class="section-number-3">1.2.</span> String Representations</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+In python, all objects produce two <b>string representations</b>: the <code>str</code> which is legible to humans, and the <code>repr</code> which is legible to the Python interpreter. The <code>str</code> and <code>repr</code> strings are often the same, but not always; the <code>repr</code> string is what you see in the Python interpreter.
+</p>
+
+<p>
+The <code>repr(object) -&gt; string</code> function returns the canonical string representation of the object. Some objects do not have a simple Python-readable string (often for compound types) — for example, <code>repr(min)</code> returns the placeholder <code>&lt;built-in function min&gt;</code>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9895c56" class="outline-2">
+<h2 id="org9895c56"><span class="section-number-2">2.</span> Classes</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A <b>class</b> describes the behavior of its instances. We can create classes using class statements, like so:
+</p>
+
+<pre><code class="language-python"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Account</span>:
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">__init__</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, account_holder<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">balance</span> <span style="color: #89dceb;">=</span> 0
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">holder</span> <span style="color: #89dceb;">=</span> account_holder
+
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">deposit</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, amount<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">balance</span> <span style="color: #89dceb;">=</span> <span style="color: #cba6f7;">self</span>.balance + amount
+        <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">self</span>.balance
+
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">withdraw</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, amount<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">if</span> amount &gt; <span style="color: #cba6f7;">self</span>.balance:
+            <span style="color: #cba6f7;">return</span> <span style="color: #a6e3a1;">'Insufficient funds'</span>
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">balance</span> <span style="color: #89dceb;">=</span> <span style="color: #cba6f7;">self</span>.balance - amount
+        <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">self</span>.balance
+</code></pre>
+
+<p>
+The <code>__init__</code> method is a special method for the function that constructs an instance for that class. <code>deposit</code> is an example of a method for the <code>Account</code> class: notice that it contains <code>self</code> as a parameter, which gives us access to the instance of the class on which the method was invoked.
+</p>
+</div>
+<div id="outline-container-org50b0112" class="outline-3">
+<h3 id="org50b0112"><span class="section-number-3">2.1.</span> Object Construction</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+To create an instance of a class, we use a <b>constructor</b>. The <code>__init__</code> method defines the constructor of the class, like so:
+</p>
+
+<pre><code class="language-python"><span style="color: #cdd6f4;">a</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'Alan'</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">instance of the class Account</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-orgd7014b7" class="outline-3">
+<h3 id="orgd7014b7"><span class="section-number-3">2.2.</span> Object Identity</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Every object that is an instance of a user-defined class has a unique identity. In other words:
+</p>
+
+<pre><code class="language-python"><span style="color: #cdd6f4;">a</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'John'</span><span style="color: #f38ba8;">)</span>
+<span style="color: #cdd6f4;">b</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'Jack'</span><span style="color: #f38ba8;">)</span>
+<span style="color: #cba6f7;">assert</span> a <span style="color: #cba6f7;">is</span> <span style="color: #cba6f7;">not</span> b
+</code></pre>
+
+<p>
+We can check if something is an instance of a class by using the <code>isinstance()</code> function. For example, <code>isinstance(a, Account)</code> would evaluate to <code>True</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org02570bc" class="outline-3">
+<h3 id="org02570bc"><span class="section-number-3">2.3.</span> Attributes</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Both instances and classes have <b>attributes</b>, which store variables within the object. Attributes defined by an instance are local <i>only to that instance</i>, whereas <b>class attributes</b> are shared across all instances of a class because they are attributes of the class, not the instance:
+</p>
+
+<pre><code class="language-python"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Account</span>:
+    <span style="color: #cdd6f4;">interest</span> <span style="color: #89dceb;">=</span> 0.02          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">A class attribute</span>
+</code></pre>
+</div>
+<div id="outline-container-orgde6530b" class="outline-4">
+<h4 id="orgde6530b"><span class="section-number-4">2.3.1.</span> Attribute Lookup</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+Attributes can be looked up by dot expressions of the form <code>&lt;expression&gt;.&lt;name&gt;</code>. To evaluate a dot expression:
+</p>
+
+<ol class="org-ol">
+<li>Evaluate the <code>&lt;expression&gt;</code>, which yields the object of the dot expression.</li>
+<li><code>&lt;name&gt;</code> is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned.</li>
+<li>If not, <code>&lt;name&gt;</code> is looked up in the class, which yields a class attribute value.</li>
+<li>That value is returned unless it is a function, in which case a bound method is returned instead.</li>
+</ol>
+
+<p>
+In addition to dot expressions, the function <code>getattr(&lt;object&gt;, &lt;name&gt;)</code> can get the attribute <code>&lt;name&gt;</code> within an <code>&lt;object&gt;</code>, and the function <code>hasattr(&lt;object&gt;, &lt;name&gt;)</code> returns a boolean for whether an attribute exists in an object.
+</p>
+</div>
+</div>
+<div id="outline-container-orge19b40f" class="outline-4">
+<h4 id="orge19b40f"><span class="section-number-4">2.3.2.</span> Attribute Assignment</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+<a href="assignment.html#orgd8b1ee1">Assignment statements</a> with a dot expression on their left-hand side are attribute assignments. If the object is an instance, then the assignment sets an instance attribute. if the object is a class, then the assignment sets a class attribute:
+</p>
+
+<pre><code class="language-python"><span style="color: #cdd6f4;">tom</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'Tom'</span><span style="color: #f38ba8;">)</span>
+tom.<span style="color: #cdd6f4;">interest</span> <span style="color: #89dceb;">=</span> 0.08
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org33e0c20" class="outline-3">
+<h3 id="org33e0c20"><span class="section-number-3">2.4.</span> Methods</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Python distinguishes between <a href="functions.html#orgffd52aa">functions</a>, and <b>bound methods</b>, which couple together a function and the object on which that method will be invoked. A function defined in a class is a normal function, but calling that function on an instance would result in a bound method:
+</p>
+
+<pre><code class="language-python"><span style="color: #cdd6f4;">tom</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'Tom'</span><span style="color: #f38ba8;">)</span>
+<span style="color: #cdd6f4;">func</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">type</span><span style="color: #f38ba8;">(</span>Account.deposit<span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">&lt;class 'function'&gt;
+</span><span style="color: #cdd6f4;">method</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">type</span><span style="color: #f38ba8;">(</span>tom.deposit<span style="color: #f38ba8;">)</span>            <span style="color: #6c7086;"># </span><span style="color: #6c7086;">&lt;class 'method'&gt;</span>
+</code></pre>
+
+<p>
+The main difference comes in calling a function versus calling a method. All invoked methods have access to the object via the <code>self</code> parameter, and so they can all access and manipulate the object's attributes. When using methods, however, the dot notation automatically supplies the first argument, the instance of the class, to the method:
+</p>
+
+<pre><code class="language-python"><span style="color: #cdd6f4;">tom</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'Tom'</span><span style="color: #f38ba8;">)</span>
+tom.deposit<span style="color: #f38ba8;">(</span>100<span style="color: #f38ba8;">)</span>
+Account.deposit<span style="color: #f38ba8;">(</span>tom, 100<span style="color: #f38ba8;">)</span>
+</code></pre>
+</div>
+<div id="outline-container-org9f49639" class="outline-4">
+<h4 id="org9f49639"><span class="section-number-4">2.4.1.</span> Method Calls</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+Methods are invoked using the dot notation. The way Python evaluates this is by first evaluating the dot expression to get a <i>bound method</i>, and then evaluating the call expression on the result:
+</p>
+
+
+<div id="org195e30e" class="figure">
+<p><img src="../static/COMPSCI_61A/objects1.png" alt="objects1.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc5e9ad0" class="outline-4">
+<h4 id="orgc5e9ad0"><span class="section-number-4">2.4.2.</span> Special Methods</h4>
+<div class="outline-text-4" id="text-2-4-2">
+<p>
+Certain names that start and end with two underscores are special because they relate to some predefined built-in behavior:
+</p>
+
+<ol class="org-ol">
+<li><code>__init__</code> is a method that is invoked automatically when an object is constructed.</li>
+<li><code>__repr__</code> is the method invoked to display and object as a Python expression.</li>
+<li><code>__add__</code> is the method invoked to add one object to another.</li>
+<li><code>__bool__</code> is the method invoked to convert an object to <code>True</code> or <code>False</code>.</li>
+<li><code>__float__</code> is the method invoked to convert an object to a float.</li>
+</ol>
+
+<p>
+For example, if we want to implement the addition operation between two instances of some user-defined class, we would need to implement the <code>__add__(self, other)</code> method in the class.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4694f9a" class="outline-2">
+<h2 id="org4694f9a"><span class="section-number-2">3.</span> Inheritance</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>Inheritance</b> is a method for relating classes together, often when two similar classes have the same broad purpose but differ in their degree of specialization. The specialized class may have the same attributes as a <i>general class</i>, along with some special-case behavior that is specific to that specialized class:
+</p>
+
+<pre><code class="language-python"><span style="color: #cba6f7;">class</span> &lt;name&gt;<span style="color: #f38ba8;">(</span>&lt;base <span style="color: #cba6f7;">class</span>&gt;<span style="color: #f38ba8;">)</span>:
+    &lt;suite&gt;
+</code></pre>
+
+<p>
+Here, the class <code>&lt;name&gt;</code> <i>inherits</i> from a general class <code>&lt;base class&gt;</code>. Conceptually, the new <i>subclass</i> shares attributes with its base class, but may also override certain inherited attributes.
+</p>
+
+<p>
+Defining inherited classes is helpful because we can reuse certain shared functionality in the base class, but also specify its differences in behavior.
+</p>
+
+<p>
+For example, a <code>CheckingAccount</code> is a specialized type of <code>Account</code> (defined in the previous section):
+</p>
+
+<pre><code class="language-python"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">CheckingAccount</span><span style="color: #f38ba8;">(</span>Account<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cdd6f4;">withdraw_fee</span> <span style="color: #89dceb;">=</span> 1
+    <span style="color: #cdd6f4;">interest</span> <span style="color: #89dceb;">=</span> 0.01
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">withdraw</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, amount<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">return</span> Account.withdraw<span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, amount + <span style="color: #cba6f7;">self</span>.withdraw_fee<span style="color: #f38ba8;">)</span>
+</code></pre>
+
+<p>
+Notice that we can pass in an instance of a subclass into a function that expects an instance of the base class, because the <i>subclass inherits functionality from the base class</i>. We can use attributes inherited from the base class by accessing the base class with <code>super()</code>.
+</p>
+</div>
+<div id="outline-container-orgb78ac94" class="outline-3">
+<h3 id="orgb78ac94"><span class="section-number-3">3.1.</span> Multiple Inheritance</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<b>Multiple inheritance</b> is when a class inherits from <i>multiple base classes</i>:
+</p>
+
+<pre><code class="language-python"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">SavingsAccount</span><span style="color: #f38ba8;">(</span>Account<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cdd6f4;">deposit_fee</span> <span style="color: #89dceb;">=</span> 2
+    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">deposit</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, amount<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">return</span> Account.deposity<span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, amount - <span style="color: #cba6f7;">self</span>.deposit_fee<span style="color: #f38ba8;">)</span>
+
+<span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">MultipleAccount</span><span style="color: #f38ba8;">(</span>CheckingAccount, SavingsAccount<span style="color: #f38ba8;">)</span>:          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">multiple inheritance
+</span>    <span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">__init__</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">self</span>, account_holder<span style="color: #f38ba8;">)</span>:
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">holder</span> <span style="color: #89dceb;">=</span> account_holder
+        <span style="color: #cba6f7;">self</span>.<span style="color: #cdd6f4;">balance</span> <span style="color: #89dceb;">=</span> 1             <span style="color: #6c7086;"># </span><span style="color: #6c7086;">a free dollar!</span>
+</code></pre>
+
+<p>
+Here, <code>MultipleAccount</code> inherits from both <code>CheckingAccount</code> and <code>SavingsAccount</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf631a35" class="outline-3">
+<h3 id="orgf631a35"><span class="section-number-3">3.2.</span> Attribute Lookup</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+To look up a name in a class:
+</p>
+<ol class="org-ol">
+<li>If it names an attribute in the class, return the attribute value.</li>
+<li>Otherwise, look up the name in the base class, if there is one.</li>
+</ol>
+
+<p>
+In other words, when we try to access attributes or bound methods on a subclass, it will return whatever is bound to it in the subclass, and if it isn't bound to anything, it will return the value in the base class.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-19 13:30
+               Last modified: 2025-10-19 17:45
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
