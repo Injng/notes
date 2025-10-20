@@ -6,7 +6,7 @@
 <!-- 2025-10-20 Mon 10:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MATH 54</title>
+<title>Least Squares</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
@@ -82,32 +82,93 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
 <div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">MATH 54</h1>
+<h1 class="title">Least Squares</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org615a646">1. Least Squares</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org615a646" class="outline-2">
+<h2 id="org615a646"><span class="section-number-2">1.</span> Least Squares</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Notes:</b></b>
+The <b>least squares</b> line is the line among a set of data points that minimizes the sum of the squares of the vertical distances from each data point to the line.
 </p>
 
-<ul class="org-ul">
-<li><a href="least_squares.html">Least Squares</a></li>
-<li><a href="inverse_matrices.html">Inverse Matrices</a></li>
-<li><a href="orthogonality.html">Orthogonality</a></li>
-<li><a href="linear_transformations.html">Linear Transformations</a></li>
-<li><a href="matrix_operations.html">Matrix Operations</a></li>
-<li><a href="linear_systems.html">Linear Systems</a></li>
-<li><a href="triangular_and_echelon_forms.html">Triangular and Echelon Forms</a></li>
-<li><a href="eigenvalues_and_eigenvectors.html">Eigenvalues and Eigenvectors</a></li>
-<li><a href="vector_spaces.html">Vector Spaces</a></li>
-<li><a href="matrix_similarity.html">Matrix Similarity</a></li>
-<li><a href="determinants.html">Determinants</a></li>
-<li><a href="inner_product.html">Inner Product</a></li>
-<li><a href="linear_independence.html">Linear Independence</a></li>
-</ul>
+<p>
+Suppose we represent the problem of finding this least squares solution as a matrix system with some \(m \times n\) matrix \(A\) and \(\mathbf{b} \in \mathbb{R}^m\). Then, we want to solve:
+</p>
+
+\begin{align}
+A\mathbf{x} = \mathbf{b} \notag
+\end{align}
+
+<p>
+for some vector \(\mathbf{x}\). However, it is highly likely that this system is inconsistent (e.g. no lines exactly passes through all the data points). But is there a point in \(\text{Col }A\) that is closest to \(\mathbf{b}\)?
+</p>
+
+<p>
+This is just the <a href="orthogonality.html#org65f9175">projection</a> of \(\mathbf{b}\) on \(\text{Col }A\), denoted as \(\mathbf{\hat{b}}\). Then, we can find some \(\mathbf{\hat{x}}\) such that \(A\mathbf{\hat{x}} = \mathbf{\hat{b}}\).
+</p>
+
+<p>
+In other words, we want to find \(\mathbf{\hat{x}}\) such that \(\left| \mathbf{b} - A\mathbf{\hat{x}} \right|\) is as small as possible. To do this, note that \(\mathbf{b} -A\mathbf{\hat{x}}\) is orthogonal to \(\text{Col }A\), so \(\mathbf{b} - A\mathbf{\hat{x}}\) is in \(\text{Nul }A^T\), so:
+</p>
+
+\begin{align}
+A^T\left(\mathbf{b} - A\mathbf{\hat{x}}\right) = 0 \notag 
+\end{align}
+
+<p>
+Then, distributing, we have:
+</p>
+
+\begin{align}
+\boxed{A^TA\mathbf{\hat{x}} = A^T\mathbf{b}}
+\end{align}
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
