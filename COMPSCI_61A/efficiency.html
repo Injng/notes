@@ -6,7 +6,7 @@
 <!-- 2025-10-20 Mon 10:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Multivariable Calculus</title>
+<title>Efficiency</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
@@ -82,39 +82,95 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
-<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/Multivariable_Calculus/index.html">Multivariable Calculus</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Multivariable Calculus</h1>
+<h1 class="title">Efficiency</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8ce4cff">1. Memoization</a></li>
+<li><a href="#orgfcf95a7">2. Orders of Growth</a></li>
+<li><a href="#orgd2b64db">3. Space</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8ce4cff" class="outline-2">
+<h2 id="org8ce4cff"><span class="section-number-2">1.</span> Memoization</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Notes:</b></b>
+<b>Memoization</b> is a technique to increase the efficiency of a program. The main idea is the <i>remember the results that have been computed before</i>, such that we don't need to waste time computing them again later.
 </p>
 
-<ul class="org-ul">
-<li><a href="line_integrals.html">Line Integrals</a></li>
-<li><a href="del.html">Del</a></li>
-<li><a href="changing_variables.html">Change of Variables</a></li>
-<li><a href="curl.html">Curl</a></li>
-<li><a href="planes.html">Planes</a></li>
-<li><a href="greens_theorem.html">Green's Theorem</a></li>
-<li><a href="velocity_acceleration.html">Velocity and Acceleration</a></li>
-<li><a href="double_integrals.html">Double Integrals</a></li>
-<li><a href="differentials.html">Differentials and Chain Rule</a></li>
-<li><a href="min_max.html">Min/Max Problems</a></li>
-<li><a href="matrices.html">Matrices</a></li>
-<li><a href="lagrange_multipliers.html">Lagrange Multipliers</a></li>
-<li><a href="vector_fields.html">Vector Fields</a></li>
-<li><a href="gradient.html">Gradient</a></li>
-<li><a href="flux.html">Flux</a></li>
-<li><a href="triple_integrals.html">Triple Integrals</a></li>
-<li><a href="vectors.html">Vectors</a></li>
-<li><a href="lines.html">Lines and Parametric Curves</a></li>
-<li><a href="functions_partial_derivatives.html">Functions and Partial Derivatives</a></li>
-<li><a href="divergence_theorem.html">Divergence Theorem</a></li>
-</ul>
+<p>
+Usually, this is achieved by using some type of cache, often implemented as a <a href="dictionaries.html#orge96e64e">dictionary</a>, to store previous results. This can speed up computation of functions such as the Fibonacci sequence.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfcf95a7" class="outline-2">
+<h2 id="orgfcf95a7"><span class="section-number-2">2.</span> Orders of Growth</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We can roughly define the efficiency of functions by categorizing them based on how computationally expensive it gets as the size of the input grows, known as its <b>order of growth</b>. Functions that grow linearly take <i>linear time</i>, functions that grow according to a quadratic take <i>quadratic time</i>, and so on. 
+</p>
+
+<p>
+There are several common orders of growth:
+</p>
+
+<ol class="org-ol">
+<li><b>Exponential growth</b>: incrementing \(n\) multiplies the time by a constant.</li>
+<li><b>Quadratic growth</b>: incrementing \(n\) increases time by \(n\) times a constant.</li>
+<li><b>Linear growth</b>: incrementing \(n\) increases time by a constant.</li>
+<li><b>Logarithmic growth</b>: doubling \(n\) only increments time by a constant.</li>
+<li><b>Constant growth</b>: inrceasing \(n\) doesn't affect time.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgd2b64db" class="outline-2">
+<h2 id="orgd2b64db"><span class="section-number-2">3.</span> Space</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Space, or memory, is another resource that can be optimized. Frames and the objects stored in them in <i>active environments</i> take up space. Active environments can be environments for any function calls currently being evaluated, as well as parent environments of functions named in active environments.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
