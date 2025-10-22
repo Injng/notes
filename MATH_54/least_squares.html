@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-20 Mon 10:02 -->
+<!-- 2025-10-22 Wed 09:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Least Squares</title>
@@ -125,12 +125,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org615a646">1. Least Squares</a></li>
+<li><a href="#orgdb2a704">1. Least Squares Approximation</a>
+<ul>
+<li><a href="#orgbde7c1c">1.1. Uniqueness</a></li>
+<li><a href="#org129e25d">1.2. QR Factorization</a></li>
+</ul>
+</li>
+<li><a href="#orgf5daab1">2. Least Squares Line</a>
+<ul>
+<li><a href="#org211f242">2.1. Least Squares Parabola</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org615a646" class="outline-2">
-<h2 id="org615a646"><span class="section-number-2">1.</span> Least Squares</h2>
+<div id="outline-container-orgdb2a704" class="outline-2">
+<h2 id="orgdb2a704"><span class="section-number-2">1.</span> Least Squares Approximation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The <b>least squares</b> line is the line among a set of data points that minimizes the sum of the squares of the vertical distances from each data point to the line.
@@ -165,8 +175,128 @@ Then, distributing, we have:
 </p>
 
 \begin{align}
-\boxed{A^TA\mathbf{\hat{x}} = A^T\mathbf{b}}
+A^TA\mathbf{\hat{x}} = A^T\mathbf{b} \notag
 \end{align}
+
+<p>
+Since \(A^TA\) is a square matrix, then \(\mathbf{\hat{x}}\) has a solution if it is invertible:
+</p>
+
+\begin{align}
+\boxed{\mathbf{\hat{x}} = \left(A^TA\right)^{-1}A^T\mathbf{b}}
+\end{align}
+</div>
+<div id="outline-container-orgbde7c1c" class="outline-3">
+<h3 id="orgbde7c1c"><span class="section-number-3">1.1.</span> Uniqueness</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+We know that the system \(A^TA\mathbf{\hat{x}} = A^T\mathbf{b}\) is consistent since \(\mathbf{\hat{b}}\) is in \(\text{Col }A\). For the solution to be unique demands that \(A^TA\) be invertible.
+</p>
+
+<p>
+In order to determine if \(A^TA\) is invertible, we can consider whether the system \(A^TA\mathbf{x}=0\) has a nontrivial solution. Treating \(A\mathbf{x}\) as one term, we can say that:
+</p>
+
+\begin{align}
+A\mathbf{x} &\in \text{Nul }A^T \notag \\
+\Rightarrow A\mathbf{x} &\in \left(\text{Col }A\right)^{\perp} \notag
+\end{align}
+
+<p>
+At the same time, though, we know that \(A\mathbf{x} \in \text{Col }A\). Thus, this forces \(A\mathbf{x}=0\).
+</p>
+
+<p>
+The problem is then equivalent to asking if \(A\mathbf{x}=0\) has only the trivial solution. Thus, there is a unique solution \(\mathbf{\hat{x}}\) exactly when <i>the columns of \(A\) are linearly independent</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org129e25d" class="outline-3">
+<h3 id="org129e25d"><span class="section-number-3">1.2.</span> QR Factorization</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+If we know the <a href="orthogonality.html#orga993810">QR Factorization</a> of \(A\), we can rewrite (1) like so:
+</p>
+
+\begin{align}
+\mathbf{\hat{x}} &= \left[(QR)^TQR\right]^{-1}(QR)^T\mathbf{b} \notag \\
+&= \left[R^TQ^TQR\right]^{-1}(QR)^T\mathbf{b} \notag \\
+&= \left[R^TR\right]^{-1}R^TQ^T\mathbf{b} \notag \\
+&= R^{-1}\left(R^T\right)^{-1}R^TQ^T\mathbf{b} \notag
+\end{align}
+
+<p>
+Thus, since \(\left(R^T\right)^{-1}R^T\) cancels out, we have:
+</p>
+
+\begin{align}
+\boxed{\mathbf{\hat{x}} = R^{-1}Q^T\mathbf{b}}
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-orgf5daab1" class="outline-2">
+<h2 id="orgf5daab1"><span class="section-number-2">2.</span> Least Squares Line</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We now want to find the least squares line of the form \(y = B_0 + B_1x\) for a set of data points \(\left(x_i,y_i\right)\). We can for each point solve the system as follows:
+</p>
+
+\begin{align}
+B_0 + B_1x_1 &= y_1 \notag \\
+B_0 + B_1x_2 &= y_2 \notag \\
+&\vdots \notag \\
+B_0 + B_1x_n &= y_n \notag
+\end{align}
+
+<p>
+Writing this as a matrix equation, we have:
+</p>
+
+\begin{align}
+\begin{bmatrix} 
+1 & x_1 \\
+1 & x_2 \\
+\vdots & \vdots \\
+1 & x_n
+\end{bmatrix}
+\begin{bmatrix} B_0 \\ B_1 \end{bmatrix}
+&=
+\begin{bmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{bmatrix} \notag \\
+\notag \\
+XB &= Y
+\end{align}
+
+<p>
+where \(X\) is known as the <b>design matrix</b>.
+</p>
+
+<p>
+This system, however, is likely inconsistent. Therefore, we can use least squares to choose \(B\) such that \(XB\) is the best approximation for \(Y\). Using (1), then, we know that:
+</p>
+
+\begin{align}
+B = \left(X^TX\right)^{-1}X^TY
+\end{align}
+</div>
+<div id="outline-container-org211f242" class="outline-3">
+<h3 id="org211f242"><span class="section-number-3">2.1.</span> Least Squares Parabola</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Say we want to fit a parabola using least squares instead. Then, we want to find some function of the form \(y = B_0 + B_1x + B_2x^2\), which means our matrix system becomes:
+</p>
+
+\begin{align}
+\begin{bmatrix} 1 & x_1 & x_1^2 \\ 1 & x_2 & x_2^2 \\ \vdots & \vdots & \vdots \\ 1 & x_n & x_n^2 \end{bmatrix}
+\begin{bmatrix}B_0 \\ B_1 \\ B_2 \end{bmatrix}
+=
+\begin{bmatrix}y_1 \\ y_2 \\ \vdots \\ y_n\end{bmatrix} \notag
+\end{align}
+
+<p>
+The best approximation solution would still be the same as (4).
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -175,7 +305,7 @@ Then, distributing, we have:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-20 10:02
+               Last modified: 2025-10-22 09:41
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
