@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 17:44 -->
+<!-- 2025-10-22 Wed 17:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rotational Motion</title>
@@ -16,274 +16,6 @@
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -400,6 +132,14 @@
 </ul>
 </li>
 <li><a href="#org2e9a577">2. Torque</a></li>
+<li><a href="#org4e671cc">3. Rotational Inertia</a>
+<ul>
+<li><a href="#org207a101">3.1. Newton's 2nd Law</a></li>
+<li><a href="#orgff22118">3.2. Point Masses</a></li>
+<li><a href="#org4a00653">3.3. Continuous Mass Distribution</a></li>
+<li><a href="#org8f7c633">3.4. Parallel Axis Theorem</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -508,7 +248,7 @@ Critically, notice that all points on a rigid system have the same \(\Delta\thet
 </p>
 
 
-<div id="orge5329c0" class="figure">
+<div id="orge6585f0" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion1.png" alt="rotational_motion1.png" />
 </p>
 </div>
@@ -544,8 +284,235 @@ Consider applying a force on a wrench to rotate a nut. Notice that three things 
 </p>
 
 <p>
-This quantity is known as <b>torque</b>.
+This quantity is known as <b>torque</b>. We can express all of the above relations using a <a href="../Multivariable_Calculus/vectors.html#orgd612d55">cross product</a>:
 </p>
+
+\begin{align}
+\boxed{\vec{\tau} = \vec{r} \times \vec{F}}
+\end{align}
+
+<p>
+The <b>right-hand rule</b> can be used to determine the direction of torque. Most of the time we will make an additional choice of positive direction of rotation (either clockwise or counter-clockwise) to determine the sign of torque.
+</p>
+
+<p>
+If multiple torques are acting on the same system with respect to some axis of ratation, we can calculate net torque by summing all of the torques together.
+</p>
+</div>
+</div>
+<div id="outline-container-org4e671cc" class="outline-2">
+<h2 id="org4e671cc"><span class="section-number-2">3.</span> Rotational Inertia</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+It can be shown that two cylinders with the same mass and shape can roll down a ramp at different speeds, if one has its mass concentrated on the rim versus the other at the center. Thus, <b>rotational inertia</b> (also known as the <b>moment of inertia</b>), how much an object resists changes in its rotation, depends not only on mass but <i>how the mass is distributed</i>.
+</p>
+</div>
+<div id="outline-container-org207a101" class="outline-3">
+<h3 id="org207a101"><span class="section-number-3">3.1.</span> Newton's 2nd Law</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+For translational motion, <a href="newtons_laws.html#org5996b3e">Newton's 2nd Law</a> states that \(F=ma\). We have a rotational analogue of mass (linear inertia), which is the rotational inertia \(I\). This, along with torque and angular acceleration, gives us Newton's 2nd law in the context of rotational motion:
+</p>
+
+\begin{align}
+\boxed{\tau = I\alpha}
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgff22118" class="outline-3">
+<h3 id="orgff22118"><span class="section-number-3">3.2.</span> Point Masses</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+To find the rotational inertia of a point mass, consider a point mass rotating about some axis \((\Delta)\):
+</p>
+
+
+<div id="orgbd2ee1e" class="figure">
+<p><img src="../static/PHYSICS_7A/rotational_motion2.png" alt="rotational_motion2.png" />
+</p>
+</div>
+
+<p>
+We know that the torque is:
+</p>
+
+<p>
+\[
+\tau_F = RF\sin 90^{\circ} = RF \notag
+\]
+</p>
+
+<p>
+Then, by Newton's 2nd law, the force applied to the mass is:
+</p>
+
+<p>
+\[
+F = ma_{\text{tan}} = mR\alpha \notag
+\]
+</p>
+
+<p>
+Substituting this into our formula for torque, we get:
+</p>
+
+<p>
+\[
+\tau_F = mR^2\alpha \notag
+\]
+</p>
+
+<p>
+Comparing this to Newton's 2nd law for rotational motion, we realize that \(mR^2\) is the rotational inertia of a point mass. Thus, for point masses, the total rotational inertia is:
+</p>
+
+\begin{align}
+\boxed{I = \sum_{i=1}^{n} m_ir_i^2}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org4a00653" class="outline-3">
+<h3 id="org4a00653"><span class="section-number-3">3.3.</span> Continuous Mass Distribution</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+To find the rotational inertia of a continuous mass distribution, we can take the integral of tiny pieces of mass \(\text{d}m\) from (8):
+</p>
+
+\begin{align}
+\boxed{I = \int r^2\text{ d}m}
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Rotational inertia of a cylinder
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a cylinder with uniform mass distribution (density \(\rho\)):
+</p>
+
+
+<div id="orgf6d94fa" class="figure">
+<p><img src="../static/PHYSICS_7A/rotational_motion3.png" alt="rotational_motion3.png" />
+</p>
+</div>
+
+<p>
+We want to integrate over the mass of the cylinder, so first we shall find the volume of the cylinder. We will do so by taking cylindrical shells:
+</p>
+
+
+<div id="orgc0aa8bf" class="figure">
+<p><img src="../static/PHYSICS_7A/rotational_motion4.png" alt="rotational_motion4.png" />
+</p>
+</div>
+
+<p>
+The base of this shell is given by \(2\pi r \text{ d}r\), so the volume is \(2\pi r \text{ d}rH\). Then:
+</p>
+
+\begin{align}
+\text{d}V &= \text{d}AH \notag \\
+&= 2\pi r\text{ d}r H \notag
+\end{align}
+
+<p>
+We can now find the total mass in terms of density and volume:
+</p>
+
+\begin{align}
+M &= \rho V \notag \\
+\Rightarrow \rho &= \frac{M}{\pi R^2H} \notag
+\end{align}
+
+<p>
+Thus, for rotational inertia, since \(\text{d}m = \rho\text{ d}V\):
+</p>
+
+\begin{align}
+I &= \int \rho r^2 \text{ d}V \notag \\
+&= \frac{M}{\pi R^2 H} \int_0^R 2\pi r^3 \text{ d}r H \notag \\
+&= \frac{2M}{R^2} \left [ \frac{r^4}{4} \right ]_0^R \notag \\
+&= \frac{MR^4}{2R^2} \notag \\
+&= \frac{MR^2}{2} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org8f7c633" class="outline-3">
+<h3 id="org8f7c633"><span class="section-number-3">3.4.</span> Parallel Axis Theorem</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+If the axis of rotation does not go through the center of mass of a rotation object, but instead the actual axis is <i>parallel to the one through the center of mass</i> at some distance \(d\), then we can use the <b>parallel axis theorem</b> to find the rotational inertia:
+</p>
+
+\begin{align}
+\boxed{I = I_{\text{CM}} + Md^2}
+\end{align}
+
+<p>
+where \(I_{\text{CM}}\) is the rotational inertia of the object if the axis of rotation went through the center of mass.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Rotational inertia of a dumbbell
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a dumbbell rotating about its center of mass, like so:
+</p>
+
+
+<div id="org01448d6" class="figure">
+<p><img src="../static/PHYSICS_7A/rotational_motion5.png" alt="rotational_motion5.png" />
+</p>
+</div>
+
+<p>
+We can find the rotational inertia of the entire dumbbell by adding the rotational inertias of the cylindrical rod and two spheres with respect to the rotation axis together. The rotational inertia of the rod is given from the table: $I_r = \frac{m_rL^2}{12}
+</p>
+
+<p>
+The rotational inertia of the spheres with respect to its center of axis is:
+</p>
+
+\begin{align}
+I_{\text{S}/\text{CM}} = \frac{2}{5}m_sR^2 \notag
+\end{align}
+
+<p>
+Thus, by the parallel axis theorem:
+</p>
+
+\begin{align}
+I_{\text{tot}} &= I_r + 2\left[I_{\text{S}/\text{CM}} + m_s\left(\frac{L}{2}+R\right)^2\right] \notag \\
+&= \frac{m_rL^2}{12} + 2\left[\frac{2}{5}m_sR^2 + \left(\frac{L}{2}+R\right)^2m_s\right] \notag
+\end{align}
+
+
+</details>
+</div>
 </div>
 </div>
 </div>
@@ -554,7 +521,7 @@ This quantity is known as <b>torque</b>.
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-19 17:43
+               Last modified: 2025-10-22 17:58
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
