@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-10-24 Fri 09:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Symmetric Matrices</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Symmetric Matrices</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7fd2cdb">1. Symmetric Matrices</a>
+<ul>
+<li><a href="#org5482175">1.1. Diagonalization</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7fd2cdb" class="outline-2">
+<h2 id="org7fd2cdb"><span class="section-number-2">1.</span> Symmetric Matrices</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A real square matrix \(S\) is called <b>symmetric</b> if:
+</p>
+
+\begin{align}
+S^T = S
+\end{align}
+
+<p>
+Looking at their <a href="eigenvalues_and_eigenvectors.html#org784a18b">eigenvalues and eigenvectors</a>, we can see why they are special:
+</p>
+
+<ol class="org-ol">
+<li>All \(n\) eigenvalues \(\lambda\) of a symmetric matrix are real numbers.</li>
+<li>The \(n\) eigenvectors can be chosen <a href="orthogonality.html#org674bc90">orthogonal</a> to each other.</li>
+</ol>
+
+<p>
+Why must they be orthogonal to each other? Consider two distinct eigenvalues \(\lambda_1\) and \(\lambda_2\), with their corresponding eigenvectors being \(\mathbf{v}_1\) and \(\mathbf{v}_2\). Then, consider:
+</p>
+
+\begin{align}
+\lambda_1 \mathbf{v}_1^T\mathbf{v}_2 &= \lambda_1(\mathbf{v}_1 \cdot\mathbf{v}_2) \notag \\
+&= (\lambda_1\mathbf{v}_1)^T\mathbf{v}_2 \notag \\
+&= (A\mathbf{v}_1)^T\mathbf{v}_2 \notag \\
+&= \mathbf{v}_1^TA^T\mathbf{v}_2 \notag \\
+&= \mathbf{v}_1^TA\mathbf{v}_2 \notag \\
+&= \lambda_2\mathbf{v}_1^T\mathbf{v}_2 \notag
+\end{align}
+
+<p>
+But since \(\lambda_1 \neq \lambda_2\), the only way for this equality to hold would be if \(\mathbf{v}_1^T\mathbf{v}_2 = 0 \Rightarrow \mathbf{v}_1 \cdot \mathbf{v}_2 = 0\).
+</p>
+</div>
+<div id="outline-container-org5482175" class="outline-3">
+<h3 id="org5482175"><span class="section-number-3">1.1.</span> Diagonalization</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+A symmetric matrix \(S\) is <b>orthogonally diagonalizable</b>, which means that there exists matrices \(Q\) and \(\Lambda\) such that \(\Delta\) is diagonal and \(U\) is an orthogonal matrix:
+</p>
+
+\begin{align}
+\boxed{S = Q\Lambda Q^T}
+\end{align}
+
+<p>
+We see that every matrix of this form is symmetric: taking the transpose of the diagonalization, we get \(Q^{TT}\Lambda^TQ^T = Q\Lambda Q^T\).
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-10-24 09:49
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
