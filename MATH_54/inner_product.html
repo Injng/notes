@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 17:15 -->
+<!-- 2025-10-24 Fri 09:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Inner Product</title>
@@ -16,207 +16,6 @@
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -326,7 +125,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdf8668e">1. Inner Product</a></li>
+<li><a href="#orgdf8668e">1. Inner Product</a>
+<ul>
+<li><a href="#org85719c4">1.1. Extra Properties</a></li>
+</ul>
+</li>
+<li><a href="#org7f8140d">2. Cauchy-Schwarz Inequality</a>
+<ul>
+<li><a href="#orga324ce4">2.1. Proof</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -342,10 +150,65 @@ Specifically, inner products must satisfy:
 </p>
 
 <ol class="org-ol">
-<li>\(\langle u, v \rangle = \langle v, u \rangle \; \forall \; u, v \in V\)</li>
-<li>\(\langle u+v, w \rangle = \langle u, w \rangle + \langle v, w \rangle\)</li>
-<li>\(\forall \; u \in V, \; \langle u, u \rangle \geq 0\) with \(\langle u, u \rangle = 0\) only when \(u = 0\)</li>
+<li>\(\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle \; \forall \; \mathbf{u}, \mathbf{v} \in V\)</li>
+<li>\(\langle \mathbf{u}+\mathbf{v}, \mathbf{w} \rangle = \langle \mathbf{u}, \mathbf{w} \rangle + \langle \mathbf{v}, \mathbf{w} \rangle\)</li>
+<li>\(\langle c\mathbf{u}, \mathbf{v} \rangle = c\langle \mathbf{u}, \mathbf{v}\rangle\)</li>
+<li>\(\forall \; \mathbf{u} \in V, \; \langle \mathbf{u}, \mathbf{u} \rangle \geq 0\) with \(\langle \mathbf{u}, \mathbf{u} \rangle = 0\) only when \(\mathbf{u} = 0\)</li>
 </ol>
+</div>
+<div id="outline-container-org85719c4" class="outline-3">
+<h3 id="org85719c4"><span class="section-number-3">1.1.</span> Extra Properties</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Knowledge that we have of dot products can be applied to inner prodcuts as well:
+</p>
+
+<ol class="org-ol">
+<li>\(\left | \mathbf{v} \right| ^2 = \langle \mathbf{u}, \mathbf{v} \rangle\)</li>
+<li>\(\mathbf{v}\) is a unit vector if \(\left| \mathbf{v} \right| = 1\)</li>
+<li>Distance between \(\mathbf{u}\) and \(\mathbf{v}\) is \(\left| \mathbf{u}-\mathbf{v}\right|\)</li>
+<li>\(\mathbf{u}\) and \(\mathbf{v}\) are orthogonal if \(\langle \mathbf{u}, \mathbf{v}\rangle = 0\)</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org7f8140d" class="outline-2">
+<h2 id="org7f8140d"><span class="section-number-2">2.</span> Cauchy-Schwarz Inequality</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The <b>Cauchy-Schwarz inequality</b> states that the inner product of two vectors is less than or equal to the product of their magnitudes:
+</p>
+
+\begin{align}
+\boxed{\left | \langle \mathbf{u}, \mathbf{v}\rangle \right | \leq \left|\mathbf{u}\right|\left|\mathbf{v}\right|}
+\end{align}
+
+<p>
+Note that this is consistent with the dot product, as \(\mathbf{u} \cdot \mathbf{v} = \left|\mathbf{u}\right|\left|\mathbf{v}\right|\cos\theta =\Rightarrow \left|\mathbf{u}\cdot\mathbf{v}\right|\leq\left|\mathbf{u}\right|\cdot\left|\mathbf{v}\right|\).
+</p>
+</div>
+<div id="outline-container-orga324ce4" class="outline-3">
+<h3 id="orga324ce4"><span class="section-number-3">2.1.</span> Proof</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Consider vectors \(\mathbf{u}\) and \(\mathbf{v}\), with \(\mathbf{\hat{v}}\) the <a href="orthogonality.html#org65f9175">projection</a> of \(\mathbf{v}\) on \(\mathbf{u}\). First, we know that \(\left|\mathbf{v}\right| \geq \left|\mathbf{\hat{v}}\right|\) always, because we can decompose \(\mathbf{v}\) into:
+</p>
+
+\begin{align}
+\mathbf{v} &= \mathbf{\hat{v}} + \mathbf{z} \notag \\
+\langle \mathbf{v}, \mathbf{v} \rangle &= \langle \mathbf{\hat{v}} + \mathbf{z}, \mathbf{\hat{v}} + \mathbf{z} \rangle \notag \\
+\left|\mathbf{v}\right|^2 &= \left|\mathbf{\hat{v}}\right|^2 + \left|\mathbf{z}\right|^2 \notag
+\end{align}
+
+<p>
+Now, recall that \(\mathbf{\hat{v}} = \frac{\langle \mathbf{v},\mathbf{u}\rangle}{\langle\mathbf{u},\mathbf{u}\rangle}\mathbf{u}\). Taking the length of both sides:
+</p>
+
+\begin{align}
+\left|\mathbf{\hat{v}}\right| &= \frac{\left|\langle\mathbf{v},\mathbf{u}\rangle\right|}{\left|\mathbf{u}\right|^2}\left|\mathbf{u}\right| \notag \\
+\Rightarrow \left|\langle\mathbf{v},\mathbf{u}\rangle\right| &= \left|\mathbf{\hat{v}},\mathbf{u}\right|\leq\left|\mathbf{v}\right|\cdot\left|\mathbf{u}\right| \notag
+\end{align}
+</div>
 </div>
 </div>
 </div>
@@ -354,7 +217,7 @@ Specifically, inner products must satisfy:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-13 10:01
+               Last modified: 2025-10-24 09:32
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
