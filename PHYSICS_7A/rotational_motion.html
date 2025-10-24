@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-22 Wed 17:58 -->
+<!-- 2025-10-23 Thu 19:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rotational Motion</title>
@@ -140,6 +140,12 @@
 <li><a href="#org8f7c633">3.4. Parallel Axis Theorem</a></li>
 </ul>
 </li>
+<li><a href="#org1fa5729">4. Rotational Kinetic Energy</a>
+<ul>
+<li><a href="#org7e10ad4">4.1. Work-Energy Theorem</a></li>
+</ul>
+</li>
+<li><a href="#org75922f8">5. No-Slip Condition</a></li>
 </ul>
 </div>
 </div>
@@ -248,7 +254,7 @@ Critically, notice that all points on a rigid system have the same \(\Delta\thet
 </p>
 
 
-<div id="orge6585f0" class="figure">
+<div id="org0b7cd1e" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion1.png" alt="rotational_motion1.png" />
 </p>
 </div>
@@ -327,7 +333,7 @@ To find the rotational inertia of a point mass, consider a point mass rotating a
 </p>
 
 
-<div id="orgbd2ee1e" class="figure">
+<div id="org5679baf" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion2.png" alt="rotational_motion2.png" />
 </p>
 </div>
@@ -401,7 +407,7 @@ Consider a cylinder with uniform mass distribution (density \(\rho\)):
 </p>
 
 
-<div id="orgf6d94fa" class="figure">
+<div id="org7193485" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion3.png" alt="rotational_motion3.png" />
 </p>
 </div>
@@ -411,7 +417,7 @@ We want to integrate over the mass of the cylinder, so first we shall find the v
 </p>
 
 
-<div id="orgc0aa8bf" class="figure">
+<div id="org7eeafa0" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion4.png" alt="rotational_motion4.png" />
 </p>
 </div>
@@ -484,7 +490,7 @@ Consider a dumbbell rotating about its center of mass, like so:
 </p>
 
 
-<div id="org01448d6" class="figure">
+<div id="org1fd4c09" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion5.png" alt="rotational_motion5.png" />
 </p>
 </div>
@@ -515,13 +521,204 @@ I_{\text{tot}} &= I_r + 2\left[I_{\text{S}/\text{CM}} + m_s\left(\frac{L}{2}+R\r
 </div>
 </div>
 </div>
+<div id="outline-container-org1fa5729" class="outline-2">
+<h2 id="org1fa5729"><span class="section-number-2">4.</span> Rotational Kinetic Energy</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+We can define rotational kinetic energy by considering rotational inertia and angular speeds as the analogues to mass (linear inertia) and translational speed:
+</p>
+
+\begin{align}
+\boxed{K_{\text{rot}} = \frac{1}{2} I \omega^2}
+\end{align}
+</div>
+<div id="outline-container-org7e10ad4" class="outline-3">
+<h3 id="org7e10ad4"><span class="section-number-3">4.1.</span> <a href="work_and_energy.html#org0aa4a63">Work-Energy Theorem</a></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+We can define the rotational work-energy theorem as follows:
+</p>
+
+\begin{align}
+\boxed{\Delta K_{\text{rot}} = W_\tau = \int_{\theta_1}^{\theta_2} \tau_{\text{net}}(\theta ) \text{ d}\theta}
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Circular turntable
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a circular turntable with uniform mass distribution (so \(I = \frac{MR^2}{2}\)) with a tangential force \(\vec{F}\) applied for a quarter of a turn, starting from rest:
+</p>
+
+
+<div id="orgb04fa67" class="figure">
+<p><img src="../static/PHYSICS_7A/rotational_motion6.png" alt="rotational_motion6.png" />
+</p>
+</div>
+
+<p>
+We want to determine the final angular velocity of the turntable. The torque is:
+</p>
+
+\begin{align}
+\tau = RF\sin 90^{\circ} = RF \notag
+\end{align}
+
+<p>
+Then, by work-energy we have:
+</p>
+
+\begin{align}
+\Delta K &= \int_{\theta_1}^{\theta_2} RF \text{ d}\theta \notag \\
+&= RF\Delta \theta \notag
+\end{align}
+
+<p>
+As it is applied for a quarter-turn, \(\Delta \theta = \frac{\pi}{2}\). Then:
+</p>
+
+\begin{align}
+\Delta K &= RF\frac{\pi}{2} \notag \\
+\frac{1}{2}I(\omega_f^2 - 0) &= RF\frac{\pi}{2} \notag \\
+\frac{MR^2}{4}\omega_f^2 &= RF\frac{2\pi}{2} \notag \\
+\omega_f^2 &= \frac{2\pi RF}{MR^2} \notag
+\end{align}
+
+<p>
+Therefore, the final angular speed is:
+</p>
+
+\begin{align}
+\boxed{\omega_f = \sqrt{\frac{2\pi F}{MR}}} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
+<div id="outline-container-org75922f8" class="outline-2">
+<h2 id="org75922f8"><span class="section-number-2">5.</span> No-Slip Condition</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+In many situations, both translation and rotation may exist simultaneously. For situations with a <b>no-slip condition</b> (e.g. a ball rolling without slipping), there's a relationship between the two velocities of rotation and translation:
+</p>
+
+
+<div id="orgcf58de7" class="figure">
+<p><img src="../static/PHYSICS_7A/rotational_motion7.png" alt="rotational_motion7.png" />
+</p>
+</div>
+
+<p>
+Here, we see that we both have a translational velocity from the center of mass, \(\vec{v}_{\text{CM}}\), and also a rotational velocity \(\vec{v}_{\text{rot}}\). Calculating their quantities in terms of the radius and angular speed, we have:
+</p>
+
+\begin{align}
+v_{\text{rot}} &= R\omega \notag \\
+v_{\text{CM}} &= \frac{2\pi R}{T} = R\omega \notag
+\end{align}
+
+<p>
+Thus, we see that under the no-slip condition, \(v_{\text{rot}} = v_{\text{CM}}\).
+</p>
+
+<p>
+Another question is what happens to the velocity at the point of contact, \(v_{\text{contact}}\). Since the rotational velocity and translational velocity are equal, they cancel out at the point of contact and thus the point of contact is <i>instantaneously at rest</i>.
+</p>
+
+<p>
+This is important because it allows us to show that <i>any force acting at the point of contact doesn't do any work</i>:
+</p>
+
+\begin{align}
+W = \int \vec{F}\text{ d}\vec{r} = \int \vec{F} \vec{v} \text{ d}t = 0 \notag
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Ball rolling down an incline
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a ball that starts at rest and rolls down an incline:
+</p>
+
+
+<div id="orga23b625" class="figure">
+<p><img src="../static/PHYSICS_7A/rotational_motion8.png" alt="rotational_motion8.png" />
+</p>
+</div>
+
+<p>
+Static friction applies up along the incline to prevent the ball from sliding down. It is this torque that friction supplies that is responsible for rotational motion. We want to find the speed \(v_f\) of the ball at the bottom.
+</p>
+
+<p>
+There is no non-conservative work done because the no-slip condition allows us to realize that no work is done at the point of contact:
+</p>
+
+\begin{align}
+0 = \Delta U_g + \Delta K_{\text{trans}} + \Delta K_{\text{rot}} \notag
+\end{align}
+
+<p>
+Note that \(\Delta U_g\) depends on change in height of the <i>center of mass</i> of the object. Since the center of mass is offset by the same amount at the top and bottom of the incline, we have:
+</p>
+
+\begin{align}
+0 = -MgH + \frac{1}{2}Mv_f^2 + \frac{1}{2}I \omega_f^2 \notag
+\end{align}
+
+<p>
+Since we have a no-slip condition, \(v=R\omega\), so:
+</p>
+
+\begin{align}
+0 &= -MgH + \frac{1}{2}Mv_f^2 + \frac{1}{2}\left(\frac{2}{5}MR^2\right)\left(\frac{v_f^2}{R^2}\right) \notag \\
+0 &= -gH + \frac{1}{2}v_f^2 + \frac{1}{5}v_f^2 \notag \\
+\frac{7}{10}v_f^2 &= gH \notag
+\end{align}
+
+<p>
+Thus, the final speed of the ball is:
+</p>
+
+\begin{align}
+\boxed{v_f = \sqrt{\frac{10gH}{7}}}\notag
+\end{align}
+
+
+</details>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-22 17:58
+               Last modified: 2025-10-23 19:52
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
