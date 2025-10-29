@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-27 Mon 09:38 -->
+<!-- 2025-10-29 Wed 10:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Symmetric Matrices</title>
@@ -131,7 +131,12 @@
 <li><a href="#org2fcb4a3">1.2. Spectral Decomposition</a></li>
 </ul>
 </li>
-<li><a href="#orgf4fe2b0">2. Quadratic Forms</a></li>
+<li><a href="#orgf4fe2b0">2. Quadratic Forms</a>
+<ul>
+<li><a href="#org50d301b">2.1. Change of Variable</a></li>
+<li><a href="#orgb226da6">2.2. Classifying Quadratic Forms</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -224,6 +229,95 @@ For an \(n \times n\) symmetric matrix \(S\), given a vector \(\mathbf{x} \in \m
 <p>
 where \(S\) is known as the <i>matrix of the quadratic form</i>.
 </p>
+
+<p>
+We can write the quadratic form out generally for a \(2 \times 2\) symmetric matrix:
+</p>
+
+\begin{align}
+\begin{bmatrix} x_1 & x_2 \end{bmatrix}
+\begin{bmatrix} a & b \\ b & c \end{bmatrix}
+\begin{bmatrix} x_1 \\ x_2 \end{bmatrix} 
+&= \begin{bmatrix} x_1 & x_2 \end{bmatrix}
+\begin{bmatrix} ax_1 + bx_2 \\ bx_1 + cx_2 \end{bmatrix} \notag \\
+&= ax_1^2 + bx_1x_2 + bx_1x_2 + cx_2^2 \notag \\
+&= ax_1^2 + 2bx_1x_2 + dx_2^2
+\end{align}
+</div>
+<div id="outline-container-org50d301b" class="outline-3">
+<h3 id="org50d301b"><span class="section-number-3">2.1.</span> Change of Variable</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+We see that above, we have a <b>mixed term</b> \(2bx_1x_2\), which complicates things. Fortunately, we can eliminate this mixed term by making a suitable change of variable with some \(n \times n\) invertible matrix \(P\):
+</p>
+
+\begin{align}
+\mathbf{x} = P\mathbf{y}
+\end{align}
+
+<p>
+Using this in the quadratic form, we get:
+</p>
+
+\begin{align}
+Q &= \mathbf{x}^TA\mathbf{x} \notag \\
+&= (P\mathbf{y})^TA(P\mathbf{y}) \notag \\
+&= \mathbf{y}^T(P^TAP)\mathbf{y} \notag
+\end{align}
+
+<p>
+Using the \(2 \times 2\) matrix above as an example, we see that in order to eliminate the mixed term, we want the matrix product \(P^TAP\) to be a <i>diagonal matrix</i>. Since \(A\) is symmetric, we can orthogonally diagonalize it with some orthogonal matrix \(P\) and diagonal matrix \(D\):
+</p>
+
+\begin{align}
+A &= PDP^T \notag \\
+\Rightarrow P^TAP &= D \notag
+\end{align}
+
+<p>
+Thus, we can use the same \(P\) as in our diagonalization of \(A\) in the change of variables equation in order to get a quadratic form with no mixed terms.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb226da6" class="outline-3">
+<h3 id="orgb226da6"><span class="section-number-3">2.2.</span> Classifying Quadratic Forms</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The quadratic form \(Q\) can be viewed as a real function. If \(A\) is a \(2 \times 2\) matrix, then we have several possibilities, where \(z = Q(\mathbf{x})\):
+</p>
+
+
+<div id="org0046e3c" class="figure">
+<p><img src="../static/MATH_54/symmetric_matrices1.png" alt="symmetric_matrices1.png" />
+</p>
+</div>
+
+<p>
+We can then classify \(Q\) based on the sign it takes on. A quadratic form \(Q\) is:
+</p>
+
+<ol class="org-ol">
+<li><b>positive definite</b> if \(Q(\mathbf{x}) > 0 \; \forall \: \mathbf{x} \neq 0\),</li>
+<li><b>negative definite</b> if \(Q(\mathbf{x}) < 0 \; \forall \: \mathbf{x} \neq 0\),</li>
+<li><b>positive semidefinite</b> if \(Q(\mathbf{x}) \geq 0 \; \forall \: \mathbf{x}\),</li>
+<li><b>negative semidefinite</b> if \(Q(\mathbf{x}) \leq 0 \; \forall \: \mathbf{x}\),</li>
+<li><b>indefinite</b> if \(Q(\mathbf{x})\) assumes both negative and positive values.</li>
+</ol>
+
+<p>
+In the example above, (a) and (b) are both positive semidefinite, but (a) is better described as positive definite.
+</p>
+
+<p>
+Since with a change of variables \(\mathbf{x} = P\mathbf{y}\) we can write \(Q(\mathbf{x}) = \mathbf{y}^TD\mathbf{y}\), where \(D\) has the eigenvalues of \(A\) on the diagonal, we can relate these classifications to the eigenvalues of \(A\). The quadratic form \(Q\) is:
+</p>
+
+<ol class="org-ol">
+<li>Positive definite if and only if the eigenvalues of \(A\) are all positive,</li>
+<li>Negative definite if and only if the eigenvalues of \(A\) are all negative,</li>
+<li>Indefinite if and only if \(A\) has both positive and negative eigenvalues.</li>
+</ol>
+</div>
 </div>
 </div>
 </div>
@@ -232,7 +326,7 @@ where \(S\) is known as the <i>matrix of the quadratic form</i>.
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-27 09:38
+               Last modified: 2025-10-29 10:12
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
