@@ -6,7 +6,7 @@
 <!-- 2025-10-29 Wed 10:17 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MATH 54</title>
+<title>Singular Value Decomposition</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
@@ -82,13 +82,69 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
-<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/static/index.html">static</a> <span>→</span> <a href="/static/MATH_54/index.html">MATH 54</a></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">MATH 54</h1>
+<h1 class="title">Singular Value Decomposition</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org90f8ad7">1. Singular Value Decomposition</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org90f8ad7" class="outline-2">
+<h2 id="org90f8ad7"><span class="section-number-2">1.</span> Singular Value Decomposition</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We would like to be able to write <i>any matrix</i> \(A\) as a product of simpler matrices (e.g. not just square invertible matrices with <a href="matrix_similarity.html#orgf0f1c7c">diagonalization</a>). That is, for an \(m \times n\) matrix \(A\), we want to write it as:
+</p>
+
+\begin{align}
+\boxed{A = U \Sigma V^T}
+\end{align}
+
+<p>
+where \(U\) is an \(m \times m\) orthogonal matrix, \(\Sigma\) is an \(m \times n\) "diagonal" matrix, and \(V\) is an \(n \times n\) orthogonal matrix. This is known as the <b>singular value decomposition</b> (SVD) of a matrix.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
