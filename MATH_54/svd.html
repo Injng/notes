@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 10:17 -->
+<!-- 2025-10-31 Fri 10:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Singular Value Decomposition</title>
@@ -125,7 +125,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org90f8ad7">1. Singular Value Decomposition</a></li>
+<li><a href="#org90f8ad7">1. Singular Value Decomposition</a>
+<ul>
+<li><a href="#org148ece1">1.1. Proof</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -133,7 +137,29 @@
 <h2 id="org90f8ad7"><span class="section-number-2">1.</span> Singular Value Decomposition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-We would like to be able to write <i>any matrix</i> \(A\) as a product of simpler matrices (e.g. not just square invertible matrices with <a href="matrix_similarity.html#orgf0f1c7c">diagonalization</a>). That is, for an \(m \times n\) matrix \(A\), we want to write it as:
+We would like to be able to write <i>any matrix</i> \(A\) as a product of simpler matrices (e.g. not just square invertible matrices with <a href="matrix_similarity.html#orgf0f1c7c">diagonalization</a>). To make this possible for every \(m \times n\) matrix we need one set of orthonormal vectors \(\mathbf{v}_1, \dots, \mathbf{v}_n\) in \(\mathbb{R}^n\) and a second set of orthonormal vectors \(\mathbf{u}_1, \dots, \mathbf{u}_m\) in \(\mathbb{R}^m\). Instead of \(A\mathbf{x} = \lambda\mathbf{x}\), we want \(A\mathbf{v} = \sigma\mathbf{u}\) for some \(\sigma\), the <b>singular values</b>.
+</p>
+
+<p>
+We can encode all the vectors \(\mathbf{v}_i\) for \(1 \leq i \leq n\) into the columns of a matrix \(V\), and all the products \(\sigma_j\mathbf{u}_j\) for \(1 \leq j \leq m\) as the product of the matrices \(U\Sigma\), where \(\Sigma\) is a diagonal matrix with the singular values on the diagonal. We see this works because:
+</p>
+
+\begin{align}
+\begin{bmatrix}
+\: \\ \mathbf{u}_1 & \cdots & \mathbf{u}_m \\ \:
+\end{bmatrix}
+\begin{bmatrix}
+\sigma_1 & \cdots & 0 \\
+\vdots & \ddots \\
+0 & & \sigma_m
+\end{bmatrix} = 
+\begin{bmatrix}
+\: \\ \sigma_1\mathbf{u}_1 & \cdots & \sigma_m\mathbf{u}_m \\ \:
+\end{bmatrix} \notag
+\end{align}
+
+<p>
+We can now represent the relationship as \(AV = U\Sigma\). Critically, \(V\) and \(U\) are orthogonal matrices, since they were formed from orthonormal vectors. Therefore, by multiplying \(V^T\) on the right, we get the <b>singular value decomposition</b> for \(A\):
 </p>
 
 \begin{align}
@@ -141,8 +167,41 @@ We would like to be able to write <i>any matrix</i> \(A\) as a product of simple
 \end{align}
 
 <p>
-where \(U\) is an \(m \times m\) orthogonal matrix, \(\Sigma\) is an \(m \times n\) "diagonal" matrix, and \(V\) is an \(n \times n\) orthogonal matrix. This is known as the <b>singular value decomposition</b> (SVD) of a matrix.
+where \(U\) is an \(m \times m\) orthogonal matrix formed from the \(\mathbf{u}\) vectors, \(\Sigma\) is an \(m \times n\) "diagonal" matrix with \(\sigma\) on the diagonal, and \(V\) is an \(n \times n\) orthogonal matrix formed from the \(\mathbf{v}\) vectors.
 </p>
+</div>
+<div id="outline-container-org148ece1" class="outline-3">
+<h3 id="org148ece1"><span class="section-number-3">1.1.</span> Proof</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+(1) tells us everything we need to find the SVD, except for how to obtain the \(\mathbf{u}\) and \(\mathbf{v}\) vectors. One way to do this is to form the symmetric matrices \(A^TA\) and \(AA^T\):
+</p>
+
+\begin{align}
+A^TA &= (V\Sigma^TU^T)(U\Sigma V^T) = V\Sigma^T\Sigma V^T \notag \\
+AA^T &= (U\Sigma V^T)(V\Sigma^TU^T) = U\Sigma\Sigma^TU^T \notag
+\end{align}
+
+<p>
+Notice that both are in the <a href="symmetric_matrices.html#org5482175">orthogonally diagonalized</a> form \(Q\Lambda Q^T\). Thus, we see that \(V\) is simply the eigenvectors of \(A^TA\), and \(U\) is the eigenvectors of \(AA^T\). Additionally, since \(\Lambda = \Sigma^T\Sigma = \Sigma\Sigma^T\), \(\sigma^2\) is just the nonzero eigenvalues of both \(A^TA\) and \(AA^T\).
+</p>
+
+<p>
+However, since the SVD requires that \(A\mathbf{v}_k = \sigma_k\mathbf{u}_k\), we are not quite finished — the specific \(\mathbf{u}\) vectors to use depend on what we choose for the \(\mathbf{v}\) vectors. For example, if \(\lambda\) is a double eigenvalue, there is a whole plane of eigenvectors to choose from; when I choose two specific \(\mathbf{v}\) vectors from that plane, then \(A\mathbf{V} = \sigma\mathbf{u}\) will tell me the corresponding \(\mathbf{u}\) vectors.
+</p>
+
+<p>
+To do this, we shall start with the \(\mathbf{v}\) vectors. Choose orthonormal eigenvectors \(\mathbf{v}_1, \dots, \mathbf{v}_r\) of \(A^TA\) corresponding to the \(r\) positive eigenvalues. Then, since each \(\sigma\) is the square of the eigenvalues of \(A^TA\), choose \(\sigma_i = \sqrt{\lambda_i}\). Since we want \(A\mathbf{v} = \sigma\mathbf{u}\), we divide by \(\sigma\) to get:
+</p>
+
+\begin{align}
+\mathbf{u}_i = \frac{A\mathbf{v}_i}{\sigma_i}, \: 1 \leq i \leq r
+\end{align}
+
+<p>
+Then \(\mathbf{u}_1, \dots, \mathbf{u}_r\) is an orthonormal set in \(\mathbb{R}^m\). In order to get all \(m\) of our \(\mathbf{u}\) vectors, we must extend this set to become an orthonormal basis for \(\mathbb{R}^m\). This is done by thinking of \(\mathbf{u}_1, \dots, \mathbf{u}_r\) as generating a subspace \(W\) of \(\mathbb{R}^m\). Then, we can find the orthonormal basis for \(W^{\perp}\): the nullspace of a matrix with rows \(\mathbf{u}_1, \dots, \mathbf{u}_r\). We can use <a href="orthogonality.html#org3d12432">Gram-Schmidt</a> to make it orthonormal. We now have all the necessary components for the SVD.
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -151,7 +210,7 @@ where \(U\) is an \(m \times m\) orthogonal matrix, \(\Sigma\) is an \(m \times 
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-29 10:17
+               Last modified: 2025-10-31 10:28
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
