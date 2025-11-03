@@ -80,11 +80,10 @@ This is the `org-publish` configuration used to publish these notes:
          (publishing-dir (plist-get (cdr project) :publishing-directory)))
     (when publishing-dir
       (message "Running Pagefind indexer on %s..." publishing-dir)
-      (shell-command
+      (call-process-shell-command
        (format "/home/lnjng/.nvm/versions/node/v23.5.0/bin/pagefind --site %s"
-               (shell-quote-argument publishing-dir))
-       "*Pagefind Output*" "*Pagefind Errors*")
-      (message "Pagefind indexing complete. See *Pagefind Output* / *Pagefind Errors*."))))
+               (shell-quote-argument publishing-dir)))
+      (message "Pagefind indexing complete."))))
 
 (defun my-org-sitemap-format-entry (entry style project)
   "Format sitemap entries with cleaned directory names and linked directory headings."
@@ -130,6 +129,8 @@ This is the `org-publish` configuration used to publish these notes:
                      <script src=\"/pagefind/pagefind-ui.js\"></script>
                      <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css\">
                      <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js\"></script>
+                     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js\"></script
+                     <link rel=\"stylesheet\" href=\"//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css\">
                      <link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>
                      <script>hljs.highlightAll();</script>"
          :html-head-include-default-style nil
@@ -158,6 +159,8 @@ This is the `org-publish` configuration used to publish these notes:
                      <script src=\"/pagefind/pagefind-ui.js\"></script>
                      <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css\">
                      <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js\"></script>
+                     <script src=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js\"></script
+                     <link rel=\"stylesheet\" href=\"//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css\">
                      <link rel=\"stylesheet\" href=\"/style.css\" type=\"text/css\"/>
                      <script>hljs.highlightAll();</script>"
          :html-head-include-default-style nil)
