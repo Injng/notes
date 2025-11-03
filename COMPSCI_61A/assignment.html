@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Assignment</title>
@@ -94,16 +94,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1ce5b38">1. Assignment</a>
+<li><a href="#org3ca13ca">1. Assignment</a>
 <ul>
-<li><a href="#org5574059">1.1. Procedure for Assignment Statements</a></li>
+<li><a href="#orgee78193">1.1. Procedure for Assignment Statements</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1ce5b38" class="outline-2">
-<h2 id="org1ce5b38"><span class="section-number-2">1.</span> Assignment</h2>
+<div id="outline-container-org3ca13ca" class="outline-2">
+<h2 id="org3ca13ca"><span class="section-number-2">1.</span> Assignment</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 An <b>assignment statement</b> requires a <i>name</i> on the left side of the assignment operator, <code>=</code>, and an expression on the right side: e.g. <code>radius = 10</code>. We can then use this name in other expressions.
@@ -124,15 +124,15 @@ We can also use the assignment operator to give names to functions. For example,
 If we set <code>max</code> to something else, like <code>max = 3</code>, then we can <code>max</code> is no longer set to the built-in function and running <code>max(1, 2, 3)</code> will throw an error. However, we can fix this by doing <code>max = f</code>, which sets <code>max</code> back to the built-in function.
 </p>
 </div>
-<div id="outline-container-org5574059" class="outline-3">
-<h3 id="org5574059"><span class="section-number-3">1.1.</span> Procedure for Assignment Statements</h3>
+<div id="outline-container-orgee78193" class="outline-3">
+<h3 id="orgee78193"><span class="section-number-3">1.1.</span> Procedure for Assignment Statements</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Python has an execution rule for evaluating assignment statements:
 </p>
 <ol class="org-ol">
 <li>Evaluate all expressions to the right of <code>=</code> from left to right</li>
-<li>Bind all names to the left of <code>=</code> to the resulting values in the current <a href="environments.html#org450d6e7">frame</a></li>
+<li>Bind all names to the left of <code>=</code> to the resulting values in the current <a href="environments.html#org5ad1e85">frame</a></li>
 </ol>
 </div>
 </div>

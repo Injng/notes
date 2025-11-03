@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Eigenvalues and Eigenvectors</title>
@@ -126,23 +126,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge330d94">1. Eigenvalues and Eigenvectors</a>
+<li><a href="#org83a0562">1. Eigenvalues and Eigenvectors</a>
 <ul>
-<li><a href="#org79addab">1.1. Checking Eigenvalues</a></li>
-<li><a href="#org90a1618">1.2. Finding Eigenvalues</a></li>
-<li><a href="#orgcc52d19">1.3. Properties of Eigenvalues and Eigenvectors</a></li>
+<li><a href="#orga869efc">1.1. Checking Eigenvalues</a></li>
+<li><a href="#org0a2c2d2">1.2. Finding Eigenvalues</a></li>
+<li><a href="#org3d12227">1.3. Properties of Eigenvalues and Eigenvectors</a></li>
 </ul>
 </li>
-<li><a href="#orgfe7f894">2. Nonreal Eigenvalues</a>
+<li><a href="#orgf882ec9">2. Nonreal Eigenvalues</a>
 <ul>
-<li><a href="#org028983c">2.1. Matrix Powers</a></li>
+<li><a href="#org0658d5d">2.1. Matrix Powers</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge330d94" class="outline-2">
-<h2 id="orge330d94"><span class="section-number-2">1.</span> Eigenvalues and Eigenvectors</h2>
+<div id="outline-container-org83a0562" class="outline-2">
+<h2 id="org83a0562"><span class="section-number-2">1.</span> Eigenvalues and Eigenvectors</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Say \(A\) is some \(n \times n\) matrix. For most vectors \(\mathbf{x}\), the product \(A\mathbf{x}\) will result in a <i>change of direction</i> — in other words, the resulting product is not in the same direction (i.e. on the same line) as \(\mathbf{x}\). However, certain exceptional vectors, called the <b>eigenvectors</b>, <i>are</i> in the same direction as \(\mathbf{x}\). Thus we can write the following equation:
@@ -157,7 +157,7 @@ where \(\lambda\) is an <b>eigenvalue</b> of \(A\).
 </p>
 
 <p>
-This equation isn't in a very useful form. Instead, we can write it as the following <a href="linear_systems.html#org6584534">homogeneous system</a>:
+This equation isn't in a very useful form. Instead, we can write it as the following <a href="linear_systems.html#org0ec8273">homogeneous system</a>:
 </p>
 
 \begin{align}
@@ -168,16 +168,16 @@ This equation isn't in a very useful form. Instead, we can write it as the follo
 This gives us a new way to look at eigenvalues and eigenvectors. The question is, does this system have a <i>nontrivial nullspace</i>? If so, then that space is called the <b>eigenspace</b> of some \(\lambda\), and all nonzero vectors in that eigenspace are the eigenvectors of \(\lambda\).
 </p>
 </div>
-<div id="outline-container-org79addab" class="outline-3">
-<h3 id="org79addab"><span class="section-number-3">1.1.</span> Checking Eigenvalues</h3>
+<div id="outline-container-orga869efc" class="outline-3">
+<h3 id="orga869efc"><span class="section-number-3">1.1.</span> Checking Eigenvalues</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To check if some \(\lambda\) is an eigenvalue of \(A\), we can check if the system defined by (1) has any nontrivial solutions. This can be done either through row reduction of \(A - \lambda I\) or checking if the determinant of \(A - \lambda I\) is equal to zero.
 </p>
 </div>
 </div>
-<div id="outline-container-org90a1618" class="outline-3">
-<h3 id="org90a1618"><span class="section-number-3">1.2.</span> Finding Eigenvalues</h3>
+<div id="outline-container-org0a2c2d2" class="outline-3">
+<h3 id="org0a2c2d2"><span class="section-number-3">1.2.</span> Finding Eigenvalues</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 The condition for an eigenvalue is that the system defined by (1) must have nontrivial solutions: in other words, it cannot be invertible. Therefore, we can say that the determinant of the matrix is zero:
@@ -192,19 +192,19 @@ This is known as the <b>characteristic equation</b>, with \(\det (A-\lambda I)\)
 </p>
 </div>
 </div>
-<div id="outline-container-orgcc52d19" class="outline-3">
-<h3 id="orgcc52d19"><span class="section-number-3">1.3.</span> Properties of Eigenvalues and Eigenvectors</h3>
+<div id="outline-container-org3d12227" class="outline-3">
+<h3 id="org3d12227"><span class="section-number-3">1.3.</span> Properties of Eigenvalues and Eigenvectors</h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol">
 <li>If the set \({ v_1, v_2, \dots, v_p, v_{p+1} }\) are eigenvectors of \(A\) each corresponding to a <i>different eigenvalue</i>, then that set of vectors is linearly independent.</li>
 
-<li>If a square matrix \(A\) is a triangular matrix, then its eigenvalues are just its diagonal entries. This is because the <a href="determinants.html#org196ccfe">determinant of a triangular matrix</a> is just the product of the diagonal entries.</li>
+<li>If a square matrix \(A\) is a triangular matrix, then its eigenvalues are just its diagonal entries. This is because the <a href="determinants.html#orgb1924c1">determinant of a triangular matrix</a> is just the product of the diagonal entries.</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-orgfe7f894" class="outline-2">
-<h2 id="orgfe7f894"><span class="section-number-2">2.</span> Nonreal Eigenvalues</h2>
+<div id="outline-container-orgf882ec9" class="outline-2">
+<h2 id="orgf882ec9"><span class="section-number-2">2.</span> Nonreal Eigenvalues</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Consider a \(2 \times 2\) real matrix \(A\) with nonreal eigenvalues. This is possible because we can have nonreal roots from a polynomial, which means that for these roots, we cannot diagonalize over \(\mathbb{R}\).
@@ -214,11 +214,11 @@ Consider a \(2 \times 2\) real matrix \(A\) with nonreal eigenvalues. This is po
 The key point here is that complex eigenvalues come in <i>conjugate pairs</i> \(a \pm bi\). Additionally, for a \(2 \times 2\) real matrix, when eigenvalues are conjugates of each other, then the corresponding eigenvectors are also conjugates of each other.
 </p>
 </div>
-<div id="outline-container-org028983c" class="outline-3">
-<h3 id="org028983c"><span class="section-number-3">2.1.</span> Matrix Powers</h3>
+<div id="outline-container-org0658d5d" class="outline-3">
+<h3 id="org0658d5d"><span class="section-number-3">2.1.</span> Matrix Powers</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-Unfortunately, since matrices with nonreal eigenvalues cannot be <a href="matrix_similarity.html#orgb9fc599">diagonalized</a> over \(\mathbb{R}\), we have to find another way. Fortunately, there is another matrix that is <a href="matrix_similarity.html#orga78a492">similar</a> to these matrices that can help.
+Unfortunately, since matrices with nonreal eigenvalues cannot be <a href="matrix_similarity.html#orgef22918">diagonalized</a> over \(\mathbb{R}\), we have to find another way. Fortunately, there is another matrix that is <a href="matrix_similarity.html#orgfb1eee2">similar</a> to these matrices that can help.
 </p>
 
 <p>

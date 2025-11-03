@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vector Spaces</title>
@@ -126,41 +126,41 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2068d87">1. Vector Spaces</a>
+<li><a href="#orgb2107ea">1. Vector Spaces</a>
 <ul>
-<li><a href="#orgfe117aa">1.1. Subspaces</a></li>
-<li><a href="#org1b8b26d">1.2. Column Space</a></li>
-<li><a href="#orgdfd63be">1.3. Row Space</a></li>
-<li><a href="#org74d7b59">1.4. Nullspace</a></li>
+<li><a href="#orge55e023">1.1. Subspaces</a></li>
+<li><a href="#org32f75fe">1.2. Column Space</a></li>
+<li><a href="#org3a7440b">1.3. Row Space</a></li>
+<li><a href="#org98a9a2a">1.4. Nullspace</a></li>
 </ul>
 </li>
-<li><a href="#org6204c38">2. Basis</a>
+<li><a href="#org1c72390">2. Basis</a>
 <ul>
-<li><a href="#orge5cf636">2.1. Nullspace</a></li>
-<li><a href="#org36420e4">2.2. Column Space</a></li>
-<li><a href="#org1f987f4">2.3. Row Space</a></li>
-<li><a href="#orgaaa8c9c">2.4. Change of Basis</a>
+<li><a href="#org19f8b6b">2.1. Nullspace</a></li>
+<li><a href="#org9ad9871">2.2. Column Space</a></li>
+<li><a href="#org9540b6b">2.3. Row Space</a></li>
+<li><a href="#org54ce1e8">2.4. Change of Basis</a>
 <ul>
-<li><a href="#org8fd14bb">2.4.1. With Standard Basis</a></li>
-<li><a href="#orgc055946">2.4.2. With Arbitrary Basis</a></li>
+<li><a href="#org7c747bf">2.4.1. With Standard Basis</a></li>
+<li><a href="#org7fa7400">2.4.2. With Arbitrary Basis</a></li>
 </ul>
 </li>
-<li><a href="#org0fc5fa5">2.5. Isomorphism</a></li>
+<li><a href="#org1382af2">2.5. Isomorphism</a></li>
 </ul>
 </li>
-<li><a href="#org4f8eb08">3. Dimension</a>
+<li><a href="#org48415d3">3. Dimension</a>
 <ul>
-<li><a href="#org0f3da80">3.1. Rank-Nullity Theorem</a></li>
+<li><a href="#org1f3054c">3.1. Rank-Nullity Theorem</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2068d87" class="outline-2">
-<h2 id="org2068d87"><span class="section-number-2">1.</span> Vector Spaces</h2>
+<div id="outline-container-orgb2107ea" class="outline-2">
+<h2 id="orgb2107ea"><span class="section-number-2">1.</span> Vector Spaces</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-A <b>vector space</b> is comprised of a set of vectors that satisfy a set of properties. The vector space \(\mathbb{R}^n\) consists of all the column vectors \(\mathbf{v}\) of length \(n\). Two operations are defined on a vector space: addition and scalar multiplication. Using these operations, we can find <a href="linear_systems.html#org180fb20">linear combinations</a> \(c\mathbf{u} + d\mathbf{w}\) in the vector space \(\mathbb{R}^n\).
+A <b>vector space</b> is comprised of a set of vectors that satisfy a set of properties. The vector space \(\mathbb{R}^n\) consists of all the column vectors \(\mathbf{v}\) of length \(n\). Two operations are defined on a vector space: addition and scalar multiplication. Using these operations, we can find <a href="linear_systems.html#orga4a2d43">linear combinations</a> \(c\mathbf{u} + d\mathbf{w}\) in the vector space \(\mathbb{R}^n\).
 </p>
 
 <p>
@@ -182,8 +182,8 @@ In the definition of a vector space, vector addition and scalar multiplication m
 One important requirement is that <i>all linear combinations stay in the vector space</i>. This means that the set of all positive vectors is <i>not</i> a vector space (because some linear combinations yield negative vectors). Similarly, a line in \(\mathbb{R}^n\) is not a vector space unless it goes through the origin.
 </p>
 </div>
-<div id="outline-container-orgfe117aa" class="outline-3">
-<h3 id="orgfe117aa"><span class="section-number-3">1.1.</span> Subspaces</h3>
+<div id="outline-container-orge55e023" class="outline-3">
+<h3 id="orge55e023"><span class="section-number-3">1.1.</span> Subspaces</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 If that line does go through \(\mathbf{0}\), then we can multiply points on the line by any number \(c\) and still stay within the line. We can also add points on the line without ever leaving the line. This line through \(\mathbf{0}\) in \(\mathbb{R}^n\) is an example of a <b>subspace</b>: a <i>vector space inside another vector space</i>.
@@ -194,27 +194,27 @@ In a vector space \(V\), say we have the set of vectors \({\mathbf{v}_1, \mathbf
 </p>
 </div>
 </div>
-<div id="outline-container-org1b8b26d" class="outline-3">
-<h3 id="org1b8b26d"><span class="section-number-3">1.2.</span> Column Space</h3>
+<div id="outline-container-org32f75fe" class="outline-3">
+<h3 id="org32f75fe"><span class="section-number-3">1.2.</span> Column Space</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-The <b>column space</b> of a matrix \(A\) is the subspace <a href="linear_systems.html#org7e8f64a">spanned</a> by the columns of \(A\), denoted \(\text{Col }A\). In other words, it consists of <i>all linear combinations of the columns</i>. To solve the equation \(A\mathbf{x} = \mathbf{b}\) is to express \(\mathbf{b}\) as a combination of the columns — the system is consistent if and only if \(\mathbf{b}\) is <i>in the column space</i> of \(A\).
+The <b>column space</b> of a matrix \(A\) is the subspace <a href="linear_systems.html#org25866b5">spanned</a> by the columns of \(A\), denoted \(\text{Col }A\). In other words, it consists of <i>all linear combinations of the columns</i>. To solve the equation \(A\mathbf{x} = \mathbf{b}\) is to express \(\mathbf{b}\) as a combination of the columns — the system is consistent if and only if \(\mathbf{b}\) is <i>in the column space</i> of \(A\).
 </p>
 </div>
 </div>
-<div id="outline-container-orgdfd63be" class="outline-3">
-<h3 id="orgdfd63be"><span class="section-number-3">1.3.</span> Row Space</h3>
+<div id="outline-container-org3a7440b" class="outline-3">
+<h3 id="org3a7440b"><span class="section-number-3">1.3.</span> Row Space</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 The <b>row space</b> is the subspace spanned by the rows of \(A\), denoted \(\text{Row }A\). Since we usually work with column vectors, we can also say that the row space of \(A\) is the column space of the transpose matrix \(A^T\).
 </p>
 </div>
 </div>
-<div id="outline-container-org74d7b59" class="outline-3">
-<h3 id="org74d7b59"><span class="section-number-3">1.4.</span> Nullspace</h3>
+<div id="outline-container-org98a9a2a" class="outline-3">
+<h3 id="org98a9a2a"><span class="section-number-3">1.4.</span> Nullspace</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
-The <b>nullspace</b> of \(A\) is the space consisting of all the solutions \(\mathbf{x}\) to the <a href="linear_systems.html#org6584534">homogeneous system</a> \(A\mathbf{x}=0\), denoted \(\text{Nul }A\). To get the nullspace, we can solve for \(A\mathbf{x}=0\) for <a href="linear_systems.html#org7c696f2">parametric vector form</a>, and then the vectors in that form span \(\text{Nul }A\).
+The <b>nullspace</b> of \(A\) is the space consisting of all the solutions \(\mathbf{x}\) to the <a href="linear_systems.html#org0ec8273">homogeneous system</a> \(A\mathbf{x}=0\), denoted \(\text{Nul }A\). To get the nullspace, we can solve for \(A\mathbf{x}=0\) for <a href="linear_systems.html#org79e9014">parametric vector form</a>, and then the vectors in that form span \(\text{Nul }A\).
 </p>
 
 <p>
@@ -287,11 +287,11 @@ Now, it is clear that \((a, b, c, d)\) is the nullspace, and so therefore it is 
 </div>
 </div>
 </div>
-<div id="outline-container-org6204c38" class="outline-2">
-<h2 id="org6204c38"><span class="section-number-2">2.</span> Basis</h2>
+<div id="outline-container-org1c72390" class="outline-2">
+<h2 id="org1c72390"><span class="section-number-2">2.</span> Basis</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-For a vector space/subspace, a <b>basis</b> is a set of linearly independent vectors that <a href="linear_systems.html#org7e8f64a">span</a> the space. <i>Every vector in the space is a unique combination of the basis vectors</i>.
+For a vector space/subspace, a <b>basis</b> is a set of linearly independent vectors that <a href="linear_systems.html#org25866b5">span</a> the space. <i>Every vector in the space is a unique combination of the basis vectors</i>.
 </p>
 
 <p>
@@ -302,16 +302,16 @@ To see why there is only one way to write a vector as a combination of basis vec
 However, there are many different choices for a basis vector (in fact, it can be seen that if \(n\) vectors form a basis, then any \(n\) linearly independent vectors in the vector space also form a basis). Critically, though, <i>the number of basis vectors</i> does not change.
 </p>
 </div>
-<div id="outline-container-orge5cf636" class="outline-3">
-<h3 id="orge5cf636"><span class="section-number-3">2.1.</span> Nullspace</h3>
+<div id="outline-container-org19f8b6b" class="outline-3">
+<h3 id="org19f8b6b"><span class="section-number-3">2.1.</span> Nullspace</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-To find the basis for \(\text{Nul }A\), we can use the <a href="triangular_and_echelon_forms.html#org4929449">REF/RREF</a> to locate free variables, solve \(A\mathbf{x} = 0\), and the parametric vector form of the solution gives us the basis.
+To find the basis for \(\text{Nul }A\), we can use the <a href="triangular_and_echelon_forms.html#org3667bb5">REF/RREF</a> to locate free variables, solve \(A\mathbf{x} = 0\), and the parametric vector form of the solution gives us the basis.
 </p>
 </div>
 </div>
-<div id="outline-container-org36420e4" class="outline-3">
-<h3 id="org36420e4"><span class="section-number-3">2.2.</span> Column Space</h3>
+<div id="outline-container-org9ad9871" class="outline-3">
+<h3 id="org9ad9871"><span class="section-number-3">2.2.</span> Column Space</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The basis for \(\text{Col }A\) is the set of the <i>pivot columns</i> of \(A\). To see why this is, consider the RREF of the matrix. Using RREF, we see that each pivot column is not a linear combination of the other pivot columns, as for any pivot column, the entry that has a \(1\) in that pivot column has a \(0\) in the corresponding entry of the other pivot coumns, and so the pivot columns themselves are linearly independent. 
@@ -332,20 +332,20 @@ This non-pivot column can be written as a linear combination of the other pivot 
 </p>
 </div>
 </div>
-<div id="outline-container-org1f987f4" class="outline-3">
-<h3 id="org1f987f4"><span class="section-number-3">2.3.</span> Row Space</h3>
+<div id="outline-container-org9540b6b" class="outline-3">
+<h3 id="org9540b6b"><span class="section-number-3">2.3.</span> Row Space</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-The basis for \(\text{Row }A\) are the pivot rows in the <a href="triangular_and_echelon_forms.html#org68258e5">row echelon form</a> of \(A\).
+The basis for \(\text{Row }A\) are the pivot rows in the <a href="triangular_and_echelon_forms.html#org40653d6">row echelon form</a> of \(A\).
 </p>
 </div>
 </div>
-<div id="outline-container-orgaaa8c9c" class="outline-3">
-<h3 id="orgaaa8c9c"><span class="section-number-3">2.4.</span> Change of Basis</h3>
+<div id="outline-container-org54ce1e8" class="outline-3">
+<h3 id="org54ce1e8"><span class="section-number-3">2.4.</span> Change of Basis</h3>
 <div class="outline-text-3" id="text-2-4">
 </div>
-<div id="outline-container-org8fd14bb" class="outline-4">
-<h4 id="org8fd14bb"><span class="section-number-4">2.4.1.</span> With Standard Basis</h4>
+<div id="outline-container-org7c747bf" class="outline-4">
+<h4 id="org7c747bf"><span class="section-number-4">2.4.1.</span> With Standard Basis</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 Consider a real vector space \(V\) with basis \(B = {v_1, v_2, \dots , v_n}\). For any vector \(x\) in \(V\), we can write it as a linear combination of the basis of \(V\): \(x = c_1v_1 + c_2v_2 + \cdots + c_nv_n\), where \(c_i\) is any real scalar. However, if we form a matrix \(P_B\) using the basis vectors as column vectors, then we can rewrite this relationship as:
@@ -372,8 +372,8 @@ We can also convert from the standard basis to the coordinate system of another 
 </p>
 </div>
 </div>
-<div id="outline-container-orgc055946" class="outline-4">
-<h4 id="orgc055946"><span class="section-number-4">2.4.2.</span> With Arbitrary Basis</h4>
+<div id="outline-container-org7fa7400" class="outline-4">
+<h4 id="org7fa7400"><span class="section-number-4">2.4.2.</span> With Arbitrary Basis</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <p>
 The key here is to recognize the assumption we are making in (2). The reason why it works is because we assume \(P_B\) to be written <i>in the standard basis</i>, since we write basis vectors in the standard basis. In other words, in order to change from a basis \(B\) to another basis \(C\), we have to write \(P_B\) in the basis \(C\):
@@ -405,8 +405,8 @@ Realize that all of the \([\mathbf{b}_i]_C\) in a matrix is simply the basis vec
 </div>
 </div>
 </div>
-<div id="outline-container-org0fc5fa5" class="outline-3">
-<h3 id="org0fc5fa5"><span class="section-number-3">2.5.</span> Isomorphism</h3>
+<div id="outline-container-org1382af2" class="outline-3">
+<h3 id="org1382af2"><span class="section-number-3">2.5.</span> Isomorphism</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 In general, a one-to-one linear transformation from a vector space \(V\) onto \(W\) is called an <b>isomorphism</b> from \(V\) onto \(W\). In particular, any real vector space with a basis of \(n\) vectors is isomorphic with \(\mathbb{R}^n\).
@@ -414,8 +414,8 @@ In general, a one-to-one linear transformation from a vector space \(V\) onto \(
 </div>
 </div>
 </div>
-<div id="outline-container-org4f8eb08" class="outline-2">
-<h2 id="org4f8eb08"><span class="section-number-2">3.</span> Dimension</h2>
+<div id="outline-container-org48415d3" class="outline-2">
+<h2 id="org48415d3"><span class="section-number-2">3.</span> Dimension</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Define the <b>dimension</b>, \(\text{dim }V\), of a vector space \(V\) to be the number of elements in a basis for \(V\). If the number of elements is finite, then \(V\) is <b>finite dimensional</b>; otherwise, it is <b>infinite dimensional</b>. If \(\text{dim }V = n\), then any set of \(n\) linearly independent vectors in \(V\) is a basis.
@@ -435,8 +435,8 @@ The dimensions of each of the important subspaces are as follows:
 We call the <b>rank</b> of a matrix \(A\) the dimension of the row/column space. We call the <b>nullity</b> of \(A\) the dimension of the nullspace.
 </p>
 </div>
-<div id="outline-container-org0f3da80" class="outline-3">
-<h3 id="org0f3da80"><span class="section-number-3">3.1.</span> Rank-Nullity Theorem</h3>
+<div id="outline-container-org1f3054c" class="outline-3">
+<h3 id="org1f3054c"><span class="section-number-3">3.1.</span> Rank-Nullity Theorem</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 If \(A\) is a real \(m\times n\) matrix, we have:

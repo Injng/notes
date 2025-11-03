@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Binary Search</title>
@@ -94,16 +94,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org24ff2d1">1. Binary Search</a>
+<li><a href="#orgab09e0e">1. Binary Search</a>
 <ul>
-<li><a href="#org676f1a3">1.1. Off by One Error</a></li>
+<li><a href="#org7f2ca6c">1.1. Off by One Error</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org24ff2d1" class="outline-2">
-<h2 id="org24ff2d1"><span class="section-number-2">1.</span> Binary Search</h2>
+<div id="outline-container-orgab09e0e" class="outline-2">
+<h2 id="orgab09e0e"><span class="section-number-2">1.</span> Binary Search</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A large question is how do we update <code>left</code> and <code>right</code>. This depends on whether we are searching for the maximum value or the minimum value.
@@ -116,8 +116,8 @@ On the other hand, if we are searching for the minimum value, then it makes sens
 right if the midpoint is greater than or equal to the query value.
 </p>
 </div>
-<div id="outline-container-org676f1a3" class="outline-3">
-<h3 id="org676f1a3"><span class="section-number-3">1.1.</span> Off by One Error</h3>
+<div id="outline-container-org7f2ca6c" class="outline-3">
+<h3 id="org7f2ca6c"><span class="section-number-3">1.1.</span> Off by One Error</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 If we're updating <code>left</code>, then if we set the midpoint equivalent to <code>(left + right) / 2</code> there will be a moment where we have an

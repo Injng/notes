@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Efficiency</title>
@@ -126,26 +126,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgacd42b8">1. Memoization</a></li>
-<li><a href="#org47e6367">2. Orders of Growth</a></li>
-<li><a href="#orgfcbfdb4">3. Space</a></li>
+<li><a href="#org4984d64">1. Memoization</a></li>
+<li><a href="#orge416227">2. Orders of Growth</a></li>
+<li><a href="#orgfac3868">3. Space</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgacd42b8" class="outline-2">
-<h2 id="orgacd42b8"><span class="section-number-2">1.</span> Memoization</h2>
+<div id="outline-container-org4984d64" class="outline-2">
+<h2 id="org4984d64"><span class="section-number-2">1.</span> Memoization</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Memoization</b> is a technique to increase the efficiency of a program. The main idea is the <i>remember the results that have been computed before</i>, such that we don't need to waste time computing them again later.
 </p>
 
 <p>
-Usually, this is achieved by using some type of cache, often implemented as a <a href="dictionaries.html#org9923fc5">dictionary</a>, to store previous results. This can speed up computation of functions such as the Fibonacci sequence.
+Usually, this is achieved by using some type of cache, often implemented as a <a href="dictionaries.html#org8217105">dictionary</a>, to store previous results. This can speed up computation of functions such as the Fibonacci sequence.
 </p>
 </div>
 </div>
-<div id="outline-container-org47e6367" class="outline-2">
-<h2 id="org47e6367"><span class="section-number-2">2.</span> Orders of Growth</h2>
+<div id="outline-container-orge416227" class="outline-2">
+<h2 id="orge416227"><span class="section-number-2">2.</span> Orders of Growth</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We can roughly define the efficiency of functions by categorizing them based on how computationally expensive it gets as the size of the input grows, known as its <b>order of growth</b>. Functions that grow linearly take <i>linear time</i>, functions that grow according to a quadratic take <i>quadratic time</i>, and so on. 
@@ -164,8 +164,8 @@ There are several common orders of growth:
 </ol>
 </div>
 </div>
-<div id="outline-container-orgfcbfdb4" class="outline-2">
-<h2 id="orgfcbfdb4"><span class="section-number-2">3.</span> Space</h2>
+<div id="outline-container-orgfac3868" class="outline-2">
+<h2 id="orgfac3868"><span class="section-number-2">3.</span> Space</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Space, or memory, is another resource that can be optimized. Frames and the objects stored in them in <i>active environments</i> take up space. Active environments can be environments for any function calls currently being evaluated, as well as parent environments of functions named in active environments.

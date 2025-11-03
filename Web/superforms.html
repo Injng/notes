@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Superforms</title>
@@ -94,29 +94,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org861a4c2">1. Quickstart</a>
+<li><a href="#org9e0a7ce">1. Quickstart</a>
 <ul>
-<li><a href="#org989212b">1.1. Validation Schema</a></li>
-<li><a href="#org86c12a5">1.2. Load Form</a></li>
-<li><a href="#org2eb45bd">1.3. Form Actions</a></li>
-<li><a href="#org3413556">1.4. Frontend Form</a></li>
+<li><a href="#org153ad74">1.1. Validation Schema</a></li>
+<li><a href="#orgd5c41ab">1.2. Load Form</a></li>
+<li><a href="#orgea2a847">1.3. Form Actions</a></li>
+<li><a href="#orge90215f">1.4. Frontend Form</a></li>
 </ul>
 </li>
-<li><a href="#org7abd84f">2. Error Handling</a>
+<li><a href="#org81c9171">2. Error Handling</a>
 <ul>
-<li><a href="#org3944a50">2.1. Validation Errors</a></li>
-<li><a href="#orgfb74371">2.2. Status Messages</a></li>
+<li><a href="#org55b525a">2.1. Validation Errors</a></li>
+<li><a href="#org65ab57f">2.2. Status Messages</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org861a4c2" class="outline-2">
-<h2 id="org861a4c2"><span class="section-number-2">1.</span> Quickstart</h2>
+<div id="outline-container-org9e0a7ce" class="outline-2">
+<h2 id="org9e0a7ce"><span class="section-number-2">1.</span> Quickstart</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org989212b" class="outline-3">
-<h3 id="org989212b"><span class="section-number-3">1.1.</span> Validation Schema</h3>
+<div id="outline-container-org153ad74" class="outline-3">
+<h3 id="org153ad74"><span class="section-number-3">1.1.</span> Validation Schema</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The first step is to create a validation schema using a schema library, such as <a href="zod.html#+TITLE:Zod">Zod</a>:
@@ -131,8 +131,8 @@ The first step is to create a validation schema using a schema library, such as 
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org86c12a5" class="outline-3">
-<h3 id="org86c12a5"><span class="section-number-3">1.2.</span> Load Form</h3>
+<div id="outline-container-orgd5c41ab" class="outline-3">
+<h3 id="orgd5c41ab"><span class="section-number-3">1.2.</span> Load Form</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Then, initialize the form and load it into the <code>PageData</code> through the server:
@@ -154,11 +154,11 @@ Then, initialize the form and load it into the <code>PageData</code> through the
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org2eb45bd" class="outline-3">
-<h3 id="org2eb45bd"><span class="section-number-3">1.3.</span> Form Actions</h3>
+<div id="outline-container-orgea2a847" class="outline-3">
+<h3 id="orgea2a847"><span class="section-number-3">1.3.</span> Form Actions</h3>
 </div>
-<div id="outline-container-org3413556" class="outline-3">
-<h3 id="org3413556"><span class="section-number-3">1.4.</span> Frontend Form</h3>
+<div id="outline-container-orge90215f" class="outline-3">
+<h3 id="orge90215f"><span class="section-number-3">1.4.</span> Frontend Form</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Use the data loaded in by Superforms in the client to show the form and integrate:
@@ -206,15 +206,15 @@ Use the data loaded in by Superforms in the client to show the form and integrat
 </div>
 </div>
 </div>
-<div id="outline-container-org7abd84f" class="outline-2">
-<h2 id="org7abd84f"><span class="section-number-2">2.</span> Error Handling</h2>
+<div id="outline-container-org81c9171" class="outline-2">
+<h2 id="org81c9171"><span class="section-number-2">2.</span> Error Handling</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org3944a50" class="outline-3">
-<h3 id="org3944a50"><span class="section-number-3">2.1.</span> Validation Errors</h3>
+<div id="outline-container-org55b525a" class="outline-3">
+<h3 id="org55b525a"><span class="section-number-3">2.1.</span> Validation Errors</h3>
 </div>
-<div id="outline-container-orgfb74371" class="outline-3">
-<h3 id="orgfb74371"><span class="section-number-3">2.2.</span> Status Messages</h3>
+<div id="outline-container-org65ab57f" class="outline-3">
+<h3 id="org65ab57f"><span class="section-number-3">2.2.</span> Status Messages</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 For server-side errors that don't pertain to validating any one field or input, use a status message to indicate an error on the front-end.

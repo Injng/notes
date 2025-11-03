@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Line Integrals</title>
@@ -126,16 +126,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org849bd67">1. Work and Line Integrals</a></li>
-<li><a href="#orgedf4f74">2. Fundamental Theorem of Calculus for Line Integrals</a></li>
+<li><a href="#org19c2c2e">1. Work and Line Integrals</a></li>
+<li><a href="#orgff06c6a">2. Fundamental Theorem of Calculus for Line Integrals</a></li>
 </ul>
 </div>
 </div>
 <p>
 A line integral is a way to integrate a function over a line or a path, rather than an interval or a region. Critically, the integral shows that it is dependent not only on the start and end points, but also the specific path taken to get between these two points.
 </p>
-<div id="outline-container-org849bd67" class="outline-2">
-<h2 id="org849bd67"><span class="section-number-2">1.</span> Work and Line Integrals</h2>
+<div id="outline-container-org19c2c2e" class="outline-2">
+<h2 id="org19c2c2e"><span class="section-number-2">1.</span> Work and Line Integrals</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Recall that <b>work</b> is defined as the dot product between force and displacement, the amount of energy provided by the force to perform the displacement:
@@ -152,7 +152,7 @@ However, we may be dealing with more complicated trajectories, or when the force
 </p>
 
 
-<div id="org2e61313" class="figure">
+<div id="orgd25b7c3" class="figure">
 <p><img src="../static/line_integrals1.png" alt="line_integrals1.png" />
 </p>
 </div>
@@ -188,11 +188,11 @@ Critically, note that <i>we cannot split this into two integrals</i> as the nota
 </p>
 </div>
 </div>
-<div id="outline-container-orgedf4f74" class="outline-2">
-<h2 id="orgedf4f74"><span class="section-number-2">2.</span> Fundamental Theorem of Calculus for Line Integrals</h2>
+<div id="outline-container-orgff06c6a" class="outline-2">
+<h2 id="orgff06c6a"><span class="section-number-2">2.</span> Fundamental Theorem of Calculus for Line Integrals</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-When our line integral is done on a <a href="vector_fields.html#orgceb4378">gradient field</a>, then we have a special case of the <b>fundamental theorem of calculus</b>. Specifically, if we have a trajectory \(C\) that runs from point \(P_0\) to point \(P_1\), then we have:
+When our line integral is done on a <a href="vector_fields.html#org8b836a3">gradient field</a>, then we have a special case of the <b>fundamental theorem of calculus</b>. Specifically, if we have a trajectory \(C\) that runs from point \(P_0\) to point \(P_1\), then we have:
 </p>
 
 <p>
@@ -206,7 +206,7 @@ In other words, the <i>line integral of the gradient of a function gives you bac
 </p>
 
 <p>
-To see that this is true, we can split it up into coordinate form. The gradient field can be written as \(\langle f_x, f_y \rangle\), and so by the <a href="differentials.html#org79991d6">total differential</a>, we have:
+To see that this is true, we can split it up into coordinate form. The gradient field can be written as \(\langle f_x, f_y \rangle\), and so by the <a href="differentials.html#orgc9e594b">total differential</a>, we have:
 </p>
 
 <p>
@@ -220,13 +220,13 @@ This can make the calculation of many line integrals much easier. For example, i
 </p>
 
 <p>
-The consequences of this theorem, such as this trick, is known as <a href="vector_fields.html#org4ab5536">conservative fields</a> and <a href="vector_fields.html#orgb46329b">path independence</a>. To summarize, we have four equivalent properties:
+The consequences of this theorem, such as this trick, is known as <a href="vector_fields.html#orga6461ed">conservative fields</a> and <a href="vector_fields.html#org064558c">path independence</a>. To summarize, we have four equivalent properties:
 </p>
 
 <ol class="org-ol">
-<li>\(\vec{F}\) is <a href="vector_fields.html#org4ab5536">conservative</a></li>
-<li>\(\int F \cdot \text{ d}\vec{r}\) is <a href="vector_fields.html#orgb46329b">path independent</a></li>
-<li>\(\vec{F}\) is a <a href="vector_fields.html#orgceb4378">gradient field</a></li>
+<li>\(\vec{F}\) is <a href="vector_fields.html#orga6461ed">conservative</a></li>
+<li>\(\int F \cdot \text{ d}\vec{r}\) is <a href="vector_fields.html#org064558c">path independent</a></li>
+<li>\(\vec{F}\) is a <a href="vector_fields.html#org8b836a3">gradient field</a></li>
 <li>\(M \text{ d}x + N \text{ d}y = \text{d}f\)</li>
 </ol>
 </div>

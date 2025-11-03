@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Least Squares</title>
@@ -126,22 +126,22 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org464a4f2">1. Least Squares Approximation</a>
+<li><a href="#org5aa666b">1. Least Squares Approximation</a>
 <ul>
-<li><a href="#orgf44dea1">1.1. Uniqueness</a></li>
-<li><a href="#org9b61beb">1.2. QR Factorization</a></li>
+<li><a href="#org68370a5">1.1. Uniqueness</a></li>
+<li><a href="#org5b6261a">1.2. QR Factorization</a></li>
 </ul>
 </li>
-<li><a href="#orgce1f230">2. Least Squares Line</a>
+<li><a href="#org235ff78">2. Least Squares Line</a>
 <ul>
-<li><a href="#org8138503">2.1. Least Squares Parabola</a></li>
+<li><a href="#org63b8513">2.1. Least Squares Parabola</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org464a4f2" class="outline-2">
-<h2 id="org464a4f2"><span class="section-number-2">1.</span> Least Squares Approximation</h2>
+<div id="outline-container-org5aa666b" class="outline-2">
+<h2 id="org5aa666b"><span class="section-number-2">1.</span> Least Squares Approximation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The <b>least squares</b> line is the line among a set of data points that minimizes the sum of the squares of the vertical distances from each data point to the line.
@@ -160,7 +160,7 @@ for some vector \(\mathbf{x}\). However, it is highly likely that this system is
 </p>
 
 <p>
-This is just the <a href="orthogonality.html#org3318b96">projection</a> of \(\mathbf{b}\) on \(\text{Col }A\), denoted as \(\mathbf{\hat{b}}\). Then, we can find some \(\mathbf{\hat{x}}\) such that \(A\mathbf{\hat{x}} = \mathbf{\hat{b}}\).
+This is just the <a href="orthogonality.html#org5524508">projection</a> of \(\mathbf{b}\) on \(\text{Col }A\), denoted as \(\mathbf{\hat{b}}\). Then, we can find some \(\mathbf{\hat{x}}\) such that \(A\mathbf{\hat{x}} = \mathbf{\hat{b}}\).
 </p>
 
 <p>
@@ -187,8 +187,8 @@ Since \(A^TA\) is a square matrix, then \(\mathbf{\hat{x}}\) has a solution if i
 \boxed{\mathbf{\hat{x}} = \left(A^TA\right)^{-1}A^T\mathbf{b}}
 \end{align}
 </div>
-<div id="outline-container-orgf44dea1" class="outline-3">
-<h3 id="orgf44dea1"><span class="section-number-3">1.1.</span> Uniqueness</h3>
+<div id="outline-container-org68370a5" class="outline-3">
+<h3 id="org68370a5"><span class="section-number-3">1.1.</span> Uniqueness</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We know that the system \(A^TA\mathbf{\hat{x}} = A^T\mathbf{b}\) is consistent since \(\mathbf{\hat{b}}\) is in \(\text{Col }A\). For the solution to be unique demands that \(A^TA\) be invertible.
@@ -212,11 +212,11 @@ The problem is then equivalent to asking if \(A\mathbf{x}=0\) has only the trivi
 </p>
 </div>
 </div>
-<div id="outline-container-org9b61beb" class="outline-3">
-<h3 id="org9b61beb"><span class="section-number-3">1.2.</span> QR Factorization</h3>
+<div id="outline-container-org5b6261a" class="outline-3">
+<h3 id="org5b6261a"><span class="section-number-3">1.2.</span> QR Factorization</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-If we know the <a href="orthogonality.html#org638e3f7">QR Factorization</a> of \(A\), we can rewrite (1) like so:
+If we know the <a href="orthogonality.html#org5687972">QR Factorization</a> of \(A\), we can rewrite (1) like so:
 </p>
 
 \begin{align}
@@ -236,8 +236,8 @@ Thus, since \(\left(R^T\right)^{-1}R^T\) cancels out, we have:
 </div>
 </div>
 </div>
-<div id="outline-container-orgce1f230" class="outline-2">
-<h2 id="orgce1f230"><span class="section-number-2">2.</span> Least Squares Line</h2>
+<div id="outline-container-org235ff78" class="outline-2">
+<h2 id="org235ff78"><span class="section-number-2">2.</span> Least Squares Line</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We now want to find the least squares line of the form \(y = B_0 + B_1x\) for a set of data points \(\left(x_i,y_i\right)\). We can for each point solve the system as follows:
@@ -280,8 +280,8 @@ This system, however, is likely inconsistent. Therefore, we can use least square
 B = \left(X^TX\right)^{-1}X^TY
 \end{align}
 </div>
-<div id="outline-container-org8138503" class="outline-3">
-<h3 id="org8138503"><span class="section-number-3">2.1.</span> Least Squares Parabola</h3>
+<div id="outline-container-org63b8513" class="outline-3">
+<h3 id="org63b8513"><span class="section-number-3">2.1.</span> Least Squares Parabola</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Say we want to fit a parabola using least squares instead. Then, we want to find some function of the form \(y = B_0 + B_1x + B_2x^2\), which means our matrix system becomes:

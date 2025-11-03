@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Control</title>
@@ -94,18 +94,18 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2735d7e">1. Statements</a></li>
-<li><a href="#orge54d994">2. Conditional Statements</a>
+<li><a href="#org65968a4">1. Statements</a></li>
+<li><a href="#org9b6b0ec">2. Conditional Statements</a>
 <ul>
-<li><a href="#orge45e69b">2.1. Procedure for Conditional Statements</a></li>
-<li><a href="#orga4a17f9">2.2. Boolean Contexts</a></li>
+<li><a href="#orgefdccf2">2.1. Procedure for Conditional Statements</a></li>
+<li><a href="#org9e9f1ef">2.2. Boolean Contexts</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2735d7e" class="outline-2">
-<h2 id="org2735d7e"><span class="section-number-2">1.</span> Statements</h2>
+<div id="outline-container-org65968a4" class="outline-2">
+<h2 id="org65968a4"><span class="section-number-2">1.</span> Statements</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>statement</b> is executed by the interpreter to <i>perform an action</i>.
@@ -116,18 +116,18 @@ We can also define <b>compound statements</b>, which are statements that span mu
 </p>
 
 <p>
-In a compound statement, the first header determines the statement's type. For each clause, the header of that clause <i>controls</i> the suite that follows. An example of a compound statement are <a href="functions.html#org001b198">def statements</a>. 
+In a compound statement, the first header determines the statement's type. For each clause, the header of that clause <i>controls</i> the suite that follows. An example of a compound statement are <a href="functions.html#org095441b">def statements</a>. 
 </p>
 
 
-<div id="org0175b98" class="figure">
+<div id="org3fb02e2" class="figure">
 <p><img src="../static/COMPSCI_61A/control1.png" alt="control1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orge54d994" class="outline-2">
-<h2 id="orge54d994"><span class="section-number-2">2.</span> Conditional Statements</h2>
+<div id="outline-container-org9b6b0ec" class="outline-2">
+<h2 id="org9b6b0ec"><span class="section-number-2">2.</span> Conditional Statements</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A <b>conditional statement</b> is a compound statement that controls execution flow. The following example is a conditional statement that uses <code>if</code>, <code>elif</code>, and <code>else</code>:
@@ -151,8 +151,8 @@ This conditional statement consists of one statement, three clauses, three heade
 <li>Ends with zero or one  <code>else</code> clause.</li>
 </ol>
 </div>
-<div id="outline-container-orge45e69b" class="outline-3">
-<h3 id="orge45e69b"><span class="section-number-3">2.1.</span> Procedure for Conditional Statements</h3>
+<div id="outline-container-orgefdccf2" class="outline-3">
+<h3 id="orgefdccf2"><span class="section-number-3">2.1.</span> Procedure for Conditional Statements</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Each clause is considered in order. For each clause:
@@ -167,8 +167,8 @@ Notice that a conditional statement only ever executes one clause.
 </p>
 </div>
 </div>
-<div id="outline-container-orga4a17f9" class="outline-3">
-<h3 id="orga4a17f9"><span class="section-number-3">2.2.</span> Boolean Contexts</h3>
+<div id="outline-container-org9e9f1ef" class="outline-3">
+<h3 id="org9e9f1ef"><span class="section-number-3">2.2.</span> Boolean Contexts</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 A <b>boolean context</b> is a context in which we only care if the expression evaluates to <code>True</code> or <code>False</code>. Examples of <code>False</code> values include <code>False</code>, <code>0</code>, <code>''</code>, <code>None</code>, and others. Anything other than a <code>False</code> value is a <code>True</code> value. Examples of boolean contexts include the headers for conditional statements and <code>while</code>.

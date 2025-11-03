@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matrix Operations</title>
@@ -126,26 +126,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org93974d8">1. Matrix Addition</a></li>
-<li><a href="#orge5a243e">2. Matrix Multiplication</a>
+<li><a href="#org2565396">1. Matrix Addition</a></li>
+<li><a href="#orgb2fe261">2. Matrix Multiplication</a>
 <ul>
-<li><a href="#org9abea37">2.1. Multiplication Properties</a></li>
-<li><a href="#org42998e0">2.2. Identity</a></li>
+<li><a href="#orgb7fd242">2.1. Multiplication Properties</a></li>
+<li><a href="#orgdbd8f24">2.2. Identity</a></li>
 </ul>
 </li>
-<li><a href="#orge756809">3. Matrix Transposition</a>
+<li><a href="#org133051b">3. Matrix Transposition</a>
 <ul>
-<li><a href="#orge850c27">3.1. Transposition Properties</a></li>
+<li><a href="#orgfea1dec">3.1. Transposition Properties</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org93974d8" class="outline-2">
-<h2 id="org93974d8"><span class="section-number-2">1.</span> Matrix Addition</h2>
+<div id="outline-container-org2565396" class="outline-2">
+<h2 id="org2565396"><span class="section-number-2">1.</span> Matrix Addition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-If we think of two matrices as <a href="linear_transformations.html#orgdc14bfa">linear transformations</a>, <b>matrix addition</b> will only be defined if their codomain and domain are the same; in other words, \(A+B\) is only defined if \(A\) and \(B\) are the same size.
+If we think of two matrices as <a href="linear_transformations.html#orgb8aa6d7">linear transformations</a>, <b>matrix addition</b> will only be defined if their codomain and domain are the same; in other words, \(A+B\) is only defined if \(A\) and \(B\) are the same size.
 </p>
 
 <p>
@@ -157,11 +157,11 @@ If \(A = \begin{bmatrix} a_{ij} \end{bmatrix}\) and \(B = \begin{bmatrix} b_{ij}
 \end{align}
 </div>
 </div>
-<div id="outline-container-orge5a243e" class="outline-2">
-<h2 id="orge5a243e"><span class="section-number-2">2.</span> Matrix Multiplication</h2>
+<div id="outline-container-orgb2fe261" class="outline-2">
+<h2 id="orgb2fe261"><span class="section-number-2">2.</span> Matrix Multiplication</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-If \(A\) and \(B\) are matrices, then we can consider their associated <a href="linear_transformations.html#orgdc14bfa">linear transformations</a> \(T\) and \(S\). We define <b>matrix multiplication</b> to be analogous to the composition of two transformations, i.e. \(T \circ S\).
+If \(A\) and \(B\) are matrices, then we can consider their associated <a href="linear_transformations.html#orgb8aa6d7">linear transformations</a> \(T\) and \(S\). We define <b>matrix multiplication</b> to be analogous to the composition of two transformations, i.e. \(T \circ S\).
 </p>
 
 <p>
@@ -176,8 +176,8 @@ We know that multiplying a matrix by a column vector is done by forming a new ma
 \boxed{AB = \begin{bmatrix} Ab_1 & Ab_2 & \cdots & Ab_p \end{bmatrix}}
 \end{align}
 </div>
-<div id="outline-container-org9abea37" class="outline-3">
-<h3 id="org9abea37"><span class="section-number-3">2.1.</span> Multiplication Properties</h3>
+<div id="outline-container-orgb7fd242" class="outline-3">
+<h3 id="orgb7fd242"><span class="section-number-3">2.1.</span> Multiplication Properties</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Matrix multiplication is <b>associative</b>:
@@ -200,8 +200,8 @@ We can understand this through the analogue of the composition of two transforma
 </p>
 </div>
 </div>
-<div id="outline-container-org42998e0" class="outline-3">
-<h3 id="org42998e0"><span class="section-number-3">2.2.</span> Identity</h3>
+<div id="outline-container-orgdbd8f24" class="outline-3">
+<h3 id="orgdbd8f24"><span class="section-number-3">2.2.</span> Identity</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The \(n \times n\) <b>identity matrix</b> \(I_n\) is the matrix that implements the identity transformation:
@@ -227,8 +227,8 @@ A \cdot I_n = I_n \cdot A = A
 </div>
 </div>
 </div>
-<div id="outline-container-orge756809" class="outline-2">
-<h2 id="orge756809"><span class="section-number-2">3.</span> Matrix Transposition</h2>
+<div id="outline-container-org133051b" class="outline-2">
+<h2 id="org133051b"><span class="section-number-2">3.</span> Matrix Transposition</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The <b>transpose</b> \(A^T\) of a matrix \(A\) is \(A\) with the rows and columns switched. Thus, if \(A\) was a \(m \times n\) matrix, then \(A^T\) would be a \(n \times m\) matrix:
@@ -238,8 +238,8 @@ The <b>transpose</b> \(A^T\) of a matrix \(A\) is \(A\) with the rows and column
 \boxed{A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix} \quad A^T = \begin{bmatrix} a_{11} & \cdots & a_{m1} \\ a_{12} & \cdots & a_{m2} \\ \vdots \\ a_{1n} & \cdots & a_{mn} \end{bmatrix}}
 \end{align}
 </div>
-<div id="outline-container-orge850c27" class="outline-3">
-<h3 id="orge850c27"><span class="section-number-3">3.1.</span> Transposition Properties</h3>
+<div id="outline-container-orgfea1dec" class="outline-3">
+<h3 id="orgfea1dec"><span class="section-number-3">3.1.</span> Transposition Properties</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Two useful properties of transpose:

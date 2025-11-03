@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Trees</title>
@@ -94,30 +94,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5d83199">1. Trees</a>
+<li><a href="#org66b145e">1. Trees</a>
 <ul>
-<li><a href="#orgc5cc7ea">1.1. Tree Abstraction Implementation</a></li>
-<li><a href="#org20bcf48">1.2. Tree Processing</a></li>
+<li><a href="#orgee15b64">1.1. Tree Abstraction Implementation</a></li>
+<li><a href="#org75ce33f">1.2. Tree Processing</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5d83199" class="outline-2">
-<h2 id="org5d83199"><span class="section-number-2">1.</span> Trees</h2>
+<div id="outline-container-org66b145e" class="outline-2">
+<h2 id="org66b145e"><span class="section-number-2">1.</span> Trees</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>tree</b> is a hierarchical data structure that is used to represent data. Every tree has a <b>root</b> as well as a list of <b>branches</b>, where every branch is another tree. A tree with zero branches is called a <b>leaf</b>. Each location in a tree is called a <b>node</b>, which contains some value that is its <b>label</b>. One node can be the <b>parent</b> or <b>child</b> of another node:
 </p>
 
 
-<div id="org6649501" class="figure">
+<div id="org738f3bd" class="figure">
 <p><img src="../static/COMPSCI_61A/trees1.png" alt="trees1.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-orgc5cc7ea" class="outline-3">
-<h3 id="orgc5cc7ea"><span class="section-number-3">1.1.</span> Tree Abstraction Implementation</h3>
+<div id="outline-container-orgee15b64" class="outline-3">
+<h3 id="orgee15b64"><span class="section-number-3">1.1.</span> Tree Abstraction Implementation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can implement a tree by considering that each tree consists of a root label and a list of branches:
@@ -144,7 +144,7 @@ We can implement a tree by considering that each tree consists of a root label a
 </code></pre>
 
 <p>
-We can also use a <a href="objects.html#org0f48140">class</a> to implement a tree:
+We can also use a <a href="objects.html#orgba41431">class</a> to implement a tree:
 </p>
 
 <pre><code class="language-python"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Tree</span>:
@@ -156,8 +156,8 @@ We can also use a <a href="objects.html#org0f48140">class</a> to implement a tre
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org20bcf48" class="outline-3">
-<h3 id="org20bcf48"><span class="section-number-3">1.2.</span> Tree Processing</h3>
+<div id="outline-container-org75ce33f" class="outline-3">
+<h3 id="org75ce33f"><span class="section-number-3">1.2.</span> Tree Processing</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 In practice, one does not usually manually define trees; instead, they are generated programmatically. Processing trees are also generally done using recursion, with the base case typically being processing a leaf.

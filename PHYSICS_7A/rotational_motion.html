@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rotational Motion</title>
@@ -126,35 +126,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org325a162">1. Angular Quantities</a>
+<li><a href="#org0774964">1. Angular Quantities</a>
 <ul>
-<li><a href="#org3b85fc4">1.1. Conversion Between Angular and Linear Quantities</a></li>
-<li><a href="#org7446443">1.2. Rotational Kinematic Equations</a></li>
+<li><a href="#org8ba9d3c">1.1. Conversion Between Angular and Linear Quantities</a></li>
+<li><a href="#org09d3cf4">1.2. Rotational Kinematic Equations</a></li>
 </ul>
 </li>
-<li><a href="#org6cee426">2. Torque</a></li>
-<li><a href="#org487fc55">3. Rotational Inertia</a>
+<li><a href="#orge7e92e6">2. Torque</a></li>
+<li><a href="#orge7f03e6">3. Rotational Inertia</a>
 <ul>
-<li><a href="#org35c0d2e">3.1. Newton's 2nd Law</a></li>
-<li><a href="#org6bb116a">3.2. Point Masses</a></li>
-<li><a href="#org03b6c6d">3.3. Continuous Mass Distribution</a></li>
-<li><a href="#org7862d25">3.4. Parallel Axis Theorem</a></li>
+<li><a href="#org99e4077">3.1. Newton's 2nd Law</a></li>
+<li><a href="#orgf972dd4">3.2. Point Masses</a></li>
+<li><a href="#org13c8df5">3.3. Continuous Mass Distribution</a></li>
+<li><a href="#org781e438">3.4. Parallel Axis Theorem</a></li>
 </ul>
 </li>
-<li><a href="#orgb7894fa">4. Rotational Kinetic Energy</a>
+<li><a href="#org93d38c4">4. Rotational Kinetic Energy</a>
 <ul>
-<li><a href="#org2d19b2b">4.1. Work-Energy Theorem</a></li>
+<li><a href="#org4384861">4.1. Work-Energy Theorem</a></li>
 </ul>
 </li>
-<li><a href="#org8eb52c3">5. No-Slip Condition</a></li>
+<li><a href="#org876098b">5. No-Slip Condition</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org325a162" class="outline-2">
-<h2 id="org325a162"><span class="section-number-2">1.</span> Angular Quantities</h2>
+<div id="outline-container-org0774964" class="outline-2">
+<h2 id="org0774964"><span class="section-number-2">1.</span> Angular Quantities</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-We can understand the angular quantities by using a metaphor with the translational quantities. The following are the rotational analogues to the <a href="kinematics.html#org0735d5c">translational quantities</a> of displacement, position, velocity, and acceleration:
+We can understand the angular quantities by using a metaphor with the translational quantities. The following are the rotational analogues to the <a href="kinematics.html#org3e845c2">translational quantities</a> of displacement, position, velocity, and acceleration:
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -205,8 +205,8 @@ We can understand the angular quantities by using a metaphor with the translatio
 The rotational analogues, then, are <b>angular displacement</b>, <b>angular position</b>, <b>angular velocity</b>, and <b>angular acceleration</b>.
 </p>
 </div>
-<div id="outline-container-org3b85fc4" class="outline-3">
-<h3 id="org3b85fc4"><span class="section-number-3">1.1.</span> Conversion Between Angular and Linear Quantities</h3>
+<div id="outline-container-org8ba9d3c" class="outline-3">
+<h3 id="org8ba9d3c"><span class="section-number-3">1.1.</span> Conversion Between Angular and Linear Quantities</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 When considering movement around a circle with radius \(R\), we can begin with the arc length formula to determine the position:
@@ -225,7 +225,7 @@ Taking the derivative with respect to time, we obtain velocity:
 \end{align}
 
 <p>
-Substituting this into <a href="circular_motion.html#org7ec8be1">radial acceleration</a>, we get:
+Substituting this into <a href="circular_motion.html#org0980a35">radial acceleration</a>, we get:
 </p>
 
 \begin{align}
@@ -255,17 +255,17 @@ Critically, notice that all points on a rigid system have the same \(\Delta\thet
 </p>
 
 
-<div id="org0d7f30d" class="figure">
+<div id="org20daac9" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion1.png" alt="rotational_motion1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org7446443" class="outline-3">
-<h3 id="org7446443"><span class="section-number-3">1.2.</span> Rotational Kinematic Equations</h3>
+<div id="outline-container-org09d3cf4" class="outline-3">
+<h3 id="org09d3cf4"><span class="section-number-3">1.2.</span> Rotational Kinematic Equations</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-Using the <a href="kinematics.html#org0535829">linear kinematic equations</a> as a metaphor, we can also establish equivalent <i>kinematic equations for rotational motion</i>:
+Using the <a href="kinematics.html#orga59ca19">linear kinematic equations</a> as a metaphor, we can also establish equivalent <i>kinematic equations for rotational motion</i>:
 </p>
 
 \begin{align}
@@ -279,8 +279,8 @@ Using the <a href="kinematics.html#org0535829">linear kinematic equations</a> as
 </div>
 </div>
 </div>
-<div id="outline-container-org6cee426" class="outline-2">
-<h2 id="org6cee426"><span class="section-number-2">2.</span> Torque</h2>
+<div id="outline-container-orge7e92e6" class="outline-2">
+<h2 id="orge7e92e6"><span class="section-number-2">2.</span> Torque</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We know that force causes translational motion, but what is responsible for a change in rotational motion?
@@ -291,7 +291,7 @@ Consider applying a force on a wrench to rotate a nut. Notice that three things 
 </p>
 
 <p>
-This quantity is known as <b>torque</b>. We can express all of the above relations using a <a href="../Multivariable_Calculus/vectors.html#org07ff183">cross product</a>:
+This quantity is known as <b>torque</b>. We can express all of the above relations using a <a href="../Multivariable_Calculus/vectors.html#org93ea03f">cross product</a>:
 </p>
 
 \begin{align}
@@ -307,18 +307,18 @@ If multiple torques are acting on the same system with respect to some axis of r
 </p>
 </div>
 </div>
-<div id="outline-container-org487fc55" class="outline-2">
-<h2 id="org487fc55"><span class="section-number-2">3.</span> Rotational Inertia</h2>
+<div id="outline-container-orge7f03e6" class="outline-2">
+<h2 id="orge7f03e6"><span class="section-number-2">3.</span> Rotational Inertia</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 It can be shown that two cylinders with the same mass and shape can roll down a ramp at different speeds, if one has its mass concentrated on the rim versus the other at the center. Thus, <b>rotational inertia</b> (also known as the <b>moment of inertia</b>), how much an object resists changes in its rotation, depends not only on mass but <i>how the mass is distributed</i>.
 </p>
 </div>
-<div id="outline-container-org35c0d2e" class="outline-3">
-<h3 id="org35c0d2e"><span class="section-number-3">3.1.</span> Newton's 2nd Law</h3>
+<div id="outline-container-org99e4077" class="outline-3">
+<h3 id="org99e4077"><span class="section-number-3">3.1.</span> Newton's 2nd Law</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-For translational motion, <a href="newtons_laws.html#orgd3098a4">Newton's 2nd Law</a> states that \(F=ma\). We have a rotational analogue of mass (linear inertia), which is the rotational inertia \(I\). This, along with torque and angular acceleration, gives us Newton's 2nd law in the context of rotational motion:
+For translational motion, <a href="newtons_laws.html#org632e656">Newton's 2nd Law</a> states that \(F=ma\). We have a rotational analogue of mass (linear inertia), which is the rotational inertia \(I\). This, along with torque and angular acceleration, gives us Newton's 2nd law in the context of rotational motion:
 </p>
 
 \begin{align}
@@ -326,15 +326,15 @@ For translational motion, <a href="newtons_laws.html#orgd3098a4">Newton's 2nd La
 \end{align}
 </div>
 </div>
-<div id="outline-container-org6bb116a" class="outline-3">
-<h3 id="org6bb116a"><span class="section-number-3">3.2.</span> Point Masses</h3>
+<div id="outline-container-orgf972dd4" class="outline-3">
+<h3 id="orgf972dd4"><span class="section-number-3">3.2.</span> Point Masses</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 To find the rotational inertia of a point mass, consider a point mass rotating about some axis \((\Delta)\):
 </p>
 
 
-<div id="org06d00f9" class="figure">
+<div id="orgf6b0d18" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion2.png" alt="rotational_motion2.png" />
 </p>
 </div>
@@ -378,8 +378,8 @@ Comparing this to Newton's 2nd law for rotational motion, we realize that \(mR^2
 \end{align}
 </div>
 </div>
-<div id="outline-container-org03b6c6d" class="outline-3">
-<h3 id="org03b6c6d"><span class="section-number-3">3.3.</span> Continuous Mass Distribution</h3>
+<div id="outline-container-org13c8df5" class="outline-3">
+<h3 id="org13c8df5"><span class="section-number-3">3.3.</span> Continuous Mass Distribution</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 To find the rotational inertia of a continuous mass distribution, we can take the integral of tiny pieces of mass \(\text{d}m\) from (8):
@@ -408,7 +408,7 @@ Consider a cylinder with uniform mass distribution (density \(\rho\)):
 </p>
 
 
-<div id="org188b96d" class="figure">
+<div id="org12d8847" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion3.png" alt="rotational_motion3.png" />
 </p>
 </div>
@@ -418,7 +418,7 @@ We want to integrate over the mass of the cylinder, so first we shall find the v
 </p>
 
 
-<div id="orgcd86712" class="figure">
+<div id="org5090cbf" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion4.png" alt="rotational_motion4.png" />
 </p>
 </div>
@@ -457,8 +457,8 @@ I &= \int \rho r^2 \text{ d}V \notag \\
 </details>
 </div>
 </div>
-<div id="outline-container-org7862d25" class="outline-3">
-<h3 id="org7862d25"><span class="section-number-3">3.4.</span> Parallel Axis Theorem</h3>
+<div id="outline-container-org781e438" class="outline-3">
+<h3 id="org781e438"><span class="section-number-3">3.4.</span> Parallel Axis Theorem</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 If the axis of rotation does not go through the center of mass of a rotation object, but instead the actual axis is <i>parallel to the one through the center of mass</i> at some distance \(d\), then we can use the <b>parallel axis theorem</b> to find the rotational inertia:
@@ -491,7 +491,7 @@ Consider a dumbbell rotating about its center of mass, like so:
 </p>
 
 
-<div id="orga3a79b1" class="figure">
+<div id="orge367445" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion5.png" alt="rotational_motion5.png" />
 </p>
 </div>
@@ -522,8 +522,8 @@ I_{\text{tot}} &= I_r + 2\left[I_{\text{S}/\text{CM}} + m_s\left(\frac{L}{2}+R\r
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7894fa" class="outline-2">
-<h2 id="orgb7894fa"><span class="section-number-2">4.</span> Rotational Kinetic Energy</h2>
+<div id="outline-container-org93d38c4" class="outline-2">
+<h2 id="org93d38c4"><span class="section-number-2">4.</span> Rotational Kinetic Energy</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 We can define rotational kinetic energy by considering rotational inertia and angular speeds as the analogues to mass (linear inertia) and translational speed:
@@ -533,8 +533,8 @@ We can define rotational kinetic energy by considering rotational inertia and an
 \boxed{K_{\text{rot}} = \frac{1}{2} I \omega^2}
 \end{align}
 </div>
-<div id="outline-container-org2d19b2b" class="outline-3">
-<h3 id="org2d19b2b"><span class="section-number-3">4.1.</span> <a href="work_and_energy.html#orgb02a653">Work-Energy Theorem</a></h3>
+<div id="outline-container-org4384861" class="outline-3">
+<h3 id="org4384861"><span class="section-number-3">4.1.</span> <a href="work_and_energy.html#org19acf2e">Work-Energy Theorem</a></h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 We can define the rotational work-energy theorem as follows:
@@ -563,7 +563,7 @@ Consider a circular turntable with uniform mass distribution (so \(I = \frac{MR^
 </p>
 
 
-<div id="orgf953053" class="figure">
+<div id="org09e23a0" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion6.png" alt="rotational_motion6.png" />
 </p>
 </div>
@@ -609,15 +609,15 @@ Therefore, the final angular speed is:
 </div>
 </div>
 </div>
-<div id="outline-container-org8eb52c3" class="outline-2">
-<h2 id="org8eb52c3"><span class="section-number-2">5.</span> No-Slip Condition</h2>
+<div id="outline-container-org876098b" class="outline-2">
+<h2 id="org876098b"><span class="section-number-2">5.</span> No-Slip Condition</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 In many situations, both translation and rotation may exist simultaneously. For situations with a <b>no-slip condition</b> (e.g. a ball rolling without slipping), there's a relationship between the two velocities of rotation and translation:
 </p>
 
 
-<div id="org64b5a17" class="figure">
+<div id="org19fe377" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion7.png" alt="rotational_motion7.png" />
 </p>
 </div>
@@ -666,7 +666,7 @@ Consider a ball that starts at rest and rolls down an incline:
 </p>
 
 
-<div id="org74a06d7" class="figure">
+<div id="org1b1c8d6" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion8.png" alt="rotational_motion8.png" />
 </p>
 </div>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Differentials and Chain Rule</title>
@@ -126,24 +126,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org79991d6">1. Total Differential</a></li>
-<li><a href="#orgf2d4949">2. Chain Rule</a>
+<li><a href="#orgc9e594b">1. Total Differential</a></li>
+<li><a href="#orgb009af7">2. Chain Rule</a>
 <ul>
-<li><a href="#org2fac1e8">2.1. Proof</a></li>
+<li><a href="#org57fb1c6">2.1. Proof</a></li>
 </ul>
 </li>
-<li><a href="#org88be035">3. Applications of Chain Rule</a>
+<li><a href="#org32ab75f">3. Applications of Chain Rule</a>
 <ul>
-<li><a href="#org4986a9f">3.1. Product Rule</a></li>
-<li><a href="#org4c58221">3.2. Quotient Rule</a></li>
-<li><a href="#orgbc91380">3.3. Multiple Intermediate Variables</a></li>
+<li><a href="#org6759bb7">3.1. Product Rule</a></li>
+<li><a href="#org4c679ac">3.2. Quotient Rule</a></li>
+<li><a href="#org5b340f5">3.3. Multiple Intermediate Variables</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org79991d6" class="outline-2">
-<h2 id="org79991d6"><span class="section-number-2">1.</span> Total Differential</h2>
+<div id="outline-container-orgc9e594b" class="outline-2">
+<h2 id="orgc9e594b"><span class="section-number-2">1.</span> Total Differential</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Given function \(f(x,y,z)\), we have
@@ -156,12 +156,12 @@ Given function \(f(x,y,z)\), we have
 </p>
 
 <p>
-In this way, these differentials encode how changes in \(x\), \(y\), and \(z\) affect the function \(f\). Notice that it is similar to our formula for <a href="min_max.html#orgcf61c28">linear approximations</a>, and so they can also be thought of as a placeholder for the small variations \(\Delta x\), \(\Delta y\), and \(\Delta z\).
+In this way, these differentials encode how changes in \(x\), \(y\), and \(z\) affect the function \(f\). Notice that it is similar to our formula for <a href="min_max.html#org6a2fc85">linear approximations</a>, and so they can also be thought of as a placeholder for the small variations \(\Delta x\), \(\Delta y\), and \(\Delta z\).
 </p>
 </div>
 </div>
-<div id="outline-container-orgf2d4949" class="outline-2">
-<h2 id="orgf2d4949"><span class="section-number-2">2.</span> Chain Rule</h2>
+<div id="outline-container-orgb009af7" class="outline-2">
+<h2 id="orgb009af7"><span class="section-number-2">2.</span> Chain Rule</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We can also divide by something like \(\text{d}t\) to get a rate of change if they depend on some external parameter \(t\), such as when \(x=x(t)\), \(y=y(t)\), and \(z=z(t)\), to get the <b>chain rule</b>:
@@ -173,8 +173,8 @@ We can also divide by something like \(\text{d}t\) to get a rate of change if th
 \]
 </p>
 </div>
-<div id="outline-container-org2fac1e8" class="outline-3">
-<h3 id="org2fac1e8"><span class="section-number-3">2.1.</span> Proof</h3>
+<div id="outline-container-org57fb1c6" class="outline-3">
+<h3 id="org57fb1c6"><span class="section-number-3">2.1.</span> Proof</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 From our formula for linear approximation, we have that:
@@ -208,12 +208,12 @@ Now, as we take the limit as \(\Delta t\) tends to zero, we get the following eq
 </div>
 </div>
 </div>
-<div id="outline-container-org88be035" class="outline-2">
-<h2 id="org88be035"><span class="section-number-2">3.</span> Applications of Chain Rule</h2>
+<div id="outline-container-org32ab75f" class="outline-2">
+<h2 id="org32ab75f"><span class="section-number-2">3.</span> Applications of Chain Rule</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org4986a9f" class="outline-3">
-<h3 id="org4986a9f"><span class="section-number-3">3.1.</span> Product Rule</h3>
+<div id="outline-container-org6759bb7" class="outline-3">
+<h3 id="org6759bb7"><span class="section-number-3">3.1.</span> Product Rule</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We can use multivariable calculus and the chain rule to justify the product rule. Given a function \(f=uv\), where \(u=u(t)\) and \(v=v(t)\), we have that:
@@ -226,8 +226,8 @@ We can use multivariable calculus and the chain rule to justify the product rule
 </p>
 </div>
 </div>
-<div id="outline-container-org4c58221" class="outline-3">
-<h3 id="org4c58221"><span class="section-number-3">3.2.</span> Quotient Rule</h3>
+<div id="outline-container-org4c679ac" class="outline-3">
+<h3 id="org4c679ac"><span class="section-number-3">3.2.</span> Quotient Rule</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Given a function \(g=\frac{u}{v}\), where \(u=u(t)\) and \(v=v(t)\), we have:
@@ -240,8 +240,8 @@ Given a function \(g=\frac{u}{v}\), where \(u=u(t)\) and \(v=v(t)\), we have:
 </p>
 </div>
 </div>
-<div id="outline-container-orgbc91380" class="outline-3">
-<h3 id="orgbc91380"><span class="section-number-3">3.3.</span> Multiple Intermediate Variables</h3>
+<div id="outline-container-org5b340f5" class="outline-3">
+<h3 id="org5b340f5"><span class="section-number-3">3.3.</span> Multiple Intermediate Variables</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 If we have a function \(f(u,v)\) where we have \(u(x,y)\) and \(v(x,y)\), we now have two intermediate variables \(x\) and \(y\). If we actually calculate the chain rule out, we have the following formulas:

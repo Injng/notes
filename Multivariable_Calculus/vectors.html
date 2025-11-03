@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vectors</title>
@@ -126,27 +126,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd9e62a9">1. Vectors</a></li>
-<li><a href="#org1ee59d5">2. Vector Operations</a>
+<li><a href="#org4606444">1. Vectors</a></li>
+<li><a href="#orge99c23b">2. Vector Operations</a>
 <ul>
-<li><a href="#org6c22c23">2.1. Vector Addition</a></li>
-<li><a href="#org8d9ad83">2.2. Multiplying by a Scalar</a></li>
-<li><a href="#org6724ff4">2.3. Dot Product</a>
+<li><a href="#org29618d1">2.1. Vector Addition</a></li>
+<li><a href="#orga5b202c">2.2. Multiplying by a Scalar</a></li>
+<li><a href="#orgfae43a2">2.3. Dot Product</a>
 <ul>
-<li><a href="#org4d67391">2.3.1. Computing Lengths and Angles</a></li>
-<li><a href="#org53d0d9c">2.3.2. Sign of Dot Product</a></li>
-<li><a href="#org26d6e5f">2.3.3. Projections</a></li>
+<li><a href="#org4fb6f24">2.3.1. Computing Lengths and Angles</a></li>
+<li><a href="#org3433b81">2.3.2. Sign of Dot Product</a></li>
+<li><a href="#org6d304fb">2.3.3. Projections</a></li>
 </ul>
 </li>
-<li><a href="#org0bf7708">2.4. Determinants</a>
+<li><a href="#orgaed04a3">2.4. Determinants</a>
 <ul>
-<li><a href="#org56c1df9">2.4.1. Determinants in Space</a></li>
+<li><a href="#org31db0af">2.4.1. Determinants in Space</a></li>
 </ul>
 </li>
-<li><a href="#org07ff183">2.5. Cross Product</a>
+<li><a href="#org93ea03f">2.5. Cross Product</a>
 <ul>
-<li><a href="#org97ac19b">2.5.1. Volume</a></li>
-<li><a href="#org6a40eb3">2.5.2. Equation of a Plane</a></li>
+<li><a href="#org650646a">2.5.1. Volume</a></li>
+<li><a href="#orgc9e3a80">2.5.2. Equation of a Plane</a></li>
 </ul>
 </li>
 </ul>
@@ -154,15 +154,15 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd9e62a9" class="outline-2">
-<h2 id="orgd9e62a9"><span class="section-number-2">1.</span> Vectors</h2>
+<div id="outline-container-org4606444" class="outline-2">
+<h2 id="org4606444"><span class="section-number-2">1.</span> Vectors</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Vectors are values that have both a <b>direction</b> and a <b>magnitude</b> (or length). 
 </p>
 
 
-<div id="org9bfaece" class="figure">
+<div id="org8db6a57" class="figure">
 <p><img src="../static/vectors1.png" alt="vectors1.png" />
 </p>
 </div>
@@ -204,19 +204,19 @@ To find the magnitude of a vector given in component form, we can use the follow
 </p>
 </div>
 </div>
-<div id="outline-container-org1ee59d5" class="outline-2">
-<h2 id="org1ee59d5"><span class="section-number-2">2.</span> Vector Operations</h2>
+<div id="outline-container-orge99c23b" class="outline-2">
+<h2 id="orge99c23b"><span class="section-number-2">2.</span> Vector Operations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org6c22c23" class="outline-3">
-<h3 id="org6c22c23"><span class="section-number-3">2.1.</span> Vector Addition</h3>
+<div id="outline-container-org29618d1" class="outline-3">
+<h3 id="org29618d1"><span class="section-number-3">2.1.</span> Vector Addition</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Vectors can be added both geometrically and numerically. Starting with the geometric version, to add two vectors \(\vec{A}\) and \(\vec{B}\), we can use the "tip-to-tail" method or the parallelogram method shown below:
 </p>
 
 
-<div id="org5f93ef2" class="figure">
+<div id="orgf28d4f4" class="figure">
 <p><img src="../static/vectors2.png" alt="vectors2.png" />
 </p>
 </div>
@@ -232,15 +232,15 @@ To numerically add two vectors, simply add the values of their components:
 </p>
 </div>
 </div>
-<div id="outline-container-org8d9ad83" class="outline-3">
-<h3 id="org8d9ad83"><span class="section-number-3">2.2.</span> Multiplying by a Scalar</h3>
+<div id="outline-container-orga5b202c" class="outline-3">
+<h3 id="orga5b202c"><span class="section-number-3">2.2.</span> Multiplying by a Scalar</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Geometrically, multiplying by a scalar simply scales the length of the vector, like so:
 </p>
 
 
-<div id="org45b2935" class="figure">
+<div id="orga82152a" class="figure">
 <p><img src="../static/vectors3.png" alt="vectors3.png" />
 </p>
 </div>
@@ -256,8 +256,8 @@ c\langle a_1,a_2,a_3 \rangle = \langle ca_1,ca_2,ca_3 \rangle
 </p>
 </div>
 </div>
-<div id="outline-container-org6724ff4" class="outline-3">
-<h3 id="org6724ff4"><span class="section-number-3">2.3.</span> Dot Product</h3>
+<div id="outline-container-orgfae43a2" class="outline-3">
+<h3 id="orgfae43a2"><span class="section-number-3">2.3.</span> Dot Product</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The <b>dot product</b> is a way to multiply two vectors to get a scalar. It is the pairwise multiplication of corresponding componenets between two vectors:
@@ -280,7 +280,7 @@ Geometrically, what we're doing is:
 </p>
 
 
-<div id="orga48a0a1" class="figure">
+<div id="org7dc462a" class="figure">
 <p><img src="../static/vectors4.png" alt="vectors4.png" />
 </p>
 </div>
@@ -294,7 +294,7 @@ To prove this result, we can use the Law of Cosines. Given two vectors \(\vec{A}
 </p>
 
 
-<div id="org313f8ba" class="figure">
+<div id="orgb47d313" class="figure">
 <p><img src="../static/vectors5.png" alt="vectors5.png" />
 </p>
 </div>
@@ -328,8 +328,8 @@ Equating these two expressions together, we get that
 \]
 </p>
 </div>
-<div id="outline-container-org4d67391" class="outline-4">
-<h4 id="org4d67391"><span class="section-number-4">2.3.1.</span> Computing Lengths and Angles</h4>
+<div id="outline-container-org4fb6f24" class="outline-4">
+<h4 id="org4fb6f24"><span class="section-number-4">2.3.1.</span> Computing Lengths and Angles</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 If we know the components that make up two vectors, then we can use this dot product relationship in order to find the angle between the two vectors, and vice versa.
@@ -341,8 +341,8 @@ If we know the components that make up two vectors, then we can use this dot pro
 \end{aligned}
 </div>
 </div>
-<div id="outline-container-org53d0d9c" class="outline-4">
-<h4 id="org53d0d9c"><span class="section-number-4">2.3.2.</span> Sign of Dot Product</h4>
+<div id="outline-container-org3433b81" class="outline-4">
+<h4 id="org3433b81"><span class="section-number-4">2.3.2.</span> Sign of Dot Product</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 Since the magnitudes will always be positive in the dot product, the sign of the dot product is solely dependent on the sign of \(\cos{\theta}\). This means that the dot product:
@@ -359,15 +359,15 @@ Therefore, we can use the dot product to <i>detect orthogonality</i>. If two vec
 </p>
 </div>
 </div>
-<div id="outline-container-org26d6e5f" class="outline-4">
-<h4 id="org26d6e5f"><span class="section-number-4">2.3.3.</span> Projections</h4>
+<div id="outline-container-org6d304fb" class="outline-4">
+<h4 id="org6d304fb"><span class="section-number-4">2.3.3.</span> Projections</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 We can use the dot product to <i>find the component of a vector along a certain direction</i>. This is otherwise known as the projection of a vector, \(\vec{A}\), along the direction defined by a unit vector \(\hat{u}\):
 </p>
 
 
-<div id="org63c4335" class="figure">
+<div id="org39b4c41" class="figure">
 <p><img src="../static/vectors6.png" alt="vectors6.png" />
 </p>
 </div>
@@ -382,8 +382,8 @@ In other words, the projection of \(\vec{A}\) along \(\hat{u}\) is \(\vec{A} \cd
 </div>
 </div>
 </div>
-<div id="outline-container-org0bf7708" class="outline-3">
-<h3 id="org0bf7708"><span class="section-number-3">2.4.</span> Determinants</h3>
+<div id="outline-container-orgaed04a3" class="outline-3">
+<h3 id="orgaed04a3"><span class="section-number-3">2.4.</span> Determinants</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 To understand <b>determinants</b>, we must first look at calculating <i>area</i> using vectors. We know that the area of a triangle, determine by two adjacent vectors \(\vec{A}\) and \(\vec{B}\) with an angle \(\theta\) between them, is:
@@ -419,8 +419,8 @@ A &= \frac{1}{2} \langle -a_2,a_1 \rangle \cdot \langle b_1,b_2 \rangle \\ \nota
 This is defined as the determinant. Since the determinant is twice the area of this triangle, geometrically the <i>determinant of two vectors is equal to the area of the parallelogram bounded by those two vectors</i>.
 </p>
 </div>
-<div id="outline-container-org56c1df9" class="outline-4">
-<h4 id="org56c1df9"><span class="section-number-4">2.4.1.</span> Determinants in Space</h4>
+<div id="outline-container-org31db0af" class="outline-4">
+<h4 id="org31db0af"><span class="section-number-4">2.4.1.</span> Determinants in Space</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 Determinants can also be done with 3 vectors, \(\vec{A}\), \(\vec{B}\), and \(\vec{C}\). It is defined as:
@@ -442,8 +442,8 @@ Geometrically, the magnitude of the determinant is equivalent to <i>the volume o
 </div>
 </div>
 </div>
-<div id="outline-container-org07ff183" class="outline-3">
-<h3 id="org07ff183"><span class="section-number-3">2.5.</span> Cross Product</h3>
+<div id="outline-container-org93ea03f" class="outline-3">
+<h3 id="org93ea03f"><span class="section-number-3">2.5.</span> Cross Product</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 The <b><b>cross product</b></b> of two vectors in 3 dimensional space results in a <i>vector</i> defined as:
@@ -459,15 +459,15 @@ The <b><b>cross product</b></b> of two vectors in 3 dimensional space results in
 Geometrically, the <i>magnitude of the cross product of two vectors is equal to the area of the parallelogram formed by those two vectors</i>. Additionally, the <i>direction of the cross product is perpendicular to the plane of the parallelogram</i>. However, realize that there are two ways you can be perpendicular to a plane. In order to determine which exactly is the right direction for a cross product, we use the <b>right-hand rule</b>.
 </p>
 </div>
-<div id="outline-container-org97ac19b" class="outline-4">
-<h4 id="org97ac19b"><span class="section-number-4">2.5.1.</span> Volume</h4>
+<div id="outline-container-org650646a" class="outline-4">
+<h4 id="org650646a"><span class="section-number-4">2.5.1.</span> Volume</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 With this new operation, we can have some fresh insights on volumes of parallelepipeds. Let three vectors \(\vec{A}\), \(\vec{B}\), and \(\vec{C}\) bound a parallelepiped like in the image below:
 </p>
 
 
-<div id="org6a10b24" class="figure">
+<div id="orgebc76d2" class="figure">
 <p><img src="../static/vectors7.png" alt="vectors7.png" />
 </p>
 </div>
@@ -501,15 +501,15 @@ This is known as a <b>triple product</b>. Additionally, as a determinant of thre
 \end{align}
 </div>
 </div>
-<div id="outline-container-org6a40eb3" class="outline-4">
-<h4 id="org6a40eb3"><span class="section-number-4">2.5.2.</span> Equation of a Plane</h4>
+<div id="outline-container-orgc9e3a80" class="outline-4">
+<h4 id="orgc9e3a80"><span class="section-number-4">2.5.2.</span> Equation of a Plane</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <p>
 Given three points in a plane, \(P_1\), \(P_2\), and \(P_3\), we can find a condition on another point \(P\) with coordinates \((x,y,z)\) that tells us whether or not \(P\) is in this plane.
 </p>
 
 
-<div id="orgccc20a6" class="figure">
+<div id="orgac32467" class="figure">
 <p><img src="../static/vectors8.png" alt="vectors8.png" />
 </p>
 </div>
@@ -523,7 +523,7 @@ Another way to do this is by considering a normal vector to the plane as shown b
 </p>
 
 
-<div id="orga044446" class="figure">
+<div id="org56524eb" class="figure">
 <p><img src="../static/vectors9.png" alt="vectors9.png" />
 </p>
 </div>

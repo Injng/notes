@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Singular Value Decomposition</title>
@@ -126,19 +126,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3ea4866">1. Singular Value Decomposition</a>
+<li><a href="#orgb601de9">1. Singular Value Decomposition</a>
 <ul>
-<li><a href="#org4882966">1.1. Proof</a></li>
+<li><a href="#orgbdc82ff">1.1. Proof</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3ea4866" class="outline-2">
-<h2 id="org3ea4866"><span class="section-number-2">1.</span> Singular Value Decomposition</h2>
+<div id="outline-container-orgb601de9" class="outline-2">
+<h2 id="orgb601de9"><span class="section-number-2">1.</span> Singular Value Decomposition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-We would like to be able to write <i>any matrix</i> \(A\) as a product of simpler matrices (e.g. not just square invertible matrices with <a href="matrix_similarity.html#orgb9fc599">diagonalization</a>). To make this possible for every \(m \times n\) matrix we need one set of orthonormal vectors \(\mathbf{v}_1, \dots, \mathbf{v}_n\) in \(\mathbb{R}^n\) and a second set of orthonormal vectors \(\mathbf{u}_1, \dots, \mathbf{u}_m\) in \(\mathbb{R}^m\). Instead of \(A\mathbf{x} = \lambda\mathbf{x}\), we want \(A\mathbf{v} = \sigma\mathbf{u}\) for some \(\sigma\), the <b>singular values</b>.
+We would like to be able to write <i>any matrix</i> \(A\) as a product of simpler matrices (e.g. not just square invertible matrices with <a href="matrix_similarity.html#orgef22918">diagonalization</a>). To make this possible for every \(m \times n\) matrix we need one set of orthonormal vectors \(\mathbf{v}_1, \dots, \mathbf{v}_n\) in \(\mathbb{R}^n\) and a second set of orthonormal vectors \(\mathbf{u}_1, \dots, \mathbf{u}_m\) in \(\mathbb{R}^m\). Instead of \(A\mathbf{x} = \lambda\mathbf{x}\), we want \(A\mathbf{v} = \sigma\mathbf{u}\) for some \(\sigma\), the <b>singular values</b>.
 </p>
 
 <p>
@@ -171,8 +171,8 @@ We can now represent the relationship as \(AV = U\Sigma\). Critically, \(V\) and
 where \(U\) is an \(m \times m\) orthogonal matrix formed from the \(\mathbf{u}\) vectors, \(\Sigma\) is an \(m \times n\) "diagonal" matrix with \(\sigma\) on the diagonal, and \(V\) is an \(n \times n\) orthogonal matrix formed from the \(\mathbf{v}\) vectors.
 </p>
 </div>
-<div id="outline-container-org4882966" class="outline-3">
-<h3 id="org4882966"><span class="section-number-3">1.1.</span> Proof</h3>
+<div id="outline-container-orgbdc82ff" class="outline-3">
+<h3 id="orgbdc82ff"><span class="section-number-3">1.1.</span> Proof</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 (1) tells us everything we need to find the SVD, except for how to obtain the \(\mathbf{u}\) and \(\mathbf{v}\) vectors. One way to do this is to form the symmetric matrices \(A^TA\) and \(AA^T\):
@@ -184,7 +184,7 @@ AA^T &= (U\Sigma V^T)(V\Sigma^TU^T) = U\Sigma\Sigma^TU^T \notag
 \end{align}
 
 <p>
-Notice that both are in the <a href="symmetric_matrices.html#org4c4d6a4">orthogonally diagonalized</a> form \(Q\Lambda Q^T\). Thus, we see that \(V\) is simply the eigenvectors of \(A^TA\), and \(U\) is the eigenvectors of \(AA^T\). Additionally, since \(\Lambda = \Sigma^T\Sigma = \Sigma\Sigma^T\), \(\sigma^2\) is just the nonzero eigenvalues of both \(A^TA\) and \(AA^T\).
+Notice that both are in the <a href="symmetric_matrices.html#org6596f1c">orthogonally diagonalized</a> form \(Q\Lambda Q^T\). Thus, we see that \(V\) is simply the eigenvectors of \(A^TA\), and \(U\) is the eigenvectors of \(AA^T\). Additionally, since \(\Lambda = \Sigma^T\Sigma = \Sigma\Sigma^T\), \(\sigma^2\) is just the nonzero eigenvalues of both \(A^TA\) and \(AA^T\).
 </p>
 
 <p>
@@ -200,7 +200,7 @@ To do this, we shall start with the \(\mathbf{v}\) vectors. Choose orthonormal e
 \end{align}
 
 <p>
-Then \(\mathbf{u}_1, \dots, \mathbf{u}_r\) is an orthonormal set in \(\mathbb{R}^m\). In order to get all \(m\) of our \(\mathbf{u}\) vectors, we must extend this set to become an orthonormal basis for \(\mathbb{R}^m\). This is done by thinking of \(\mathbf{u}_1, \dots, \mathbf{u}_r\) as generating a subspace \(W\) of \(\mathbb{R}^m\). Then, we can find the orthonormal basis for \(W^{\perp}\): the nullspace of a matrix with rows \(\mathbf{u}_1, \dots, \mathbf{u}_r\). We can use <a href="orthogonality.html#orged858ee">Gram-Schmidt</a> to make it orthonormal. We now have all the necessary components for the SVD.
+Then \(\mathbf{u}_1, \dots, \mathbf{u}_r\) is an orthonormal set in \(\mathbb{R}^m\). In order to get all \(m\) of our \(\mathbf{u}\) vectors, we must extend this set to become an orthonormal basis for \(\mathbb{R}^m\). This is done by thinking of \(\mathbf{u}_1, \dots, \mathbf{u}_r\) as generating a subspace \(W\) of \(\mathbb{R}^m\). Then, we can find the orthonormal basis for \(W^{\perp}\): the nullspace of a matrix with rows \(\mathbf{u}_1, \dots, \mathbf{u}_r\). We can use <a href="orthogonality.html#org28517a4">Gram-Schmidt</a> to make it orthonormal. We now have all the necessary components for the SVD.
 </p>
 
 <details class="code-details"

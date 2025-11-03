@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lagrange Multipliers</title>
@@ -126,8 +126,8 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga1cac45">1. Intuition</a></li>
-<li><a href="#org844e298">2. Proof</a></li>
+<li><a href="#orga83db3f">1. Intuition</a></li>
+<li><a href="#org6aff1c0">2. Proof</a></li>
 </ul>
 </div>
 </div>
@@ -152,15 +152,15 @@ g &= c
 <p>
 Warning: this method doesn't tell us whether a solution is a minimum or a maximum, and we cannot use second derviatives. We must either manually calculate values of \(f\) or use geometric arguments.
 </p>
-<div id="outline-container-orga1cac45" class="outline-2">
-<h2 id="orga1cac45"><span class="section-number-2">1.</span> Intuition</h2>
+<div id="outline-container-orga83db3f" class="outline-2">
+<h2 id="orga83db3f"><span class="section-number-2">1.</span> Intuition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We can represent the constraint by considering all the points in which the level curves of \(f(x,y,z)\) intersect the level curve \(g(x,y,z)=c\). Below is an example where \(f(x,y) = x^2 + y^2\) and \(g(x,y)=xy=3\) (minimizing the distance to the origin from the hyperbola):
 </p>
 
 
-<div id="org499648e" class="figure">
+<div id="org6213d56" class="figure">
 <p><img src="../static/lagrange_multipliers1.png" alt="lagrange_multipliers1.png" />
 </p>
 </div>
@@ -174,11 +174,11 @@ It follows then that at this point, the gradient of \(f\) and the gradient of \(
 </p>
 </div>
 </div>
-<div id="outline-container-org844e298" class="outline-2">
-<h2 id="org844e298"><span class="section-number-2">2.</span> Proof</h2>
+<div id="outline-container-org6aff1c0" class="outline-2">
+<h2 id="org6aff1c0"><span class="section-number-2">2.</span> Proof</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-When we are not constrained, we know that a critical point occurs when all of the partial derivatives of the function at that point are equal to zero. However, when we are constrained by \(g=c\), we only care about the directions tangent to our constraint \(g=c\). Therefore, we can reformulate this condition by saying that a critical point of a constrained function occurs when the <a href="gradient.html#orgd808f57">directional derivatives</a> of all the unit vectors \(\hat{u}\) tangent to \(g=c\) are equal to zero.
+When we are not constrained, we know that a critical point occurs when all of the partial derivatives of the function at that point are equal to zero. However, when we are constrained by \(g=c\), we only care about the directions tangent to our constraint \(g=c\). Therefore, we can reformulate this condition by saying that a critical point of a constrained function occurs when the <a href="gradient.html#orgebe1215">directional derivatives</a> of all the unit vectors \(\hat{u}\) tangent to \(g=c\) are equal to zero.
 </p>
 
 <p>

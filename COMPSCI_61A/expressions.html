@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 10:45 -->
+<!-- 2025-11-03 Mon 13:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Expressions</title>
@@ -94,25 +94,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1089116">1. Expressions</a>
+<li><a href="#orgc23da35">1. Expressions</a>
 <ul>
-<li><a href="#orgac7a81e">1.1. Call Expressions</a></li>
-<li><a href="#org44cffe4">1.2. Boolean Expressions</a>
+<li><a href="#org374cf92">1.1. Call Expressions</a></li>
+<li><a href="#orgc19a9c6">1.2. Boolean Expressions</a>
 <ul>
-<li><a href="#orgccb6715">1.2.1. Procedure for <code>and</code></a></li>
-<li><a href="#org10f6d8f">1.2.2. Procedure for <code>or</code></a></li>
-<li><a href="#orga1af2c0">1.2.3. Procedure for <code>not</code></a></li>
-<li><a href="#org674b1bb">1.2.4. Short-Circuit Evaluation</a></li>
+<li><a href="#org79a9574">1.2.1. Procedure for <code>and</code></a></li>
+<li><a href="#org456324c">1.2.2. Procedure for <code>or</code></a></li>
+<li><a href="#orga26a813">1.2.3. Procedure for <code>not</code></a></li>
+<li><a href="#org537e4d7">1.2.4. Short-Circuit Evaluation</a></li>
 </ul>
 </li>
-<li><a href="#org1e9f886">1.3. Lambda Expressions</a></li>
+<li><a href="#org21c87c8">1.3. Lambda Expressions</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1089116" class="outline-2">
-<h2 id="org1089116"><span class="section-number-2">1.</span> Expressions</h2>
+<div id="outline-container-orgc23da35" class="outline-2">
+<h2 id="orgc23da35"><span class="section-number-2">1.</span> Expressions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 An <b>expression</b> describes a computation and evaluates to a value. Some examples are:
@@ -129,8 +129,8 @@ An <b>expression</b> describes a computation and evaluates to a value. Some exam
 The first three are known as <b>primitive expressions</b>. Symbols like <code>+</code> and <code>*</code> can also be expressed using a call expression, being <code>add()</code> and <code>mul()</code> respectively.
 </p>
 </div>
-<div id="outline-container-orgac7a81e" class="outline-3">
-<h3 id="orgac7a81e"><span class="section-number-3">1.1.</span> Call Expressions</h3>
+<div id="outline-container-org374cf92" class="outline-3">
+<h3 id="org374cf92"><span class="section-number-3">1.1.</span> Call Expressions</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 A <b>call expression</b> is made up of an <i>operator</i> and <i>operands</i>. In <code>add(1, 2)</code>, the <code>add</code> is the operator, and the <code>1</code> and <code>2</code> are operands.
@@ -148,21 +148,21 @@ We can write out an <b>expression tree</b> with <b>subexpressions</b> as well:
 </p>
 
 
-<div id="orgbae3e9a" class="figure">
+<div id="org8cd7038" class="figure">
 <p><img src="../static/COMPSCI_61A/expressions1.png" alt="expressions1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org44cffe4" class="outline-3">
-<h3 id="org44cffe4"><span class="section-number-3">1.2.</span> Boolean Expressions</h3>
+<div id="outline-container-orgc19a9c6" class="outline-3">
+<h3 id="orgc19a9c6"><span class="section-number-3">1.2.</span> Boolean Expressions</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 A <b>boolean expression</b> is made up of a left and right subexpression and a boolean operator.
 </p>
 </div>
-<div id="outline-container-orgccb6715" class="outline-4">
-<h4 id="orgccb6715"><span class="section-number-4">1.2.1.</span> Procedure for <code>and</code></h4>
+<div id="outline-container-org79a9574" class="outline-4">
+<h4 id="org79a9574"><span class="section-number-4">1.2.1.</span> Procedure for <code>and</code></h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 To evaluate the expression <code>&lt;left&gt; and &lt;right&gt;</code>:
@@ -175,8 +175,8 @@ To evaluate the expression <code>&lt;left&gt; and &lt;right&gt;</code>:
 </ol>
 </div>
 </div>
-<div id="outline-container-org10f6d8f" class="outline-4">
-<h4 id="org10f6d8f"><span class="section-number-4">1.2.2.</span> Procedure for <code>or</code></h4>
+<div id="outline-container-org456324c" class="outline-4">
+<h4 id="org456324c"><span class="section-number-4">1.2.2.</span> Procedure for <code>or</code></h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 To evaluate the expression <code>&lt;left&gt; or &lt;right&gt;</code>:
@@ -189,8 +189,8 @@ To evaluate the expression <code>&lt;left&gt; or &lt;right&gt;</code>:
 </ol>
 </div>
 </div>
-<div id="outline-container-orga1af2c0" class="outline-4">
-<h4 id="orga1af2c0"><span class="section-number-4">1.2.3.</span> Procedure for <code>not</code></h4>
+<div id="outline-container-orga26a813" class="outline-4">
+<h4 id="orga26a813"><span class="section-number-4">1.2.3.</span> Procedure for <code>not</code></h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 To evaluate the expression <code>not &lt;expr&gt;</code>:
@@ -201,8 +201,8 @@ To evaluate the expression <code>not &lt;expr&gt;</code>:
 </ol>
 </div>
 </div>
-<div id="outline-container-org674b1bb" class="outline-4">
-<h4 id="org674b1bb"><span class="section-number-4">1.2.4.</span> Short-Circuit Evaluation</h4>
+<div id="outline-container-org537e4d7" class="outline-4">
+<h4 id="org537e4d7"><span class="section-number-4">1.2.4.</span> Short-Circuit Evaluation</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 Notice that for these logical operators, once <code>&lt;left&gt;</code> is evaluated to either false for <code>and</code> or true for <code>or</code>, the interpreter does not evaluate <code>&lt;right&gt;</code>. This is important because sometimes, we want to use <code>&lt;left&gt;</code> to check for a condition that would otherwise make evaluating <code>&lt;right&gt;</code> undefined behavior. This behavior is known as <b>short-circuit evaluation</b>.
@@ -210,8 +210,8 @@ Notice that for these logical operators, once <code>&lt;left&gt;</code> is evalu
 </div>
 </div>
 </div>
-<div id="outline-container-org1e9f886" class="outline-3">
-<h3 id="org1e9f886"><span class="section-number-3">1.3.</span> Lambda Expressions</h3>
+<div id="outline-container-org21c87c8" class="outline-3">
+<h3 id="org21c87c8"><span class="section-number-3">1.3.</span> Lambda Expressions</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 <b>Lambda expressions</b> allow us to return a function value and bind it to a name. You can think of a lambda expression as an "anonymous" function. For example:
