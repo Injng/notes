@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-31 Fri 10:29 -->
+<!-- 2025-11-03 Mon 09:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Singular Value Decomposition</title>
@@ -125,16 +125,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org90f8ad7">1. Singular Value Decomposition</a>
+<li><a href="#org412f574">1. Singular Value Decomposition</a>
 <ul>
-<li><a href="#org148ece1">1.1. Proof</a></li>
+<li><a href="#orgd1e9dd2">1.1. Proof</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org90f8ad7" class="outline-2">
-<h2 id="org90f8ad7"><span class="section-number-2">1.</span> Singular Value Decomposition</h2>
+<div id="outline-container-org412f574" class="outline-2">
+<h2 id="org412f574"><span class="section-number-2">1.</span> Singular Value Decomposition</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We would like to be able to write <i>any matrix</i> \(A\) as a product of simpler matrices (e.g. not just square invertible matrices with <a href="matrix_similarity.html#orgf0f1c7c">diagonalization</a>). To make this possible for every \(m \times n\) matrix we need one set of orthonormal vectors \(\mathbf{v}_1, \dots, \mathbf{v}_n\) in \(\mathbb{R}^n\) and a second set of orthonormal vectors \(\mathbf{u}_1, \dots, \mathbf{u}_m\) in \(\mathbb{R}^m\). Instead of \(A\mathbf{x} = \lambda\mathbf{x}\), we want \(A\mathbf{v} = \sigma\mathbf{u}\) for some \(\sigma\), the <b>singular values</b>.
@@ -170,8 +170,8 @@ We can now represent the relationship as \(AV = U\Sigma\). Critically, \(V\) and
 where \(U\) is an \(m \times m\) orthogonal matrix formed from the \(\mathbf{u}\) vectors, \(\Sigma\) is an \(m \times n\) "diagonal" matrix with \(\sigma\) on the diagonal, and \(V\) is an \(n \times n\) orthogonal matrix formed from the \(\mathbf{v}\) vectors.
 </p>
 </div>
-<div id="outline-container-org148ece1" class="outline-3">
-<h3 id="org148ece1"><span class="section-number-3">1.1.</span> Proof</h3>
+<div id="outline-container-orgd1e9dd2" class="outline-3">
+<h3 id="orgd1e9dd2"><span class="section-number-3">1.1.</span> Proof</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 (1) tells us everything we need to find the SVD, except for how to obtain the \(\mathbf{u}\) and \(\mathbf{v}\) vectors. One way to do this is to form the symmetric matrices \(A^TA\) and \(AA^T\):
@@ -201,6 +201,65 @@ To do this, we shall start with the \(\mathbf{v}\) vectors. Choose orthonormal e
 <p>
 Then \(\mathbf{u}_1, \dots, \mathbf{u}_r\) is an orthonormal set in \(\mathbb{R}^m\). In order to get all \(m\) of our \(\mathbf{u}\) vectors, we must extend this set to become an orthonormal basis for \(\mathbb{R}^m\). This is done by thinking of \(\mathbf{u}_1, \dots, \mathbf{u}_r\) as generating a subspace \(W\) of \(\mathbb{R}^m\). Then, we can find the orthonormal basis for \(W^{\perp}\): the nullspace of a matrix with rows \(\mathbf{u}_1, \dots, \mathbf{u}_r\). We can use <a href="orthogonality.html#org3d12432">Gram-Schmidt</a> to make it orthonormal. We now have all the necessary components for the SVD.
 </p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: SVD
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to find the SVD for:
+</p>
+
+\begin{align}
+A = \begin{bmatrix} 3 & -3 \\ 0 & 0 \\ 1 & 1 \end{bmatrix} \notag
+\end{align}
+
+<p>
+First, to find the \(\mathbf{u}\) vectors and the \(\mathbf{v}\) vectors, we calculate \(A^TA\):
+</p>
+
+\begin{align}
+A^TA = \begin{bmatrix} 3 & 0 & 1 \\ -3 & 0 & 1 \end{bmatrix} \begin{bmatrix} 3 & -3 \\ 0 & 0 \\ 1 & 1 \end{bmatrix} = \begin{bmatrix} 10 & -8 \\ -8 & 10 \end{bmatrix} \notag
+\end{align}
+
+<p>
+It can be seen that the eigenvalues and eigenvectors for this are:
+</p>
+
+\begin{align}
+\lambda &= 18, \: \sigma_1 = 3\sqrt{2}, \: \mathbf{v}_1 = \begin{bmatrix} -\frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix} \notag \\
+\lambda &= 2, \: \sigma_2 = \sqrt{2}, \: \mathbf{v}_2 = \begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix} \notag
+\end{align}
+
+<p>
+Now, we can find the \(\mathbf{u}\) vectors using (2):
+</p>
+
+\begin{align}
+\mathbf{u}_1 &= \frac{A\mathbf{v}_1}{\sigma_1} = \begin{bmatrix} -1 \\ 0 \\ 0 \end{bmatrix} \notag \\
+\mathbf{u}_2 &= \frac{A\mathbf{v}_2}{\sigma_2} = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix} \notag
+\end{align}
+
+<p>
+Since \(A\) is a \(3 \times 2\) matrix, but we only have two \(\mathbf{u}\) vectors, we need to complete the orthogonal set. Here, it can be seen that \(\mathbf{u}_3 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}\). Then:
+</p>
+
+\begin{align}
+\boxed{U = \begin{bmatrix} -1 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0 \end{bmatrix}, \: \Sigma = \begin{bmatrix} 3\sqrt{2} & 0 \\ 0 & \sqrt{2} \\ 0 & 0 \end{bmatrix}, \: V = \begin{bmatrix} -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \end{bmatrix}} \notag
+\end{align}
+
+
+</details>
 </div>
 </div>
 </div>
@@ -210,7 +269,7 @@ Then \(\mathbf{u}_1, \dots, \mathbf{u}_r\) is an orthonormal set in \(\mathbb{R}
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-31 10:29
+               Last modified: 2025-11-03 09:23
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
