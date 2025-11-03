@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 17:15 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Kinematics</title>
@@ -12,211 +12,11 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -326,16 +126,16 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8f47402">1. Terminology</a></li>
-<li><a href="#orgc81961c">2. Kinematic Equations</a></li>
-<li><a href="#org80daa85">3. 1D Kinematics</a></li>
-<li><a href="#org93250e0">4. 2D Kinematics</a></li>
-<li><a href="#org24af691">5. Relative Motion</a></li>
+<li><a href="#org0735d5c">1. Terminology</a></li>
+<li><a href="#org0535829">2. Kinematic Equations</a></li>
+<li><a href="#orge51fe57">3. 1D Kinematics</a></li>
+<li><a href="#org9f8fef7">4. 2D Kinematics</a></li>
+<li><a href="#org2743bac">5. Relative Motion</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8f47402" class="outline-2">
-<h2 id="org8f47402"><span class="section-number-2">1.</span> Terminology</h2>
+<div id="outline-container-org0735d5c" class="outline-2">
+<h2 id="org0735d5c"><span class="section-number-2">1.</span> Terminology</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Position</b> is the location of a system. It requires the choice of an <i>origin</i>, <i>units</i> to describe the location, an <i>axis</i>, and the <i>orientation</i> (positive direction) of that axis.
@@ -354,7 +154,7 @@ The <b>distance</b> is the total distance the system travels. Note that distance
 </p>
 
 
-<div id="org27f7d13" class="figure">
+<div id="orgdb48c92" class="figure">
 <p><img src="../static/PHYSICS_7A/1d_kinematics1.png" alt="1d_kinematics1.png" />
 </p>
 </div>
@@ -396,8 +196,8 @@ Its units are \(\frac{\text{m}}{\text{s}^2}\).
 </p>
 </div>
 </div>
-<div id="outline-container-orgc81961c" class="outline-2">
-<h2 id="orgc81961c"><span class="section-number-2">2.</span> Kinematic Equations</h2>
+<div id="outline-container-org0535829" class="outline-2">
+<h2 id="org0535829"><span class="section-number-2">2.</span> Kinematic Equations</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Assuming that acceleration is constant, we can derive several kinematic equations. Starting with:
@@ -473,8 +273,8 @@ Note that in (4), \(\frac{v_0 + v(t)}{2}\) is just average velocity.
 </p>
 </div>
 </div>
-<div id="outline-container-org80daa85" class="outline-2">
-<h2 id="org80daa85"><span class="section-number-2">3.</span> 1D Kinematics</h2>
+<div id="outline-container-orge51fe57" class="outline-2">
+<h2 id="orge51fe57"><span class="section-number-2">3.</span> 1D Kinematics</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 We can apply the kinematic equations to problems in one dimension. These problems generally involve objects in free fall.
@@ -498,7 +298,7 @@ Consider a ball tossed upward with an initial velocity \(v_0\) from height \(y_0
 </p>
 
 
-<div id="org8a09994" class="figure">
+<div id="org4d3c9c2" class="figure">
 <p><img src="../static/PHYSICS_7A/1d_kinematics2.png" alt="1d_kinematics2.png" />
 </p>
 </div>
@@ -544,8 +344,8 @@ Mathematically, there are two solutions, but only the one where \(t > 0\) makes 
 </details>
 </div>
 </div>
-<div id="outline-container-org93250e0" class="outline-2">
-<h2 id="org93250e0"><span class="section-number-2">4.</span> 2D Kinematics</h2>
+<div id="outline-container-org9f8fef7" class="outline-2">
+<h2 id="org9f8fef7"><span class="section-number-2">4.</span> 2D Kinematics</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 In two dimensions, we can do the same thing as one dimension, but we need to consider the vertical and horizontal directions separately. Therefore, we often have to consider two separate equations for each of the directions.
@@ -574,7 +374,7 @@ Consider a ball tossed with initial velocity \(\vec{v_0}\):
 </p>
 
 
-<div id="orgb5e15d9" class="figure">
+<div id="orgcd079d7" class="figure">
 <p><img src="../static/PHYSICS_7A/kinematics3.png" alt="kinematics3.png" />
 </p>
 </div>
@@ -591,8 +391,8 @@ D = x(t_f) = v_{0_x}t_f + x_0 = v_0\cos{\theta}t_f
 </details>
 </div>
 </div>
-<div id="outline-container-org24af691" class="outline-2">
-<h2 id="org24af691"><span class="section-number-2">5.</span> Relative Motion</h2>
+<div id="outline-container-org2743bac" class="outline-2">
+<h2 id="org2743bac"><span class="section-number-2">5.</span> Relative Motion</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 If object \(A\) is in motion with respect to object \(B\), which itself is in motion with respect to an observer, then:
@@ -621,7 +421,7 @@ Consider a plane that is flying with velocity \(\vec{v}_a\) at height \(H\), and
 </p>
 
 
-<div id="orge3c283b" class="figure">
+<div id="org41156d3" class="figure">
 <p><img src="../static/PHYSICS_7A/kinematics4.png" alt="kinematics4.png" />
 </p>
 </div>

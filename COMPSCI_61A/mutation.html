@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 17:15 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mutation</title>
@@ -12,211 +12,11 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -294,33 +94,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgaa8a728">1. Mutation</a>
+<li><a href="#org3a21229">1. Mutation</a>
 <ul>
-<li><a href="#orgcbee996">1.1. Identity Operators</a></li>
-<li><a href="#orgeb2fae7">1.2. Mutable Default Arguments</a></li>
-<li><a href="#orgc70b66e">1.3. Persistent Local State</a></li>
+<li><a href="#org0bced16">1.1. Identity Operators</a></li>
+<li><a href="#org77e6720">1.2. Mutable Default Arguments</a></li>
+<li><a href="#org8112aba">1.3. Persistent Local State</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaa8a728" class="outline-2">
-<h2 id="orgaa8a728"><span class="section-number-2">1.</span> Mutation</h2>
+<div id="outline-container-org3a21229" class="outline-2">
+<h2 id="org3a21229"><span class="section-number-2">1.</span> Mutation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-<b>Mutation</b> is the ability of certain data types, like <a href="sequences.html#org6a3c36a">lists</a>, to be changed or modified after they are created. This means that their contents can be altered <i>without creating a new object</i>.
+<b>Mutation</b> is the ability of certain data types, like <a href="sequences.html#org286a1e6">lists</a>, to be changed or modified after they are created. This means that their contents can be altered <i>without creating a new object</i>.
 </p>
 
 <p>
-In Python, everything is an <a href="objects.html#orgbebb417">object</a> and variables are pointers to those objects. A data type that is mutable changes the object itself without the need to create a new object (and thereby modifying the pointer). These pointers are known as the <b>identity</b> of the variable. When two variables point to the same object, we say those variables have the <i>same identity</i>.
+In Python, everything is an <a href="objects.html#orgf5e3a4c">object</a> and variables are pointers to those objects. A data type that is mutable changes the object itself without the need to create a new object (and thereby modifying the pointer). These pointers are known as the <b>identity</b> of the variable. When two variables point to the same object, we say those variables have the <i>same identity</i>.
 </p>
 
 <p>
 In this way, if we have two variables pointing to the same mutable data type, like a list, changing one of the variables will change the other. However, the reason why if we do <code>a = 3</code>, <code>b = a</code>, but then <code>b = 5</code> doesn't change <code>a</code> to be <code>5</code> is because integers are <b>immutable</b>, which means the assignment <code>b = 5</code> created a new object independent of the original <code>a</code> object.
 </p>
 </div>
-<div id="outline-container-orgcbee996" class="outline-3">
-<h3 id="orgcbee996"><span class="section-number-3">1.1.</span> Identity Operators</h3>
+<div id="outline-container-org0bced16" class="outline-3">
+<h3 id="org0bced16"><span class="section-number-3">1.1.</span> Identity Operators</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can use the <code>is</code> operator to check if two variables have the same identity, i.e. they evaluate to the same object: <code>&lt;exp0&gt; is &lt;exp1&gt;</code>.
@@ -331,11 +131,11 @@ We can use the <code>==</code> operator to check if two variables evaluate to th
 </p>
 </div>
 </div>
-<div id="outline-container-orgeb2fae7" class="outline-3">
-<h3 id="orgeb2fae7"><span class="section-number-3">1.2.</span> Mutable Default Arguments</h3>
+<div id="outline-container-org77e6720" class="outline-3">
+<h3 id="org77e6720"><span class="section-number-3">1.2.</span> Mutable Default Arguments</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-A mutable <a href="python.html#org92f27d0">default argument</a> is dangerous because it stays as part of the function value. In other words, the following function's default argument mutates every time you call it:
+A mutable <a href="python.html#org15794ec">default argument</a> is dangerous because it stays as part of the function value. In other words, the following function's default argument mutates every time you call it:
 </p>
 
 <pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">f</span><span style="color: #f38ba8;">(</span>s=<span style="color: #fab387;">[]</span><span style="color: #f38ba8;">)</span>:
@@ -348,8 +148,8 @@ A mutable <a href="python.html#org92f27d0">default argument</a> is dangerous bec
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgc70b66e" class="outline-3">
-<h3 id="orgc70b66e"><span class="section-number-3">1.3.</span> Persistent Local State</h3>
+<div id="outline-container-org8112aba" class="outline-3">
+<h3 id="org8112aba"><span class="section-number-3">1.3.</span> Persistent Local State</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 We can use mutable values to keep track of a persistent local state. To do so, we can define a mutable sequence in the parent frame of a function, which can change over time as the function mutates it:

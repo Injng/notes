@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 17:15 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Functions and Partial Derivatives</title>
@@ -12,211 +12,11 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -326,20 +126,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdaa3f14">1. Functions of Multiple Variables</a>
+<li><a href="#org75875ba">1. Functions of Multiple Variables</a>
 <ul>
-<li><a href="#org65f8ce9">1.1. Visualizing a Function of Two Variables</a>
+<li><a href="#orgadb67cd">1.1. Visualizing a Function of Two Variables</a>
 <ul>
-<li><a href="#orgcc577e3">1.1.1. Contour Plot</a></li>
+<li><a href="#org843dc3c">1.1.1. Contour Plot</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org892cc62">2. Partial Derivatives</a>
+<li><a href="#orgaefca0c">2. Partial Derivatives</a>
 <ul>
-<li><a href="#org95cc784">2.1. Non-Independent Variables</a>
+<li><a href="#orgb75359a">2.1. Non-Independent Variables</a>
 <ul>
-<li><a href="#orgbc6fbc9">2.1.1. A Note on Notation</a></li>
+<li><a href="#org9bb3682">2.1.1. A Note on Notation</a></li>
 </ul>
 </li>
 </ul>
@@ -347,8 +147,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdaa3f14" class="outline-2">
-<h2 id="orgdaa3f14"><span class="section-number-2">1.</span> Functions of Multiple Variables</h2>
+<div id="outline-container-org75875ba" class="outline-2">
+<h2 id="org75875ba"><span class="section-number-2">1.</span> Functions of Multiple Variables</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We have seen and know how to take the derivative of functions of one variable, for example:
@@ -374,15 +174,15 @@ f(x,y) = x^2+y^2
 Just like functions of one variable, functions fo multiple variables need not be defined at all points: there can be a <i>domain</i> for which inputs the functions is defined. For example, \(f(x,y) = \frac{1}{x+y}\) is only defined if \(x+y \neq 0\). 
 </p>
 </div>
-<div id="outline-container-org65f8ce9" class="outline-3">
-<h3 id="org65f8ce9"><span class="section-number-3">1.1.</span> Visualizing a Function of Two Variables</h3>
+<div id="outline-container-orgadb67cd" class="outline-3">
+<h3 id="orgadb67cd"><span class="section-number-3">1.1.</span> Visualizing a Function of Two Variables</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 First, we can visualize a function of two variables by plotting its <b>graph</b>. We can define a third dimension \(z=f(x,y)\), such that the graph is now a surface in space:
 </p>
 
 
-<div id="org3dc0231" class="figure">
+<div id="org6ab1dbf" class="figure">
 <p><img src="../static/functions_partial_derivatives1.png" alt="functions_partial_derivatives1.png" />
 </p>
 </div>
@@ -402,7 +202,7 @@ With this information, we can see the graph will look somewhat like this:
 </p>
 
 
-<div id="orgc46b0f5" class="figure">
+<div id="org489333f" class="figure">
 <p><img src="../static/functions_partial_derivatives2.png" alt="functions_partial_derivatives2.png" />
 </p>
 </div>
@@ -411,15 +211,15 @@ With this information, we can see the graph will look somewhat like this:
 However, notice that it is very difficult to draw three dimensional graphs on a two dimensional surface. To do this, we can use another tool.
 </p>
 </div>
-<div id="outline-container-orgcc577e3" class="outline-4">
-<h4 id="orgcc577e3"><span class="section-number-4">1.1.1.</span> Contour Plot</h4>
+<div id="outline-container-org843dc3c" class="outline-4">
+<h4 id="org843dc3c"><span class="section-number-4">1.1.1.</span> Contour Plot</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 The <b>contour plot</b> is similar to a topographic map: each curve on the contour plot shows the function at a certain constant elevation:
 </p>
 
 
-<div id="org55c220c" class="figure">
+<div id="org126514b" class="figure">
 <p><img src="../static/contour1.png" alt="contour1.png" />
 </p>
 </div>
@@ -431,8 +231,8 @@ In other words, each <b>contour</b> on the contour plot shows all the points whe
 </div>
 </div>
 </div>
-<div id="outline-container-org892cc62" class="outline-2">
-<h2 id="org892cc62"><span class="section-number-2">2.</span> Partial Derivatives</h2>
+<div id="outline-container-orgaefca0c" class="outline-2">
+<h2 id="orgaefca0c"><span class="section-number-2">2.</span> Partial Derivatives</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 While the contour plot can tell us qualitatively the rate of change with respect to \(x\) and \(y\), this is also a tool for the derivative. However, for functions of multiple variables, we need to introduce the <b>partial derivative</b>. It is defined like so:
@@ -457,8 +257,8 @@ f_x &= 3x^2y \\
 f_y &= x^3 + 2y
 \end{aligned}
 </div>
-<div id="outline-container-org95cc784" class="outline-3">
-<h3 id="org95cc784"><span class="section-number-3">2.1.</span> Non-Independent Variables</h3>
+<div id="outline-container-orgb75359a" class="outline-3">
+<h3 id="orgb75359a"><span class="section-number-3">2.1.</span> Non-Independent Variables</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Sometimes, we want to take the partial derivative of a function \(f(x,y,z)\) such that we have the constraint \(g(x,y,z)=c\).
@@ -469,7 +269,7 @@ It follows then that we can write a function for a variable in terms of the othe
 </p>
 
 <p>
-Taking the <a href="differentials.html#orga7a17da">total differential</a> of \(g\), we get that:
+Taking the <a href="differentials.html#org79991d6">total differential</a> of \(g\), we get that:
 </p>
 
 <p>
@@ -511,8 +311,8 @@ Therefore, we get that:
 We can go a step further and find things like \(f_y\) with \(x\) held constant by considering the total differential of \(f\). Then, since \(\text{d}x=0\), we can plug in what we found for \(\text{d}z\) to get a total differential that only has \(\text{d}y\).
 </p>
 </div>
-<div id="outline-container-orgbc6fbc9" class="outline-4">
-<h4 id="orgbc6fbc9"><span class="section-number-4">2.1.1.</span> A Note on Notation</h4>
+<div id="outline-container-org9bb3682" class="outline-4">
+<h4 id="org9bb3682"><span class="section-number-4">2.1.1.</span> A Note on Notation</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <p>
 Consider the function \(f(x,y)=x+y\). Then, apply the change of variables \(x=u\), \(y=u+v\). Since \(f=x+y\) now becomes \(f=2u+v\), we know that these two things are true:

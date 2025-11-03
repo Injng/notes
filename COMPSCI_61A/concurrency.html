@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 14:08 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concurrency</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
@@ -93,24 +94,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org8169920">1. Concurrency</a>
+<li><a href="#org3cd48a9">1. Concurrency</a>
 <ul>
-<li><a href="#org1060a89">1.1. Coroutines</a></li>
-<li><a href="#org364b338">1.2. Shared State</a></li>
+<li><a href="#org9be206a">1.1. Coroutines</a></li>
+<li><a href="#org23dd310">1.2. Shared State</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org8169920" class="outline-2">
-<h2 id="org8169920"><span class="section-number-2">1.</span> Concurrency</h2>
+<div id="outline-container-org3cd48a9" class="outline-2">
+<h2 id="org3cd48a9"><span class="section-number-2">1.</span> Concurrency</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Concurrency</b> is a concept that allows multiple tasks to overlap without necessarily finishing one before starting the next. One way to achieve this is through <b>parallelism</b>, which is running multiple tasks <i>at the same time</i>. Python, however, has a <b>global interpreter lock.</b> This means that one Python process can only run one line of Python code at a time.
 </p>
 </div>
-<div id="outline-container-org1060a89" class="outline-3">
-<h3 id="org1060a89"><span class="section-number-3">1.1.</span> Coroutines</h3>
+<div id="outline-container-org9be206a" class="outline-3">
+<h3 id="org9be206a"><span class="section-number-3">1.1.</span> Coroutines</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Instead of running multiple lines at the same time, we can instead use <b>coroutines</b>. Only one coroutine can run at a time, however it can allow another coroutine to run before it has completed by voluntarily using the <code>await</code> keyword. Coroutines can be created with asynchronous functions by defining them with <code>async def</code>:
@@ -144,8 +145,8 @@ We can make a non-async function run concurrently by using <code>asyncio.to_thre
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org364b338" class="outline-3">
-<h3 id="org364b338"><span class="section-number-3">1.2.</span> Shared State</h3>
+<div id="outline-container-org23dd310" class="outline-3">
+<h3 id="org23dd310"><span class="section-number-3">1.2.</span> Shared State</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Oftentimes, state is shared between multiple coroutines. This means that after an <code>await</code> is called, it is possible that mutable state is changed by a different coroutine.

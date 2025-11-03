@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-29 Wed 10:25 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Orthogonality</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
@@ -125,29 +126,29 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org674bc90">1. Orthogonality</a>
+<li><a href="#org0b4534f">1. Orthogonality</a>
 <ul>
-<li><a href="#orgeab6600">1.1. Orthogonal Sets</a></li>
-<li><a href="#orge8469ff">1.2. Orthogonal Basis</a></li>
-<li><a href="#org7d65158">1.3. Orthogonal Matrices</a>
+<li><a href="#orgf52e2a0">1.1. Orthogonal Sets</a></li>
+<li><a href="#org314d1fd">1.2. Orthogonal Basis</a></li>
+<li><a href="#org0abbe46">1.3. Orthogonal Matrices</a>
 <ul>
-<li><a href="#org1287b70">1.3.1. Orthonormal Basis</a></li>
+<li><a href="#orgfb2f321">1.3.1. Orthonormal Basis</a></li>
 </ul>
 </li>
-<li><a href="#org65f9175">1.4. Orthogonal Projections</a>
+<li><a href="#org3318b96">1.4. Orthogonal Projections</a>
 <ul>
-<li><a href="#orgab517fa">1.4.1. With Orthonormal Basis</a></li>
+<li><a href="#orgc58b20b">1.4.1. With Orthonormal Basis</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org3d12432">2. Gram-Schmidt Process</a></li>
-<li><a href="#orga993810">3. QR Factorization</a></li>
+<li><a href="#orged858ee">2. Gram-Schmidt Process</a></li>
+<li><a href="#org638e3f7">3. QR Factorization</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org674bc90" class="outline-2">
-<h2 id="org674bc90"><span class="section-number-2">1.</span> Orthogonality</h2>
+<div id="outline-container-org0b4534f" class="outline-2">
+<h2 id="org0b4534f"><span class="section-number-2">1.</span> Orthogonality</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Two vectors \(\mathbf{u}\) and \(\mathbf{v}\) are called <b>orthogonal</b> when \(\mathbf{u} \cdot \mathbf{v} = 0\), or when the <b>norm</b> (magnitude) of the two vectors satisfies the famous rule of Pythagoras: \(\left | \mathbf{u} \right |^2 + \left | \mathbf{v} \right |^2 = \left | \mathbf{u} + \mathbf{v} \right |^2\).
@@ -158,7 +159,7 @@ More broadly, we can say that if \(\mathbf{v} \in \mathbb{R}^n\), and \(W\) is a
 </p>
 
 <p>
-An important application of orthogonality comes in the form of <a href="vector_spaces.html#orge5a94d7">vector spaces</a>. We can say that the <a href="vector_spaces.html#orgde41fed">row space</a> of \(A\) is orthogonal to the <a href="vector_spaces.html#org00363de">nullspace</a> of \(A\):
+An important application of orthogonality comes in the form of <a href="vector_spaces.html#org2068d87">vector spaces</a>. We can say that the <a href="vector_spaces.html#org1f987f4">row space</a> of \(A\) is orthogonal to the <a href="vector_spaces.html#orge5cf636">nullspace</a> of \(A\):
 </p>
 
 \begin{align}
@@ -177,8 +178,8 @@ This is because by the definition of the nullspace, vectors in the nullspace, wh
 Given \(W\) a susbpace of \(\mathbb{R}^n\), we can then use (1) to find \(W^{\perp}\). If \(W\) has \(m\) vectors as its basis, we can write the basis elements of \(W\) as the rows of an \(m \times n\) matrix \(A\). Then, \(W^{\perp}\) is just the nullspace of \(A\).
 </p>
 </div>
-<div id="outline-container-orgeab6600" class="outline-3">
-<h3 id="orgeab6600"><span class="section-number-3">1.1.</span> Orthogonal Sets</h3>
+<div id="outline-container-orgf52e2a0" class="outline-3">
+<h3 id="orgf52e2a0"><span class="section-number-3">1.1.</span> Orthogonal Sets</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 An <b>orthogonal set</b> is a set of vectors in which every pair of distinct vectors are orthogonal.
@@ -199,8 +200,8 @@ However, this is a contradiction since the only way for \(\mathbf{u}_n \cdot \ma
 </p>
 </div>
 </div>
-<div id="outline-container-orge8469ff" class="outline-3">
-<h3 id="orge8469ff"><span class="section-number-3">1.2.</span> Orthogonal Basis</h3>
+<div id="outline-container-org314d1fd" class="outline-3">
+<h3 id="org314d1fd"><span class="section-number-3">1.2.</span> Orthogonal Basis</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 In a vector space \(V\), an <b>orthogonal basis</b> is a basis for \(V\) that is an orthogonal set.
@@ -227,8 +228,8 @@ We can see that this works if we multiply our original equation by \(\mathbf{u}_
 </p>
 </div>
 </div>
-<div id="outline-container-org7d65158" class="outline-3">
-<h3 id="org7d65158"><span class="section-number-3">1.3.</span> Orthogonal Matrices</h3>
+<div id="outline-container-org0abbe46" class="outline-3">
+<h3 id="org0abbe46"><span class="section-number-3">1.3.</span> Orthogonal Matrices</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 A set or basis in some subspace of \(\mathbb{R}^n\) is an <b>orthonormal</b> set or basis if it is an orthogonal set in which every vector has length \(1\). We can switch from orthogonal to orthonormal by dividing each vector by its magnitude.
@@ -250,8 +251,8 @@ One interesting fact is that if we have any \(m \times n\) orthogonal matrix \(U
 In other words, multiplying \(\mathbf{x}\) by an orthogonal matrix doesn't change its length even if \(U\mathbf{x}\) is in a different dimension than \(\mathbf{x}\).
 </p>
 </div>
-<div id="outline-container-org1287b70" class="outline-4">
-<h4 id="org1287b70"><span class="section-number-4">1.3.1.</span> Orthonormal Basis</h4>
+<div id="outline-container-orgfb2f321" class="outline-4">
+<h4 id="orgfb2f321"><span class="section-number-4">1.3.1.</span> Orthonormal Basis</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 An orthonormal basis is convenient to change into. If we have an orthonormal basis \(\mathcal{B}\) with vectors \(\{\mathbf{u}_1, \mathbf{u}_2, \dots , \mathbf{u}_n\}\), and since the inverse of the change of basis matrix \(P_{\mathcal{B}}^{-1}\) is equal to \(P_{\mathcal{B}}^T\), then:
@@ -263,8 +264,8 @@ An orthonormal basis is convenient to change into. If we have an orthonormal bas
 </div>
 </div>
 </div>
-<div id="outline-container-org65f9175" class="outline-3">
-<h3 id="org65f9175"><span class="section-number-3">1.4.</span> Orthogonal Projections</h3>
+<div id="outline-container-org3318b96" class="outline-3">
+<h3 id="org3318b96"><span class="section-number-3">1.4.</span> Orthogonal Projections</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Say we want to find the projection of some vector \(\mathbf{y}\) on some subspace \(W\). Call this projection \(\mathbf{\hat{y}}\); then, we can express \(\mathbf{y}\) as the sum of this projection with some other vector \(\mathbf{z}\):
@@ -279,13 +280,13 @@ where \(\mathbf{\hat{y}} \in W\) and \(\mathbf{z} \in W^{\perp}\). We can intuit
 </p>
 
 
-<div id="org6193dfe" class="figure">
+<div id="orgdeb86b8" class="figure">
 <p><img src="../static/MATH_54/orthogonality1.png" alt="orthogonality1.png" />
 </p>
 </div>
 
 <p>
-To find \(\mathbf{\hat{y}}\), we consider an orthogonal basis \(\{\mathbf{u}_1, \mathbf{u}_2, \dots ,\mathbf{u}_n\}\). We know that the dot product of a vector and a unit vector is the <a href="Multivariable_Calculus/vectors.html#org489262b">projection</a> of that vector in the direction of the unit vector. For the projection along a non-unit vector, then, we must divide by the magnitude:
+To find \(\mathbf{\hat{y}}\), we consider an orthogonal basis \(\{\mathbf{u}_1, \mathbf{u}_2, \dots ,\mathbf{u}_n\}\). We know that the dot product of a vector and a unit vector is the <a href="Multivariable_Calculus/vectors.html#org26d6e5f">projection</a> of that vector in the direction of the unit vector. For the projection along a non-unit vector, then, we must divide by the magnitude:
 </p>
 
 \begin{align}
@@ -300,8 +301,8 @@ The total projection onto \(W\) is the vector sum of all the projections onto ea
 \boxed{\mathbf{\hat{y}} = \sum_{i = 1}^{n} \frac{\mathbf{y} \cdot \mathbf{u}_i}{\mathbf{u}_i \cdot \mathbf{u}_i} \mathbf{u}_i}
 \end{align}
 </div>
-<div id="outline-container-orgab517fa" class="outline-4">
-<h4 id="orgab517fa"><span class="section-number-4">1.4.1.</span> With Orthonormal Basis</h4>
+<div id="outline-container-orgc58b20b" class="outline-4">
+<h4 id="orgc58b20b"><span class="section-number-4">1.4.1.</span> With Orthonormal Basis</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <p>
 If we have an orthonormal basis \(\{ \mathbf{u}_1, \mathbf{u}_2, \dots , \mathbf{u}_k \}\) for W, then we can just directly take the dot product of \(y\) with each of the basis vectors to obtain the projection of \(y\) onto each basis vector (since they are unit vectors). We can write \(\hat{y}\) as:
@@ -324,8 +325,8 @@ If we call the matrix \(U\) the matrix whose columns are the basis vectors, then
 </div>
 </div>
 </div>
-<div id="outline-container-org3d12432" class="outline-2">
-<h2 id="org3d12432"><span class="section-number-2">2.</span> Gram-Schmidt Process</h2>
+<div id="outline-container-orged858ee" class="outline-2">
+<h2 id="orged858ee"><span class="section-number-2">2.</span> Gram-Schmidt Process</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Since projections only work for an orthogonal basis, there comes an issue when we are given a basis that is not orthogonal, yet we still want to find the projection. Thus, we need the <b>Gram-Schmidt process</b> to turn an arbitrary basis for \(W\), \(\{\mathbf{x}_1, \mathbf{x}_2, \dots , \mathbf{x}_k\}\), into an orthogonal basis \(\{\mathbf{q}_1, \mathbf{q}_2, \dots, \mathbf{q}_k\}\).
@@ -368,8 +369,8 @@ Usefully, the space spanned by the first \(j\) vectors in the new orthogonal bas
 </p>
 </div>
 </div>
-<div id="outline-container-orga993810" class="outline-2">
-<h2 id="orga993810"><span class="section-number-2">3.</span> QR Factorization</h2>
+<div id="outline-container-org638e3f7" class="outline-2">
+<h2 id="org638e3f7"><span class="section-number-2">3.</span> QR Factorization</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 In Gram-Schmidt, we started with some arbitrary basis, and ended with another basis that spans the same space but is orthogonal. If the starting basis is represented by the linearly independent columns of some \(m \times n\) matrix \(A\), and the transformed orthogonal basis is the matrix \(Q\), then since the columns of \(A\) can be formed from linear combinations of \(Q\), there must be some other matrix connecting the two.

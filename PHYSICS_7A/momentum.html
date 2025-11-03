@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-02 Sun 16:11 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Momentum</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
@@ -125,23 +126,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org097bfe1">1. Linear Momentum</a>
+<li><a href="#org17289f3">1. Linear Momentum</a>
 <ul>
-<li><a href="#org32208bd">1.1. Conservation of Linear Momentum</a></li>
-<li><a href="#org340065a">1.2. Impulse</a></li>
-<li><a href="#orgb06f102">1.3. Systems of Variable Mass</a></li>
+<li><a href="#org9e683ca">1.1. Conservation of Linear Momentum</a></li>
+<li><a href="#org8bd6009">1.2. Impulse</a></li>
+<li><a href="#orgf3d4698">1.3. Systems of Variable Mass</a></li>
 </ul>
 </li>
-<li><a href="#org2e8dc05">2. Angular Momentum</a>
+<li><a href="#org8ac1526">2. Angular Momentum</a>
 <ul>
-<li><a href="#org909b000">2.1. Angular Momentum of Translational Motion</a></li>
+<li><a href="#org8f7ee24">2.1. Angular Momentum of Translational Motion</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org097bfe1" class="outline-2">
-<h2 id="org097bfe1"><span class="section-number-2">1.</span> Linear Momentum</h2>
+<div id="outline-container-org17289f3" class="outline-2">
+<h2 id="org17289f3"><span class="section-number-2">1.</span> Linear Momentum</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 In classical physics, <b>linear momentum</b> is defined as:
@@ -152,23 +153,23 @@ In classical physics, <b>linear momentum</b> is defined as:
 \end{align}
 
 <p>
-The original form of <a href="newtons_laws.html#org5996b3e">Newton's 2nd law</a> states that <i>the rate of change of momentum of an object is equal to the net force applied to it</i>, or:
+The original form of <a href="newtons_laws.html#orgd3098a4">Newton's 2nd law</a> states that <i>the rate of change of momentum of an object is equal to the net force applied to it</i>, or:
 </p>
 
 \begin{align}
 \boxed{\vec{F}_{\text{net}} = \frac{\text{d}\vec{p}_{\text{tot}}}{\text{d}t}}
 \end{align}
 </div>
-<div id="outline-container-org32208bd" class="outline-3">
-<h3 id="org32208bd"><span class="section-number-3">1.1.</span> Conservation of Linear Momentum</h3>
+<div id="outline-container-org9e683ca" class="outline-3">
+<h3 id="org9e683ca"><span class="section-number-3">1.1.</span> Conservation of Linear Momentum</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 For systems such that the external net force is zero, then the change in momentum by Newton's 2nd law is zero, so then the momentum is constant. This is known as the <b>conservation of linear momentum</b>.
 </p>
 </div>
 </div>
-<div id="outline-container-org340065a" class="outline-3">
-<h3 id="org340065a"><span class="section-number-3">1.2.</span> Impulse</h3>
+<div id="outline-container-org8bd6009" class="outline-3">
+<h3 id="org8bd6009"><span class="section-number-3">1.2.</span> Impulse</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 <b>Impulse</b>, \(\vec{J}\), is the force applied over a period of time, or the change in linear momentum:
@@ -179,15 +180,15 @@ For systems such that the external net force is zero, then the change in momentu
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgb06f102" class="outline-3">
-<h3 id="orgb06f102"><span class="section-number-3">1.3.</span> Systems of Variable Mass</h3>
+<div id="outline-container-orgf3d4698" class="outline-3">
+<h3 id="orgf3d4698"><span class="section-number-3">1.3.</span> Systems of Variable Mass</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
-We can consider systems of variable mass as consisting of an <a href="collisions.html#orga60cc8f">inelastic collision</a> between a main mass \(m\) with a certain velocity and a small change in mass \(\text{d}m\) such that it results in the system's mass varying to \(m + \text{d}m\):
+We can consider systems of variable mass as consisting of an <a href="collisions.html#org7435cc4">inelastic collision</a> between a main mass \(m\) with a certain velocity and a small change in mass \(\text{d}m\) such that it results in the system's mass varying to \(m + \text{d}m\):
 </p>
 
 
-<div id="org6b7114d" class="figure">
+<div id="orgc3753ef" class="figure">
 <p><img src="../static/PHYSICS_7A/momentum1.png" alt="momentum1.png" />
 </p>
 </div>
@@ -250,7 +251,7 @@ Consider a rocket as it burns fuel for thrust. Assume there is no resistance, so
 </p>
 
 
-<div id="org07a060b" class="figure">
+<div id="orge935425" class="figure">
 <p><img src="../static/PHYSICS_7A/momentum2.png" alt="momentum2.png" />
 </p>
 </div>
@@ -291,8 +292,8 @@ Note that since \(v\) does not vary linearly over time, \(a\) is not a constant.
 </div>
 </div>
 </div>
-<div id="outline-container-org2e8dc05" class="outline-2">
-<h2 id="org2e8dc05"><span class="section-number-2">2.</span> Angular Momentum</h2>
+<div id="outline-container-org8ac1526" class="outline-2">
+<h2 id="org8ac1526"><span class="section-number-2">2.</span> Angular Momentum</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>Angular momentum</b>, by analogy with linear momentum, is:
@@ -341,7 +342,7 @@ Consider a spinning disk such that there is a stationary disk that is held at fi
 </p>
 
 
-<div id="orgdca911e" class="figure">
+<div id="org443f9d4" class="figure">
 <p><img src="../static/PHYSICS_7A/momentum3.png" alt="momentum3.png" />
 </p>
 </div>
@@ -370,15 +371,15 @@ Therefore, we have:
 
 </details>
 </div>
-<div id="outline-container-org909b000" class="outline-3">
-<h3 id="org909b000"><span class="section-number-3">2.1.</span> Angular Momentum of Translational Motion</h3>
+<div id="outline-container-org8f7ee24" class="outline-3">
+<h3 id="org8f7ee24"><span class="section-number-3">2.1.</span> Angular Momentum of Translational Motion</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 A point mass moving in translation also carries angular momentum, as can be observed if a ball causes a rotating beam to spin upon contact:
 </p>
 
 
-<div id="orga65a0f6" class="figure">
+<div id="orgfeb11c5" class="figure">
 <p><img src="../static/PHYSICS_7A/momentum4.png" alt="momentum4.png" />
 </p>
 </div>
@@ -418,7 +419,7 @@ Consider a kid that jumps onto a rotating merry-go-round:
 </p>
 
 
-<div id="org27e7049" class="figure">
+<div id="orga27ba17" class="figure">
 <p><img src="../static/PHYSICS_7A/momentum5.png" alt="momentum5.png" />
 </p>
 </div>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 17:15 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Systems</title>
@@ -12,211 +12,11 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -326,27 +126,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd5da1e2">1. Linear Systems</a>
+<li><a href="#orgb3d022b">1. Linear Systems</a>
 <ul>
-<li><a href="#org764681e">1.1. Elementary Row Operations</a></li>
+<li><a href="#orge820146">1.1. Elementary Row Operations</a></li>
 </ul>
 </li>
-<li><a href="#orgc48cfff">2. Linear Combinations</a>
+<li><a href="#org180fb20">2. Linear Combinations</a>
 <ul>
-<li><a href="#org225be8f">2.1. Span</a></li>
+<li><a href="#org7e8f64a">2.1. Span</a></li>
 </ul>
 </li>
-<li><a href="#org05c80d0">3. Solving Homogeneous Systems</a>
+<li><a href="#org6584534">3. Solving Homogeneous Systems</a>
 <ul>
-<li><a href="#org3dc8ef8">3.1. Parametric Vector Form</a></li>
+<li><a href="#org7c696f2">3.1. Parametric Vector Form</a></li>
 </ul>
 </li>
-<li><a href="#org2b080b6">4. Solving Nonhomogeneous Systems</a></li>
+<li><a href="#orga76d0fd">4. Solving Nonhomogeneous Systems</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd5da1e2" class="outline-2">
-<h2 id="orgd5da1e2"><span class="section-number-2">1.</span> Linear Systems</h2>
+<div id="outline-container-orgb3d022b" class="outline-2">
+<h2 id="orgb3d022b"><span class="section-number-2">1.</span> Linear Systems</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>linear system</b> is a system of <b>linear equations</b>, which are equations with variables \(x_1, x_2, \ldots, x_n\) that can be written in the form \(a_1x_1 + \cdots + a_nx_n = b\). In traditional algebra, we can solve these systems using techniques such as substitution and elimination. However, for really large systems, these techniques become tedious and unwieldy.
@@ -369,8 +169,8 @@ The first matrix of constants is known as the <b>coefficient matrix</b> because 
 \begin{bmatrix} a_1 & a_2 & c_1 \\ b_1 & b_2 & c_2 \end{bmatrix}
 \end{aligned}
 </div>
-<div id="outline-container-org764681e" class="outline-3">
-<h3 id="org764681e"><span class="section-number-3">1.1.</span> Elementary Row Operations</h3>
+<div id="outline-container-orge820146" class="outline-3">
+<h3 id="orge820146"><span class="section-number-3">1.1.</span> Elementary Row Operations</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To solve the system, we can look to simplifying the augmented matrix. To do so, we can use <b>row operations</b>, which consist of:
@@ -392,8 +192,8 @@ Two matrices are said to be <b>row equivalent</b> if one can be reached from the
 </div>
 </div>
 </div>
-<div id="outline-container-orgc48cfff" class="outline-2">
-<h2 id="orgc48cfff"><span class="section-number-2">2.</span> Linear Combinations</h2>
+<div id="outline-container-org180fb20" class="outline-2">
+<h2 id="org180fb20"><span class="section-number-2">2.</span> Linear Combinations</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Given certain vectors, we can take <b>linear combinations</b> of those vectors. More generally, if we have vectors \(v_1, v_2, \dots, v_k\), we can take a linear combination of the vector with constants \(c\) by finding \(c_1v_1 + c_2v_2 + \cdots + c_kv_k\).
@@ -414,8 +214,8 @@ a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n
 \end{bmatrix}
 \end{aligned}
 </div>
-<div id="outline-container-org225be8f" class="outline-3">
-<h3 id="org225be8f"><span class="section-number-3">2.1.</span> Span</h3>
+<div id="outline-container-org7e8f64a" class="outline-3">
+<h3 id="org7e8f64a"><span class="section-number-3">2.1.</span> Span</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 A natural question is to ask what vectors we can obtain by taking linear combinations of a certain set of vectors. For example, for two vectors \(v_1\) and \(v_2\) in \(\mathbb{R}^2\), do linear combinations of those two vectors create all of \(\mathbb{R}^2\)? We call the space created by all these linear combinations the <b>span</b> of the vector set.
@@ -429,13 +229,13 @@ Realize that this is equivalent to asking if each \(Ax=b\), where \(A\) is the m
 <li>For all \(b\) in \(\mathbb{R}^m\), the equation \(Ax=b\) has a solution.</li>
 <li>Each \(b\) is a linear combination of the columns of \(A\).</li>
 <li>The columns of \(A\) span \(\mathbb{R}^m\).</li>
-<li>\(A\) has a <a href="triangular_and_echelon_forms.html#org0291059">pivot</a> position in every row.</li>
+<li>\(A\) has a <a href="triangular_and_echelon_forms.html#orgcee4da2">pivot</a> position in every row.</li>
 </ol>
 </div>
 </div>
 </div>
-<div id="outline-container-org05c80d0" class="outline-2">
-<h2 id="org05c80d0"><span class="section-number-2">3.</span> Solving Homogeneous Systems</h2>
+<div id="outline-container-org6584534" class="outline-2">
+<h2 id="org6584534"><span class="section-number-2">3.</span> Solving Homogeneous Systems</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A <b>homogeneous matrix equation</b> is one that can be represented with an mxn coefficient matrix \(A\) of \(n\) vectors in \(\mathbb{R}^m\), and an nx1 vector \(x\), like so:
@@ -448,11 +248,11 @@ Ax = 0
 </p>
 
 <p>
-For a homogenous system like this, there is always the <b>trivial solution</b> \(x=0\). The question is, are there also some nonzero solutions \(x\) that work, i.e. a <b>nontrivial solution</b>? We can do this by putting \(A\) in <a href="triangular_and_echelon_forms.html#orgbb7bbfb">row echelon form</a> (note: the coefficient matrix, not the augmented one, since the augmented column will be 0 no matter what row operations we do) and solving the linear system. The system has a nontrivial solution <i>if and only if there is at least one free variable</i>.
+For a homogenous system like this, there is always the <b>trivial solution</b> \(x=0\). The question is, are there also some nonzero solutions \(x\) that work, i.e. a <b>nontrivial solution</b>? We can do this by putting \(A\) in <a href="triangular_and_echelon_forms.html#org68258e5">row echelon form</a> (note: the coefficient matrix, not the augmented one, since the augmented column will be 0 no matter what row operations we do) and solving the linear system. The system has a nontrivial solution <i>if and only if there is at least one free variable</i>.
 </p>
 </div>
-<div id="outline-container-org3dc8ef8" class="outline-3">
-<h3 id="org3dc8ef8"><span class="section-number-3">3.1.</span> Parametric Vector Form</h3>
+<div id="outline-container-org7c696f2" class="outline-3">
+<h3 id="org7c696f2"><span class="section-number-3">3.1.</span> Parametric Vector Form</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We can also write our answers in <b>parametric vector form</b>. For example:
@@ -467,8 +267,8 @@ x_3\begin{bmatrix}-2 \\ 0 \\ 1 \end{bmatrix}
 </div>
 </div>
 </div>
-<div id="outline-container-org2b080b6" class="outline-2">
-<h2 id="org2b080b6"><span class="section-number-2">4.</span> Solving Nonhomogeneous Systems</h2>
+<div id="outline-container-orga76d0fd" class="outline-2">
+<h2 id="orga76d0fd"><span class="section-number-2">4.</span> Solving Nonhomogeneous Systems</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 More generally, a <b>nonhomogeneous matrix equation</b> is one that can be represented by:
@@ -485,7 +285,7 @@ To solve this system, there are two methods:
 </p>
 
 <ol class="org-ol">
-<li>Create augmented matrix and solve by reducing to <a href="triangular_and_echelon_forms.html#orgbb7bbfb">row echelon form</a> and back substitution.</li>
+<li>Create augmented matrix and solve by reducing to <a href="triangular_and_echelon_forms.html#org68258e5">row echelon form</a> and back substitution.</li>
 <li>Find one solution to \(Ax=b\), and add that to the general solution to \(Ax=0\).</li>
 </ol>
 

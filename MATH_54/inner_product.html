@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-24 Fri 09:32 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Inner Product</title>
@@ -12,6 +12,7 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
@@ -125,24 +126,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdf8668e">1. Inner Product</a>
+<li><a href="#org5ba8dd4">1. Inner Product</a>
 <ul>
-<li><a href="#org85719c4">1.1. Extra Properties</a></li>
+<li><a href="#org4193f62">1.1. Extra Properties</a></li>
 </ul>
 </li>
-<li><a href="#org7f8140d">2. Cauchy-Schwarz Inequality</a>
+<li><a href="#org1562894">2. Cauchy-Schwarz Inequality</a>
 <ul>
-<li><a href="#orga324ce4">2.1. Proof</a></li>
+<li><a href="#org9770501">2.1. Proof</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdf8668e" class="outline-2">
-<h2 id="orgdf8668e"><span class="section-number-2">1.</span> Inner Product</h2>
+<div id="outline-container-org5ba8dd4" class="outline-2">
+<h2 id="org5ba8dd4"><span class="section-number-2">1.</span> Inner Product</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-Certain <a href="vector_spaces.html#orge5a94d7">vector spaces</a> have what is known as an <b>inner product</b>. Such spaces are also called <b>inner product spaces</b>. We define the inner product \(\langle u, v \rangle\) as a <i>type of operation</i> that operates on two vectors \(u\) and \(v\) in some vector space \(V\), such that these operations satisfies a certain set of properties. One type of inner product is the <a href="../Multivariable_Calculus/vectors.html#org9dd1750">dot product</a>.
+Certain <a href="vector_spaces.html#org2068d87">vector spaces</a> have what is known as an <b>inner product</b>. Such spaces are also called <b>inner product spaces</b>. We define the inner product \(\langle u, v \rangle\) as a <i>type of operation</i> that operates on two vectors \(u\) and \(v\) in some vector space \(V\), such that these operations satisfies a certain set of properties. One type of inner product is the <a href="../Multivariable_Calculus/vectors.html#org6724ff4">dot product</a>.
 </p>
 
 <p>
@@ -156,8 +157,8 @@ Specifically, inner products must satisfy:
 <li>\(\forall \; \mathbf{u} \in V, \; \langle \mathbf{u}, \mathbf{u} \rangle \geq 0\) with \(\langle \mathbf{u}, \mathbf{u} \rangle = 0\) only when \(\mathbf{u} = 0\)</li>
 </ol>
 </div>
-<div id="outline-container-org85719c4" class="outline-3">
-<h3 id="org85719c4"><span class="section-number-3">1.1.</span> Extra Properties</h3>
+<div id="outline-container-org4193f62" class="outline-3">
+<h3 id="org4193f62"><span class="section-number-3">1.1.</span> Extra Properties</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Knowledge that we have of dot products can be applied to inner prodcuts as well:
@@ -172,8 +173,8 @@ Knowledge that we have of dot products can be applied to inner prodcuts as well:
 </div>
 </div>
 </div>
-<div id="outline-container-org7f8140d" class="outline-2">
-<h2 id="org7f8140d"><span class="section-number-2">2.</span> Cauchy-Schwarz Inequality</h2>
+<div id="outline-container-org1562894" class="outline-2">
+<h2 id="org1562894"><span class="section-number-2">2.</span> Cauchy-Schwarz Inequality</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The <b>Cauchy-Schwarz inequality</b> states that the inner product of two vectors is less than or equal to the product of their magnitudes:
@@ -187,11 +188,11 @@ The <b>Cauchy-Schwarz inequality</b> states that the inner product of two vector
 Note that this is consistent with the dot product, as \(\mathbf{u} \cdot \mathbf{v} = \left|\mathbf{u}\right|\left|\mathbf{v}\right|\cos\theta =\Rightarrow \left|\mathbf{u}\cdot\mathbf{v}\right|\leq\left|\mathbf{u}\right|\cdot\left|\mathbf{v}\right|\).
 </p>
 </div>
-<div id="outline-container-orga324ce4" class="outline-3">
-<h3 id="orga324ce4"><span class="section-number-3">2.1.</span> Proof</h3>
+<div id="outline-container-org9770501" class="outline-3">
+<h3 id="org9770501"><span class="section-number-3">2.1.</span> Proof</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-Consider vectors \(\mathbf{u}\) and \(\mathbf{v}\), with \(\mathbf{\hat{v}}\) the <a href="orthogonality.html#org65f9175">projection</a> of \(\mathbf{v}\) on \(\mathbf{u}\). First, we know that \(\left|\mathbf{v}\right| \geq \left|\mathbf{\hat{v}}\right|\) always, because we can decompose \(\mathbf{v}\) into:
+Consider vectors \(\mathbf{u}\) and \(\mathbf{v}\), with \(\mathbf{\hat{v}}\) the <a href="orthogonality.html#org3318b96">projection</a> of \(\mathbf{v}\) on \(\mathbf{u}\). First, we know that \(\left|\mathbf{v}\right| \geq \left|\mathbf{\hat{v}}\right|\) always, because we can decompose \(\mathbf{v}\) into:
 </p>
 
 \begin{align}

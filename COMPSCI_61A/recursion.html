@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 17:15 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Recursion</title>
@@ -12,211 +12,11 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -294,19 +94,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org95776f8">1. Recursive Functions</a>
+<li><a href="#org5b2daad">1. Recursive Functions</a>
 <ul>
-<li><a href="#org6fb519b">1.1. Verifying Recursive Functions</a></li>
-<li><a href="#org77624ad">1.2. Mutually Recursive Functions</a></li>
+<li><a href="#orgc43c39c">1.1. Verifying Recursive Functions</a></li>
+<li><a href="#orgd7f3c7e">1.2. Mutually Recursive Functions</a></li>
 </ul>
 </li>
-<li><a href="#org7586e83">2. Recursion and Iteration</a></li>
-<li><a href="#orgd369bf1">3. Tree Recursion</a></li>
+<li><a href="#org064e1cc">2. Recursion and Iteration</a></li>
+<li><a href="#orge04689e">3. Tree Recursion</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org95776f8" class="outline-2">
-<h2 id="org95776f8"><span class="section-number-2">1.</span> Recursive Functions</h2>
+<div id="outline-container-org5b2daad" class="outline-2">
+<h2 id="org5b2daad"><span class="section-number-2">1.</span> Recursive Functions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A function is called <b>recursive</b> if the body of that function calls itself, either directly or indirectly. This means that when you call a recursive function, executing the body of that function may require applying that function again.
@@ -360,7 +160,7 @@ We can define the factorial function recursively like so:
                     </strong>
                   </summary>
 <p>
-We can take advantage of list <a href="sequences.html#orgf737105">slicing</a> to implement a recurisve function that sums all the elements in a list:
+We can take advantage of list <a href="sequences.html#orgc024e3d">slicing</a> to implement a recurisve function that sums all the elements in a list:
 </p>
 
 <pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">sum_list</span><span style="color: #f38ba8;">(</span>s<span style="color: #f38ba8;">)</span>:
@@ -373,8 +173,8 @@ We can take advantage of list <a href="sequences.html#orgf737105">slicing</a> to
 
 </details>
 </div>
-<div id="outline-container-org6fb519b" class="outline-3">
-<h3 id="org6fb519b"><span class="section-number-3">1.1.</span> Verifying Recursive Functions</h3>
+<div id="outline-container-orgc43c39c" class="outline-3">
+<h3 id="orgc43c39c"><span class="section-number-3">1.1.</span> Verifying Recursive Functions</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 To verify that a recursive function `func` will do what it is supposed to do, you can follow the following steps:
@@ -386,8 +186,8 @@ To verify that a recursive function `func` will do what it is supposed to do, yo
 </ol>
 </div>
 </div>
-<div id="outline-container-org77624ad" class="outline-3">
-<h3 id="org77624ad"><span class="section-number-3">1.2.</span> Mutually Recursive Functions</h3>
+<div id="outline-container-orgd7f3c7e" class="outline-3">
+<h3 id="orgd7f3c7e"><span class="section-number-3">1.2.</span> Mutually Recursive Functions</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Two functions <code>f</code> and <code>g</code> are <b>mutually recursive</b> if <code>f</code> calls <code>g</code> and <code>g</code> calls <code>f</code>.
@@ -449,8 +249,8 @@ Here, <code>luhn_sum</code> and <code>luhn_sum_double</code> are mutually recurs
 </div>
 </div>
 </div>
-<div id="outline-container-org7586e83" class="outline-2">
-<h2 id="org7586e83"><span class="section-number-2">2.</span> Recursion and Iteration</h2>
+<div id="outline-container-org064e1cc" class="outline-2">
+<h2 id="org064e1cc"><span class="section-number-2">2.</span> Recursion and Iteration</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We can often convert recursion to <a href="iteration.html">iteration</a>, as iteration is just a special case of recursion. The main thing we need to keep in mind is to figure out what state must be maintained by the iterative function.
@@ -502,15 +302,15 @@ We can also convert iteration to recursion. In this case, we can pass in the sta
 </p>
 </div>
 </div>
-<div id="outline-container-orgd369bf1" class="outline-2">
-<h2 id="orgd369bf1"><span class="section-number-2">3.</span> Tree Recursion</h2>
+<div id="outline-container-orge04689e" class="outline-2">
+<h2 id="orge04689e"><span class="section-number-2">3.</span> Tree Recursion</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 When the body of a function that makes multiple recursive calls is executed, we have <b>tree recursion</b>. This is because the computational process of a function that makes multiple recursive calls evolves into a tree structure. For example, for the <code>fib</code> function in the below example that calculates Fibonacci numbers, we can see that a call to <code>fib(5)</code> has the following call tree:
 </p>
 
 
-<div id="orgbc01e90" class="figure">
+<div id="orgc88f3d8" class="figure">
 <p><img src="../static/COMPSCI_61A/recursion1.png" alt="recursion1.png" />
 </p>
 </div>

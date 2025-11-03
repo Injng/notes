@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-10-19 Sun 17:15 -->
+<!-- 2025-11-03 Mon 10:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Triangular and Echelon Forms</title>
@@ -12,211 +12,11 @@
                      <script src="/pagefind/pagefind-ui.js"></script>
                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
                      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
                      <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
                      <link rel="stylesheet" href="/style.css" type="text/css"/>
                      <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -294,20 +94,20 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3b4a1db">1. Triangular Form</a></li>
-<li><a href="#orgf9e2a2f">2. Echelon Forms</a>
+<li><a href="#orgaef4c94">1. Triangular Form</a></li>
+<li><a href="#org4929449">2. Echelon Forms</a>
 <ul>
-<li><a href="#orgbb7bbfb">2.1. Row Echelon Form</a></li>
-<li><a href="#org8375205">2.2. Reduced Row Echelon Form</a></li>
-<li><a href="#org0291059">2.3. Pivots</a></li>
+<li><a href="#org68258e5">2.1. Row Echelon Form</a></li>
+<li><a href="#orgf7e80e1">2.2. Reduced Row Echelon Form</a></li>
+<li><a href="#orgcee4da2">2.3. Pivots</a></li>
 </ul>
 </li>
-<li><a href="#orgd12f351">3. Existence/Uniqueness Theorem</a></li>
+<li><a href="#org453bcf1">3. Existence/Uniqueness Theorem</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3b4a1db" class="outline-2">
-<h2 id="org3b4a1db"><span class="section-number-2">1.</span> Triangular Form</h2>
+<div id="outline-container-orgaef4c94" class="outline-2">
+<h2 id="orgaef4c94"><span class="section-number-2">1.</span> Triangular Form</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 For any square matrix, the <b>main diagonal</b> are the entries where the row # = column #. A square matrix is called <b>upper triangular</b> if all the entries below the diagonal are 0, or <b>lower triangular</b> if all the entries above the diagonal are 0.
@@ -324,12 +124,12 @@ When a matrix is simplified to triangular form it becomes much easier to solve a
 </ol>
 </div>
 </div>
-<div id="outline-container-orgf9e2a2f" class="outline-2">
-<h2 id="orgf9e2a2f"><span class="section-number-2">2.</span> Echelon Forms</h2>
+<div id="outline-container-org4929449" class="outline-2">
+<h2 id="org4929449"><span class="section-number-2">2.</span> Echelon Forms</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgbb7bbfb" class="outline-3">
-<h3 id="orgbb7bbfb"><span class="section-number-3">2.1.</span> Row Echelon Form</h3>
+<div id="outline-container-org68258e5" class="outline-3">
+<h3 id="org68258e5"><span class="section-number-3">2.1.</span> Row Echelon Form</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The analogue to triangular form for non-square matrices is the <b>row echelon form</b> (REF). Matrices in REF satisfy the following two conditions:
@@ -349,8 +149,8 @@ Note that a key difference between REF and upper triangular form is that the upp
 </p>
 </div>
 </div>
-<div id="outline-container-org8375205" class="outline-3">
-<h3 id="org8375205"><span class="section-number-3">2.2.</span> Reduced Row Echelon Form</h3>
+<div id="outline-container-orgf7e80e1" class="outline-3">
+<h3 id="orgf7e80e1"><span class="section-number-3">2.2.</span> Reduced Row Echelon Form</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 A <i>more</i> simplified form of this is the <b>reduced row echelon form</b>, or RREF. Matrices in RREF satisfy all the conditions of REF, plus the following two conditions:
@@ -366,8 +166,8 @@ An important property of the RREF is that every matrix has a unique RREF, which 
 </p>
 </div>
 </div>
-<div id="outline-container-org0291059" class="outline-3">
-<h3 id="org0291059"><span class="section-number-3">2.3.</span> Pivots</h3>
+<div id="outline-container-orgcee4da2" class="outline-3">
+<h3 id="orgcee4da2"><span class="section-number-3">2.3.</span> Pivots</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 A <b>pivot position</b> is a location in a matrix which has a leading 1 in its RREF. We can find the <b>pivots</b> by locating the leading entries in a matrix that is in REF.
@@ -375,8 +175,8 @@ A <b>pivot position</b> is a location in a matrix which has a leading 1 in its R
 </div>
 </div>
 </div>
-<div id="outline-container-orgd12f351" class="outline-2">
-<h2 id="orgd12f351"><span class="section-number-2">3.</span> Existence/Uniqueness Theorem</h2>
+<div id="outline-container-org453bcf1" class="outline-2">
+<h2 id="org453bcf1"><span class="section-number-2">3.</span> Existence/Uniqueness Theorem</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Given the augmented matrix of a system,
