@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 13:33 -->
+<!-- 2025-11-04 Tue 21:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scheme</title>
@@ -113,6 +113,9 @@
 <li><a href="#org048ea6a">1.3. Lambda Expressions</a></li>
 </ul>
 </li>
+<li><a href="#orgc79dd28">2. Recursion</a></li>
+<li><a href="#org962d71b">3. Compound Values</a></li>
+<li><a href="#org48a239d">4. Symbolic Data</a></li>
 </ul>
 </div>
 </div>
@@ -284,13 +287,97 @@ For example, the following two expressions are equivalent:
 </div>
 </div>
 </div>
+<div id="outline-container-orgc79dd28" class="outline-2">
+<h2 id="orgc79dd28"><span class="section-number-2">2.</span> Recursion</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Scheme has no for/while statements, so <i>recursion is required to iterate</i>. In Python, to sum the first <code>n</code> numbers:
+</p>
+
+<pre><code class="language-python"><span style="color: #cba6f7;">def</span> <span style="color: #89b4fa;">sum_first_n</span><span style="color: #f38ba8;">(</span>n<span style="color: #f38ba8;">)</span>:
+    <span style="color: #cdd6f4;">k</span> <span style="color: #89dceb;">=</span> 1
+    <span style="color: #cdd6f4;">total</span> <span style="color: #89dceb;">=</span> 0
+    <span style="color: #cba6f7;">while</span> k &lt;= n:
+        <span style="color: #cdd6f4;">k</span>, <span style="color: #cdd6f4;">total</span> <span style="color: #89dceb;">=</span> k + 1, total + k
+    <span style="color: #cba6f7;">return</span> total
+</code></pre>
+
+<p>
+However, in Scheme, we can do:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #fab387;">(</span><span style="color: #89b4fa;">sum-first-n</span> n<span style="color: #fab387;">)</span>
+  <span style="color: #fab387;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #f9e2af;">(</span><span style="color: #89b4fa;">f</span> k total<span style="color: #f9e2af;">)</span>
+    <span style="color: #f9e2af;">(</span><span style="color: #cba6f7;">if</span> <span style="color: #a6e3a1;">(</span>&gt; k n<span style="color: #a6e3a1;">)</span>
+        total
+        <span style="color: #a6e3a1;">(</span>f <span style="color: #74c7ec;">(</span>+ k 1<span style="color: #74c7ec;">)</span> <span style="color: #74c7ec;">(</span>+ total k<span style="color: #74c7ec;">)</span><span style="color: #a6e3a1;">)</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span>
+  <span style="color: #fab387;">(</span>f 1 0<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org962d71b" class="outline-2">
+<h2 id="org962d71b"><span class="section-number-2">3.</span> Compound Values</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Scheme has <b>pairs</b>, which are created with the <code>cons</code> built-in function, and accessed using <code>car</code> and <code>cdr</code>:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #89b4fa;">x</span> <span style="color: #fab387;">(</span>cons 1 2<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
+<span style="color: #f38ba8;">(</span>car x<span style="color: #f38ba8;">)</span>                   <span style="color: #6c7086;">; </span><span style="color: #6c7086;">1
+</span><span style="color: #f38ba8;">(</span>cdr x<span style="color: #f38ba8;">)</span>                   <span style="color: #6c7086;">; </span><span style="color: #6c7086;">2</span>
+</code></pre>
+
+<p>
+Lists in Scheme are defined using recursive pairs, like so:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span>cons 1
+      <span style="color: #fab387;">(</span>cons 2
+            <span style="color: #f9e2af;">(</span>cons 3
+                  <span style="color: #a6e3a1;">(</span>cons 4 nil<span style="color: #a6e3a1;">)</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
+</code></pre>
+
+<p>
+The empty list is denoted with <code>nil</code> or <code>'()</code>. We can also use:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span>list 1 2 3 4<span style="color: #f38ba8;">)</span>
+</code></pre>
+
+<p>
+Whether a list is empty can be determined using <code>null?</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org48a239d" class="outline-2">
+<h2 id="org48a239d"><span class="section-number-2">4.</span> Symbolic Data</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Scheme has the ability to work with arbitrary symbols as data. Symbols and lists, unlike primitive values, are <i>not self-evaluating</i>. This is because a symbol in the source code does a <i>variable lookup</i>. For example, doing <code>(+ 1 2)</code> looks at the first element, the <code>+</code> symbol, and looks up the function associated with it.
+</p>
+
+<p>
+Therefore, to "turn off" this special evaluating behavior for arbitrary symbols, we can <code>quote</code> them. Suppose we want to construct the list <code>(a b)</code>. We can't accomplish this with <code>(list a b)</code>, because this would construct a list of the values associated with <code>a</code> and <code>b</code> instead of <code>a</code> and <code>b</code> themselves. Instead, we could do:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #89b4fa;">a</span> 1<span style="color: #f38ba8;">)</span>
+<span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #89b4fa;">b</span> 2<span style="color: #f38ba8;">)</span>
+<span style="color: #f38ba8;">(</span>list a b<span style="color: #f38ba8;">)</span>           <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(1 2)
+</span><span style="color: #f38ba8;">(</span>list 'a 'b<span style="color: #f38ba8;">)</span>         <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(a b)</span>
+</code></pre>
+
+<p>
+No matter what you give <code>quote</code>, it will always spit the same thing back out. Note that quoting a list will distribute itself over its arguments, so <code>'(+ 1 2)</code> is the same as <code>(list '+ '1 '2)</code>.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-03 13:31
+               Last modified: 2025-11-04 21:10
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
