@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-04 Tue 21:10 -->
+<!-- 2025-11-05 Wed 13:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scheme</title>
@@ -347,6 +347,14 @@ The empty list is denoted with <code>nil</code> or <code>'()</code>. We can also
 <p>
 Whether a list is empty can be determined using <code>null?</code>.
 </p>
+
+<p>
+We can also merge another list onto the end of one list by using the <code>append</code> procedure:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #89b4fa;">s</span> <span style="color: #fab387;">(</span>list 1 2 3<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
+<span style="color: #f38ba8;">(</span>append s s<span style="color: #f38ba8;">)</span>              <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(1 2 3 1 2 3)</span>
+</code></pre>
 </div>
 </div>
 <div id="outline-container-org48a239d" class="outline-2">
@@ -377,7 +385,7 @@ No matter what you give <code>quote</code>, it will always spit the same thing b
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-04 21:10
+               Last modified: 2025-11-05 13:43
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
