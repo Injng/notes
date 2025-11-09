@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-05 Wed 13:44 -->
+<!-- 2025-11-09 Sun 15:27 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scheme</title>
@@ -114,8 +114,17 @@
 </ul>
 </li>
 <li><a href="#orgc79dd28">2. Recursion</a></li>
-<li><a href="#org962d71b">3. Compound Values</a></li>
-<li><a href="#org48a239d">4. Symbolic Data</a></li>
+<li><a href="#org5df02ca">3. Lists</a>
+<ul>
+<li><a href="#orge6469d7">3.1. Built-in List Procedures</a></li>
+</ul>
+</li>
+<li><a href="#org48a239d">4. Symbolic Data</a>
+<ul>
+<li><a href="#org5d6082d">4.1. Expressions as Lists</a></li>
+<li><a href="#org73be5a3">4.2. Quasiquotation</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -315,8 +324,8 @@ However, in Scheme, we can do:
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org962d71b" class="outline-2">
-<h2 id="org962d71b"><span class="section-number-2">3.</span> Compound Values</h2>
+<div id="outline-container-org5df02ca" class="outline-2">
+<h2 id="org5df02ca"><span class="section-number-2">3.</span> Lists</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Scheme has <b>pairs</b>, which are created with the <code>cons</code> built-in function, and accessed using <code>car</code> and <code>cdr</code>:
@@ -347,7 +356,10 @@ The empty list is denoted with <code>nil</code> or <code>'()</code>. We can also
 <p>
 Whether a list is empty can be determined using <code>null?</code>.
 </p>
-
+</div>
+<div id="outline-container-orge6469d7" class="outline-3">
+<h3 id="orge6469d7"><span class="section-number-3">3.1.</span> Built-in List Procedures</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 We can also merge another list onto the end of one list by using the <code>append</code> procedure:
 </p>
@@ -355,6 +367,28 @@ We can also merge another list onto the end of one list by using the <code>appen
 <pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #89b4fa;">s</span> <span style="color: #fab387;">(</span>list 1 2 3<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
 <span style="color: #f38ba8;">(</span>append s s<span style="color: #f38ba8;">)</span>              <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(1 2 3 1 2 3)</span>
 </code></pre>
+
+<p>
+We can call a procedure <code>f</code> on each element of a list and list the results using the <code>map</code> procedure:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">map</span> <span style="color: #fab387;">(</span><span style="color: #cba6f7;">lambda</span> <span style="color: #f9e2af;">(</span>x<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">(</span>* x 2<span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">(</span>list 1 2 3 4<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(2 4 6 8)</span>
+</code></pre>
+
+<p>
+We can filter elements in a list based on a condition and then list the results using the <code>filter</code> procedure:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span>filter <span style="color: #fab387;">(</span><span style="color: #cba6f7;">lambda</span> <span style="color: #f9e2af;">(</span>x<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">(</span>= 0 <span style="color: #a6e3a1;">(</span>modulo x 2<span style="color: #a6e3a1;">)</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">(</span>list 1 2 3 4<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>        <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(2 4)</span>
+</code></pre>
+
+<p>
+We can apply some procedure with the items in a list as its operands with the <code>apply</code> procedure:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span>apply + <span style="color: #fab387;">(</span>list 1 2 3 4<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;">; </span><span style="color: #6c7086;">10, same as  (+ 1 2 3 4)</span>
+</code></pre>
+</div>
 </div>
 </div>
 <div id="outline-container-org48a239d" class="outline-2">
@@ -378,6 +412,49 @@ Therefore, to "turn off" this special evaluating behavior for arbitrary symbols,
 No matter what you give <code>quote</code>, it will always spit the same thing back out. Note that quoting a list will distribute itself over its arguments, so <code>'(+ 1 2)</code> is the same as <code>(list '+ '1 '2)</code>.
 </p>
 </div>
+<div id="outline-container-org5d6082d" class="outline-3">
+<h3 id="org5d6082d"><span class="section-number-3">4.1.</span> Expressions as Lists</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+The built-in list data structure can be used to represent combinations. For example, the combination <code>(quotient 10 2)</code> can be constructed with <code>(list 'quotient 10 2)</code>. We can then evaluate this combination (that is represented by a list) using <code>(eval (list 'quotient 10 2))</code>, which returns 5.
+</p>
+
+<p>
+We can also use this idea to return expressions from procedures. In the example below, <code>fact</code> calculates the factorial of a number, but <code>fact-exp</code> returns the <i>expression that evaluates to the factorial of a number</i>:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #fab387;">(</span><span style="color: #89b4fa;">fact</span> n<span style="color: #fab387;">)</span>
+  <span style="color: #fab387;">(</span><span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>= n 0<span style="color: #f9e2af;">)</span> 1 <span style="color: #f9e2af;">(</span>* n <span style="color: #a6e3a1;">(</span>fact <span style="color: #74c7ec;">(</span>- n 1<span style="color: #74c7ec;">)</span><span style="color: #a6e3a1;">)</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
+
+<span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #fab387;">(</span><span style="color: #89b4fa;">fact-exp</span> n<span style="color: #fab387;">)</span>
+  <span style="color: #fab387;">(</span><span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>= n 0<span style="color: #f9e2af;">)</span> 1 <span style="color: #f9e2af;">(</span>list '* n <span style="color: #a6e3a1;">(</span>fact-exp <span style="color: #74c7ec;">(</span>- n 1<span style="color: #74c7ec;">)</span><span style="color: #a6e3a1;">)</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
+
+<span style="color: #f38ba8;">(</span>fact 5<span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;">; </span><span style="color: #6c7086;">120
+</span><span style="color: #f38ba8;">(</span>fact-exp 5<span style="color: #f38ba8;">)</span>      <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(* 5 (* 4 (* 3 (* 2 (* 1 1)))))</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org73be5a3" class="outline-3">
+<h3 id="org73be5a3"><span class="section-number-3">4.2.</span> Quasiquotation</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+We can also quote an expression using a <b>quasiquote</b>, which is done with the symbol <code>`</code>. The main difference between normal quotes and quasiquotes is that parts of a quasiquoted expression can be unquoted with <code>,</code>: in other words, we can tell Scheme to still evaluate certain parts of a quoted list:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #89b4fa;">b</span> 4<span style="color: #f38ba8;">)</span>
+'<span style="color: #f38ba8;">(</span>a ,<span style="color: #fab387;">(</span>+ b 1<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(a (unquote (+ b 1)))
+</span>`<span style="color: #f38ba8;">(</span>a ,<span style="color: #fab387;">(</span>+ b 1<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(a 5)</span>
+</code></pre>
+
+<p>
+Quasiquotation is particularly convenient for generating Scheme expressions:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define</span> <span style="color: #fab387;">(</span><span style="color: #89b4fa;">make-add-procedure</span> n<span style="color: #fab387;">)</span> `<span style="color: #fab387;">(</span><span style="color: #cba6f7;">lambda</span> <span style="color: #f9e2af;">(</span>d<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">(</span>+ d ,n<span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
+<span style="color: #f38ba8;">(</span>make-add-procedure 2<span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(lambda (d) (+ d 2))</span>
+</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -385,7 +462,7 @@ No matter what you give <code>quote</code>, it will always spit the same thing b
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-05 13:43
+               Last modified: 2025-11-09 15:26
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
