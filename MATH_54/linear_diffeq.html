@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-05 Wed 09:37 -->
+<!-- 2025-11-10 Mon 09:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Second-Order Differential Equations</title>
@@ -271,6 +271,28 @@ y = y_c + y_p
 <p>
 The issue is now to find the particular solution \(y_p\), which may vary depending on what \(f(t)\) is.
 </p>
+
+<p>
+To do this, we can employ some educated guesses as to what the solution might be:
+</p>
+
+<ol class="org-ol">
+<li>\(f(t)\) is polynomial, try \(y_p\) polynomial</li>
+<li>\(f(t) = e^{kt}\), try \(y_p = Ae^{kt}\)</li>
+<li>\(f(t) = \cos(kt)\) or \(\sin(kt)\), try \(y_p = A\cos(kt) + B\sin(kt)\)</li>
+</ol>
+
+<p>
+Then, we can plug them into our differential equation and solve for the unknown constants. This is known as the <b>method of undetermined coefficients</b>.
+</p>
+
+<p>
+Sometimes, however, the default "try" of the method of undetermined coefficients fails to work. This happens when the homogenous solution overlaps with our guess, thus making our guess always go to zero. 
+</p>
+
+<p>
+To fix this, we multiply the particular solution by \(t\), or if the overlap has a double root in the characteristic equation, then we multiply it by \(t^2\). Two terms overlap when their <i>ratio is a polynomial or rational function</i>, which results in annihilation under differentiation.
+</p>
 </div>
 </div>
 </div>
@@ -280,7 +302,7 @@ The issue is now to find the particular solution \(y_p\), which may vary dependi
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-05 09:37
+               Last modified: 2025-11-10 09:42
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
