@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 13:33 -->
+<!-- 2025-11-10 Mon 16:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Python</title>
@@ -150,6 +150,7 @@
 <li><a href="#org0205859">8. Type Hints</a></li>
 <li><a href="#org1670f5e">9. Classes</a></li>
 <li><a href="#orgfc93803">10. String Interpolation</a></li>
+<li><a href="#orgc25990a">11. Error Handling</a></li>
 </ul>
 </div>
 </div>
@@ -484,7 +485,7 @@ You can then run the doctests with <code>python3 -m doctest &lt;file.py&gt;</cod
 <div class="outline-text-2" id="text-6">
 </div>
 <div id="outline-container-orgaffaeb8" class="outline-3">
-<h3 id="orgaffaeb8"><span class="section-number-3">6.1.</span> <a href="iteration.html#orge4950b1">Iterators</a></h3>
+<h3 id="orgaffaeb8"><span class="section-number-3">6.1.</span> <a href="iteration.html#org70e51bb">Iterators</a></h3>
 <div class="outline-text-3" id="text-6-1">
 <pre><code class="language-python"><span style="color: #cdd6f4;">s</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>3, 4, 5<span style="color: #f38ba8;">]</span>
 <span style="color: #cdd6f4;">t</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">iter</span><span style="color: #f38ba8;">(</span>s<span style="color: #f38ba8;">)</span>
@@ -616,13 +617,37 @@ a.deposit<span style="color: #f38ba8;">(</span>100<span style="color: #f38ba8;">
 </code></pre>
 </div>
 </div>
+<div id="outline-container-orgc25990a" class="outline-2">
+<h2 id="orgc25990a"><span class="section-number-2">11.</span> Error Handling</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+We can catch <b>exceptions</b> in Python using <code>try</code> and <code>except</code>:
+</p>
+
+<pre><code class="language-python"><span style="color: #cdd6f4;">d</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">{</span>1: 2<span style="color: #f38ba8;">}</span>
+<span style="color: #cba6f7;">try</span>:
+    print<span style="color: #f38ba8;">(</span>d<span style="color: #fab387;">[</span>2<span style="color: #fab387;">]</span><span style="color: #f38ba8;">)</span>
+<span style="color: #cba6f7;">except</span> <span style="color: #f38ba8;">KeyError</span> <span style="color: #cba6f7;">as</span> e:
+    print<span style="color: #f38ba8;">(</span>f<span style="color: #a6e3a1;">"Error: {e}"</span><span style="color: #f38ba8;">)</span>
+</code></pre>
+
+<p>
+We can also raise exceptions with <code>raise</code>:
+</p>
+
+<pre><code class="language-python"><span style="color: #cdd6f4;">x</span> <span style="color: #89dceb;">=</span> 0:
+<span style="color: #cba6f7;">if</span> x &gt;= 0:
+    <span style="color: #cba6f7;">raise</span> <span style="color: #f38ba8;">ValueError</span><span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"Number must be negative"</span><span style="color: #f38ba8;">)</span>
+</code></pre>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-10-14 13:04
+               Last modified: 2025-11-10 13:33
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

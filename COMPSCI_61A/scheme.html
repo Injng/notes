@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-09 Sun 15:27 -->
+<!-- 2025-11-10 Mon 16:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scheme</title>
@@ -125,6 +125,7 @@
 <li><a href="#org73be5a3">4.2. Quasiquotation</a></li>
 </ul>
 </li>
+<li><a href="#org53aded0">5. Macros</a></li>
 </ul>
 </div>
 </div>
@@ -456,13 +457,56 @@ Quasiquotation is particularly convenient for generating Scheme expressions:
 </div>
 </div>
 </div>
+<div id="outline-container-org53aded0" class="outline-2">
+<h2 id="org53aded0"><span class="section-number-2">5.</span> Macros</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+A <b>macro</b> is an operation performed on the source code that transforms it before evaluation. Scheme uses the <code>define-macro</code> special form that defines this transformation. For example:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define-macro</span> <span style="color: #fab387;">(</span><span style="color: #cdd6f4;">twice</span> expr<span style="color: #fab387;">)</span>
+  <span style="color: #fab387;">(</span>list 'begin expr expr<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
+
+<span style="color: #f38ba8;">(</span>twice <span style="color: #fab387;">(</span>print 2<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>          <span style="color: #6c7086;">; </span><span style="color: #6c7086;">(begin (print 2) (print 2))</span>
+</code></pre>
+
+<p>
+The macro "replaces" the <code>(twice (print 2))</code> with the result of evaluating the macro, which is <code>(begin (print 2) (print 2))</code>. This is done <i>before evaluation of the source code</i> happens.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: For macro
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Scheme doesn't have for loops, but we can use a macro to make one ourselves:
+</p>
+
+<pre><code class="language-scheme"><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">define-macro</span> <span style="color: #fab387;">(</span><span style="color: #cdd6f4;">for</span> sym vals expr<span style="color: #fab387;">)</span>
+  <span style="color: #fab387;">(</span>list 'map <span style="color: #f9e2af;">(</span>list 'lambda <span style="color: #a6e3a1;">(</span>list sym<span style="color: #a6e3a1;">)</span> expr<span style="color: #f9e2af;">)</span> vals<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>
+</code></pre>
+
+
+</details>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-09 15:26
+               Last modified: 2025-11-10 16:56
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
