@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-10 Mon 09:42 -->
+<!-- 2025-11-12 Wed 09:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Linear Second-Order Differential Equations</title>
+<title>Linear Differential Equations</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
                      <script src="/pagefind/pagefind-ui.js"></script>
@@ -121,7 +121,7 @@
 <div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Linear Second-Order Differential Equations</h1>
+<h1 class="title">Linear Differential Equations</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
@@ -135,7 +135,13 @@
 <li><a href="#orgdbbdfaf">1.1.3. Two Nonreal Roots</a></li>
 </ul>
 </li>
-<li><a href="#org56d3032">1.2. Nonhomogenous Equations</a></li>
+<li><a href="#org56d3032">1.2. Nonhomogenous Equations</a>
+<ul>
+<li><a href="#orge735457">1.2.1. Method of Undetermined Coefficients</a></li>
+<li><a href="#orgb9af2aa">1.2.2. Variation of Parameters</a></li>
+</ul>
+</li>
+<li><a href="#org96b0bad">1.3. Superposition Principle</a></li>
 </ul>
 </li>
 </ul>
@@ -271,7 +277,10 @@ y = y_c + y_p
 <p>
 The issue is now to find the particular solution \(y_p\), which may vary depending on what \(f(t)\) is.
 </p>
-
+</div>
+<div id="outline-container-orge735457" class="outline-4">
+<h4 id="orge735457"><span class="section-number-4">1.2.1.</span> Method of Undetermined Coefficients</h4>
+<div class="outline-text-4" id="text-1-2-1">
 <p>
 To do this, we can employ some educated guesses as to what the solution might be:
 </p>
@@ -295,6 +304,90 @@ To fix this, we multiply the particular solution by \(t\), or if the overlap has
 </p>
 </div>
 </div>
+<div id="outline-container-orgb9af2aa" class="outline-4">
+<h4 id="orgb9af2aa"><span class="section-number-4">1.2.2.</span> Variation of Parameters</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+Sometimes, \(f(t)\) is in a form where we cannot use the method of undetermined coefficients (e.g. \(f(t) = \tan t\)). Then, we have to use a different method, <b>variation of parameters</b>.
+</p>
+
+<p>
+Say \(y_1\) and \(y_2\) are the two linearly independent solutions of the complementary equation. Now, for the particular solution we try:
+</p>
+
+\begin{align}
+y_p = u_1(t)y_1(t) + u_2(t)+y_2(t) \notag
+\end{align}
+
+<p>
+where \(u_1\) and \(u_2\) are unknown functions. Taking the first derivative, we get:
+</p>
+
+\begin{align}
+y'_p = u'_1y_1+u_1y'_1+u'_2y_2+u_2y'_2 \notag
+\end{align}
+
+<p>
+The key idea here is that we assume \(u'_1y_1 + u'_2y_2=0\). This gives us an extra condition to fulfill when we solve for \(u_1\) and \(u_2\) in the end, but it also allows us to simplify the derivatives greatly. Then:
+</p>
+
+\begin{align}
+y'_p &= u_1y'_1 + u_2y'_2 \notag \\
+y''_p &= u'_1y'_1+u_1y''_1+u'_2y'_2+u_2y''_2 \notag
+\end{align}
+
+<p>
+Plugging this into the original equation, we get:
+</p>
+
+\begin{align}
+f &= a(u'_1y'_1+u_1y''_1+u'_2y'_2+u_2y''_2) + b(u_1y'_1+u_2y'_2) + c(u_1y_1+u_2y_2) \notag \\
+&= a(u'_1y'_1+u'_2y'_2) + u_1(ay''_1+by'_1+cy_1) + u_2(ay''_2+by'_2+cy_2) \notag \\
+&= a(u'_1y'_1+u'_2y'_2) \notag
+\end{align}
+
+<p>
+Thus, we end up with the following linear system:
+</p>
+
+\begin{align}
+\begin{bmatrix} y_1 & y_2 \\ y'_1 & y'_2 \end{bmatrix}
+\begin{bmatrix}u'_1 \\ u'_2\end{bmatrix}
+=
+\begin{bmatrix} 0 \\ f \end{bmatrix} \notag
+\end{align}
+
+<p>
+We can then solve the system with <a href="determinants.html#orgc0a2ce0">Cramer's Rule</a> to get:
+</p>
+
+\begin{align}
+\boxed{u'_1 = \frac{-fy_2}{a(y_1y'_2-y'_1y_2)}} \\
+\boxed{u'_2 = \frac{fy_1}{a(y_1y'_2-y'_1y_2)}}
+\end{align}
+
+<p>
+\(u_1\) and \(u_2\) can now be determined by taking integrals.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org96b0bad" class="outline-3">
+<h3 id="org96b0bad"><span class="section-number-3">1.3.</span> Superposition Principle</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+The <b>superposition principle</b> is a simple observation that allows us to extend the nonhomogeneous equations we can solve. If \(ay''+by'+c=f_1(t)\) has particular solution \(y_1\), and \(ay''+by'+c=f_2(t)\) has particular solution \(y_2\), then for \(ay''+by'+c=k_1f_1(t) + k_2f_2(t)\),
+</p>
+
+\begin{align}
+y(t) = k_1y_1 + k_2y_2
+\end{align}
+
+<p>
+is a solution, where \(k_1\) and \(k_2\) are constants.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -302,7 +395,7 @@ To fix this, we multiply the particular solution by \(t\), or if the overlap has
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-10 09:42
+               Last modified: 2025-11-12 09:26
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
