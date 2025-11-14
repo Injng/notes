@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-12 Wed 09:26 -->
+<!-- 2025-11-14 Fri 09:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Differential Equations</title>
@@ -144,6 +144,7 @@
 <li><a href="#org96b0bad">1.3. Superposition Principle</a></li>
 </ul>
 </li>
+<li><a href="#org7537dc5">2. Variable Coefficients</a></li>
 </ul>
 </div>
 </div>
@@ -362,12 +363,12 @@ We can then solve the system with <a href="determinants.html#orgc0a2ce0">Cramer'
 </p>
 
 \begin{align}
-\boxed{u'_1 = \frac{-fy_2}{a(y_1y'_2-y'_1y_2)}} \\
-\boxed{u'_2 = \frac{fy_1}{a(y_1y'_2-y'_1y_2)}}
+\boxed{u'_1 = \frac{\begin{vmatrix}0 & y_2 \\ f & y'_2\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}} = \frac{-fy_2}{a(y_1y'_2-y'_1y_2)}} \\
+\boxed{u'_2 = \frac{\begin{vmatrix}y_1 & 0 \\y'_1 & f\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}} = \frac{fy_1}{a(y_1y'_2-y'_1y_2)}}
 \end{align}
 
 <p>
-\(u_1\) and \(u_2\) can now be determined by taking integrals.
+Notice that the denominator is just the Wronskian. \(u_1\) and \(u_2\) can now be determined by taking integrals.
 </p>
 </div>
 </div>
@@ -389,13 +390,38 @@ is a solution, where \(k_1\) and \(k_2\) are constants.
 </div>
 </div>
 </div>
+<div id="outline-container-org7537dc5" class="outline-2">
+<h2 id="org7537dc5"><span class="section-number-2">2.</span> Variable Coefficients</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Say we want to solve the following differential equation with non-constant coefficients:
+</p>
+
+\begin{align}
+a(t)y'' + b(t)y' + c(t) = f(t) \notag
+\end{align}
+
+<p>
+If we are given \(y_1\) and \(y_2\), the two linearly independent solutions of the homogenous case, then we <i>can still use variation of parameters</i> because it doesn't depend on the fact that our coefficients were constant. We get:
+</p>
+
+\begin{align}
+\boxed{u'_1 = \frac{\begin{vmatrix}0 & y_2 \\ \frac{f(t)}{a(t)} & y'_2\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}}}\\
+\boxed{u'_2 = \frac{\begin{vmatrix}y_1 & 0 \\y'_1 & \frac{f(t)}{a(t)}\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}}}
+\end{align}
+
+<p>
+The difference is that now in the numerator, instead of \(f(t)\) we have \(\frac{f(t)}{a(t)}\).
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-12 09:26
+               Last modified: 2025-11-14 09:32
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
