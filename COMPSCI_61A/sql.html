@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-11-17 Mon 11:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SQL</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61A/index.html">COMPSCI 61A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">SQL</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orga82e8fd">1. Databases</a></li>
+<li><a href="#orgc4bd853">2. SQL</a>
+<ul>
+<li><a href="#orgd021587">2.1. Declarative Programming</a></li>
+<li><a href="#org2db4af7">2.2. SELECT Statements</a>
+<ul>
+<li><a href="#orgc705750">2.2.1. Projection</a></li>
+<li><a href="#orgfd35b04">2.2.2. Selection</a></li>
+<li><a href="#orgaead3d9">2.2.3. Arithmetic</a></li>
+</ul>
+</li>
+<li><a href="#org24a73c8">2.3. CREATE TABLE Statements</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga82e8fd" class="outline-2">
+<h2 id="orga82e8fd"><span class="section-number-2">1.</span> Databases</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Database management systems</b> (DBMS) manage databases, which consists of <b>tables</b>. Tables are a collection of records, which have <b>rows</b> that have a value for each <b>column</b>. A column is defined by its name and the type of the value that it holds.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc4bd853" class="outline-2">
+<h2 id="orgc4bd853"><span class="section-number-2">2.</span> SQL</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The <b>Structured Query Language</b> (SQL) is used to query databases, making it perhaps the most widely used programming language. 
+</p>
+</div>
+<div id="outline-container-orgd021587" class="outline-3">
+<h3 id="orgd021587"><span class="section-number-3">2.1.</span> Declarative Programming</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+SQL is a <b>declarative language</b>, which makes it different from languages such as <a href="python.html">Python</a> or <a href="scheme.html">Scheme</a>. In declarative languages such as SQL and Prolog, the program is a description of the <i>desired result</i>, rather than in imperative languages where the program is a description of the <i>computational processes to get a result</i>. Here, the interpreter's job is to figure out how to run processes in order to generate the desired result.
+</p>
+</div>
+</div>
+<div id="outline-container-org2db4af7" class="outline-3">
+<h3 id="org2db4af7"><span class="section-number-3">2.2.</span> SELECT Statements</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+A <code>SELECT</code> statement selects columns from a table:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> * <span style="color: #cba6f7;">FROM</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">table</span><span style="color: #f38ba8;">]</span>;
+</code></pre>
+
+<p>
+This query selects all of the columns from the table, and displays all of its rows. The special <code>*</code> column description refers to all columns in the table.
+</p>
+</div>
+<div id="outline-container-orgc705750" class="outline-4">
+<h4 id="orgc705750"><span class="section-number-4">2.2.1.</span> Projection</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+A <b>projection</b> is defined as taking a <i>vertical subset of rows</i> in a table. In other words, this type of query returns <i>some of the columns</i> in a table:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> <span style="color: #f38ba8;">[</span>expression<span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">AS</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">name</span><span style="color: #f38ba8;">]</span>, <span style="color: #f38ba8;">[</span>expression<span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">AS</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">name</span><span style="color: #f38ba8;">]</span>, ... <span style="color: #cba6f7;">FROM</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">table</span><span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">LIMIT</span> <span style="color: #f38ba8;">[</span>num<span style="color: #f38ba8;">]</span>;
+</code></pre>
+
+<p>
+It always includes a comma-separated list of <b>column descriptions</b>. A column description is an expression, optionally followed by <code>AS</code> which renames the column name to something else. The <code>FROM</code> clause describes a table from which to select rows and columns. The optional <code>LIMIT</code> clause describes the maximum number of rows to select. The special <code>*</code> column description refers to all columns in the table.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfd35b04" class="outline-4">
+<h4 id="orgfd35b04"><span class="section-number-4">2.2.2.</span> Selection</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+A <b>selection</b> is defined as taking a <i>horizontal subset of rows</i> in a table that satisfy a particular condition. In other words, this type of query returns <i>some of the rows and all of the columns</i> in a table:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> * <span style="color: #cba6f7;">FROM</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">table</span><span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">WHERE</span> <span style="color: #f38ba8;">[</span>condition<span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">ORDER</span> <span style="color: #cba6f7;">BY</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">order</span><span style="color: #f38ba8;">]</span>
+</code></pre>
+
+<p>
+A subset of the rows is selected using the <code>WHERE</code> clause, which specifies a condition. An ordering over the remaining rows can be declared using an <code>ORDER BY</code> clause.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Selection and projection
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We can combine selection and projection together to perform queries on tables. The following example uses the IMDB dataset:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> <span style="color: #f9e2af;">time</span>, runtime, genres <span style="color: #cba6f7;">FROM</span> titles <span style="color: #cba6f7;">WHERE</span> <span style="color: #cba6f7;">year</span> = 2025 <span style="color: #cba6f7;">ORDER</span> <span style="color: #cba6f7;">BY</span> runtime <span style="color: #cba6f7;">LIMIT</span> 3;
+</code></pre>
+
+<p>
+This selects the columns <code>time</code>, <code>runtime</code> and <code>genres</code> from the table called <code>titles</code> such that the rows satsify the condition <code>year = 2025</code>. The remaining rows are then ordered by runtime in increasing order and then the first three results are shown.
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgaead3d9" class="outline-4">
+<h4 id="orgaead3d9"><span class="section-number-4">2.2.3.</span> Arithmetic</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+In a <code>SELECT</code> expression, column names evaluate to row values. Therefore, we can perform arithmetic operations on the column names in a <code>SELECT</code> statement. Imagine we had a table for a ski lift, with a column specifying the identifier for the <code>chair</code>, a number for the number of <code>single</code> people, and a number for the number of <code>couple</code>. Then, the following SQL query shows the total people on the ski lift:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> chair, single + 2 * couple <span style="color: #cba6f7;">AS</span> total <span style="color: #cba6f7;">FROM</span> lift;
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org24a73c8" class="outline-3">
+<h3 id="org24a73c8"><span class="section-number-3">2.3.</span> CREATE TABLE Statements</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+The result of a <code>SELECT</code> statement is displayed to the user, but not stored. A <code>CREATE TABLE</code> statement gives the result a permanent name:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">CREATE</span> <span style="color: #cba6f7;">TABLE</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">name</span><span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">AS</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">select</span> <span style="color: #cba6f7;">statement</span><span style="color: #f38ba8;">]</span>;
+</code></pre>
+
+<p>
+We can also create tables by specifying the column names and their types:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">CREATE</span> <span style="color: #cba6f7;">TABLE</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">table</span> <span style="color: #cba6f7;">name</span><span style="color: #f38ba8;">]</span> <span style="color: #f38ba8;">(</span>
+    <span style="color: #fab387;">[</span><span style="color: #cba6f7;">column</span> <span style="color: #cba6f7;">name</span><span style="color: #fab387;">]</span> <span style="color: #fab387;">[</span><span style="color: #cba6f7;">type</span><span style="color: #fab387;">]</span>,
+    ...
+<span style="color: #f38ba8;">)</span>;
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-11-17 11:31
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
