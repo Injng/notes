@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-14 Fri 09:39 -->
+<!-- 2025-11-17 Mon 10:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Systems of Differential Equations</title>
@@ -127,6 +127,11 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org2e042ea">1. Notation</a></li>
+<li><a href="#org9e1be8f">2. Constant Coefficients</a>
+<ul>
+<li><a href="#orgef9b632">2.1. Homogenous</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -163,13 +168,107 @@ where \(x'(t)\), \(x(t)\), and \(f(t)\) are \(n \times 1\) vectors, and \(A(t)\)
 </p>
 </div>
 </div>
+<div id="outline-container-org9e1be8f" class="outline-2">
+<h2 id="org9e1be8f"><span class="section-number-2">2.</span> Constant Coefficients</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgef9b632" class="outline-3">
+<h3 id="orgef9b632"><span class="section-number-3">2.1.</span> Homogenous</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The case when the system of differential equations is known as homogenous and with constant coefficients is when \(A(t)\) has only constant entries and \(f(t)=0\). Then, we can write (1) as:
+</p>
+
+\begin{align}
+x'(t) = Ax(t)
+\end{align}
+
+<p>
+Say \(A\) has real eigenvalue \(\lambda\) with corresponding eigenvector \(w=\begin{bmatrix}w_1 \\ w_2 \\ \vdots \\ w_n\end{bmatrix}\). Then the following is a solution to \(x'(t)=Ax(t)\):
+</p>
+
+\begin{align}
+x(t) = Ce^{\lambda t}w
+\end{align}
+
+<p>
+This result is apparent if we calculate both sides of the equation separately:
+</p>
+
+\begin{align}
+Ax(T) &= A\left(Ce^{\lambda t}w\right) = Ce^{\lambda t}(Aw) = Ce^{\lambda t} \cdot \lambda w \notag \\
+x'(t) &= C\lambda e^{\lambda t}w = Ce^{\lambda t} \cdot \lambda w \notag
+\end{align}
+
+<p>
+The general solution, then is all the linear combinations of the particular solutions formed from the eigenvalues of \(A\) and its corresponding eigenvectors. More specifically, if \(A\) has real eigenvalues \(\lambda_1, \lambda_2, \dots, \lambda_n\) (not necessarily distinct) with corresponding \(n\) linearly independent eigenvectors \(v_1, v_2, \dots, v_n\), then the general solution to the system is:
+</p>
+
+\begin{align}
+\sum_{j=1}^{n} c_je^{\lambda_j t}v_j
+\end{align}
+
+<p>
+We can also write this as an \(n \times n\) matrix, called the <b>fundamental matrix</b>:
+</p>
+
+\begin{align}
+\begin{bmatrix}
+\: \\
+e^{\lambda_1 t}v_1 & e^{\lambda_2 t}v_2 & \cdots & e^{\lambda_n t}v_n \\
+\:
+\end{bmatrix}
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Mixing two tanks
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a tank \(A\), with the amount of salt in the tank given by the function \(x_1(t)\), and another tank \(B\), with the amount of salt given by \(x_2(t)\):
+</p>
+
+
+<div id="org7357e4a" class="figure">
+<p><img src="../static/MATH_54/systems_diffeq1.png" alt="systems_diffeq1.png" />
+</p>
+</div>
+
+<p>
+Pure water flows into tank \(A\) at a rate of \(3\) liters per minute, whereas mixed water flows out of tank \(B\) at the same rate. Furthermore, each tank mixes with each other at the rates shown in the figure above. We want to set up a system of equations that allow us to determine what the functions \(x_1(t)\) and \(x_2(t)\) are.
+</p>
+
+<p>
+To do this, we note that \(x_1'(t)\) and \(x_2'(t)\) are the rates of change in salt content in each tank are, which can be attributed to the flow. Then, we can set up the following system of differential equations:
+</p>
+
+\begin{align}
+x_1' &= -\frac{4}{50}x_1 + \frac{1}{50}x_2 \notag \\
+x_2' &= \frac{4}{50}x_1 - \frac{4}{50}x_2 \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-14 09:39
+               Last modified: 2025-11-17 10:09
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
