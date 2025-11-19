@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-19 Wed 09:22 -->
+<!-- 2025-11-19 Wed 09:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mechanical Waves</title>
@@ -128,15 +128,22 @@
 <ul>
 <li><a href="#orgc84740d">1. Waves</a>
 <ul>
-<li><a href="#orgd953ceb">1.1. Properties of Waves</a></li>
+<li><a href="#org88ef67e">1.1. Types of Waves</a></li>
+<li><a href="#orgd953ceb">1.2. Properties of Waves</a></li>
+<li><a href="#org8a0c356">1.3. Mathematical Representation of a Wave</a></li>
 </ul>
 </li>
+<li><a href="#orge01750c">2. The Wave Equation</a></li>
 </ul>
 </div>
 </div>
 <div id="outline-container-orgc84740d" class="outline-2">
 <h2 id="orgc84740d"><span class="section-number-2">1.</span> Waves</h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org88ef67e" class="outline-3">
+<h3 id="org88ef67e"><span class="section-number-3">1.1.</span> Types of Waves</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 <b>Mechanical waves</b>, so-called <i>mechanical</i> because they require a medium to propogate, and <i>wave</i> because of the disturbance tht travels through space over time, can be split into <b>longitudinal waves</b> and <b>transverse waves</b>.
 </p>
@@ -149,15 +156,16 @@ Longitudinal waves are waves that oscillate along the direction of propogation. 
 The medium is what allows a disturbance to travel through space over time. However, matter doesn't actually travel over long distance; energy does through a string of <i>local oscillations</i>.
 </p>
 </div>
+</div>
 <div id="outline-container-orgd953ceb" class="outline-3">
-<h3 id="orgd953ceb"><span class="section-number-3">1.1.</span> Properties of Waves</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="orgd953ceb"><span class="section-number-3">1.2.</span> Properties of Waves</h3>
+<div class="outline-text-3" id="text-1-2">
 <p>
 If we graph a wave at a particular time \(t\) over \(x\):
 </p>
 
 
-<div id="orga56938e" class="figure">
+<div id="org567bbd4" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves1.png" alt="mechanical_waves1.png" />
 </p>
 </div>
@@ -167,7 +175,7 @@ The wavelength \(\lambda\) is the distance between two peaks or troughs. If we i
 </p>
 
 
-<div id="org147347a" class="figure">
+<div id="org3632465" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves2.png" alt="mechanical_waves2.png" />
 </p>
 </div>
@@ -183,7 +191,133 @@ The period \(T\) is the amount of time it takes (in seconds) for a wavelength to
 <p>
 where \(v\) is the phase speed and \(f\) is the frequency. The frequency is the number of wavelengths that pass through a given point per second.
 </p>
+
+<p>
+The phase speed is constant and completely dependent on the medium through which the wave is traveling. For a rope with tension \(F_T\) and linear mass density \(\mu\), the phase speed for waves of small amplitude on that rope is given by
+</p>
+
+\begin{align}
+v = \sqrt{\frac{F_T}{\mu}}
+\end{align}
 </div>
+</div>
+<div id="outline-container-org8a0c356" class="outline-3">
+<h3 id="org8a0c356"><span class="section-number-3">1.3.</span> Mathematical Representation of a Wave</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Consider the displacement of a wave at time \(t=0\). We can mathematically describe this wave shape as:
+</p>
+
+\begin{align}
+D(x) = A\sin\left(\frac{2\pi}{\lambda}x + \phi\right) \notag
+\end{align}
+
+<p>
+Since the wave may not be a perfect sine curve going through the origin, we also add a phase shift constant \(\phi\). Suppose the wave is moving to the right with phase speed \(v\). After a time of \(t\), the distance the wave has traveled in the \(x\) direction is \(vt\), which means we can write the time-dependent version as:
+</p>
+
+\begin{align}
+D(x, t) = A\sin\left[\frac{2\pi}{\lambda}(x - vt) + \phi\right] \notag
+\end{align}
+
+<p>
+Since \(v = \lambda f\) and period \(T = \frac{1}{f}\), we can say that \(v = \frac{\lambda}{T}\). Then, we can rewrite this equation as:
+</p>
+
+\begin{align}
+D(x, t) &= A\sin\left[\frac{2\pi}{\lambda}x - \frac{2\pi}{\lambda}\frac{\lambda}{T}t + \phi\right] \notag
+&= A\sin\left[\frac{2\pi}{\lambda}x - \frac{2\pi}{T}t + \phi\right] \notag
+\end{align}
+
+<p>
+Let the <b>wave number</b> \(k = \frac{2\pi}{\lambda}\), and let the <b>angular frequency</b> \(\omega = \frac{2\pi}{T}\), so then the mathematical representation of a traveling wave is:
+</p>
+
+\begin{align}
+\boxed{D(x, t) = A\sin(kx \pm \omega t + \phi)}
+\end{align}
+
+<p>
+where the \(kx+\omega t\) form moves in the \(-\hat{x}\) direction, and the \(kx - \omega t\) form moves in the \(+\hat{x}\) direction.
+</p>
+
+<p>
+Additionally, since \(v = \lambda f\), \(\lambda = \frac{2\pi}{k}\), and \(\omega = 2\pi f\), we can also write the phase speed as:
+</p>
+
+\begin{align}
+\boxed{v = \frac{\omega}{k}}
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-orge01750c" class="outline-2">
+<h2 id="orge01750c"><span class="section-number-2">2.</span> The Wave Equation</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Many types of waves satisfy a general equation that describes the motion of the wave. This equation, similar to Newtons's law of motion for particles, is called the <b>wave equation</b>. Consider a one-dimensional wave traveling on a stretched horizontal string:
+</p>
+
+
+<div id="org9e7aee7" class="figure">
+<p><img src="../static/PHYSICS_7A/mechanical_waves3.png" alt="mechanical_waves3.png" />
+</p>
+</div>
+
+<p>
+We assume that the amplitude of the wave is small, which allows \(\theta_1\) and \(\theta_2\) to also be small. This is so that we can use the small angle approximation \(\sin\theta \approx \tan\theta\).
+</p>
+
+<p>
+Applying Newton's Second Law along the y-axis gives:
+</p>
+
+\begin{align}
+F_T\sin\theta_2 - F_T\sin\theta_1 = \mu \Delta x \frac{\partial^2D}{\partial t^2} \notag
+\end{align}
+
+<p>
+The partial derivative notation must be used since \(D\) is a function of both \(x\) and \(t\). Since \(\tan\theta\) is equal to the slope of the string at each point \(\frac{\partial D}{\partial x}\), by the small angle approximation we have \(\sin\theta \approx \tan\theta = \frac{\partial D}{\partial x} = s\). Then, our equation becomes:
+</p>
+
+\begin{align}
+F_T(s_2-s_1) &= \mu \Delta x \frac{\partial^2D}{\partial t^2} \notag \\
+F_T \frac{\Delta s}{\Delta x} &= \mu \frac{\partial^2D}{\partial t^2} \notag
+\end{align}
+
+<p>
+Taking the limit as \(\Delta x \to 0\), we get:
+</p>
+
+\begin{align}
+\lim_{\Delta x \to 0} F_T \frac{\Delta s}{\Delta x} &= F_T \frac{\partial s}{\partial x} \notag \\
+&= F_T \frac{\partial}{\partial x} \frac{\partial D}{\partial x} \notag \\
+&= F_T \frac{\partial^2 D}{\partial x^2} \notag
+\end{align}
+
+<p>
+Plugging this back into Newton's Second Law, we have:
+</p>
+
+\begin{align}
+F_T \frac{\partial^2 D}{\partial x^2} &= \mu \frac{\partial^2D}{\partial t^2} \notag
+\end{align}
+
+<p>
+Therefore, the wave equation <i>for a wave on a rope</i> becomes:
+</p>
+
+\begin{align}
+\frac{\partial^2 D}{\partial x^2} = \frac{\mu}{T} \frac{\partial^2D}{\partial t^2} \notag
+\end{align}
+
+<p>
+By (2), we can generalize this for all waves. The 1D wave equation is:
+</p>
+
+\begin{align}
+\boxed{\frac{\partial^2 D}{\partial x^2} = \frac{1}{v^2} \frac{\partial^2D}{\partial t^2}}
+\end{align}
 </div>
 </div>
 </div>
@@ -192,7 +326,7 @@ where \(v\) is the phase speed and \(f\) is the frequency. The frequency is the 
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-18 21:32
+               Last modified: 2025-11-19 09:55
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
