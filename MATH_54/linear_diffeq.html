@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-14 Fri 09:32 -->
+<!-- 2025-11-19 Wed 10:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Differential Equations</title>
@@ -355,7 +355,7 @@ Thus, we end up with the following linear system:
 \begin{bmatrix} y_1 & y_2 \\ y'_1 & y'_2 \end{bmatrix}
 \begin{bmatrix}u'_1 \\ u'_2\end{bmatrix}
 =
-\begin{bmatrix} 0 \\ f \end{bmatrix} \notag
+\begin{bmatrix} 0 \\ \frac{f}{a} \end{bmatrix} \notag
 \end{align}
 
 <p>
@@ -363,8 +363,8 @@ We can then solve the system with <a href="determinants.html#orgc0a2ce0">Cramer'
 </p>
 
 \begin{align}
-\boxed{u'_1 = \frac{\begin{vmatrix}0 & y_2 \\ f & y'_2\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}} = \frac{-fy_2}{a(y_1y'_2-y'_1y_2)}} \\
-\boxed{u'_2 = \frac{\begin{vmatrix}y_1 & 0 \\y'_1 & f\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}} = \frac{fy_1}{a(y_1y'_2-y'_1y_2)}}
+\boxed{u'_1 = \frac{\begin{vmatrix}0 & y_2 \\ \frac{f}{a} & y'_2\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}} = \frac{-fy_2}{a(y_1y'_2-y'_1y_2)}} \\
+\boxed{u'_2 = \frac{\begin{vmatrix}y_1 & 0 \\y'_1 & \frac{f}{a}\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}} = \frac{fy_1}{a(y_1y'_2-y'_1y_2)}}
 \end{align}
 
 <p>
@@ -409,10 +409,6 @@ If we are given \(y_1\) and \(y_2\), the two linearly independent solutions of t
 \boxed{u'_1 = \frac{\begin{vmatrix}0 & y_2 \\ \frac{f(t)}{a(t)} & y'_2\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}}}\\
 \boxed{u'_2 = \frac{\begin{vmatrix}y_1 & 0 \\y'_1 & \frac{f(t)}{a(t)}\end{vmatrix}}{\begin{vmatrix}y_1 & y_2 \\ y'_1 & y'_2\end{vmatrix}}}
 \end{align}
-
-<p>
-The difference is that now in the numerator, instead of \(f(t)\) we have \(\frac{f(t)}{a(t)}\).
-</p>
 </div>
 </div>
 </div>
@@ -421,7 +417,7 @@ The difference is that now in the numerator, instead of \(f(t)\) we have \(\frac
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-14 09:32
+               Last modified: 2025-11-19 10:37
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
