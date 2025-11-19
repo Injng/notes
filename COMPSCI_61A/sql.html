@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-17 Mon 13:43 -->
+<!-- 2025-11-19 Wed 10:27 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SQL</title>
@@ -102,10 +102,13 @@
 <ul>
 <li><a href="#orgc705750">2.2.1. Projection</a></li>
 <li><a href="#orgfd35b04">2.2.2. Selection</a></li>
-<li><a href="#orgaead3d9">2.2.3. Arithmetic</a></li>
+<li><a href="#org1a17bb3">2.2.3. Joining Tables</a></li>
+<li><a href="#orgf3b1807">2.2.4. Table Aliases</a></li>
 </ul>
 </li>
 <li><a href="#org24a73c8">2.3. CREATE TABLE Statements</a></li>
+<li><a href="#orgacda9d4">2.4. Numerical Expressions</a></li>
+<li><a href="#org511d9dd">2.5. String Expressions</a></li>
 </ul>
 </li>
 </ul>
@@ -206,14 +209,64 @@ This selects the columns <code>time</code>, <code>runtime</code> and <code>genre
 </details>
 </div>
 </div>
-<div id="outline-container-orgaead3d9" class="outline-4">
-<h4 id="orgaead3d9"><span class="section-number-4">2.2.3.</span> Arithmetic</h4>
+<div id="outline-container-org1a17bb3" class="outline-4">
+<h4 id="org1a17bb3"><span class="section-number-4">2.2.3.</span> Joining Tables</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
-In a <code>SELECT</code> expression, column names evaluate to row values. Therefore, we can perform arithmetic operations on the column names in a <code>SELECT</code> statement. Imagine we had a table for a ski lift, with a column specifying the identifier for the <code>chair</code>, a number for the number of <code>single</code> people, and a number for the number of <code>couple</code>. Then, the following SQL query shows the total people on the ski lift:
+Oftentimes, you want to create a new table from data in existing tables. To do this tables can be <b>joined</b> to form combinations of data from rows from each of the existing tables:
 </p>
 
-<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> chair, single + 2 * couple <span style="color: #cba6f7;">AS</span> total <span style="color: #cba6f7;">FROM</span> lift;
+<pre><code class="language-sql"><span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">select</span> <span style="color: #cba6f7;">statement</span><span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">FROM</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">table</span><span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">JOIN</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">table</span><span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">ON</span> <span style="color: #f38ba8;">[</span>condition<span style="color: #f38ba8;">]</span>
+</code></pre>
+
+<p>
+This will select data <code>FROM</code> the first table and join it with data from the second table for the rows that satisfy <code>[condition]</code>. For example:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> title, averageRating <span style="color: #cba6f7;">FROM</span> titles <span style="color: #cba6f7;">JOIN</span> ratings <span style="color: #cba6f7;">ON</span> titles.tconst=ratings.tconst;
+</code></pre>
+
+<p>
+The syntax also allows us to implicitly use a comma as <code>JOIN</code> and to put all of our conditions in the <code>WHERE</code> clause instead of having a separate <code>ON</code> clause:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> title, averageRating <span style="color: #cba6f7;">FROM</span> titles, ratings <span style="color: #cba6f7;">WHERE</span> titles.tconst=ratings.tconst;
+</code></pre>
+
+<p>
+We can also join more than one table together by just chaining <code>JOIN</code> clauses together. The <code>AND</code> keyword is also useful to add conditions.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org5ecd851"></a>Cross Joins<br />
+<div class="outline-text-5" id="text-2-2-3-1">
+<p>
+Oftentimes, we need a condition to limit the ways we can join two tables. Leaving out this condition results in a <b>cross join</b>, which returns all possible pairs of rows between the two tables.
+</p>
+</div>
+</li>
+<li><a id="org9b6d3f1"></a>Self Joins<br />
+<div class="outline-text-5" id="text-2-2-3-2">
+<p>
+A table can be joined to itself to compare one row to another row. To differentiate between them, aliases must be used. For example, to create a table of remakes, we want to see two movies that have the same title in the same table:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> <span style="color: #cba6f7;">old</span>.title, <span style="color: #cba6f7;">old</span>.<span style="color: #cba6f7;">year</span> <span style="color: #cba6f7;">AS</span> <span style="color: #cba6f7;">first</span>, <span style="color: #cba6f7;">new</span>.<span style="color: #cba6f7;">year</span> <span style="color: #cba6f7;">AS</span> <span style="color: #cba6f7;">second</span>
+    <span style="color: #cba6f7;">FROM</span> titles <span style="color: #cba6f7;">AS</span> <span style="color: #cba6f7;">old</span> <span style="color: #cba6f7;">JOIN</span> titles <span style="color: #cba6f7;">AS</span> <span style="color: #cba6f7;">new</span>
+    <span style="color: #cba6f7;">ON</span> <span style="color: #cba6f7;">old</span>.title=<span style="color: #cba6f7;">new</span>.title <span style="color: #cba6f7;">AND</span> <span style="color: #cba6f7;">old</span>.<span style="color: #cba6f7;">year</span> &lt; <span style="color: #cba6f7;">new</span>.<span style="color: #cba6f7;">year</span>
+</code></pre>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-orgf3b1807" class="outline-4">
+<h4 id="orgf3b1807"><span class="section-number-4">2.2.4.</span> Table Aliases</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+If two tables share a column name, we have to use dot expressions to disambiguate which column is from which table. This may result in long conditions and dot expressions in a query. To shorten the name of a table, table aliases may be used by introducing an <code>AS</code> clause: <code>[table] AS [alias]</code>. For example:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> title, averageRating <span style="color: #cba6f7;">FROM</span> titles <span style="color: #cba6f7;">AS</span> t <span style="color: #cba6f7;">JOIN</span> ratings <span style="color: #cba6f7;">AS</span> r <span style="color: #cba6f7;">ON</span> t.tconst=r.tconst;
 </code></pre>
 </div>
 </div>
@@ -239,6 +292,40 @@ We can also create tables by specifying the column names and their types:
 </code></pre>
 </div>
 </div>
+<div id="outline-container-orgacda9d4" class="outline-3">
+<h3 id="orgacda9d4"><span class="section-number-3">2.4.</span> Numerical Expressions</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+In a <code>SELECT</code> expression, column names evaluate to row values. Therefore, we can perform arithmetic operations on the column names in a <code>SELECT</code> statement. Imagine we had a table for a ski lift, with a column specifying the identifier for the <code>chair</code>, a number for the number of <code>single</code> people, and a number for the number of <code>couple</code>. Then, the following SQL query shows the total people on the ski lift:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> chair, single + 2 * couple <span style="color: #cba6f7;">AS</span> total <span style="color: #cba6f7;">FROM</span> lift;
+</code></pre>
+
+<p>
+We can also use the functions <code>ABS</code>, <code>ROUND</code>, and <code>NOT</code> to transform values as well.
+</p>
+</div>
+</div>
+<div id="outline-container-org511d9dd" class="outline-3">
+<h3 id="org511d9dd"><span class="section-number-3">2.5.</span> String Expressions</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+String values can be combined to form longer strings using the concatenation operator <code>||</code>:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> "Hello," || " world";
+</code></pre>
+
+<p>
+SQL has basic string manipulation built-in, with the functions <code>SUBSTR</code> and <code>INSTR</code>. The function <code>SUBSTR([str], [start], [len])</code> takes a string and returns the substring starting from the index <code>[start]</code> and with length <code>[len]</code>. Note that SQL indexes <i>start with one</i>, not zero.
+</p>
+
+<p>
+The <code>INSTR([str1], [str2])</code> function returns the position of the first match of <code>[str2]</code> inside the search string <code>[str1]</code>.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -246,7 +333,7 @@ We can also create tables by specifying the column names and their types:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-17 13:43
+               Last modified: 2025-11-19 10:26
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
