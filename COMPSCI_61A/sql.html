@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-19 Wed 10:27 -->
+<!-- 2025-11-19 Wed 13:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SQL</title>
@@ -324,6 +324,13 @@ SQL has basic string manipulation built-in, with the functions <code>SUBSTR</cod
 <p>
 The <code>INSTR([str1], [str2])</code> function returns the position of the first match of <code>[str2]</code> inside the search string <code>[str1]</code>.
 </p>
+
+<p>
+Strings can also be searched for a partial match:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> title <span style="color: #cba6f7;">FROM</span> titles <span style="color: #cba6f7;">WHERE</span> title <span style="color: #cba6f7;">LIKE</span> "%dog%"
+</code></pre>
 </div>
 </div>
 </div>
@@ -333,7 +340,7 @@ The <code>INSTR([str1], [str2])</code> function returns the position of the firs
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-19 10:26
+               Last modified: 2025-11-19 13:34
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
