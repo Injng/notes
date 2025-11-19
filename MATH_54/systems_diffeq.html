@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-17 Mon 10:09 -->
+<!-- 2025-11-19 Wed 09:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Systems of Differential Equations</title>
@@ -127,11 +127,8 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org2e042ea">1. Notation</a></li>
-<li><a href="#org9e1be8f">2. Constant Coefficients</a>
-<ul>
-<li><a href="#orgef9b632">2.1. Homogenous</a></li>
-</ul>
-</li>
+<li><a href="#org717e4ef">2. Real Eigenvalues</a></li>
+<li><a href="#org5189506">3. Nonreal Eigenvalues</a></li>
 </ul>
 </div>
 </div>
@@ -168,13 +165,9 @@ where \(x'(t)\), \(x(t)\), and \(f(t)\) are \(n \times 1\) vectors, and \(A(t)\)
 </p>
 </div>
 </div>
-<div id="outline-container-org9e1be8f" class="outline-2">
-<h2 id="org9e1be8f"><span class="section-number-2">2.</span> Constant Coefficients</h2>
+<div id="outline-container-org717e4ef" class="outline-2">
+<h2 id="org717e4ef"><span class="section-number-2">2.</span> Real Eigenvalues</h2>
 <div class="outline-text-2" id="text-2">
-</div>
-<div id="outline-container-orgef9b632" class="outline-3">
-<h3 id="orgef9b632"><span class="section-number-3">2.1.</span> Homogenous</h3>
-<div class="outline-text-3" id="text-2-1">
 <p>
 The case when the system of differential equations is known as homogenous and with constant coefficients is when \(A(t)\) has only constant entries and \(f(t)=0\). Then, we can write (1) as:
 </p>
@@ -239,7 +232,7 @@ Consider a tank \(A\), with the amount of salt in the tank given by the function
 </p>
 
 
-<div id="org7357e4a" class="figure">
+<div id="orgac8965f" class="figure">
 <p><img src="../static/MATH_54/systems_diffeq1.png" alt="systems_diffeq1.png" />
 </p>
 </div>
@@ -261,6 +254,47 @@ x_2' &= \frac{4}{50}x_1 - \frac{4}{50}x_2 \notag
 </details>
 </div>
 </div>
+<div id="outline-container-org5189506" class="outline-2">
+<h2 id="org5189506"><span class="section-number-2">3.</span> Nonreal Eigenvalues</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+We want to solve the system of differential equations \(x'(t) = Ax(t)\) when \(A\) has nonreal eigenvalues \(\alpha \pm \beta i\), with \(\beta \neq 0\). Say \(a+bi\) is the corresponding eigenvector for \(\alpha + \beta i\), where \(a\) and \(b\) are vectors. Then, by (3), the following is a solution:
+</p>
+
+\begin{align}
+e^{(\alpha + \beta i)t}(a+bi) \notag
+\end{align}
+
+<p>
+However, as in the case with <a href="linear_diffeq.html#orgdbbdfaf">two nonreal roots</a>, we don't want the imaginary part in our solution. If we call our solution \(w(t) = w_1(t) + w_2(t)i\), where \(w_1\) and \(w_2\) are real functions, we see that:
+</p>
+
+\begin{align}
+w'(t) = w_1'(t) + w_2'(t)i = Aw_1(t) + Aw_2(t)i = Aw(t) \notag
+\end{align}
+
+<p>
+If we compare the real and imaginary parts, we get:
+</p>
+
+\begin{align}
+w_1'(t) &= Aw_1(t) \notag \\
+w_2'(t) &= Aw_2(t) \notag 
+\end{align}
+
+<p>
+This means that \(w_1\) and \(w_2\) are precisely the two real solutions that we want. Using Euler's formula to expand \(w(t)\), we find that the two solutions are:
+</p>
+
+\begin{align}
+w_1(t) &= e^{\alpha t}\left[\cos(\beta t)a - \sin(\beta t)b\right] \\
+w_2(t) &= e^{\alpha t}\left[\cos(\beta t)a + \sin(\beta t)b\right]
+\end{align}
+
+<p>
+Note that using the conjugate eigenvalue will yield the same solutions.
+</p>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -268,7 +302,7 @@ x_2' &= \frac{4}{50}x_1 - \frac{4}{50}x_2 \notag
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-17 10:09
+               Last modified: 2025-11-19 09:22
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

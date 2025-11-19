@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-12 Wed 09:14 -->
+<!-- 2025-11-19 Wed 09:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scheme</title>
@@ -471,7 +471,7 @@ A <b>macro</b> is an operation performed on the source code that transforms it b
 </code></pre>
 
 <p>
-The macro "replaces" the <code>(twice (print 2))</code> with the result of evaluating the macro, which is <code>(begin (print 2) (print 2))</code>. This is done <i>before evaluation of the source code</i> happens.
+The macro "replaces" the <code>(twice (print 2))</code> with the result of evaluating the macro, which is <code>(begin (print 2) (print 2))</code>. It binds the This is done <i>before evaluation of the source code</i> happens.
 </p>
 
 <details class="code-details"
@@ -506,7 +506,7 @@ Scheme doesn't have for loops, but we can use a macro to make one ourselves:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-10 19:08
+               Last modified: 2025-11-18 16:15
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
