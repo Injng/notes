@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-19 Wed 13:34 -->
+<!-- 2025-11-21 Fri 10:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SQL</title>
@@ -109,6 +109,11 @@
 <li><a href="#org24a73c8">2.3. CREATE TABLE Statements</a></li>
 <li><a href="#orgacda9d4">2.4. Numerical Expressions</a></li>
 <li><a href="#org511d9dd">2.5. String Expressions</a></li>
+<li><a href="#orgf6e30e6">2.6. Aggregation</a>
+<ul>
+<li><a href="#org67402da">2.6.1. Grouping Rows</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -333,6 +338,64 @@ Strings can also be searched for a partial match:
 </code></pre>
 </div>
 </div>
+<div id="outline-container-orgf6e30e6" class="outline-3">
+<h3 id="orgf6e30e6"><span class="section-number-3">2.6.</span> Aggregation</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+An aggregate function in the <code>[columns]</code> clause of a <code>SELECT</code> statement computes a value from a group of rows. For example, the <code>MAX</code> function takes in a series of rows represented by one column, but returns only one data value that is the max value of all the rows. The <code>SUM</code> function sums all of the values. <code>COUNT(*)</code> counts the total amount of rows. Critically, these aggregate functions only operate on <i>one column</i> of a series of rows. It is possible, however, to use multiple aggregate functions to combine data from multiple columns:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> <span style="color: #f38ba8;">SUM</span><span style="color: #f38ba8;">(</span>averageRating * numVotes<span style="color: #f38ba8;">)</span> / <span style="color: #f38ba8;">SUM</span><span style="color: #f38ba8;">(</span>numVotes<span style="color: #f38ba8;">)</span> <span style="color: #cba6f7;">FROM</span> ratings;
+</code></pre>
+
+<p>
+This gives the average rating over all the votes in the dataset.
+</p>
+</div>
+<div id="outline-container-org67402da" class="outline-4">
+<h4 id="org67402da"><span class="section-number-4">2.6.1.</span> Grouping Rows</h4>
+<div class="outline-text-4" id="text-2-6-1">
+<p>
+Rows in a table can be grouped, and aggregation can be performed on each group:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> <span style="color: #f38ba8;">[</span>columns<span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">FROM</span> <span style="color: #f38ba8;">[</span><span style="color: #cba6f7;">table</span><span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">GROUP</span> <span style="color: #cba6f7;">BY</span> <span style="color: #f38ba8;">[</span>expression<span style="color: #f38ba8;">]</span> <span style="color: #cba6f7;">HAVING</span> <span style="color: #f38ba8;">[</span>expression<span style="color: #f38ba8;">]</span>
+</code></pre>
+
+<p>
+The number of groups is the number of unique values of an expression. In other words, it groups rows together that have the same value in the <code>GROUP BY</code> clause. The <code>HAVING</code> clause filters the set of groups that are aggregated. Then, we can run our aggregate functions on these groups separately, and then output a new table where each group corresponds to one row.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Movies per decade
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to create a table with columns <code>decade</code> and <code>movies</code> that contain one row for each decade in which a movie was released and the number of movies that were released in that decade. To do this, we can run the following query:
+</p>
+
+<pre><code class="language-sql"><span style="color: #cba6f7;">SELECT</span> <span style="color: #cba6f7;">year</span> / 10 * 10 <span style="color: #cba6f7;">AS</span> decade, <span style="color: #f38ba8;">COUNT</span><span style="color: #f38ba8;">(</span>*<span style="color: #f38ba8;">)</span> <span style="color: #cba6f7;">AS</span> movies <span style="color: #cba6f7;">FROM</span> titles <span style="color: #cba6f7;">GROUP</span> <span style="color: #cba6f7;">BY</span> <span style="color: #cba6f7;">year</span> / 10;
+</code></pre>
+
+<p>
+Note that SQL performs floor division when dividing an integer by another integer.
+</p>
+
+
+</details>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -340,7 +403,7 @@ Strings can also be searched for a partial match:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-19 13:34
+               Last modified: 2025-11-21 10:48
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
