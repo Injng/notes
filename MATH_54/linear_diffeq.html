@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-19 Wed 13:34 -->
+<!-- 2025-11-21 Fri 09:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Differential Equations</title>
@@ -237,6 +237,68 @@ If the characteristic equation has repeated real root \(r\), then one solution i
 \begin{align}
 y = c_1e^{rt} + c_2te^{rt}
 \end{align}
+
+<p>
+More generally, if a differential equation has a repeated root \(r\) that is repeated \(n\) times, then we have solutions from \(e^{rt}\) up to \(t^{n}e^{rt}\). To see why this is, let \(D\) represent the derivative operator (i.e. \(Dy = y'\)). Realize that \(D\) fulfills the requirements to be a <a href="linear_transformations.html#orgb8aa6d7">linear transformation</a>, as it behaves well under addition and scalar multiplication.
+</p>
+
+<p>
+We want to find the solutions to \(y^{(n)} + a_{n-1}y^{(n-1)} + \cdots + a_1y' + a_0y = 0\). If the roots of the characteristic equation are \(r_1, r_2, \dots, r_n\) (they can be repeated), then we can rewrite the differential equation as:
+</p>
+
+\begin{align}
+(D-r_1)(D-r_2) \cdot \cdots \cdot (D-r_n)y=0 \notag
+\end{align}
+
+<p>
+We will proceed by induction. First, we would like to solve the base case, when \(r\) is a repeated real root of the characteristic equation that is repeated once, we have the following term:
+</p>
+
+\begin{align}
+(D-r)\left[(D-r)y\right] = 0 \notag
+\end{align}
+
+<p>
+To find both solutions, we need \((D-r)y\) to be in the <a href="vector_spaces.html#org19f8b6b">nullspace</a> of \(D-r\). Finding the nullspace:
+</p>
+
+\begin{align}
+(D-r)y &= 0 \notag \\
+y' - ry &= 0 \notag \\
+y &= Ce^{rt} \notag
+\end{align}
+
+<p>
+This is our first solution, and the nullspace of \(D-r\). Then, since we want \((D-r)y\) to be in the nullspace, we can try:
+</p>
+
+\begin{align}
+(D-r)y &= e^{rt} \notag \\
+y'-ry &= e^{rt} \notag
+\end{align}
+
+<p>
+Proceeding by integrating factor technique:
+</p>
+
+\begin{align}
+e^{-rt}(y'-ry) &= 1 \notag \\
+[ye^{-rt}]' &= 1 \notag \\
+ye^{-rt} &= t + C \notag \\
+y &= te^{rt} + Ce^{rt} \notag
+\end{align}
+
+<p>
+We see that for the case of one repeated real root, the second solution is \(te^{rt}\). Now, for the inductive step: we assume that for \(n\) repeated real roots \(r\), solutions take the form \((c_nt^n + c_{n-1}t^{n-1} + \cdots + c_0)e^{rt}\). Then, for \(n+1\) repeated real roots, we can write the equation as \((D-r)^{n+2}y = 0\); we just need \((D-r)y\) to be in the nullspace of \((D-r)^{n+1}\). But that is just the solution set for the case of \(n\) repeated real roots, so we can write:
+</p>
+
+\begin{align}
+(D-r)y = (c_nt^n + c_{n-1}t^{n-1} + \cdots + c_0)e^{rt} \notag
+\end{align}
+
+<p>
+Solving this using integrating factor for \(y\), we see that we end up with a new term of \(t^{n+1}\), finishing the inductive step. Therefore, for each additional repeated root for a general differential equation, we simply multiply by \(t\).
+</p>
 </div>
 </div>
 <div id="outline-container-orgdbbdfaf" class="outline-4">
@@ -417,7 +479,7 @@ If we are given \(y_1\) and \(y_2\), the two linearly independent solutions of t
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-19 10:53
+               Last modified: 2025-11-21 09:30
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
