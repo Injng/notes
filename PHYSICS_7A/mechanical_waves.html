@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-19 Wed 09:55 -->
+<!-- 2025-11-21 Fri 10:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mechanical Waves</title>
@@ -131,9 +131,16 @@
 <li><a href="#org88ef67e">1.1. Types of Waves</a></li>
 <li><a href="#orgd953ceb">1.2. Properties of Waves</a></li>
 <li><a href="#org8a0c356">1.3. Mathematical Representation of a Wave</a></li>
+<li><a href="#orgfa67c3b">1.4. Energy Transported by Waves</a></li>
 </ul>
 </li>
 <li><a href="#orge01750c">2. The Wave Equation</a></li>
+<li><a href="#org727b6bd">3. Standing Waves</a>
+<ul>
+<li><a href="#org5305878">3.1. Fixed at Both Ends</a></li>
+<li><a href="#org2938b7f">3.2. Free at One End</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -165,7 +172,7 @@ If we graph a wave at a particular time \(t\) over \(x\):
 </p>
 
 
-<div id="org567bbd4" class="figure">
+<div id="org79b3a3e" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves1.png" alt="mechanical_waves1.png" />
 </p>
 </div>
@@ -175,7 +182,7 @@ The wavelength \(\lambda\) is the distance between two peaks or troughs. If we i
 </p>
 
 
-<div id="org3632465" class="figure">
+<div id="org866585f" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves2.png" alt="mechanical_waves2.png" />
 </p>
 </div>
@@ -250,6 +257,34 @@ Additionally, since \(v = \lambda f\), \(\lambda = \frac{2\pi}{k}\), and \(\omeg
 \end{align}
 </div>
 </div>
+<div id="outline-container-orgfa67c3b" class="outline-3">
+<h3 id="orgfa67c3b"><span class="section-number-3">1.4.</span> Energy Transported by Waves</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Waves transport energy through a medium by transferring vibrational energy from particle to particle. For a wave with amplitude \(A\) moving in simple harmonic motion, its energy is given by:
+</p>
+
+\begin{align}
+\boxed{E = \frac{1}{2}kA^2}
+\end{align}
+
+<p>
+We can write \(k\) as \(k=4\pi^2mf^2\). Then, in terms of frequency \(f\) and amplitude \(A\), we have:
+</p>
+
+\begin{align}
+E = 2\pi^2mf^2A^2 \notag
+\end{align}
+
+<p>
+From this equation we see that the energy transported by a wave is <i>proportional to the square of the amplitude and to the square of the frequency</i>. We can also find the average <i>rate</i> of energy transferred as the <b>power</b> \(P\):
+</p>
+
+\begin{align}
+\bar{P} = 2\pi^2\mu vf^2A^2
+\end{align}
+</div>
+</div>
 </div>
 <div id="outline-container-orge01750c" class="outline-2">
 <h2 id="orge01750c"><span class="section-number-2">2.</span> The Wave Equation</h2>
@@ -259,7 +294,7 @@ Many types of waves satisfy a general equation that describes the motion of the 
 </p>
 
 
-<div id="org9e7aee7" class="figure">
+<div id="org6799dfd" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves3.png" alt="mechanical_waves3.png" />
 </p>
 </div>
@@ -320,13 +355,86 @@ By (2), we can generalize this for all waves. The 1D wave equation is:
 \end{align}
 </div>
 </div>
+<div id="outline-container-org727b6bd" class="outline-2">
+<h2 id="org727b6bd"><span class="section-number-2">3.</span> Standing Waves</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+If \(D_1\) and \(D_2\) are solutions to the wave equation, than any combination \(aD_1 + bD_2\) also satisfies the wave equation: this is known as the <b>superposition principle</b>. Conversely, for any complicated wave \(D\), by Fourier's Theorem you can decompose it into many simple harmonic waves.
+</p>
+
+<p>
+If we send a signal along a rope and attach the other end to a wall, then there is <i>reflection</i> against the wall (without attenuation — amplitude stays the same). If \(D_1\) is the signal traveling along the rope and \(D_2\) is the reflection, then the net displacement is:
+</p>
+
+\begin{align}
+D_{\text{net}} &= D_1 + D_2 \notag \\
+&= A\sin(kx - \omega t) + A\sin(kx + \omega t) \notag \\
+&= A\left[\sin(kx-\omega t) + \sin(kx + \omega t)\right] \notag \\
+&= 2A\sin(kx)\cos(\omega t)
+\end{align}
+
+<p>
+We see that here, there is a separation between the space variable and time. This indicates that we have a non-traveling, or <b>standing wave</b>.
+</p>
+</div>
+<div id="outline-container-org5305878" class="outline-3">
+<h3 id="org5305878"><span class="section-number-3">3.1.</span> Fixed at Both Ends</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+If we have a rope that is fixed at both ends, then we have \(D_{\text{net}} = 0\) at both ends of the rope: \(x = 0\) and \(x = L\). Then, we will need to fulfill the condition that \(\sin(kL) = 0\), or \(kL = n\pi\) for \(n\) in the positive natural numbers. We know that \(k = \frac{2\pi}{\lambda}\), so substituting gives:
+</p>
+
+\begin{align}
+\boxed{L = n\frac{\lambda}{2}}
+\end{align}
+
+<p>
+for all \(n\) in the positive natural numbers, limited by the length of the rope. Notice that for standing waves to occur, the length of the rope must be <i>in multiples of half the wavelength</i>:
+</p>
+
+
+<div id="org102b4b6" class="figure">
+<p><img src="../static/PHYSICS_7A/mechanical_waves4.png" alt="mechanical_waves4.png" />
+</p>
+</div>
+
+<p>
+We define the points with no net displacement to be the <b>nodes</b>, and the points of maximum net displacement to be the <b>antinodes</b>. Realize that for a rope that is fixed at both ends, the number of antinodes is equal to the number of half-wavelengths we have, which is equal to \(n\).
+</p>
+
+<p>
+We call when \(n=1\) the <b>fundamental mode</b>, or the <b>first harmonic</b>, with \(n=2\) being the <b>second harmonic</b> and <b>first overtone</b>, and so on. With \(n\) antinodes, the wavelength is \(\lambda = \frac{2L}{n}\), and since \(v = \lambda f\), \(f = \frac{v}{\lambda}\), so the frequency is:
+</p>
+
+\begin{align}
+\boxed{f = \frac{nv}{2L}}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org2938b7f" class="outline-3">
+<h3 id="org2938b7f"><span class="section-number-3">3.2.</span> Free at One End</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+For a rope clamped at one end and free at the other end, from (8) we see that \(D_{\text{net}} = \pm 2A\) at the free end. Then, we must satisfy \(\sin(kL) = \pm 1\), which means that \(kL = \frac{(2n+1)\pi}{2}\). Substituting \(k\) gives:
+</p>
+
+\begin{align}
+\boxed{L = \frac{(2n + 1)\lambda}{4}}
+\end{align}
+
+<p>
+Thus, for a rope free at one end, the length must be in <i>odd integer multiples of quarter wavelengths</i>.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-19 09:55
+               Last modified: 2025-11-21 10:32
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
