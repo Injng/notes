@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-11-24 Mon 10:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fourier Series</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_54/index.html">MATH 54</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Fourier Series</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgae9b2d3">1. Fourier Series</a>
+<ul>
+<li><a href="#org3f32d61">1.1. Definitions and Setup</a></li>
+<li><a href="#org38c3d51">1.2. Regular Fourier Series</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgae9b2d3" class="outline-2">
+<h2 id="orgae9b2d3"><span class="section-number-2">1.</span> Fourier Series</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3f32d61" class="outline-3">
+<h3 id="org3f32d61"><span class="section-number-3">1.1.</span> Definitions and Setup</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The functions we will be working with are known as <b>piecewise continuous</b> on \([a, b]\), which is a function that is continuous at every point in \([a, b]\) except possibly for a finite number of <i>jump discontinuities</i>.
+</p>
+
+<p>
+Additionally, recall that a function is <b>periodic</b> if there is some fixed positive number \(T\) for which \(f(x+T)=f(x)\) for all \(x\) in the domain of \(f\). The smallest positive value of \(T\) is known as the <b>fundamental period</b>. Examples of periodic functions include \(\sin x\) and \(\cos x\) with fundamental period \(2\pi\), and \(\tan x\) with fundamental period \(\pi\).
+</p>
+
+<p>
+Next, note that:
+</p>
+
+\begin{align}
+\int_{-L}^L \sin\frac{m\pi x}{L}\cos\frac{n\pi x}{L}\text{ d}x &= 0 \\
+\int_{-L}^L \sin\frac{m\pi x}{L}\sin\frac{n\pi x}{L}\text{ d}x &= \begin{cases} 0 & \text{for } m\neq n \\ L & \text{for } m = n\end{cases} \\
+\int_{-L}^L \cos\frac{m\pi x}{L}\cos\frac{n\pi x}{L}\text{ d}x &= \begin{cases} 0 & \text{for } m\neq n \\ L & \text{for } m = n \neq 0 \\ 2L & \text{for } m = n = 0\end{cases}
+\end{align}
+
+<p>
+This can be readily checked with the sum and difference angle identities: each integrand can be written as a sum of sines or cosines. Intuitively, since the integral integrates over a whole number of periods, we have an equal amount of area above and below the axis, which leads to a total area of zero when \(m \neq n\). These are known as the <b>orthogonality conditions</b>.
+</p>
+
+<p>
+Now, consider the <a href="inner_product.html#orgec939d1">inner product</a>
+</p>
+
+\begin{align}
+\langle f,g \rangle = \int_{-L}^L f(x)g(x) \text{ d}x
+\end{align}
+
+<p>
+under the set \(\left\{\sin\left(\frac{m\pi x}{L}\right), \cos\left(\frac{n\pi x}{L}\right) \,\middle|\, m, n \in \mathbb{Z}\right\}\). Notice that because of the orthogonality conditions (1), (2), and (3), this is an <a href="orthogonality.html#org896014c">orthogonal set</a>: the inner product of any two distinct elements is zero.
+</p>
+</div>
+</div>
+<div id="outline-container-org38c3d51" class="outline-3">
+<h3 id="org38c3d51"><span class="section-number-3">1.2.</span> Regular Fourier Series</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Similar to how we can use Taylor series to express a function as a series of derivatives, we can use a <b>Fourier series</b> to express a piecewise continuous function as a particular trigonometric series. The Fourier series of \(f\), then, is the trigonometric series:
+</p>
+
+\begin{align}
+\boxed{f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}\left[a_n\cos\left(\frac{n\pi x}{L}\right) + b_n\sin\left(\frac{n\pi x}{L}\right)\right]}
+\end{align}
+
+<p>
+The question of how to find the constants \(a_0, a_1, b_1, a_2, b_2, \dots\) remains. First, to determine \(a_0\), we can integrate both sides from \(-L\) to \(L\):
+</p>
+
+\begin{align}
+\int_{-L}^L f(x) \text{ d}x = \int_{-L}^L \frac{a_0}{2}\text{ d}x + \sum_{n=1}^{\infty}\left[a_n\int_{-L}^L\cos\left(\frac{n\pi x}{L}\right)\text{ d}x + b_n\int_{-L}^L\sin\left(\frac{n\pi x}{L}\right)\text{ d}x\right] \notag
+\end{align}
+
+<p>
+The key here is to realize that since we are integrating the periodic functions \(\cos\) and \(\sin\) over a whole number of their periods, those integrals go to zero. Hence, we are left with:
+</p>
+
+\begin{align}
+\int_{-L}^L f(x)\text{ d}x &= \int_{-L}^L\frac{a_0}{2}\text{ d}x \notag \\
+&= a_0L \notag
+\end{align}
+
+<p>
+and so
+</p>
+
+\begin{align}
+\boxed{a_0 = \frac{1}{L}\int_{-L}^{L}f(x)\text{ d}x}
+\end{align}
+
+<p>
+Next, to find the coefficient \(a_m\) when \(m \geq 1\), we multiply (5) by \(\cos\frac{m\pi x}{L}\) and integrate:
+</p>
+
+\begin{align}
+\int_{-L}^L f(x)\cos\left(\frac{m\pi x}{L}\right) \text{ d}x = \frac{a_0}{2}\int_{-L}^L\cos\left(\frac{m\pi x}{L}\right)\text{ d}x + \sum_{n=1}^{\infty}\left[a_n\int_{-L}^L\cos\left(\frac{n\pi x}{L}\right)\cos\left(\frac{m\pi x}{L}\right)\text{ d}x + b_n\int_{-L}^L\sin\left(\frac{n\pi x}{L}\right)\cos\left(\frac{m\pi x}{L}\right)\text{ d}x\right] \notag
+\end{align}
+
+<p>
+We observe that due to the orthogonality conditions, the only one term out of the sum in the right-hand side that survives the integration is:
+</p>
+
+\begin{align}
+\int_{-L}^L f(x)\cos\left(\frac{m\pi x}{L}\right)\text{ d}x = a_mL \notag
+\end{align}
+
+<p>
+Therefore, we have a formula for the coefficient \(a_m\):
+</p>
+
+\begin{align}
+\boxed{a_m = \frac{1}{L}\int_{-L}^Lf(x)\cos\left(\frac{m\pi x}{L}\right)\text{ d}x}
+\end{align}
+
+<p>
+Doing the same steps, but multiplying with \(\sin\frac{m\pi x}{L}\) instead and integrating, yields a formula for the coefficient \(b_m\) as well:
+</p>
+
+\begin{align}
+\boxed{b_m = \frac{1}{L}\int_{-L}^Lf(x)\sin\left(\frac{m\pi x}{L}\right)\text{ d}x}
+\end{align}
+
+<p>
+These formulas for \(a_m\) and \(b_m\) are known as the <b>Euler-Fourier formulas</b>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-11-24 10:23
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
