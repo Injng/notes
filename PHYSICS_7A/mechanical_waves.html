@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-21 Fri 10:32 -->
+<!-- 2025-11-25 Tue 15:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mechanical Waves</title>
@@ -135,10 +135,18 @@
 </ul>
 </li>
 <li><a href="#orge01750c">2. The Wave Equation</a></li>
-<li><a href="#org727b6bd">3. Standing Waves</a>
+<li><a href="#orgf003110">3. Sound Waves</a>
 <ul>
-<li><a href="#org5305878">3.1. Fixed at Both Ends</a></li>
-<li><a href="#org2938b7f">3.2. Free at One End</a></li>
+<li><a href="#org7872d9b">3.1. Intensity and Loudness</a></li>
+<li><a href="#org4e3bd0e">3.2. Interference in Space</a></li>
+<li><a href="#org00926f9">3.3. Beating</a></li>
+</ul>
+</li>
+<li><a href="#org727b6bd">4. Standing Waves</a>
+<ul>
+<li><a href="#org5305878">4.1. Fixed at Both Ends</a></li>
+<li><a href="#org2938b7f">4.2. Free at One End</a></li>
+<li><a href="#org76cefd8">4.3. Standing Waves in Air Columns</a></li>
 </ul>
 </li>
 </ul>
@@ -172,7 +180,7 @@ If we graph a wave at a particular time \(t\) over \(x\):
 </p>
 
 
-<div id="org79b3a3e" class="figure">
+<div id="orgfd3e23a" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves1.png" alt="mechanical_waves1.png" />
 </p>
 </div>
@@ -182,7 +190,7 @@ The wavelength \(\lambda\) is the distance between two peaks or troughs. If we i
 </p>
 
 
-<div id="org866585f" class="figure">
+<div id="orgfe6cbfe" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves2.png" alt="mechanical_waves2.png" />
 </p>
 </div>
@@ -294,7 +302,7 @@ Many types of waves satisfy a general equation that describes the motion of the 
 </p>
 
 
-<div id="org6799dfd" class="figure">
+<div id="org0bfdf00" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves3.png" alt="mechanical_waves3.png" />
 </p>
 </div>
@@ -355,9 +363,156 @@ By (2), we can generalize this for all waves. The 1D wave equation is:
 \end{align}
 </div>
 </div>
-<div id="outline-container-org727b6bd" class="outline-2">
-<h2 id="org727b6bd"><span class="section-number-2">3.</span> Standing Waves</h2>
+<div id="outline-container-orgf003110" class="outline-2">
+<h2 id="orgf003110"><span class="section-number-2">3.</span> Sound Waves</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+<b>Sound waves</b> are <i>longitudinal waves</i> that propogate through a medium, which can be represented as either a displacement of fluid molecules or a pressure variation. They have two main characteristics, loudness (which depends on intensity), and pitch (which depends on frequency, the higher the frequency the higher the pitch). The speed of a sound wave through a medium is determined by:
+</p>
+
+\begin{align}
+\boxed{v = \sqrt{\frac{B}{\rho}}}
+\end{align}
+
+<p>
+where \(B\) is the <b>bulk modulus</b> and \(\rho\) is the <b>density</b>. From (3), we can mathematically represent the displacement as \(D(x,t) = A\sin(kx - \omega t)\). Then, the bulk modulus \(B\) can be found from:
+</p>
+
+\begin{align}
+\Delta P = -B\frac{\Delta V}{V}
+\end{align}
+
+<p>
+where \(\Delta P\) is a change in pressure and \(\frac{\Delta V}{V}\) represents a fractional change in volume due to the change in pressure. If we take a infinitesimal slice of fluid with width \(\Delta x\) that is experiencing a displacement difference of \(\Delta D\):
+</p>
+
+
+<div id="org817ab62" class="figure">
+<p><img src="../static/PHYSICS_7A/mechanical_waves5.png" alt="mechanical_waves5.png" />
+</p>
+</div>
+
+<p>
+We can represent the change in pressure as:
+</p>
+
+\begin{align}
+\Delta P &= -B\frac{S\Delta D}{S\Delta x} \notag \\
+&= -B\frac{\partial D}{\partial x} \notag \\
+&= -BAk\cos(kx - \omega t) \notag
+\end{align}
+
+<p>
+The maximum pressure variation \(\Delta P_M\) occurs when cosine is at \(-1\), so:
+</p>
+
+\begin{align}
+\Delta P_M &= BAk \notag
+\end{align}
+
+<p>
+Since \(v=\sqrt{\frac{B}{\rho}}\) and \(v = \frac{\omega}{k}\) from (4), we can simplify this to:
+</p>
+
+\begin{align}
+\Delta P_M = \rho vA2\pi f
+\end{align}
+</div>
+<div id="outline-container-org7872d9b" class="outline-3">
+<h3 id="org7872d9b"><span class="section-number-3">3.1.</span> Intensity and Loudness</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<b>Intensity</b> is defined as the average <i>power</i> over area:
+</p>
+
+\begin{align}
+I &= \frac{\langle P\rangle}{S} \notag \\
+&= \langle\frac{F}{S}v_M\rangle \notag \\
+&= \langle\Delta Pv_M\rangle \notag \\
+&= \langle\Delta P_M\cos(kx - \omega t)\frac{\partial D}{\partial t}\rangle \notag \\
+&= \Delta P_MA\omega \langle\cos^2(kx - \omega t)\rangle \notag \\
+&= \frac{\Delta P_M A\omega}{2} \notag \\
+&= \frac{\rho vA^24\pi^2 f^2}{2} \notag \\
+&= 2\pi^2f^2\rho vA^2
+\end{align}
+
+<p>
+<b>Loudness</b>, \(\beta\), is defined with the unit of decibels [dB] as:
+</p>
+
+\begin{align}
+\beta = 10\log\left(\frac{I}{I_0}\right)
+\end{align}
+
+<p>
+where \(I_0\) is the threshold for hearing.
+</p>
+</div>
+</div>
+<div id="outline-container-org4e3bd0e" class="outline-3">
+<h3 id="org4e3bd0e"><span class="section-number-3">3.2.</span> Interference in Space</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+When two sound waves overlap with one another, they produce <b>interference</b>:
+</p>
+
+
+<div id="org63b610c" class="figure">
+<p><img src="../static/PHYSICS_7A/mechanical_waves8.png" alt="mechanical_waves8.png" />
+</p>
+</div>
+
+<p>
+There is <b>constructive interference</b> if both wave peaks/troughs align with each other, which produces the maximum sound level:
+</p>
+
+\begin{align}
+\delta = m\lambda, \: m \in \mathbb{N}
+\end{align}
+
+<p>
+There is also <b>destructive interference</b> when the peak of one wave aligns with the trough of another, producing no sound:
+</p>
+
+\begin{align}
+\delta = \frac{(2m+1)\lambda}{2}, \: m \in \mathbb{N}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org00926f9" class="outline-3">
+<h3 id="org00926f9"><span class="section-number-3">3.3.</span> Beating</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+The interference of two slightly different frequencies result in a pulsating sound called <b>beating</b>. Consider the equations of two waves with two slightly different frequencies \(\omega_1\) and \(\omega_2\):
+</p>
+
+\begin{align}
+D_1(0, t) &= A\sin(\omega_1 t) \notag \\
+D_2(0, t) &= A\sin(\omega_2 t) \notag \\
+\end{align}
+
+<p>
+The resultant of these two waves is:
+</p>
+
+\begin{align}
+D_{\text{resultant}} &= A(\sin\omega_1 t + \sin\omega_2 t) \notag \\
+&= 2A\sin\left[\left(\frac{\omega_1+\omega_2}{2}\right)t\right]\cos\left[\left(\frac{\omega_1+\omega_2}{2}\right)t\right] \notag
+\end{align}
+
+<p>
+The beat frequency is then the difference between the frequencies of the two waves:
+</p>
+
+\begin{align}
+\boxed{f_b = |f_1 - f_2|}
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org727b6bd" class="outline-2">
+<h2 id="org727b6bd"><span class="section-number-2">4.</span> Standing Waves</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 If \(D_1\) and \(D_2\) are solutions to the wave equation, than any combination \(aD_1 + bD_2\) also satisfies the wave equation: this is known as the <b>superposition principle</b>. Conversely, for any complicated wave \(D\), by Fourier's Theorem you can decompose it into many simple harmonic waves.
 </p>
@@ -378,8 +533,8 @@ We see that here, there is a separation between the space variable and time. Thi
 </p>
 </div>
 <div id="outline-container-org5305878" class="outline-3">
-<h3 id="org5305878"><span class="section-number-3">3.1.</span> Fixed at Both Ends</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org5305878"><span class="section-number-3">4.1.</span> Fixed at Both Ends</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 If we have a rope that is fixed at both ends, then we have \(D_{\text{net}} = 0\) at both ends of the rope: \(x = 0\) and \(x = L\). Then, we will need to fulfill the condition that \(\sin(kL) = 0\), or \(kL = n\pi\) for \(n\) in the positive natural numbers. We know that \(k = \frac{2\pi}{\lambda}\), so substituting gives:
 </p>
@@ -393,7 +548,7 @@ for all \(n\) in the positive natural numbers, limited by the length of the rope
 </p>
 
 
-<div id="org102b4b6" class="figure">
+<div id="org014a514" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves4.png" alt="mechanical_waves4.png" />
 </p>
 </div>
@@ -412,8 +567,8 @@ We call when \(n=1\) the <b>fundamental mode</b>, or the <b>first harmonic</b>, 
 </div>
 </div>
 <div id="outline-container-org2938b7f" class="outline-3">
-<h3 id="org2938b7f"><span class="section-number-3">3.2.</span> Free at One End</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org2938b7f"><span class="section-number-3">4.2.</span> Free at One End</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 For a rope clamped at one end and free at the other end, from (8) we see that \(D_{\text{net}} = \pm 2A\) at the free end. Then, we must satisfy \(\sin(kL) = \pm 1\), which means that \(kL = \frac{(2n+1)\pi}{2}\). Substituting \(k\) gives:
 </p>
@@ -427,6 +582,38 @@ Thus, for a rope free at one end, the length must be in <i>odd integer multiples
 </p>
 </div>
 </div>
+<div id="outline-container-org76cefd8" class="outline-3">
+<h3 id="org76cefd8"><span class="section-number-3">4.3.</span> Standing Waves in Air Columns</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Sound instruments produce standing waves at various frequencies. For an air tube that is open at both ends (e.g. flute), there is minimum or maximum displacement at a tube end because the molecules can move more freely:
+</p>
+
+
+<div id="org35d233a" class="figure">
+<p><img src="../static/PHYSICS_7A/mechanical_waves6.png" alt="mechanical_waves6.png" />
+</p>
+</div>
+
+<p>
+This is analoguous to the rope with two fixed ends, with \(\lambda_n = \frac{2L}{n}\).
+</p>
+
+<p>
+The air tube closed at one end and open at the other (e.g. clarinet) has a minimum/maximum displacement at the open end, and zero displacement at the closed end:
+</p>
+
+
+<div id="org89d5a85" class="figure">
+<p><img src="../static/PHYSICS_7A/mechanical_waves7.png" alt="mechanical_waves7.png" />
+</p>
+</div>
+
+<p>
+This is similar to the rope with one fixed and one open end, with \(\lambda_n = \frac{4L}{2n+1}\).
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -434,7 +621,7 @@ Thus, for a rope free at one end, the length must be in <i>odd integer multiples
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-21 10:32
+               Last modified: 2025-11-25 15:55
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
