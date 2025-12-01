@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-24 Mon 10:23 -->
+<!-- 2025-12-01 Mon 09:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Fourier Series</title>
@@ -130,6 +130,7 @@
 <ul>
 <li><a href="#org3f32d61">1.1. Definitions and Setup</a></li>
 <li><a href="#org38c3d51">1.2. Regular Fourier Series</a></li>
+<li><a href="#org69e670f">1.3. Generalized Fourier Series</a></li>
 </ul>
 </li>
 </ul>
@@ -250,6 +251,34 @@ These formulas for \(a_m\) and \(b_m\) are known as the <b>Euler-Fourier formula
 </p>
 </div>
 </div>
+<div id="outline-container-org69e670f" class="outline-3">
+<h3 id="org69e670f"><span class="section-number-3">1.3.</span> Generalized Fourier Series</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Fourier series are examples of <i>orthogonal expansions</i>. A set of functions \({f_n(x)}_{n=1}^{\infty}\) is an <b>orthogonal system</b> with respect to a nonnegative weight function \(w(x)\) on the interval \([a, b]\) if:
+</p>
+
+\begin{align}
+\int_a^b f_m(x)f_n(x)w(x) \text{ d}x = 0, \: \forall m \neq n
+\end{align}
+
+<p>
+If we then define the <b>norm</b> of \(f\) as:
+</p>
+
+\begin{align}
+|f| = \sqrt{\int_a^b f^2(x)w(x)\text{ d}x}
+\end{align}
+
+<p>
+Then we say the set of functions is an <b>orthonormal system</b> with respect to \(w(x)\) if it is an orthogonal system and also \(|f|=1\). We can obtain an orthonormal system from an orthogonal system by just dividing each function by its norm.
+</p>
+
+<p>
+Given an orthogonal system \({f_n(x)}_{n=1}^{\infty}\), expressing a function \(f(x)\) in terms of these functions in the form \(f(x) = c_1f_1(x) c_2f_2(x) + c_3f_3(x) + \cdots\) is known as an <b>orthogonal expansion</b> or a <b>generalized Fourier series</b>.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -257,7 +286,7 @@ These formulas for \(a_m\) and \(b_m\) are known as the <b>Euler-Fourier formula
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-24 10:23
+               Last modified: 2025-12-01 09:45
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
