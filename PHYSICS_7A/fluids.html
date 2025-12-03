@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2025-12-03 Wed 11:01 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fluids</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+                     <script src="/pagefind/pagefind-ui.js"></script>
+                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
+                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+                     <link rel="stylesheet" href="/style.css" type="text/css"/>
+                     <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7A/index.html">PHYSICS 7A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Fluids</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7eaec99">1. Fluids</a>
+<ul>
+<li><a href="#org142546b">1.1. Static Fluids</a>
+<ul>
+<li><a href="#org22250a3">1.1.1. Pascal's Principle</a></li>
+<li><a href="#orge2d1f1e">1.1.2. Buoyancy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7eaec99" class="outline-2">
+<h2 id="org7eaec99"><span class="section-number-2">1.</span> Fluids</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Fluids</b> have much weaker intermolecular interactions than solids and cover both liquids and gases. These weaker interactions mean that unlike solids, liquids and gases cannot maintain any specific shape.
+</p>
+
+<p>
+The main differences between liquids and gases are that a gas can escape from a container (without a lid on), and that gases are highly compressible while liquids will be considered here to be incompressible.
+</p>
+
+<p>
+Instead of using mass and forces as property descriptors, we will instead use <b>density</b> (mass per unit volume, \(\rho\)) and <b>pressure</b> (force per area, \(P\), measured in pascals):
+</p>
+
+\begin{align}
+\boxed{\rho = \frac{m}{V}} \\
+\boxed{P = \frac{F_{\perp}}{A}}
+\end{align}
+
+<p>
+Note that for pressure, since we <i>only consider the perpendicular component of force</i>, it is a scalar value.
+</p>
+</div>
+<div id="outline-container-org142546b" class="outline-3">
+<h3 id="org142546b"><span class="section-number-3">1.1.</span> Static Fluids</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+We have a container holding a homogenous fluid. Consider a slice of fluid with depth \(\text{d}h\), which experiences forces \(\vec{F}\) on the top and \(\vec{F} + \text{d}\vec{F}\) on the bottom:
+</p>
+
+
+<div id="orgdb6da80" class="figure">
+<p><img src="../static/PHYSICS_7A/fluids1.png" alt="fluids1.png" />
+</p>
+</div>
+
+<p>
+By Newton's second law in <a href="static_equilibrium.html#org96d274b">static equilibrium</a>, we have:
+</p>
+
+\begin{align}
+\text{d}F_g + F - (F+\text{d}F) &= 0 \notag \\
+\text{d}mg + AP - A(P+\text{d}P) &= 0 \notag \\
+\rho A\text{d}hg + AP - AP - A\text{d}P &= 0 \notag \\
+\text{d}P = \rho g\text{d}h \notag
+\end{align}
+
+<p>
+Assuming density is constant (i.e. liquids), then this differential equation becomes the following pressure function in terms of height:
+</p>
+
+\begin{align}
+\boxed{P(h) = P_0 + \rho gh}
+\end{align}
+
+<p>
+where \(P_0\) is the pressure at the surface when \(h=0\). This is a measure of <b>absolute pressure</b>.
+</p>
+
+<p>
+Oftentimes, we only want to measure the <b>gauge pressure</b>, which does not consider atmospheric pressure:
+</p>
+
+\begin{align}
+\boxed{P_G = P_\text{abs} - P_\text{atm}}
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: U-shaped tube
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a u-shaped tube with water and oil shown below. We want to find \(H\), the difference in height between the water levels:
+</p>
+
+
+<div id="org9895b53" class="figure">
+<p><img src="../static/PHYSICS_7A/fluids2.png" alt="fluids2.png" />
+</p>
+</div>
+
+<p>
+To do this, we can express \(P_D\), the pressure at point D, using equations from both sides of the tube:
+</p>
+
+\begin{align}
+P_D &= P_A + \rho_0 gh_0 + \rho_w gh_{BD} \notag \\
+P_D &= P_C + \rho_w gh_{CD} \notag
+\end{align}
+
+<p>
+Setting them equal to each other, we have:
+</p>
+
+\begin{align}
+P_A + \rho_0 gh_0 + \rho_w gh_{BD} = P_C + \rho_w gh_{CD} \notag
+\end{align}
+
+<p>
+But since \(P_A = P_C = P_{\text{atm}}\), this simplifies to:
+</p>
+
+\begin{align}
+\rho_0 gh_0 + \rho_w gh_{BD} &= \rho_w gh_{CD} \notag \\
+\rho_o h_0 &= \rho_w(h_{CD} - h_{BD}) \notag
+\end{align}
+
+<p>
+Thus, since \(h_{CD} - h_{BD} = H\), we have:
+</p>
+
+\begin{align}
+\boxed{H = \frac{\rho_0 h_0}{\rho_w}} \notag
+\end{align}
+
+
+</details>
+</div>
+<div id="outline-container-org22250a3" class="outline-4">
+<h4 id="org22250a3"><span class="section-number-4">1.1.1.</span> Pascal's Principle</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+For the above example, we could've skipped directly to noting that \(\rho_0 h_0 = \rho_w H\) by considering the point \(B\) on the other side of the tube, at the same height, called \(B'\). Then, the pressures at \(B\) and \(B'\) are the same, since if you are in the same fluid, (1) shows that the pressure is dependent only on the height. For static fluids, the principle that <i>the same fluid must have the same pressure at points with the same height</i> is known as <b>Pascal's principle</b>.
+</p>
+
+<p>
+This principle is used in applications such as hydraulic jacks, where a small amount of force applied on a small area of fluid gets multiplied to be a large amount of force over a large area:
+</p>
+
+
+<div id="orge813cf4" class="figure">
+<p><img src="../static/PHYSICS_7A/fluids3.png" alt="fluids3.png" />
+</p>
+</div>
+
+<p>
+This is because to maintain the same pressure on the other side (at the same height, due to Pascal's principle), as area increases, the force must also increase.
+</p>
+</div>
+</div>
+<div id="outline-container-orge2d1f1e" class="outline-4">
+<h4 id="orge2d1f1e"><span class="section-number-4">1.1.2.</span> Buoyancy</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+<b>Buoyancy</b> occurs when a solid is submerged (partially or entirely) in a fluid, due to the pressure difference between the top and bottom of a submerged solid. This causes an upward-pointing <b>buoyant force</b>, denoted \(F_B\).
+</p>
+
+<p>
+The magnitude of this buoyant force can be experimentally shown as equivalent to the <i>weight of the fluid being displaced by the solid</i>. This result is known as <b>Archimedes' principle</b>.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Partially submerged iceberg
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a partially submerged iceberg like so:
+</p>
+
+
+<div id="orgbb8c9c3" class="figure">
+<p><img src="../static/PHYSICS_7A/fluids4.png" alt="fluids4.png" />
+</p>
+</div>
+
+<p>
+We want to know the fraction of the iceberg's volume that is submerged. Using Newton's 2nd law in static equilibrium:
+</p>
+
+\begin{align}
+F_B &= F_g \notag \\
+\rho_wV_\text{sub}g &= \rho_\text{ice}V_\text{tot}g \notag
+\end{align}
+
+<p>
+Thus, the ratio is:
+</p>
+
+\begin{align}
+\boxed{\frac{V_\text{sub}}{V_\text{tot}} = \frac{\rho_{\text{ice}}}{\rho_w}}
+\end{align}
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Submerged cylinder in two fluids
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a cylinder in static equilibrium across two immiscible fluids:
+</p>
+
+
+<div id="org6961852" class="figure">
+<p><img src="../static/PHYSICS_7A/fluids5.png" alt="fluids5.png" />
+</p>
+</div>
+
+<p>
+We want to find \(\rho_s\), the density of the solid. We calculate the net buoyant force by considering two portions of the cylinder, each one within a single fluid:
+</p>
+
+\begin{align}
+F_{B_{\text{tot}}} &= F_{B_{1}} + F_{B_{2}} \notag \\
+&= \rho_1A\frac{H}{3}g + \rho_2A\frac{2H}{3}g \notag
+\end{align}
+
+<p>
+Then, by static equilibrium:
+</p>
+
+\begin{align}
+F_{B_{\text{to}}} &= F_g \notag \\
+AHg\left(\frac{\rho_1}{3}+\frac{2\rho_2}{3}\right) &= \rho_s AHg \notag
+\end{align}
+
+<p>
+Isolating \(\rho_s\), we get:
+</p>
+
+\begin{align}
+\boxed{\rho_s = \frac{\rho_1 + 2\rho_2}{3}}
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-12-03 11:01
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
