@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-12-03 Wed 11:01 -->
+<!-- 2025-12-06 Sat 11:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Fluids</title>
@@ -134,6 +134,12 @@
 <li><a href="#orge2d1f1e">1.1.2. Buoyancy</a></li>
 </ul>
 </li>
+<li><a href="#org47af9c5">1.2. Fluid Dynamics</a>
+<ul>
+<li><a href="#orgf0b58cb">1.2.1. Continuity</a></li>
+<li><a href="#orge238af4">1.2.2. Bernoulli's Equation</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -171,7 +177,7 @@ We have a container holding a homogenous fluid. Consider a slice of fluid with d
 </p>
 
 
-<div id="orgdb6da80" class="figure">
+<div id="org96e6c31" class="figure">
 <p><img src="../static/PHYSICS_7A/fluids1.png" alt="fluids1.png" />
 </p>
 </div>
@@ -226,7 +232,7 @@ Consider a u-shaped tube with water and oil shown below. We want to find \(H\), 
 </p>
 
 
-<div id="org9895b53" class="figure">
+<div id="orgc2e8dcc" class="figure">
 <p><img src="../static/PHYSICS_7A/fluids2.png" alt="fluids2.png" />
 </p>
 </div>
@@ -280,7 +286,7 @@ This principle is used in applications such as hydraulic jacks, where a small am
 </p>
 
 
-<div id="orge813cf4" class="figure">
+<div id="org5b23ab3" class="figure">
 <p><img src="../static/PHYSICS_7A/fluids3.png" alt="fluids3.png" />
 </p>
 </div>
@@ -320,7 +326,7 @@ Consider a partially submerged iceberg like so:
 </p>
 
 
-<div id="orgbb8c9c3" class="figure">
+<div id="org50e028c" class="figure">
 <p><img src="../static/PHYSICS_7A/fluids4.png" alt="fluids4.png" />
 </p>
 </div>
@@ -364,7 +370,7 @@ Consider a cylinder in static equilibrium across two immiscible fluids:
 </p>
 
 
-<div id="org6961852" class="figure">
+<div id="org3648cf6" class="figure">
 <p><img src="../static/PHYSICS_7A/fluids5.png" alt="fluids5.png" />
 </p>
 </div>
@@ -400,6 +406,168 @@ Isolating \(\rho_s\), we get:
 </div>
 </div>
 </div>
+<div id="outline-container-org47af9c5" class="outline-3">
+<h3 id="org47af9c5"><span class="section-number-3">1.2.</span> Fluid Dynamics</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+For <b>fluid dynamics</b>, we mainly study fluids with <b>laminar flow</b> (no turbulence), that are <b>steady state</b> (not time dependent), and are <b>ideal fluids</b> (no viscosity). Instead of using velocity for individual fluid molecules, we will instead use <b>streamlines</b>, which are continuous lines oriented <i>along the velocity vector</i>, to represent the flow of fluid. The magnitude of the velocity is represented by the density of streamlines per unit area:
+</p>
+
+
+<div id="orga8d7783" class="figure">
+<p><img src="../static/PHYSICS_7A/fluids6.png" alt="fluids6.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-orgf0b58cb" class="outline-4">
+<h4 id="orgf0b58cb"><span class="section-number-4">1.2.1.</span> Continuity</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+THe flow of mass is conserved along a flowtube, which means that we can say \(\frac{\Delta m}{\Delta t}\) is constant at every point. Then, if we know the density and area of a particular section of the flowtube, and how much distance \(\Delta l\) it covers over a time change of \(\Delta t\), then we can set up the following relationship:
+</p>
+
+\begin{align}
+\frac{\Delta m_1}{\Delta t} = \frac{\rho_1 A_1 \Delta l_1}{\Delta t} = \rho_1 A_1 v_1 \notag
+\end{align}
+
+<p>
+In other words, we see that \(\rho Av\) is conserved along a flowtube. For incompressible fluids (i.e. liquids), then \(\rho\) is constant, so \(\boxed{Av}\) is constant for liquids along a flowtube. If we take any two points, then we can set up an equality known as the <b>continuity equation</b>:
+</p>
+
+\begin{align}
+\boxed{A_1v_1 = A_2v_2}
+\end{align}
+
+<p>
+Thus, it can be seen that as cross-sectional area decreases in a tube, for a non-compressible fluid its velocity must increase.
+</p>
+</div>
+</div>
+<div id="outline-container-orge238af4" class="outline-4">
+<h4 id="orge238af4"><span class="section-number-4">1.2.2.</span> Bernoulli's Equation</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+From <a href="work_and_energy.html#orgeb82bad">energy conservation</a>, it can be shown that:
+</p>
+
+\begin{align}
+\boxed{P + \rho gy + \frac{1}{2}\rho v^2 = \text{constant}}
+\end{align}
+
+<p>
+This equation is known as <b>Bernoulli's equation</b>, where \(y\) is elevation. The terms \(\rho g y\) and \(\frac{1}{2} \rho v^2\) look a lot like their gravitational potential energy and kinetic energy counterparts. This is because these terms result from dividing those energies by the volume, making them <i>energy densities</i>: energy per unit volume. Similarly, \(P\), pressure, represents internal energy per unit volume (since by the ideal gas law, \(PV\) is internal energy). Viewing it like this, Bernoulli's equation can be intuitively understood as a equation describing a conservation of energy density.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Venturi tube
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider the Venturi tube setup shown below:
+</p>
+
+
+<div id="org410d3a9" class="figure">
+<p><img src="../static/PHYSICS_7A/fluids7.png" alt="fluids7.png" />
+</p>
+</div>
+
+<p>
+We want to show that \(P_2\), the pressure at point 2, is less than \(P_1\), the pressure at point 1.
+</p>
+
+<p>
+Assume that the manometer is reading the pressure difference between point 1 and point 2. From continuity, we know that \(v_2 = \frac{A_1v_1}{A_2}\). Then, using Bernoulli's equation, we have:
+</p>
+
+\begin{align}
+P_1 + \rho gy + \frac{1}{2}\rho v_1^2 &= P_2 + \rho gy + \frac{1}{2}\rho v_2^2 \notag \\
+P_1 - P_2 = \frac{1}{2}\rho(v_2^2 - v_1^2) \notag \\
+\Delta P = \frac{1}{2}\left(\frac{A_1^2}{A_2^2} - 1\right)v_1^2 \notag
+\end{align}
+
+<p>
+Since \(\frac{A_1^2}{A_2^2} - 1 > 0\), then \(P_1 > P_2\), so \(P_2\) is less than \(P_1\).
+</p>
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Container with hole
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Consider a container with a hole in it. We want to determine the velocities of the fluid at the top of the container (point 1) and at the hole (point 2):
+</p>
+
+
+<div id="orgf5b08ea" class="figure">
+<p><img src="../static/PHYSICS_7A/fluids8.png" alt="fluids8.png" />
+</p>
+</div>
+
+<p>
+We can use a combination of continuity and Bernoulli's equation to determine \(v_1\) and \(v_2\):
+</p>
+
+\begin{align}
+P_\text{atm} + \rho gy_1 + \frac{1}{2}\rho v_1^2 &= P_\text{atm} + \rho gy_2 + \frac{1}{2}\rho v_2^2 \notag \\
+\rho g(y_1 - y_2) &= \frac{1}{2}\rho(v_2^2 - v_1^2) \notag \\
+g(y_1-y_2) &= \frac{1}{2}(v_2^2 - v_1^2) \notag
+\end{align}
+
+<p>
+Since \(v_2 = \frac{A_1v_1}{A_2}\),
+</p>
+
+\begin{align}
+gH &= \frac{1}{2}\left(\frac{A_1^2v_1^2}{A_2^2}-v_1^2\right) \notag \\
+gH &= \frac{1}{2}\left(\frac{A_1^2}{A_2^2}-1\right)v_1^2 \notag \\
+v_1^2 &= \frac{2gH}{A_1^2-A_2^2}A_2^2 \notag
+\end{align}
+
+<p>
+Therefore, \(v_1\) is:
+</p>
+
+\begin{align}
+\boxed{v_1 = A_2\sqrt{\frac{2gH}{A_1^2-A_2^2}}} \notag
+\end{align}
+
+<p>
+Plugging this back into the continuity equation, we determine \(v_2\) to be:
+</p>
+
+\begin{align}
+\boxed{v_2 = A_1\sqrt{\frac{2gH}{A_1^2-A_2^2}}} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -407,7 +575,7 @@ Isolating \(\rho_s\), we get:
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-12-03 11:01
+               Last modified: 2025-12-06 11:48
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
