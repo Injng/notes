@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-25 Tue 16:16 -->
+<!-- 2025-12-13 Sat 13:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Systems of Differential Equations</title>
@@ -129,6 +129,7 @@
 <li><a href="#org2e042ea">1. Notation</a></li>
 <li><a href="#org717e4ef">2. Real Eigenvalues</a></li>
 <li><a href="#org5189506">3. Nonreal Eigenvalues</a></li>
+<li><a href="#org1450bdc">4. Generalized Eigenvectors</a></li>
 </ul>
 </div>
 </div>
@@ -232,7 +233,7 @@ Consider a tank \(A\), with the amount of salt in the tank given by the function
 </p>
 
 
-<div id="org5e23c2e" class="figure">
+<div id="orgdf2b678" class="figure">
 <p><img src="../static/MATH_54/systems_diffeq1.png" alt="systems_diffeq1.png" />
 </p>
 </div>
@@ -296,13 +297,37 @@ Note that using the conjugate eigenvalue will yield the same solutions.
 </p>
 </div>
 </div>
+<div id="outline-container-org1450bdc" class="outline-2">
+<h2 id="org1450bdc"><span class="section-number-2">4.</span> Generalized Eigenvectors</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Sometimes, when we have repeated eigenvalues, those do not yield enough eigenvectors to solve the linear system. In these cases, we "relax" the rules for eigenvectors a bit, such that we can find what is called <b>generalized eigenvectors</b>.
+</p>
+
+<p>
+For a particular eigenvalue \(\lambda\) with an eigenvector \(\mathbf{v}\), we can find a generalized eigenvector \(\mathbf{w}\) by solving the equation:
+</p>
+
+\begin{align}
+(A-\lambda I)\mathbf{w} = \mathbf{v}
+\end{align}
+
+<p>
+Then, the general solution would be:
+</p>
+
+\begin{align}
+x(t) = c_1e^{\lambda t}\mathbf{v} + c_2e^{\lambda t}(t\mathbf{v} + \mathbf{w})
+\end{align}
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
              </div>
              <div class="last-modified">
-               Last modified: 2025-11-25 16:16
+               Last modified: 2025-12-13 13:47
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
