@@ -224,8 +224,31 @@ img {
   border-radius: 6px;
 }
 
+/* Language Switcher */
+.lang-switcher {
+  float: right;
+  margin-bottom: 0.5em;
+}
+
+.lang-switcher a {
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  background-color: var(--surface0);
+  color: var(--blue);
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+
+.lang-switcher a:hover {
+  background-color: var(--surface1);
+  color: var(--sapphire);
+}
+
 /* Breadcrumb styling adjustment to align with search bar */
 .breadcrumb {
   border-top: 1px solid var(--surface1);
   padding-top: 1em;
+  clear: both;
 }
