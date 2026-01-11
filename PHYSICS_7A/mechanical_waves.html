@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 12:45 -->
+<!-- 2026-01-11 Sun 13:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Mechanical Waves</title>
@@ -17,743 +17,6 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -997,38 +260,38 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2a3788d">1. Waves</a>
+<li><a href="#org45c04da">1. Waves</a>
 <ul>
-<li><a href="#org63ff935">1.1. Types of Waves</a></li>
-<li><a href="#org9d1c28a">1.2. Properties of Waves</a></li>
-<li><a href="#org906813f">1.3. Mathematical Representation of a Wave</a></li>
-<li><a href="#org2663741">1.4. Energy Transported by Waves</a></li>
+<li><a href="#orgde8d005">1.1. Types of Waves</a></li>
+<li><a href="#orga0dc843">1.2. Properties of Waves</a></li>
+<li><a href="#org4e1f90b">1.3. Mathematical Representation of a Wave</a></li>
+<li><a href="#org3458d0a">1.4. Energy Transported by Waves</a></li>
 </ul>
 </li>
-<li><a href="#orgef5a193">2. The Wave Equation</a></li>
-<li><a href="#orgbb09dd9">3. Sound Waves</a>
+<li><a href="#orgc51938b">2. The Wave Equation</a></li>
+<li><a href="#org122d76e">3. Sound Waves</a>
 <ul>
-<li><a href="#org7096d91">3.1. Intensity and Loudness</a></li>
-<li><a href="#orgbeae38b">3.2. Interference in Space</a></li>
-<li><a href="#orgc9cb5a4">3.3. Beating</a></li>
+<li><a href="#orgde73fcd">3.1. Intensity and Loudness</a></li>
+<li><a href="#org8ac97a1">3.2. Interference in Space</a></li>
+<li><a href="#org24431a1">3.3. Beating</a></li>
 </ul>
 </li>
-<li><a href="#org8b7be83">4. Standing Waves</a>
+<li><a href="#orgfd5feb9">4. Standing Waves</a>
 <ul>
-<li><a href="#org7359b15">4.1. Fixed at Both Ends</a></li>
-<li><a href="#org0703700">4.2. Free at One End</a></li>
-<li><a href="#org561ddf2">4.3. Standing Waves in Air Columns</a></li>
+<li><a href="#orgc6a13fc">4.1. Fixed at Both Ends</a></li>
+<li><a href="#org409c78e">4.2. Free at One End</a></li>
+<li><a href="#org72d7495">4.3. Standing Waves in Air Columns</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2a3788d" class="outline-2">
-<h2 id="org2a3788d"><span class="section-number-2">1.</span> Waves</h2>
+<div id="outline-container-org45c04da" class="outline-2">
+<h2 id="org45c04da"><span class="section-number-2">1.</span> Waves</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org63ff935" class="outline-3">
-<h3 id="org63ff935"><span class="section-number-3">1.1.</span> Types of Waves</h3>
+<div id="outline-container-orgde8d005" class="outline-3">
+<h3 id="orgde8d005"><span class="section-number-3">1.1.</span> Types of Waves</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <b>Mechanical waves</b>, so-called <i>mechanical</i> because they require a medium to propogate, and <i>wave</i> because of the disturbance tht travels through space over time, can be split into <b>longitudinal waves</b> and <b>transverse waves</b>.
@@ -1043,15 +306,15 @@ The medium is what allows a disturbance to travel through space over time. Howev
 </p>
 </div>
 </div>
-<div id="outline-container-org9d1c28a" class="outline-3">
-<h3 id="org9d1c28a"><span class="section-number-3">1.2.</span> Properties of Waves</h3>
+<div id="outline-container-orga0dc843" class="outline-3">
+<h3 id="orga0dc843"><span class="section-number-3">1.2.</span> Properties of Waves</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 If we graph a wave at a particular time \(t\) over \(x\):
 </p>
 
 
-<div id="org2fe7695" class="figure">
+<div id="orgc60dbaa" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves1.png" alt="mechanical_waves1.png" />
 </p>
 </div>
@@ -1061,7 +324,7 @@ The wavelength \(\lambda\) is the distance between two peaks or troughs. If we i
 </p>
 
 
-<div id="org557ff5d" class="figure">
+<div id="orgd42c4ca" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves2.png" alt="mechanical_waves2.png" />
 </p>
 </div>
@@ -1087,8 +350,8 @@ v = \sqrt{\frac{F_T}{\mu}}
 \end{align}
 </div>
 </div>
-<div id="outline-container-org906813f" class="outline-3">
-<h3 id="org906813f"><span class="section-number-3">1.3.</span> Mathematical Representation of a Wave</h3>
+<div id="outline-container-org4e1f90b" class="outline-3">
+<h3 id="org4e1f90b"><span class="section-number-3">1.3.</span> Mathematical Representation of a Wave</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Consider the displacement of a wave at time \(t=0\). We can mathematically describe this wave shape as:
@@ -1136,8 +399,8 @@ Additionally, since \(v = \lambda f\), \(\lambda = \frac{2\pi}{k}\), and \(\omeg
 \end{align}
 </div>
 </div>
-<div id="outline-container-org2663741" class="outline-3">
-<h3 id="org2663741"><span class="section-number-3">1.4.</span> Energy Transported by Waves</h3>
+<div id="outline-container-org3458d0a" class="outline-3">
+<h3 id="org3458d0a"><span class="section-number-3">1.4.</span> Energy Transported by Waves</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 Waves transport energy through a medium by transferring vibrational energy from particle to particle. For a wave with amplitude \(A\) moving in simple harmonic motion, its energy is given by:
@@ -1165,15 +428,15 @@ From this equation we see that the energy transported by a wave is <i>proportion
 </div>
 </div>
 </div>
-<div id="outline-container-orgef5a193" class="outline-2">
-<h2 id="orgef5a193"><span class="section-number-2">2.</span> The Wave Equation</h2>
+<div id="outline-container-orgc51938b" class="outline-2">
+<h2 id="orgc51938b"><span class="section-number-2">2.</span> The Wave Equation</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Many types of waves satisfy a general equation that describes the motion of the wave. This equation, similar to Newtons's law of motion for particles, is called the <b>wave equation</b>. Consider a one-dimensional wave traveling on a stretched horizontal string:
 </p>
 
 
-<div id="org708fc8c" class="figure">
+<div id="orgbed4014" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves3.png" alt="mechanical_waves3.png" />
 </p>
 </div>
@@ -1234,8 +497,8 @@ By (2), we can generalize this for all waves. The 1D wave equation is:
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgbb09dd9" class="outline-2">
-<h2 id="orgbb09dd9"><span class="section-number-2">3.</span> Sound Waves</h2>
+<div id="outline-container-org122d76e" class="outline-2">
+<h2 id="org122d76e"><span class="section-number-2">3.</span> Sound Waves</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>Sound waves</b> are <i>longitudinal waves</i> that propogate through a medium, which can be represented as either a displacement of fluid molecules or a pressure variation. They have two main characteristics, loudness (which depends on intensity), and pitch (which depends on frequency, the higher the frequency the higher the pitch). The speed of a sound wave through a medium is determined by:
@@ -1258,7 +521,7 @@ where \(\Delta P\) is a change in pressure and \(\frac{\Delta V}{V}\) represents
 </p>
 
 
-<div id="org227cd34" class="figure">
+<div id="org7e65728" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves5.png" alt="mechanical_waves5.png" />
 </p>
 </div>
@@ -1289,8 +552,8 @@ Since \(v=\sqrt{\frac{B}{\rho}}\) and \(v = \frac{\omega}{k}\) from (4), we can 
 \Delta P_M = \rho vA2\pi f
 \end{align}
 </div>
-<div id="outline-container-org7096d91" class="outline-3">
-<h3 id="org7096d91"><span class="section-number-3">3.1.</span> Intensity and Loudness</h3>
+<div id="outline-container-orgde73fcd" class="outline-3">
+<h3 id="orgde73fcd"><span class="section-number-3">3.1.</span> Intensity and Loudness</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <b>Intensity</b> is defined as the average <i>power</i> over area:
@@ -1320,15 +583,15 @@ where \(I_0\) is the threshold for hearing.
 </p>
 </div>
 </div>
-<div id="outline-container-orgbeae38b" class="outline-3">
-<h3 id="orgbeae38b"><span class="section-number-3">3.2.</span> Interference in Space</h3>
+<div id="outline-container-org8ac97a1" class="outline-3">
+<h3 id="org8ac97a1"><span class="section-number-3">3.2.</span> Interference in Space</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 When two sound waves overlap with one another, they produce <b>interference</b>:
 </p>
 
 
-<div id="org3372afd" class="figure">
+<div id="org3ea87fa" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves8.png" alt="mechanical_waves8.png" />
 </p>
 </div>
@@ -1350,8 +613,8 @@ There is also <b>destructive interference</b> when the peak of one wave aligns w
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgc9cb5a4" class="outline-3">
-<h3 id="orgc9cb5a4"><span class="section-number-3">3.3.</span> Beating</h3>
+<div id="outline-container-org24431a1" class="outline-3">
+<h3 id="org24431a1"><span class="section-number-3">3.3.</span> Beating</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 The interference of two slightly different frequencies result in a pulsating sound called <b>beating</b>. Consider the equations of two waves with two slightly different frequencies \(\omega_1\) and \(\omega_2\):
@@ -1381,8 +644,8 @@ The beat frequency is then the difference between the frequencies of the two wav
 </div>
 </div>
 </div>
-<div id="outline-container-org8b7be83" class="outline-2">
-<h2 id="org8b7be83"><span class="section-number-2">4.</span> Standing Waves</h2>
+<div id="outline-container-orgfd5feb9" class="outline-2">
+<h2 id="orgfd5feb9"><span class="section-number-2">4.</span> Standing Waves</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 If \(D_1\) and \(D_2\) are solutions to the wave equation, than any combination \(aD_1 + bD_2\) also satisfies the wave equation: this is known as the <b>superposition principle</b>. Conversely, for any complicated wave \(D\), by Fourier's Theorem you can decompose it into many simple harmonic waves.
@@ -1403,8 +666,8 @@ D_{\text{net}} &= D_1 + D_2 \notag \\
 We see that here, there is a separation between the space variable and time. This indicates that we have a non-traveling, or <b>standing wave</b>.
 </p>
 </div>
-<div id="outline-container-org7359b15" class="outline-3">
-<h3 id="org7359b15"><span class="section-number-3">4.1.</span> Fixed at Both Ends</h3>
+<div id="outline-container-orgc6a13fc" class="outline-3">
+<h3 id="orgc6a13fc"><span class="section-number-3">4.1.</span> Fixed at Both Ends</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 If we have a rope that is fixed at both ends, then we have \(D_{\text{net}} = 0\) at both ends of the rope: \(x = 0\) and \(x = L\). Then, we will need to fulfill the condition that \(\sin(kL) = 0\), or \(kL = n\pi\) for \(n\) in the positive natural numbers. We know that \(k = \frac{2\pi}{\lambda}\), so substituting gives:
@@ -1419,7 +682,7 @@ for all \(n\) in the positive natural numbers, limited by the length of the rope
 </p>
 
 
-<div id="org6a563d0" class="figure">
+<div id="orgbd67fad" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves4.png" alt="mechanical_waves4.png" />
 </p>
 </div>
@@ -1437,8 +700,8 @@ We call when \(n=1\) the <b>fundamental mode</b>, or the <b>first harmonic</b>, 
 \end{align}
 </div>
 </div>
-<div id="outline-container-org0703700" class="outline-3">
-<h3 id="org0703700"><span class="section-number-3">4.2.</span> Free at One End</h3>
+<div id="outline-container-org409c78e" class="outline-3">
+<h3 id="org409c78e"><span class="section-number-3">4.2.</span> Free at One End</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 For a rope clamped at one end and free at the other end, from (8) we see that \(D_{\text{net}} = \pm 2A\) at the free end. Then, we must satisfy \(\sin(kL) = \pm 1\), which means that \(kL = \frac{(2n+1)\pi}{2}\). Substituting \(k\) gives:
@@ -1453,15 +716,15 @@ Thus, for a rope free at one end, the length must be in <i>odd integer multiples
 </p>
 </div>
 </div>
-<div id="outline-container-org561ddf2" class="outline-3">
-<h3 id="org561ddf2"><span class="section-number-3">4.3.</span> Standing Waves in Air Columns</h3>
+<div id="outline-container-org72d7495" class="outline-3">
+<h3 id="org72d7495"><span class="section-number-3">4.3.</span> Standing Waves in Air Columns</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Sound instruments produce standing waves at various frequencies. For an air tube that is open at both ends (e.g. flute), there is minimum or maximum displacement at a tube end because the molecules can move more freely:
 </p>
 
 
-<div id="org6340839" class="figure">
+<div id="orgf7fa1c4" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves6.png" alt="mechanical_waves6.png" />
 </p>
 </div>
@@ -1475,7 +738,7 @@ The air tube closed at one end and open at the other (e.g. clarinet) has a minim
 </p>
 
 
-<div id="orge6cd521" class="figure">
+<div id="orge62ce50" class="figure">
 <p><img src="../static/PHYSICS_7A/mechanical_waves7.png" alt="mechanical_waves7.png" />
 </p>
 </div>

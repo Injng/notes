@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 12:45 -->
+<!-- 2026-01-11 Sun 13:42 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Determinants</title>
@@ -17,743 +17,6 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -997,48 +260,48 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org261ba3c">1. Determinants</a>
+<li><a href="#orga939683">1. Determinants</a>
 <ul>
-<li><a href="#orgfc54eac">1.1. Determinant of \(2 \times 2\)</a></li>
-<li><a href="#orgf7ca881">1.2. Determinant of \(3 \times 3\)</a></li>
-<li><a href="#org763d7b2">1.3. Determinant of \(n \times n\)</a>
+<li><a href="#org90c38f0">1.1. Determinant of \(2 \times 2\)</a></li>
+<li><a href="#orgd80ebeb">1.2. Determinant of \(3 \times 3\)</a></li>
+<li><a href="#org4222834">1.3. Determinant of \(n \times n\)</a>
 <ul>
-<li><a href="#org2339a3e">1.3.1. Proof</a></li>
+<li><a href="#org3e21f4e">1.3.1. Proof</a></li>
 </ul>
 </li>
-<li><a href="#orgdb8a6d1">1.4. Determinant of Triangular Matrix</a></li>
-<li><a href="#org030d580">1.5. Determinant of Identity Matrix</a></li>
-<li><a href="#org2a36d24">1.6. Product of Determinants</a></li>
+<li><a href="#orgbd90158">1.4. Determinant of Triangular Matrix</a></li>
+<li><a href="#org22e52b0">1.5. Determinant of Identity Matrix</a></li>
+<li><a href="#org77b8f44">1.6. Product of Determinants</a></li>
 </ul>
 </li>
-<li><a href="#org91aa273">2. Row Operations with Determinants</a>
+<li><a href="#org2e6ff66">2. Row Operations with Determinants</a>
 <ul>
-<li><a href="#org725288e">2.1. Scaling</a></li>
-<li><a href="#orgd669f3c">2.2. Interchanging</a></li>
-<li><a href="#orge0436a9">2.3. Addition</a></li>
+<li><a href="#orgdc83e9d">2.1. Scaling</a></li>
+<li><a href="#orgc889249">2.2. Interchanging</a></li>
+<li><a href="#org3b8d29c">2.3. Addition</a></li>
 </ul>
 </li>
-<li><a href="#org16490be">3. Cramer's Rule</a>
+<li><a href="#orgd633a88">3. Cramer's Rule</a>
 <ul>
-<li><a href="#org4b66c71">3.1. Proof</a></li>
+<li><a href="#orgc89e349">3.1. Proof</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org261ba3c" class="outline-2">
-<h2 id="org261ba3c"><span class="section-number-2">1.</span> Determinants</h2>
+<div id="outline-container-orga939683" class="outline-2">
+<h2 id="orga939683"><span class="section-number-2">1.</span> Determinants</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The <b>determinant</b> of a matrix serves as a method for checking if a given square matrix is invertible or not. The fundamental principle of the determinant rests on the fact that a square matrix is invertible if <i>all the diagonal entries are nonzero</i> for its <a href="triangular_and_echelon_forms.html#org04b28f1">upper triangular form</a>, as this implies there is a <i>pivot in every row</i>.
+The <b>determinant</b> of a matrix serves as a method for checking if a given square matrix is invertible or not. The fundamental principle of the determinant rests on the fact that a square matrix is invertible if <i>all the diagonal entries are nonzero</i> for its <a href="triangular_and_echelon_forms.html#org0df3c9b">upper triangular form</a>, as this implies there is a <i>pivot in every row</i>.
 </p>
 
 <p>
 That's what the determinant does: it yields a nonzero value only if all the diagonal entries for the upper triangular form of the square matrix are nonzero.
 </p>
 </div>
-<div id="outline-container-orgfc54eac" class="outline-3">
-<h3 id="orgfc54eac"><span class="section-number-3">1.1.</span> Determinant of \(2 \times 2\)</h3>
+<div id="outline-container-org90c38f0" class="outline-3">
+<h3 id="org90c38f0"><span class="section-number-3">1.1.</span> Determinant of \(2 \times 2\)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Given a \(2 \times 2\) matrix with the upper left entry nonzero, we can simplify the matrix to be upper triangular like so:
@@ -1065,8 +328,8 @@ We want \(ad-bc \neq 0\). Thus, we call \(ad-bc\) the determinant of a \(2 \time
 </p>
 </div>
 </div>
-<div id="outline-container-orgf7ca881" class="outline-3">
-<h3 id="orgf7ca881"><span class="section-number-3">1.2.</span> Determinant of \(3 \times 3\)</h3>
+<div id="outline-container-orgd80ebeb" class="outline-3">
+<h3 id="orgd80ebeb"><span class="section-number-3">1.2.</span> Determinant of \(3 \times 3\)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 We can also try to turn a \(3 \times 3\) matrix into an upper triangular form, if the top left entry is nonzero (this can always be the case, unless the first entry for all the rows are zero, in which case it is clear that the matrix is not invertible):
@@ -1119,8 +382,8 @@ This is precisely the determinant of a \(3 \times 3\) matrix. We can view this, 
 \end{align}
 </div>
 </div>
-<div id="outline-container-org763d7b2" class="outline-3">
-<h3 id="org763d7b2"><span class="section-number-3">1.3.</span> Determinant of \(n \times n\)</h3>
+<div id="outline-container-org4222834" class="outline-3">
+<h3 id="org4222834"><span class="section-number-3">1.3.</span> Determinant of \(n \times n\)</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 We can generalize our method to any \(n \times n\) matrix \(A=[a_{ij}]\). We call the determinant of the submatrix with the i-th row and j-th column removed the <b>minor</b> of an entry \(a_{ij}\), or \(M_{ij}\). Then, define the <b>cofactor</b> \(C_{ij}\) of entry \(a_{ij}\) to be \((-1)^{i+j}M_{ij}\).
@@ -1138,8 +401,8 @@ We claim that we can apply <b>cofactor expansion</b> to any row and column to fi
 where \(i\) and \(j\) iterate along some row or column of \(A\).
 </p>
 </div>
-<div id="outline-container-org2339a3e" class="outline-4">
-<h4 id="org2339a3e"><span class="section-number-4">1.3.1.</span> Proof</h4>
+<div id="outline-container-org3e21f4e" class="outline-4">
+<h4 id="org3e21f4e"><span class="section-number-4">1.3.1.</span> Proof</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 We can see that cofactor expansion works using induction. We know that the base case, \(2 \times 2\), is true. The inductive hypothesis will assume that for any \(k \times k\) matrix, the cofactor expansion will find the determinant that will be non-zero if and only if it is invertible, that is, it will correctly determine invertibility.
@@ -1204,8 +467,8 @@ Since the base case of \(2 \times 2\) is true, and the inductive step has shown 
 </div>
 </div>
 </div>
-<div id="outline-container-orgdb8a6d1" class="outline-3">
-<h3 id="orgdb8a6d1"><span class="section-number-3">1.4.</span> Determinant of Triangular Matrix</h3>
+<div id="outline-container-orgbd90158" class="outline-3">
+<h3 id="orgbd90158"><span class="section-number-3">1.4.</span> Determinant of Triangular Matrix</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 We want to consider the general determinant of an upper triangular matrix, like so:
@@ -1237,16 +500,16 @@ So, the determinant of a triangular matrix is just the <i>product of the diagona
 </p>
 </div>
 </div>
-<div id="outline-container-org030d580" class="outline-3">
-<h3 id="org030d580"><span class="section-number-3">1.5.</span> Determinant of Identity Matrix</h3>
+<div id="outline-container-org22e52b0" class="outline-3">
+<h3 id="org22e52b0"><span class="section-number-3">1.5.</span> Determinant of Identity Matrix</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 Since the identity matrix is in triangular form, with ones on the diagonal and zeroes everywhere else, the determinant of any identity matrix is just \(1\).
 </p>
 </div>
 </div>
-<div id="outline-container-org2a36d24" class="outline-3">
-<h3 id="org2a36d24"><span class="section-number-3">1.6.</span> Product of Determinants</h3>
+<div id="outline-container-org77b8f44" class="outline-3">
+<h3 id="org77b8f44"><span class="section-number-3">1.6.</span> Product of Determinants</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 A property of the product of determinants, if \(A, B\) are square matrices:
@@ -1258,15 +521,15 @@ A property of the product of determinants, if \(A, B\) are square matrices:
 </div>
 </div>
 </div>
-<div id="outline-container-org91aa273" class="outline-2">
-<h2 id="org91aa273"><span class="section-number-2">2.</span> Row Operations with Determinants</h2>
+<div id="outline-container-org2e6ff66" class="outline-2">
+<h2 id="org2e6ff66"><span class="section-number-2">2.</span> Row Operations with Determinants</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We would like to understand how row operations would affect the determinant of a matrix. We will consider the three basic row operations: scaling, interchanging two rows, and adding a multiple of one row to another.
 </p>
 </div>
-<div id="outline-container-org725288e" class="outline-3">
-<h3 id="org725288e"><span class="section-number-3">2.1.</span> Scaling</h3>
+<div id="outline-container-orgdc83e9d" class="outline-3">
+<h3 id="orgdc83e9d"><span class="section-number-3">2.1.</span> Scaling</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Consider the \(2 \times 2\) case:
@@ -1282,8 +545,8 @@ We see that <i>scaling a row in a matrix by \(r\) scales the determinant by \(r\
 </p>
 </div>
 </div>
-<div id="outline-container-orgd669f3c" class="outline-3">
-<h3 id="orgd669f3c"><span class="section-number-3">2.2.</span> Interchanging</h3>
+<div id="outline-container-orgc889249" class="outline-3">
+<h3 id="orgc889249"><span class="section-number-3">2.2.</span> Interchanging</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Consider the \(2 \times 2\) case:
@@ -1307,8 +570,8 @@ The second case would be interchanging two non-adjacent rows. However, realize t
 </p>
 </div>
 </div>
-<div id="outline-container-orge0436a9" class="outline-3">
-<h3 id="orge0436a9"><span class="section-number-3">2.3.</span> Addition</h3>
+<div id="outline-container-org3b8d29c" class="outline-3">
+<h3 id="org3b8d29c"><span class="section-number-3">2.3.</span> Addition</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Consider the following \(3 \times 3\) matrix where the first row has been added to a multiple of the second row:
@@ -1349,8 +612,8 @@ In other words, the determinant of a matrix that has one row added to the multip
 </div>
 </div>
 </div>
-<div id="outline-container-org16490be" class="outline-2">
-<h2 id="org16490be"><span class="section-number-2">3.</span> Cramer's Rule</h2>
+<div id="outline-container-orgd633a88" class="outline-2">
+<h2 id="orgd633a88"><span class="section-number-2">3.</span> Cramer's Rule</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>Cramer's rule</b> can be used to solve \(n \times n\) systems which have a unique solution. If \(A\) is \(n \times n\) and invertible, \(\mathbf{b}\) is \(n \times 1\), and we want to solve \(A\mathbf{x} = \mathbf{b}\), denote \(A_i(\mathbf{b})\) as the matrix \(A\) with its i-th column replaced by \(\mathbf{b}\). Then, Cramer's rule states that for \(A\mathbf{x} = \mathbf{b}\), where \(\mathbf{X} = (x_1, x_2, \dots, x_n)\), the solution is:
@@ -1360,11 +623,11 @@ In other words, the determinant of a matrix that has one row added to the multip
 x_i = \frac{\det[A_i(\mathbf{b})]}{\det A}
 \end{align}
 </div>
-<div id="outline-container-org4b66c71" class="outline-3">
-<h3 id="org4b66c71"><span class="section-number-3">3.1.</span> Proof</h3>
+<div id="outline-container-orgc89e349" class="outline-3">
+<h3 id="orgc89e349"><span class="section-number-3">3.1.</span> Proof</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-Consider \(A \cdot I_i(\mathbf{x})\). We know that due to <a href="matrix_operations.html#org1a7f520">matrix multiplication</a> by columns, we have the following:
+Consider \(A \cdot I_i(\mathbf{x})\). We know that due to <a href="matrix_operations.html#orgca8e17d">matrix multiplication</a> by columns, we have the following:
 </p>
 
 \begin{align}
