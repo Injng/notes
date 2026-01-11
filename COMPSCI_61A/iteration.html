@@ -3,20 +3,556 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 13:33 -->
+<!-- 2026-01-11 Sun 12:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Iteration</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-                     <script src="/pagefind/pagefind-ui.js"></script>
-                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
-                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
-                     <link rel="stylesheet" href="/style.css" type="text/css"/>
-                     <script>hljs.highlightAll();</script>
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -94,37 +630,37 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge4950b1">1. Iterators</a>
+<li><a href="#orge61289d">1. Iterators</a>
 <ul>
-<li><a href="#org5cd9087">1.1. Built-In Functions</a></li>
-<li><a href="#org9871bd6">1.2. Generators</a>
+<li><a href="#org8659bdd">1.1. Built-In Functions</a></li>
+<li><a href="#org03db865">1.2. Generators</a>
 <ul>
-<li><a href="#org906d06f">1.2.1. Yielding From Iterators</a></li>
+<li><a href="#org3130970">1.2.1. Yielding From Iterators</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orge709390">2. <code>while</code> Statements</a>
+<li><a href="#orgd7ff235">2. <code>while</code> Statements</a>
 <ul>
-<li><a href="#org3aa4445">2.1. Procedure for <code>while</code> Statements</a></li>
+<li><a href="#orge24091b">2.1. Procedure for <code>while</code> Statements</a></li>
 </ul>
 </li>
-<li><a href="#org6367f59">3. <code>for</code> Statements</a>
+<li><a href="#org521facb">3. <code>for</code> Statements</a>
 <ul>
-<li><a href="#orgc3d8f49">3.1. Procedure for <code>for</code> Statements</a></li>
-<li><a href="#org2948103">3.2. Sequence Unpacking</a></li>
-<li><a href="#org5bbae8e">3.3. Ranges</a></li>
-<li><a href="#org70e51bb">3.4. Iterators</a></li>
+<li><a href="#orgf57d001">3.1. Procedure for <code>for</code> Statements</a></li>
+<li><a href="#orgdb7a616">3.2. Sequence Unpacking</a></li>
+<li><a href="#org184f84c">3.3. Ranges</a></li>
+<li><a href="#orgd289ab0">3.4. Iterators</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge4950b1" class="outline-2">
-<h2 id="orge4950b1"><span class="section-number-2">1.</span> Iterators</h2>
+<div id="outline-container-orge61289d" class="outline-2">
+<h2 id="orge61289d"><span class="section-number-2">1.</span> Iterators</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-A container can provide an <b>iterator</b> that provides access to its elements in some order. Iterators are <a href="mutation.html#orgc3c2fa2">mutable</a> values. The function <code>iter(&lt;iterable&gt;)</code> returns an iterator over the elements of an iterable value (such as any <a href="sequences.html#orgd421495">sequence</a>), and the function <code>next(&lt;iterator&gt;)</code> returns the next element in an iterator. For example:
+A container can provide an <b>iterator</b> that provides access to its elements in some order. Iterators are <a href="mutation.html#org854c4af">mutable</a> values. The function <code>iter(&lt;iterable&gt;)</code> returns an iterator over the elements of an iterable value (such as any <a href="sequences.html#orgc06a0af">sequence</a>), and the function <code>next(&lt;iterator&gt;)</code> returns the next element in an iterator. For example:
 </p>
 
 <pre><code class="language-python"><span style="color: #cdd6f4;">s</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span>3, 4, 5<span style="color: #f38ba8;">]</span>
@@ -141,8 +677,8 @@ When the iterator reaches the end of the sequence, it throws a <code>Stopiterati
 An iterator is useful because it bundles together a sequence and it position within that sequence as one object. This allows you to retain the position while passing the object around, which is useful for ensuring that each element is processed only once.
 </p>
 </div>
-<div id="outline-container-org5cd9087" class="outline-3">
-<h3 id="org5cd9087"><span class="section-number-3">1.1.</span> Built-In Functions</h3>
+<div id="outline-container-org8659bdd" class="outline-3">
+<h3 id="org8659bdd"><span class="section-number-3">1.1.</span> Built-In Functions</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Many built-in Python sequence functions return iterators that compute results lazily:
@@ -180,8 +716,8 @@ To view the contents of an iterator, we can place the resulting elements into a 
 </p>
 </div>
 </div>
-<div id="outline-container-org9871bd6" class="outline-3">
-<h3 id="org9871bd6"><span class="section-number-3">1.2.</span> Generators</h3>
+<div id="outline-container-org03db865" class="outline-3">
+<h3 id="org03db865"><span class="section-number-3">1.2.</span> Generators</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 A <b>generator</b> is a special type of iterator that is returned with a <b>generator function</b>. Instead of returning a value, generator functions use the <code>yield</code> keyword to "yield" values as <code>next()</code> is called on the generator that it returns. Unlike normal functions which can only return one value, generator functions can yield multiple values in succession, like so:
@@ -234,8 +770,8 @@ Here, using <code>yield</code> instead of returning all of the partitions at onc
 
 </details>
 </div>
-<div id="outline-container-org906d06f" class="outline-4">
-<h4 id="org906d06f"><span class="section-number-4">1.2.1.</span> Yielding From Iterators</h4>
+<div id="outline-container-org3130970" class="outline-4">
+<h4 id="org3130970"><span class="section-number-4">1.2.1.</span> Yielding From Iterators</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 A generator can also yield directly from another iterator by using the <code>yield from</code> syntax:
@@ -251,8 +787,8 @@ A generator can also yield directly from another iterator by using the <code>yie
 </div>
 </div>
 </div>
-<div id="outline-container-orge709390" class="outline-2">
-<h2 id="orge709390"><span class="section-number-2">2.</span> <code>while</code> Statements</h2>
+<div id="outline-container-orgd7ff235" class="outline-2">
+<h2 id="orgd7ff235"><span class="section-number-2">2.</span> <code>while</code> Statements</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>While statements</b> contain statements that are repeated as long as some condition is true. The following is a <code>while</code> statement:
@@ -298,8 +834,8 @@ We can write a function using a <code>while</code> loop to find the nth Fibonacc
 
 </details>
 </div>
-<div id="outline-container-org3aa4445" class="outline-3">
-<h3 id="org3aa4445"><span class="section-number-3">2.1.</span> Procedure for <code>while</code> Statements</h3>
+<div id="outline-container-orge24091b" class="outline-3">
+<h3 id="orge24091b"><span class="section-number-3">2.1.</span> Procedure for <code>while</code> Statements</h3>
 <div class="outline-text-3" id="text-2-1">
 <ol class="org-ol">
 <li>Evaluate the header's expression.</li>
@@ -312,8 +848,8 @@ Note that the while condition <i>must eventually become a false value</i> for th
 </div>
 </div>
 </div>
-<div id="outline-container-org6367f59" class="outline-2">
-<h2 id="org6367f59"><span class="section-number-2">3.</span> <code>for</code> Statements</h2>
+<div id="outline-container-org521facb" class="outline-2">
+<h2 id="org521facb"><span class="section-number-2">3.</span> <code>for</code> Statements</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>For statements</b> allows us to iterate over an object that is <i>iterable</i>. For example, a <a href="sequences.html">sequence</a> is iterable, so if we have a list, we can iterate over that list using a <code>for</code> loop. In general, a <code>for</code> statement is written like so:
@@ -323,8 +859,8 @@ Note that the while condition <i>must eventually become a false value</i> for th
     &lt;suite&gt;
 </code></pre>
 </div>
-<div id="outline-container-orgc3d8f49" class="outline-3">
-<h3 id="orgc3d8f49"><span class="section-number-3">3.1.</span> Procedure for <code>for</code> Statements</h3>
+<div id="outline-container-orgf57d001" class="outline-3">
+<h3 id="orgf57d001"><span class="section-number-3">3.1.</span> Procedure for <code>for</code> Statements</h3>
 <div class="outline-text-3" id="text-3-1">
 <ol class="org-ol">
 <li>Evaluate the header's expression, which must yield an iterable value.</li>
@@ -332,11 +868,11 @@ Note that the while condition <i>must eventually become a false value</i> for th
 </ol>
 </div>
 </div>
-<div id="outline-container-org2948103" class="outline-3">
-<h3 id="org2948103"><span class="section-number-3">3.2.</span> Sequence Unpacking</h3>
+<div id="outline-container-orgdb7a616" class="outline-3">
+<h3 id="orgdb7a616"><span class="section-number-3">3.2.</span> Sequence Unpacking</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-We can also do <b>sequence unpacking</b> in <code>for</code> statements. If we have a sequence of fixed-length sequences, then we can give a name for each element in a fixed-length sequence, similar to the syntax of <a href="assignment.html#org3ca13ca">multiple assignment</a>:
+We can also do <b>sequence unpacking</b> in <code>for</code> statements. If we have a sequence of fixed-length sequences, then we can give a name for each element in a fixed-length sequence, similar to the syntax of <a href="assignment.html#orga9140bf">multiple assignment</a>:
 </p>
 
 <pre><code class="language-python"><span style="color: #cdd6f4;">pairs</span> <span style="color: #89dceb;">=</span> <span style="color: #f38ba8;">[</span><span style="color: #fab387;">[</span>1, 2<span style="color: #fab387;">]</span>, <span style="color: #fab387;">[</span>2, 2<span style="color: #fab387;">]</span>, <span style="color: #fab387;">[</span>3, 2<span style="color: #fab387;">]</span>, <span style="color: #fab387;">[</span>4, 4<span style="color: #fab387;">]</span><span style="color: #f38ba8;">]</span>
@@ -345,11 +881,11 @@ We can also do <b>sequence unpacking</b> in <code>for</code> statements. If we h
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org5bbae8e" class="outline-3">
-<h3 id="org5bbae8e"><span class="section-number-3">3.3.</span> Ranges</h3>
+<div id="outline-container-org184f84c" class="outline-3">
+<h3 id="org184f84c"><span class="section-number-3">3.3.</span> Ranges</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
-Since <a href="sequences.html#orga3eb7da">ranges</a> are an iterable value, we can iterate over ranges in a <code>for</code> loop. This is especially helpful for controlling the number of times we iterate, or when we don't care what the element is. When we don't need to bind a name to an element, we can use the underscore <code>_</code> to make our code more readable by telling other programmers that the name will not be used:
+Since <a href="sequences.html#orgd104a1a">ranges</a> are an iterable value, we can iterate over ranges in a <code>for</code> loop. This is especially helpful for controlling the number of times we iterate, or when we don't care what the element is. When we don't need to bind a name to an element, we can use the underscore <code>_</code> to make our code more readable by telling other programmers that the name will not be used:
 </p>
 
 <pre><code class="language-python"><span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">_</span> <span style="color: #cba6f7;">in</span> <span style="color: #f38ba8;">range</span><span style="color: #f38ba8;">(</span>3<span style="color: #f38ba8;">)</span>:
@@ -357,8 +893,8 @@ Since <a href="sequences.html#orga3eb7da">ranges</a> are an iterable value, we c
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org70e51bb" class="outline-3">
-<h3 id="org70e51bb"><span class="section-number-3">3.4.</span> Iterators</h3>
+<div id="outline-container-orgd289ab0" class="outline-3">
+<h3 id="orgd289ab0"><span class="section-number-3">3.4.</span> Iterators</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 We can also use iterators in a for statement. However, it is important to note that the for statement will advance the iterator, which means you cannot use values that were already processed again.

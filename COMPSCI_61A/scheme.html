@@ -3,20 +3,556 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-19 Wed 09:22 -->
+<!-- 2026-01-11 Sun 12:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scheme</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-                     <script src="/pagefind/pagefind-ui.js"></script>
-                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
-                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
-                     <link rel="stylesheet" href="/style.css" type="text/css"/>
-                     <script>hljs.highlightAll();</script>
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -94,43 +630,43 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1d02d99">1. Expressions</a>
+<li><a href="#orgb817ff4">1. Expressions</a>
 <ul>
-<li><a href="#orgefd5453">1.1. Call Expressions</a>
+<li><a href="#org5346857">1.1. Call Expressions</a>
 <ul>
-<li><a href="#org83af5be">1.1.1. Arithmetic Operators</a></li>
+<li><a href="#org0e017df">1.1.1. Arithmetic Operators</a></li>
 </ul>
 </li>
-<li><a href="#org2b23b5b">1.2. Special Forms</a>
+<li><a href="#orge9440dc">1.2. Special Forms</a>
 <ul>
-<li><a href="#org96adbc2">1.2.1. <code>if</code> Expression</a></li>
-<li><a href="#org73a6611">1.2.2. <code>cond</code> Expression</a></li>
-<li><a href="#org71b75ee">1.2.3. <code>begin</code> Expression</a></li>
-<li><a href="#orga471dd5">1.2.4. Boolean Expressions</a></li>
-<li><a href="#org1c2ae9d">1.2.5. Defining Symbols</a></li>
+<li><a href="#org1174559">1.2.1. <code>if</code> Expression</a></li>
+<li><a href="#orgbb0cbe8">1.2.2. <code>cond</code> Expression</a></li>
+<li><a href="#org91175d5">1.2.3. <code>begin</code> Expression</a></li>
+<li><a href="#org53d9ca6">1.2.4. Boolean Expressions</a></li>
+<li><a href="#orgf033db0">1.2.5. Defining Symbols</a></li>
 </ul>
 </li>
-<li><a href="#org048ea6a">1.3. Lambda Expressions</a></li>
+<li><a href="#org1446be5">1.3. Lambda Expressions</a></li>
 </ul>
 </li>
-<li><a href="#orgc79dd28">2. Recursion</a></li>
-<li><a href="#org5df02ca">3. Lists</a>
+<li><a href="#orga2a45f8">2. Recursion</a></li>
+<li><a href="#orgae545a2">3. Lists</a>
 <ul>
-<li><a href="#orge6469d7">3.1. Built-in List Procedures</a></li>
+<li><a href="#org3b50a50">3.1. Built-in List Procedures</a></li>
 </ul>
 </li>
-<li><a href="#org48a239d">4. Symbolic Data</a>
+<li><a href="#org56c692a">4. Symbolic Data</a>
 <ul>
-<li><a href="#org5d6082d">4.1. Expressions as Lists</a></li>
-<li><a href="#org73be5a3">4.2. Quasiquotation</a></li>
+<li><a href="#org0c9b06f">4.1. Expressions as Lists</a></li>
+<li><a href="#org3daf2ad">4.2. Quasiquotation</a></li>
 </ul>
 </li>
-<li><a href="#org53aded0">5. Macros</a></li>
+<li><a href="#orga0aaac3">5. Macros</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1d02d99" class="outline-2">
-<h2 id="org1d02d99"><span class="section-number-2">1.</span> Expressions</h2>
+<div id="outline-container-orgb817ff4" class="outline-2">
+<h2 id="orgb817ff4"><span class="section-number-2">1.</span> Expressions</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Scheme programs consist of <b>expressions</b>, which can be:
@@ -140,8 +676,8 @@ Scheme programs consist of <b>expressions</b>, which can be:
 <li><b>combinations</b>: <code>(quotient 10 2)</code>, <code>(not true)</code>, etc.</li>
 </ol>
 </div>
-<div id="outline-container-orgefd5453" class="outline-3">
-<h3 id="orgefd5453"><span class="section-number-3">1.1.</span> Call Expressions</h3>
+<div id="outline-container-org5346857" class="outline-3">
+<h3 id="org5346857"><span class="section-number-3">1.1.</span> Call Expressions</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Call expressions are a type of combination, which include an operator and zero or more operands in parantheses: 
@@ -163,8 +699,8 @@ Call expressions can also be spread across multiple lines:
 In Scheme, spacing and indentation don't matter, as long as you close all of the parantheses that you open.
 </p>
 </div>
-<div id="outline-container-org83af5be" class="outline-4">
-<h4 id="org83af5be"><span class="section-number-4">1.1.1.</span> Arithmetic Operators</h4>
+<div id="outline-container-org0e017df" class="outline-4">
+<h4 id="org0e017df"><span class="section-number-4">1.1.1.</span> Arithmetic Operators</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 Scheme includes the four basic arithmetic operators:
@@ -177,15 +713,15 @@ Scheme includes the four basic arithmetic operators:
 </div>
 </div>
 </div>
-<div id="outline-container-org2b23b5b" class="outline-3">
-<h3 id="org2b23b5b"><span class="section-number-3">1.2.</span> Special Forms</h3>
+<div id="outline-container-orge9440dc" class="outline-3">
+<h3 id="orge9440dc"><span class="section-number-3">1.2.</span> Special Forms</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 A combination that is not a call expression is known as a <b>special form</b>.
 </p>
 </div>
-<div id="outline-container-org96adbc2" class="outline-4">
-<h4 id="org96adbc2"><span class="section-number-4">1.2.1.</span> <code>if</code> Expression</h4>
+<div id="outline-container-org1174559" class="outline-4">
+<h4 id="org1174559"><span class="section-number-4">1.2.1.</span> <code>if</code> Expression</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 The if expression evaluates the predicate expression, and then evaluates the consequent if it is true and the alternative otherwise:
@@ -195,8 +731,8 @@ The if expression evaluates the predicate expression, and then evaluates the con
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org73a6611" class="outline-4">
-<h4 id="org73a6611"><span class="section-number-4">1.2.2.</span> <code>cond</code> Expression</h4>
+<div id="outline-container-orgbb0cbe8" class="outline-4">
+<h4 id="orgbb0cbe8"><span class="section-number-4">1.2.2.</span> <code>cond</code> Expression</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 The cond expression behaves like if-elif-else statements in Python. For example, the following Python code:
@@ -221,8 +757,8 @@ can instead by written using cond expressions in Scheme like so:
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org71b75ee" class="outline-4">
-<h4 id="org71b75ee"><span class="section-number-4">1.2.3.</span> <code>begin</code> Expression</h4>
+<div id="outline-container-org91175d5" class="outline-4">
+<h4 id="org91175d5"><span class="section-number-4">1.2.3.</span> <code>begin</code> Expression</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <p>
 The begin expression combines multiple expressions into one expression:
@@ -232,8 +768,8 @@ The begin expression combines multiple expressions into one expression:
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orga471dd5" class="outline-4">
-<h4 id="orga471dd5"><span class="section-number-4">1.2.4.</span> Boolean Expressions</h4>
+<div id="outline-container-org53d9ca6" class="outline-4">
+<h4 id="org53d9ca6"><span class="section-number-4">1.2.4.</span> Boolean Expressions</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <p>
 <code>and</code> and <code>or</code> are special forms that evaluate to booleans:
@@ -244,8 +780,8 @@ The begin expression combines multiple expressions into one expression:
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org1c2ae9d" class="outline-4">
-<h4 id="org1c2ae9d"><span class="section-number-4">1.2.5.</span> Defining Symbols</h4>
+<div id="outline-container-orgf033db0" class="outline-4">
+<h4 id="orgf033db0"><span class="section-number-4">1.2.5.</span> Defining Symbols</h4>
 <div class="outline-text-4" id="text-1-2-5">
 <p>
 Binding a symbol to some expression is a special form:
@@ -277,8 +813,8 @@ Procedures are similar to functions, which are a reusable block of code that can
 </div>
 </div>
 </div>
-<div id="outline-container-org048ea6a" class="outline-3">
-<h3 id="org048ea6a"><span class="section-number-3">1.3.</span> Lambda Expressions</h3>
+<div id="outline-container-org1446be5" class="outline-3">
+<h3 id="org1446be5"><span class="section-number-3">1.3.</span> Lambda Expressions</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 In Scheme, <b>lambda expressions</b> evaluate to anonymous procedures:
@@ -297,8 +833,8 @@ For example, the following two expressions are equivalent:
 </div>
 </div>
 </div>
-<div id="outline-container-orgc79dd28" class="outline-2">
-<h2 id="orgc79dd28"><span class="section-number-2">2.</span> Recursion</h2>
+<div id="outline-container-orga2a45f8" class="outline-2">
+<h2 id="orga2a45f8"><span class="section-number-2">2.</span> Recursion</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Scheme has no for/while statements, so <i>recursion is required to iterate</i>. In Python, to sum the first <code>n</code> numbers:
@@ -325,8 +861,8 @@ However, in Scheme, we can do:
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org5df02ca" class="outline-2">
-<h2 id="org5df02ca"><span class="section-number-2">3.</span> Lists</h2>
+<div id="outline-container-orgae545a2" class="outline-2">
+<h2 id="orgae545a2"><span class="section-number-2">3.</span> Lists</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Scheme has <b>pairs</b>, which are created with the <code>cons</code> built-in function, and accessed using <code>car</code> and <code>cdr</code>:
@@ -358,8 +894,8 @@ The empty list is denoted with <code>nil</code> or <code>'()</code>. We can also
 Whether a list is empty can be determined using <code>null?</code>.
 </p>
 </div>
-<div id="outline-container-orge6469d7" class="outline-3">
-<h3 id="orge6469d7"><span class="section-number-3">3.1.</span> Built-in List Procedures</h3>
+<div id="outline-container-org3b50a50" class="outline-3">
+<h3 id="org3b50a50"><span class="section-number-3">3.1.</span> Built-in List Procedures</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 We can also merge another list onto the end of one list by using the <code>append</code> procedure:
@@ -392,8 +928,8 @@ We can apply some procedure with the items in a list as its operands with the <c
 </div>
 </div>
 </div>
-<div id="outline-container-org48a239d" class="outline-2">
-<h2 id="org48a239d"><span class="section-number-2">4.</span> Symbolic Data</h2>
+<div id="outline-container-org56c692a" class="outline-2">
+<h2 id="org56c692a"><span class="section-number-2">4.</span> Symbolic Data</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Scheme has the ability to work with arbitrary symbols as data. Symbols and lists, unlike primitive values, are <i>not self-evaluating</i>. This is because a symbol in the source code does a <i>variable lookup</i>. For example, doing <code>(+ 1 2)</code> looks at the first element, the <code>+</code> symbol, and looks up the function associated with it.
@@ -413,8 +949,8 @@ Therefore, to "turn off" this special evaluating behavior for arbitrary symbols,
 No matter what you give <code>quote</code>, it will always spit the same thing back out. Note that quoting a list will distribute itself over its arguments, so <code>'(+ 1 2)</code> is the same as <code>(list '+ '1 '2)</code>.
 </p>
 </div>
-<div id="outline-container-org5d6082d" class="outline-3">
-<h3 id="org5d6082d"><span class="section-number-3">4.1.</span> Expressions as Lists</h3>
+<div id="outline-container-org0c9b06f" class="outline-3">
+<h3 id="org0c9b06f"><span class="section-number-3">4.1.</span> Expressions as Lists</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The built-in list data structure can be used to represent combinations. For example, the combination <code>(quotient 10 2)</code> can be constructed with <code>(list 'quotient 10 2)</code>. We can then evaluate this combination (that is represented by a list) using <code>(eval (list 'quotient 10 2))</code>, which returns 5.
@@ -435,8 +971,8 @@ We can also use this idea to return expressions from procedures. In the example 
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org73be5a3" class="outline-3">
-<h3 id="org73be5a3"><span class="section-number-3">4.2.</span> Quasiquotation</h3>
+<div id="outline-container-org3daf2ad" class="outline-3">
+<h3 id="org3daf2ad"><span class="section-number-3">4.2.</span> Quasiquotation</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 We can also quote an expression using a <b>quasiquote</b>, which is done with the symbol <code>`</code>. The main difference between normal quotes and quasiquotes is that parts of a quasiquoted expression can be unquoted with <code>,</code>: in other words, we can tell Scheme to still evaluate certain parts of a quoted list:
@@ -457,8 +993,8 @@ Quasiquotation is particularly convenient for generating Scheme expressions:
 </div>
 </div>
 </div>
-<div id="outline-container-org53aded0" class="outline-2">
-<h2 id="org53aded0"><span class="section-number-2">5.</span> Macros</h2>
+<div id="outline-container-orga0aaac3" class="outline-2">
+<h2 id="orga0aaac3"><span class="section-number-2">5.</span> Macros</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 A <b>macro</b> is an operation performed on the source code that transforms it before evaluation. Scheme uses the <code>define-macro</code> special form that defines this transformation. For example:

@@ -3,20 +3,556 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-23 Sun 14:30 -->
+<!-- 2026-01-11 Sun 12:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SQL</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-                     <script src="/pagefind/pagefind-ui.js"></script>
-                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
-                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
-                     <link rel="stylesheet" href="/style.css" type="text/css"/>
-                     <script>hljs.highlightAll();</script>
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -94,65 +630,65 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga82e8fd">1. Databases</a></li>
-<li><a href="#orgc4bd853">2. SQL</a>
+<li><a href="#orgf8c1657">1. Databases</a></li>
+<li><a href="#org36baeb2">2. SQL</a>
 <ul>
-<li><a href="#orgd021587">2.1. Declarative Programming</a></li>
-<li><a href="#org2db4af7">2.2. SELECT Statements</a>
+<li><a href="#orgf8e3ec3">2.1. Declarative Programming</a></li>
+<li><a href="#orge2db591">2.2. SELECT Statements</a>
 <ul>
-<li><a href="#orgc705750">2.2.1. Projection</a></li>
-<li><a href="#orgfd35b04">2.2.2. Selection</a></li>
-<li><a href="#org1a17bb3">2.2.3. Joining Tables</a></li>
-<li><a href="#orgf3b1807">2.2.4. Table Aliases</a></li>
+<li><a href="#org345887e">2.2.1. Projection</a></li>
+<li><a href="#org182e56f">2.2.2. Selection</a></li>
+<li><a href="#org17a8232">2.2.3. Joining Tables</a></li>
+<li><a href="#org8b1b741">2.2.4. Table Aliases</a></li>
 </ul>
 </li>
-<li><a href="#org24a73c8">2.3. CREATE TABLE Statements</a></li>
-<li><a href="#org51cddeb">2.4. DROP TABLE Statements</a></li>
-<li><a href="#orgda428ef">2.5. Modifying Tables</a>
+<li><a href="#org938f85e">2.3. CREATE TABLE Statements</a></li>
+<li><a href="#org60cf1fa">2.4. DROP TABLE Statements</a></li>
+<li><a href="#org24bc5c0">2.5. Modifying Tables</a>
 <ul>
-<li><a href="#orgca195b0">2.5.1. INSERT Statements</a></li>
-<li><a href="#orga9a7629">2.5.2. UPDATE Statements</a></li>
-<li><a href="#orgc01ac59">2.5.3. DELETE Statements</a></li>
+<li><a href="#orgc3e270a">2.5.1. INSERT Statements</a></li>
+<li><a href="#orgd2e52d8">2.5.2. UPDATE Statements</a></li>
+<li><a href="#orga05fe22">2.5.3. DELETE Statements</a></li>
 </ul>
 </li>
-<li><a href="#orgacda9d4">2.6. Numerical Expressions</a></li>
-<li><a href="#org511d9dd">2.7. String Expressions</a></li>
-<li><a href="#orgf6e30e6">2.8. Aggregation</a>
+<li><a href="#org1fdd41c">2.6. Numerical Expressions</a></li>
+<li><a href="#orge84c31e">2.7. String Expressions</a></li>
+<li><a href="#orga846a3c">2.8. Aggregation</a>
 <ul>
-<li><a href="#org67402da">2.8.1. Grouping Rows</a></li>
+<li><a href="#orgc550154">2.8.1. Grouping Rows</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgb3907bb">3. Connecting from Python</a></li>
+<li><a href="#org9fcb74d">3. Connecting from Python</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga82e8fd" class="outline-2">
-<h2 id="orga82e8fd"><span class="section-number-2">1.</span> Databases</h2>
+<div id="outline-container-orgf8c1657" class="outline-2">
+<h2 id="orgf8c1657"><span class="section-number-2">1.</span> Databases</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Database management systems</b> (DBMS) manage databases, which consists of <b>tables</b>. Tables are a collection of records, which have <b>rows</b> that have a value for each <b>column</b>. A column is defined by its name and the type of the value that it holds.
 </p>
 </div>
 </div>
-<div id="outline-container-orgc4bd853" class="outline-2">
-<h2 id="orgc4bd853"><span class="section-number-2">2.</span> SQL</h2>
+<div id="outline-container-org36baeb2" class="outline-2">
+<h2 id="org36baeb2"><span class="section-number-2">2.</span> SQL</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The <b>Structured Query Language</b> (SQL) is used to query databases, making it perhaps the most widely used programming language. 
 </p>
 </div>
-<div id="outline-container-orgd021587" class="outline-3">
-<h3 id="orgd021587"><span class="section-number-3">2.1.</span> Declarative Programming</h3>
+<div id="outline-container-orgf8e3ec3" class="outline-3">
+<h3 id="orgf8e3ec3"><span class="section-number-3">2.1.</span> Declarative Programming</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 SQL is a <b>declarative language</b>, which makes it different from languages such as <a href="python.html">Python</a> or <a href="scheme.html">Scheme</a>. In declarative languages such as SQL and Prolog, the program is a description of the <i>desired result</i>, rather than in imperative languages where the program is a description of the <i>computational processes to get a result</i>. Here, the interpreter's job is to figure out how to run processes in order to generate the desired result.
 </p>
 </div>
 </div>
-<div id="outline-container-org2db4af7" class="outline-3">
-<h3 id="org2db4af7"><span class="section-number-3">2.2.</span> SELECT Statements</h3>
+<div id="outline-container-orge2db591" class="outline-3">
+<h3 id="orge2db591"><span class="section-number-3">2.2.</span> SELECT Statements</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 A <code>SELECT</code> statement transforms one table to another by selecting data. It can select columns from a table:
@@ -165,8 +701,8 @@ A <code>SELECT</code> statement transforms one table to another by selecting dat
 This query selects all of the columns from the table, and displays all of its rows. The special <code>*</code> column description refers to all columns in the table.
 </p>
 </div>
-<div id="outline-container-orgc705750" class="outline-4">
-<h4 id="orgc705750"><span class="section-number-4">2.2.1.</span> Projection</h4>
+<div id="outline-container-org345887e" class="outline-4">
+<h4 id="org345887e"><span class="section-number-4">2.2.1.</span> Projection</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 A <b>projection</b> is defined as taking a <i>vertical subset of rows</i> in a table. In other words, this type of query returns <i>some of the columns</i> in a table:
@@ -180,8 +716,8 @@ It always includes a comma-separated list of <b>column descriptions</b>. A colum
 </p>
 </div>
 </div>
-<div id="outline-container-orgfd35b04" class="outline-4">
-<h4 id="orgfd35b04"><span class="section-number-4">2.2.2.</span> Selection</h4>
+<div id="outline-container-org182e56f" class="outline-4">
+<h4 id="org182e56f"><span class="section-number-4">2.2.2.</span> Selection</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 A <b>selection</b> is defined as taking a <i>horizontal subset of rows</i> in a table that satisfy a particular condition. In other words, this type of query returns <i>some of the rows and all of the columns</i> in a table:
@@ -223,8 +759,8 @@ This selects the columns <code>time</code>, <code>runtime</code> and <code>genre
 </details>
 </div>
 </div>
-<div id="outline-container-org1a17bb3" class="outline-4">
-<h4 id="org1a17bb3"><span class="section-number-4">2.2.3.</span> Joining Tables</h4>
+<div id="outline-container-org17a8232" class="outline-4">
+<h4 id="org17a8232"><span class="section-number-4">2.2.3.</span> Joining Tables</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 Oftentimes, you want to create a new table from data in existing tables. To do this tables can be <b>joined</b> to form combinations of data from rows from each of the existing tables:
@@ -252,14 +788,14 @@ We can also join more than one table together by just chaining <code>JOIN</code>
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org5ecd851"></a>Cross Joins<br />
+<li><a id="org5405b95"></a>Cross Joins<br />
 <div class="outline-text-5" id="text-2-2-3-1">
 <p>
 Oftentimes, we need a condition to limit the ways we can join two tables. Leaving out this condition results in a <b>cross join</b>, which returns all possible pairs of rows between the two tables.
 </p>
 </div>
 </li>
-<li><a id="org9b6d3f1"></a>Self Joins<br />
+<li><a id="org662015d"></a>Self Joins<br />
 <div class="outline-text-5" id="text-2-2-3-2">
 <p>
 A table can be joined to itself to compare one row to another row. To differentiate between them, aliases must be used. For example, to create a table of remakes, we want to see two movies that have the same title in the same table:
@@ -273,8 +809,8 @@ A table can be joined to itself to compare one row to another row. To differenti
 </li>
 </ol>
 </div>
-<div id="outline-container-orgf3b1807" class="outline-4">
-<h4 id="orgf3b1807"><span class="section-number-4">2.2.4.</span> Table Aliases</h4>
+<div id="outline-container-org8b1b741" class="outline-4">
+<h4 id="org8b1b741"><span class="section-number-4">2.2.4.</span> Table Aliases</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <p>
 If two tables share a column name, we have to use dot expressions to disambiguate which column is from which table. This may result in long conditions and dot expressions in a query. To shorten the name of a table, table aliases may be used by introducing an <code>AS</code> clause: <code>[table] AS [alias]</code>. For example:
@@ -285,8 +821,8 @@ If two tables share a column name, we have to use dot expressions to disambiguat
 </div>
 </div>
 </div>
-<div id="outline-container-org24a73c8" class="outline-3">
-<h3 id="org24a73c8"><span class="section-number-3">2.3.</span> CREATE TABLE Statements</h3>
+<div id="outline-container-org938f85e" class="outline-3">
+<h3 id="org938f85e"><span class="section-number-3">2.3.</span> CREATE TABLE Statements</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The result of a <code>SELECT</code> statement is displayed to the user, but not stored. A <code>CREATE TABLE</code> statement gives the result a permanent name:
@@ -311,8 +847,8 @@ Notice that we can add <code>IF NOT EXISTS</code> to only run the query if there
 </p>
 </div>
 </div>
-<div id="outline-container-org51cddeb" class="outline-3">
-<h3 id="org51cddeb"><span class="section-number-3">2.4.</span> DROP TABLE Statements</h3>
+<div id="outline-container-org60cf1fa" class="outline-3">
+<h3 id="org60cf1fa"><span class="section-number-3">2.4.</span> DROP TABLE Statements</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 If you want to delete a table if it exists, use the <code>DROP TABLE</code> statement:
@@ -322,15 +858,15 @@ If you want to delete a table if it exists, use the <code>DROP TABLE</code> stat
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgda428ef" class="outline-3">
-<h3 id="orgda428ef"><span class="section-number-3">2.5.</span> Modifying Tables</h3>
+<div id="outline-container-org24bc5c0" class="outline-3">
+<h3 id="org24bc5c0"><span class="section-number-3">2.5.</span> Modifying Tables</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 Tables can be modified by inserting, deleting, or changing rows.
 </p>
 </div>
-<div id="outline-container-orgca195b0" class="outline-4">
-<h4 id="orgca195b0"><span class="section-number-4">2.5.1.</span> INSERT Statements</h4>
+<div id="outline-container-orgc3e270a" class="outline-4">
+<h4 id="orgc3e270a"><span class="section-number-4">2.5.1.</span> INSERT Statements</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 An <code>INSERT</code> statement inserts a row into a table:
@@ -351,8 +887,8 @@ We can specify the specific columns we want to change by writing their names in 
 </p>
 </div>
 </div>
-<div id="outline-container-orga9a7629" class="outline-4">
-<h4 id="orga9a7629"><span class="section-number-4">2.5.2.</span> UPDATE Statements</h4>
+<div id="outline-container-orgd2e52d8" class="outline-4">
+<h4 id="orgd2e52d8"><span class="section-number-4">2.5.2.</span> UPDATE Statements</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <p>
 An <code>UPDATE</code> statement updates entries in certain columns to new values, just for some subset of rows:
@@ -362,8 +898,8 @@ An <code>UPDATE</code> statement updates entries in certain columns to new value
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgc01ac59" class="outline-4">
-<h4 id="orgc01ac59"><span class="section-number-4">2.5.3.</span> DELETE Statements</h4>
+<div id="outline-container-orga05fe22" class="outline-4">
+<h4 id="orga05fe22"><span class="section-number-4">2.5.3.</span> DELETE Statements</h4>
 <div class="outline-text-4" id="text-2-5-3">
 <p>
 We can also delete some or all rows from a table with a <code>DELETE</code> statement:
@@ -378,8 +914,8 @@ Without a <code>WHERE</code> clause, the query will delete all rows from a table
 </div>
 </div>
 </div>
-<div id="outline-container-orgacda9d4" class="outline-3">
-<h3 id="orgacda9d4"><span class="section-number-3">2.6.</span> Numerical Expressions</h3>
+<div id="outline-container-org1fdd41c" class="outline-3">
+<h3 id="org1fdd41c"><span class="section-number-3">2.6.</span> Numerical Expressions</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 In a <code>SELECT</code> expression, column names evaluate to row values. Therefore, we can perform arithmetic operations on the column names in a <code>SELECT</code> statement. Imagine we had a table for a ski lift, with a column specifying the identifier for the <code>chair</code>, a number for the number of <code>single</code> people, and a number for the number of <code>couple</code>. Then, the following SQL query shows the total people on the ski lift:
@@ -393,8 +929,8 @@ We can also use the functions <code>ABS</code>, <code>ROUND</code>, and <code>NO
 </p>
 </div>
 </div>
-<div id="outline-container-org511d9dd" class="outline-3">
-<h3 id="org511d9dd"><span class="section-number-3">2.7.</span> String Expressions</h3>
+<div id="outline-container-orge84c31e" class="outline-3">
+<h3 id="orge84c31e"><span class="section-number-3">2.7.</span> String Expressions</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 String values can be combined to form longer strings using the concatenation operator <code>||</code>:
@@ -419,8 +955,8 @@ Strings can also be searched for a partial match:
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orgf6e30e6" class="outline-3">
-<h3 id="orgf6e30e6"><span class="section-number-3">2.8.</span> Aggregation</h3>
+<div id="outline-container-orga846a3c" class="outline-3">
+<h3 id="orga846a3c"><span class="section-number-3">2.8.</span> Aggregation</h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
 An aggregate function in the <code>[columns]</code> clause of a <code>SELECT</code> statement computes a value from a group of rows. For example, the <code>MAX</code> function takes in a series of rows represented by one column, but returns only one data value that is the max value of all the rows. The <code>SUM</code> function sums all of the values. <code>COUNT(*)</code> counts the total amount of rows. Critically, these aggregate functions only operate on <i>one column</i> of a series of rows. It is possible, however, to use multiple aggregate functions to combine data from multiple columns:
@@ -433,8 +969,8 @@ An aggregate function in the <code>[columns]</code> clause of a <code>SELECT</co
 This gives the average rating over all the votes in the dataset.
 </p>
 </div>
-<div id="outline-container-org67402da" class="outline-4">
-<h4 id="org67402da"><span class="section-number-4">2.8.1.</span> Grouping Rows</h4>
+<div id="outline-container-orgc550154" class="outline-4">
+<h4 id="orgc550154"><span class="section-number-4">2.8.1.</span> Grouping Rows</h4>
 <div class="outline-text-4" id="text-2-8-1">
 <p>
 Rows in a table can be grouped, and aggregation can be performed on each group:
@@ -478,8 +1014,8 @@ Note that SQL performs floor division when dividing an integer by another intege
 </div>
 </div>
 </div>
-<div id="outline-container-orgb3907bb" class="outline-2">
-<h2 id="orgb3907bb"><span class="section-number-2">3.</span> Connecting from Python</h2>
+<div id="outline-container-org9fcb74d" class="outline-2">
+<h2 id="org9fcb74d"><span class="section-number-2">3.</span> Connecting from Python</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 There exists a <code>sqlite3</code> module for Python that allows us to connect to a sqlite database and run queries. To do this, we first set up a <code>Connection</code>, and then we can use the <code>execute()</code> method to run queries on that connection. The <code>fetchall()</code> method allows us to retrieve the results of the query, and the <code>commit()</code> method commits our changes to the database:

@@ -3,20 +3,556 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-11-03 Mon 13:33 -->
+<!-- 2026-01-11 Sun 12:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Objects and Classes</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
-                     <script src="/pagefind/pagefind-ui.js"></script>
-                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
-                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
-                     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script
-                     <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
-                     <link rel="stylesheet" href="/style.css" type="text/css"/>
-                     <script>hljs.highlightAll();</script>
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -94,41 +630,41 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org838dba8">1. Objects</a>
+<li><a href="#org2f5d671">1. Objects</a>
 <ul>
-<li><a href="#orgb1c8f1c">1.1. Object-Oriented Programming</a></li>
-<li><a href="#orgc66c786">1.2. String Representations</a></li>
+<li><a href="#org001acaa">1.1. Object-Oriented Programming</a></li>
+<li><a href="#org6895a28">1.2. String Representations</a></li>
 </ul>
 </li>
-<li><a href="#orgba41431">2. Classes</a>
+<li><a href="#orge8e6af1">2. Classes</a>
 <ul>
-<li><a href="#org243576b">2.1. Object Construction</a></li>
-<li><a href="#orga61efb4">2.2. Object Identity</a></li>
-<li><a href="#orgca79bca">2.3. Attributes</a>
+<li><a href="#org00cfe1d">2.1. Object Construction</a></li>
+<li><a href="#org657bb93">2.2. Object Identity</a></li>
+<li><a href="#org0b20e0a">2.3. Attributes</a>
 <ul>
-<li><a href="#org4cf8b09">2.3.1. Attribute Lookup</a></li>
-<li><a href="#org8f61189">2.3.2. Attribute Assignment</a></li>
+<li><a href="#org2156c98">2.3.1. Attribute Lookup</a></li>
+<li><a href="#org6f74b99">2.3.2. Attribute Assignment</a></li>
 </ul>
 </li>
-<li><a href="#org137312d">2.4. Methods</a>
+<li><a href="#orga33f3a3">2.4. Methods</a>
 <ul>
-<li><a href="#org020a9ef">2.4.1. Method Calls</a></li>
-<li><a href="#org581e6b4">2.4.2. Special Methods</a></li>
+<li><a href="#org73c5f8b">2.4.1. Method Calls</a></li>
+<li><a href="#orgf757b84">2.4.2. Special Methods</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org65c3e2c">3. Inheritance</a>
+<li><a href="#orgb3f2928">3. Inheritance</a>
 <ul>
-<li><a href="#orgf18331a">3.1. Multiple Inheritance</a></li>
-<li><a href="#orgee04fcc">3.2. Attribute Lookup</a></li>
+<li><a href="#org1d7bb2b">3.1. Multiple Inheritance</a></li>
+<li><a href="#org328a00d">3.2. Attribute Lookup</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org838dba8" class="outline-2">
-<h2 id="org838dba8"><span class="section-number-2">1.</span> Objects</h2>
+<div id="outline-container-org2f5d671" class="outline-2">
+<h2 id="org2f5d671"><span class="section-number-2">1.</span> Objects</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 An <b>object</b> can be thought of as a type of complex value that represents information consisting of data and behavior, bundled together to create abstractions. Objects can represent things, but also properties, interactions, and processes. 
@@ -150,8 +686,8 @@ Objects can have <b>attributes</b> that are bound to values, which can be access
 This kind of behavior underpins <b>object-oriented programming</b>, which is a way for organizing large programs around the interaction of objects. In Python, every value is an object.
 </p>
 </div>
-<div id="outline-container-orgb1c8f1c" class="outline-3">
-<h3 id="orgb1c8f1c"><span class="section-number-3">1.1.</span> Object-Oriented Programming</h3>
+<div id="outline-container-org001acaa" class="outline-3">
+<h3 id="org001acaa"><span class="section-number-3">1.1.</span> Object-Oriented Programming</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <b>Object-oriented programming</b> is a method for organizing programs that emphasizes data abstraction and bundles together information and related behavior. It operates using a metaphor for computation:
@@ -169,8 +705,8 @@ A <b>class</b> defines how objects of a particular type behave. An <b>object</b>
 </p>
 </div>
 </div>
-<div id="outline-container-orgc66c786" class="outline-3">
-<h3 id="orgc66c786"><span class="section-number-3">1.2.</span> String Representations</h3>
+<div id="outline-container-org6895a28" class="outline-3">
+<h3 id="org6895a28"><span class="section-number-3">1.2.</span> String Representations</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 In python, all objects produce two <b>string representations</b>: the <code>str</code> which is legible to humans, and the <code>repr</code> which is legible to the Python interpreter. The <code>str</code> and <code>repr</code> strings are often the same, but not always; the <code>repr</code> string is what you see in the Python interpreter.
@@ -182,8 +718,8 @@ The <code>repr(object) -&gt; string</code> function returns the canonical string
 </div>
 </div>
 </div>
-<div id="outline-container-orgba41431" class="outline-2">
-<h2 id="orgba41431"><span class="section-number-2">2.</span> Classes</h2>
+<div id="outline-container-orge8e6af1" class="outline-2">
+<h2 id="orge8e6af1"><span class="section-number-2">2.</span> Classes</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A <b>class</b> describes the behavior of its instances. We can create classes using class statements, like so:
@@ -209,8 +745,8 @@ A <b>class</b> describes the behavior of its instances. We can create classes us
 The <code>__init__</code> method is a special method for the function that constructs an instance for that class. <code>deposit</code> is an example of a method for the <code>Account</code> class: notice that it contains <code>self</code> as a parameter, which gives us access to the instance of the class on which the method was invoked.
 </p>
 </div>
-<div id="outline-container-org243576b" class="outline-3">
-<h3 id="org243576b"><span class="section-number-3">2.1.</span> Object Construction</h3>
+<div id="outline-container-org00cfe1d" class="outline-3">
+<h3 id="org00cfe1d"><span class="section-number-3">2.1.</span> Object Construction</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 To create an instance of a class, we use a <b>constructor</b>. The <code>__init__</code> method defines the constructor of the class, like so:
@@ -220,8 +756,8 @@ To create an instance of a class, we use a <b>constructor</b>. The <code>__init_
 </code></pre>
 </div>
 </div>
-<div id="outline-container-orga61efb4" class="outline-3">
-<h3 id="orga61efb4"><span class="section-number-3">2.2.</span> Object Identity</h3>
+<div id="outline-container-org657bb93" class="outline-3">
+<h3 id="org657bb93"><span class="section-number-3">2.2.</span> Object Identity</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Every object that is an instance of a user-defined class has a unique identity. In other words:
@@ -237,8 +773,8 @@ We can check if something is an instance of a class by using the <code>isinstanc
 </p>
 </div>
 </div>
-<div id="outline-container-orgca79bca" class="outline-3">
-<h3 id="orgca79bca"><span class="section-number-3">2.3.</span> Attributes</h3>
+<div id="outline-container-org0b20e0a" class="outline-3">
+<h3 id="org0b20e0a"><span class="section-number-3">2.3.</span> Attributes</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Both instances and classes have <b>attributes</b>, which store variables within the object. Attributes defined by an instance are local <i>only to that instance</i>, whereas <b>class attributes</b> are shared across all instances of a class because they are attributes of the class, not the instance:
@@ -248,8 +784,8 @@ Both instances and classes have <b>attributes</b>, which store variables within 
     <span style="color: #cdd6f4;">interest</span> <span style="color: #89dceb;">=</span> 0.02          <span style="color: #6c7086;"># </span><span style="color: #6c7086;">A class attribute</span>
 </code></pre>
 </div>
-<div id="outline-container-org4cf8b09" class="outline-4">
-<h4 id="org4cf8b09"><span class="section-number-4">2.3.1.</span> Attribute Lookup</h4>
+<div id="outline-container-org2156c98" class="outline-4">
+<h4 id="org2156c98"><span class="section-number-4">2.3.1.</span> Attribute Lookup</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 Attributes can be looked up by dot expressions of the form <code>&lt;expression&gt;.&lt;name&gt;</code>. To evaluate a dot expression:
@@ -267,11 +803,11 @@ In addition to dot expressions, the function <code>getattr(&lt;object&gt;, &lt;n
 </p>
 </div>
 </div>
-<div id="outline-container-org8f61189" class="outline-4">
-<h4 id="org8f61189"><span class="section-number-4">2.3.2.</span> Attribute Assignment</h4>
+<div id="outline-container-org6f74b99" class="outline-4">
+<h4 id="org6f74b99"><span class="section-number-4">2.3.2.</span> Attribute Assignment</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
-<a href="assignment.html#org3ca13ca">Assignment statements</a> with a dot expression on their left-hand side are attribute assignments. If the object is an instance, then the assignment sets an instance attribute. if the object is a class, then the assignment sets a class attribute:
+<a href="assignment.html#orga9140bf">Assignment statements</a> with a dot expression on their left-hand side are attribute assignments. If the object is an instance, then the assignment sets an instance attribute. if the object is a class, then the assignment sets a class attribute:
 </p>
 
 <pre><code class="language-python"><span style="color: #cdd6f4;">tom</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'Tom'</span><span style="color: #f38ba8;">)</span>
@@ -280,11 +816,11 @@ tom.<span style="color: #cdd6f4;">interest</span> <span style="color: #89dceb;">
 </div>
 </div>
 </div>
-<div id="outline-container-org137312d" class="outline-3">
-<h3 id="org137312d"><span class="section-number-3">2.4.</span> Methods</h3>
+<div id="outline-container-orga33f3a3" class="outline-3">
+<h3 id="orga33f3a3"><span class="section-number-3">2.4.</span> Methods</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
-Python distinguishes between <a href="functions.html#org095441b">functions</a>, and <b>bound methods</b>, which couple together a function and the object on which that method will be invoked. A function defined in a class is a normal function, but calling that function on an instance would result in a bound method:
+Python distinguishes between <a href="functions.html#org229ea73">functions</a>, and <b>bound methods</b>, which couple together a function and the object on which that method will be invoked. A function defined in a class is a normal function, but calling that function on an instance would result in a bound method:
 </p>
 
 <pre><code class="language-python"><span style="color: #cdd6f4;">tom</span> <span style="color: #89dceb;">=</span> Account<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">'Tom'</span><span style="color: #f38ba8;">)</span>
@@ -301,22 +837,22 @@ tom.deposit<span style="color: #f38ba8;">(</span>100<span style="color: #f38ba8;
 Account.deposit<span style="color: #f38ba8;">(</span>tom, 100<span style="color: #f38ba8;">)</span>
 </code></pre>
 </div>
-<div id="outline-container-org020a9ef" class="outline-4">
-<h4 id="org020a9ef"><span class="section-number-4">2.4.1.</span> Method Calls</h4>
+<div id="outline-container-org73c5f8b" class="outline-4">
+<h4 id="org73c5f8b"><span class="section-number-4">2.4.1.</span> Method Calls</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 Methods are invoked using the dot notation. The way Python evaluates this is by first evaluating the dot expression to get a <i>bound method</i>, and then evaluating the call expression on the result:
 </p>
 
 
-<div id="org97e87dc" class="figure">
+<div id="orge629be7" class="figure">
 <p><img src="../static/COMPSCI_61A/objects1.png" alt="objects1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org581e6b4" class="outline-4">
-<h4 id="org581e6b4"><span class="section-number-4">2.4.2.</span> Special Methods</h4>
+<div id="outline-container-orgf757b84" class="outline-4">
+<h4 id="orgf757b84"><span class="section-number-4">2.4.2.</span> Special Methods</h4>
 <div class="outline-text-4" id="text-2-4-2">
 <p>
 Certain names that start and end with two underscores are special because they relate to some predefined built-in behavior:
@@ -337,8 +873,8 @@ For example, if we want to implement the addition operation between two instance
 </div>
 </div>
 </div>
-<div id="outline-container-org65c3e2c" class="outline-2">
-<h2 id="org65c3e2c"><span class="section-number-2">3.</span> Inheritance</h2>
+<div id="outline-container-orgb3f2928" class="outline-2">
+<h2 id="orgb3f2928"><span class="section-number-2">3.</span> Inheritance</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 <b>Inheritance</b> is a method for relating classes together, often when two similar classes have the same broad purpose but differ in their degree of specialization. The specialized class may have the same attributes as a <i>general class</i>, along with some special-case behavior that is specific to that specialized class:
@@ -371,8 +907,8 @@ For example, a <code>CheckingAccount</code> is a specialized type of <code>Accou
 Notice that we can pass in an instance of a subclass into a function that expects an instance of the base class, because the <i>subclass inherits functionality from the base class</i>. We can use attributes inherited from the base class by accessing the base class with <code>super()</code>.
 </p>
 </div>
-<div id="outline-container-orgf18331a" class="outline-3">
-<h3 id="orgf18331a"><span class="section-number-3">3.1.</span> Multiple Inheritance</h3>
+<div id="outline-container-org1d7bb2b" class="outline-3">
+<h3 id="org1d7bb2b"><span class="section-number-3">3.1.</span> Multiple Inheritance</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 <b>Multiple inheritance</b> is when a class inherits from <i>multiple base classes</i>:
@@ -394,8 +930,8 @@ Here, <code>MultipleAccount</code> inherits from both <code>CheckingAccount</cod
 </p>
 </div>
 </div>
-<div id="outline-container-orgee04fcc" class="outline-3">
-<h3 id="orgee04fcc"><span class="section-number-3">3.2.</span> Attribute Lookup</h3>
+<div id="outline-container-org328a00d" class="outline-3">
+<h3 id="org328a00d"><span class="section-number-3">3.2.</span> Attribute Lookup</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 To look up a name in a class:
