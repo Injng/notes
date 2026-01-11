@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 12:30 -->
+<!-- 2026-01-11 Sun 12:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Gradient</title>
@@ -17,6 +17,341 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -662,32 +997,32 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org5c5824e">1. Gradient</a>
+<li><a href="#org5d8e18b">1. Gradient</a>
 <ul>
-<li><a href="#org0f1edeb">1.1. Level Surfaces</a>
+<li><a href="#orgbf2af1a">1.1. Level Surfaces</a>
 <ul>
-<li><a href="#org76ef68a">1.1.1. Intuition</a></li>
-<li><a href="#org4d6bfdf">1.1.2. Proof</a></li>
+<li><a href="#orgab53ee5">1.1.1. Intuition</a></li>
+<li><a href="#org212deea">1.1.2. Proof</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orgad7e7ea">2. Directional Derivatives</a>
+<li><a href="#orgbebb247">2. Directional Derivatives</a>
 <ul>
-<li><a href="#orgdc4854c">2.1. Application of Gradient</a></li>
+<li><a href="#org0590aad">2.1. Application of Gradient</a></li>
 </ul>
 </li>
-<li><a href="#org1a1f2bc">3. Finding the Potential</a>
+<li><a href="#org89e8f26">3. Finding the Potential</a>
 <ul>
-<li><a href="#orgfbfb2e0">3.1. Using Line Integrals</a></li>
-<li><a href="#org0e2fbed">3.2. Using Antiderivatives</a></li>
+<li><a href="#org1666b71">3.1. Using Line Integrals</a></li>
+<li><a href="#org04e974e">3.2. Using Antiderivatives</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org5c5824e" class="outline-2">
-<h2 id="org5c5824e"><span class="section-number-2">1.</span> Gradient</h2>
+<div id="outline-container-org5d8e18b" class="outline-2">
+<h2 id="org5d8e18b"><span class="section-number-2">1.</span> Gradient</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Given a function \(w=f(x,y,z)\) in three variables, the <b>gradient</b> of \(w\) is the vector formed by its partial derivatives:
@@ -700,7 +1035,7 @@ Given a function \(w=f(x,y,z)\) in three variables, the <b>gradient</b> of \(w\)
 </p>
 
 <p>
-We can then, for example, rewrite the <a href="differentials.html#org3cb564e">chain rule</a> like so:
+We can then, for example, rewrite the <a href="differentials.html#org7dbfa8f">chain rule</a> like so:
 </p>
 
 <p>
@@ -713,15 +1048,15 @@ We can then, for example, rewrite the <a href="differentials.html#org3cb564e">ch
 where \(\frac{\text{d} \vec{r}}{\text{d} t} = \langle\frac{\text{d}x}{\text{d}t},\frac{\text{d}y}{\text{d}t},\frac{\text{d}z}{\text{d}t}\rangle\).
 </p>
 </div>
-<div id="outline-container-org0f1edeb" class="outline-3">
-<h3 id="org0f1edeb"><span class="section-number-3">1.1.</span> Level Surfaces</h3>
+<div id="outline-container-orgbf2af1a" class="outline-3">
+<h3 id="orgbf2af1a"><span class="section-number-3">1.1.</span> Level Surfaces</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The gradient of \(w\) at a point is perpendicular to the level surface \(w=c\) at that point, pointing towards higher values of \(w\).
 </p>
 </div>
-<div id="outline-container-org76ef68a" class="outline-4">
-<h4 id="org76ef68a"><span class="section-number-4">1.1.1.</span> Intuition</h4>
+<div id="outline-container-orgab53ee5" class="outline-4">
+<h4 id="orgab53ee5"><span class="section-number-4">1.1.1.</span> Intuition</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 Take, for example, the function \(w(x,y,z) = a_1x + a_2y + a_3z\). Then, the gradient of this function is:
@@ -738,11 +1073,11 @@ The level surfaces can be represented by \(a_1x+a_2y+a_3z=c\), where \(c\) is so
 </p>
 </div>
 </div>
-<div id="outline-container-org4d6bfdf" class="outline-4">
-<h4 id="org4d6bfdf"><span class="section-number-4">1.1.2.</span> Proof</h4>
+<div id="outline-container-org212deea" class="outline-4">
+<h4 id="org212deea"><span class="section-number-4">1.1.2.</span> Proof</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
-Say we have a level surface \(w(x,y,z)=c\), and we have another function \(\vec{r}(t)\) that moves on this level surface. We know that since \(\vec{r}(t)\) moves on the level surface, then its velocity vector \(\vec{v}\) must also be tangent to this level surface. Then, by the <a href="differentials.html#org3cb564e">chain rule</a>, we have:
+Say we have a level surface \(w(x,y,z)=c\), and we have another function \(\vec{r}(t)\) that moves on this level surface. We know that since \(\vec{r}(t)\) moves on the level surface, then its velocity vector \(\vec{v}\) must also be tangent to this level surface. Then, by the <a href="differentials.html#org7dbfa8f">chain rule</a>, we have:
 </p>
 
 <p>
@@ -768,8 +1103,8 @@ As the dot product is zero, we know that the gradient vector and the velocity ve
 </div>
 </div>
 </div>
-<div id="outline-container-orgad7e7ea" class="outline-2">
-<h2 id="orgad7e7ea"><span class="section-number-2">2.</span> Directional Derivatives</h2>
+<div id="outline-container-orgbebb247" class="outline-2">
+<h2 id="orgbebb247"><span class="section-number-2">2.</span> Directional Derivatives</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Partial derivatives gives us the rate of change for a function in the directions defined by \(\hat{i}\), \(\hat{j}\), and so on. But <b>directional derivatives</b> allow us to calculate the rate of change for a function \(w\) in some <i>arbitrary direction</i> defined by the unit vector \(\hat{u}\).
@@ -785,7 +1120,7 @@ y(s) &= y_0 + bs
 \end{aligned}
 
 <p>
-We see that what we really want is to find \(\frac{\text{d}w}{\text{d}s}\). To do this, we can use the <a href="differentials.html#org3cb564e">chain rule</a>, with the notation as follows:
+We see that what we really want is to find \(\frac{\text{d}w}{\text{d}s}\). To do this, we can use the <a href="differentials.html#org7dbfa8f">chain rule</a>, with the notation as follows:
 </p>
 
 <p>
@@ -794,8 +1129,8 @@ We see that what we really want is to find \(\frac{\text{d}w}{\text{d}s}\). To d
 \]
 </p>
 </div>
-<div id="outline-container-orgdc4854c" class="outline-3">
-<h3 id="orgdc4854c"><span class="section-number-3">2.1.</span> Application of Gradient</h3>
+<div id="outline-container-org0590aad" class="outline-3">
+<h3 id="org0590aad"><span class="section-number-3">2.1.</span> Application of Gradient</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We can further simplify this into:
@@ -817,18 +1152,18 @@ This is a new way of thinking about the gradient: <i>the gradient is the directi
 </div>
 </div>
 </div>
-<div id="outline-container-org1a1f2bc" class="outline-2">
-<h2 id="org1a1f2bc"><span class="section-number-2">3.</span> Finding the Potential</h2>
+<div id="outline-container-org89e8f26" class="outline-2">
+<h2 id="org89e8f26"><span class="section-number-2">3.</span> Finding the Potential</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Sometimes, we would like to know the potential function that a given gradient is of. There are two ways to do this: using <a href="line_integrals.html#orgbf03538">line integrals</a>, and using antiderivatives.
+Sometimes, we would like to know the potential function that a given gradient is of. There are two ways to do this: using <a href="line_integrals.html#org4d2472d">line integrals</a>, and using antiderivatives.
 </p>
 </div>
-<div id="outline-container-orgfbfb2e0" class="outline-3">
-<h3 id="orgfbfb2e0"><span class="section-number-3">3.1.</span> Using Line Integrals</h3>
+<div id="outline-container-org1666b71" class="outline-3">
+<h3 id="org1666b71"><span class="section-number-3">3.1.</span> Using Line Integrals</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-We know by the <a href="line_integrals.html#orgc3de2bc">fundamental theorem of calculus</a>, we can say that, for the trajectory starting from \((0,0)\) to \((x,y)\):
+We know by the <a href="line_integrals.html#org1939c25">fundamental theorem of calculus</a>, we can say that, for the trajectory starting from \((0,0)\) to \((x,y)\):
 </p>
 
 <p>
@@ -848,12 +1183,12 @@ f(x,y) = \int_C \vec{F} \cdot \text{ d}\vec{r} + f(0,0)
 </p>
 
 <p>
-The \(f(0,0)\) can be interpreted as an integration constant. Since this vector field is <a href="vector_fields.html#orgf557c8e">path independent</a>, we can choose the easiest path to get from \((0,0)\) to \((x,y)\): first along the x-axis, and then parallel to the y-axis. These two paths are easy to compute because for the first one, \(y\) is constant so \(\text{d}y=0\), and vice versa for the second path.
+The \(f(0,0)\) can be interpreted as an integration constant. Since this vector field is <a href="vector_fields.html#org6edf164">path independent</a>, we can choose the easiest path to get from \((0,0)\) to \((x,y)\): first along the x-axis, and then parallel to the y-axis. These two paths are easy to compute because for the first one, \(y\) is constant so \(\text{d}y=0\), and vice versa for the second path.
 </p>
 </div>
 </div>
-<div id="outline-container-org0e2fbed" class="outline-3">
-<h3 id="org0e2fbed"><span class="section-number-3">3.2.</span> Using Antiderivatives</h3>
+<div id="outline-container-org04e974e" class="outline-3">
+<h3 id="org04e974e"><span class="section-number-3">3.2.</span> Using Antiderivatives</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 We can also use antiderivatives to find \(f\), such that we know the gradient components \(f_x\) and \(f_y\). First, taking the antiderivative of \(f_x\), we have:
@@ -879,6 +1214,7 @@ But since we now know \(f\), we can figure out what \(g(y)\) should be by taking
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
+               
              </div>
              <div class="last-modified">
                Last modified: 2025-07-20 11:56

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 12:30 -->
+<!-- 2026-01-11 Sun 12:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rotational Motion</title>
@@ -17,6 +17,341 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -662,35 +997,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf1a8aea">1. Angular Quantities</a>
+<li><a href="#org32fe980">1. Angular Quantities</a>
 <ul>
-<li><a href="#orgbfedfcf">1.1. Conversion Between Angular and Linear Quantities</a></li>
-<li><a href="#orgcb8d2a9">1.2. Rotational Kinematic Equations</a></li>
+<li><a href="#org5af0776">1.1. Conversion Between Angular and Linear Quantities</a></li>
+<li><a href="#org7e7f104">1.2. Rotational Kinematic Equations</a></li>
 </ul>
 </li>
-<li><a href="#org79d1a27">2. Torque</a></li>
-<li><a href="#org7567b46">3. Rotational Inertia</a>
+<li><a href="#org49af50d">2. Torque</a></li>
+<li><a href="#org4714e80">3. Rotational Inertia</a>
 <ul>
-<li><a href="#org79f5bf0">3.1. Newton's 2nd Law</a></li>
-<li><a href="#orgd72882e">3.2. Point Masses</a></li>
-<li><a href="#org1abfe51">3.3. Continuous Mass Distribution</a></li>
-<li><a href="#orgb750e7e">3.4. Parallel Axis Theorem</a></li>
+<li><a href="#org5d5aea1">3.1. Newton's 2nd Law</a></li>
+<li><a href="#orgf008c61">3.2. Point Masses</a></li>
+<li><a href="#org0ebfcb4">3.3. Continuous Mass Distribution</a></li>
+<li><a href="#orgc653868">3.4. Parallel Axis Theorem</a></li>
 </ul>
 </li>
-<li><a href="#org66d48cf">4. Rotational Kinetic Energy</a>
+<li><a href="#orgf2bd1cb">4. Rotational Kinetic Energy</a>
 <ul>
-<li><a href="#org01112a8">4.1. Work-Energy Theorem</a></li>
+<li><a href="#orgd65261c">4.1. Work-Energy Theorem</a></li>
 </ul>
 </li>
-<li><a href="#org2f7fe53">5. No-Slip Condition</a></li>
+<li><a href="#org878eb3f">5. No-Slip Condition</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf1a8aea" class="outline-2">
-<h2 id="orgf1a8aea"><span class="section-number-2">1.</span> Angular Quantities</h2>
+<div id="outline-container-org32fe980" class="outline-2">
+<h2 id="org32fe980"><span class="section-number-2">1.</span> Angular Quantities</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-We can understand the angular quantities by using a metaphor with the translational quantities. The following are the rotational analogues to the <a href="kinematics.html#orgb0f5629">translational quantities</a> of displacement, position, velocity, and acceleration:
+We can understand the angular quantities by using a metaphor with the translational quantities. The following are the rotational analogues to the <a href="kinematics.html#org4b64658">translational quantities</a> of displacement, position, velocity, and acceleration:
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -741,8 +1076,8 @@ We can understand the angular quantities by using a metaphor with the translatio
 The rotational analogues, then, are <b>angular displacement</b>, <b>angular position</b>, <b>angular velocity</b>, and <b>angular acceleration</b>.
 </p>
 </div>
-<div id="outline-container-orgbfedfcf" class="outline-3">
-<h3 id="orgbfedfcf"><span class="section-number-3">1.1.</span> Conversion Between Angular and Linear Quantities</h3>
+<div id="outline-container-org5af0776" class="outline-3">
+<h3 id="org5af0776"><span class="section-number-3">1.1.</span> Conversion Between Angular and Linear Quantities</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 When considering movement around a circle with radius \(R\), we can begin with the arc length formula to determine the position:
@@ -761,7 +1096,7 @@ Taking the derivative with respect to time, we obtain velocity:
 \end{align}
 
 <p>
-Substituting this into <a href="circular_motion.html#org1355d0e">radial acceleration</a>, we get:
+Substituting this into <a href="circular_motion.html#org9dcef51">radial acceleration</a>, we get:
 </p>
 
 \begin{align}
@@ -791,17 +1126,17 @@ Critically, notice that all points on a rigid system have the same \(\Delta\thet
 </p>
 
 
-<div id="org422ba23" class="figure">
+<div id="org8114510" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion1.png" alt="rotational_motion1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcb8d2a9" class="outline-3">
-<h3 id="orgcb8d2a9"><span class="section-number-3">1.2.</span> Rotational Kinematic Equations</h3>
+<div id="outline-container-org7e7f104" class="outline-3">
+<h3 id="org7e7f104"><span class="section-number-3">1.2.</span> Rotational Kinematic Equations</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-Using the <a href="kinematics.html#orgb6d0031">linear kinematic equations</a> as a metaphor, we can also establish equivalent <i>kinematic equations for rotational motion</i>:
+Using the <a href="kinematics.html#org958047b">linear kinematic equations</a> as a metaphor, we can also establish equivalent <i>kinematic equations for rotational motion</i>:
 </p>
 
 \begin{align}
@@ -815,8 +1150,8 @@ Using the <a href="kinematics.html#orgb6d0031">linear kinematic equations</a> as
 </div>
 </div>
 </div>
-<div id="outline-container-org79d1a27" class="outline-2">
-<h2 id="org79d1a27"><span class="section-number-2">2.</span> Torque</h2>
+<div id="outline-container-org49af50d" class="outline-2">
+<h2 id="org49af50d"><span class="section-number-2">2.</span> Torque</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We know that force causes translational motion, but what is responsible for a change in rotational motion?
@@ -827,7 +1162,7 @@ Consider applying a force on a wrench to rotate a nut. Notice that three things 
 </p>
 
 <p>
-This quantity is known as <b>torque</b>. We can express all of the above relations using a <a href="../Multivariable_Calculus/vectors.html#org452fefe">cross product</a>:
+This quantity is known as <b>torque</b>. We can express all of the above relations using a <a href="../Multivariable_Calculus/vectors.html#org36e9039">cross product</a>:
 </p>
 
 \begin{align}
@@ -843,18 +1178,18 @@ If multiple torques are acting on the same system with respect to some axis of r
 </p>
 </div>
 </div>
-<div id="outline-container-org7567b46" class="outline-2">
-<h2 id="org7567b46"><span class="section-number-2">3.</span> Rotational Inertia</h2>
+<div id="outline-container-org4714e80" class="outline-2">
+<h2 id="org4714e80"><span class="section-number-2">3.</span> Rotational Inertia</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 It can be shown that two cylinders with the same mass and shape can roll down a ramp at different speeds, if one has its mass concentrated on the rim versus the other at the center. Thus, <b>rotational inertia</b> (also known as the <b>moment of inertia</b>), how much an object resists changes in its rotation, depends not only on mass but <i>how the mass is distributed</i>.
 </p>
 </div>
-<div id="outline-container-org79f5bf0" class="outline-3">
-<h3 id="org79f5bf0"><span class="section-number-3">3.1.</span> Newton's 2nd Law</h3>
+<div id="outline-container-org5d5aea1" class="outline-3">
+<h3 id="org5d5aea1"><span class="section-number-3">3.1.</span> Newton's 2nd Law</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-For translational motion, <a href="newtons_laws.html#org9024173">Newton's 2nd Law</a> states that \(F=ma\). We have a rotational analogue of mass (linear inertia), which is the rotational inertia \(I\). This, along with torque and angular acceleration, gives us Newton's 2nd law in the context of rotational motion:
+For translational motion, <a href="newtons_laws.html#org60d6640">Newton's 2nd Law</a> states that \(F=ma\). We have a rotational analogue of mass (linear inertia), which is the rotational inertia \(I\). This, along with torque and angular acceleration, gives us Newton's 2nd law in the context of rotational motion:
 </p>
 
 \begin{align}
@@ -862,15 +1197,15 @@ For translational motion, <a href="newtons_laws.html#org9024173">Newton's 2nd La
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgd72882e" class="outline-3">
-<h3 id="orgd72882e"><span class="section-number-3">3.2.</span> Point Masses</h3>
+<div id="outline-container-orgf008c61" class="outline-3">
+<h3 id="orgf008c61"><span class="section-number-3">3.2.</span> Point Masses</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 To find the rotational inertia of a point mass, consider a point mass rotating about some axis \((\Delta)\):
 </p>
 
 
-<div id="orgf931ca2" class="figure">
+<div id="org1aaedb6" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion2.png" alt="rotational_motion2.png" />
 </p>
 </div>
@@ -914,8 +1249,8 @@ Comparing this to Newton's 2nd law for rotational motion, we realize that \(mR^2
 \end{align}
 </div>
 </div>
-<div id="outline-container-org1abfe51" class="outline-3">
-<h3 id="org1abfe51"><span class="section-number-3">3.3.</span> Continuous Mass Distribution</h3>
+<div id="outline-container-org0ebfcb4" class="outline-3">
+<h3 id="org0ebfcb4"><span class="section-number-3">3.3.</span> Continuous Mass Distribution</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 To find the rotational inertia of a continuous mass distribution, we can take the integral of tiny pieces of mass \(\text{d}m\) from (8):
@@ -944,7 +1279,7 @@ Consider a cylinder with uniform mass distribution (density \(\rho\)):
 </p>
 
 
-<div id="org4baf191" class="figure">
+<div id="orga7805f4" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion3.png" alt="rotational_motion3.png" />
 </p>
 </div>
@@ -954,7 +1289,7 @@ We want to integrate over the mass of the cylinder, so first we shall find the v
 </p>
 
 
-<div id="org634736a" class="figure">
+<div id="orgc7c0087" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion4.png" alt="rotational_motion4.png" />
 </p>
 </div>
@@ -993,8 +1328,8 @@ I &= \int \rho r^2 \text{ d}V \notag \\
 </details>
 </div>
 </div>
-<div id="outline-container-orgb750e7e" class="outline-3">
-<h3 id="orgb750e7e"><span class="section-number-3">3.4.</span> Parallel Axis Theorem</h3>
+<div id="outline-container-orgc653868" class="outline-3">
+<h3 id="orgc653868"><span class="section-number-3">3.4.</span> Parallel Axis Theorem</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 If the axis of rotation does not go through the center of mass of a rotation object, but instead the actual axis is <i>parallel to the one through the center of mass</i> at some distance \(d\), then we can use the <b>parallel axis theorem</b> to find the rotational inertia:
@@ -1027,7 +1362,7 @@ Consider a dumbbell rotating about its center of mass, like so:
 </p>
 
 
-<div id="orgf6320fa" class="figure">
+<div id="orgc8547a9" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion5.png" alt="rotational_motion5.png" />
 </p>
 </div>
@@ -1058,8 +1393,8 @@ I_{\text{tot}} &= I_r + 2\left[I_{\text{S}/\text{CM}} + m_s\left(\frac{L}{2}+R\r
 </div>
 </div>
 </div>
-<div id="outline-container-org66d48cf" class="outline-2">
-<h2 id="org66d48cf"><span class="section-number-2">4.</span> Rotational Kinetic Energy</h2>
+<div id="outline-container-orgf2bd1cb" class="outline-2">
+<h2 id="orgf2bd1cb"><span class="section-number-2">4.</span> Rotational Kinetic Energy</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 We can define rotational kinetic energy by considering rotational inertia and angular speeds as the analogues to mass (linear inertia) and translational speed:
@@ -1069,8 +1404,8 @@ We can define rotational kinetic energy by considering rotational inertia and an
 \boxed{K_{\text{rot}} = \frac{1}{2} I \omega^2}
 \end{align}
 </div>
-<div id="outline-container-org01112a8" class="outline-3">
-<h3 id="org01112a8"><span class="section-number-3">4.1.</span> <a href="work_and_energy.html#org6bf8c22">Work-Energy Theorem</a></h3>
+<div id="outline-container-orgd65261c" class="outline-3">
+<h3 id="orgd65261c"><span class="section-number-3">4.1.</span> <a href="work_and_energy.html#org3bc8ba1">Work-Energy Theorem</a></h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 We can define the rotational work-energy theorem as follows:
@@ -1099,7 +1434,7 @@ Consider a circular turntable with uniform mass distribution (so \(I = \frac{MR^
 </p>
 
 
-<div id="org68efbe1" class="figure">
+<div id="org322b509" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion6.png" alt="rotational_motion6.png" />
 </p>
 </div>
@@ -1145,15 +1480,15 @@ Therefore, the final angular speed is:
 </div>
 </div>
 </div>
-<div id="outline-container-org2f7fe53" class="outline-2">
-<h2 id="org2f7fe53"><span class="section-number-2">5.</span> No-Slip Condition</h2>
+<div id="outline-container-org878eb3f" class="outline-2">
+<h2 id="org878eb3f"><span class="section-number-2">5.</span> No-Slip Condition</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 In many situations, both translation and rotation may exist simultaneously. For situations with a <b>no-slip condition</b> (e.g. a ball rolling without slipping), there's a relationship between the two velocities of rotation and translation:
 </p>
 
 
-<div id="org05297ea" class="figure">
+<div id="orgf317d29" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion7.png" alt="rotational_motion7.png" />
 </p>
 </div>
@@ -1202,7 +1537,7 @@ Consider a ball that starts at rest and rolls down an incline:
 </p>
 
 
-<div id="orgba50b6c" class="figure">
+<div id="orgf6eda26" class="figure">
 <p><img src="../static/PHYSICS_7A/rotational_motion8.png" alt="rotational_motion8.png" />
 </p>
 </div>
@@ -1253,6 +1588,7 @@ Thus, the final speed of the ball is:
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
+               
              </div>
              <div class="last-modified">
                Last modified: 2025-10-23 19:52

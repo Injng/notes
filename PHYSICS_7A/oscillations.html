@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 12:30 -->
+<!-- 2026-01-11 Sun 12:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Oscillations</title>
@@ -17,6 +17,341 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -662,21 +997,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org660c582">1. Simple Harmonic Motion</a>
+<li><a href="#org94ec134">1. Simple Harmonic Motion</a>
 <ul>
-<li><a href="#org5f620bd">1.1. Canonical Form</a></li>
-<li><a href="#orgdc80b09">1.2. Spring-Mass System</a></li>
-<li><a href="#orga2a5788">1.3. Torsion Pendulum</a></li>
-<li><a href="#org40ad7fe">1.4. Simple Pendulum</a></li>
-<li><a href="#orgd6f074a">1.5. Physical Pendulum</a></li>
-<li><a href="#org2ed2381">1.6. Energy of SHM</a></li>
+<li><a href="#org38e311f">1.1. Canonical Form</a></li>
+<li><a href="#org07373f5">1.2. Spring-Mass System</a></li>
+<li><a href="#org3d13fc3">1.3. Torsion Pendulum</a></li>
+<li><a href="#org560187a">1.4. Simple Pendulum</a></li>
+<li><a href="#orgcd46eb2">1.5. Physical Pendulum</a></li>
+<li><a href="#orgca07b29">1.6. Energy of SHM</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org660c582" class="outline-2">
-<h2 id="org660c582"><span class="section-number-2">1.</span> Simple Harmonic Motion</h2>
+<div id="outline-container-org94ec134" class="outline-2">
+<h2 id="org94ec134"><span class="section-number-2">1.</span> Simple Harmonic Motion</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Oscillations are obtained when a system is brought away from equilibrium position and a restoring force or torque exists trying to bring the system back to the equilibrium position.
@@ -686,8 +1021,8 @@ Oscillations are obtained when a system is brought away from equilibrium positio
 If the restoring force or torque is proportional to the displacement from the equilibrium position, then the system experiences <b>simple harmonic motion</b> (SHM).
 </p>
 </div>
-<div id="outline-container-org5f620bd" class="outline-3">
-<h3 id="org5f620bd"><span class="section-number-3">1.1.</span> Canonical Form</h3>
+<div id="outline-container-org38e311f" class="outline-3">
+<h3 id="org38e311f"><span class="section-number-3">1.1.</span> Canonical Form</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Systems that undergo simple harmonic motion can all be described with the <b>canonical form</b> for SHM:
@@ -710,15 +1045,15 @@ where \(A\) is the amplitude (which must be positive) and \(\phi\) is the phase 
 </p>
 </div>
 </div>
-<div id="outline-container-orgdc80b09" class="outline-3">
-<h3 id="orgdc80b09"><span class="section-number-3">1.2.</span> Spring-Mass System</h3>
+<div id="outline-container-org07373f5" class="outline-3">
+<h3 id="org07373f5"><span class="section-number-3">1.2.</span> Spring-Mass System</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-The <b>spring-mass system</b> undergoes SHM due to <a href="springs.html#orgae4c5c7">Hooke's Law</a>, which tells us that the force is proportional to the spring's displacement:
+The <b>spring-mass system</b> undergoes SHM due to <a href="springs.html#orga03bcee">Hooke's Law</a>, which tells us that the force is proportional to the spring's displacement:
 </p>
 
 
-<div id="orgf816dca" class="figure">
+<div id="org0cb44de" class="figure">
 <p><img src="../static/PHYSICS_7A/oscillations1.png" alt="oscillations1.png" />
 </p>
 </div>
@@ -759,7 +1094,7 @@ Consider a block initially at rest after compressing a spring over a length \(L\
 </p>
 
 
-<div id="org27e4f9b" class="figure">
+<div id="orgdde8760" class="figure">
 <p><img src="../static/PHYSICS_7A/oscillations2.png" alt="oscillations2.png" />
 </p>
 </div>
@@ -801,15 +1136,15 @@ Since \(A\) and \(\omega\) are both positive, this means that \(\sin \phi = 0\),
 </details>
 </div>
 </div>
-<div id="outline-container-orga2a5788" class="outline-3">
-<h3 id="orga2a5788"><span class="section-number-3">1.3.</span> Torsion Pendulum</h3>
+<div id="outline-container-org3d13fc3" class="outline-3">
+<h3 id="org3d13fc3"><span class="section-number-3">1.3.</span> Torsion Pendulum</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 The <b>torsion pendulum</b> consists of a system oscillating rotationally, like so:
 </p>
 
 
-<div id="org1a0ea2e" class="figure">
+<div id="org294b09a" class="figure">
 <p><img src="../static/PHYSICS_7A/oscillations4.png" alt="oscillations4.png" />
 </p>
 </div>
@@ -844,15 +1179,15 @@ Note that for angular velocity, use \(\Omega(t)\) as the notation, since \(\omeg
 </p>
 </div>
 </div>
-<div id="outline-container-org40ad7fe" class="outline-3">
-<h3 id="org40ad7fe"><span class="section-number-3">1.4.</span> Simple Pendulum</h3>
+<div id="outline-container-org560187a" class="outline-3">
+<h3 id="org560187a"><span class="section-number-3">1.4.</span> Simple Pendulum</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 The <b>simple pendulum</b> consists of a string with negligible mass and a point mass at the end rotating about a pivot point:
 </p>
 
 
-<div id="org2530ad8" class="figure">
+<div id="org4deb7a1" class="figure">
 <p><img src="../static/PHYSICS_7A/oscillations5.png" alt="oscillations5.png" />
 </p>
 </div>
@@ -883,15 +1218,15 @@ Therefore, the angular frequency is:
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgd6f074a" class="outline-3">
-<h3 id="orgd6f074a"><span class="section-number-3">1.5.</span> Physical Pendulum</h3>
+<div id="outline-container-orgcd46eb2" class="outline-3">
+<h3 id="orgcd46eb2"><span class="section-number-3">1.5.</span> Physical Pendulum</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 The <b>physical pendulum</b>, as opposed to the simple pendulum, has a mass distribution across the whole pendulum:
 </p>
 
 
-<div id="org25f6ab4" class="figure">
+<div id="org26e0efc" class="figure">
 <p><img src="../static/PHYSICS_7A/oscillations6.png" alt="oscillations6.png" />
 </p>
 </div>
@@ -932,7 +1267,7 @@ Consider a pendulum with a rod of mass \(M\) and length \(L\), pivoted at \(\fra
 </p>
 
 
-<div id="org4b27b14" class="figure">
+<div id="orgc6c400c" class="figure">
 <p><img src="../static/PHYSICS_7A/oscillations7.png" alt="oscillations7.png" />
 </p>
 </div>
@@ -942,7 +1277,7 @@ The rod has uniform mass distribution with the center of mass located \(\frac{L}
 </p>
 
 <p>
-The rotational inertia can be found using the <a href="rotational_motion.html#orgb750e7e">parallel axis theorem</a>:
+The rotational inertia can be found using the <a href="rotational_motion.html#orgc653868">parallel axis theorem</a>:
 </p>
 
 \begin{align}
@@ -982,7 +1317,7 @@ Consider a physical pendulum of a rod at the equilibrium position:
 </p>
 
 
-<div id="orge040ad9" class="figure">
+<div id="org1c6e57e" class="figure">
 <p><img src="../static/PHYSICS_7A/oscillations8.png" alt="oscillations8.png" />
 </p>
 </div>
@@ -992,7 +1327,7 @@ A point mass \(m\) strikes and sticks to the rod with velocity \(v_0\). We want 
 </p>
 
 <p>
-To do this, we use <a href="momentum.html#org36030f7">conservation of angular momentum</a>:
+To do this, we use <a href="momentum.html#org0f1d812">conservation of angular momentum</a>:
 </p>
 
 \begin{align}
@@ -1034,7 +1369,7 @@ We also know that:
 \end{align}
 
 <p>
-However, we need to calculate a new <a href="center_of_mass.html#org2209ffb">center of mass</a> because of the inelastic collision. To do this, we use a weighted average:
+However, we need to calculate a new <a href="center_of_mass.html#org2b12d43">center of mass</a> because of the inelastic collision. To do this, we use a weighted average:
 </p>
 
 \begin{align}
@@ -1064,8 +1399,8 @@ Therefore, the angular frequency is:
 </details>
 </div>
 </div>
-<div id="outline-container-org2ed2381" class="outline-3">
-<h3 id="org2ed2381"><span class="section-number-3">1.6.</span> Energy of SHM</h3>
+<div id="outline-container-orgca07b29" class="outline-3">
+<h3 id="orgca07b29"><span class="section-number-3">1.6.</span> Energy of SHM</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 Using the canonical form, we can find the elastic potential energy and the kinetic energy of a system in SHM:
@@ -1092,7 +1427,7 @@ Thus, we find that \(\boxed{E(t) = \frac{1}{2}kA^2}\), which means that we have 
 </p>
 
 
-<div id="org10d9d7e" class="figure">
+<div id="org4dfdd60" class="figure">
 <p><img src="../static/PHYSICS_7A/oscillations3.png" alt="oscillations3.png" />
 </p>
 </div>
@@ -1107,6 +1442,7 @@ There could also be <b>damping</b>: the dissipation of mechanical energy. Most o
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
+               
              </div>
              <div class="last-modified">
                Last modified: 2025-11-13 20:40

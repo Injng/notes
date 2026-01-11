@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 12:30 -->
+<!-- 2026-01-11 Sun 12:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Universal Gravitation</title>
@@ -17,6 +17,341 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -662,25 +997,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0dfec55">1. Law of Universal Gravitation</a>
+<li><a href="#org788b61a">1. Law of Universal Gravitation</a>
 <ul>
-<li><a href="#org3d0ce68">1.1. Gravitational Field</a></li>
-<li><a href="#orgb540def">1.2. Potential Energy</a></li>
+<li><a href="#orgb3679ba">1.1. Gravitational Field</a></li>
+<li><a href="#org57a6614">1.2. Potential Energy</a></li>
 </ul>
 </li>
-<li><a href="#orgb7dd733">2. Satellite Orbit</a>
+<li><a href="#orgb12cdda">2. Satellite Orbit</a>
 <ul>
-<li><a href="#orge58c5b5">2.1. Circular Orbit</a></li>
-<li><a href="#org7dc7ef9">2.2. Escape Speed</a></li>
-<li><a href="#org4c26201">2.3. Throwing Objects</a></li>
-<li><a href="#org89e6d3d">2.4. Apparent Weightlessness</a></li>
+<li><a href="#org2c325f1">2.1. Circular Orbit</a></li>
+<li><a href="#org8201adc">2.2. Escape Speed</a></li>
+<li><a href="#orga4ca6b1">2.3. Throwing Objects</a></li>
+<li><a href="#org93ea10b">2.4. Apparent Weightlessness</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0dfec55" class="outline-2">
-<h2 id="org0dfec55"><span class="section-number-2">1.</span> Law of Universal Gravitation</h2>
+<div id="outline-container-org788b61a" class="outline-2">
+<h2 id="org788b61a"><span class="section-number-2">1.</span> Law of Universal Gravitation</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Newton's <b>Law of Universal Gravitation</b> states that \(\vec{F}_{G_{1\to 2}}\), the force of \(m_1\) acting on \(m_2\), is:
@@ -695,17 +1030,17 @@ where \(\hat{r}_{12}\) points from \(m_1\) to \(m_2\), and thus the force points
 </p>
 
 
-<div id="org10d50f0" class="figure">
+<div id="orgb4f9bc8" class="figure">
 <p><img src="../static/PHYSICS_7A/universal_gravitation1.png" alt="universal_gravitation1.png" />
 </p>
 </div>
 
 <p>
-Realize that gravitational force is <i>always attractive</i> because mass is always positive. By convention, \(\hat{r}\) always points from the attractor to the test mass. By <a href="newtons_laws.html#org850d2cc">Newton's 3rd Law</a>, we also have a 3rd Law pair since \(\vec{F}_{G_{1 \to 2}} = -\vec{F}_{G_{2 \to 1}}\).
+Realize that gravitational force is <i>always attractive</i> because mass is always positive. By convention, \(\hat{r}\) always points from the attractor to the test mass. By <a href="newtons_laws.html#org8298286">Newton's 3rd Law</a>, we also have a 3rd Law pair since \(\vec{F}_{G_{1 \to 2}} = -\vec{F}_{G_{2 \to 1}}\).
 </p>
 </div>
-<div id="outline-container-org3d0ce68" class="outline-3">
-<h3 id="org3d0ce68"><span class="section-number-3">1.1.</span> Gravitational Field</h3>
+<div id="outline-container-orgb3679ba" class="outline-3">
+<h3 id="orgb3679ba"><span class="section-number-3">1.1.</span> Gravitational Field</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The existence of some interaction without physical contact implies the existence of some quantity in space that mediates the gravitational interaction. This quantity can be defined as the <b>gravitational field</b>, which is the force of gravity from an attractor of mass \(M\) to a "test mass" of <i>unit mass</i>:
@@ -716,11 +1051,11 @@ The existence of some interaction without physical contact implies the existence
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgb540def" class="outline-3">
-<h3 id="orgb540def"><span class="section-number-3">1.2.</span> Potential Energy</h3>
+<div id="outline-container-org57a6614" class="outline-3">
+<h3 id="org57a6614"><span class="section-number-3">1.2.</span> Potential Energy</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-In the context of universal gravitation, our calculations for <a href="work_and_energy.html#org51076a4">gravitational potential energy</a> no longer apply. We can recalculate using the law of universal gravitation for our force:
+In the context of universal gravitation, our calculations for <a href="work_and_energy.html#orgca27b4b">gravitational potential energy</a> no longer apply. We can recalculate using the law of universal gravitation for our force:
 </p>
 
 \begin{align}
@@ -729,7 +1064,7 @@ In the context of universal gravitation, our calculations for <a href="work_and_
 \end{align}
 
 <p>
-Since \(\hat{r} \cdot \text{d}\vec{r}\) is just the <a href="../Multivariable_Calculus/vectors.html#org37d8764">projection</a> of \(\text{d}\vec{r}\) in the radial direction, so we can just call \(\hat{r} \cdot \text{d}\vec{r} = \text{d}r\) just the change in the radial direction:
+Since \(\hat{r} \cdot \text{d}\vec{r}\) is just the <a href="../Multivariable_Calculus/vectors.html#org443c9d8">projection</a> of \(\text{d}\vec{r}\) in the radial direction, so we can just call \(\hat{r} \cdot \text{d}\vec{r} = \text{d}r\) just the change in the radial direction:
 </p>
 
 \begin{align}
@@ -747,25 +1082,25 @@ The gravitational potential energy \(U_G\) is defined with reference to some zer
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7dd733" class="outline-2">
-<h2 id="orgb7dd733"><span class="section-number-2">2.</span> Satellite Orbit</h2>
+<div id="outline-container-orgb12cdda" class="outline-2">
+<h2 id="orgb12cdda"><span class="section-number-2">2.</span> Satellite Orbit</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orge58c5b5" class="outline-3">
-<h3 id="orge58c5b5"><span class="section-number-3">2.1.</span> Circular Orbit</h3>
+<div id="outline-container-org2c325f1" class="outline-3">
+<h3 id="org2c325f1"><span class="section-number-3">2.1.</span> Circular Orbit</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Consider a mass \(m\) orbiting an attractor with mass \(M\):
 </p>
 
 
-<div id="orgbbbdcb5" class="figure">
+<div id="org84652ff" class="figure">
 <p><img src="../static/PHYSICS_7A/universal_gravitation2.png" alt="universal_gravitation2.png" />
 </p>
 </div>
 
 <p>
-If gravity is the only force present, we find that the acceleration is purely centripetal, so the object is in <a href="circular_motion.html#orgbbb56d0">uniform circular motion</a>. By <a href="newtons_laws.html#org9024173">Newton's second law</a>, we have:
+If gravity is the only force present, we find that the acceleration is purely centripetal, so the object is in <a href="circular_motion.html#orgf07177b">uniform circular motion</a>. By <a href="newtons_laws.html#org60d6640">Newton's second law</a>, we have:
 </p>
 
 \begin{align}
@@ -831,8 +1166,8 @@ H = r - R_E \approx 35800 \text{ km} \notag
 </details>
 </div>
 </div>
-<div id="outline-container-org7dc7ef9" class="outline-3">
-<h3 id="org7dc7ef9"><span class="section-number-3">2.2.</span> Escape Speed</h3>
+<div id="outline-container-org8201adc" class="outline-3">
+<h3 id="org8201adc"><span class="section-number-3">2.2.</span> Escape Speed</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 There is a particular speed, called the <b>escape speed</b>, such that an object would leave the orbit of another object. Consider the total mechanical energy of an object in orbit:
@@ -854,7 +1189,7 @@ In celestial mechanics, the total mechanical energy determines the type of orbit
 </ol>
 
 
-<div id="org930beef" class="figure">
+<div id="org701ad27" class="figure">
 <p><img src="../static/PHYSICS_7A/universal_gravitation3.png" alt="universal_gravitation3.png" />
 </p>
 </div>
@@ -881,11 +1216,11 @@ We can then say that if \(v < v_{\text{esc}}\), then we have a closed orbit, oth
 </p>
 </div>
 </div>
-<div id="outline-container-org4c26201" class="outline-3">
-<h3 id="org4c26201"><span class="section-number-3">2.3.</span> Throwing Objects</h3>
+<div id="outline-container-orga4ca6b1" class="outline-3">
+<h3 id="orga4ca6b1"><span class="section-number-3">2.3.</span> Throwing Objects</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-A natural question concerning orbits is, why doesn't an object thrown an Earth enter an orbit? And why isn't the path of the object as described in <a href="kinematics.html#orgb6d0031">kinematics</a> elliptical?
+A natural question concerning orbits is, why doesn't an object thrown an Earth enter an orbit? And why isn't the path of the object as described in <a href="kinematics.html#org958047b">kinematics</a> elliptical?
 </p>
 
 <p>
@@ -893,7 +1228,7 @@ A ball thrown in the air does not go into orbit because the Earth is not a <i>po
 </p>
 
 
-<div id="orgef37e48" class="figure">
+<div id="orgae5f133" class="figure">
 <p><img src="../static/PHYSICS_7A/universal_gravitation4.png" alt="universal_gravitation4.png" />
 </p>
 </div>
@@ -903,8 +1238,8 @@ When we throw an object, it doesn't orbit the Earth because the Earth's radius i
 </p>
 </div>
 </div>
-<div id="outline-container-org89e6d3d" class="outline-3">
-<h3 id="org89e6d3d"><span class="section-number-3">2.4.</span> Apparent Weightlessness</h3>
+<div id="outline-container-org93ea10b" class="outline-3">
+<h3 id="org93ea10b"><span class="section-number-3">2.4.</span> Apparent Weightlessness</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 "True" weightlessness would require gravitational field to be zero, which doesn't exist. Instead, weightlessness felt by astronauts in orbit is a type of <i>apparent weightlessness</i>. Apparent weightlessness occurs when you feel no response from your surroundings; in other words, the <i>normal force is zero</i>. 
@@ -920,6 +1255,7 @@ This occurs when both you and your surroundings are in free fall at the same tim
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
+               
              </div>
              <div class="last-modified">
                Last modified: 2025-10-08 17:47

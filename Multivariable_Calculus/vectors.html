@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 12:30 -->
+<!-- 2026-01-11 Sun 12:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vectors</title>
@@ -17,6 +17,341 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -662,27 +997,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgc859c49">1. Vectors</a></li>
-<li><a href="#org73c1693">2. Vector Operations</a>
+<li><a href="#orgd99fa26">1. Vectors</a></li>
+<li><a href="#orged0c964">2. Vector Operations</a>
 <ul>
-<li><a href="#orgd84e7dc">2.1. Vector Addition</a></li>
-<li><a href="#orgbda7841">2.2. Multiplying by a Scalar</a></li>
-<li><a href="#org33da63d">2.3. Dot Product</a>
+<li><a href="#orgeb27518">2.1. Vector Addition</a></li>
+<li><a href="#orgfd2fb07">2.2. Multiplying by a Scalar</a></li>
+<li><a href="#orgd71c78a">2.3. Dot Product</a>
 <ul>
-<li><a href="#org3c00566">2.3.1. Computing Lengths and Angles</a></li>
-<li><a href="#org468629a">2.3.2. Sign of Dot Product</a></li>
-<li><a href="#org37d8764">2.3.3. Projections</a></li>
+<li><a href="#org9f5f521">2.3.1. Computing Lengths and Angles</a></li>
+<li><a href="#orgfb7803b">2.3.2. Sign of Dot Product</a></li>
+<li><a href="#org443c9d8">2.3.3. Projections</a></li>
 </ul>
 </li>
-<li><a href="#org1abbf68">2.4. Determinants</a>
+<li><a href="#org0b76191">2.4. Determinants</a>
 <ul>
-<li><a href="#org39e6cca">2.4.1. Determinants in Space</a></li>
+<li><a href="#org65ed2dd">2.4.1. Determinants in Space</a></li>
 </ul>
 </li>
-<li><a href="#org452fefe">2.5. Cross Product</a>
+<li><a href="#org36e9039">2.5. Cross Product</a>
 <ul>
-<li><a href="#org1669f56">2.5.1. Volume</a></li>
-<li><a href="#orga6813c8">2.5.2. Equation of a Plane</a></li>
+<li><a href="#orgdcf8d7e">2.5.1. Volume</a></li>
+<li><a href="#org82d1d39">2.5.2. Equation of a Plane</a></li>
 </ul>
 </li>
 </ul>
@@ -690,15 +1025,15 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc859c49" class="outline-2">
-<h2 id="orgc859c49"><span class="section-number-2">1.</span> Vectors</h2>
+<div id="outline-container-orgd99fa26" class="outline-2">
+<h2 id="orgd99fa26"><span class="section-number-2">1.</span> Vectors</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Vectors are values that have both a <b>direction</b> and a <b>magnitude</b> (or length). 
 </p>
 
 
-<div id="org9b8f5d8" class="figure">
+<div id="org11788c0" class="figure">
 <p><img src="../static/vectors1.png" alt="vectors1.png" />
 </p>
 </div>
@@ -740,19 +1075,19 @@ To find the magnitude of a vector given in component form, we can use the follow
 </p>
 </div>
 </div>
-<div id="outline-container-org73c1693" class="outline-2">
-<h2 id="org73c1693"><span class="section-number-2">2.</span> Vector Operations</h2>
+<div id="outline-container-orged0c964" class="outline-2">
+<h2 id="orged0c964"><span class="section-number-2">2.</span> Vector Operations</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgd84e7dc" class="outline-3">
-<h3 id="orgd84e7dc"><span class="section-number-3">2.1.</span> Vector Addition</h3>
+<div id="outline-container-orgeb27518" class="outline-3">
+<h3 id="orgeb27518"><span class="section-number-3">2.1.</span> Vector Addition</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Vectors can be added both geometrically and numerically. Starting with the geometric version, to add two vectors \(\vec{A}\) and \(\vec{B}\), we can use the "tip-to-tail" method or the parallelogram method shown below:
 </p>
 
 
-<div id="org6644fa4" class="figure">
+<div id="org60a0446" class="figure">
 <p><img src="../static/vectors2.png" alt="vectors2.png" />
 </p>
 </div>
@@ -768,15 +1103,15 @@ To numerically add two vectors, simply add the values of their components:
 </p>
 </div>
 </div>
-<div id="outline-container-orgbda7841" class="outline-3">
-<h3 id="orgbda7841"><span class="section-number-3">2.2.</span> Multiplying by a Scalar</h3>
+<div id="outline-container-orgfd2fb07" class="outline-3">
+<h3 id="orgfd2fb07"><span class="section-number-3">2.2.</span> Multiplying by a Scalar</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Geometrically, multiplying by a scalar simply scales the length of the vector, like so:
 </p>
 
 
-<div id="org0e7c465" class="figure">
+<div id="org7dbb5d2" class="figure">
 <p><img src="../static/vectors3.png" alt="vectors3.png" />
 </p>
 </div>
@@ -792,8 +1127,8 @@ c\langle a_1,a_2,a_3 \rangle = \langle ca_1,ca_2,ca_3 \rangle
 </p>
 </div>
 </div>
-<div id="outline-container-org33da63d" class="outline-3">
-<h3 id="org33da63d"><span class="section-number-3">2.3.</span> Dot Product</h3>
+<div id="outline-container-orgd71c78a" class="outline-3">
+<h3 id="orgd71c78a"><span class="section-number-3">2.3.</span> Dot Product</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The <b>dot product</b> is a way to multiply two vectors to get a scalar. It is the pairwise multiplication of corresponding componenets between two vectors:
@@ -816,7 +1151,7 @@ Geometrically, what we're doing is:
 </p>
 
 
-<div id="org7c923f2" class="figure">
+<div id="orgf1720e6" class="figure">
 <p><img src="../static/vectors4.png" alt="vectors4.png" />
 </p>
 </div>
@@ -830,7 +1165,7 @@ To prove this result, we can use the Law of Cosines. Given two vectors \(\vec{A}
 </p>
 
 
-<div id="org9bc89f6" class="figure">
+<div id="org911051a" class="figure">
 <p><img src="../static/vectors5.png" alt="vectors5.png" />
 </p>
 </div>
@@ -864,8 +1199,8 @@ Equating these two expressions together, we get that
 \]
 </p>
 </div>
-<div id="outline-container-org3c00566" class="outline-4">
-<h4 id="org3c00566"><span class="section-number-4">2.3.1.</span> Computing Lengths and Angles</h4>
+<div id="outline-container-org9f5f521" class="outline-4">
+<h4 id="org9f5f521"><span class="section-number-4">2.3.1.</span> Computing Lengths and Angles</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 If we know the components that make up two vectors, then we can use this dot product relationship in order to find the angle between the two vectors, and vice versa.
@@ -877,8 +1212,8 @@ If we know the components that make up two vectors, then we can use this dot pro
 \end{aligned}
 </div>
 </div>
-<div id="outline-container-org468629a" class="outline-4">
-<h4 id="org468629a"><span class="section-number-4">2.3.2.</span> Sign of Dot Product</h4>
+<div id="outline-container-orgfb7803b" class="outline-4">
+<h4 id="orgfb7803b"><span class="section-number-4">2.3.2.</span> Sign of Dot Product</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
 Since the magnitudes will always be positive in the dot product, the sign of the dot product is solely dependent on the sign of \(\cos{\theta}\). This means that the dot product:
@@ -895,15 +1230,15 @@ Therefore, we can use the dot product to <i>detect orthogonality</i>. If two vec
 </p>
 </div>
 </div>
-<div id="outline-container-org37d8764" class="outline-4">
-<h4 id="org37d8764"><span class="section-number-4">2.3.3.</span> Projections</h4>
+<div id="outline-container-org443c9d8" class="outline-4">
+<h4 id="org443c9d8"><span class="section-number-4">2.3.3.</span> Projections</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 We can use the dot product to <i>find the component of a vector along a certain direction</i>. This is otherwise known as the projection of a vector, \(\vec{A}\), along the direction defined by a unit vector \(\hat{u}\):
 </p>
 
 
-<div id="org3c821da" class="figure">
+<div id="orgb0dd35e" class="figure">
 <p><img src="../static/vectors6.png" alt="vectors6.png" />
 </p>
 </div>
@@ -918,8 +1253,8 @@ In other words, the projection of \(\vec{A}\) along \(\hat{u}\) is \(\vec{A} \cd
 </div>
 </div>
 </div>
-<div id="outline-container-org1abbf68" class="outline-3">
-<h3 id="org1abbf68"><span class="section-number-3">2.4.</span> Determinants</h3>
+<div id="outline-container-org0b76191" class="outline-3">
+<h3 id="org0b76191"><span class="section-number-3">2.4.</span> Determinants</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 To understand <b>determinants</b>, we must first look at calculating <i>area</i> using vectors. We know that the area of a triangle, determine by two adjacent vectors \(\vec{A}\) and \(\vec{B}\) with an angle \(\theta\) between them, is:
@@ -955,8 +1290,8 @@ A &= \frac{1}{2} \langle -a_2,a_1 \rangle \cdot \langle b_1,b_2 \rangle \\ \nota
 This is defined as the determinant. Since the determinant is twice the area of this triangle, geometrically the <i>determinant of two vectors is equal to the area of the parallelogram bounded by those two vectors</i>.
 </p>
 </div>
-<div id="outline-container-org39e6cca" class="outline-4">
-<h4 id="org39e6cca"><span class="section-number-4">2.4.1.</span> Determinants in Space</h4>
+<div id="outline-container-org65ed2dd" class="outline-4">
+<h4 id="org65ed2dd"><span class="section-number-4">2.4.1.</span> Determinants in Space</h4>
 <div class="outline-text-4" id="text-2-4-1">
 <p>
 Determinants can also be done with 3 vectors, \(\vec{A}\), \(\vec{B}\), and \(\vec{C}\). It is defined as:
@@ -978,8 +1313,8 @@ Geometrically, the magnitude of the determinant is equivalent to <i>the volume o
 </div>
 </div>
 </div>
-<div id="outline-container-org452fefe" class="outline-3">
-<h3 id="org452fefe"><span class="section-number-3">2.5.</span> Cross Product</h3>
+<div id="outline-container-org36e9039" class="outline-3">
+<h3 id="org36e9039"><span class="section-number-3">2.5.</span> Cross Product</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 The <b><b>cross product</b></b> of two vectors in 3 dimensional space results in a <i>vector</i> defined as:
@@ -995,15 +1330,15 @@ The <b><b>cross product</b></b> of two vectors in 3 dimensional space results in
 Geometrically, the <i>magnitude of the cross product of two vectors is equal to the area of the parallelogram formed by those two vectors</i>. Additionally, the <i>direction of the cross product is perpendicular to the plane of the parallelogram</i>. However, realize that there are two ways you can be perpendicular to a plane. In order to determine which exactly is the right direction for a cross product, we use the <b>right-hand rule</b>.
 </p>
 </div>
-<div id="outline-container-org1669f56" class="outline-4">
-<h4 id="org1669f56"><span class="section-number-4">2.5.1.</span> Volume</h4>
+<div id="outline-container-orgdcf8d7e" class="outline-4">
+<h4 id="orgdcf8d7e"><span class="section-number-4">2.5.1.</span> Volume</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <p>
 With this new operation, we can have some fresh insights on volumes of parallelepipeds. Let three vectors \(\vec{A}\), \(\vec{B}\), and \(\vec{C}\) bound a parallelepiped like in the image below:
 </p>
 
 
-<div id="org5d7dd17" class="figure">
+<div id="org832882c" class="figure">
 <p><img src="../static/vectors7.png" alt="vectors7.png" />
 </p>
 </div>
@@ -1037,15 +1372,15 @@ This is known as a <b>triple product</b>. Additionally, as a determinant of thre
 \end{align}
 </div>
 </div>
-<div id="outline-container-orga6813c8" class="outline-4">
-<h4 id="orga6813c8"><span class="section-number-4">2.5.2.</span> Equation of a Plane</h4>
+<div id="outline-container-org82d1d39" class="outline-4">
+<h4 id="org82d1d39"><span class="section-number-4">2.5.2.</span> Equation of a Plane</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <p>
 Given three points in a plane, \(P_1\), \(P_2\), and \(P_3\), we can find a condition on another point \(P\) with coordinates \((x,y,z)\) that tells us whether or not \(P\) is in this plane.
 </p>
 
 
-<div id="org8a22d61" class="figure">
+<div id="orgebac1fb" class="figure">
 <p><img src="../static/vectors8.png" alt="vectors8.png" />
 </p>
 </div>
@@ -1059,7 +1394,7 @@ Another way to do this is by considering a normal vector to the plane as shown b
 </p>
 
 
-<div id="orgb29d3fc" class="figure">
+<div id="org52082ba" class="figure">
 <p><img src="../static/vectors9.png" alt="vectors9.png" />
 </p>
 </div>
@@ -1095,6 +1430,7 @@ Realize that this is a triple product, and by (1), this is the exact same as our
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
+               
              </div>
              <div class="last-modified">
                Last modified: 2025-06-01 14:41

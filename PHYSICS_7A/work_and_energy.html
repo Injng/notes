@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 12:30 -->
+<!-- 2026-01-11 Sun 12:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Work and Energy</title>
@@ -17,6 +17,341 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -662,21 +997,21 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7f8905a">1. Work</a>
+<li><a href="#org3f9405d">1. Work</a>
 <ul>
-<li><a href="#orged1baf4">1.1. Net Work</a></li>
+<li><a href="#org318a949">1.1. Net Work</a></li>
 </ul>
 </li>
-<li><a href="#org67e73b9">2. Kinetic Energy</a></li>
-<li><a href="#org6bf8c22">3. Work-Energy Theorem</a></li>
-<li><a href="#org310cfce">4. Potential Energy</a>
+<li><a href="#org52df9be">2. Kinetic Energy</a></li>
+<li><a href="#org3bc8ba1">3. Work-Energy Theorem</a></li>
+<li><a href="#orgf20e316">4. Potential Energy</a>
 <ul>
-<li><a href="#org51076a4">4.1. Gravitational Potential Energy</a></li>
-<li><a href="#org12bc3d6">4.2. Elastic Potential Energy</a></li>
-<li><a href="#orgf9d1dba">4.3. Conservation of Mechanical Energy</a></li>
-<li><a href="#org74f4e5c">4.4. Potential Energy Diagrams</a>
+<li><a href="#orgca27b4b">4.1. Gravitational Potential Energy</a></li>
+<li><a href="#orge96b5e9">4.2. Elastic Potential Energy</a></li>
+<li><a href="#orgc845dfa">4.3. Conservation of Mechanical Energy</a></li>
+<li><a href="#org518bded">4.4. Potential Energy Diagrams</a>
 <ul>
-<li><a href="#org6d63322">4.4.1. Stability of Equilibrium</a></li>
+<li><a href="#org378bc51">4.4.1. Stability of Equilibrium</a></li>
 </ul>
 </li>
 </ul>
@@ -687,8 +1022,8 @@
 <p>
 Since energy is a scalar quantity, it is a lot easier to manipulate than forces. Therefore, there is the possibility that we can make a lot of dynamics problems easier by using energy instead of Newton's laws.
 </p>
-<div id="outline-container-org7f8905a" class="outline-2">
-<h2 id="org7f8905a"><span class="section-number-2">1.</span> Work</h2>
+<div id="outline-container-org3f9405d" class="outline-2">
+<h2 id="org3f9405d"><span class="section-number-2">1.</span> Work</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Work</b> is a measure of energy transferred to a system to perform a <i>displacement</i> (no displacement, no work):
@@ -699,7 +1034,7 @@ Since energy is a scalar quantity, it is a lot easier to manipulate than forces.
 \end{align}
 
 <p>
-Note that work depends on a <i>process</i> from a point A to a point B; it is <i>not</i> a measure of energy at a given point. Work is represented by a <a href="../Multivariable_Calculus/line_integrals.html#orgbf03538">line integral</a> that depends on the magnitude of \(\vec{F}\), the distance from A to B, and the relative direction between \(\vec{F}\) and \(\text{d}\vec{r}\).
+Note that work depends on a <i>process</i> from a point A to a point B; it is <i>not</i> a measure of energy at a given point. Work is represented by a <a href="../Multivariable_Calculus/line_integrals.html#org4d2472d">line integral</a> that depends on the magnitude of \(\vec{F}\), the distance from A to B, and the relative direction between \(\vec{F}\) and \(\text{d}\vec{r}\).
 </p>
 
 <p>
@@ -714,8 +1049,8 @@ W_{AB} = \int_A^B F\cos\theta \text{ d}r = \boxed{F\cos\theta L_{AB}} \notag
 where \(L\) is the length of the path from \(A\) to \(B\). 
 </p>
 </div>
-<div id="outline-container-orged1baf4" class="outline-3">
-<h3 id="orged1baf4"><span class="section-number-3">1.1.</span> Net Work</h3>
+<div id="outline-container-org318a949" class="outline-3">
+<h3 id="org318a949"><span class="section-number-3">1.1.</span> Net Work</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can find the net work done by all the forces on a system by summing up all of the individual works:
@@ -736,8 +1071,8 @@ Then, the sum of all the forces is just the net force, so:
 </div>
 </div>
 </div>
-<div id="outline-container-org67e73b9" class="outline-2">
-<h2 id="org67e73b9"><span class="section-number-2">2.</span> Kinetic Energy</h2>
+<div id="outline-container-org52df9be" class="outline-2">
+<h2 id="org52df9be"><span class="section-number-2">2.</span> Kinetic Energy</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 We define <b>kinetic energy</b>, the energy related to motion, as:
@@ -748,11 +1083,11 @@ We define <b>kinetic energy</b>, the energy related to motion, as:
 \end{align}
 </div>
 </div>
-<div id="outline-container-org6bf8c22" class="outline-2">
-<h2 id="org6bf8c22"><span class="section-number-2">3.</span> Work-Energy Theorem</h2>
+<div id="outline-container-org3bc8ba1" class="outline-2">
+<h2 id="org3bc8ba1"><span class="section-number-2">3.</span> Work-Energy Theorem</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Since <a href="newtons_laws.html#org9024173">Newton's 2nd Law</a> tells us that \(\vec{F}_\text{net} = m\vec{a}\), then from (3) we have:
+Since <a href="newtons_laws.html#org60d6640">Newton's 2nd Law</a> tells us that \(\vec{F}_\text{net} = m\vec{a}\), then from (3) we have:
 </p>
 
 \begin{align}
@@ -791,7 +1126,7 @@ Consider a block dragged with a rope:
 </p>
 
 
-<div id="org22bd45b" class="figure">
+<div id="orga855266" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy3.png" alt="work_and_energy3.png" />
 </p>
 </div>
@@ -838,11 +1173,11 @@ Thus,
 </details>
 </div>
 </div>
-<div id="outline-container-org310cfce" class="outline-2">
-<h2 id="org310cfce"><span class="section-number-2">4.</span> Potential Energy</h2>
+<div id="outline-container-orgf20e316" class="outline-2">
+<h2 id="orgf20e316"><span class="section-number-2">4.</span> Potential Energy</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-Forces like gravity and spring force are called <b>conservative forces</b> because the work only depends on the start and end points, but <i>not</i> the path followed from the start to the end (<a href="../Multivariable_Calculus/vector_fields.html#orgf557c8e">path independent</a>).
+Forces like gravity and spring force are called <b>conservative forces</b> because the work only depends on the start and end points, but <i>not</i> the path followed from the start to the end (<a href="../Multivariable_Calculus/vector_fields.html#org6edf164">path independent</a>).
 </p>
 
 <p>
@@ -858,7 +1193,7 @@ where \(W_{C}\) is the work done by conservative forces.
 </p>
 
 <p>
-We can also relate potential energy to work by considering that \(\text{d}U = -\vec{F} \cdot \text{d}\vec{r}\). Then, writing this using <a href="../Multivariable_Calculus/differentials.html#org315889c">differentials</a>, we have:
+We can also relate potential energy to work by considering that \(\text{d}U = -\vec{F} \cdot \text{d}\vec{r}\). Then, writing this using <a href="../Multivariable_Calculus/differentials.html#orgcbe6122">differentials</a>, we have:
 </p>
 
 \begin{align}
@@ -875,18 +1210,18 @@ Matching the differentials, we get that:
 \end{align}
 
 <p>
-We can intuitively understand this by considering a landscape of hills and valleys, with gravitational potential energy as representative of potential energy. Since the <a href="../Multivariable_Calculus/gradient.html#org5c5824e">gradient</a> points in the direction of the fastest increase, the gradient of the potential energy would point in the "steepest" direction. However, force would drive "downhill," towards the point of less potential energy, and so therefore it would be the opposite of the gradient.
+We can intuitively understand this by considering a landscape of hills and valleys, with gravitational potential energy as representative of potential energy. Since the <a href="../Multivariable_Calculus/gradient.html#org5d8e18b">gradient</a> points in the direction of the fastest increase, the gradient of the potential energy would point in the "steepest" direction. However, force would drive "downhill," towards the point of less potential energy, and so therefore it would be the opposite of the gradient.
 </p>
 </div>
-<div id="outline-container-org51076a4" class="outline-3">
-<h3 id="org51076a4"><span class="section-number-3">4.1.</span> Gravitational Potential Energy</h3>
+<div id="outline-container-orgca27b4b" class="outline-3">
+<h3 id="orgca27b4b"><span class="section-number-3">4.1.</span> Gravitational Potential Energy</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Consider a path where gravity acts on the system:
 </p>
 
 
-<div id="orgd629ee3" class="figure">
+<div id="org390e666" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy1.png" alt="work_and_energy1.png" />
 </p>
 </div>
@@ -918,19 +1253,19 @@ Therefore, <b>gravitational potential energy</b> \(U_g\) is the following if hei
 \end{align}
 
 <p>
-Note that this is only true for objects on Earth; in the context of <a href="universal_gravitation.html#org0dfec55">universal gravitation</a>, we must use <a href="universal_gravitation.html#orgb540def">a different calculation</a>.
+Note that this is only true for objects on Earth; in the context of <a href="universal_gravitation.html#org788b61a">universal gravitation</a>, we must use <a href="universal_gravitation.html#org57a6614">a different calculation</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-org12bc3d6" class="outline-3">
-<h3 id="org12bc3d6"><span class="section-number-3">4.2.</span> Elastic Potential Energy</h3>
+<div id="outline-container-orge96b5e9" class="outline-3">
+<h3 id="orge96b5e9"><span class="section-number-3">4.2.</span> Elastic Potential Energy</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 This potential energy is spring-related. Consider a block on the end of the spring moving from point \(A\) to point \(B\):
 </p>
 
 
-<div id="org86fa5ef" class="figure">
+<div id="org93f3c63" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy2.png" alt="work_and_energy2.png" />
 </p>
 </div>
@@ -962,8 +1297,8 @@ Therefore, the <b>elastic potential energy</b> \(U_{el}\) is:
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgf9d1dba" class="outline-3">
-<h3 id="orgf9d1dba"><span class="section-number-3">4.3.</span> Conservation of Mechanical Energy</h3>
+<div id="outline-container-orgc845dfa" class="outline-3">
+<h3 id="orgc845dfa"><span class="section-number-3">4.3.</span> Conservation of Mechanical Energy</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 From the work-energy theorem, we can split up the work into work done by conservative forces, \(W_C\), and work done by non-conservative forces, \(W_{NC}\):
@@ -1014,7 +1349,7 @@ Consider a block held by a spring on a ramp, with point 0 being the equilibrium 
 </p>
 
 
-<div id="orge46d1ae" class="figure">
+<div id="org30cae12" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy4.png" alt="work_and_energy4.png" />
 </p>
 </div>
@@ -1080,15 +1415,15 @@ Thus, we find the velocity to be:
 </details>
 </div>
 </div>
-<div id="outline-container-org74f4e5c" class="outline-3">
-<h3 id="org74f4e5c"><span class="section-number-3">4.4.</span> Potential Energy Diagrams</h3>
+<div id="outline-container-org518bded" class="outline-3">
+<h3 id="org518bded"><span class="section-number-3">4.4.</span> Potential Energy Diagrams</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 If only conservative forces act on an object, we can examine a <b>potential energy diagram</b> like the one below:
 </p>
 
 
-<div id="org019c7dd" class="figure">
+<div id="orgf6c1431" class="figure">
 <p><img src="../static/PHYSICS_7A/work_and_energy5.png" alt="work_and_energy5.png" />
 </p>
 </div>
@@ -1109,8 +1444,8 @@ If the system has mechanical energy \(E_1\), then the system can only exist betw
 If the system has mechanical energy \(E_2\), then the system can exist in the broader region from \(c\) to \(d\). Similarly, if mechanical energy is at \(E_3\), the line crosses two potential wells, but since there is a "hill" in between, the system will only remain in the area it started in.
 </p>
 </div>
-<div id="outline-container-org6d63322" class="outline-4">
-<h4 id="org6d63322"><span class="section-number-4">4.4.1.</span> Stability of Equilibrium</h4>
+<div id="outline-container-org378bc51" class="outline-4">
+<h4 id="org378bc51"><span class="section-number-4">4.4.1.</span> Stability of Equilibrium</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <p>
 At points where the slope is zero (at the top and bottom of the hills), the system is said to be in <b>equilibrium</b>. The <i>degree of stability</i> depends on whether the point corresponds to a minimum or maximum of \(U(X)\):
@@ -1133,6 +1468,7 @@ Systems at unstable equilibrium will not return to the equilibrium point if move
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
+               
              </div>
              <div class="last-modified">
                Last modified: 2025-10-08 17:20

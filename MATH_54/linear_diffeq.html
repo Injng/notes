@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 12:30 -->
+<!-- 2026-01-11 Sun 12:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Differential Equations</title>
@@ -17,6 +17,341 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -662,25 +997,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgbca02d0">1. Constant Coefficients</a>
+<li><a href="#org0ac1a50">1. Constant Coefficients</a>
 <ul>
-<li><a href="#org4bb5741">1.1. Homogenous Equations</a>
+<li><a href="#org8fe58f8">1.1. Homogenous Equations</a>
 <ul>
-<li><a href="#orgb40f510">1.1.1. Two Real Roots</a></li>
-<li><a href="#orgbdb7a78">1.1.2. Repeated Real Roots</a></li>
-<li><a href="#org3e997fe">1.1.3. Two Nonreal Roots</a></li>
+<li><a href="#org846fe92">1.1.1. Two Real Roots</a></li>
+<li><a href="#orgd16c75f">1.1.2. Repeated Real Roots</a></li>
+<li><a href="#orgb11f907">1.1.3. Two Nonreal Roots</a></li>
 </ul>
 </li>
-<li><a href="#orgc280ffd">1.2. Nonhomogenous Equations</a>
+<li><a href="#org1806318">1.2. Nonhomogenous Equations</a>
 <ul>
-<li><a href="#orgcd64c38">1.2.1. Method of Undetermined Coefficients</a></li>
-<li><a href="#org76f7e0c">1.2.2. Variation of Parameters</a></li>
+<li><a href="#org3963c98">1.2.1. Method of Undetermined Coefficients</a></li>
+<li><a href="#org3f1bb5f">1.2.2. Variation of Parameters</a></li>
 </ul>
 </li>
-<li><a href="#org180aa89">1.3. Superposition Principle</a></li>
+<li><a href="#orgee43fe6">1.3. Superposition Principle</a></li>
 </ul>
 </li>
-<li><a href="#orge615584">2. Variable Coefficients</a></li>
+<li><a href="#org0983e5e">2. Variable Coefficients</a></li>
 </ul>
 </div>
 </div>
@@ -695,8 +1030,8 @@ a(t)y'' + b(t)y' + c(t)y = f(t)
 <p>
 with \(a(t) \neq 0\), and \(a(t),\: b(t),\: c(t),\: f(t)\) otherwise any functions of \(t\), is a <b>second-order linear differential equation</b>. Note that <i>linear</i> means linear in \(y\): there can be nonlinear terms in \(t\).
 </p>
-<div id="outline-container-orgbca02d0" class="outline-2">
-<h2 id="orgbca02d0"><span class="section-number-2">1.</span> Constant Coefficients</h2>
+<div id="outline-container-org0ac1a50" class="outline-2">
+<h2 id="org0ac1a50"><span class="section-number-2">1.</span> Constant Coefficients</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 We start with a simplified case of the second-order linear differential equation:
@@ -710,8 +1045,8 @@ ay'' + by' + cy = f(t)
 where \(a,\: b,\: c\) are constants, and \(a \neq 0\). This is known as a <b>second-order linear differential equation with constant coefficients</b>.
 </p>
 </div>
-<div id="outline-container-org4bb5741" class="outline-3">
-<h3 id="org4bb5741"><span class="section-number-3">1.1.</span> Homogenous Equations</h3>
+<div id="outline-container-org8fe58f8" class="outline-3">
+<h3 id="org8fe58f8"><span class="section-number-3">1.1.</span> Homogenous Equations</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 First, consider the special case where the function \(f(t)\) is zero:
@@ -739,8 +1074,8 @@ ar^2 + br + c &= 0
 (4) is known as the <b>characteristic equation</b> (also called the <b>auxiliary equation</b>). \(y = e^{rt}\) is a solution if and only if \(r\) satisfies (4). There are three cases for the roots of this equation: if we get two real roots, a repeated root, or two nonreal roots.
 </p>
 </div>
-<div id="outline-container-orgb40f510" class="outline-4">
-<h4 id="orgb40f510"><span class="section-number-4">1.1.1.</span> Two Real Roots</h4>
+<div id="outline-container-org846fe92" class="outline-4">
+<h4 id="org846fe92"><span class="section-number-4">1.1.1.</span> Two Real Roots</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 If this equation has two roots \(r_1\) and \(r_2\), then we can form an infinite number of solutions with linear combinations of \(e^{rt}\):
@@ -763,8 +1098,8 @@ For just two functions, however, it is usually simpler to just check if they are
 </p>
 </div>
 </div>
-<div id="outline-container-orgbdb7a78" class="outline-4">
-<h4 id="orgbdb7a78"><span class="section-number-4">1.1.2.</span> Repeated Real Roots</h4>
+<div id="outline-container-orgd16c75f" class="outline-4">
+<h4 id="orgd16c75f"><span class="section-number-4">1.1.2.</span> Repeated Real Roots</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <p>
 If the characteristic equation has repeated real root \(r\), then one solution is \(e^{rt}\), and the second turns out to be \(te^{rt}\). Then, the general solution is:
@@ -775,7 +1110,7 @@ y = c_1e^{rt} + c_2te^{rt}
 \end{align}
 
 <p>
-More generally, if a differential equation has a repeated root \(r\) that is repeated \(n\) times, then we have solutions from \(e^{rt}\) up to \(t^{n}e^{rt}\). To see why this is, let \(D\) represent the derivative operator (i.e. \(Dy = y'\)). Realize that \(D\) fulfills the requirements to be a <a href="linear_transformations.html#org7bc46f3">linear transformation</a>, as it behaves well under addition and scalar multiplication.
+More generally, if a differential equation has a repeated root \(r\) that is repeated \(n\) times, then we have solutions from \(e^{rt}\) up to \(t^{n}e^{rt}\). To see why this is, let \(D\) represent the derivative operator (i.e. \(Dy = y'\)). Realize that \(D\) fulfills the requirements to be a <a href="linear_transformations.html#org9e871fe">linear transformation</a>, as it behaves well under addition and scalar multiplication.
 </p>
 
 <p>
@@ -795,7 +1130,7 @@ We will proceed by induction. First, we would like to solve the base case, when 
 \end{align}
 
 <p>
-To find both solutions, we need \((D-r)y\) to be in the <a href="vector_spaces.html#org9eaf064">nullspace</a> of \(D-r\). Finding the nullspace:
+To find both solutions, we need \((D-r)y\) to be in the <a href="vector_spaces.html#org8d3f4b7">nullspace</a> of \(D-r\). Finding the nullspace:
 </p>
 
 \begin{align}
@@ -837,8 +1172,8 @@ Solving this using integrating factor for \(y\), we see that we end up with a ne
 </p>
 </div>
 </div>
-<div id="outline-container-org3e997fe" class="outline-4">
-<h4 id="org3e997fe"><span class="section-number-4">1.1.3.</span> Two Nonreal Roots</h4>
+<div id="outline-container-orgb11f907" class="outline-4">
+<h4 id="orgb11f907"><span class="section-number-4">1.1.3.</span> Two Nonreal Roots</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 If a characteristic equation has two nonreal roots \(\alpha \pm \beta i\) for some \(\beta \neq 0\), then we can write a general solution as:
@@ -862,8 +1197,8 @@ where \(c_1\) and \(c_2\) are real.
 </div>
 </div>
 </div>
-<div id="outline-container-orgc280ffd" class="outline-3">
-<h3 id="orgc280ffd"><span class="section-number-3">1.2.</span> Nonhomogenous Equations</h3>
+<div id="outline-container-org1806318" class="outline-3">
+<h3 id="org1806318"><span class="section-number-3">1.2.</span> Nonhomogenous Equations</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Now, we would like to consider the case when \(f(t)\) is any function. The key is to first find a <b>particular solution</b> \(y_p\) to the equation. Then, denote the general solution to the <b>complementary equation</b> \(ay'' + by' + cy = 0\) to be \(y_c\). Finally, the general solution to the nonhomogenous equation is:
@@ -877,8 +1212,8 @@ y = y_c + y_p
 The issue is now to find the particular solution \(y_p\), which may vary depending on what \(f(t)\) is.
 </p>
 </div>
-<div id="outline-container-orgcd64c38" class="outline-4">
-<h4 id="orgcd64c38"><span class="section-number-4">1.2.1.</span> Method of Undetermined Coefficients</h4>
+<div id="outline-container-org3963c98" class="outline-4">
+<h4 id="org3963c98"><span class="section-number-4">1.2.1.</span> Method of Undetermined Coefficients</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 To do this, we can employ some educated guesses as to what the solution might be:
@@ -903,8 +1238,8 @@ To fix this, we multiply the particular solution by \(t\), or if the overlap has
 </p>
 </div>
 </div>
-<div id="outline-container-org76f7e0c" class="outline-4">
-<h4 id="org76f7e0c"><span class="section-number-4">1.2.2.</span> Variation of Parameters</h4>
+<div id="outline-container-org3f1bb5f" class="outline-4">
+<h4 id="org3f1bb5f"><span class="section-number-4">1.2.2.</span> Variation of Parameters</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <p>
 Sometimes, \(f(t)\) is in a form where we cannot use the method of undetermined coefficients (e.g. \(f(t) = \tan t\)). Then, we have to use a different method, <b>variation of parameters</b>.
@@ -957,7 +1292,7 @@ Thus, we end up with the following linear system:
 \end{align}
 
 <p>
-We can then solve the system with <a href="determinants.html#org78ac017">Cramer's Rule</a> to get:
+We can then solve the system with <a href="determinants.html#org16490be">Cramer's Rule</a> to get:
 </p>
 
 \begin{align}
@@ -971,8 +1306,8 @@ Notice that the denominator is just the Wronskian. \(u_1\) and \(u_2\) can now b
 </div>
 </div>
 </div>
-<div id="outline-container-org180aa89" class="outline-3">
-<h3 id="org180aa89"><span class="section-number-3">1.3.</span> Superposition Principle</h3>
+<div id="outline-container-orgee43fe6" class="outline-3">
+<h3 id="orgee43fe6"><span class="section-number-3">1.3.</span> Superposition Principle</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 The <b>superposition principle</b> is a simple observation that allows us to extend the nonhomogeneous equations we can solve. If \(ay''+by'+c=f_1(t)\) has particular solution \(y_1\), and \(ay''+by'+c=f_2(t)\) has particular solution \(y_2\), then for \(ay''+by'+c=k_1f_1(t) + k_2f_2(t)\),
@@ -988,8 +1323,8 @@ is a solution, where \(k_1\) and \(k_2\) are constants.
 </div>
 </div>
 </div>
-<div id="outline-container-orge615584" class="outline-2">
-<h2 id="orge615584"><span class="section-number-2">2.</span> Variable Coefficients</h2>
+<div id="outline-container-org0983e5e" class="outline-2">
+<h2 id="org0983e5e"><span class="section-number-2">2.</span> Variable Coefficients</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Say we want to solve the following differential equation with non-constant coefficients:
@@ -1013,6 +1348,7 @@ If we are given \(y_1\) and \(y_2\), the two linearly independent solutions of t
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
+               
              </div>
              <div class="last-modified">
                Last modified: 2025-11-21 09:30
