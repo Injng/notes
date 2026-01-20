@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-19 Mon 23:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lines and Parametric Curves</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_53/index.html">MATH 53</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Lines and Parametric Curves</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf22dc0b">1. Equations of Lines</a>
+<ul>
+<li><a href="#org08eeac9">1.1. Given Two Points</a></li>
+<li><a href="#org70bdccf">1.2. Intersection with a Plane</a></li>
+</ul>
+</li>
+<li><a href="#org0be93ff">2. General Parametric Equations</a>
+<ul>
+<li><a href="#org18a6331">2.1. Cycloid</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf22dc0b" class="outline-2">
+<h2 id="orgf22dc0b"><span class="section-number-2">1.</span> Equations of Lines</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="planes.html#org2261241">We have seen that</a> a line is formed from the intersection of two planes. Therefore, it is possible to define a line as the intersection between two equations of planes.
+</p>
+
+<p>
+However, this isn't particularly convenient. Another way of thinking about this is by considering the trajectory of a moving point, in other words, <b>parametric equations</b>.
+</p>
+</div>
+<div id="outline-container-org08eeac9" class="outline-3">
+<h3 id="org08eeac9"><span class="section-number-3">1.1.</span> Given Two Points</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+A line can be defined by two points in space, say \(Q_0\) and \(Q_1\). We can define a parametric equation with time variable \(t\), where \(Q(t)\) is our moving point which we shall say moves at constant speed on the line. This speed will be chosen such that at \(Q(0)=Q_0\) and \(Q(1)=Q_1\).
+</p>
+
+<p>
+The question now is, how do we find the position of the point at any time \(t\)? Realize that the vector \(\vec{Q_0Q(t)}\) is proportional to \(\vec{Q_0Q_1}\). In other words, since it takes one unit of time to move from \(Q_0\) to \(Q_1\), we can say that:
+</p>
+
+<p>
+\[
+\vec{Q_0Q(t)} = t\vec{Q_0Q_1}
+\]
+</p>
+
+<p>
+Now, say that the coordinates of \(Q(t)\) are \(x(t),y(t),z(t)\), the coordinates of \(Q_0\) are \(a_0,b_0,c_0\), and the coordinates of \(Q_1\) are \(a_1,b_1,c_1\). Therefore, we can say that:
+</p>
+
+\begin{aligned}
+x(t) - a_0 &= (a_1-a_0)t \\
+y(t) - b_0 &= (b_1-b_0)t \\
+z(t) - c_0 &= (c_1-c_0)t
+\end{aligned}
+
+<p>
+Isolating, we get
+</p>
+
+\begin{aligned}
+x(t) &= a_0+(a_1-a_0)t \\
+y(t) &= b_0+(b_1-b_0)t \\
+z(t) &= c_0+(c_1-c_0)t
+\end{aligned}
+</div>
+</div>
+<div id="outline-container-org70bdccf" class="outline-3">
+<h3 id="org70bdccf"><span class="section-number-3">1.2.</span> Intersection with a Plane</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We can use our parametric equations to consider the question: given a plane, does the line intersect with the plane, and if so, where?
+</p>
+
+<p>
+An important insight is that the equation of a plane divides the space into two parts. A point at \(ax+by+cz<d\) is below, then moves to \(ax+by+cz=d\) when it is on the plane, and then to \(ax+by+cz>d\) when it is above.
+</p>
+
+<p>
+To find when the line intersects the plane with our parametric equations, we can simply plug our equations for \(x(t),y(t),z(t)\) in for \(x,y,z\) in our plane equation. We can then isolate \(t\) to get the time the point intersects the plane, and then plug that back into \(Q(t)\) to find the point at which it intersects the plane.
+</p>
+
+<p>
+There are also cases when we plug our equations for \(x(t),y(t),z(t)\), we get a contradiction (e.g. \(13=7\)). This tells us that there are <i>no solutions</i>, in other words, the line is parallel to the plane and will never intersect. Similarly, if we get something that is <i>always true</i>, there are <i>infinite solutions</i>; in other words, the line is contained within the plane.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0be93ff" class="outline-2">
+<h2 id="org0be93ff"><span class="section-number-2">2.</span> General Parametric Equations</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Now, we shall explore parametric equations more generally. A <b>parametric equation</b> is a function that describes some characteristic, such as the coordinates of a point, using one or more <i>independent variables</i>, known as <b>parameters</b>, such as time \(t\) or angle \(\theta\).
+</p>
+</div>
+<div id="outline-container-org18a6331" class="outline-3">
+<h3 id="org18a6331"><span class="section-number-3">2.1.</span> Cycloid</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Consider a <b>cycloid</b> function, which is the trajectory when you consider a fixed point on a wheel as it rolls forward, like so:
+</p>
+
+
+<div id="org6bbe658" class="figure">
+<p><img src="../static/cycloid.gif" alt="cycloid.gif" />
+</p>
+</div>
+
+<p>
+In particular, can we find the position of this point, \(x(\theta),y(\theta)\), where \(\theta\) is the angle by which the wheel has rotated? We use \(\theta\) here instead of \(t\) because time is not important: the thing that is changing here is the rotation of the wheel.
+</p>
+
+<p>
+Now, consider the vector \(\vec{OP}\), where \(O\) is the origin and \(P\) is the point on the wheel after it has rotated an angle \(\theta\):
+</p>
+
+
+<div id="orgbea9faa" class="figure">
+<p><img src="../static/cycloid2.png" alt="cycloid2.png" />
+</p>
+</div>
+
+<p>
+Now, we can express this vector as the sum of some other vectors:
+</p>
+
+<p>
+\[
+\vec{OP} = \vec{OA} + \vec{AB} + \vec{BP}
+\]
+</p>
+
+<p>
+Now, let's call the radius of the wheel \(a\). As the ball moves without slipping, the distance it moves on the ground should be the same as the arc length of the wheel that has rolled past, which is \(a\theta\):
+</p>
+
+
+<div id="org7a0618d" class="figure">
+<p><img src="../static/cycloid3.png" alt="cycloid3.png" />
+</p>
+</div>
+
+<p>
+Therefore, we now know that:
+</p>
+
+\begin{aligned}
+\vec{OA} &= \langle a\theta,0 \rangle \\
+\vec{AB} &= \langle 0,a \rangle
+\end{aligned}
+
+<p>
+Now, consider \(\vec{BP}\):
+</p>
+
+
+<div id="orgdcff294" class="figure">
+<p><img src="../static/cycloid4.png" alt="cycloid4.png" />
+</p>
+</div>
+
+<p>
+Using trigonometry, we can see that the components of \(\vec{BP}\) are:
+</p>
+
+<p>
+\[
+\vec{BP} = \langle -a\sin\theta, -a\cos\theta \rangle
+\]
+</p>
+
+<p>
+Considering all of this, we can now say that:
+</p>
+
+<p>
+\[
+\vec{OP} = \langle a\theta - a\sin\theta, a-a\cos\theta \rangle
+\]
+</p>
+
+<p>
+Therefore, our parametric equations are:
+</p>
+
+\begin{aligned}
+x(\theta) &= a\theta - a\sin\theta \\
+y(\theta) &= a-a\cos\theta
+\end{aligned}
+
+<p>
+Now, if we take the wheel radius to be 1, and for the wheel to be rolling at unit speed, we can write the following position vector:
+</p>
+
+<p>
+\[
+r(t) = \langle t-\sin t, 1- \cos t \rangle
+\]
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-06-04 14:37
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

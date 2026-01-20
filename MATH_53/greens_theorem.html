@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-19 Mon 23:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Green's Theorem</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_53/index.html">MATH 53</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Green's Theorem</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb950e0c">1. Green's Theorem</a></li>
+<li><a href="#org054b798">2. Proof</a></li>
+</ul>
+</div>
+</div>
+<p>
+We know that if a field is <a href="vector_fields.html#orgc72edea">conservative</a>, then it only depends on the endpoints and therefore the <a href="line_integrals.html#org7b1cea6">line integral</a> of a closed conservative curve will be zero. However, for general curves, apart from calculating it directly, we can also use another method.
+</p>
+<div id="outline-container-orgb950e0c" class="outline-2">
+<h2 id="orgb950e0c"><span class="section-number-2">1.</span> Green's Theorem</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Green's Theorem</b> states that if \(C\) is a <i>closed curve</i> enclosing a region \(R\), counterclockwise, and \(\vec{F}\) is a <a href="vector_fields.html">vector field</a> defined and differentiable in \(R\), then:
+</p>
+
+\begin{align}
+\oint_C \vec{F} \cdot \text{d}\vec{r} = \iint_R \text{curl } \vec{F} \text{ d}A
+\end{align}
+
+<p>
+In terms of vector components, this is:
+</p>
+
+\begin{align}
+\oint_C M\text{ d}x + N\text{ d}y = \iint_R (N_x-M_y)\text{ d}A
+\end{align}
+</div>
+</div>
+<div id="outline-container-org054b798" class="outline-2">
+<h2 id="org054b798"><span class="section-number-2">2.</span> Proof</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The first observation is that we can split this theorem up into two simpler identities, that once proved, the sum will give us Green's Theorem:
+</p>
+
+\begin{aligned}
+\oint_C M \text{ d}x = -\iint_R M_y\text{ d}A \\
+\oint_C N \text{ d}y = \iint_R N_x\text{ d}A
+\end{aligned}
+
+<p>
+Without loss of generality, we can prove one of these and it can be shown that by similar logic the other must be true. 
+</p>
+
+<p>
+The second observation is that we can split larger, more complicated regions, down into smaller, simpler regions:
+</p>
+
+
+<div id="orgfd4e5c6" class="figure">
+<p><img src="../static/greens_theorem1.png" alt="greens_theorem1.png" />
+</p>
+</div>
+
+<p>
+If we can prove the theorem true for \(C_1\) and \(C_2\), then we can sum them to get \(C\). The extra path in the middle cancels out as \(C_1\) and \(C_2\) goes in opposite directions through the middle.
+</p>
+
+<p>
+The implication is that we can cut any curve \(C\) into "vertically simple" pieces such that we can easily define bounds where \(a < x < b\) and \(f_1(x) < y < f_2(x)\):
+</p>
+
+
+<div id="org0d90826" class="figure">
+<p><img src="../static/greens_theorem2.png" alt="greens_theorem2.png" />
+</p>
+</div>
+
+<p>
+This reduces what we need to prove down to: prove that \(\oint_C M \text{ d}x = -\iint_R M_y\text{ d}A\), if \(R\) is a vertically simple region and \(C\) is the curve bounding that region going counterclockwise:
+</p>
+
+
+<div id="orgfa3690f" class="figure">
+<p><img src="../static/greens_theorem3.png" alt="greens_theorem3.png" />
+</p>
+</div>
+
+<p>
+First, realize that for \(C_2\) and \(C_4\), \(x\) is constant, which means \(\text{d}x\) is zero. Therefore, when adding the integrals, we can ignore \(C_2\) and \(C_4\).
+</p>
+
+<p>
+Then with \(C_1\), we know that \(y=f_1(x)\), so we can express everything in terms of \(x\):
+</p>
+
+<p>
+\[
+\int_{C_1} M(x,y) \text{ d}x = \int_a^b M(x,f_1(x))\text{ d}x
+\]
+</p>
+
+<p>
+Similarly with \(C_3\), we have:
+</p>
+
+<p>
+\[
+\int_{C_3} M(x,y) \text{ d}x = \int_b^a M(x,f_2(x))\text{ d}x = -\int_a^b M(x,f_2(x))\text{ d}x
+\]
+</p>
+
+<p>
+Summing these pieces together, we get that:
+</p>
+
+\begin{align}
+\oint_C M\text{ d}x = \int_a^b M(x,f_1(x))\text{ d}x - \int_a^b M(x,f_2(x))\text{ d}x
+\end{align}
+
+<p>
+Now, our job is to make the double integral equal to this. Our double integral over this region is:
+</p>
+
+<p>
+\[
+\iint_R -M_y \text{ d}A = -\int_a^b \int_{f_1(x)}^{f_2(x)} \frac{\partial M}{\partial y} \text{ d}y\text{ d}x
+\]
+</p>
+
+<p>
+Computing the inner integral, we have:
+</p>
+
+\begin{align}
+\iint_R -M_y \text{ d}A = -\int_a^b M(x,f_2(x)) - M(x,f_1(x))\text{ d}x
+\end{align}
+
+<p>
+Since (3) is equivalent to (4), we have proved Green's Theorem. \(\blacksquare\)
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-07-22 11:28
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

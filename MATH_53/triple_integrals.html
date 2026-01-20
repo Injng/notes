@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-19 Mon 23:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Triple Integrals</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MATH_53/index.html">MATH 53</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Triple Integrals</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org77717bb">1. Triple Integral</a></li>
+<li><a href="#orgd1643ae">2. Cylindrical Coordinates</a></li>
+<li><a href="#org42e2a7d">3. Spherical Coordinates</a></li>
+<li><a href="#org1455ecb">4. Applications</a>
+<ul>
+<li><a href="#orgdd0e9d9">4.1. Mass</a></li>
+<li><a href="#orgc42c211">4.2. Average Value</a></li>
+<li><a href="#org0b489b5">4.3. Center of Mass</a></li>
+<li><a href="#org19d1bed">4.4. Moment of Inertia</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org77717bb" class="outline-2">
+<h2 id="org77717bb"><span class="section-number-2">1.</span> Triple Integral</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The <b>triple integral</b> is defined as the integral for a function depending on three variables, \(x\), \(y\), and \(z\), enclosing some region \(R\) in space, such that we can take the integral over the region with respect to \(\text{d}V\), the volume element:
+</p>
+
+<p>
+\[
+\iiint_R f \text{ d}V
+\]
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Region between paraboloids
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to find the region between the paraboloids \(z=x^2 + y^2\) and \(z=4-x^2-y^2\):
+</p>
+
+
+<div id="org7757a58" class="figure">
+<p><img src="../static/triple_integrals1.png" alt="triple_integrals1.png" />
+</p>
+</div>
+
+<p>
+Similar to how we find the area with a double integral, to find the volume of a triple integral, we integrate 1 with respect to the volume element, \(\iiint 1 \text{ d}V\).
+</p>
+
+<p>
+The question now is to decide our order of integration. \(\text{d}z\) seems promising as once we know \(x\) and \(y\), we can easily express the bottom and top values of \(z\) in terms of \(x\) and \(y\). Therefore, we can write:
+</p>
+
+<p>
+\[
+\int \int \int_{x^2+y^2}^{4-x^2-y^2} \text{d}z\text{ d}y\text{ d}x
+\]
+</p>
+
+<p>
+Next, for \(x\) and \(y\), we just want to integrate over all the values \((x,y)\) in the shadow of our solid, which is whenever \(z_{\text{bottom}} < z_{\text{top}}\). This comes down to \(x^2+y^2 < 2\), which means that it is a disk of radius \(\sqrt{2}\). Therefore, our triple integral would be:
+</p>
+
+<p>
+\[
+\int_{-\sqrt{2}}^{\sqrt{2}} \int_{-\sqrt{2-x^2}}^{\sqrt{2-x^2}} \int_{x^2+y^2}^{4-x^2-y^2} \text{d}z\text{ d}y\text{ d}x
+\]
+</p>
+
+<p>
+The smarter thing to do here, however, would be to evaluate this in polar coordinates instead:
+</p>
+
+<p>
+\[
+\int_{0}^{2\pi} \int_{0}^{\sqrt{2}} \int_{r^2}^{4-r^2}r \text{ d}z \text{ d}r\text{ d}\theta
+\]
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgd1643ae" class="outline-2">
+<h2 id="orgd1643ae"><span class="section-number-2">2.</span> Cylindrical Coordinates</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Sometimes, it is easier to express things in <b>cylindrical coordinates</b> in order to integrate. Cylindrical coordinates in \((r,\theta,z)\) work by first expressing a point in space by using polar coordinates to pinpoint its projection in the \(xy\) plane, and then using \(z\) to describe its height:
+</p>
+
+
+<div id="orgccd8840" class="figure">
+<p><img src="../static/triple_integrals2.png" alt="triple_integrals2.png" />
+</p>
+</div>
+
+<p>
+\(\theta\) is measured from the x-axis counterclockwise. Note that since the usual convention puts the x-axis pointing towards us, when \(\theta=0\) the point is no longer pointing to the right, but rather towards the front.
+</p>
+
+<p>
+The volume element then becomes \(\text{d}x\text{ d}y\text{ d}z = r\text{ d}r\text{ d}\theta\text{ d}z\).
+</p>
+</div>
+</div>
+<div id="outline-container-org42e2a7d" class="outline-2">
+<h2 id="org42e2a7d"><span class="section-number-2">3.</span> Spherical Coordinates</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Similar to polar coordinates, <b>spherical coordinates</b> use the distance from the origin \(\rho\) and two angles to determine the location of a point in space. These two angles are \(\phi\), the angle downwards from the z-axis, and \(\theta\), the angle counterclockwise from the x-axis:
+</p>
+
+
+<div id="orga7411fd" class="figure">
+<p><img src="../static/triple_integrals5.png" alt="triple_integrals5.png" />
+</p>
+</div>
+
+<p>
+\(\phi\) is similar to latitude, in that it measure how much north and south you are on a sphere. It's domain then ranges \(0 \leq \phi \leq \pi\). \(\theta\) represents longitude, and can range from \(0\) to \(2\pi\), which is the same as \(\theta\) from  cylindrical coordinates.
+</p>
+
+<p>
+We can think of this system as a "double polar" system: we first project the point onto the xy plane and use polar coordinates there. Then, calling the axis from the origin to that point on the xy plane \(r\), we apply it again in the "zr" plane like so:
+</p>
+
+
+<div id="org214c6df" class="figure">
+<p><img src="../static/triple_integrals6.png" alt="triple_integrals6.png" />
+</p>
+</div>
+
+<p>
+Here, we can express \(z\) and \(r\) in terms of \(\rho\) and \(\phi\), using trigonometry:
+</p>
+
+\begin{aligned}
+z &= \rho \cos \phi \\
+r &= \rho \sin \phi
+\end{aligned}
+
+<p>
+From our standard polar coordinate system, we can now convert between rectangular and spherical coordinates:
+</p>
+
+\begin{align}
+x &= r\cos\theta = \rho \sin\phi \cos\theta \\
+y &= r\sin\theta = \rho \sin\phi \sin\theta \\
+z &= \rho\cos\phi \\
+\rho &= \sqrt{r^2 + z^2} = \sqrt{x^2 + y^2 + z^2} 
+\end{align}
+
+<p>
+Now, we would like to figure out what the volume element \(\text{d}V\) is in terms of \(\rho\), \(\phi\), and \(\theta\). To do so, first consider what \(\Delta\rho\Delta\phi\Delta\theta\) entails. We are taking the space between two concentric spheres, and then a very small segment of that space.
+</p>
+
+<p>
+In other words, we have a "box" shape between two concentric spheres, where the base of the box is a small surface area on the inner sphere like so:
+</p>
+
+
+<div id="org6bf5aa2" class="figure">
+<p><img src="../static/triple_integrals7.png" alt="triple_integrals7.png" />
+</p>
+</div>
+
+<p>
+When our sides are small enough, this area can be approximated by a rectangle. The length of this rectangle is the arc length of the circle with radius \(r\), the distance from the z-axis. However, we can also see that \(r=a\sin\phi\). Therefore, the total length of the rectangle is \(a\sin\phi\Delta\theta\).
+</p>
+
+<p>
+Now for the north-south height of the rectangle, which is a piece of the great circle on the circle with radius \(a\). The length of that side, then, is \(a\Delta\phi\).
+</p>
+
+<p>
+This now tells us that this small surface area is equivalent to \(a^2\sin\phi\Delta\phi\Delta\theta\). Therefore, the volume of the box is simply the thickness of the volume, which is \(\Delta\rho\), multiplied by this surface area. Thus, the volume element is:
+</p>
+
+\begin{align}
+\text{d}V = \rho^2\sin\phi \text{ d}\rho\text{ d}\phi\text{ d}\theta
+\end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Region inside unit sphere
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We would like to set up a triple integral for the portion of the unit sphere above \(z=\frac{1}{\sqrt{2}}\):
+</p>
+
+
+<div id="org25fb49d" class="figure">
+<p><img src="../static/triple_integrals4.png" alt="triple_integrals4.png" />
+</p>
+</div>
+
+<p>
+This triple integral can be made easier by doing it in spherical coordinates:
+</p>
+
+<p>
+\[
+\iiint_R \rho^2 \sin \phi \text{ d}\rho\text{ d}\phi\text{ d}\theta
+\]
+</p>
+
+<p>
+Now we need to find the bounds for the iterated integral. For \(\rho\), we need to know the point it crosses into the region; i.e. the point it crosses the plane \(z=\frac{1}{\sqrt{2}\). We can rewrite \(z\) as \(\rho\cos\phi\), in which case we have \(\rho = \frac{1}{\sqrt{2}\cos\phi}\). The boundary of the sphere is \(\rho=1\).
+</p>
+
+<p>
+Then, for the bounds of \(\phi\), we want to know how far north and south the region on the sphere goes. The lower bound is easy as it is just the north pole: \(\phi=0\). For the upper bound, we need to figure out what value of \(\phi\) corresponds to the angle made by the origin to the point on the sphere and the z-axis when the point on the sphere is \(z=\frac{1}{\sqrt{2}}\). Since the radius of the sphere is \(1\), the triangle formed is a \(45-45-90\) triangle, so here \(\phi=\frac{\pi}{4}\).
+</p>
+
+<p>
+Finally, since we are going all the way around the sphere, \(\theta\) is simply from \(0\) to \(2\pi\). With these bounds, our triple integral is then:
+</p>
+
+<p>
+\[
+\int_{0}^{2\pi} \int_{0}^{\frac{2}{\pi}} \int_{\frac{1}{\sqrt{2}\cos\phi}}^{1} \rho^2 \sin \phi \text{ d}\rho\text{ d}\phi\text{ d}\theta
+\]
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org1455ecb" class="outline-2">
+<h2 id="org1455ecb"><span class="section-number-2">4.</span> Applications</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgdd0e9d9" class="outline-3">
+<h3 id="orgdd0e9d9"><span class="section-number-3">4.1.</span> Mass</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+We know that density is \(\delta = \frac{\Delta m}{\Delta V}\), so the mass element is equal to \(\text{d}m = \delta \text{ d}V\). Therefore, mass \(M\) is:
+</p>
+
+<p>
+\[
+M= \iiint_R \delta \text{ d}V
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgc42c211" class="outline-3">
+<h3 id="orgc42c211"><span class="section-number-3">4.2.</span> Average Value</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+The average value of \(f(x,y,z)\) in the region \(R\) is the triple integral of the function over the volume of the region:
+</p>
+
+<p>
+\[
+\bar{f} = \frac{1}{\text{Vol}(R)} \iiint_R f \text{ d}V
+\]
+</p>
+
+<p>
+We can also calculate a <i>weighted average</i> with the density and mass:
+</p>
+
+<p>
+\[
+\frac{1}{\text{Mass}(R)} \iiint_R f \delta \text{ d}V
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org0b489b5" class="outline-3">
+<h3 id="org0b489b5"><span class="section-number-3">4.3.</span> Center of Mass</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+The <b>center of mass</b> is calculated by finding the weighted average values of each coordinate: \((\bar{x},\bar{y},\bar{z})\). For example, \(\bar{x}\) would be calculated by:
+</p>
+
+<p>
+\[
+\bar{x} = \frac{1}{\text{Mass}(R)} \iiint_R x \delta \text{ d}V
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-org19d1bed" class="outline-3">
+<h3 id="org19d1bed"><span class="section-number-3">4.4.</span> Moment of Inertia</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+The <b>moment of inertia</b> around an axis is similar to <a href="double_integrals.html#org0f272cc">what we had for double integrals</a>, where \(r\) is the distance to the axis:
+</p>
+
+<p>
+\[
+\iiint_R r^2 \delta \text{ d}V
+\]
+</p>
+
+<p>
+Realize that if we consider \(r\) to be in cylindrical coordinates, this formula is consistent with any axis: we just base the cylindrical coordinates to be on the same axis.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Moment of inertia of a solid cone
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We would like to find the moment of inertia \(I_z\) about the z-axis of a solid cone between \(z=ar\) and \(z=b\), where \(r\) is in cylindrical coordinates:
+</p>
+
+
+<div id="orga39617e" class="figure">
+<p><img src="../static/triple_integrals3.png" alt="triple_integrals3.png" />
+</p>
+</div>
+
+<p>
+Now, the moment of inertia is, assuming density is 1:
+</p>
+
+<p>
+\[
+I_z = \iiint r^2 r \text{ d}r\text{ d}\theta\text{ d}z
+\]
+</p>
+
+
+</details>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-07-31 10:19
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

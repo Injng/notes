@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-19 Mon 23:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Electric Fields</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/PHYSICS_7B/index.html">PHYSICS 7B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Electric Fields</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org12abbd9">1. Introduction to Electrostatics</a>
+<ul>
+<li><a href="#org90b22d2">1.1. Charges</a></li>
+<li><a href="#org5307bfd">1.2. Coulomb's Law</a></li>
+</ul>
+</li>
+<li><a href="#org46a1106">2. Electric Fields</a>
+<ul>
+<li><a href="#org16b351b">2.1. Electric Field Lines</a></li>
+<li><a href="#orge93bf32">2.2. Electric Field Due to an Infinite Line of Charge</a></li>
+<li><a href="#org157d7fd">2.3. Electric Field Due to an Infinite Plane of Charge</a></li>
+</ul>
+</li>
+<li><a href="#orgb834a79">3. Conductors and Insulators</a>
+<ul>
+<li><a href="#orgb347509">3.1. Conductors</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org12abbd9" class="outline-2">
+<h2 id="org12abbd9"><span class="section-number-2">1.</span> Introduction to Electrostatics</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+To begin our discussion of electric fields, we should first consider the study of <b>electrostatics</b>
+</p>
+
+<p>
+Electrostatics is the study of charges that are not moving (the opposite of that is <i>electrodynamics</i>, but we'll get to that later).
+</p>
+
+<p>
+One law upholds the entirety of electrostatics, and that law is known as Coulomb's Law.
+</p>
+</div>
+<div id="outline-container-org90b22d2" class="outline-3">
+<h3 id="org90b22d2"><span class="section-number-3">1.1.</span> Charges</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Charges are the gateway to electricity and magnetism. To be able to play this game, you must have charge. In a way, charge can be seen as a physical property.
+</p>
+
+<p>
+Negative charge is carried by electrons. Interestingly, this is the most basic unit of charge: this negative charge carried by electrons exactly equals the positive charge carried by protons. Neutrons do not carry charge — they are neutral. This also means that charge is <b>quantized</b>, as only basic units of charge can be added up.
+</p>
+
+<p>
+This quantized charge is the charge in an electron, which is \(-e=1.602\times 10^{-19} \text{ C}\).
+</p>
+
+<p>
+Charge is also conserved locally.  Charge cannot be universally conserved, as this would violate special relativity.
+</p>
+</div>
+</div>
+<div id="outline-container-org5307bfd" class="outline-3">
+<h3 id="org5307bfd"><span class="section-number-3">1.2.</span> Coulomb's Law</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Now onto this great law known as Coulomb's Law. It basically states that the force experienced by a charged particle due to another charged particle is directly proportional to their charges and inversely proportional to their squared distance:
+\[
+F_C=\frac{1}{4\pi\epsilon_0}\frac{q_1q_2}{r^2}\hat{r}
+\]
+Notice its similarities with the Universal Law of Gravitation.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org46a1106" class="outline-2">
+<h2 id="org46a1106"><span class="section-number-2">2.</span> Electric Fields</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Electric fields are basically just a generalization of Coulomb's Law. We remove the actual physical charge from the law, and consider only a "test charge" — theorizing "what would happen" if a charge was actually there.
+</p>
+
+<p>
+You can also think of it as putting a charge of 1 there to just test the "electric field". Thus, the electric field given by a charge \(q\)  is just:
+</p>
+
+<p>
+\[
+E = \frac{1}{4\pi\epsilon_0} \frac{q}{r^2} \hat{r}
+\]
+</p>
+
+<p>
+Notice that the second charge is nowhere to be seen. This is because we can now rewrite Coulomb's Law as:
+</p>
+
+<p>
+\[
+F_C = qE
+\]
+</p>
+
+<p>
+Very convenient!
+</p>
+</div>
+<div id="outline-container-org16b351b" class="outline-3">
+<h3 id="org16b351b"><span class="section-number-3">2.1.</span> Electric Field Lines</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Now, some genius thought of a method to visualize electric fields by drawing lines to represent the force vectors.
+</p>
+
+<p>
+This is particularly ingenious because the density of the lines directly correlate to the relative intensity of the force. If we draw a sphere around the charge, the surface area of that sphere is \(4\pi r^2\). If we have \(n\) number of lines going through an area of \(4\pi r^2\), notice that as \(r\) increases the density falls off by \(\frac{1}{r^2}\), consistent with Coulomb's 
+</p>
+</div>
+</div>
+<div id="outline-container-orge93bf32" class="outline-3">
+<h3 id="orge93bf32"><span class="section-number-3">2.2.</span> Electric Field Due to an Infinite Line of Charge</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Now we will attempt to calculate the electric field due to an infinite wire containing charge of density \(\lambda\) Coulombs per meter:
+</p>
+
+
+<div id="org4ed1e22" class="figure">
+<p><img src="../static/infinite_line_charge.png" alt="infinite_line_charge.png" />
+</p>
+</div>
+
+<p>
+We shall take a tiny length of the wire, \(dx\), and consider the small difference of electric field \(d\vec{E}\) that it imparts on a charge above it. 
+</p>
+
+<p>
+Firstly, note that all the horizontal components will cancel due to symmetry. Another symmetry argument for this could be that for any argument you give me that it should tilt to the left, that same argument can be applied to say that it should tilt to the right — because on an infinite line of charge, the side to the left and the side to the right of the charge look exactly identical.
+</p>
+
+<p>
+Thus, we need only to calculate the vertical component of this electric field. To do so, we can simply take the cosine of the angle it makes with the vertical and multiply.
+</p>
+
+<p>
+Therefore, we have:
+</p>
+
+<p>
+\[
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{\lambda dx}{a^2+x^2} \cdot \frac{a}{\sqrt{a^2+x^2}}
+\]
+</p>
+
+<p>
+To find the total electric field, we can integrate this:
+</p>
+
+<p>
+\[
+E=\frac{\lambda a}{4\pi \epsilon_0}\int_{-\infty}^{\infty}{\frac{1}{(a^2+x^2)^\frac{3}{2}}dx}
+\]
+</p>
+
+<p>
+We can now proceed by trig substitution. We substitute \(x=a\tan{\theta}\),
+</p>
+
+<p>
+\[
+E=\frac{\lambda a}{4\pi \epsilon_0} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}{\frac{a\sec^2{\theta}d\theta}{a^3\sec^3{\theta}}}
+\]
+</p>
+
+<p>
+Simplifying,
+</p>
+
+<p>
+\[
+E=\frac{\lambda}{4\pi \epsilon_0 a} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\frac{1}{\sec{\theta}}d\theta
+\]
+</p>
+
+<p>
+Finally, we evaluate the integral from \(-\frac{\pi}{2}\) to \(\frac{\pi}{2}\),
+</p>
+
+<p>
+\[
+E=\frac{\lambda}{4\pi \epsilon_0 a} (1+1) = \frac{\lambda}{2\pi \epsilon_0 a}
+\]
+</p>
+
+<p>
+And there we go.
+</p>
+
+<p>
+There is something interesting about this. How does this field get weaker as distance, \(a\), increases? It falls over like \(\frac{1}{a}\), not like \(\frac{1}{a^2}\) as we would expect. This is because we are considering an infinite line of charge, so all of the forces that a charge would experience adds up to a field that falls like \(\frac{1}{a}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org157d7fd" class="outline-3">
+<h3 id="org157d7fd"><span class="section-number-3">2.3.</span> Electric Field Due to an Infinite Plane of Charge</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Now we will consider the electric field due to an infinite sheet of positive charge, with charge density \(\sigma\) (notice the \(\sigma\) is used for Coulombs per area, and \(\lambda\) is used for Coulombs per length).
+</p>
+
+<p>
+Now, notice by symmetry arguments similar to what we did for an infinite line, the electric field should be the same no matter how you translate the plane. Additionally, there should be no component that is not perpendicular to the plane.
+</p>
+
+
+<div id="org69e3614" class="figure">
+<p><img src="../static/infinite_plane_charge.png" alt="infinite_plane_charge.png" />
+</p>
+</div>
+
+<p>
+Now we shall consider a tiny piece of area on the ring shown above \(dA\) due to \(dr\). The electric field that is represented by the arrow on the charge above the plane shall then be \(d\vec{E}\). By Coulomb's Law:
+</p>
+
+<p>
+\[
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{\sigma dA}{(a^2+r^2)}
+\]
+</p>
+
+<p>
+By symmetry, we only need to consider the component perpendicular to the plane:
+</p>
+
+<p>
+\[
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{\sigma dA}{(a^2+r^2)} \cdot \frac{a}{(a^2+r^2)^\frac{1}{2}}
+\]
+</p>
+
+<p>
+Now, we are only considering an area \(dA\) of the ring. What if we wanted the entire area, \(A\), of the ring? Well, we can just look at this as an infinitesimally small annulus, which can literally be approximated to be a rectangle of length circumference (\(2\pi r\)) and width \(dr\). Thus:
+</p>
+
+<p>
+\[
+dE = \frac{1}{4\pi \epsilon_0} \cdot \frac{2\pi r dr}{(a^2+r^2)^\frac{3}{2}} \cdot a\sigma
+\]
+</p>
+
+<p>
+Now, we shall integrate this to obtain \(E\):
+</p>
+
+<p>
+\[
+E=\frac{a\sigma}{2\epsilon_0} \int_{0}^{\infty}{\frac{rdr}{(a^2+r^2)^\frac{3}{2}}}
+\]
+</p>
+
+<p>
+Looking at this, we can perform the same trig substitution for \(r=a\tan{\theta}\) as we did above. However, we can also do it a different, arguably simpler way, by performing the substitution \(u=r^2\), which follows that \(\frac{dw}{2}=rdr\):
+</p>
+
+<p>
+\[
+E = \frac{a\sigma}{2\epsilon_0} \int_{0}^{\infty}{\frac{dw}{2(w+a^2)^\frac{3}{2}}} = \frac{a\sigma}{4\epsilon_0} \int_{0}^{\infty}{\frac{dw}{(w+a^2)^\frac{3}{2}}}
+\]
+</p>
+
+<p>
+Now, this has become much easier to integrate:
+</p>
+
+<p>
+\[
+E = \frac{a\sigma}{4\epsilon_0} \cdot \left[\frac{-2}{(w+a^2)^\frac{1}{2}}\right]_{0}^{\infty} = \frac{a\sigma}{4\epsilon_0}\cdot\frac{2}{a}
+\]
+</p>
+
+<p>
+Thus, our answer is:
+</p>
+
+<p>
+\[
+E = \frac{\sigma}{2\epsilon_0}
+\]
+</p>
+
+<p>
+Now, this is very interesting. Notice that our \(a\) term cancelled out — it doesn't depend on distance! No matter how far you go from the infinite plane of charge, the effect will still be the exact same.
+</p>
+
+<p>
+Intuitively, you could look at the perpendicular component and reach a viable argument. You realize that as a point moves farther away, the perpendicular component is larger relative to when it is closer, and so somehow this increase cancels out perfectly with the decrease in force due to the larger distance.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb834a79" class="outline-2">
+<h2 id="orgb834a79"><span class="section-number-2">3.</span> Conductors and Insulators</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgb347509" class="outline-3">
+<h3 id="orgb347509"><span class="section-number-3">3.1.</span> Conductors</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Another important application of electric field is to conductors and insulators. Conductors conduct electricity by allowing free-moving electrons to pass through. This, through the perspective of charges and electric fields, brings up two interesting results.
+</p>
+
+<p>
+Firstly, realize that by definition <b>the electric field within a conductor is zero</b>. To see why this is the case, imagine you subject the conductor to any electric field. Since by definition electrons, or charges, can move within the conductor, the outside electric field will cause <i>polarization</i> to occur. In other words, the charges within the conductor will keep moving until the electric field they produce exactly cancels the outside electric field it is subjected to.
+</p>
+
+<p>
+This also implies that the <b>electric charge within a conductor is zero</b>. This is because all of the free charge will migrate to the edge of the conductor, leaving the field and charge within it zero.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2025-05-31 23:21
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
