@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-20 Tue 17:03 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Logic</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Logic</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgaeda594">1. Propositional Logic</a>
+<ul>
+<li><a href="#org30b663f">1.1. Connectives</a></li>
+<li><a href="#orgdafc7d3">1.2. Truth Tables</a></li>
+<li><a href="#org00ce1e9">1.3. Logical Equivalencies</a></li>
+</ul>
+</li>
+<li><a href="#orgb36956e">2. Predicates and Quantifiers</a></li>
+<li><a href="#org803322c">3. De Morgan's Laws</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaeda594" class="outline-2">
+<h2 id="orgaeda594"><span class="section-number-2">1.</span> Propositional Logic</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The building block of logic is the notion of a <b>proposition</b>: a statement that is either true or false. These statements are examples of propositions:
+</p>
+
+<ul class="org-ul">
+<li>\(\sqrt{3}\) is irrational (true)</li>
+<li>\(6-2=3\) (true)</li>
+<li>Julius Caeser was 5'8" tall (indeterminate)</li>
+</ul>
+
+<p>
+These statements are not propositions:
+</p>
+
+<ul class="org-ul">
+<li>\(2 + 2\) (this is an expression)</li>
+<li>\(3x + 17 = 42\) (what is \(x\)?)</li>
+</ul>
+
+<p>
+Propositions should also not include <i>fuzzy terms</i>:
+</p>
+
+<ul class="org-ul">
+<li>1 billion is a big number (what does "big" mean?)</li>
+</ul>
+</div>
+<div id="outline-container-org30b663f" class="outline-3">
+<h3 id="org30b663f"><span class="section-number-3">1.1.</span> Connectives</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Propositions may be connected together using <b>connectives</b>. Three of the most basic logic connectives are:
+</p>
+
+<ol class="org-ol">
+<li><b>Conjunction</b>: \(P \land Q\) (\(P\) AND \(Q\)) — true only when both \(P\) and \(Q\) are true.</li>
+<li><b>Disjunction</b>: \(P \lor Q\) (\(P\) OR \(Q\)) — true when at least one of \(P\) and \(Q\) is true.</li>
+<li><b>Negation</b>: \(\lnot P\) (NOT \(P\)) — true when \(P\) is false.</li>
+</ol>
+
+<p>
+Statements like these, with variables, are called <b>propositional forms</b>.
+</p>
+
+<p>
+A fundamental principle called the <b>law of the excluded middle</b> states that either \(P\) or \(\lnot P\) is true, but not both; thus, \(P \lor \lnot P\) is always true regardless of the truth value of \(P\). Such propositional forms, which are true regardless of the truth values of their variables, are called a <b>tautology</b>. Conversely, a statement like \(P \land \lnot P\), which is always false, is called a <b>contradiction</b>.
+</p>
+
+<p>
+Perhaps one of the most important connective is the IMPLIES connective:
+</p>
+
+<ol class="org-ol">
+<li><b>Implication</b>: \(P \implies Q\) (\(P\) IMPLIES \(Q\)) — this is the same as "if \(P\), then \(Q\)".</li>
+</ol>
+
+<p>
+Here \(P\) is called the <b>hypothesis</b> of the implication, and \(Q\) the <b>conclusion</b>. An example of an implication is: "if you stand in the rain, then you will get wet." An implication is <i>false only when \(P\) is true and \(Q\) is false</i>: the example would only be false if you stood in the rain but didn't get wet. Note that not standing in the rain but still getting wet (when \(P\) is false but \(Q\) is true) does not prove the implication false.
+</p>
+
+<p>
+Finally, there is also the IF AND ONLY IF connector:
+</p>
+
+<ol class="org-ol">
+<li><b>Biconditional</b>: \(P \iff Q\) (\(P\) IF AND ONLY IF \(Q\), or \(P\) IFF \(Q\)) — this is true only if both \(P \implies Q\) <i>and</i> \(Q \implies P\) are true.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgdafc7d3" class="outline-3">
+<h3 id="orgdafc7d3"><span class="section-number-3">1.2.</span> Truth Tables</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We can define connectives formally using <b>truth tables</b>, which involve listing out all the possible combinations of inputs and the resulting output of the connectives:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">\(P\)</th>
+<th scope="col" class="org-left">\(Q\)</th>
+<th scope="col" class="org-left">\(P \land Q\)</th>
+<th scope="col" class="org-left">\(P \lor Q\)</th>
+<th scope="col" class="org-left">\(P \implies Q\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org00ce1e9" class="outline-3">
+<h3 id="org00ce1e9"><span class="section-number-3">1.3.</span> Logical Equivalencies</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+We can use <b>logical equivalencies</b> to transform propositional statements into other statements using connectives, which may help us analyze them. For example, we can transfrom the IMPLIES connective into a proposition using NOT and OR:
+</p>
+
+\begin{align}
+P \implies Q \equiv \lnot P \lor Q
+\end{align}
+
+<p>
+Language can be used to intuitively grasp the truth of this equivalency: "if \(P\) then \(Q\)" is the same as "either \(P\) is false, otherwise \(Q\) is true." We can also prove this by checking the truth table:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">\(P\)</th>
+<th scope="col" class="org-left">\(Q\)</th>
+<th scope="col" class="org-left">\(P \implies Q\)</th>
+<th scope="col" class="org-left">\(\lnot P\)</th>
+<th scope="col" class="org-left">\(\lnot P \lor Q\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">F</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+<td class="org-left">T</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Given an implication \(P \implies Q\), we can also define its:
+</p>
+
+<ol class="org-ol">
+<li><b>Contrapositive</b>: \(\lnot Q \implies \lnot P\)</li>
+<li><b>Converse</b>: \(Q \implies P\)</li>
+</ol>
+
+<p>
+The contrapositive is a logical equivalency, as it is always true: "if you stand in the rain, then you will get wet" is the same as "if you did not get wet, then you did not stand in the rain." However, the converse is <i>not always true</i>: getting wet did not imply you stood in the rain.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb36956e" class="outline-2">
+<h2 id="orgb36956e"><span class="section-number-2">2.</span> Predicates and Quantifiers</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Sometimes, propositions like "Aristotle is a philosopher" and "Plato is a philosopher" are unwieldy to write, especially if you want to talk about lots of different people being philosophers. In these cases, we can introduce a <b>predicate</b>: a form that has a variable, and when replacing the variable makes that form either true or false. For example, instead of saying "Plato is a philosopher," we can write \(\text{Phil}(\text{Plato})\), where \(\text{Phil}(x)\) is a predicate that denotes "\(x\) is a philosopher."
+</p>
+
+<p>
+Similarly, oftentimes we may also want to say something about <i>a lot of simple propositions</i> at once. For example, the proposition "for all natural numbers \(n\), \(n^2 + n + 41\) is prime" asserts all the propositions for \(n\) ranging over the natural numbers. In these cases, we introduce <b>quantifiers</b>, of which there are two types:
+</p>
+
+<ol class="org-ol">
+<li><b>Universal</b>: \(\forall x\) — for all \(x\)</li>
+<li><b>Existential</b>: \(\exists x\) — there exists \(x\)</li>
+</ol>
+
+<p>
+Thus, given the <a href="sets.html#org293e20e">set</a> \(\mathbb{N}\) and the predicate \(P(x)\) to denote that \(x\) is prime, we can rewrite the proposition as \((\forall n \in \mathbb{N}) P(n^2 + n + 41)\). Note that quantifiers must act over some <b>universe</b>: here, the universe is \(\mathbb{N}\), the natural numbers.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Quantifiers
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to write the sentence "there are at most three distinct integers \(x\) that satisfy \(P(x)\)" using quantifiers. One way to do it is:
+</p>
+
+\begin{align}
+\exists x \exists y \exists z \forall d (P(d) \implies d = x \lor d = y \lor d = z) \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org803322c" class="outline-2">
+<h2 id="org803322c"><span class="section-number-2">3.</span> De Morgan's Laws</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+For \(P\) to be false is the same thing as for \(\lnot P\) to be true. <b>De Morgan's laws</b> provides rules for negating conjunctions and disjunctions:
+</p>
+
+\begin{align}
+\lnot (P \land Q) \equiv \lnot P \lor \lnot Q \\
+\not (P \lor Q) \equiv \lnot P \land \lnot Q
+\end{align}
+
+<p>
+Again, we can use language to understand these intuitively. If \(P \land Q\) is false, then that means that either \(P\) is false or \(Q\) is false. Similarly, if \(P \lor Q\) is false, then that means that both \(P\) and \(Q\) are false.
+</p>
+
+<p>
+Similar laws also exist for quantifiers:
+</p>
+
+\begin{align}
+\lnot (\forall x P(x)) \equiv \exists x (\lnot P(x)) \\
+\lnot (\exists x P(x)) \equiv \forall x (\lnot P(x))
+\end{align}
+
+<p>
+These are also intuitively grasped with language. The first one says that if \(P(x)\) is not true for all \(x\), then there exists some \(x\) such that \(P(x)\) is false. The second one says that if there does not exist some \(x\) for which \(P(x)\) is true, then for all \(x\) \(P(x)\) is false.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-01-20 17:03
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
