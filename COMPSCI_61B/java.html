@@ -6,7 +6,7 @@
 <!-- 2026-01-21 Wed 14:37 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Notes</title>
+<title>Java</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
    <script src="/pagefind/pagefind-ui.js"></script>
@@ -220,31 +220,137 @@
 </head>
 <body>
 <div id="preamble" class="status">
-<div id="search"></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Notes</h1>
+<h1 class="title">Java</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7698b36">1. Compiling Programs</a></li>
+<li><a href="#org7dee42e">2. Variables</a>
+<ul>
+<li><a href="#orgc3447bb">2.1. Primitive Types</a></li>
+</ul>
+</li>
+<li><a href="#org203245f">3. Operators</a>
+<ul>
+<li><a href="#orgf5ca420">3.1. Mathematical Operators</a></li>
+<li><a href="#org057115d">3.2. Comparison Operators</a></li>
+<li><a href="#orgcb6dac4">3.3. Boolean Operators</a></li>
+</ul>
+</li>
+<li><a href="#org60b7a0b">4. Functions</a>
+<ul>
+<li><a href="#org19194fe">4.1. Defining Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <p>
-<b><b>Subdirectories:</b></b>
+This is a list of various important and miscellaneous Java features that is helpful throughout the course.
+</p>
+<div id="outline-container-org7698b36" class="outline-2">
+<h2 id="org7698b36"><span class="section-number-2">1.</span> Compiling Programs</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Java programs must first be compiled and then run:
 </p>
 
-<ul class="org-ul">
-<li><a href="COMPSCI_61A/index.html">COMPSCI 61A</a></li>
-<li><a href="COMPSCI_61B/index.html">COMPSCI 61B</a></li>
-<li><a href="COMPSCI_70/index.html">COMPSCI 70</a></li>
-<li><a href="MATH_53/index.html">MATH 53</a></li>
-<li><a href="MATH_54/index.html">MATH 54</a></li>
-<li><a href="PHYSICS_7A/index.html">PHYSICS 7A</a></li>
-<li><a href="PHYSICS_7B/index.html">PHYSICS 7B</a></li>
-</ul>
+<pre><code class="language-shell">javac <span style="color: #f38ba8;">[</span>program<span style="color: #f38ba8;">]</span>.java &amp;&amp; java <span style="color: #f38ba8;">[</span>program<span style="color: #f38ba8;">]</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org7dee42e" class="outline-2">
+<h2 id="org7dee42e"><span class="section-number-2">2.</span> Variables</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgc3447bb" class="outline-3">
+<h3 id="orgc3447bb"><span class="section-number-3">2.1.</span> Primitive Types</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Variables in Java must be declared with their type. Once that type is set, the type of that variable can never change. Additionally, types are checked and type errors are thrown at compile-time. The following are primitive types in Java:
+</p>
+
+<pre><code class="language-java"><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span> = 0;         <span style="color: #6c7086;">// </span><span style="color: #6c7086;">integer</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org203245f" class="outline-2">
+<h2 id="org203245f"><span class="section-number-2">3.</span> Operators</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgf5ca420" class="outline-3">
+<h3 id="orgf5ca420"><span class="section-number-3">3.1.</span> Mathematical Operators</h3>
+<div class="outline-text-3" id="text-3-1">
+<pre><code class="language-java">a = 1 + 2                   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">addition
+</span>b = 2 - 1                   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">subtraction
+</span>c = 3 * 4                   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">multiplication
+</span>d = 4 / 3                   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">division
+</span>f = 4 % 3                   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">modulus (1)
+</span>g = <span style="color: #f38ba8;">(</span>1 + 2<span style="color: #f38ba8;">)</span> * <span style="color: #f38ba8;">(</span>3 + 4<span style="color: #f38ba8;">)</span>       <span style="color: #6c7086;">// </span><span style="color: #6c7086;">association</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org057115d" class="outline-3">
+<h3 id="org057115d"><span class="section-number-3">3.2.</span> Comparison Operators</h3>
+<div class="outline-text-3" id="text-3-2">
+<pre><code class="language-java">1 <span style="color: #f38ba8;">&lt;</span> 2                       <span style="color: #6c7086;">// </span><span style="color: #6c7086;">less than
+</span>1 &lt;= 2                      <span style="color: #6c7086;">// </span><span style="color: #6c7086;">less than or equal to
+</span>2 <span style="color: #f38ba8;">&gt;</span> 1                       <span style="color: #6c7086;">// </span><span style="color: #6c7086;">greater than
+</span>2 &gt;= 1                      <span style="color: #6c7086;">// </span><span style="color: #6c7086;">greater than or equal to
+</span>1 == 1                      <span style="color: #6c7086;">// </span><span style="color: #6c7086;">equals to
+</span>2 != 1                      <span style="color: #6c7086;">// </span><span style="color: #6c7086;">not equal to</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-orgcb6dac4" class="outline-3">
+<h3 id="orgcb6dac4"><span class="section-number-3">3.3.</span> Boolean Operators</h3>
+<div class="outline-text-3" id="text-3-3">
+<pre><code class="language-java"><span style="color: #fab387;">true</span> &amp;&amp; <span style="color: #fab387;">true</span>                <span style="color: #6c7086;">// </span><span style="color: #6c7086;">and (true)
+</span><span style="color: #fab387;">false</span> || <span style="color: #fab387;">true</span>               <span style="color: #6c7086;">// </span><span style="color: #6c7086;">or (true)
+</span><span style="color: #89dceb;">!</span><span style="color: #fab387;">true</span>                       <span style="color: #6c7086;">// </span><span style="color: #6c7086;">not (false)</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org60b7a0b" class="outline-2">
+<h2 id="org60b7a0b"><span class="section-number-2">4.</span> Functions</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org19194fe" class="outline-3">
+<h3 id="org19194fe"><span class="section-number-3">4.1.</span> Defining Functions</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Code in Java must be located inside of a function. We use curly braces to start and end functions:
+</p>
+
+<pre><code class="language-java"><span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">larger</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">y</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">if</span> <span style="color: #fab387;">(</span>x &gt; y<span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> x;
+    <span style="color: #fab387;">}</span> <span style="color: #cba6f7;">else</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> y;
+    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Notice that the function has parameters whose types must be declared. Additionally, functions must also have a return type in front of the function name.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
-               <div class="lang-switcher"><a href="/index.zh.html">中文</a></div>
+               
              </div>
              <div class="last-modified">
-               Last modified: 2026-01-21 14:37
+               Last modified: 2026-01-21 13:59
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
