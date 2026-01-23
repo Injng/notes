@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-22 Thu 17:27 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sinusoidal Signals</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/EECS_16B/index.html">EECS 16B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Sinusoidal Signals</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org45e2a33">1. Sinusoidal Signals</a></li>
+<li><a href="#org783dfda">2. Fourier Series</a>
+<ul>
+<li><a href="#org2143a04">2.1. Symmetry Properties</a>
+<ul>
+<li><a href="#org453bdf8">2.1.1. Even Functions</a></li>
+<li><a href="#org515dde9">2.1.2. Odd Functions</a></li>
+<li><a href="#org186f072">2.1.3. Half-wave Symmetric Functions</a></li>
+</ul>
+</li>
+<li><a href="#orgfe29f59">2.2. Integral Properties</a></li>
+<li><a href="#org00fcbb3">2.3. Amplitude-Phase Representation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org45e2a33" class="outline-2">
+<h2 id="org45e2a33"><span class="section-number-2">1.</span> Sinusoidal Signals</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The following is a graph representation of a sinusoidal signal:
+</p>
+
+
+<div id="org2bb4982" class="figure">
+<p><img src="../static/EECS_16B/sinusoidal_signals1.png" alt="sinusoidal_signals1.png" />
+</p>
+</div>
+
+<p>
+Five key parameters characterize a sinusoidal signal:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Symbol</th>
+<th scope="col" class="org-left">Name</th>
+<th scope="col" class="org-left">Units</th>
+<th scope="col" class="org-left">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">\(A\)</td>
+<td class="org-left">Amplitude</td>
+<td class="org-left">—</td>
+<td class="org-left">Maximum displacement from zero</td>
+</tr>
+
+<tr>
+<td class="org-left">\(T\)</td>
+<td class="org-left">Period</td>
+<td class="org-left">seconds [s]</td>
+<td class="org-left">Time for one complete cycle</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\phi\)</td>
+<td class="org-left">Phase</td>
+<td class="org-left">radians [rad]</td>
+<td class="org-left">Horizontal shift of the waveform</td>
+</tr>
+
+<tr>
+<td class="org-left">\(f\)</td>
+<td class="org-left">Frequency</td>
+<td class="org-left">Hertz [Hz]</td>
+<td class="org-left">Cycles per second: \(f = \frac{1}{T}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\omega\)</td>
+<td class="org-left">Angular frequency</td>
+<td class="org-left">[rad/s]</td>
+<td class="org-left">\(\omega = 2\pi f = \frac{2\pi}{T}\)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+A waveform is called <b>periodic</b> with period \(T\) if:
+</p>
+
+\begin{align}
+f(t) = f(t + nT), \: \forall n \in \mathbb{Z} \notag
+\end{align}
+</div>
+</div>
+<div id="outline-container-org783dfda" class="outline-2">
+<h2 id="org783dfda"><span class="section-number-2">2.</span> Fourier Series</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The big idea is that we can describe <abbr class="tooltip" title="Technically, it must satisfy a set of conditions called the Dirichlet conditions, but any periodic function generated by a real circuit will satisfy these."> any</abbr>&emsp13;periodic signal with a Fourier series, that is, a sum of cosine and sine functions:
+</p>
+
+\begin{align}
+f(t) = {\color{blue}a_0} + \sum_{n=1}^{\infty}\left[{\color{red}a_n}\cos\left(n{\color{teal}\omega_0} t\right) + {\color{green}b_n}\sin\left(n{\color{teal}\omega_0} t\right)\right]
+\end{align}
+
+<p>
+where:
+</p>
+
+\begin{align}
+&{\color{teal} \omega_0} = \frac{2\pi}{T} \notag \\
+&{\color{blue} a_0} = \frac{1}{T} \int_0^T f(t) \text{ d}t \notag \\
+&{\color{red} a_n} = \frac{2}{T} \int_0^T f(t)\cos(n{\color{teal}\omega_0}t)\text{ d}t \notag \\
+&{\color{green} b_n} = \frac{2}{T} \int_0^T f(t)\sin(n{\color{teal}\omega_0}t)\text{ d}t \notag
+\end{align}
+
+<p>
+\(\color{blue} a_0\) is the average value of the waveform, also known as the "DC component".
+</p>
+</div>
+<div id="outline-container-org2143a04" class="outline-3">
+<h3 id="org2143a04"><span class="section-number-3">2.1.</span> Symmetry Properties</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org453bdf8" class="outline-4">
+<h4 id="org453bdf8"><span class="section-number-4">2.1.1.</span> Even Functions</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+<b>Even functions</b> are functions that satisfy \(f(t) = f(-t)\): geometrically this means that they are symmetric about the y-axis. It follows that there are no sine terms within the Fourier series for an even function: \(b_n\) are all zero, because they are integrals of even times odd functions, which are odd functions.
+</p>
+</div>
+</div>
+<div id="outline-container-org515dde9" class="outline-4">
+<h4 id="org515dde9"><span class="section-number-4">2.1.2.</span> Odd Functions</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+<b>Odd functions</b> are functions that satisfy \(f(t) = -f(-t)\): geometrically this means that they are symmetric about the origin. These have no cosine terms: \(a_n\) are all zero, because they are integrals of odd times even functions, which are also odd functions.
+</p>
+</div>
+</div>
+<div id="outline-container-org186f072" class="outline-4">
+<h4 id="org186f072"><span class="section-number-4">2.1.3.</span> Half-wave Symmetric Functions</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<p>
+<b>Half-wave symmetric functions</b> are functions that satisfy \(f(t) = -f\left(t - \frac{T}{2}\right)\), which visually means that each half-wavelength is symmetric:
+</p>
+
+
+<div id="org61af653" class="figure">
+<p><img src="../static/EECS_16B/sinusoidal_signals2.png" alt="sinusoidal_signals2.png" />
+</p>
+</div>
+
+<p>
+These functions have no <i>even harmonics</i>, which means that all the coefficients \(a_{2k}\) and \(b_{2k}\) result in zero.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfe29f59" class="outline-3">
+<h3 id="orgfe29f59"><span class="section-number-3">2.2.</span> Integral Properties</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The following integral properties are useful for deriving Fourier coefficients:
+</p>
+
+\begin{align}
+\int_0^T \sin(n\omega_0 t) \, dt = 0 \notag \\
+\int_0^T \cos(n\omega_0 t) \, dt = 0 \notag \\
+\int_0^T \sin(n\omega_0 t) \sin(m\omega_0 t) \, dt = 0 \quad (m \neq n) \notag \\
+\int_0^T \cos(n\omega_0 t) \cos(m\omega_0 t) \, dt = 0 \quad (m \neq n) \notag \\
+\int_0^T \sin(n\omega_0 t) \cos(m\omega_0 t) \, dt = 0 \quad (\text{for all } m, n) \notag \\
+\end{align}
+</div>
+</div>
+<div id="outline-container-org00fcbb3" class="outline-3">
+<h3 id="org00fcbb3"><span class="section-number-3">2.3.</span> Amplitude-Phase Representation</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Alternatively, we can represent each harmonic as a single cosine using the amplitude and phase:
+</p>
+
+\begin{align}
+a_n\cos(n\omega_0 t) + b_n\sin(n\omega_0 t) = A_n\cos(n\omega_0 t + \phi_n) \notag
+\end{align}
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-01-22 17:26
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
