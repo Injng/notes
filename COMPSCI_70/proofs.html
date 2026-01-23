@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-22 Thu 16:37 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Proofs</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Proofs</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6d79dbd">1. Direct Proof</a></li>
+<li><a href="#org4eb1f35">2. Proof by Contraposition</a></li>
+<li><a href="#org540b610">3. Proof by Contradiction</a></li>
+<li><a href="#org407f482">4. Proof by Cases</a></li>
+</ul>
+</div>
+</div>
+<p>
+A <b>proof</b> is a sequence of propositions, each of which follows from the preceding ones by a valid law of reasoning. A proof may use basic facts that we assume without proof (these are called <b>axioms</b>), as well as other facts that we have previously proved (<b>lemmas</b>).
+</p>
+<div id="outline-container-org6d79dbd" class="outline-2">
+<h2 id="org6d79dbd"><span class="section-number-2">1.</span> Direct Proof</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A <b>direct proof</b> proves \(P \implies Q\) by first assuming \(P\) to be true, then following a sequence of logical steps to get to \(Q\).
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Divisibility of two integers
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> For any integers \(a, b, c\) with \(a \neq 0\), if \(a \mid b\) and \(a \mid c\) then \(a \mid (b + c)\).
+</p>
+
+<p>
+<b>Proof:</b> Let \(a, b, c\) be arbitrary integers with \(a \neq 0\). Assume that \(a \mid b\) and \(a \mid c\). Then we can say that \(b=aq_1\) and \(c = aq_2\) for integers \(q_1, q_2\). Hence, we have:
+</p>
+
+\begin{align}
+b + c &= aq_1 + aq_2 \notag \\
+&= a(q_1 + q_2) \notag
+\end{align}
+
+<p>
+Since \(q_1 + q_2\) is an integer, this implies \(a \mid (b+c)\). \(\square\)
+</p>
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Divisibility rule for 11
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> Given a number, delete the last digit and subtract it from the remaining number. Denote by \(\text{reduce}(n)\) the number obtained from \(n\) with this rule. Then, \(n\) is divisible by \(11\) if and only if \(\text{reduce}(n)\) is also divisible by \(11\).
+</p>
+
+<p>
+<b>Proof:</b> To prove this, we need to prove both that:
+</p>
+<ul class="org-ul">
+<li>(i) \(\forall n \geq 10, \: 11 \mid n \implies 11 \mid \text{reduce}(n)\)</li>
+<li>(ii) \(\forall n \geq 10, \: 11 \mid \text{reduce}({n}) \implies 11 \mid n\)</li>
+</ul>
+
+<p>
+First, we prove (i). Assume that \(11 \mid n\). Write \(n\) as \([n']d\), where \(d\) is the last digit of \(n\) and \(n'\) are the other digits. Then, the following is true:
+</p>
+
+\begin{align}
+\text{reduce}(n) &= n'-d \notag \\
+n &= 10n' + d \notag
+\end{align}
+
+<p>
+Adding these two equations, we get that:
+</p>
+
+\begin{align}
+\text{reduce}(n) + n = 11n' \notag
+\end{align}
+
+<p>
+Thus, \(11 \mid (\text{reduce}(n) + n)\). Since \(11 \mid n\), we know that \(11 \mid \text{reduce}(n)\) (by lemma from previous example).
+</p>
+
+<p>
+For (ii), we assume that \(11 \mid \text{reduce}(n)\). Using the fact that \(11 \mid (\text{reduce}(n) + n)\) exactly as before, we find that \(11 \mid n\). \(\square\)
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org4eb1f35" class="outline-2">
+<h2 id="org4eb1f35"><span class="section-number-2">2.</span> Proof by Contraposition</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Since we know that the <a href="logic.html#org00ce1e9">contrapositive</a> of an implication is logically equivalent to itself, we can prove \(\lnot Q \implies \lnot P\) instead of proving \(P \implies Q\).
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Even and odd
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> Let \(n\) be an integer. If \(n^2-4n+7\) is even, then \(n\) is odd.
+</p>
+
+<p>
+<b>Proof:</b> We will proceed by contraposition. We assume that \(n\) is even, and we want to prove that \(n^2 - 4n + 7\) is odd.
+</p>
+
+<p>
+Then, \(n^2-4n+7\) becomes the sum of two evens and one odd number, which is clearly odd. \(\square\)
+</p>
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Inequalities
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> For a real number \(x\), if \(x^3-x > 0\) then \(x > -1\).
+</p>
+
+<p>
+<b>Proof:</b> By contraposition, we assume that \(x \leq -1\) and prove that \(x^3-x \leq 0\). Then:
+</p>
+
+\begin{align}
+x^3 - x = x(x^2- 1) \notag
+\end{align}
+
+<p>
+If \(x \leq -1\), then \(x\) is negative and \(x^2 - 1\) is nonnegative, and thus \(x(x^2-1) \leq 0\). \(\square\)
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org540b610" class="outline-2">
+<h2 id="org540b610"><span class="section-number-2">3.</span> Proof by Contradiction</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Also called <i>reductio ad absurdum</i>, the goal is to prove \(P\) by instead finding a contradiction with \(\lnot P\). The process is to first assume \(\lnot P\) is true. Then, we get two results, \(R\) and \(\lnot R\), to be true at the same time; but since \(\lnot P \implies (R \land \lnot R)\) is false, then by the <a href="logic.html#org30b663f">law of the excluded middle</a> \(P\) must be true.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Infinitely many primes
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem [Euclid]</b>: There are infinitely many primes.
+</p>
+
+<p>
+<b>Proof:</b> We will proceed by contradiction. We assume that there are only finitely many primes. Call these primes \(p_1, p_2, \dots , p_k\).
+</p>
+
+<p>
+Define \(q = p_1p_2 \cdots p_k + 1\). Since all our primes are included in \(p_1, p_2, \dots , p_k\), \(q\) cannot be prime.
+</p>
+
+<p>
+Therefore, \(q\) must have a prime divisor \(d > 1\). By our assumption, then, \(d = p_i\) for some \(1 \leq i \leq k\). Hence, \(d \mid (q - 1)\) and \(d \mid q\). Therefore, \(d \mid 1\) so \(d = 1\). But, since \(d\) has to be a prime divisor \(d > 1\), we have a contradiction, as desired. Hence, our initial assumption was false, i.e. there exists infinitely many primes. \(\square\)
+</p>
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Irrational number
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> \(\sqrt{2}\) is irrational.
+</p>
+
+<p>
+<b>Proof:</b> We will proceed by contradiction. Assume that \(\sqrt{2}\) is rational. Then, we can write \(\sqrt{2} = \frac{a}{b}\) for integers \(a, b\) that have no common factors.
+</p>
+
+<p>
+Squaring this, we get \(2 = \frac{a^2}{b^2} \Rightarrow 2b^2 = a^2\). Hence, \(a^2\) is even. It is clear that if \(a^2\) is even, then \(a\) is even (the proof of this fact shall be left as an exercise). So, we can write \(a = 2c\) for some integer \(c\). Thus,
+</p>
+
+\begin{align}
+a^2 &= 2b^2 \notag \\
+4c^2 &= 2b^2 \notag \\
+2c^2 &= b^2 \notag
+\end{align}
+
+<p>
+Then, \(b^2\) is even, which means \(b\) is also even. However, since \(a\) and \(b\) share no common factors, \(a\) and \(b\) cannot both be even, and thus we have a contradiction. \(\square\)
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org407f482" class="outline-2">
+<h2 id="org407f482"><span class="section-number-2">4.</span> Proof by Cases</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Here the goal is to prove \(P\) by dividing the situation into multiple cases. If we can prove that the theorem works for all the cases, then we have proved the theorem works for the entire situation. Note that this only works if the cases cover the entire situation.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Absolute value
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> For all real \(x\), \(|x+3| - x \geq 3\).
+</p>
+
+<p>
+<b>Proof:</b> We shall proceed by cases.
+</p>
+
+<p>
+<i>Case (i):</i> \(x \geq -3\)
+</p>
+
+<p>
+Then, \(|x + 3| - x = x + 3 - x = 3 \geq 3\).
+</p>
+
+<p>
+<i>Case (ii):</i> \(x < -3\)
+</p>
+
+<p>
+Then, \(|x+3| - x = -2x - 3 > -3 + 6 = 3\). \(\square\)
+</p>
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Exponentiating irrational numbers
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> There exists irrational numbers \(x, y\) such that \(x^y\) is rational.
+</p>
+
+<p>
+<b>Proof:</b> Take the value \(\sqrt{2}^{\sqrt{2}}\). We shall proceed by cases:
+</p>
+
+<p>
+<i>Case (i):</i> \(\sqrt{2}^{\sqrt{2}}\) is rational
+</p>
+
+<p>
+Here, we are immediately done, because the theorem works for \(x=y=\sqrt{2}\).
+</p>
+
+<p>
+<i>Case (ii):</i> \(\sqrt{2}^{\sqrt{2}}\) is irrational
+</p>
+
+<p>
+Here, we take \(x = \sqrt{2}^{\sqrt{2}}\) which is irrational, and \(y = \sqrt{2}\). Then, \(x^y = \left ( \sqrt{2}^{\sqrt{2}}\right ) ^{\sqrt{2}} = \sqrt{2}^2 = 2\), which is rational. \(\square\)
+</p>
+
+<p>
+This is an example of a <b>non-constructive proof</b>, as it doesn't tell you what \(x\) and \(y\) will be, it just tells you that they exist.
+</p>
+
+
+</details>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-01-22 16:37
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
