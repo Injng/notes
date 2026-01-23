@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
 <head>
-<!-- 2026-01-22 Thu 20:07 -->
+<!-- 2026-01-23 Fri 14:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>逻辑</title>
@@ -126,16 +126,17 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org75fb796">1. 命题逻辑</a>
+<li><a href="#orge1e031c">1. 命题逻辑</a>
 <ul>
-<li><a href="#org31c1d80">1.1. 连接词</a></li>
+<li><a href="#org0e002c8">1.1. 联结词</a></li>
+<li><a href="#org60d03b8">1.2. 真值表</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org75fb796" class="outline-2">
-<h2 id="org75fb796"><span class="section-number-2">1.</span> 命题逻辑</h2>
+<div id="outline-container-orge1e031c" class="outline-2">
+<h2 id="orge1e031c"><span class="section-number-2">1.</span> 命题逻辑</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 命题是逻辑的基础概念：即一个非真即假的语句。以下语句是命题：
@@ -152,8 +153,8 @@
 </p>
 
 <ul class="org-ul">
-<li>\(2 + 2\) （这是一个表达式）</li>
-<li>\(3x + 17 = 42\) （\(x\) 是什么？）</li>
+<li>\(2 + 2\)（这是一个表达式）</li>
+<li>\(3x + 17 = 42\)（\(x\) 是什么？）</li>
 </ul>
 
 <p>
@@ -164,17 +165,17 @@
 <li>一亿是一个很大的数字（“很大”的定义是什么？）</li>
 </ul>
 </div>
-<div id="outline-container-org31c1d80" class="outline-3">
-<h3 id="org31c1d80"><span class="section-number-3">1.1.</span> 连接词</h3>
+<div id="outline-container-org0e002c8" class="outline-3">
+<h3 id="org0e002c8"><span class="section-number-3">1.1.</span> 联结词</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-多个命题可以用连接词连在一起。三个最基本的连接词是：
+多个命题可以用联结词连在一起。三个最基本的联结词是：
 </p>
 
 <ol class="org-ol">
 <li>合取：\(P \land Q\)（\(P\) 与 \(Q\)）—— 仅当 \(P\) 和 \(Q\) 均为真时，结果才为真。</li>
-<li>析取：\(P \lor Q\) （\(P\) 或 \(Q\)）—— 只要 \(P\) 和 \(Q\) 中至少一个为真，结果即为真。</li>
-<li>否定：\(\lnot P\) （非 \(P\)）—— 当 \(P\) 为假时，结果为真。</li>
+<li>析取：\(P \lor Q\)（\(P\) 或 \(Q\)）—— 只要 \(P\) 和 \(Q\) 中至少一个为真，结果即为真。</li>
+<li>否定：\(\lnot P\)（非 \(P\)）—— 当 \(P\) 为假时，结果为真。</li>
 </ol>
 
 <p>
@@ -184,7 +185,30 @@
 <p>
 逻辑学术中有一个基本原则叫做排中律，它指出 \(P\) 和 \(\lnot P\) 必有一真，但不能同真；因此，无论 \(P\) 的真值如何，\(P \lor \lnot P\) 总是真的。这类无论变量真值如何都总是为真的命题形式被称为重言式。相反，像 \(P \land \lnot P\) 这样总是为假的语句被称为矛盾式。
 </p>
+
+<p>
+也许最重要的联结词之一是蕴涵：
+</p>
+
+<ol class="org-ol">
+<li>蕴涵：\(P \implies Q\)（\(P\) 蕴涵 \(Q\)）—— 这等同于“如果 \(P\)，那么 \(Q\)。”</li>
+</ol>
+
+<p>
+在这里，\(P\) 被称为蕴涵中的假设，而 \(Q\) 被称为结论。蕴涵的一个例子是：“如果你站在雨中，那么你会淋湿。”只有当 \(P\) 为真且 \(Q\) 为假的时候蕴涵才会为假：在上个例子中，只有当你站在雨中却没被淋湿时该命题才为假。请注意，不站在雨中却还被淋湿（即 \(P\) 为假但 \(Q\) 为真）不能证明该蕴涵为假。
+</p>
+
+<p>
+最后，还有当且仅当联结词：
+</p>
+
+<ol class="org-ol">
+<li>双条件：\(P \iff Q\)（\(P\) 当且仅当 \(Q\)）—— 仅当 \(P \implies Q\) 和 \(Q \implies P\) 均为真时，结果才为真。</li>
+</ol>
 </div>
+</div>
+<div id="outline-container-org60d03b8" class="outline-3">
+<h3 id="org60d03b8"><span class="section-number-3">1.2.</span> 真值表</h3>
 </div>
 </div>
 </div>
@@ -194,7 +218,7 @@
                 <div class="lang-switcher"><a href="/COMPSCI_70/logic.html">English</a></div>
               </div>
               <div class="last-modified">
-                最后修改： 2026-01-21 23:55
+                最后修改： 2026-01-22 22:13
               </div><script>
        window.addEventListener('DOMContentLoaded', (event) => {
            new PagefindUI({

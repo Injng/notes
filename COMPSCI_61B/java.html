@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-22 Thu 20:07 -->
+<!-- 2026-01-23 Fri 14:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java</title>
@@ -120,6 +120,18 @@
 <li><a href="#org7556cff">6.2. <code>for</code></a></li>
 </ul>
 </li>
+<li><a href="#orgc40e5c9">7. Data Structures</a>
+<ul>
+<li><a href="#org3e3e94e">7.1. Lists</a></li>
+<li><a href="#org86aa344">7.2. Abstract Data Types</a></li>
+</ul>
+</li>
+<li><a href="#org2942537">8. Classes</a>
+<ul>
+<li><a href="#org7fadb47">8.1. Accessing Classes</a></li>
+<li><a href="#org9853474">8.2. Static</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -162,7 +174,8 @@ Variables in Java must be declared with their type. Once that type is set, the t
 <pre><code class="language-java"><span style="color: #f9e2af;">String</span> <span style="color: #cdd6f4;">s</span> = <span style="color: #a6e3a1;">"hello"</span>;
 s += <span style="color: #a6e3a1;">" world"</span>;
 s += 5;                               <span style="color: #6c7086;">// </span><span style="color: #6c7086;">can add anything to strings (will be converted)
-</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">sLength</span> = s.length<span style="color: #f38ba8;">()</span>;
+</span>s += <span style="color: #a6e3a1;">"abc"</span>.repeat<span style="color: #f38ba8;">(</span>3<span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">sLength</span> = s.length<span style="color: #f38ba8;">()</span>;
 <span style="color: #f9e2af;">String</span> <span style="color: #cdd6f4;">substr</span> = s.substring<span style="color: #f38ba8;">(</span>1, 5<span style="color: #f38ba8;">)</span>;
 <span style="color: #f9e2af;">char</span> <span style="color: #cdd6f4;">c</span> = s.charAt<span style="color: #f38ba8;">(</span>2<span style="color: #f38ba8;">)</span>;
 <span style="color: #cba6f7;">if</span> <span style="color: #f38ba8;">(</span>s.indexOf<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"hello"</span><span style="color: #fab387;">)</span> != -1<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
@@ -282,6 +295,128 @@ Notice that the function has parameters whose types must be declared. Additional
 </div>
 </div>
 </div>
+<div id="outline-container-orgc40e5c9" class="outline-2">
+<h2 id="orgc40e5c9"><span class="section-number-2">7.</span> Data Structures</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org3e3e94e" class="outline-3">
+<h3 id="org3e3e94e"><span class="section-number-3">7.1.</span> Lists</h3>
+<div class="outline-text-3" id="text-7-1">
+<pre><code class="language-java"><span style="color: #cba6f7;">import</span> <span style="color: #fab387;">java</span>.<span style="color: #fab387;">util</span>.<span style="color: #f9e2af;">ArrayList</span>;
+<span style="color: #cba6f7;">import</span> <span style="color: #fab387;">java</span>.<span style="color: #fab387;">util</span>.<span style="color: #f9e2af;">List</span>;
+
+<span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">main</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+   <span style="color: #f9e2af;">List</span><span style="color: #fab387;">&lt;</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">&gt;</span> <span style="color: #cdd6f4;">L</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">ArrayList</span><span style="color: #fab387;">()</span>;            <span style="color: #6c7086;">// </span><span style="color: #6c7086;">must choose a type of List
+</span>   L.add<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"a"</span><span style="color: #fab387;">)</span>;
+   L.add<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"b"</span><span style="color: #fab387;">)</span>;
+   L.add<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"c"</span><span style="color: #fab387;">)</span>;
+   System.out.println<span style="color: #fab387;">(</span>L.get<span style="color: #f9e2af;">(</span>0<span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span>;   
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org86aa344" class="outline-3">
+<h3 id="org86aa344"><span class="section-number-3">7.2.</span> Abstract Data Types</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+A <code>List</code> is an abstract concept of a list, the programmer must choose a specific type of <code>List</code> implementation. While the most common type of <code>List</code> is <code>ArrayList</code>, but <code>LinkedList</code> is also sometimes used.
+</p>
+
+<p>
+Many data structures in Java are like this: the <code>List</code> is known as the <b>abstract data type</b>, whereas the <code>ArrayList</code> and <code>LinkedList</code> implementations are known as a <b>concrete implementation</b>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2942537" class="outline-2">
+<h2 id="org2942537"><span class="section-number-2">8.</span> Classes</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+<b>Classes</b> provide a blueprint for instances of that class:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Dog</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">size</span>;                             <span style="color: #6c7086;">// </span><span style="color: #6c7086;">instance variable
+</span>
+    <span style="color: #89b4fa;">Dog</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">s</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>                          <span style="color: #6c7086;">// </span><span style="color: #6c7086;">constructor
+</span>        size = s;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">makeNoise</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>                    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">instance method
+</span>        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>size &lt; 10<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            System.out.println<span style="color: #a6e3a1;">(</span><span style="color: #a6e3a1;">"yip"</span><span style="color: #a6e3a1;">)</span>;
+        <span style="color: #f9e2af;">}</span> <span style="color: #cba6f7;">else</span> <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>size &lt; 30<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            System.out.println<span style="color: #a6e3a1;">(</span><span style="color: #a6e3a1;">"bark"</span><span style="color: #a6e3a1;">)</span>;
+        <span style="color: #f9e2af;">}</span> <span style="color: #cba6f7;">else</span> <span style="color: #f9e2af;">{</span>
+            System.out.println<span style="color: #a6e3a1;">(</span><span style="color: #a6e3a1;">"woof"</span><span style="color: #a6e3a1;">)</span>;
+        <span style="color: #f9e2af;">}</span>
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #f9e2af;">Dog</span> <span style="color: #89b4fa;">maxDog</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">otherDog</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>otherDog.size &gt; size<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">return</span> otherDog;
+        <span style="color: #f9e2af;">}</span>
+        <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">this</span>;                      <span style="color: #6c7086;">// </span><span style="color: #6c7086;">uses `this` to reference itself
+</span>    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">main</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">d</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Dog</span><span style="color: #f9e2af;">(</span>1000<span style="color: #f9e2af;">)</span>;
+        d.makeNoise<span style="color: #f9e2af;">()</span>;                    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">invocation of the makeNoise method
+</span>    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+The instance variables that the class was defined with must be obeyed by all instances of that class. New instances of <code>Dog</code> will contain only the <code>size</code> instance variable.
+</p>
+
+<p>
+To create a new instance of a class, we must write a <b>declaration</b>, <b>instantiation</b>, and <b>assignment</b>:
+</p>
+
+<pre><code class="language-java"><span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">main</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">args</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">smallDog</span>;                         <span style="color: #6c7086;">// </span><span style="color: #6c7086;">declaration
+</span>    <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Dog</span><span style="color: #fab387;">(</span>20<span style="color: #fab387;">)</span>;                          <span style="color: #6c7086;">// </span><span style="color: #6c7086;">instantiation
+</span>    smallDog = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Dog</span><span style="color: #fab387;">(</span>5<span style="color: #fab387;">)</span>;                <span style="color: #6c7086;">// </span><span style="color: #6c7086;">instantiation and assignment
+</span>    <span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">hugeDog</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Dog</span><span style="color: #fab387;">(</span>150<span style="color: #fab387;">)</span>;           <span style="color: #6c7086;">// </span><span style="color: #6c7086;">declaration, instantiation and assignment
+</span>    smallDog.makeNoise<span style="color: #fab387;">()</span>;
+    hugeDog.makeNoise<span style="color: #fab387;">()</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+<div id="outline-container-org7fadb47" class="outline-3">
+<h3 id="org7fadb47"><span class="section-number-3">8.1.</span> Accessing Classes</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Classes can be accessed from other files in Java without importing the file itself. Java automatically scans all folders from a list to see if the desired class exists.
+</p>
+</div>
+</div>
+<div id="outline-container-org9853474" class="outline-3">
+<h3 id="org9853474"><span class="section-number-3">8.2.</span> Static</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+<b>Static methods</b> are methods for a class, not an instance of that class:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">Dog</span> <span style="color: #89b4fa;">maxDog</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">d1</span>, <span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">d2</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">no `this` in a static method
+</span>    <span style="color: #cba6f7;">if</span> <span style="color: #fab387;">(</span>d1.size &gt; d2.size<span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+       <span style="color: #cba6f7;">return</span> d1;
+    <span style="color: #fab387;">}</span>
+    <span style="color: #cba6f7;">return</span> d2;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Additionally, these static methods can be used without the class being instantiated. However, they cannot access their own instance variables, they must do so through another instance.
+</p>
+
+<p>
+Classes can also have static variables, which similarly can also be always accessed using the class name, not an instance name.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -289,7 +424,7 @@ Notice that the function has parameters whose types must be declared. Additional
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-01-22 19:25
+               Last modified: 2026-01-23 13:59
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
