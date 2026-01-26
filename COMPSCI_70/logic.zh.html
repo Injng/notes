@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
 <head>
-<!-- 2026-01-23 Fri 14:25 -->
+<!-- 2026-01-25 Sun 22:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>逻辑</title>
@@ -126,17 +126,18 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orge1e031c">1. 命题逻辑</a>
+<li><a href="#org8f6d1f1">1. 命题逻辑</a>
 <ul>
-<li><a href="#org0e002c8">1.1. 联结词</a></li>
-<li><a href="#org60d03b8">1.2. 真值表</a></li>
+<li><a href="#org99bb728">1.1. 联结词</a></li>
+<li><a href="#org335df0f">1.2. 真值表</a></li>
+<li><a href="#org87ace46">1.3. 逻辑等价</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orge1e031c" class="outline-2">
-<h2 id="orge1e031c"><span class="section-number-2">1.</span> 命题逻辑</h2>
+<div id="outline-container-org8f6d1f1" class="outline-2">
+<h2 id="org8f6d1f1"><span class="section-number-2">1.</span> 命题逻辑</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 命题是逻辑的基础概念：即一个非真即假的语句。以下语句是命题：
@@ -165,8 +166,8 @@
 <li>一亿是一个很大的数字（“很大”的定义是什么？）</li>
 </ul>
 </div>
-<div id="outline-container-org0e002c8" class="outline-3">
-<h3 id="org0e002c8"><span class="section-number-3">1.1.</span> 联结词</h3>
+<div id="outline-container-org99bb728" class="outline-3">
+<h3 id="org99bb728"><span class="section-number-3">1.1.</span> 联结词</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 多个命题可以用联结词连在一起。三个最基本的联结词是：
@@ -207,8 +208,95 @@
 </ol>
 </div>
 </div>
-<div id="outline-container-org60d03b8" class="outline-3">
-<h3 id="org60d03b8"><span class="section-number-3">1.2.</span> 真值表</h3>
+<div id="outline-container-org335df0f" class="outline-3">
+<h3 id="org335df0f"><span class="section-number-3">1.2.</span> 真值表</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+我们可以通过真值表来形式化联结词，真值表列出了所有可能的输入组合以及联结词产生的相应输出：
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">\(P\)</th>
+<th scope="col" class="org-left">\(Q\)</th>
+<th scope="col" class="org-left">\(P \land Q\)</th>
+<th scope="col" class="org-left">\(P \lor Q\)</th>
+<th scope="col" class="org-left">\(P \implies Q\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">真</td>
+<td class="org-left">真</td>
+<td class="org-left">真</td>
+<td class="org-left">真</td>
+<td class="org-left">真</td>
+</tr>
+
+<tr>
+<td class="org-left">真</td>
+<td class="org-left">假</td>
+<td class="org-left">假</td>
+<td class="org-left">真</td>
+<td class="org-left">假</td>
+</tr>
+
+<tr>
+<td class="org-left">假</td>
+<td class="org-left">真</td>
+<td class="org-left">假</td>
+<td class="org-left">真</td>
+<td class="org-left">真</td>
+</tr>
+
+<tr>
+<td class="org-left">假</td>
+<td class="org-left">假</td>
+<td class="org-left">假</td>
+<td class="org-left">假</td>
+<td class="org-left">真</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org87ace46" class="outline-3">
+<h3 id="org87ace46"><span class="section-number-3">1.3.</span> 逻辑等价</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+我们可以通过逻辑等价将命题语句转换为其它用联结词的语句，这有助于我们对命题进行分析。例如，我们能转换“当且仅当”为利用“非”和“或”的命题：
+</p>
+
+\begin{align}
+P \implies Q \equiv \lnot P \lor Q
+\end{align}
+
+<p>
+我们可以利用自然语直观地理解这等价的真伪
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -218,7 +306,7 @@
                 <div class="lang-switcher"><a href="/COMPSCI_70/logic.html">English</a></div>
               </div>
               <div class="last-modified">
-                最后修改： 2026-01-22 22:13
+                最后修改： 2026-01-23 18:01
               </div><script>
        window.addEventListener('DOMContentLoaded', (event) => {
            new PagefindUI({
