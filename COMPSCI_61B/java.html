@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-23 Fri 14:25 -->
+<!-- 2026-01-26 Mon 14:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java</title>
@@ -122,8 +122,14 @@
 </li>
 <li><a href="#orgc40e5c9">7. Data Structures</a>
 <ul>
-<li><a href="#org3e3e94e">7.1. Lists</a></li>
-<li><a href="#org86aa344">7.2. Abstract Data Types</a></li>
+<li><a href="#orgebc3ee4">7.1. Arrays</a>
+<ul>
+<li><a href="#org7a55dd2">7.1.1. 2D Arrays</a></li>
+</ul>
+</li>
+<li><a href="#org3e3e94e">7.2. Lists</a></li>
+<li><a href="#orgbeaa002">7.3. Maps</a></li>
+<li><a href="#org86aa344">7.4. Abstract Data Types</a></li>
 </ul>
 </li>
 <li><a href="#org2942537">8. Classes</a>
@@ -299,14 +305,44 @@ Notice that the function has parameters whose types must be declared. Additional
 <h2 id="orgc40e5c9"><span class="section-number-2">7.</span> Data Structures</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org3e3e94e" class="outline-3">
-<h3 id="org3e3e94e"><span class="section-number-3">7.1.</span> Lists</h3>
+<div id="outline-container-orgebc3ee4" class="outline-3">
+<h3 id="orgebc3ee4"><span class="section-number-3">7.1.</span> Arrays</h3>
 <div class="outline-text-3" id="text-7-1">
+<pre><code class="language-java"><span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">main</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">x</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">String</span><span style="color: #fab387;">[</span>5<span style="color: #fab387;">]</span>;
+    <span style="color: #f9e2af;">int</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">y</span> = <span style="color: #fab387;">{</span>1, 2, 3, 4, 5<span style="color: #fab387;">}</span>;                    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">can also initialize with braces
+</span>    x<span style="color: #fab387;">[</span>0<span style="color: #fab387;">]</span> = <span style="color: #a6e3a1;">"a"</span>;
+    x<span style="color: #fab387;">[</span>1<span style="color: #fab387;">]</span> = <span style="color: #a6e3a1;">"b"</span>;
+    System.out.println<span style="color: #fab387;">(</span>x<span style="color: #f9e2af;">[</span>0<span style="color: #f9e2af;">]</span><span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+<div id="outline-container-org7a55dd2" class="outline-4">
+<h4 id="org7a55dd2"><span class="section-number-4">7.1.1.</span> 2D Arrays</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<pre><code class="language-java"><span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[][]</span> <span style="color: #cdd6f4;">pascalsTriangle</span>;
+pascalsTriangle = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[</span>4<span style="color: #f38ba8;">][]</span>;                 <span style="color: #6c7086;">// </span><span style="color: #6c7086;">an array of 4 arrays
+</span>pascalsTriangle<span style="color: #f38ba8;">[</span>0<span style="color: #f38ba8;">]</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[]{</span>1<span style="color: #f38ba8;">}</span>;
+pascalsTriangle<span style="color: #f38ba8;">[</span>1<span style="color: #f38ba8;">]</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[]{</span>1, 1<span style="color: #f38ba8;">}</span>;
+pascalsTriangle<span style="color: #f38ba8;">[</span>2<span style="color: #f38ba8;">]</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[]{</span>1, 2, 1<span style="color: #f38ba8;">}</span>;
+pascalsTriangle<span style="color: #f38ba8;">[</span>3<span style="color: #f38ba8;">]</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[]{</span>1, 3, 3, 1<span style="color: #f38ba8;">}</span>;
+
+<span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[][]</span> <span style="color: #cdd6f4;">x</span>;
+<span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[][]</span> <span style="color: #cdd6f4;">matrix</span>;
+x = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[</span>4<span style="color: #f38ba8;">][]</span>;
+matrix = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">[</span>4<span style="color: #f38ba8;">][</span>4<span style="color: #f38ba8;">]</span>;                         <span style="color: #6c7086;">// </span><span style="color: #6c7086;">an array of 4 arrays of length 4</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org3e3e94e" class="outline-3">
+<h3 id="org3e3e94e"><span class="section-number-3">7.2.</span> Lists</h3>
+<div class="outline-text-3" id="text-7-2">
 <pre><code class="language-java"><span style="color: #cba6f7;">import</span> <span style="color: #fab387;">java</span>.<span style="color: #fab387;">util</span>.<span style="color: #f9e2af;">ArrayList</span>;
 <span style="color: #cba6f7;">import</span> <span style="color: #fab387;">java</span>.<span style="color: #fab387;">util</span>.<span style="color: #f9e2af;">List</span>;
 
 <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">main</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
-   <span style="color: #f9e2af;">List</span><span style="color: #fab387;">&lt;</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">&gt;</span> <span style="color: #cdd6f4;">L</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">ArrayList</span><span style="color: #fab387;">()</span>;            <span style="color: #6c7086;">// </span><span style="color: #6c7086;">must choose a type of List
+   <span style="color: #f9e2af;">List</span><span style="color: #fab387;">&lt;</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">&gt;</span> <span style="color: #cdd6f4;">L</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">ArrayList</span><span style="color: #fab387;">&lt;&gt;()</span>;            <span style="color: #6c7086;">// </span><span style="color: #6c7086;">must choose a type of List
 </span>   L.add<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"a"</span><span style="color: #fab387;">)</span>;
    L.add<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"b"</span><span style="color: #fab387;">)</span>;
    L.add<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"c"</span><span style="color: #fab387;">)</span>;
@@ -315,9 +351,24 @@ Notice that the function has parameters whose types must be declared. Additional
 </code></pre>
 </div>
 </div>
+<div id="outline-container-orgbeaa002" class="outline-3">
+<h3 id="orgbeaa002"><span class="section-number-3">7.3.</span> Maps</h3>
+<div class="outline-text-3" id="text-7-3">
+<pre><code class="language-java"><span style="color: #cba6f7;">import</span> <span style="color: #fab387;">java</span>.<span style="color: #fab387;">util</span>.<span style="color: #f9e2af;">HashMap</span>;
+<span style="color: #cba6f7;">import</span> <span style="color: #fab387;">java</span>.<span style="color: #fab387;">util</span>.<span style="color: #f9e2af;">Map</span>;
+
+<span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">main</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+   <span style="color: #f9e2af;">Map</span><span style="color: #fab387;">&lt;</span><span style="color: #f9e2af;">String</span>, <span style="color: #f9e2af;">Integer</span><span style="color: #fab387;">&gt;</span> <span style="color: #cdd6f4;">m</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">HashMap</span><span style="color: #fab387;">&lt;&gt;()</span>;
+   m.put<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"cat"</span>, 103<span style="color: #fab387;">)</span>;
+   m.put<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"dog"</span>, 5<span style="color: #fab387;">)</span>;
+   <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">numCats</span> = m.get<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"cat"</span><span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
 <div id="outline-container-org86aa344" class="outline-3">
-<h3 id="org86aa344"><span class="section-number-3">7.2.</span> Abstract Data Types</h3>
-<div class="outline-text-3" id="text-7-2">
+<h3 id="org86aa344"><span class="section-number-3">7.4.</span> Abstract Data Types</h3>
+<div class="outline-text-3" id="text-7-4">
 <p>
 A <code>List</code> is an abstract concept of a list, the programmer must choose a specific type of <code>List</code> implementation. While the most common type of <code>List</code> is <code>ArrayList</code>, but <code>LinkedList</code> is also sometimes used.
 </p>
@@ -424,7 +475,7 @@ Classes can also have static variables, which similarly can also be always acces
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-01-23 13:59
+               Last modified: 2026-01-26 14:26
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
