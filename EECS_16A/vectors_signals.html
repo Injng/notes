@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-26 Mon 21:06 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vectors and Signals</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/EECS_16A/index.html">EECS 16A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Vectors and Signals</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7f5185c">1. Signals</a>
+<ul>
+<li><a href="#org6e67820">1.1. Continuous-Time Signals</a></li>
+<li><a href="#orge7012ce">1.2. Discrete-Time Signals</a></li>
+<li><a href="#orgcd408f2">1.3. Kronecker Delta</a></li>
+<li><a href="#orge5c84f3">1.4. Unit Step</a></li>
+<li><a href="#org83bf244">1.5. Signal Shift</a></li>
+</ul>
+</li>
+<li><a href="#org1b795e2">2. Vector Spaces</a>
+<ul>
+<li><a href="#org197a375">2.1. Closure Axioms</a>
+<ul>
+<li><a href="#org2fcbfa1">2.1.1. Closure under Vector Addition</a></li>
+<li><a href="#org3183cd0">2.1.2. Closure under Scalar Multiplication</a></li>
+</ul>
+</li>
+<li><a href="#org62887ea">2.2. Vector Addition Axioms</a>
+<ul>
+<li><a href="#org6b448ac">2.2.1. Commutativity of Addition</a></li>
+<li><a href="#orgb525c63">2.2.2. Associativity of Addition</a></li>
+<li><a href="#org58ecede">2.2.3. Existence of Additive Identity</a></li>
+<li><a href="#orgf8d59ad">2.2.4. Existence of a Negative</a></li>
+</ul>
+</li>
+<li><a href="#org21b278c">2.3. Scalar Multiplication Axioms</a>
+<ul>
+<li><a href="#org0442d90">2.3.1. Associativity of Scalar Multiplication</a></li>
+<li><a href="#orgbc6985a">2.3.2. Distributivity of Scalar Multiplication over Vector Addition</a></li>
+<li><a href="#org4df11a8">2.3.3. Distributivity over Scalar Addition</a></li>
+<li><a href="#org90c490f">2.3.4. Existence of Multiplicative Identity</a></li>
+</ul>
+</li>
+<li><a href="#org63f8cab">2.4. Subspaces</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7f5185c" class="outline-2">
+<h2 id="org7f5185c"><span class="section-number-2">1.</span> Signals</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org6e67820" class="outline-3">
+<h3 id="org6e67820"><span class="section-number-3">1.1.</span> Continuous-Time Signals</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<b>Continuous-time</b> (CT) signals are signals \(x: \mathbb{R} \rightarrow \mathbb{R}\) or \(x: \mathbb{R} \rightarrow \mathbb{C}\) that take a continuous set as the domain. For example, \(\left[ \mathbb{R} \rightarrow \mathbb{R} \right]\) is the set of all real functions (signals) of a real variable, and \(\left[ \mathbb{R} \rightarrow \mathbb{C} \right]\) is the set of all complex signals of a real variable.
+</p>
+</div>
+</div>
+<div id="outline-container-orge7012ce" class="outline-3">
+<h3 id="orge7012ce"><span class="section-number-3">1.2.</span> Discrete-Time Signals</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<b>Discrete-time</b> (DT) signals, on the other hand, are signals \(x: \mathbb{Z} \rightarrow \mathbb{R}\) or \(x: \mathbb{Z} \rightarrow \mathbb{C}\) that take a discrete set as the domain. We use \(x[n]\) to denote the value of a DT signal at a particular time (note the brackets, as opposed to parantheses for CT signals). We use a plot like the following for DT signals:
+</p>
+
+
+<div id="org0e62eb2" class="figure">
+<p><img src="../static/EECS_16A/vectors_signals1.png" alt="vectors_signals1.png" />
+</p>
+</div>
+
+<p>
+In this case, this is a plot of the function \(x[n] = \cos(\pi n)\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd408f2" class="outline-3">
+<h3 id="orgcd408f2"><span class="section-number-3">1.3.</span> Kronecker Delta</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+The <b>Kronecker delta</b> signal, also known as the discrete-time impulse, is a signal that is only 1 at zero:
+</p>
+
+\begin{align}
+\delta [n] = \begin{cases}
+1 & n = 0 \\
+0 & n \neq 0 \\
+\end{cases}
+\end{align}
+
+<p>
+The plot for this is:
+</p>
+
+
+<div id="orgef92db0" class="figure">
+<p><img src="../static/EECS_16A/vectors_signals2.png" alt="vectors_signals2.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge5c84f3" class="outline-3">
+<h3 id="orge5c84f3"><span class="section-number-3">1.4.</span> Unit Step</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+The DT <b>unit step</b> signal is a signal that is zero at negative values, and ones otherwise:
+</p>
+
+\begin{align}
+u[n] = \begin{cases}
+0 & n < 0 \\
+1 & n \geq 0 \\
+\end{cases}
+\end{align}
+
+<p>
+The plot for this is:
+</p>
+
+
+<div id="orgb9e3898" class="figure">
+<p><img src="../static/EECS_16A/vectors_signals3.png" alt="vectors_signals3.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org83bf244" class="outline-3">
+<h3 id="org83bf244"><span class="section-number-3">1.5.</span> Signal Shift</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Signals can be either <b>delayed</b>:
+</p>
+
+\begin{align}
+\hat{\delta}[n] = \delta[n-1] \notag
+\end{align}
+
+<p>
+or <b>advanced</b>:
+</p>
+
+\begin{align}
+\tilde{\delta}[n] = \delta[n+1] \notag
+\end{align}
+
+<p>
+Note that non-integer shifts of a DT signal is meaningless since DT signals only have integer domains. Using the Kronecker delta, signal shifts, and scaling, any DT signal can be represented.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1b795e2" class="outline-2">
+<h2 id="org1b795e2"><span class="section-number-2">2.</span> Vector Spaces</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Sets that satisfy a set of basic axioms are called <b>vector spaces</b>, which can be <abbr class="tooltip" title="based on <i>Calculus</i> by Tom Apostol">categorized</abbr>&emsp13;as either <b>closure axioms</b>, <b>vector addition</b> axioms, or <b>scalar multiplication</b> axioms.
+</p>
+</div>
+<div id="outline-container-org197a375" class="outline-3">
+<h3 id="org197a375"><span class="section-number-3">2.1.</span> Closure Axioms</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org2fcbfa1" class="outline-4">
+<h4 id="org2fcbfa1"><span class="section-number-4">2.1.1.</span> Closure under Vector Addition</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+For every \(x, y \in \mathcal{V}\), there is a unique element (vector) \(z \in \mathcal{V}\) called the "sum of \(x\) and \(y\)" denoted by \(z = x + y\).
+</p>
+</div>
+</div>
+<div id="outline-container-org3183cd0" class="outline-4">
+<h4 id="org3183cd0"><span class="section-number-4">2.1.2.</span> Closure under Scalar Multiplication</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+For every \(x \in \mathcal{V}\) and \(\alpha \in \mathbb{R}\) (or \(\mathbb{C}\)), there is a unique \(z \in \mathcal{V}\) such that \(z = \alpha x\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org62887ea" class="outline-3">
+<h3 id="org62887ea"><span class="section-number-3">2.2.</span> Vector Addition Axioms</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org6b448ac" class="outline-4">
+<h4 id="org6b448ac"><span class="section-number-4">2.2.1.</span> Commutativity of Addition</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+For every \(x, y \in \mathcal{V}\), we have \(x + y = y + x\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb525c63" class="outline-4">
+<h4 id="orgb525c63"><span class="section-number-4">2.2.2.</span> Associativity of Addition</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+For every \(x, y, z \in \mathcal{V}\), we have \(x + (y + z) = (x + y) + z\).
+</p>
+</div>
+</div>
+<div id="outline-container-org58ecede" class="outline-4">
+<h4 id="org58ecede"><span class="section-number-4">2.2.3.</span> Existence of Additive Identity</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+There exists a zero \(0 \in \mathcal{V}\) such that for every \(x \in \mathcal{V}\), \(x + 0 = x\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf8d59ad" class="outline-4">
+<h4 id="orgf8d59ad"><span class="section-number-4">2.2.4.</span> Existence of a Negative</h4>
+<div class="outline-text-4" id="text-2-2-4">
+<p>
+For every \(x \in \mathcal{V}\), the element \((-1)x\) or \(-x\) exists such that \(x + (-1)x=0\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org21b278c" class="outline-3">
+<h3 id="org21b278c"><span class="section-number-3">2.3.</span> Scalar Multiplication Axioms</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-org0442d90" class="outline-4">
+<h4 id="org0442d90"><span class="section-number-4">2.3.1.</span> Associativity of Scalar Multiplication</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+For every \(x \in \mathcal{V}\) and \(\alpha, \beta \in \mathbb{R}\), \(\alpha (\beta x) = (\alpha \beta) x\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgbc6985a" class="outline-4">
+<h4 id="orgbc6985a"><span class="section-number-4">2.3.2.</span> Distributivity of Scalar Multiplication over Vector Addition</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+For every \(x, y \in \mathcal{V}\) and \(\alpha \in \mathbb{R}\), \(\alpha(x + y) = \alpha x + \alpha y\).
+</p>
+</div>
+</div>
+<div id="outline-container-org4df11a8" class="outline-4">
+<h4 id="org4df11a8"><span class="section-number-4">2.3.3.</span> Distributivity over Scalar Addition</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+For every \(x \in \mathcal{V}\) and \(\alpha, \beta \in \mathbb{R}\), \((\alpha + \beta)x = \alpha x + \beta x\).
+</p>
+</div>
+</div>
+<div id="outline-container-org90c490f" class="outline-4">
+<h4 id="org90c490f"><span class="section-number-4">2.3.4.</span> Existence of Multiplicative Identity</h4>
+<div class="outline-text-4" id="text-2-3-4">
+<p>
+For every \(x \in \mathcal{V}\), we have \(1x = x\), \(1 \in \mathbb{R}\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org63f8cab" class="outline-3">
+<h3 id="org63f8cab"><span class="section-number-3">2.4.</span> Subspaces</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+A <b>subspace</b> is a subset \(\mathcal{S}\) of a vector space \(\mathcal{V}\) that is itself a vector space. To test that a space is a vector space, it is sufficient to just show that:
+</p>
+
+<ol class="org-ol">
+<li>\(0\) is an element of \(\mathcal{S}\)</li>
+<li>\(\mathcal{S}\) is closed under vector addition</li>
+<li>\(\mathcal{S}\) is closed under scalar multiplication</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-01-26 21:06
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
