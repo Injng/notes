@@ -257,3 +257,9 @@ img {
   vertical-align: middle;
   height: 1.2em;
 }
+
+.tikz-figure {
+  display: flex;
+  justify-content: center;
+  margin: 1.5em 0;
+}                                 
