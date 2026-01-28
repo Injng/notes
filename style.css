@@ -252,3 +252,8 @@ img {
   padding-top: 1em;
   clear: both;
 }
+
+.tikz-inline svg {
+  vertical-align: middle;
+  height: 1.2em;
+}

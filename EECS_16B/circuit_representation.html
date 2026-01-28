@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-27 Tue 17:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Circuit Representation</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/EECS_16B/index.html">EECS 16B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Circuit Representation</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb1cf6be">1. Notation</a>
+<ul>
+<li><a href="#org5e72a19">1.1. Units</a></li>
+<li><a href="#org09a4b4a">1.2. Typeset</a></li>
+</ul>
+</li>
+<li><a href="#org96bec2c">2. Architecture</a>
+<ul>
+<li><a href="#org9b1948a">2.1. Components</a></li>
+<li><a href="#orgec02e67">2.2. Terminology</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+When we build and design circuits, we use various tools (such as notation, units, symbols, and more) to come up with a <i>circuit representation</i>. This begins with creating a <b>block diagram</b>, which is a high-level overview of what the circuit accomplishes, then a <b>schematic</b>, which designs the circuits to do this, then a <b>layout</b>, which describes how the physical components are to be placed to make the circuits, and finally an <b>assembly</b>, which assembles the layout into a physical circuit (often a <b>printed circuit board</b> or PCB).
+</p>
+<div id="outline-container-orgb1cf6be" class="outline-2">
+<h2 id="orgb1cf6be"><span class="section-number-2">1.</span> Notation</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org5e72a19" class="outline-3">
+<h3 id="org5e72a19"><span class="section-number-3">1.1.</span> Units</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Here are some common units<abbr class="tooltip" title="These are part of the International System of Units, or SI units">°</abbr>&emsp13;that are used in circuits:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Dimension</th>
+<th scope="col" class="org-left">Unit</th>
+<th scope="col" class="org-left">Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Charge</td>
+<td class="org-left">coulomb</td>
+<td class="org-left">\(\text{C}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Voltage</td>
+<td class="org-left">volt</td>
+<td class="org-left">\(\text{V}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Current</td>
+<td class="org-left">amp</td>
+<td class="org-left">\(\text{A}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Resistance</td>
+<td class="org-left">ohm</td>
+<td class="org-left">\(\Omega\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Capacitance</td>
+<td class="org-left">farad</td>
+<td class="org-left">\(\text{F}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Inductance</td>
+<td class="org-left">henry</td>
+<td class="org-left">\(\text{H}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Power</td>
+<td class="org-left">watt</td>
+<td class="org-left">\(\text{W}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Frequency</td>
+<td class="org-left">hertz</td>
+<td class="org-left">\(\text{Hz}\)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Prefixes are also used to denote multiples and submultiples of units:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Prefix</th>
+<th scope="col" class="org-left">Symbol</th>
+<th scope="col" class="org-left">Magnitude</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">peta</td>
+<td class="org-left">\(\text{P}\)</td>
+<td class="org-left">\(10^{15}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">tera</td>
+<td class="org-left">\(\text{T}\)</td>
+<td class="org-left">\(10^{12}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">giga</td>
+<td class="org-left">\(\text{G}\)</td>
+<td class="org-left">\(10^9\)</td>
+</tr>
+
+<tr>
+<td class="org-left">mega</td>
+<td class="org-left">\(\text{M}\)</td>
+<td class="org-left">\(10^6\)</td>
+</tr>
+
+<tr>
+<td class="org-left">kilo</td>
+<td class="org-left">\(\text{k}\)</td>
+<td class="org-left">\(10^3\)</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">milli</td>
+<td class="org-left">\(\text{m}\)</td>
+<td class="org-left">\(10^{-3}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">micro</td>
+<td class="org-left">\(\mu\)</td>
+<td class="org-left">\(10^{-6}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">nano</td>
+<td class="org-left">\(\text{n}\)</td>
+<td class="org-left">\(10^{-9}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">pico</td>
+<td class="org-left">\(\text{p}\)</td>
+<td class="org-left">\(10^{-12}\)</td>
+</tr>
+
+<tr>
+<td class="org-left">femta</td>
+<td class="org-left">\(\text{f}\)</td>
+<td class="org-left">\(10^{-15}\)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org09a4b4a" class="outline-3">
+<h3 id="org09a4b4a"><span class="section-number-3">1.2.</span> Typeset</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Symbols with lowercase and uppercase generally have the following meanings:
+</p>
+
+<ul class="org-ul">
+<li>A lowercase letter represents the general case (e.g. \(i\), current, may or may not be time-varying)</li>
+<li>A lowercase letter followed by \((t)\) to emphasize time (e.g. \(i(t)\) is time-varying current)</li>
+<li>An uppercase letter if the quantity is not time-varying (e.g. \(I\) is current of a constant value)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org96bec2c" class="outline-2">
+<h2 id="org96bec2c"><span class="section-number-2">2.</span> Architecture</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org9b1948a" class="outline-3">
+<h3 id="org9b1948a"><span class="section-number-3">2.1.</span> Components</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Circuits are created using <b>components</b>, which are represented on schematics using abstracted symbols:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Component</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Resistor (R)</td>
+<td class="org-left">US style</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='12.70325pt' viewBox='-70.007847 -70.00787 57.093797 12.70325'>
+<g id='page1'>
+<path d='M-69.808597-63.65625H-57.3359M-25.5859-63.65625H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-57.7344-63.65625L-54.6914-69.60937L-49.3984-57.70312L-44.1055-69.60937L-38.8164-57.70312L-33.5234-69.60937L-28.2344-57.70312L-25.1875-63.65625' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10' stroke-linejoin='bevel'/>
+</g>
+</svg></span></td>
+</tr>
+
+<tr>
+<td class="org-left">Resistor (R)</td>
+<td class="org-left">EU style</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='12.70325pt' viewBox='-70.007847 -70.00787 57.093797 12.70325'>
+<g id='page1'>
+<path d='M-69.808597-63.65625H-57.3359M-25.5859-63.65625H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-57.3359-69.60937H-25.5859V-57.70312H-57.3359Z' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+</g>
+</svg></span></td>
+</tr>
+
+<tr>
+<td class="org-left">Capacitor (C)</td>
+<td class="org-left">Non-polarized</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='24.6095pt' viewBox='-70.007847 -70.0079 57.093797 24.6095'>
+<g id='page1'>
+<path d='M-69.808597-57.703125H-45.4297M-37.4922-57.703125H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-45.4297-69.6094V-45.7969M-37.4922-69.6094V-45.7969' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+</g>
+</svg></span></td>
+</tr>
+
+<tr>
+<td class="org-left">Capacitor (C)</td>
+<td class="org-left">Polarized</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='24.6095pt' viewBox='-70.007847 -70.0079 57.093797 24.6095'>
+<g id='page1'>
+<path d='M-69.808597-57.703125H-45.4297M-37.4922-57.703125H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-37.4922-69.6094C-39.7266-65.72656-41.8594-62.01172-41.8594-57.703125C-41.8594-53.39453-39.7266-49.67969-37.4922-45.7969' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+<path d='M-45.4297-69.6094V-45.7969' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+<path d='M-41.8594-57.703125H-37.4922' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+</g>
+</svg></span></td>
+</tr>
+
+<tr>
+<td class="org-left">Capacitor (C)</td>
+<td class="org-left">Polarized (electrolytic)</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='20.64075pt' viewBox='-70.007847 -70.00787 57.093797 20.64075'>
+<defs>
+<path id='g0-43' d='M3.425156-1.26127H5.571108C5.636862-1.26127 5.875965-1.26127 5.875965-1.494396C5.875965-1.733499 5.642839-1.733499 5.571108-1.733499H3.425156V-3.879452C3.425156-3.939228 3.425156-4.184309 3.19203-4.184309C2.952927-4.184309 2.952927-3.945205 2.952927-3.879452V-1.733499H.806974C.74122-1.733499 .502117-1.733499 .502117-1.500374C.502117-1.26127 .735243-1.26127 .806974-1.26127H2.952927V.884682C2.952927 .944458 2.952927 1.189539 3.186052 1.189539C3.425156 1.189539 3.425156 .950436 3.425156 .884682V-1.26127Z'/>
+</defs>
+<g id='page1'>
+<path d='M-69.808597-59.687499H-45.4297M-37.4922-59.687499H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-45.4297-69.60937H-43.0469V-49.76562H-45.4297V-69.60937' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10' stroke-linecap='square'/>
+<path d='M-37.4922-69.60937H-39.875V-49.76562H-37.4922V-69.60937'/>
+<path d='M-37.4922-69.60937H-39.875V-49.76562H-37.4922V-69.60937' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10' stroke-linecap='square'/>
+<g transform='matrix(1 0 0 1 14.7068 -4.4584)'>
+<use x='-67.317612' y='-59.687761' xlink:href='#g0-43'/>
+</g>
+</g>
+</svg></span></td>
+</tr>
+
+<tr>
+<td class="org-left">Inductor (L)</td>
+<td class="org-left">Coil</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='9.72668pt' viewBox='-70.007847 -70.00787 57.093797 9.72668'>
+<g id='page1'>
+<path d='M-69.808597-63.816405H-53.3672M-29.5547-63.816405H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-53.7656-63.656249C-53.7656-66.94531-52.1328-69.60937-50.1133-69.60937C-48.0977-69.60937-46.4648-66.94531-46.4648-63.656249C-46.4648-62.01172-47.1289-60.67969-47.9492-60.67969C-48.7734-60.67969-49.4375-62.01172-49.4375-63.656249C-49.4375-66.94531-47.8047-69.60937-45.7891-69.60937C-43.7695-69.60937-42.1367-66.94531-42.1367-63.656249C-42.1367-62.01172-42.8047-60.67969-43.625-60.67969S-45.1133-62.01172-45.1133-63.656249C-45.1133-66.94531-43.4766-69.60937-41.4609-69.60937C-39.4453-69.60937-37.8086-66.94531-37.8086-63.656249C-37.8086-62.01172-38.4766-60.67969-39.2969-60.67969C-40.1211-60.67969-40.7852-62.01172-40.7852-63.656249C-40.7852-66.94531-39.1523-69.60937-37.1367-69.60937C-35.1172-69.60937-33.4844-66.94531-33.4844-63.656249C-33.4844-62.01172-34.1484-60.67969-34.9727-60.67969C-35.793-60.67969-36.4609-62.01172-36.4609-63.656249C-36.4609-66.94531-34.8242-69.60937-32.8086-69.60937S-29.1563-66.94531-29.1563-63.656249' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10' stroke-linejoin='bevel'/>
+</g>
+</svg></span></td>
+</tr>
+
+<tr>
+<td class="org-left">DC Source</td>
+<td class="org-left">Battery/voltage source</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='24.6095pt' viewBox='-70.007847 -70.0079 57.093797 24.6095'>
+<g id='page1'>
+<path d='M-69.808597-57.703125H-47.4141M-35.5078-57.703125H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-39.4961-57.703125H-35.5078M-43.4258-57.703125H-47.4141' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<path d='M-39.4961-63.65625V-51.75M-43.4258-69.6094V-45.7969' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+</g>
+</svg></span></td>
+</tr>
+
+<tr>
+<td class="org-left">AC Source</td>
+<td class="org-left">Sinusoidal source</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='24.6095pt' viewBox='-70.007847 -70.0079 57.093797 24.6095'>
+<g id='page1'>
+<path d='M-69.808597-57.703125H-53.3672M-29.5547-57.703125H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-41.4609-69.6094C-48.0352-69.6094-53.3672-64.27734-53.3672-57.703125C-53.3672-51.12891-48.0352-45.7969-41.4609-45.7969C-34.8867-45.7969-29.5547-51.12891-29.5547-57.703125C-29.5547-64.27734-34.8867-69.6094-41.4609-69.6094Z' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+<path d='M-41.4609-51.75C-42.9844-52.72266-44.4375-53.64844-44.4375-54.72656C-44.4375-55.80469-42.9844-56.734375-41.4609-57.703125C-39.9375-58.671875-38.4844-59.60156-38.4844-60.67969C-38.4844-61.75781-39.9375-62.6875-41.4609-63.65625' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+</g>
+</svg></span></td>
+</tr>
+
+<tr>
+<td class="org-left">LED</td>
+<td class="org-left">Light emitting diode</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='31.097037pt' viewBox='-70.007847 -70.741507 57.093797 31.097037'>
+<g id='page1'>
+<path d='M-69.808597-49.964843H-49.3984M-33.5234-49.964843H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-33.5234-49.964843L-49.3984-59.88672V-40.04297Z' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+<path d='M-33.5234-40.04297V-59.88672' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+<path d='M-44.6367-59.88672L-38.1914-67.9414' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<path d='M-36.699186-69.808575C-37.476528-69.156233-38.91012-68.003894-40.355429-67.628893C-38.878868-67.722642-38.253867-67.226549-38.023402-65.761702C-37.976528-67.257798-37.164026-68.906234-36.699186-69.808575Z'/>
+<path d='M-39.875-57.90234L-33.4297-65.957' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<path d='M-31.93746-67.824265C-32.71481-67.171916-34.144498-66.019572-35.593715-65.644579C-34.113245-65.738321-33.49215-65.242231-33.257782-63.777388C-33.2109-65.273483-32.402306-66.921916-31.93746-67.824265Z'/>
+</g>
+</svg></span></td>
+</tr>
+
+<tr>
+<td class="org-left">Switch</td>
+<td class="org-left">SPST (single throw)</td>
+<td class="org-left"><span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='57.093797pt' height='11.655729pt' viewBox='-70.007847 -70.00787 57.093797 11.655729'>
+<g id='page1'>
+<path d='M-69.808597-61.273436H-48.4063M-34.5156-61.273436H-13.1133' stroke='#000' fill='none' stroke-width='.3985'/>
+<path d='M-48.4063-61.273436L-37.293-68.21875' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10'/>
+<path d='M-48.4063-69.60937C-45.4297-69.60937-42.6758-68.01953-41.1875-65.4414C-40.4844-64.21875-40.1094-62.85547-40.0742-61.480467' stroke='#000' fill='none' stroke-width='.797' stroke-miterlimit='10' stroke-linejoin='bevel'/>
+<path d='M-40.574192-58.425774C-40.265597-59.70703-39.660125-62.019525-38.437473-63.527334C-39.910128-62.289058-40.945284-62.328119-42.320289-63.675784C-41.214816-62.07812-40.785127-59.730458-40.574192-58.425774Z'/>
+</g>
+</svg></span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgec02e67" class="outline-3">
+<h3 id="orgec02e67"><span class="section-number-3">2.2.</span> Terminology</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The following is a diagram of the terminology used in a schematic:
+</p>
+
+
+<div id="org3f427d4" class="figure">
+<p><img src="../static/EECS_16B/circuit_representation1.png" alt="circuit_representation1.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-01-27 17:23
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
