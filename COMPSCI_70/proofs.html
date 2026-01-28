@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-22 Thu 16:37 -->
+<!-- 2026-01-27 Tue 22:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Proofs</title>
@@ -17,6 +17,274 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -130,6 +398,12 @@
 <li><a href="#org4eb1f35">2. Proof by Contraposition</a></li>
 <li><a href="#org540b610">3. Proof by Contradiction</a></li>
 <li><a href="#org407f482">4. Proof by Cases</a></li>
+<li><a href="#org2711d0a">5. Proof by Induction</a>
+<ul>
+<li><a href="#orgbed6e36">5.1. Strengthening the Induction Hypothesis</a></li>
+<li><a href="#org32af0f3">5.2. Strong Induction</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -476,6 +750,264 @@ This is an example of a <b>non-constructive proof</b>, as it doesn't tell you wh
 </details>
 </div>
 </div>
+<div id="outline-container-org2711d0a" class="outline-2">
+<h2 id="org2711d0a"><span class="section-number-2">5.</span> Proof by Induction</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Oftentimes when we want to prove that a statement is true over a set, we can use proof by <b>induction</b>. This involves proving some <b>base case</b>, such as when \(n = 0\). Then, we perform what is known as the <b>inductive step</b>, where we assume the <b>inductive hypothesis</b> that the theorem is true for \(n = k\), where \(k\) is some arbitrary number. Then, using this assumption, we prove that the theorem must be true for \(n = k+1\). If this can be done, the knowing \(n=0\) is true along with knowing that if \(n=k\) is true, then \(n=k+1\) is true means that \(n=1, 2, 3, \dots\) are all true, which proves the theorem.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Sum of squares
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem</b>: \(\forall n \in \mathbb{N}, \: \sum_{i=0}^{n} u^2 = \frac{1}{6}n(n+1)(2n+1)\)
+</p>
+
+<p>
+<b>Proof</b>: We shall proceed by induction. The base case \(n=0\) is true since:
+</p>
+
+\begin{align}
+\sum_{i=0}^{0}i^2 = \frac{1}{6}(0)(1)(1) = 0 \notag
+\end{align}
+
+<p>
+Next, we assume that \(n=k\) is true, and we want to prove that \(n=k+1\) is true. Then:
+</p>
+
+\begin{align}
+\sum_{i=0}^{k+1}i^2 = \sum_{i=0}^ki^2+(k+1)^2 &= \frac{1}{6}k(k+1)(2k+1) + (k+1)^2 \notag \\
+&= \frac{1}{6}(k+1)\left[k(2k+1)+6(k+1)\right] \notag \\
+&= \frac{1}{6}(k+1)\left[2k^2 + 7k + 6\right] \notag \\
+&= \frac{1}{6}(k+1)(k+2)(2k+3) \notag
+\end{align}
+
+<p>
+This completes the inductive step, and we are done. \(\square\)
+</p>
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Sum of interior angles
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> For all \(n \geq 3\), the sum of the interior angles of a convex polygon with \(n\) sides is \((n-2)\pi\).
+</p>
+
+<p>
+<b>Proof:</b> We shall proceed by induction. For our base case \(n=3\), we know that the angle sum of a triangle is \(\pi\), which is consistent with the theorem.
+</p>
+
+<p>
+Next, assuming that the theorem is true for \(n=k\), we want to show that it is also true for \(n=k+1\). Consider the following \((k+1)\text{-gon}\):
+</p>
+
+<span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='178.40082pt' height='141.29666pt' viewBox='-70.00891 -70.00891 178.40082 141.29666'>
+<defs>
+<path id='g0-107' d='M2.57335-5.917808C2.609215-6.043337 2.609215-6.06127 2.609215-6.097136C2.609215-6.177833 2.555417-6.222665 2.47472-6.222665C2.349191-6.222665 1.560149-6.150934 1.380822-6.133001C1.291158-6.124035 1.192528-6.115068 1.192528-5.96264C1.192528-5.846077 1.291158-5.846077 1.43462-5.846077C1.85604-5.846077 1.85604-5.783313 1.85604-5.702615C1.85604-5.66675 1.85604-5.648817 1.811208-5.487422L.529016-.331756C.493151-.206227 .493151-.188294 .493151-.161395C.493151-.017933 .609714 .09863 .771108 .09863C1.066999 .09863 1.129763-.161395 1.174595-.340722L1.596015-2.035367C2.205729-1.981569 2.663014-1.739477 2.663014-1.291158C2.663014-1.23736 2.663014-1.201494 2.636115-1.066999C2.627148-1.031133 2.600249-.905604 2.600249-.806974C2.600249-.277958 2.96787 .09863 3.461021 .09863C3.801743 .09863 4.016936-.107597 4.178331-.367621C4.402491-.708344 4.52802-1.246326 4.52802-1.282192C4.52802-1.327024 4.501121-1.389788 4.411457-1.389788C4.312827-1.389788 4.294894-1.344956 4.250062-1.183562C4.133499-.726276 3.90934-.125529 3.48792-.125529C3.227895-.125529 3.200996-.358655 3.200996-.555915C3.200996-.780075 3.254795-1.0132 3.263761-1.031133C3.281694-1.084932 3.299626-1.192528 3.299626-1.300125C3.299626-1.927771 2.645081-2.169863 1.95467-2.25056C2.223661-2.420922 2.420922-2.609215 2.707846-2.896139C3.165131-3.353425 3.541719-3.738979 4.016936-3.738979C4.124533-3.738979 4.241096-3.71208 4.312827-3.631382C3.90934-3.595517 3.81071-3.263761 3.81071-3.138232C3.81071-2.96787 3.936239-2.815442 4.160399-2.815442C4.366625-2.815442 4.653549-2.976837 4.653549-3.371357C4.653549-3.667248 4.438356-3.963138 4.016936-3.963138C3.469988-3.963138 3.030635-3.523786 2.654047-3.138232C2.223661-2.716812 2.008468-2.501619 1.676712-2.358157L2.57335-5.917808Z'/>
+<path id='g1-45' d='M2.932005-1.542217V-2.438854H.116563V-1.542217H2.932005Z'/>
+<path id='g1-103' d='M1.936737-.762142C1.649813-.762142 1.524284-.762142 1.371856-.878705C1.23736-.995268 1.165629-1.147696 1.165629-1.327024S1.228394-1.596015 1.23736-1.604981C1.569116-1.43462 1.963636-1.371856 2.358157-1.371856C3.730012-1.371856 4.196264-2.116065 4.196264-2.698879C4.196264-3.066501 4.025903-3.362391 3.837609-3.550685C4.079701-3.676214 4.259029-3.694147 4.375592-3.71208C4.366625-3.676214 4.348692-3.622416 4.348692-3.532752C4.348692-3.29066 4.536986-3.129265 4.752179-3.129265C4.94944-3.129265 5.155666-3.272727 5.155666-3.541719C5.155666-3.774844 4.976339-4.088667 4.563885-4.088667C4.124533-4.088667 3.747945-3.873474 3.577584-3.747945C3.200996-3.972105 2.788543-4.034869 2.358157-4.034869C.986301-4.034869 .52005-3.29066 .52005-2.707846C.52005-2.214695 .824907-1.891905 .986301-1.75741C.798007-1.551183 .690411-1.246326 .690411-.977335C.690411-.591781 .878705-.286924 1.066999-.116563C.385554 .071731 .29589 .457285 .29589 .654545C.29589 1.192528 .91457 1.802242 2.645081 1.802242C4.214197 1.802242 5.003238 1.309091 5.003238 .627646C5.003238 .313823 4.886675-.242092 4.267995-.529016C3.747945-.762142 3.272727-.762142 2.385056-.762142H1.936737ZM2.358157-1.730511C1.551183-1.730511 1.551183-2.304359 1.551183-2.698879C1.551183-3.102366 1.551183-3.676214 2.358157-3.676214S3.165131-3.102366 3.165131-2.707846C3.165131-2.304359 3.165131-1.730511 2.358157-1.730511ZM2.887173 .125529C3.165131 .125529 4.20523 .125529 4.20523 .663512C4.20523 .950436 3.873474 1.443587 2.654047 1.443587C1.470486 1.443587 1.093898 .995268 1.093898 .645579C1.093898 .125529 1.667746 .125529 1.802242 .125529H2.887173Z'/>
+<path id='g1-110' d='M5.039103-2.734745C5.039103-3.801743 4.393524-4.034869 3.61345-4.034869C2.510585-4.034869 2.071233-3.227895 2.008468-3.0934H1.999502V-4.034869L.448319-3.963138V-3.523786C.986301-3.523786 1.058032-3.523786 1.058032-3.174097V-.439352H.448319V0C1.111831-.026899 1.219427-.026899 1.578082-.026899C1.945704-.026899 2.035367-.026899 2.716812 0V-.439352H2.107098V-2.27746C2.107098-3.281694 2.932005-3.676214 3.469988-3.676214C3.81071-3.676214 3.990037-3.48792 3.990037-2.815442V-.439352H3.380324V0C4.043836-.026899 4.151432-.026899 4.510087-.026899C4.877709-.026899 4.967372-.026899 5.648817 0V-.439352H5.039103V-2.734745Z'/>
+<path id='g1-111' d='M5.003238-1.95467C5.003238-3.129265 4.178331-4.061768 2.654047-4.061768C1.075965-4.061768 .29589-3.084433 .29589-1.95467C.29589-.842839 1.102864 .053798 2.645081 .053798C4.250062 .053798 5.003238-.887671 5.003238-1.95467ZM2.654047-.331756C1.488418-.331756 1.488418-1.273225 1.488418-2.0533C1.488418-2.806476 1.488418-3.703113 2.645081-3.703113C3.81071-3.703113 3.81071-2.806476 3.81071-2.0533C3.81071-1.282192 3.81071-.331756 2.654047-.331756Z'/>
+<path id='g2-40' d='M3.057534 2.133998C3.057534 2.089166 3.030635 2.062267 2.976837 1.999502C1.820174 .941469 1.470486-.672478 1.470486-2.241594C1.470486-3.631382 1.739477-5.317061 3.003736-6.518555C3.039601-6.554421 3.057534-6.58132 3.057534-6.626152C3.057534-6.688917 3.012702-6.724782 2.949938-6.724782C2.842341-6.724782 2.035367-6.079203 1.551183-5.101868C1.120797-4.241096 .905604-3.317559 .905604-2.25056C.905604-1.604981 .986301-.582814 1.479452 .475218C2.008468 1.578082 2.842341 2.232628 2.949938 2.232628C3.012702 2.232628 3.057534 2.196762 3.057534 2.133998Z'/>
+<path id='g2-41' d='M2.67198-2.25056C2.67198-2.985803 2.564384-3.972105 2.098132-4.967372C1.569116-6.070237 .735243-6.724782 .627646-6.724782C.537983-6.724782 .52005-6.653051 .52005-6.626152C.52005-6.58132 .537983-6.554421 .600747-6.491656C1.120797-6.025405 2.107098-4.805978 2.107098-2.25056C2.107098-.968369 1.873973 .81594 .573848 2.026401C.555915 2.0533 .52005 2.089166 .52005 2.133998C.52005 2.160897 .537983 2.232628 .627646 2.232628C.735243 2.232628 1.542217 1.587049 2.026401 .609714C2.456787-.251059 2.67198-1.174595 2.67198-2.25056Z'/>
+<path id='g2-43' d='M6.330262-2.0533C6.455791-2.0533 6.644085-2.0533 6.644085-2.241594C6.644085-2.438854 6.473724-2.438854 6.330262-2.438854H3.774844V-5.003238C3.774844-5.1467 3.774844-5.317061 3.577584-5.317061C3.38929-5.317061 3.38929-5.128767 3.38929-5.003238V-2.438854H.824907C.699377-2.438854 .511083-2.438854 .511083-2.25056C.511083-2.0533 .681445-2.0533 .824907-2.0533H3.38929V.511083C3.38929 .654545 3.38929 .824907 3.58655 .824907C3.774844 .824907 3.774844 .636613 3.774844 .511083V-2.0533H6.330262Z'/>
+<path id='g2-49' d='M2.725778-5.729514C2.725778-5.953674 2.716812-5.971606 2.492653-5.971606C1.936737-5.397758 1.111831-5.397758 .833873-5.397758V-5.119801C1.004234-5.119801 1.551183-5.119801 2.035367-5.352927V-.71731C2.035367-.385554 2.008468-.277958 1.174595-.277958H.887671V0C1.210461-.026899 2.008468-.026899 2.37609-.026899S3.550685-.026899 3.873474 0V-.277958H3.58655C2.752677-.277958 2.725778-.385554 2.725778-.71731V-5.729514Z'/>
+</defs>
+<g id='page1'>
+<path d='M-44.593751 15.789062L6.4336 49.8086L61.7187 28.5469L74.4767-35.2422L19.1914-69.2617L-36.08984-48Z' stroke='#8f3838' fill='none' stroke-width='1.49442' stroke-miterlimit='10'/>
+<path d='M-69.2617-51.8242L107.6447-31.4141' stroke='#244992' fill='none' stroke-width='1.49442' stroke-miterlimit='10' stroke-dasharray='2.98883 2.98883'/>
+<g transform='matrix(1 0 0 1 26.9535 53.2657)'>
+<use x='-44.59531' y='15.789422' xlink:href='#g2-40'/>
+<use x='-41.011551' y='15.789422' xlink:href='#g0-107'/>
+<use x='-33.90283' y='15.789422' xlink:href='#g2-43'/>
+<use x='-24.687449' y='15.789422' xlink:href='#g2-49'/>
+<use x='-20.079758' y='15.789422' xlink:href='#g2-41'/>
+<use x='-16.495998' y='15.789422' xlink:href='#g1-45'/>
+<use x='-12.959304' y='15.789422' xlink:href='#g1-103'/>
+<use x='-7.654262' y='15.789422' xlink:href='#g1-111'/>
+<use x='-2.34922' y='15.789422' xlink:href='#g1-110'/>
+</g>
+</g>
+</svg></span><p>
+If we "chop off"<abbr class="tooltip" title="Note that we can't start for a k-gon and add a triangle to get a (k+1)-gon, since it is hard to show that this yields all possible (k+1)-gons">°</abbr>&emsp13;a triangle as shown, we have a \(k\text{-gon}\) and a triangle. So, the interior angle sum of a \((k+1)\text{-gon}\) is just:
+</p>
+
+\begin{align}
+\pi + (k-2)\pi &= (k-1)\pi \notag \\
+&= (k+1-2)\pi \notag
+\end{align}
+
+<p>
+This completes the inductive step, and we are done. \(\square\)
+</p>
+
+
+</details>
+</div>
+<div id="outline-container-orgbed6e36" class="outline-3">
+<h3 id="orgbed6e36"><span class="section-number-3">5.1.</span> Strengthening the Induction Hypothesis</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Sometimes, it is hard to prove the given theorem's inductive hypothesis. In these cases, we can try to prove a stronger version of it, such that if we prove that version, the original theorem must also be true.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Sum of reciprocal squares
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> \(\forall n \geq 1, \: \sum_{i=1}^{n} \frac{1}{i^2} \leq 2\)
+</p>
+
+<p>
+<b>Proof:</b> We modify the theorem to show that \(\forall n \geq 1, \: \sum_{i=1}^n \frac{1}{i^2} \leq 2 - \frac{1}{n}\). If we prove this stronger condition, then we have also proven the original theorem.
+</p>
+
+<p>
+We proceed by induction. The base case \(n=1\) holds as \(\sum_{i=1}^{1}\frac{1}{i^2} = 1 \leq 2 -1 = 1\).
+</p>
+
+<p>
+Then, assuming that \(n=k\) is true, we want to prove that \(n=k+1\) is true:
+</p>
+
+\begin{align}
+\sum_{i=1}^{k+1}\frac{1}{i^2} = \sum_{i=1}^k\frac{1}{i^2} + \frac{1}{(k+1)^2} &\leq 2 - \frac{1}{k} + \frac{1}{(k+1)^2} \notag \\
+&\leq 2 - \frac{1}{k+1} \notag
+\end{align}
+
+<p>
+This completes the inductive step, and we are done. \(\square\)
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org32af0f3" class="outline-3">
+<h3 id="org32af0f3"><span class="section-number-3">5.2.</span> Strong Induction</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Sometimes, it is insufficient to just assume that the theorem works for \(n=k\). <b>Strong induction</b> modifies the inductive hypothesis such that for arbitrary \(k\), we assume that \(\land_{i=0}^k P(i)\) is true.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Quicksort
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> \(\text{Quicksort}(A)\) correct sorts an array \(A\) of length \(n\).
+</p>
+
+<p>
+<b>Proof:</b> We proceed by strong induction. The base case of \(0\) and \(1\) both hold since you just do nothing.
+</p>
+
+<p>
+Then we want to prove \(n=k+1\) for \(k \geq 1\), assuming that \(n \leq k\) are all true. Then, each subarray to quicksort has length in \({0, 1, \dots, k}\). Then, these subarrays return correctly sorted arrays (by the inductive hypothesis), thus the final array is correctly sorted. \(\square\)
+</p>
+
+
+</details>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Fibonacci numbers
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> For all \(n \geq 0\), the n-th Fibonacci number \(F(n) = \frac{\phi^n - \psi^n}{\sqrt{5}}\), where \(\phi, \psi\) are the roots of \(x^2-x-1\), i.e. \(\phi = \frac{1+\sqrt{5}}{2}\) and \(\psi = \frac{1-\sqrt{5}}{2}\).
+</p>
+
+<p>
+<b>Proof:</b> We proceed via strong induction. The base cases of \(n=0\) and \(n=1\) work:
+</p>
+
+\begin{align}
+F(0) &= \frac{\phi^0-\psi^0}{\sqrt{5}} = \frac{1-1}{\sqrt{5}} = 0 \notag \\
+F(1) &= \frac{\phi^1-\psi^1}{\sqrt{5}} = \frac{\sqrt{5}}{\sqrt{5}} = 1 \notag
+\end{align}
+
+<p>
+Now, assuming that \(F(n) = \frac{\phi^n-\psi^n}{\sqrt{5}}\) and \(F(n-1) = \frac{\phi^{n-1}-\psi^{n-1}}{\sqrt{5}}\), we want to prove that \(F(n+1) = \frac{\phi^{n+1}-\psi^{n+1}}{\sqrt{5}}\). Then:
+</p>
+
+\begin{align}
+F(n+1) &= F(n) + F(n-1) \notag \\
+&= \frac{\phi^n - \psi^n}{\sqrt{5}} + \frac{\phi^{n-1}-\psi^{n+1}}{\sqrt{5}} \notag \\
+&= \frac{1}{\sqrt{5}}\left( \phi^n - \psi^n + \phi^{n-1} - \psi^{n-1}\right) \notag
+\end{align}
+
+<p>
+Without loss of generality, if \(\phi^2 = \phi + 1\), then \(\phi^{n+1} = \phi^n + \phi^{n-1}\). Therefore, we have
+</p>
+
+\begin{align}
+= \frac{1}{\sqrt{5}}\left(\phi^{n+1}-\psi^{n+1}\right) \: \square \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -483,7 +1015,7 @@ This is an example of a <b>non-constructive proof</b>, as it doesn't tell you wh
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-01-22 16:37
+               Last modified: 2026-01-27 22:16
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
