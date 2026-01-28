@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-28 Wed 14:11 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Testing</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Testing</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org240c933">1. Unit Testing</a></li>
+</ul>
+</div>
+</div>
+<p>
+Tests are how programmers know their program works. Knowing that your code is completely correct is usually impossible, but passing tests provide strong evidence. <b>Test-driven development</b> is a type of development style where test are written first, then code.
+</p>
+<div id="outline-container-org240c933" class="outline-2">
+<h2 id="org240c933"><span class="section-number-2">1.</span> Unit Testing</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Unit testing</b> is a software testing method where individual units of code (such as functions) are tested to determine whether or not they do what is expected of them. Since ad-hoc testing is repetitive and tedious, we often use <i>unit testing frameworks</i> to abstract this away, such as <a href="https://truth.dev/">Truth</a>:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">import</span> <span style="color: #cba6f7;">static</span> <span style="color: #fab387;">com</span>.<span style="color: #fab387;">google</span>.<span style="color: #fab387;">common</span>.<span style="color: #fab387;">truth</span>.Truth.<span style="color: #f9e2af;">assertThat</span>;
+
+<span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">TestSort</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #fab387;">@Test</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">testSort</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">String</span><span style="color: #f9e2af;">[]</span> <span style="color: #cdd6f4;">input</span> = <span style="color: #f9e2af;">{</span><span style="color: #a6e3a1;">"string"</span>, <span style="color: #a6e3a1;">"apple"</span>, <span style="color: #a6e3a1;">"helloworld"</span>, <span style="color: #a6e3a1;">"wobbly"</span><span style="color: #f9e2af;">}</span>;
+        <span style="color: #f9e2af;">String</span><span style="color: #f9e2af;">[]</span> <span style="color: #cdd6f4;">expected</span> = <span style="color: #f9e2af;">{</span><span style="color: #a6e3a1;">"apple"</span>, <span style="color: #a6e3a1;">"helloworld"</span>, <span style="color: #a6e3a1;">"string"</span>, <span style="color: #a6e3a1;">"wobbly"</span><span style="color: #f9e2af;">}</span>;
+
+        Sort.sort<span style="color: #f9e2af;">(</span>input<span style="color: #f9e2af;">)</span>;
+        assertThat<span style="color: #f9e2af;">(</span>input<span style="color: #f9e2af;">)</span>.isEqualTo<span style="color: #f9e2af;">(</span>expected<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Selection sort
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Selection sorts a list of N items by:
+</p>
+
+<ol class="org-ol">
+<li>Find the smallest item.</li>
+<li>Move it to the front.<abbr class="tooltip" title="Move by swapping the item with each other item in the front.">°</abbr>&emsp13;</li>
+<li>Selection sort the remaining N-1 items (without touching the first item).</li>
+</ol>
+
+<span class="tikz-inline"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='150.6365pt' height='178.9845pt' viewBox='-70.00785 -70.00785 150.6365 178.9845'>
+<defs>
+<path id='g0-49' d='M4.963784-8.995065C4.963784-9.411104 4.935091-9.411104 4.476013-9.411104C3.414395-8.492948 1.821967-8.492948 1.506351-8.492948H1.233773V-7.876061H1.506351C2.008467-7.876061 2.768816-7.962139 3.342664-8.148639V-.616886H1.348542V0C1.951083-.028692 3.457433-.028692 4.131704-.028692S6.326672-.028692 6.929213 0V-.616886H4.963784V-8.995065Z'/>
+<path id='g0-50' d='M7.244829-3.084432H6.642289C6.59925-2.783162 6.498827-1.936736 6.283634-1.793274C6.168864-1.692851 5.049861-1.692851 4.834668-1.692851H2.611008C3.156163-2.151929 4.461667-3.24224 4.67686-3.400048C6.269288-4.590783 7.244829-5.322439 7.244829-6.699673C7.244829-8.392524 5.709786-9.411104 3.816088-9.411104C2.194968-9.411104 .803387-8.492948 .803387-7.130059C.803387-6.369711 1.420273-6.154518 1.750236-6.154518C2.194968-6.154518 2.711431-6.455788 2.711431-7.115713C2.711431-7.718253 2.266699-8.019523 1.821967-8.076908C2.395815-8.736833 3.156163-8.794218 3.457433-8.794218C4.777283-8.794218 5.408516-7.718253 5.408516-6.685327C5.408516-5.566324 4.648167-4.533398 4.059973-3.916511L.946849-.659925C.803387-.530809 .803387-.502117 .803387-.243885V0H6.828789L7.244829-3.084432Z'/>
+<path id='g0-51' d='M3.744357-4.748591C5.351131-4.748591 5.351131-3.256586 5.351131-2.567969C5.351131-1.92239 5.351131-.401693 3.801742-.401693C3.500472-.401693 2.553623-.444732 1.865005-.932503C2.481892-1.061618 2.697085-1.506351 2.697085-1.936736C2.697085-2.52493 2.281045-2.94097 1.692851-2.94097C1.090311-2.94097 .674271-2.52493 .674271-1.92239C.674271-.60254 2.108891 .172154 3.873473 .172154C6.240595 .172154 7.373945-1.133349 7.373945-2.567969C7.373945-3.270933 7.01529-4.633821 4.791629-5.021168C6.054095-5.408516 6.929213-6.29798 6.929213-7.431329C6.929213-8.507294 5.896286-9.411104 3.902165-9.411104C2.295391-9.411104 1.119003-8.564679 1.119003-7.402637C1.119003-6.685327 1.678505-6.455788 2.051506-6.455788C2.467546-6.455788 2.969663-6.728366 2.969663-7.388291C2.969663-7.718253 2.826201-8.206024 2.151929-8.306447C2.75447-8.894641 3.730011-8.894641 3.816088-8.894641C5.092899-8.894641 5.092899-7.904754 5.092899-7.474368S5.035515-6.384057 4.576436-5.795863C4.203435-5.308092 3.830434-5.2794 3.285279-5.250708C3.113124-5.236361 2.826201-5.222015 2.768816-5.193323C2.682739-5.150284 2.682739-5.049861 2.682739-4.992476C2.682739-4.748591 2.768816-4.748591 3.05574-4.748591H3.744357Z'/>
+<path id='g0-54' d='M2.496238-5.193323C2.496238-6.068441 2.539277-6.957905 2.94097-7.732599C3.256586-8.33514 3.988242-8.894641 4.920745-8.894641C5.193323-8.894641 5.709786-8.851603 6.054095-8.492948C5.508939-8.435563 5.2794-8.03387 5.2794-7.646522C5.2794-7.130059 5.666747-6.800097 6.125826-6.800097C6.498827-6.800097 6.972251-7.043982 6.972251-7.675215C6.972251-8.535986 6.398403-9.411104 4.892053-9.411104C3.098778-9.411104 .674271-8.292101 .674271-4.547744C.674271-3.586549 .674271 .172154 4.07432 .172154C5.968017 .172154 7.373945-.946849 7.373945-2.955316S5.982364-6.025402 4.275166-6.025402C3.988242-6.025402 3.070086-6.025402 2.496238-4.805976V-5.193323ZM4.059973-.401693C3.141817-.401693 2.783162-1.176388 2.725777-1.291158C2.52493-1.764582 2.52493-2.912278 2.52493-3.041393C2.52493-4.805976 3.285279-5.551978 4.131704-5.551978C5.551978-5.551978 5.551978-4.404282 5.551978-2.969663C5.551978-1.549389 5.551978-.401693 4.059973-.401693Z'/>
+<path id='g0-55' d='M7.689561-8.593371C7.818677-8.736833 7.818677-8.765526 7.818677-9.23895H4.791629C4.691206-9.23895 2.553623-9.310681 2.381468-9.339373C2.022814-9.396758 1.994121-9.554566 1.965429-9.698028H1.362889L.889464-6.154518H1.492004C1.506351-6.29798 1.62112-7.302214 1.865005-7.460022C1.994121-7.546099 3.184855-7.546099 3.414395-7.546099H6.011056C4.346897-5.523285 4.160397-5.293746 3.715665-4.447321C2.869239-2.783162 2.740123-1.492004 2.740123-.789041C2.740123 .172154 3.471779 .172154 3.586549 .172154C3.945204 .172154 4.146051-.014346 4.246474-.11477C4.432974-.344309 4.432974-.516463 4.432974-1.147696C4.432974-3.342664 4.633821-4.949438 5.537632-6.025402L7.689561-8.593371Z'/>
+<path id='g0-56' d='M5.408516-5.2794C6.125826-5.652401 6.929213-6.18321 6.929213-7.302214C6.929213-8.779872 5.609363-9.411104 4.045627-9.411104C2.137583-9.411104 1.119003-8.320793 1.119003-6.929213C1.119003-6.154518 1.506351-5.293746 2.567969-4.734245C.946849-4.016935 .674271-3.027047 .674271-2.281045C.674271-.631233 2.108891 .172154 4.002589 .172154C6.125826 .172154 7.373945-.975541 7.373945-2.6397C7.373945-4.203435 6.140172-4.877707 5.408516-5.2794ZM2.826201-6.757058C2.539277-6.914866 2.137583-7.244829 2.137583-7.718253C2.137583-8.865949 3.672626-8.894641 4.002589-8.894641C5.222015-8.894641 5.910633-8.249063 5.910633-7.302214C5.910633-6.71402 5.652401-6.097133 4.834668-5.623709L2.826201-6.757058ZM3.156163-4.389936L5.135938-3.256586C5.609363-2.984009 6.226249-2.6397 6.226249-1.908044C6.226249-.760348 5.078553-.401693 4.045627-.401693C2.625354-.401693 1.821967-1.162042 1.821967-2.295391C1.821967-3.342664 2.467546-4.002589 3.156163-4.389936Z'/>
+</defs>
+<g id='page1'>
+<path d='M-69.8086-47.1289H-47.1289V-69.8086H-69.8086Z' fill='#9f9'/>
+<path d='M-69.8086-47.1289H-47.1289V-69.8086H-69.8086Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -4.0349 4.6227)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-54'/>
+</g>
+<path d='M-44.2969-47.1289H-21.6172V-69.8086H-44.2969Z' fill='#9f9'/>
+<path d='M-44.2969-47.1289H-21.6172V-69.8086H-44.2969Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 21.477 4.6227)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-51'/>
+</g>
+<path d='M-18.7852-47.1289H3.8945V-69.8086H-18.7852Z' fill='#9f9'/>
+<path d='M-18.7852-47.1289H3.8945V-69.8086H-18.7852Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 46.989 4.6227)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-55'/>
+</g>
+<path d='M6.7266-47.1289H29.4063V-69.8086H6.7266Z' fill='#9f9'/>
+<path d='M6.7266-47.1289H29.4063V-69.8086H6.7266Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 72.501 4.6227)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-50'/>
+</g>
+<path d='M32.2383-47.1289H54.9184V-69.8086H32.2383Z' fill='#9f9'/>
+<path d='M32.2383-47.1289H54.9184V-69.8086H32.2383Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 98.0129 4.6227)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-56'/>
+</g>
+<path d='M57.7504-47.1289H80.4294V-69.8086H57.7504Z' fill='#9f9'/>
+<path d='M57.7504-47.1289H80.4294V-69.8086H57.7504Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 123.5249 4.6227)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-49'/>
+</g>
+<path d='M-69.8086-15.9492H-47.1289V-38.625H-69.8086Z' fill='#fff'/>
+<path d='M-69.8086-15.9492H-47.1289V-38.625H-69.8086Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -4.0349 35.8044)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-49'/>
+</g>
+<path d='M-44.2969-15.9492H-21.6172V-38.625H-44.2969Z' fill='#9f9'/>
+<path d='M-44.2969-15.9492H-21.6172V-38.625H-44.2969Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 21.477 35.8044)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-51'/>
+</g>
+<path d='M-18.7852-15.9492H3.8945V-38.625H-18.7852Z' fill='#9f9'/>
+<path d='M-18.7852-15.9492H3.8945V-38.625H-18.7852Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 46.989 35.8044)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-55'/>
+</g>
+<path d='M6.7266-15.9492H29.4063V-38.625H6.7266Z' fill='#9f9'/>
+<path d='M6.7266-15.9492H29.4063V-38.625H6.7266Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 72.501 35.8044)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-50'/>
+</g>
+<path d='M32.2383-15.9492H54.9184V-38.625H32.2383Z' fill='#9f9'/>
+<path d='M32.2383-15.9492H54.9184V-38.625H32.2383Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 98.0129 35.8044)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-56'/>
+</g>
+<path d='M57.7504-15.9492H80.4294V-38.625H57.7504Z' fill='#9f9'/>
+<path d='M57.7504-15.9492H80.4294V-38.625H57.7504Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 123.5249 35.8044)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-54'/>
+</g>
+<path d='M-69.8086 15.2305H-47.1289V-7.4453H-69.8086Z' fill='#fff'/>
+<path d='M-69.8086 15.2305H-47.1289V-7.4453H-69.8086Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -4.0349 66.9856)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-49'/>
+</g>
+<path d='M-44.2969 15.2305H-21.6172V-7.4453H-44.2969Z' fill='#fff'/>
+<path d='M-44.2969 15.2305H-21.6172V-7.4453H-44.2969Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 21.477 66.9856)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-50'/>
+</g>
+<path d='M-18.7852 15.2305H3.8945V-7.4453H-18.7852Z' fill='#9f9'/>
+<path d='M-18.7852 15.2305H3.8945V-7.4453H-18.7852Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 46.989 66.9856)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-55'/>
+</g>
+<path d='M6.7266 15.2305H29.4063V-7.4453H6.7266Z' fill='#9f9'/>
+<path d='M6.7266 15.2305H29.4063V-7.4453H6.7266Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 72.501 66.9856)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-51'/>
+</g>
+<path d='M32.2383 15.2305H54.9184V-7.4453H32.2383Z' fill='#9f9'/>
+<path d='M32.2383 15.2305H54.9184V-7.4453H32.2383Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 98.0129 66.9856)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-56'/>
+</g>
+<path d='M57.7504 15.2305H80.4294V-7.4453H57.7504Z' fill='#9f9'/>
+<path d='M57.7504 15.2305H80.4294V-7.4453H57.7504Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 123.5249 66.9856)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-54'/>
+</g>
+<path d='M-69.8086 46.4144H-47.1289V23.7344H-69.8086Z' fill='#fff'/>
+<path d='M-69.8086 46.4144H-47.1289V23.7344H-69.8086Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -4.0349 98.1673)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-49'/>
+</g>
+<path d='M-44.2969 46.4144H-21.6172V23.7344H-44.2969Z' fill='#fff'/>
+<path d='M-44.2969 46.4144H-21.6172V23.7344H-44.2969Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 21.477 98.1673)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-50'/>
+</g>
+<path d='M-18.7852 46.4144H3.8945V23.7344H-18.7852Z' fill='#fff'/>
+<path d='M-18.7852 46.4144H3.8945V23.7344H-18.7852Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 46.989 98.1673)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-51'/>
+</g>
+<path d='M6.7266 46.4144H29.4063V23.7344H6.7266Z' fill='#9f9'/>
+<path d='M6.7266 46.4144H29.4063V23.7344H6.7266Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 72.501 98.1673)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-55'/>
+</g>
+<path d='M32.2383 46.4144H54.9184V23.7344H32.2383Z' fill='#9f9'/>
+<path d='M32.2383 46.4144H54.9184V23.7344H32.2383Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 98.0129 98.1673)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-56'/>
+</g>
+<path d='M57.7504 46.4144H80.4294V23.7344H57.7504Z' fill='#9f9'/>
+<path d='M57.7504 46.4144H80.4294V23.7344H57.7504Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 123.5249 98.1673)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-54'/>
+</g>
+<path d='M-69.8086 77.5934H-47.1289V54.9184H-69.8086Z' fill='#fff'/>
+<path d='M-69.8086 77.5934H-47.1289V54.9184H-69.8086Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -4.0349 129.3485)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-49'/>
+</g>
+<path d='M-44.2969 77.5934H-21.6172V54.9184H-44.2969Z' fill='#fff'/>
+<path d='M-44.2969 77.5934H-21.6172V54.9184H-44.2969Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 21.477 129.3485)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-50'/>
+</g>
+<path d='M-18.7852 77.5934H3.8945V54.9184H-18.7852Z' fill='#fff'/>
+<path d='M-18.7852 77.5934H3.8945V54.9184H-18.7852Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 46.989 129.3485)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-51'/>
+</g>
+<path d='M6.7266 77.5934H29.4063V54.9184H6.7266Z' fill='#fff'/>
+<path d='M6.7266 77.5934H29.4063V54.9184H6.7266Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 72.501 129.3485)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-54'/>
+</g>
+<path d='M32.2383 77.5934H54.9184V54.9184H32.2383Z' fill='#9f9'/>
+<path d='M32.2383 77.5934H54.9184V54.9184H32.2383Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 98.0129 129.3485)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-56'/>
+</g>
+<path d='M57.7504 77.5934H80.4294V54.9184H57.7504Z' fill='#9f9'/>
+<path d='M57.7504 77.5934H80.4294V54.9184H57.7504Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 123.5249 129.3485)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-55'/>
+</g>
+<path d='M-69.8086 108.7774H-47.1289V86.0974H-69.8086Z' fill='#fff'/>
+<path d='M-69.8086 108.7774H-47.1289V86.0974H-69.8086Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -4.0349 160.5306)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-49'/>
+</g>
+<path d='M-44.2969 108.7774H-21.6172V86.0974H-44.2969Z' fill='#fff'/>
+<path d='M-44.2969 108.7774H-21.6172V86.0974H-44.2969Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 21.477 160.5306)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-50'/>
+</g>
+<path d='M-18.7852 108.7774H3.8945V86.0974H-18.7852Z' fill='#fff'/>
+<path d='M-18.7852 108.7774H3.8945V86.0974H-18.7852Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 46.989 160.5306)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-51'/>
+</g>
+<path d='M6.7266 108.7774H29.4063V86.0974H6.7266Z' fill='#fff'/>
+<path d='M6.7266 108.7774H29.4063V86.0974H6.7266Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 72.501 160.5306)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-54'/>
+</g>
+<path d='M32.2383 108.7774H54.9184V86.0974H32.2383Z' fill='#fff'/>
+<path d='M32.2383 108.7774H54.9184V86.0974H32.2383Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 98.0129 160.5306)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-55'/>
+</g>
+<path d='M57.7504 108.7774H80.4294V86.0974H57.7504Z' fill='#fff'/>
+<path d='M57.7504 108.7774H80.4294V86.0974H57.7504Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 123.5249 160.5306)'>
+<use x='-58.469612' y='-58.469612' xlink:href='#g0-56'/>
+</g>
+</g>
+</svg></span><p>
+First, we'll try implementing a function <code>findSmallest()</code>, that finds the smallest element in a list. To demonstrate test-driven development (TDD), we'll begin by writing a test that shows what we expect this function to do:
+</p>
+
+<pre><code class="language-java"><span style="color: #fab387;">@Test</span>
+<span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">testFindSmallest</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">input</span> = <span style="color: #fab387;">{</span><span style="color: #a6e3a1;">"string"</span>, <span style="color: #a6e3a1;">"apple"</span>, <span style="color: #a6e3a1;">"helloworld"</span>, <span style="color: #a6e3a1;">"wobbly"</span><span style="color: #fab387;">}</span>;
+
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">expected1</span> = 1;
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">actual1</span> = findSmallest<span style="color: #fab387;">(</span>input, 0<span style="color: #fab387;">)</span>;
+    assertThat<span style="color: #fab387;">(</span>actual1<span style="color: #fab387;">)</span>.isEqualTo<span style="color: #fab387;">(</span>expected1<span style="color: #fab387;">)</span>;
+
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">expected2</span> = 2;
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">actual2</span> = findSmallest<span style="color: #fab387;">(</span>input, 2<span style="color: #fab387;">)</span>;
+    assertThat<span style="color: #fab387;">(</span>actual2<span style="color: #fab387;">)</span>.isEqualTo<span style="color: #fab387;">(</span>expected2<span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Next, we'll write the implementation for <code>findSmallest</code>:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">findSmallest</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">input</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">start</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">smallestSoFarIndex</span> = start;
+    <span style="color: #cba6f7;">for</span> <span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span> = start; i &lt; input.length; i += 1<span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">comparisonResult</span> = input<span style="color: #f9e2af;">[</span>i<span style="color: #f9e2af;">]</span>.compareTo<span style="color: #f9e2af;">(</span>input<span style="color: #a6e3a1;">[</span>smallestSoFarIndex<span style="color: #a6e3a1;">]</span><span style="color: #f9e2af;">)</span>;
+        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>comparisonResult &lt; 0<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            smallestSoFarIndex = i;
+        <span style="color: #f9e2af;">}</span>
+    <span style="color: #fab387;">}</span>
+    <span style="color: #cba6f7;">return</span> smallestSoFarIndex;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Next, we want to be able to swap two elements in an array. Again, we'll write the test first:
+</p>
+
+<pre><code class="language-java"><span style="color: #fab387;">@Test</span>
+<span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">testSwap</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">input</span> = <span style="color: #fab387;">{</span><span style="color: #a6e3a1;">"string"</span>, <span style="color: #a6e3a1;">"apple"</span>, <span style="color: #a6e3a1;">"helloworld"</span>, <span style="color: #a6e3a1;">"wobbly"</span><span style="color: #fab387;">}</span>;
+    <span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">expected</span>  = <span style="color: #fab387;">{</span><span style="color: #a6e3a1;">"string"</span>, <span style="color: #a6e3a1;">"apple"</span>, <span style="color: #a6e3a1;">"wobbly"</span>, <span style="color: #a6e3a1;">"helloworld"</span><span style="color: #fab387;">}</span>;
+    assertThat<span style="color: #fab387;">(</span>swap<span style="color: #f9e2af;">(</span>input, 2, 3<span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span>.isEqualTo<span style="color: #fab387;">(</span>expected<span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+And then the implementation:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">swap</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">input</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">a</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">b</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">String</span> <span style="color: #cdd6f4;">temp</span> = input<span style="color: #fab387;">[</span>a<span style="color: #fab387;">]</span>;
+    input<span style="color: #fab387;">[</span>a<span style="color: #fab387;">]</span> = input<span style="color: #fab387;">[</span>b<span style="color: #fab387;">]</span>;
+    input<span style="color: #fab387;">[</span>b<span style="color: #fab387;">]</span> = temp;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Finally, we're ready to write the implementation of selection sort. Here's the test we've written before this example again:
+</p>
+
+<pre><code class="language-java"><span style="color: #fab387;">@Test</span>
+<span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">testSort</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">input</span> = <span style="color: #fab387;">{</span><span style="color: #a6e3a1;">"string"</span>, <span style="color: #a6e3a1;">"apple"</span>, <span style="color: #a6e3a1;">"helloworld"</span>, <span style="color: #a6e3a1;">"wobbly"</span><span style="color: #fab387;">}</span>;
+    <span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">expected</span> = <span style="color: #fab387;">{</span><span style="color: #a6e3a1;">"apple"</span>, <span style="color: #a6e3a1;">"helloworld"</span>, <span style="color: #a6e3a1;">"string"</span>, <span style="color: #a6e3a1;">"wobbly"</span><span style="color: #fab387;">}</span>;
+
+    Sort.sort<span style="color: #fab387;">(</span>input<span style="color: #fab387;">)</span>;
+    assertThat<span style="color: #fab387;">(</span>input<span style="color: #fab387;">)</span>.isEqualTo<span style="color: #fab387;">(</span>expected<span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+And now is our final implementation:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">sort</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">input</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    sort<span style="color: #fab387;">(</span>input, 0<span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+
+<span style="color: #cba6f7;">private</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">sort</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">input</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">start</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">smallest</span> = findSmallest<span style="color: #fab387;">(</span>input, start<span style="color: #fab387;">)</span>;
+    swap<span style="color: #fab387;">(</span>input, 0, smallest<span style="color: #fab387;">)</span>;
+    sort<span style="color: #fab387;">(</span>input, start + 1<span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+
+</details>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-01-28 14:11
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
