@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-26 Mon 14:26 -->
+<!-- 2026-01-28 Wed 14:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java</title>
@@ -297,6 +297,15 @@ Notice that the function has parameters whose types must be declared. Additional
 <pre><code class="language-java"><span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span> = 0; i &lt; 10; i ++<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
     System.out.println<span style="color: #fab387;">(</span>i<span style="color: #fab387;">)</span>;
 <span style="color: #f38ba8;">}</span>
+
+<span style="color: #6c7086;">// </span><span style="color: #6c7086;">for-each loops
+</span><span style="color: #f9e2af;">List</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">String</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cdd6f4;">L</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">ArrayList</span><span style="color: #f38ba8;">&lt;&gt;()</span>;
+L.add<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"a"</span><span style="color: #f38ba8;">)</span>;
+L.add<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"b"</span><span style="color: #f38ba8;">)</span>;
+L.add<span style="color: #f38ba8;">(</span><span style="color: #a6e3a1;">"c"</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">String</span> <span style="color: #cdd6f4;">s</span>: L<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    System.out.println<span style="color: #fab387;">(</span>s<span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
 </code></pre>
 </div>
 </div>
@@ -346,7 +355,12 @@ matrix = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">
 </span>   L.add<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"a"</span><span style="color: #fab387;">)</span>;
    L.add<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"b"</span><span style="color: #fab387;">)</span>;
    L.add<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"c"</span><span style="color: #fab387;">)</span>;
-   System.out.println<span style="color: #fab387;">(</span>L.get<span style="color: #f9e2af;">(</span>0<span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span>;   
+   L.set<span style="color: #fab387;">(</span>0, <span style="color: #a6e3a1;">"z"</span><span style="color: #fab387;">)</span>;
+   System.out.println<span style="color: #fab387;">(</span>L.get<span style="color: #f9e2af;">(</span>0<span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span>;
+   System.out.println<span style="color: #fab387;">(</span>L.size<span style="color: #f9e2af;">()</span><span style="color: #fab387;">)</span>;
+   <span style="color: #cba6f7;">if</span> <span style="color: #fab387;">(</span>L.contains<span style="color: #f9e2af;">(</span><span style="color: #a6e3a1;">"a"</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+       System.out.println<span style="color: #f9e2af;">(</span><span style="color: #a6e3a1;">"a in list"</span><span style="color: #f9e2af;">)</span>;
+   <span style="color: #fab387;">}</span>
 <span style="color: #f38ba8;">}</span>
 </code></pre>
 </div>
@@ -362,6 +376,13 @@ matrix = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">
    m.put<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"cat"</span>, 103<span style="color: #fab387;">)</span>;
    m.put<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"dog"</span>, 5<span style="color: #fab387;">)</span>;
    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">numCats</span> = m.get<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"cat"</span><span style="color: #fab387;">)</span>;
+   System.out.println<span style="color: #fab387;">(</span>m.size<span style="color: #f9e2af;">()</span><span style="color: #fab387;">)</span>;
+   <span style="color: #cba6f7;">if</span> <span style="color: #fab387;">(</span>m.containsKey<span style="color: #f9e2af;">(</span><span style="color: #a6e3a1;">"cat"</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+       System.out.println<span style="color: #f9e2af;">(</span><span style="color: #a6e3a1;">"cat in map"</span><span style="color: #f9e2af;">)</span>;
+   <span style="color: #fab387;">}</span>
+   <span style="color: #cba6f7;">for</span> <span style="color: #fab387;">(</span><span style="color: #f9e2af;">String</span> <span style="color: #cdd6f4;">key</span>: map.keySet<span style="color: #f9e2af;">()</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+       System.out.println<span style="color: #f9e2af;">(</span>key<span style="color: #f9e2af;">)</span>;
+   <span style="color: #fab387;">}</span>
 <span style="color: #f38ba8;">}</span>
 </code></pre>
 </div>
@@ -475,7 +496,7 @@ Classes can also have static variables, which similarly can also be always acces
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-01-26 14:26
+               Last modified: 2026-01-28 14:19
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
