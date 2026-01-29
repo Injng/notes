@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-28 Wed 21:43 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Norm</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/EECS_16A/index.html">EECS 16A</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Norm</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6fb82cd">1. Norm</a>
+<ul>
+<li><a href="#org30a2fe6">1.1. 1-Norm</a></li>
+<li><a href="#org635a537">1.2. 2-Norm</a></li>
+<li><a href="#org9603d55">1.3. Infinity-Norm</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6fb82cd" class="outline-2">
+<h2 id="org6fb82cd"><span class="section-number-2">1.</span> Norm</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A function \(\|\cdot\|:\mathcal{V} \rightarrow \mathbb{R}\) is a <b>norm</b> if \(\forall x,y \in \mathcal{V}\) and all scalars \(x \in \mathbb{R}\) (or \(\mathbb{C}\)) if it satisfies the following properties:
+</p>
+
+<ol class="org-ol">
+<li>Nonnegativity: \(\|\mathbf{x} \| \geq 0\) with equality if and only if \(\mathbf{x} = 0\).</li>
+<li>Nonnegative scaling: \(\| \alpha \mathbf{x}\| = |\alpha |\| \mathbf{x}\|\).</li>
+<li>Triangle inequality: \(\| \mathbf{x} + \mathbf{y} \| \leq \| \mathbf{x} \| + \| \mathbf{y} \|\)</li>
+</ol>
+</div>
+<div id="outline-container-org30a2fe6" class="outline-3">
+<h3 id="org30a2fe6"><span class="section-number-3">1.1.</span> 1-Norm</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Also known as the taxicab norm or the Manhattan norm, the <b>1-norm</b> for Euclidean vectors is the sum of the absolute values of the components:
+</p>
+
+\begin{align}
+\| \mathbf{x} \|_1 = \sum_{k=1}^n \left|x_k\right|
+\end{align}
+
+<p>
+For <a href="vectors_signals.html#orge7012ce">DT signals</a>:
+</p>
+
+\begin{align}
+\| x \|_1 = \sum_{n=-\infty}^{\infty} \left|x[n]\right|
+\end{align}
+
+<p>
+If \(\| x \|_1 < \infty\), we say that the signal is <b>absolutely-summable</b> (also called <b>stable</b>). The set of all absolutely-summable DT signals \(l_1(\mathbb{Z}) = \{x: \mathbb{Z} \rightarrow \mathbb{C} \mid \sum_{n=-\infty}^{\infty} \left| x[n] \right| < \infty\}\) is a <a href="vectors_signals.html#org1b795e2">vector space</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org635a537" class="outline-3">
+<h3 id="org635a537"><span class="section-number-3">1.2.</span> 2-Norm</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Also known as the Euclidean norm, the <b>2-norm</b> for Euclidean vectors is the intuitive length of the vector. Oftentimes, it is also easier to consider the square:
+</p>
+
+\begin{align}
+\| \mathbf{x} \|_2 &= \|\mathbf{x}\| =  \sqrt{x_1^2 + \cdots + x_n^2} \\
+\| \mathbf{x} \|^2 &= \sum_{k=1}^n x_k^2
+\end{align}
+
+<p>
+For <a href="vectors_signals.html#orge7012ce">DT signals</a>:
+</p>
+
+\begin{align}
+\| x \|_2 &= \|x\| =  \sqrt{\sum_{n=-\infty}^{\infty}|x[n]|^2} \\
+\mathcal{E}_x &= \|\mathbf{x}\|^2 = \sum_{n=-\infty}^{\infty}|x[n]|^2
+\end{align}
+
+<p>
+The set of all square-summable (<b>finite-energy</b>) DT signals \(l_2(\mathbb{Z}) = \{x: \mathbb{Z} \rightarrow \mathbb{C} \mid \sum_{n=-\infty}^{\infty} \left| x[n] \right|^2 < \infty\}\) is also a <a href="vectors_signals.html#org1b795e2">vector space</a>.
+</p>
+
+<p>
+Additionally, the <i>distance between two vectors</i> \(\mathbf{x}, \mathbf{y} \in \mathcal{V}\) is defined as the Euclidean norm of their difference, or \(d(\mathbf{x}, \mathbf{y}) = \|\mathbf{x}-\mathbf{y}\|\).
+</p>
+</div>
+</div>
+<div id="outline-container-org9603d55" class="outline-3">
+<h3 id="org9603d55"><span class="section-number-3">1.3.</span> Infinity-Norm</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+The \(\mathbf{\infty}\) <b>norm</b> for Euclidean vectors is the maximum of its components:
+</p>
+
+\begin{align}
+\| \mathbf{x} \|_{\infty} = \text{max}(|x_1|, \dots, |x_n|) 
+\end{align}
+
+<p>
+For <a href="vectors_signals.html#orge7012ce">DT signals</a>, it's the <abbr class="tooltip" title="The smallest upper bound of a set, which unlike the maximum may not be contained in the set.">supremum</abbr>&emsp13;: 
+</p>
+
+\begin{align}
+\| x \|_{\infty} = \text{sup}(\dots, |x[-1]|, |x[0]|, |x[1]|, \dots) 
+\end{align}
+
+<p>
+The set of all bounded DT signals \(l_{\infty}(\mathbb{Z}) = \{x: \mathbb{Z} \rightarrow \mathbb{C} \mid \|x\|_{\infty} < \infty\}\) is also a <a href="vectors_signals.html#org1b795e2">vector space</a>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-01-28 21:43
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
