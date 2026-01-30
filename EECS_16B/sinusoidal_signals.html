@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-25 Sun 22:00 -->
+<!-- 2026-01-29 Thu 17:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sinusoidal Signals</title>
+<title>Periodic Waveforms</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
    <script src="/pagefind/pagefind-ui.js"></script>
@@ -17,6 +17,73 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -121,12 +188,16 @@
 <div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/EECS_16B/index.html">EECS 16B</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Sinusoidal Signals</h1>
+<h1 class="title">Periodic Waveforms</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org45e2a33">1. Sinusoidal Signals</a></li>
+<li><a href="#org45e2a33">1. Sinusoidal Signals</a>
+<ul>
+<li><a href="#org96a7fac">1.1. Root-Mean-Square Value</a></li>
+</ul>
+</li>
 <li><a href="#org783dfda">2. Fourier Series</a>
 <ul>
 <li><a href="#org2143a04">2.1. Symmetry Properties</a>
@@ -151,7 +222,7 @@ The following is a graph representation of a sinusoidal signal:
 </p>
 
 
-<div id="org277d5b8" class="figure">
+<div id="org4a615d7" class="figure">
 <p><img src="../static/EECS_16B/sinusoidal_signals1.png" alt="sinusoidal_signals1.png" />
 </p>
 </div>
@@ -234,6 +305,42 @@ Its standard cosine form is:
 f(t) = A\cos(\omega t + \phi)
 \end{align}
 </div>
+<div id="outline-container-org96a7fac" class="outline-3">
+<h3 id="org96a7fac"><span class="section-number-3">1.1.</span> Root-Mean-Square Value</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+If current is constant (DC), then it's easy to compute <a href="voltage_power.html#orgf231e80">power</a>. But, if I is a periodic signal (AC), then we might want to compute the <i>average power</i> delivered:
+</p>
+
+\begin{align}
+P_{\text{avg}} = \frac{1}{T} \int_0^T p(t)\text{ d}t = \frac{1}{T}\int_0^T i^2(t)R\text{ d}t \notag
+\end{align}
+
+<p>
+Now, define \(I_{\text{eff}}\) to be the <b>effective value</b> of current delivered by an AC source, defined such that the average power \(P_{\text{avg}}\) of an AC current delivered to a resistor \(R\) is equivalent to what a DC current \(I_{\text{eff}}\) would deliver to \(R\), namely \(I_{\text{eff}}^2R\):
+</p>
+
+\begin{align}
+I_{\text{eff}}^2R = P_{\text{avg}} = \frac{1}{T}\int_0^T i^2(t)R\text{ d}t \notag
+\end{align}
+
+<p>
+Solving for \(I_{\text{eff}}\) gives:
+</p>
+
+\begin{align}
+\boxed{I_{\text{eff}} = \sqrt{\frac{1}{T}\int_0^T i^2(t)\text{ d}t}}
+\end{align}
+
+<p>
+This is known as the <b>root-mean-square</b> value for current, or \(I_{\text{rms}}\). If the current \(i(t)\) is represented as a cosine waveform \(A\cos(\omega_0 t)\), then by integration it is easily shown that:
+</p>
+
+\begin{align}
+\boxed{I_{\text{rms}} = \frac{A}{\sqrt{2}}}
+\end{align}
+</div>
+</div>
 </div>
 <div id="outline-container-org783dfda" class="outline-2">
 <h2 id="org783dfda"><span class="section-number-2">2.</span> Fourier Series</h2>
@@ -289,7 +396,7 @@ where:
 </p>
 
 
-<div id="org679ce01" class="figure">
+<div id="org8c78ab6" class="figure">
 <p><img src="../static/EECS_16B/sinusoidal_signals2.png" alt="sinusoidal_signals2.png" />
 </p>
 </div>
@@ -336,7 +443,7 @@ a_n\cos(n\omega_0 t) + b_n\sin(n\omega_0 t) = A_n\cos(n\omega_0 t + \phi_n) \not
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-01-25 22:00
+               Last modified: 2026-01-29 17:13
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
