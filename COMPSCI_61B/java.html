@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-28 Wed 14:19 -->
+<!-- 2026-01-30 Fri 14:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java</title>
@@ -138,6 +138,7 @@
 <li><a href="#org9853474">8.2. Static</a></li>
 </ul>
 </li>
+<li><a href="#org65ff7ea">9. Packages</a></li>
 </ul>
 </div>
 </div>
@@ -489,6 +490,18 @@ Classes can also have static variables, which similarly can also be always acces
 </div>
 </div>
 </div>
+<div id="outline-container-org65ff7ea" class="outline-2">
+<h2 id="org65ff7ea"><span class="section-number-2">9.</span> Packages</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Java does not allow us to have two classes with the same name in a project, because when we reference its name, it does not know which one we are referring to. However, if we add a <code>package</code>, we change the <b>canonical name</b> to have the package name in front of the class.
+</p>
+
+<p>
+Additionally, Java won't look at every folder on your computer. Instead, it looks only at a list of paths called the <code>CLASSPATH</code>.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -496,7 +509,7 @@ Classes can also have static variables, which similarly can also be always acces
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-01-28 14:19
+               Last modified: 2026-01-30 13:21
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
