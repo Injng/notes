@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-01-29 Thu 22:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stable Matching</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Stable Matching</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd02a39f">1. The Stable Matching Problem</a></li>
+<li><a href="#orge7f3526">2. Propose-and-Reject Algorithm</a></li>
+<li><a href="#orgad82879">3. Analysis</a>
+<ul>
+<li><a href="#org15e465e">3.1. Termination</a></li>
+<li><a href="#org08bd9f2">3.2. Improvement Lemma</a></li>
+<li><a href="#org650e688">3.3. Matching</a></li>
+<li><a href="#org27cd6f0">3.4. Stability</a></li>
+</ul>
+</li>
+<li><a href="#org2887bd4">4. Optimality</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd02a39f" class="outline-2">
+<h2 id="orgd02a39f"><span class="section-number-2">1.</span> The Stable Matching Problem</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Suppose an employment system wishes to match \(n\) jobs with \(n\) candidates such that each job would be matched with one candidate. Each job has an ordered <i>preference list</i> of candidates that it wants, and each candidate has a similar preference list for all the jobs. We want to match up these jobs with candidates in a "good" way.
+</p>
+
+<p>
+Define a <b>rogue couple</b> in a matching as a job and candidate pair who prefer each other to their current partners. In other words, a rouge couple means that the matching is not "good" since it has room for improvement. We define a matching to be good, or <b>stable</b>, if it has <i>no rogue couples</i>.
+</p>
+
+<p>
+Such an algorithm does exist, and it has been used for many decades by the <a href="https://en.wikipedia.org/wiki/National_Resident_Matching_Program">National Resident Matching Program</a> in the United States to match medical school students to residency training programs in teaching hospitals.
+</p>
+</div>
+</div>
+<div id="outline-container-orge7f3526" class="outline-2">
+<h2 id="orge7f3526"><span class="section-number-2">2.</span> Propose-and-Reject Algorithm</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The <b>propose-and-reject algorithm</b> [Gale-Shapley] is an iterative algorithm. We call each iteration one "day" for ease of understanding:
+</p>
+
+<pre><code class="language-txt">REPEAT
+    1. Each job makes an offer to the highest ranked candidate on its list who hasn't rejected it yet.
+    2. Each candidate says "maybe" (puts it on hold) to the job they rank best among their offers, and rejects the others.
+    3. If a job was rejected, it crosses that candidate off its list.
+UNTIL no rejections occur.
+OUTPUT resulting matching.
+</code></pre>
+
+<style>
+button { font-family: inherit; }
+.gs-container { font-family: inherit; max-width: 700px; margin: 2em auto; }
+.gs-columns { display: flex; justify-content: space-between; gap: 2em; }
+.gs-column { flex: 1; }
+.gs-column h4 { margin: 0 0 0.5em; text-align: center; color: var(--text); }
+.gs-entity { background: var(--mantle); border: 1px solid var(--surface1); border-radius: 6px; padding: 0.75em; margin-bottom: 0.5em; }
+.gs-entity-name { font-weight: bold; margin-bottom: 0.25em; color: var(--text); }
+.gs-prefs { font-size: 0.85em; color: var(--subtext0); }
+.gs-prefs .rejected { text-decoration: line-through; color: var(--red); }
+.gs-prefs .current { color: var(--green); font-weight: bold; }
+.gs-status { font-size: 0.8em; margin-top: 0.25em; padding: 0.25em 0.5em; border-radius: 4px; display: inline-block; }
+.gs-status.proposing { background: var(--surface0); color: var(--blue); }
+.gs-status.maybe { background: var(--surface0); color: var(--teal); }
+.gs-status.matched { background: var(--surface0); color: var(--green); font-weight: bold; }
+.gs-controls { text-align: center; margin: 1.5em 0; }
+.gs-controls button { padding: 0.5em 1.5em; font-size: 1em; margin: 0 0.5em; cursor: pointer; border-radius: 6px; border: 1px solid var(--surface1); background: var(--surface0); color: var(--text); }
+.gs-controls button:hover { background: var(--surface1); }
+.gs-controls button:disabled { opacity: 0.5; cursor: not-allowed; }
+.gs-log { background: var(--mantle); border: 1px solid var(--surface1); border-radius: 6px; padding: 1em; max-height: 150px; overflow-y: auto; font-size: 0.9em; color: var(--text); }
+.gs-log-entry { margin: 0.25em 0; }
+.gs-day { font-weight: bold; color: var(--blue); margin-top: 0.5em; }
+.gs-day-label { margin-left: 1em; font-weight: bold; color: var(--subtext1); }
+</style>
+
+<div class="gs-container">
+  <div class="gs-controls">
+    <button onclick="gsReset()">Reset</button>
+    <button id="gs-step" onclick="gsStep()">Next Day →</button>
+    <span id="gs-day-label" class="gs-day-label"></span>
+  </div>
+
+  <div class="gs-columns">
+    <div class="gs-column">
+      <h4>Jobs (Proposers)</h4>
+      <div id="gs-jobs"></div>
+    </div>
+    <div class="gs-column">
+      <h4>Candidates (Receivers)</h4>
+      <div id="gs-candidates"></div>
+    </div>
+  </div>
+
+  <h4 style="margin-top: 1.5em; color: var(--text);">Algorithm Log</h4>
+  <div class="gs-log" id="gs-log"></div>
+</div>
+
+<script>
+(function() {
+  const jobs = ['Databricks', 'Ericsson', 'FedEx'];
+  const candidates = ['Annie', 'Bertha', 'Caro'];
+
+  const jobPrefs = {
+    'Databricks': ['Annie', 'Caro', 'Bertha'],
+    'Ericsson':   ['Caro', 'Annie', 'Bertha'],
+    'FedEx':      ['Annie', 'Caro', 'Bertha']
+  };
+  const candPrefs = {
+    'Annie':  ['Ericsson', 'FedEx', 'Databricks'],
+    'Bertha': ['FedEx', 'Ericsson', 'Databricks'],
+    'Caro':   ['FedEx', 'Ericsson', 'Databricks']
+  };
+
+  let state;
+
+  function initState() {
+    state = {
+      day: 0,
+      done: false,
+      jobPtr: {},
+      rejected: {},
+      candHolding: {},
+      log: []
+    };
+    jobs.forEach(j => { state.jobPtr[j] = 0; state.rejected[j] = new Set(); });
+    candidates.forEach(c => { state.candHolding[c] = null; });
+  }
+
+  function render() {
+    document.getElementById('gs-day-label').textContent =
+      state.day === 0 ? 'Click "Next Day" to start' :
+      state.done ? 'Algorithm complete!' : `Day ${state.day}`;
+
+    let jobsHtml = '';
+    jobs.forEach(j => {
+      const prefs = jobPrefs[j].map((c, i) => {
+        let cls = '';
+        if (state.rejected[j].has(c)) cls = 'rejected';
+        else if (state.candHolding[c] === j) cls = 'current';
+        return `<span class="${cls}">${c}</span>`;
+      }).join(' > ');
+
+      let status = '';
+      const match = Object.entries(state.candHolding).find(([c, held]) => held === j);
+      if (state.done && match) {
+        status = `<div class="gs-status matched">Matched: ${match[0]}</div>`;
+      } else if (match) {
+        status = `<div class="gs-status maybe">Held by: ${match[0]}</div>`;
+      }
+
+      jobsHtml += `<div class="gs-entity">
+        <div class="gs-entity-name">${j}</div>
+        <div class="gs-prefs">Prefs: ${prefs}</div>
+        ${status}
+      </div>`;
+    });
+    document.getElementById('gs-jobs').innerHTML = jobsHtml;
+
+    let candsHtml = '';
+    candidates.forEach(c => {
+      const prefs = candPrefs[c].map(j => {
+        let cls = state.candHolding[c] === j ? 'current' : '';
+        return `<span class="${cls}">${j}</span>`;
+      }).join(' > ');
+
+      let status = '';
+      if (state.done && state.candHolding[c]) {
+        status = `<div class="gs-status matched">Matched: ${state.candHolding[c]}</div>`;
+      } else if (state.candHolding[c]) {
+        status = `<div class="gs-status maybe">Holding: ${state.candHolding[c]}</div>`;
+      }
+
+      candsHtml += `<div class="gs-entity">
+        <div class="gs-entity-name">${c}</div>
+        <div class="gs-prefs">Prefs: ${prefs}</div>
+        ${status}
+      </div>`;
+    });
+    document.getElementById('gs-candidates').innerHTML = candsHtml;
+
+    document.getElementById('gs-log').innerHTML = state.log.join('');
+    document.getElementById('gs-log').scrollTop = document.getElementById('gs-log').scrollHeight;
+
+    document.getElementById('gs-step').disabled = state.done;
+  }
+
+  window.gsStep = function() {
+    if (state.done) return;
+    state.day++;
+    state.log.push(`<div class="gs-day">Day ${state.day}</div>`);
+
+    const offers = {};
+    candidates.forEach(c => offers[c] = []);
+
+    jobs.forEach(j => {
+      while (state.jobPtr[j] < jobPrefs[j].length &&
+             state.rejected[j].has(jobPrefs[j][state.jobPtr[j]])) {
+        state.jobPtr[j]++;
+      }
+      if (state.jobPtr[j] < jobPrefs[j].length) {
+        const c = jobPrefs[j][state.jobPtr[j]];
+        offers[c].push(j);
+        state.log.push(`<div class="gs-log-entry">📤 ${j} proposes to ${c}</div>`);
+      }
+    });
+
+    let anyRejection = false;
+    candidates.forEach(c => {
+      const allOffers = [...offers[c]];
+      if (state.candHolding[c] && !allOffers.includes(state.candHolding[c])) {
+        allOffers.push(state.candHolding[c]);
+      }
+
+      if (allOffers.length === 0) return;
+
+      let best = null;
+      let bestRank = Infinity;
+      allOffers.forEach(j => {
+        const rank = candPrefs[c].indexOf(j);
+        if (rank < bestRank) { bestRank = rank; best = j; }
+      });
+
+      allOffers.forEach(j => {
+        if (j !== best) {
+          state.rejected[j].add(c);
+          anyRejection = true;
+          state.log.push(`<div class="gs-log-entry">❌ ${c} rejects ${j}</div>`);
+        }
+      });
+
+      if (state.candHolding[c] !== best) {
+        state.log.push(`<div class="gs-log-entry">✅ ${c} holds ${best}</div>`);
+      }
+      state.candHolding[c] = best;
+    });
+
+    if (!anyRejection) {
+      state.done = true;
+      state.log.push(`<div class="gs-log-entry" style="color: var(--green); font-weight: bold;">🎉 No rejections — stable matching found!</div>`);
+    }
+
+    render();
+  };
+
+  window.gsReset = function() {
+    initState();
+    render();
+  };
+
+  initState();
+  render();
+})();
+</script>
+</div>
+</div>
+<div id="outline-container-orgad82879" class="outline-2">
+<h2 id="orgad82879"><span class="section-number-2">3.</span> Analysis</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+There are three questions that we need to answer in order to verify this algorithm:
+</p>
+
+<ol class="org-ol">
+<li>Does the algorithm always <i>terminate</i>?</li>
+<li>Does it always output a <i>matching</i>?</li>
+<li>Is the matching always <i>stable</i>?</li>
+</ol>
+</div>
+<div id="outline-container-org15e465e" class="outline-3">
+<h3 id="org15e465e"><span class="section-number-3">3.1.</span> Termination</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<b>Theorem:</b> The algorithm always terminates.
+</p>
+
+<p>
+<b>Proof:</b> On every day when the algorithm doesn't terminate, at least one candidate is crossed off a job's list. Since the total length of all the lists is \(n^2\), this means the algorithm must terminate in at most \(n^2\) iterations (days).
+</p>
+</div>
+</div>
+<div id="outline-container-org08bd9f2" class="outline-3">
+<h3 id="org08bd9f2"><span class="section-number-3">3.2.</span> Improvement Lemma</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+At this point, it is helpful to introduce the following lemma, which we will call the <b>Improvement Lemma</b>:
+</p>
+
+<p>
+<b>Lemma:</b> Suppose job \(J\) offers to candidate \(C\) on day \(k\). Then on every day \(i \geq k\), \(C\) has on hold an offer from a job she likes at least as much as \(J\).
+</p>
+
+<p>
+<b>Proof:</b> We proceed by induction on the day \(i\), with \(i \geq k\). The base case of when \(i=k\) holds, as she will choose the best among her offers.
+</p>
+
+<p>
+Now suppose that the claim is true for some arbitrary \(i \geq k\). We would like to prove the claim for day \(i+1\). By our induction hypothesis, on day \(i\), \(C\) had an offer in hand from job \(J'\) which she likes at least as much as \(J\) (note that \(J'\) may be \(J\)). According to the algorithm, \(J'\) proposes to \(C\) again on day \(i+1\). Therefore, at the end of day \(i+1\), \(C\) will have in hand either \(J'\) or an offer from a job she likes even more: in both cases, she likes this job at least as much as \(J\). This completes the inductive step, and we are done. \(\square\)
+</p>
+</div>
+</div>
+<div id="outline-container-org650e688" class="outline-3">
+<h3 id="org650e688"><span class="section-number-3">3.3.</span> Matching</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+<b>Theorem:</b> The algorithm always outputs a matching.
+</p>
+
+<p>
+<b>Proof:</b> We proceed by contradiction. Suppose that some job \(J\) is not matched at the end of the algorithm.
+</p>
+
+<p>
+Then \(J\) must have made an offer to every candidate — and got rejected. By the Improvement Lemma, every candidate therefore has an offer at termination. So, \(n\) candidates have offers from \(n-1\) jobs, which is a contradiction! \(\square\)
+</p>
+</div>
+</div>
+<div id="outline-container-org27cd6f0" class="outline-3">
+<h3 id="org27cd6f0"><span class="section-number-3">3.4.</span> Stability</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+<b>Theorem:</b> The output matching is always stable.
+</p>
+
+<p>
+<b>Proof:</b> Suppose that the output matching is:
+</p>
+
+\begin{align}
+\mathcal{M} = \{ \dots (J, C), \dots , (J',C'), \dots \} \notag
+\end{align}
+
+<p>
+and \(J\) likes \(C'\) more than \(C\).
+</p>
+
+<p>
+By the algorithm, \(J\) proposed to \(C'\) before proposing to \(C\), and got rejected. By the Improvement Lemma, \(C'\) must like \(J'\) at least as much as \(J\), and therefore they are not a rogue couple. Since \(J\) and \(C'\) were arbitrary, we know that there does not exist any rogue couples. \(\square\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2887bd4" class="outline-2">
+<h2 id="org2887bd4"><span class="section-number-2">4.</span> Optimality</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The thing is, there may be <i>multiple stable matchings</i> for a problem. In other words, we can define some level of optimality to the stable matching our algorithm finds. In fact, it appears that the algorithm favors the party that is proposing, and disadvantages the party that is doing the rejecting.
+</p>
+
+<p>
+More specifically, for a job \(J\), the <b>optimal</b> candidate for \(J\) is the best candidate \(J\) has in <i>any</i> stable matching. It follows that the <b>job-optimal matching</b> is the stable matching in which each job is matched with its optimal candidate.
+</p>
+
+<p>
+<b>Theorem:</b> The matching output of the algorithm is job-optimal.
+</p>
+
+<p>
+<b>Proof:</b> It is sufficient to prove that \(\forall k \geq 0 \: P(k)\), where \(P(k)\) means that on day \(k\), no job gets rejected by its optimal candidate — in other words, each job ends up with its optimal candidate. We proceed by induction on \(k\).
+</p>
+
+<p>
+The base case \(k=0\) is true since there are no rejections on day 0.
+</p>
+
+<p>
+Next, suppose that there are no such rejections of the job's optimal candidate through day \(k\). We now want to prove that the same happens on day \(k+1\).
+</p>
+
+<p>
+Suppose for contradiction that job \(J\) gets rejected by its optimal candidate \(C^*\) in favor for some job \(J^*\). Since \(C^*\) is optimal for \(J\), there exists a stable matching as follows:
+</p>
+
+\begin{align}
+\mathcal{M} = \{ \dots (J, C^*), \dots , (J^*, C), \dots \} \notag
+\end{align}
+
+<p>
+We know that \(C^*\) prefers \(J^*\) to \(J\) because \(J\) was rejected in favor of \(J^*\). By the inductive hypothesis, \(J^*\) has not yet been rejected by its optimal candidate. Hence, since \(J^*\) is offering to \(C^*\) now, \(J^*\) must like \(C^*\) at least as much as its optimal candidate, hence at least as much as \(C\). But \(C\) is supposed to be the optimal candidate for \(J^*\), which is a contradiction! Therefore, the algorithm must always output the job-optimal matching. \(\square\)
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-01-29 22:16
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
