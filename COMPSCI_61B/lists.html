@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-30 Fri 14:00 -->
+<!-- 2026-02-02 Mon 14:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lists</title>
@@ -95,6 +95,7 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#orgf6fc516">1. IntList</a></li>
+<li><a href="#org152e578">2. SLList</a></li>
 </ul>
 </div>
 </div>
@@ -151,7 +152,103 @@ We can construct a very basic <a href="../COMPSCI_61A/linked_lists.html#orge476c
 </code></pre>
 
 <p>
-The implementation of an <code>IntList</code> is simple, but it takes a lot of effort to go through and index elements.
+The implementation of an <code>IntList</code> is simple, but it takes a lot of effort to go through and index elements. Additionally, when we are creating new elements in our list, we have to know
+the implementation of the list itself: the linked list structure.
+</p>
+</div>
+</div>
+<div id="outline-container-org152e578" class="outline-2">
+<h2 id="org152e578"><span class="section-number-2">2.</span> SLList</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+An <code>SLList</code> is similar to an <code>IntList</code>, but we abstract away the linked list structure by wrapping
+our list class around a system of nodes:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">IntNode</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">item</span>;
+    <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">next</span>;
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">IntNode</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">item</span>, <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">next</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">this</span>.item = item;
+        <span style="color: #cba6f7;">this</span>.next = next;
+    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Then we can create methods that use these nodes:
+</p>
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">SLList</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">first</span>;
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">size</span>;
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">SLList</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">first</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        tihs.first = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #f9e2af;">(</span>first, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+        <span style="color: #cba6f7;">this</span>.size = 1;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">/** Adds x to the front of this list. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addFirst</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        first = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #f9e2af;">(</span>x, first<span style="color: #f9e2af;">)</span>;
+        size += 1;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">/** Adds x to the end of this list. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addLast</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        size += 1;
+        <span style="color: #6c7086;">// </span><span style="color: #6c7086;">special case: null pointer when list is empty
+</span>        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>first == <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            first = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #a6e3a1;">(</span>x, <span style="color: #fab387;">null</span><span style="color: #a6e3a1;">)</span>;
+            <span style="color: #cba6f7;">return</span>;
+        <span style="color: #f9e2af;">}</span>
+        <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">current</span> = first;
+        <span style="color: #cba6f7;">while</span> <span style="color: #f9e2af;">(</span>current.next != <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            current = current.next;
+        <span style="color: #f9e2af;">}</span>
+        current.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #f9e2af;">(</span>x, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">node</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>i == 0<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">return</span> node.item;
+        <span style="color: #f9e2af;">}</span>
+        <span style="color: #cba6f7;">return</span> get<span style="color: #f9e2af;">(</span>node.next, i - 1<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">/** Return the int at index i in the list. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        get<span style="color: #f9e2af;">(</span>first, i<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Notice that we have a special case that we have to remember when we implement <code>addLast</code>: it fails
+if the list is empty, so we need to first check if it is null or not.
+</p>
+
+<p>
+In order to remove this special case, we can add a <b>sentinel node</b> that is always there,
+regardless of whether the list is empty or not. This means that <code>first</code> will never be null:
+</p>
+
+<pre><code class="language-java"><span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">sentinel</span>;
+
+<span style="color: #cba6f7;">public</span> SLList<span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+    sentinel = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #fab387;">(</span>0, <span style="color: #fab387;">null</span><span style="color: #fab387;">)</span>;
+    size = 0;
+<span style="color: #f38ba8;">}</span>
+
+<span style="color: #cba6f7;">public</span> SLList<span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">first</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">this</span>.sentinel = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #fab387;">(</span>0, <span style="color: #fab387;">null</span><span style="color: #fab387;">)</span>;
+    sentinel.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #fab387;">(</span>first, <span style="color: #fab387;">null</span><span style="color: #fab387;">)</span>;
+    size = 1;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+And we would have to change all the other methods to take into account this sentinel node.
 </p>
 </div>
 </div>
@@ -162,7 +259,7 @@ The implementation of an <code>IntList</code> is simple, but it takes a lot of e
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-01-30 13:59
+               Last modified: 2026-02-02 13:52
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-30 Fri 14:00 -->
+<!-- 2026-02-02 Mon 14:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java</title>
@@ -136,9 +136,12 @@
 <ul>
 <li><a href="#org7fadb47">8.1. Accessing Classes</a></li>
 <li><a href="#org9853474">8.2. Static</a></li>
+<li><a href="#org5cc1d8e">8.3. Access Control</a></li>
+<li><a href="#orgaba2848">8.4. Nested Classes</a></li>
 </ul>
 </li>
-<li><a href="#org65ff7ea">9. Packages</a></li>
+<li><a href="#orgfda493f">9. Enums</a></li>
+<li><a href="#org65ff7ea">10. Packages</a></li>
 </ul>
 </div>
 </div>
@@ -377,6 +380,7 @@ matrix = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">
    m.put<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"cat"</span>, 103<span style="color: #fab387;">)</span>;
    m.put<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"dog"</span>, 5<span style="color: #fab387;">)</span>;
    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">numCats</span> = m.get<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"cat"</span><span style="color: #fab387;">)</span>;
+   <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">noEntry</span> = m.getOrDefault<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"fish"</span>, 0<span style="color: #fab387;">)</span>;
    System.out.println<span style="color: #fab387;">(</span>m.size<span style="color: #f9e2af;">()</span><span style="color: #fab387;">)</span>;
    <span style="color: #cba6f7;">if</span> <span style="color: #fab387;">(</span>m.containsKey<span style="color: #f9e2af;">(</span><span style="color: #a6e3a1;">"cat"</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
        System.out.println<span style="color: #f9e2af;">(</span><span style="color: #a6e3a1;">"cat in map"</span><span style="color: #f9e2af;">)</span>;
@@ -489,10 +493,55 @@ Classes can also have static variables, which similarly can also be always acces
 </p>
 </div>
 </div>
+<div id="outline-container-org5cc1d8e" class="outline-3">
+<h3 id="org5cc1d8e"><span class="section-number-3">8.3.</span> Access Control</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+We can restrict access to classes and class variables by using the <code>private</code> keyword instead of
+<code>public</code>. By setting something as <code>private</code>, we restrict the use of that item to within the class.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaba2848" class="outline-3">
+<h3 id="orgaba2848"><span class="section-number-3">8.4.</span> Nested Classes</h3>
+<div class="outline-text-3" id="text-8-4">
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">SLList</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">IntNode</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">item</span>;
+        <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">next</span>;
+
+        <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">IntNode</span><span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">item</span>, <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">next</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">this</span>.item = item;
+            <span style="color: #cba6f7;">this</span>.next = next;
+        <span style="color: #f9e2af;">}</span>
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">first</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">SLList</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">first</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        tihs.first = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #f9e2af;">(</span>first, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">...
+</span><span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfda493f" class="outline-2">
+<h2 id="orgfda493f"><span class="section-number-2">9.</span> Enums</h2>
+<div class="outline-text-2" id="text-9">
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">enum</span> <span style="color: #f9e2af;">Direction</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cdd6f4;">UP</span>,
+    <span style="color: #cdd6f4;">DOWN</span>,
+    <span style="color: #cdd6f4;">LEFT</span>,
+    <span style="color: #cdd6f4;">RIGHT</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
 </div>
 <div id="outline-container-org65ff7ea" class="outline-2">
-<h2 id="org65ff7ea"><span class="section-number-2">9.</span> Packages</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org65ff7ea"><span class="section-number-2">10.</span> Packages</h2>
+<div class="outline-text-2" id="text-10">
 <p>
 Java does not allow us to have two classes with the same name in a project, because when we reference its name, it does not know which one we are referring to. However, if we add a <code>package</code>, we change the <b>canonical name</b> to have the package name in front of the class.
 </p>
@@ -509,7 +558,7 @@ Additionally, Java won't look at every folder on your computer. Instead, it look
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-01-30 13:21
+               Last modified: 2026-02-02 13:34
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
