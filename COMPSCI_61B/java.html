@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-02 Mon 14:23 -->
+<!-- 2026-02-04 Wed 13:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java</title>
@@ -17,6 +17,73 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -99,6 +166,7 @@
 <ul>
 <li><a href="#orgc3447bb">2.1. Primitive Types</a></li>
 <li><a href="#org7ca22a0">2.2. Strings</a></li>
+<li><a href="#org57b1a5e">2.3. Generics</a></li>
 </ul>
 </li>
 <li><a href="#org203245f">3. Operators</a>
@@ -194,6 +262,28 @@ s += 5;                               <span style="color: #6c7086;">// </span><s
 <span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span> = 0; i &lt; s.length<span style="color: #fab387;">()</span>; i++<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
     <span style="color: #f9e2af;">char</span> <span style="color: #cdd6f4;">letter</span> = s.charAt<span style="color: #fab387;">(</span>i<span style="color: #fab387;">)</span>;
     System.out.println<span style="color: #fab387;">(</span>letter<span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org57b1a5e" class="outline-3">
+<h3 id="org57b1a5e"><span class="section-number-3">2.3.</span> Generics</h3>
+<div class="outline-text-3" id="text-2-3">
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">DLList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">sentinel</span>;
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">size</span>;
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Node</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">item</span>;
+        <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">next</span>;
+        <span style="color: #6c7086;">// </span><span style="color: #6c7086;">...
+</span>    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">...
+</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">main</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">DLList</span><span style="color: #f9e2af;">&lt;</span><span style="color: #f9e2af;">Integer</span><span style="color: #f9e2af;">&gt;</span> <span style="color: #cdd6f4;">d</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">DLList</span><span style="color: #f9e2af;">&lt;&gt;(</span>5<span style="color: #f9e2af;">)</span>;         <span style="color: #6c7086;">// </span><span style="color: #6c7086;">must use Integer wrapper class
+</span>    <span style="color: #fab387;">}</span>
 <span style="color: #f38ba8;">}</span>
 </code></pre>
 </div>
@@ -558,7 +648,7 @@ Additionally, Java won't look at every folder on your computer. Instead, it look
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-02 13:34
+               Last modified: 2026-02-04 13:49
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
