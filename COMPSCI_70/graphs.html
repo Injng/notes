@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-02-03 Tue 16:31 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Graphs</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Graphs</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org91af631">1. Graphs</a>
+<ul>
+<li><a href="#org17a63da">1.1. Terminology</a></li>
+<li><a href="#orgbd3e2f2">1.2. Eulerian Tours</a>
+<ul>
+<li><a href="#org8ac6ee4">1.2.1. Proof</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgad88375">2. Trees</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org91af631" class="outline-2">
+<h2 id="org91af631"><span class="section-number-2">1.</span> Graphs</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A <b>graph</b> \(G\) is a set of <b>vertices</b>, \(V\), connected by some amount of <b>edges</b>, \(E\), represented by:
+</p>
+
+\begin{align}
+G = (V, E) \notag
+\end{align}
+
+<p>
+We can represent a graph graphically like so:
+</p>
+
+<figure class="tikz-figure"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='122.68801pt' height='108.51581pt' viewBox='-70.007905 -70.007905 122.68801 108.51581'>
+<defs>
+<path id='g0-97' d='M5.678705-4.566874C5.71457-4.698381 5.71457-4.734247 5.71457-4.758157C5.71457-4.889664 5.618929-5.045081 5.403736-5.045081C5.021171-5.045081 4.937484-4.578829 4.937484-4.578829L4.925529-4.566874C4.698381-5.128767 4.291905-5.272229 3.969116-5.272229C2.666002-5.272229 1.291158-3.443088 1.291158-1.697634C1.291158-.633624 1.853051 .119552 2.666002 .119552C3.156164 .119552 3.646326-.191283 4.100623-.729265C4.23213 0 4.770112 .119552 5.045081 .119552C5.511333 .119552 5.750436-.227148 5.905853-.573848C6.109091-.992279 6.252553-1.673724 6.252553-1.709589C6.252553-1.817186 6.144956-1.817186 6.097136-1.817186C5.953674-1.817186 5.941719-1.80523 5.869988-1.530262C5.630884-.537983 5.403736-.119552 5.068991-.119552C4.805978-.119552 4.746202-.37061 4.746202-.597758C4.746202-.777086 4.794022-1.052055 4.841843-1.231382L5.678705-4.566874ZM4.172354-1.446575C4.100623-1.135741 3.383313-.119552 2.689913-.119552C2.056289-.119552 2.032379-1.052055 2.032379-1.195517C2.032379-1.793275 2.414944-3.203985 2.606227-3.682192C2.917061-4.423412 3.455044-5.033126 3.969116-5.033126C4.686426-5.033126 4.770112-3.969116 4.770112-3.88543C4.770112-3.873474 4.734247-3.741968 4.734247-3.718057L4.172354-1.446575Z'/>
+<path id='g0-98' d='M3.56264-8.021918C3.58655-8.105604 3.598506-8.141469 3.598506-8.177335C3.598506-8.284932 3.514819-8.296887 3.323537-8.284932L2.12802-8.177335C1.960648-8.16538 1.853051-8.153425 1.853051-7.938232C1.853051-7.81868 1.948692-7.81868 2.116065-7.81868C2.713823-7.81868 2.713823-7.711083 2.713823-7.591532C2.713823-7.531756 2.689913-7.44807 2.677958-7.388294L1.470486-2.546451C1.362889-2.116065 1.362889-1.80523 1.362889-1.673724C1.362889-.537983 1.936737 .119552 2.677958 .119552C4.016936 .119552 5.36787-1.745455 5.36787-3.455044C5.36787-4.495143 4.817933-5.272229 3.993026-5.272229C3.395268-5.272229 2.905106-4.794022 2.713823-4.60274L3.56264-8.021918ZM2.689913-.119552C2.15193-.119552 1.984558-.765131 1.984558-1.267248C1.984558-1.733499 2.116065-2.211706 2.379078-3.287671C2.414944-3.407223 2.438854-3.526775 2.47472-3.646326C2.594271-4.112578 3.323537-5.033126 3.957161-5.033126C4.387547-5.033126 4.614695-4.590785 4.614695-3.957161C4.614695-3.287671 4.208219-1.793275 3.969116-1.291158C3.550685-.454296 3.060523-.119552 2.689913-.119552Z'/>
+<path id='g0-99' d='M5.140722-4.459278C4.841843-4.447323 4.578829-4.220174 4.578829-3.93325C4.578829-3.634371 4.841843-3.574595 4.94944-3.574595C5.068991-3.574595 5.511333-3.646326 5.511333-4.267995C5.511333-4.829888 5.009215-5.272229 4.27995-5.272229C2.82142-5.272229 1.315068-3.58655 1.315068-1.817186C1.315068-.597758 2.044334 .119552 3.000747 .119552C4.483188 .119552 5.463512-1.08792 5.463512-1.255293C5.463512-1.338979 5.36787-1.43462 5.296139-1.43462C5.260274-1.43462 5.248319-1.422665 5.152677-1.315068C4.519054-.454296 3.622416-.119552 3.012702-.119552S2.080199-.657534 2.080199-1.362889C2.080199-1.912827 2.367123-3.227895 2.761644-3.90934C3.16812-4.62665 3.753923-5.033126 4.267995-5.033126C4.339726-5.033126 4.97335-5.033126 5.140722-4.459278Z'/>
+<path id='g0-100' d='M6.539477-8.021918C6.551432-8.093649 6.575342-8.141469 6.575342-8.177335C6.575342-8.284932 6.491656-8.296887 6.300374-8.284932L5.104857-8.177335C4.937484-8.16538 4.829888-8.153425 4.829888-7.938232C4.829888-7.81868 4.925529-7.81868 5.092902-7.81868C5.69066-7.81868 5.69066-7.711083 5.69066-7.591532C5.69066-7.531756 5.66675-7.436115 5.654795-7.388294L4.94944-4.542964C4.782067-4.925529 4.483188-5.272229 3.969116-5.272229C2.666002-5.272229 1.291158-3.443088 1.291158-1.697634C1.291158-.633624 1.853051 .119552 2.666002 .119552C3.156164 .119552 3.646326-.191283 4.100623-.729265C4.23213 0 4.770112 .119552 5.045081 .119552C5.511333 .119552 5.750436-.227148 5.905853-.573848C6.109091-.992279 6.252553-1.673724 6.252553-1.709589C6.252553-1.817186 6.144956-1.817186 6.097136-1.817186C5.953674-1.817186 5.941719-1.80523 5.869988-1.530262C5.630884-.537983 5.403736-.119552 5.068991-.119552C4.805978-.119552 4.746202-.37061 4.746202-.597758C4.746202-.753176 4.805978-1.08792 4.841843-1.243337L6.539477-8.021918ZM4.184309-1.470486C4.100623-1.147696 3.383313-.119552 2.689913-.119552C2.056289-.119552 2.032379-1.052055 2.032379-1.195517C2.032379-1.793275 2.414944-3.203985 2.606227-3.682192C2.917061-4.423412 3.455044-5.033126 3.969116-5.033126C4.698381-5.033126 4.770112-3.921295 4.770112-3.88543L4.734247-3.718057L4.184309-1.470486Z'/>
+<path id='g0-101' d='M2.749689-2.773599C3.16812-2.773599 5.415691-2.773599 5.415691-4.27995C5.415691-4.817933 4.97335-5.272229 4.267995-5.272229C3.024658-5.272229 1.362889-4.052802 1.362889-1.948692C1.362889-.74122 1.984558 .119552 3.000747 .119552C4.483188 .119552 5.463512-1.08792 5.463512-1.255293C5.463512-1.338979 5.36787-1.43462 5.296139-1.43462C5.260274-1.43462 5.248319-1.422665 5.152677-1.315068C4.519054-.454296 3.622416-.119552 3.012702-.119552C2.223661-.119552 2.116065-1.06401 2.116065-1.446575C2.116065-1.972603 2.199751-2.307347 2.319303-2.773599H2.749689ZM2.391034-3.012702C2.86924-4.913574 4.040847-5.033126 4.25604-5.033126C4.734247-5.033126 5.009215-4.698381 5.009215-4.291905C5.009215-3.012702 3.024658-3.012702 2.642092-3.012702H2.391034Z'/>
+</defs>
+<g id='page1'>
+<path d='M-12.9141-58.2734C-12.9141-64.5352-17.9922-69.6094-24.2539-69.6094S-35.5937-64.5352-35.5937-58.2734C-35.5937-52.0078-30.5156-46.9336-24.2539-46.9336S-12.9141-52.0078-12.9141-58.2734Z' stroke='#000' fill='none' stroke-width='.79701'/>
+<g transform='matrix(1 0 0 1 31.0272 -82.4667)'>
+<use x='-58.270408' y='26.768925' xlink:href='#g0-97'/>
+</g>
+<path d='M-46.9336-24.2539C-46.9336-30.5195-52.00781-35.5937-58.26953-35.5937C-64.53125-35.5937-69.6094-30.5195-69.6094-24.2539C-69.6094-17.9922-64.53125-12.918-58.26953-12.918C-52.00781-12.918-46.9336-17.9922-46.9336-24.2539Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -2.69 -48.4506)'>
+<use x='-58.270408' y='26.768925' xlink:href='#g0-101'/>
+</g>
+<path d='M52.2816-24.2539C52.2816-30.5195 47.2066-35.5937 40.9453-35.5937C34.6797-35.5937 29.6055-30.5195 29.6055-24.2539C29.6055-17.9922 34.6797-12.918 40.9453-12.918C47.2066-12.918 52.2816-17.9922 52.2816-24.2539Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 96.5238 -46.8732)'>
+<use x='-58.270408' y='26.768925' xlink:href='#g0-98'/>
+</g>
+<path d='M-18.5859 26.769531C-18.5859 20.50781-23.6602 15.4297-29.9219 15.4297C-36.1875 15.4297-41.2617 20.50781-41.2617 26.769531C-41.2617 33.03125-36.1875 38.1094-29.9219 38.1094C-23.6602 38.1094-18.5859 33.03125-18.5859 26.769531Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 25.358 4.1511)'>
+<use x='-58.270408' y='26.768925' xlink:href='#g0-100'/>
+</g>
+<path d='M32.4375 26.769531C32.4375 20.50781 27.3633 15.4297 21.1016 15.4297C14.8398 15.4297 9.7617 20.50781 9.7617 26.769531C9.7617 33.03125 14.8398 38.1094 21.1016 38.1094C27.3633 38.1094 32.4375 33.03125 32.4375 26.769531Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 76.6812 2.5737)'>
+<use x='-58.270408' y='26.768925' xlink:href='#g0-99'/>
+</g>
+<path d='M-32.5547-49.9727L-49.97266-32.5547' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-25.0352-46.5625L-29.1445 15.0586' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-46.5312-24.2539H29.207' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M36.6914-13.3164L25.3555 15.832' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M9.3633 26.769531H-18.1875' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+</g>
+</svg></figure><p>
+Algebraically, the above graph would be:
+</p>
+
+\begin{align}
+V &= \{ a, b, c, d ,e \} \notag \\
+E &= \{\{a, e\}, \{a, d\}, \{d, c\}, \{c, b\}. \{b, e\}\} \notag
+\end{align}
+</div>
+<div id="outline-container-org17a63da" class="outline-3">
+<h3 id="org17a63da"><span class="section-number-3">1.1.</span> Terminology</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+There is some helpful terminology that we use when we are talking about graphs. Given the following two nodes \(u\) and \(v\) connected by an edge \(e\):
+</p>
+
+<figure class="tikz-figure"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='108.51581pt' height='23.47671pt' viewBox='-70.007905 -69.558705 108.51581 23.47671'>
+<defs>
+<path id='g0-117' d='M5.989539-4.62665C6.03736-4.794022 6.03736-4.817933 6.03736-4.865753C6.03736-5.045081 5.893898-5.152677 5.738481-5.152677C5.403736-5.152677 5.308095-4.853798 5.272229-4.686426L4.411457-1.231382C4.411457-1.219427 4.411457-1.099875 4.387547-1.0401C4.148443-.537983 3.706102-.119552 3.156164-.119552C2.618182-.119552 2.510585-.657534 2.510585-1.052055C2.510585-1.769365 2.929016-2.905106 3.203985-3.670237C3.299626-3.945205 3.359402-4.100623 3.359402-4.339726C3.359402-4.817933 3.072478-5.272229 2.486675-5.272229C1.398755-5.272229 .992279-3.514819 .992279-3.443088C.992279-3.335492 1.099875-3.335492 1.159651-3.335492C1.303113-3.335492 1.315068-3.371357 1.362889-3.53873C1.458531-3.897385 1.769365-5.033126 2.462765-5.033126C2.606227-5.033126 2.737733-4.97335 2.737733-4.686426C2.737733-4.387547 2.618182-4.076712 2.367123-3.383313C1.984558-2.319303 1.829141-1.709589 1.829141-1.243337C1.829141-.167372 2.534496 .119552 3.120299 .119552C3.622416 .119552 4.040847-.119552 4.423412-.597758C4.554919-.131507 4.925529 .119552 5.34396 .119552C5.810212 .119552 6.049315-.227148 6.204732-.573848C6.40797-.992279 6.551432-1.673724 6.551432-1.709589C6.551432-1.817186 6.443836-1.817186 6.396015-1.817186C6.252553-1.817186 6.240598-1.80523 6.168867-1.530262C5.929763-.537983 5.702615-.119552 5.36787-.119552C5.104857-.119552 5.045081-.37061 5.045081-.597758C5.045081-.777086 5.092902-1.052055 5.140722-1.231382L5.989539-4.62665Z'/>
+<path id='g0-118' d='M5.786301-4.507098C5.786301-5.116812 5.547198-5.272229 5.332005-5.272229C5.104857-5.272229 4.805978-5.045081 4.805978-4.770112C4.805978-4.662516 4.829888-4.60274 4.937484-4.483188C5.212453-4.160399 5.248319-3.718057 5.248319-3.526775C5.248319-3.21594 4.698381-.119552 3.299626-.119552C2.689913-.119552 2.52254-.645579 2.52254-1.123786C2.52254-1.817186 2.929016-2.929016 3.203985-3.658281C3.299626-3.945205 3.359402-4.100623 3.359402-4.339726C3.359402-4.817933 3.072478-5.272229 2.486675-5.272229C1.398755-5.272229 .992279-3.514819 .992279-3.443088C.992279-3.335492 1.099875-3.335492 1.159651-3.335492C1.303113-3.335492 1.315068-3.371357 1.362889-3.53873C1.458531-3.897385 1.769365-5.033126 2.462765-5.033126C2.606227-5.033126 2.737733-4.97335 2.737733-4.686426C2.737733-4.387547 2.618182-4.076712 2.367123-3.383313C1.888917-2.056289 1.841096-1.625903 1.841096-1.291158C1.841096-.071731 2.749689 .119552 3.251806 .119552C5.236364 .119552 5.786301-4.196264 5.786301-4.507098Z'/>
+<path id='g1-101' d='M4.578829-2.773599C4.841843-2.773599 4.865753-2.773599 4.865753-3.000747C4.865753-4.208219 4.220174-5.332005 2.773599-5.332005C1.41071-5.332005 .358655-4.100623 .358655-2.618182C.358655-1.0401 1.578082 .119552 2.905106 .119552C4.327771 .119552 4.865753-1.171606 4.865753-1.422665C4.865753-1.494396 4.805978-1.542217 4.734247-1.542217C4.638605-1.542217 4.614695-1.482441 4.590785-1.422665C4.27995-.418431 3.478954-.143462 2.976837-.143462S1.267248-.478207 1.267248-2.546451V-2.773599H4.578829ZM1.279203-3.000747C1.374844-4.877709 2.426899-5.092902 2.761644-5.092902C4.040847-5.092902 4.112578-3.407223 4.124533-3.000747H1.279203Z'/>
+</defs>
+<g id='page1'>
+<path d='M-46.9336-57.820314C-46.9336-64.08203-52.00781-69.1602-58.26953-69.1602C-64.53125-69.1602-69.6094-64.08203-69.6094-57.820314C-69.6094-51.5586-64.53125-46.4805-58.26953-46.4805C-52.00781-46.4805-46.9336-51.5586-46.9336-57.820314Z' stroke='#000' fill='none' stroke-width='.79701'/>
+<g transform='matrix(1 0 0 1 -3.1383 2.5737)'>
+<use x='-58.270408' y='-57.820572' xlink:href='#g0-117'/>
+</g>
+<path d='M38.1094-57.820314C38.1094-64.08203 33.0313-69.1602 26.7695-69.1602C20.5078-69.1602 15.4297-64.08203 15.4297-57.820314C15.4297-51.5586 20.5078-46.4805 26.7695-46.4805C33.0313-46.4805 38.1094-51.5586 38.1094-57.820314Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 82.3504 2.5737)'>
+<use x='-58.270408' y='-57.820572' xlink:href='#g0-118'/>
+</g>
+<path d='M-46.5312-57.820314H15.0313' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 39.9188 -3.7191)'>
+<use x='-58.270408' y='-57.820572' xlink:href='#g1-101'/>
+</g>
+</g>
+</svg></figure><p>
+We call \(u\) and \(v\) <b>adjacent</b> or <b>neighbors</b>, and the edge \(e\) is <b>incident</b> on \(u\) and \(v\). The <b>degree</b> of \(v\) is defined as the number of neighbors it has, and if it has degree \(0\) then the node is called <b>isolated</b>.
+</p>
+
+<p>
+Graphs can either be <b>directed</b> or <b>undirected</b>. Directed graphs specify the direction of its edges, whereas undirected graphs do not. Notice that undirected graphs can be seen as a special case of a directed graph, just with each edge having a "pair" of directed edges both going out and in from a node. For directed graphs, we make a distinction between the <b>in-degree</b> and <b>out-degree</b> of a node.
+</p>
+
+<p>
+An undirected graph is <b>connected</b> if there is a path from any vertex to any other vertex. Any graph, connected or not, can be decomposed into <b>connected components</b>. For a directed graph, the term is <b>strongly connected</b> if there is a directed path from every vertex to every other vertex.
+</p>
+
+<p>
+A <b>path</b> is a sequence of edges that does not revisit a vertex.
+</p>
+
+<p>
+A <b>cycle</b> is a path where the first and last vertex are the same.
+</p>
+
+<p>
+A <b>walk</b> is any sequence of edges (more general version of a path).
+</p>
+
+<p>
+A <b>tour</b> is a walk where the first and last vertex are the same (more general version of cycle).
+</p>
+
+<p>
+The following table summarizes the above four terms:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">no repeated vertices</th>
+<th scope="col" class="org-left">no repeated edges</th>
+<th scope="col" class="org-left">start = end</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Walk</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Path</td>
+<td class="org-left">✓</td>
+<td class="org-left">✓</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Tour</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">✓</td>
+</tr>
+
+<tr>
+<td class="org-left">Cycle</td>
+<td class="org-left">✓</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">✓</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgbd3e2f2" class="outline-3">
+<h3 id="orgbd3e2f2"><span class="section-number-3">1.2.</span> Eulerian Tours</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Graph theory has its origins in a pastime of the residents of Königsberg, Prussia (present-day Kaliningrad, Russia). The city had two islands in the middle of the river that
+ran through the city, with bridges connecting the islands. The residents wanted to find a way to cross all seven existing bridges once (without repeating) and end up where they started. We can model this as a graph:
+</p>
+
+<figure class="tikz-figure"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='125.52368pt' height='84.00411pt' viewBox='-70.007875 -70.007905 125.52368 84.00411'>
+<g id='page1'>
+<path d='M-58.26953-28.003907C-58.26953-31.13672-60.80859-33.67578-63.941405-33.67578C-67.07031-33.67578-69.60937-31.13672-69.60937-28.003907C-69.60937-24.875-67.07031-22.33594-63.941405-22.33594C-60.80859-22.33594-58.26953-24.875-58.26953-28.003907Z' stroke='#000' fill='none' stroke-width='.79701'/>
+<path d='M-7.2461-62.0195C-7.2461-65.1523-9.7852-67.6914-12.9141-67.6914C-16.0469-67.6914-18.5859-65.1523-18.5859-62.0195C-18.5859-58.8906-16.0469-56.3516-12.9141-56.3516C-9.7852-56.3516-7.2461-58.8906-7.2461-62.0195Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-7.2461 6.0117C-7.2461 2.8789-9.7852 .3398-12.9141 .3398C-16.0469 .3398-18.5859 2.8789-18.5859 6.0117C-18.5859 9.1406-16.0469 11.6797-12.9141 11.6797C-9.7852 11.6797-7.2461 9.1406-7.2461 6.0117Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M55.1173-28.003907C55.1173-31.13672 52.5783-33.67578 49.4493-33.67578C46.3163-33.67578 43.7773-31.13672 43.7773-28.003907C43.7773-24.875 46.3163-22.33594 49.4493-22.33594C52.5783-22.33594 55.1173-24.875 55.1173-28.003907Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-63.273436-34.03516C-60.96875-54.8633-38.8477-69.6094-18.7383-63.7266' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-58.38281-30.44141C-40.6836-38.207-31.2812-44.4805-17.3047-57.8281' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-63.273436-21.97266C-60.96875-1.1484-38.8477 13.5977-18.7383 7.7148' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-58.38281-25.56641C-40.6836-17.8008-31.2812-11.5313-17.3047 1.8203' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-57.87109-28.003907H43.3793' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-7.5898-59.1172L44.1213-30.91016' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-7.5898 3.1055L44.1213-25.09766' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+</g>
+</svg></figure><p>
+The two nodes in the center are the islands. A tour that visits every edge exactly once and comes back to the same vertex that it started from is known as an <b>Eulerian tour</b>: a tour that traverses each edge exactly once.<abbr class="tooltip" title="Note that this is different from a cycle as an Eulerian tour can visit vertices more than once.">°</abbr>&emsp13;
+</p>
+
+<p>
+The answer is that it is <i>impossible</i> for this to work in Königsberg. Intuitively, it can be seen as since there is an odd number of bridges, there is no way for one to cross back after crossing to an island. Euler formalized this intuition in the following theorem:
+</p>
+
+<p>
+<b>Theorem (Euler 1736):</b> A connected graph has an Eulerian tour if and only if the degree of every vertex is even.
+</p>
+</div>
+<div id="outline-container-org8ac6ee4" class="outline-4">
+<h4 id="org8ac6ee4"><span class="section-number-4">1.2.1.</span> Proof</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+We now attempt to prove the above theorem. First, we must prove the forward direction of the if and only if statement: if a graph has an Eulerian tour, then the degree of every vertex is even.
+</p>
+
+<p>
+A tour must enter and exit every vertex in pairs. However, since we can only use one path once, they must do so on <i>different edges</i>. Therefore, edges must exist in "pairs" at each vertex, which means that the total number of edges at each vertex must be even.
+</p>
+
+<p>
+Now, we have to prove the reverse case: if each vertex in a graph has an even degree, then there must exist an Eulerian tour. To do so, assuming that all vertex degrees are even, we want to come up with some algorithm that always outputs an Eulerian tour given a graph that satisfies those conditions.
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org2b5c5fb"></a>Lemma<br />
+<div class="outline-text-5" id="text-1-2-1-1">
+<p>
+We start by proving the lemma that the following subroutine <code>FindTour</code> will always yield a tour that will not visit an edge more than once (not necessarily an Eulerian tour):
+</p>
+
+<pre><code class="language-txt">SUBROUTINE FindTour(G, s)
+START at s
+REPEAT
+  CHOOSE any untraversed edge incident on current vertex
+  TRAVERSE the edge
+UNTIL
+  stuck
+RETURN
+  the tour formed by the traversed edges
+</code></pre>
+
+<p>
+Since by definition the algorithm will only travel on untraversed edges, what we need to prove is that <code>FindTour(G, s)</code> will always get stuck at \(s\): in other words, it always ends up where it started.
+</p>
+
+<p>
+Realize that for any vertex \(v \neq s\), whenever our tour arrives at \(v\) it has used up an odd number of deges, which means there always exists an "escape" edge available.
+</p>
+
+<p>
+The only case where an escape edge is unavailable is at \(s\), because whenever the tour arrives back at \(s\) it hsa used up an even number of the edges incident to \(s\), so it can get stuck at \(s\). Since it must get stuck somewhere as there are only a finite number of edges, <i>it must get stuck at s</i>. Thus, we have proved the lemma.
+</p>
+</div>
+</li>
+<li><a id="orgf18bc3c"></a>Algorithm<br />
+<div class="outline-text-5" id="text-1-2-1-2">
+<p>
+We now introduce our final algorithm for finding an Eulerian tour:
+</p>
+
+<pre><code class="language-txt">ALGORITHM Euler(G, s)
+LET T = FindTour(G, s)
+REMOVE edges of T from G
+LET {G1, ..., Gk} = connected components of the remaining graph
+LET {s1, ..., sk} = first vertex of Gi visited by T
+OUTPUT Splice(T, Euler(G1, s1), ... Euler(Gk, sk))
+</code></pre>
+
+<p>
+The idea here is that we can use any subtour to break up a graph into connected components, and then recursively find tours for each component, and finally stitch them together to become an Eulerian tour:
+</p>
+
+
+<div id="org92312b5" class="figure">
+<p><img src="../static/COMPSCI_70/graphs1.png" alt="graphs1.png" />
+</p>
+</div>
+
+<p>
+We claim that this algorithm will always output a valid Eulerian tour for a connected graph with an even degree for every vertex. To prove this, we proceed via strong induction. The base case of edges \(m = 0\) holds, because then \(G\) is empty.
+</p>
+
+<p>
+Assuming that <code>Euler(G, s)</code> outputs an Eulerian tour in \(G\) for any even degree, connected graph with \(m \geq 0\) edges, we want to prove it does the same for a graph with \(m+1\) edges.
+</p>
+
+<p>
+Suppose that \(G\) has \(m+1\) edges. Recall that <code>T = FindTour(G,s)</code> will always output a tour, and therefore has an even degree at each vertex. Thus, when we remove the edges of \(T\) from \(G\), we end up with vertices that still have even degrees (since even minus even is still even) — but may be disconnected. Each connected component has less than \(m\) edges, and by our inductive hypothesis our algorithm outputs an Eulerian tour for each component. Then, splicing them together yields an Eulerian tour for \(G\).
+</p>
+
+<p>
+This concludes our inductive step, and we have proven that the algorithm outputs an Eulerian tour given a connected graph with an even degree for every vertex. Thus, we have proven that a connected graph has an Eulerian tour if and only if the degree of every vertex is even. \(\square\)
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgad88375" class="outline-2">
+<h2 id="orgad88375"><span class="section-number-2">2.</span> Trees</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+An undirected graph $G4 with \(n\) vertices is a <b>tree</b> if either of the following equivalent conditions holds:
+</p>
+
+<ol class="org-ol">
+<li>\(G\) is connected and contains no cycles.</li>
+<li>\(G\) is connected and has \(n-1\) edges.</li>
+</ol>
+
+<p>
+<b>Leaves</b> are nodes with degree \(1\). Oftentimes, trees are defined with a <b>root</b>, which also give us <b>levels</b>.
+</p>
+
+<p>
+Next, we would like to prove that the above conditions are equivalent.
+</p>
+
+<p>
+<b>Theorem:</b> \(G\) is connected and has \(n-1\) edges if and only if \(G\) is connected and has no cycles (the two statements are equivalent).
+</p>
+
+<p>
+<b>Proof:</b> First, we prove the forward case. We proceed by contradiction. Let \(G\) be connetced and have \(n-1\) edges. Suppose for contradiction that \(G\) contains a cycle. Then we can delete any edge of the cycle and the graph remains connected.
+</p>
+
+<p>
+So, we get a graph with only \(n-2\) edges that is connected. But, we need at least \(n-1\) edges to connect \(n\) vertices, so we have a contradiction!
+</p>
+
+<p>
+Next, we need to prove the reverse case: if \(G\) is connected and has no cycles, then \(G\) is connected and has \(n-1\) edges. We proceed by induction on \(n\).
+</p>
+
+<p>
+The base case \(n=1\) holds, as a graph with only one vertex has zero edges.
+</p>
+
+<p>
+Now, we assume that this is true for \(1 \leq n \leq k\), and we want to prove that it also holds for \(n = k+1\). Suppose that \(G\) has \(k+1\) vertices, connected, and with no cycles. Removing one vertex \(V\) from \(G\) results in a new graph \(G'\) that still has no cycles.
+</p>
+
+<p>
+\(G'\) now consists of connected components \(G'_1, G'_2, \dots, G'_l\), with \(G'_i\) having \(k_i\) vertices. By our inductive hypothesis, each connected component \(G'_i\) has no cycles, so it must have \(k_i-1\) edges. So \(G\) has \(\sum_{i=1}^l (k_i-1) + l = \sum_{i=1}^l k_i=k\) edges, and we are done. \(\square\)
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-02-03 16:31
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
