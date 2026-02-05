@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-03 Tue 09:45 -->
+<!-- 2026-02-04 Wed 20:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Complex Exponentials</title>
@@ -17,6 +17,73 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -131,6 +198,7 @@
 <li><a href="#orgf463596">1.1. Euler's Formula</a></li>
 </ul>
 </li>
+<li><a href="#orgc74a04a">2. DT Complex Exponentials</a></li>
 </ul>
 </div>
 </div>
@@ -228,6 +296,14 @@ But, this is just <a href="../PHYSICS_7A/circular_motion.html#orgd71c9d7">circul
 
 \begin{align}
 |\dot{x}(t)| = |ie^{it}| = 1 \notag
+\end{align}
+
+<p>
+More generally, a complex exponential of the following form moves at \(\omega\) radians per second:
+</p>
+
+\begin{align}
+\boxed{x(t) = e^{i\omega t}}
 \end{align}
 </div>
 <div id="outline-container-orgf463596" class="outline-3">
@@ -381,6 +457,37 @@ Adding and subtracting this with the original formula yields us the <b>inverse E
 </div>
 </div>
 </div>
+<div id="outline-container-orgc74a04a" class="outline-2">
+<h2 id="orgc74a04a"><span class="section-number-2">2.</span> DT Complex Exponentials</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We can write discrete-time complex exponentials in the following way:
+</p>
+
+\begin{align}
+\boxed{x[n] = e^{i\omega n} = \cos(\omega n) + i\sin(\omega n) \quad \forall n \in \mathbb{Z}}
+\end{align}
+
+<p>
+DT complex exponentials are \(2\pi\) periodic in \(\omega\), which means that \(e^{i(\omega + 2\pi)n} = e^{i\omega n}\). More generally, \(\omega\) determs the frequency at which the signal oscillates:
+</p>
+
+\begin{align}
+\omega &= 0 \Rightarrow x[n] = 1 \quad &\forall n \in \mathbb{Z} \notag \\
+\omega &= \pi \Rightarrow x[n] = (-1)^n \quad &\forall n \in \mathbb{Z} \notag
+\end{align}
+
+<p>
+When \(\omega = 0\), the signal oscillates the slowest (it is constant); on the other hand, \(\omega = \pi\) yields the fastest oscillating DT signal. We can categorize these frequencies as <b>low-frequency</b>, <b>high-frequency</b>, or <b>midband</b>:
+</p>
+
+
+<div id="org9bd731e" class="figure">
+<p><img src="../static/EECS_16A/complex_exponentials1.png" alt="complex_exponentials1.png" />
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -388,7 +495,7 @@ Adding and subtracting this with the original formula yields us the <b>inverse E
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-03 09:45
+               Last modified: 2026-02-04 20:36
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
