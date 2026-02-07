@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-04 Wed 13:58 -->
+<!-- 2026-02-06 Fri 23:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lists</title>
@@ -17,73 +17,6 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -359,7 +292,7 @@ Instead, a better topology would be for the sentinel node to point to both the f
 </p>
 
 
-<div id="orge35f410" class="figure">
+<div id="org96c2603" class="figure">
 <p><img src="../static/COMPSCI_61B/lists1.png" alt="lists1.png" />
 </p>
 </div>
@@ -393,6 +326,61 @@ This leaves us with one problem: it is slow to access items in the middle of the
 <p>
 We can take advantage of the fact that retrieval from any position of an array is very fast (this is because memory boxes are the same size). Perhaps we can implement a list based on an array, called an <b>array list</b> or <code>AList</code>.
 </p>
+
+<p>
+To do this, we can initialize a really large array, and bind each element in our list to that array. When we get to the end of the array, we can <b>resize</b> the array by creating a new array that is even bigger (double the size), and then copying over the elements from the first array to the new one.
+</p>
+
+<p>
+But then we also want our array to be <i>space efficient</i>: when we remove a lot of the items, we would also like our array to shrink in size. We can set objects to <code>null</code> when they are removed, so that Java's garbage collector can reduce memory for us.
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">AList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">T</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">items</span>;
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">size</span>;
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">AList</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        items = <span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">T</span><span style="color: #a6e3a1;">[]</span><span style="color: #f9e2af;">)</span> <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Object</span><span style="color: #f9e2af;">[</span>999<span style="color: #f9e2af;">]</span>;
+        size = 0;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">resize</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">capacity</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">T</span><span style="color: #f9e2af;">[]</span> <span style="color: #cdd6f4;">resized</span> = <span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">T</span><span style="color: #a6e3a1;">[]</span><span style="color: #f9e2af;">)</span> <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Object</span><span style="color: #f9e2af;">[</span>capacity<span style="color: #f9e2af;">]</span>;
+        <span style="color: #cba6f7;">for</span> <span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span> = 0; i &lt; size; i++<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            resized<span style="color: #a6e3a1;">[</span>i<span style="color: #a6e3a1;">]</span> = items<span style="color: #a6e3a1;">[</span>i<span style="color: #a6e3a1;">]</span>;
+        <span style="color: #f9e2af;">}</span>
+        items = resized;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addLast</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>size == items.length<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            resize<span style="color: #a6e3a1;">(</span>size * 2<span style="color: #a6e3a1;">)</span>;
+        <span style="color: #f9e2af;">}</span>
+        items<span style="color: #f9e2af;">[</span>size<span style="color: #f9e2af;">]</span> = x;
+        size += 1;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> items<span style="color: #f9e2af;">[</span>i<span style="color: #f9e2af;">]</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">size</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> size;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #89b4fa;">removeLast</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">returnItem</span> = getLast<span style="color: #f9e2af;">()</span>;
+        items<span style="color: #f9e2af;">[</span>size - 1<span style="color: #f9e2af;">]</span> = <span style="color: #fab387;">null</span>;
+        size -= 1;
+        <span style="color: #cba6f7;">return</span> returnItem;
+    <span style="color: #fab387;">}</span>
+
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Linked lists are still better than array lists for operations at the beginning of the array. Theoretically, if we wish to insert at the start, we would have to shift all of the elements back in the array.
+</p>
 </div>
 </div>
 </div>
@@ -402,7 +390,7 @@ We can take advantage of the fact that retrieval from any position of an array i
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-04 13:58
+               Last modified: 2026-02-06 13:52
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
