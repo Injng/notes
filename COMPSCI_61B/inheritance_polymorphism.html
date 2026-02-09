@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-02-09 Mon 14:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Inheritance and Polymorphism</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Inheritance and Polymorphism</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2c6771a">1. Inheritance</a>
+<ul>
+<li><a href="#org23aeba1">1.1. Interfaces</a>
+<ul>
+<li><a href="#orgd3b1fdc">1.1.1. Default Methods</a></li>
+</ul>
+</li>
+<li><a href="#org4f35c0c">1.2. Overrides</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2c6771a" class="outline-2">
+<h2 id="org2c6771a"><span class="section-number-2">1.</span> Inheritance</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In <a href="lists.html#orgcb078b8">lists</a>, we implemented many versions of a dynamic list. Say we wanted to implement a static method <code>longest</code> that would return the longest <code>String</code> in a list of strings. We can use <b>overloading</b> to achieve this for every type of list:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">String</span> <span style="color: #89b4fa;">longest</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">AList</span><span style="color: #fab387;">&lt;</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">&gt;</span> <span style="color: #cdd6f4;">list</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span><span style="color: #f38ba8;">}</span>
+
+<span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">String</span> <span style="color: #89b4fa;">longest</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">SLList</span><span style="color: #fab387;">&lt;</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">&gt;</span> <span style="color: #cdd6f4;">list</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span><span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+However, this quickly gets unwieldy the more &ldquo;types of lists&rdquo; you have: you need to copy-paste the same method over and over again for each new type of list, even though the fundamental method calls are the same.
+</p>
+
+<p>
+We can obtain some inspiration from languages. In languages, we have a concept of <b>hypernyms</b>: a word that serves as an umbrella term for many more specific terms. For example, &ldquo;dog&rdquo; is a hypernym of &ldquo;poodle,&rdquo; &ldquo;malamute,&rdquo; &ldquo;yorkie,&rdquo; etc. These subterms are known as <b>hyponyms</b> of &ldquo;dog.&rdquo;
+</p>
+</div>
+<div id="outline-container-org23aeba1" class="outline-3">
+<h3 id="org23aeba1"><span class="section-number-3">1.1.</span> Interfaces</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Java&rsquo;s analogue of hypernyms are <b>interfaces</b>. Since <code>AList</code> and <code>SLList</code> and clearly both lists, we can specify a <code>List61B</code> interface. The idea is that an interface specifies <i>what</i> a list is able to do, but not <i>how</i> it does it:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">interface</span> <span style="color: #f9e2af;">List61B</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Item</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addFirst</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Item</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addLast</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Item</span> <span style="color: #cdd6f4;">y</span><span style="color: #fab387;">)</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">Item</span> <span style="color: #89b4fa;">getFirst</span><span style="color: #fab387;">()</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">Item</span> <span style="color: #89b4fa;">getLast</span><span style="color: #fab387;">()</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">Item</span> <span style="color: #89b4fa;">removeLast</span><span style="color: #fab387;">()</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">Item</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">insert</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Item</span> <span style="color: #cdd6f4;">x</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">position</span><span style="color: #fab387;">)</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span>  <span style="color: #89b4fa;">size</span><span style="color: #fab387;">()</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Now, any class that <b>implements</b> this <code>List61B</code> interface must also implement these methods:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">AList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Item</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cba6f7;">implements</span> <span style="color: #f9e2af;">List61B</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Item</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span><span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Now, instead of having a lot of different <code>longest</code> methods, we can just write:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">String</span> <span style="color: #89b4fa;">longest</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">List61B</span><span style="color: #fab387;">&lt;</span><span style="color: #f9e2af;">String</span><span style="color: #fab387;">&gt;</span> <span style="color: #cdd6f4;">list</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">--snip --
+</span><span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+<div id="outline-container-orgd3b1fdc" class="outline-4">
+<h4 id="orgd3b1fdc"><span class="section-number-4">1.1.1.</span> Default Methods</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+We can also specify the implementation of methods in an interface using <b>default methods</b>. For example, we can git every <code>List61B</code> a <code>print</code> method like so:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">interface</span> <span style="color: #f9e2af;">List61B</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Item</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>    <span style="color: #cba6f7;">default</span> <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">print</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">for</span> <span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span> = 0; i &lt; size<span style="color: #a6e3a1;">()</span>; i += 1<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            System.out.print<span style="color: #a6e3a1;">(</span>get<span style="color: #74c7ec;">(</span>i<span style="color: #74c7ec;">)</span> + <span style="color: #a6e3a1;">" "</span><span style="color: #a6e3a1;">)</span>;
+        <span style="color: #f9e2af;">}</span>
+        System.out.println<span style="color: #f9e2af;">()</span>;
+    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4f35c0c" class="outline-3">
+<h3 id="org4f35c0c"><span class="section-number-3">1.2.</span> Overrides</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+If a subclass has a method with the exact same signature as in the superclass, we say the subclass <b>overrides</b> the method:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">AList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Item</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cba6f7;">implements</span> <span style="color: #f9e2af;">List61B</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Item</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>    <span style="color: #fab387;">@Override</span>          <span style="color: #6c7086;">// </span><span style="color: #6c7086;">optional, but provides useful compiler errors
+</span>    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addLast</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Item</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+This is different from overloading, which is when methods have the same name <i>but different signatures</i>.
+</p>
+
+<p>
+If a subclass implements an interface, that subclass <i>must override all of the functions not implemented in the interface</i>. This is because the interface relies on each subclass to actually implement its methods.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-02-09 13:44
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
