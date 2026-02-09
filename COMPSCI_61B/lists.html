@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-06 Fri 23:31 -->
+<!-- 2026-02-09 Mon 11:19 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Lists</title>
@@ -94,19 +94,145 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf6fc516">1. IntList</a></li>
-<li><a href="#org152e578">2. SLList</a></li>
-<li><a href="#org7f636ce">3. DLList</a></li>
-<li><a href="#org0bb36da">4. AList</a></li>
+<li><a href="#orgcb078b8">1. Lists</a>
+<ul>
+<li><a href="#orgf6fc516">1.1. IntList</a></li>
+<li><a href="#org152e578">1.2. SLList</a>
+<ul>
+<li><a href="#org8447477">1.2.1. Generics</a></li>
+<li><a href="#org0699476">1.2.2. Access Control</a></li>
+<li><a href="#org7875399">1.2.3. Sentinel Node</a></li>
+<li><a href="#org7855cbf">1.2.4. Bureaucracy and Caching Size</a></li>
+<li><a href="#org6671820">1.2.5. Implementation</a></li>
+</ul>
+</li>
+<li><a href="#org7f636ce">1.3. DLList</a>
+<ul>
+<li><a href="#org75616b4">1.3.1. Implementation</a></li>
+</ul>
+</li>
+<li><a href="#org0bb36da">1.4. AList</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<p>
-When we work with <a href="java.html#orgebc3ee4">arrays</a>, we are stuck with the amount of space we get on initialization. If we want to extend it to fit more variables, we must use a <b>list</b>.
-</p>
-<div id="outline-container-orgf6fc516" class="outline-2">
-<h2 id="orgf6fc516"><span class="section-number-2">1.</span> IntList</h2>
+<div id="outline-container-orgcb078b8" class="outline-2">
+<h2 id="orgcb078b8"><span class="section-number-2">1.</span> Lists</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+When we work with <a href="java.html#orgebc3ee4">arrays</a>, we are stuck with the amount of space we get on initialization. If we want to extend it to fit more variables, we must use a <b>list</b>. Specifically, we would like our list to have the following features:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Feature</th>
+<th scope="col" class="org-left"><code>IntList</code></th>
+<th scope="col" class="org-left"><code>SLList</code></th>
+<th scope="col" class="org-left"><code>DLList</code></th>
+<th scope="col" class="org-left"><code>AList</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Dynamic</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+</tr>
+
+<tr>
+<td class="org-left">Bureaucratic</td>
+<td class="org-left">❌</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+</tr>
+
+<tr>
+<td class="org-left">Access-controlled</td>
+<td class="org-left">❌</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast size access</td>
+<td class="org-left">❌</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+</tr>
+
+<tr>
+<td class="org-left">No null pointers</td>
+<td class="org-left">❌</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+</tr>
+
+<tr>
+<td class="org-left">Generic types</td>
+<td class="org-left">❌</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast start access</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast middle access</td>
+<td class="org-left">❌</td>
+<td class="org-left">❌</td>
+<td class="org-left">❌</td>
+<td class="org-left">✅</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast end access</td>
+<td class="org-left">❌</td>
+<td class="org-left">❌</td>
+<td class="org-left">✅</td>
+<td class="org-left">✅</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast insert everywhere</td>
+<td class="org-left">❌</td>
+<td class="org-left">❌</td>
+<td class="org-left">✅</td>
+<td class="org-left">❌</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-orgf6fc516" class="outline-3">
+<h3 id="orgf6fc516"><span class="section-number-3">1.1.</span> IntList</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 We can construct a very basic <a href="../COMPSCI_61A/linked_lists.html#orge476c01">linked list</a> of integers:
 </p>
@@ -136,15 +262,6 @@ We can construct a very basic <a href="../COMPSCI_61A/linked_lists.html#orge476c
         <span style="color: #cba6f7;">return</span> rest.get<span style="color: #f9e2af;">(</span>i - 1<span style="color: #f9e2af;">)</span>;
     <span style="color: #fab387;">}</span>
 
-    <span style="color: #6c7086;">/** Return a new list with the same ints, but incremented by 1. */</span>
-    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">IntList</span> <span style="color: #89b4fa;">incrementRecursiveNonDestructive</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
-        <span style="color: #f9e2af;">IntList</span> <span style="color: #cdd6f4;">newRest</span> = <span style="color: #fab387;">null</span>;
-        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>rest != <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
-            newRest = rest.incrementRecursiveNonDestructive<span style="color: #a6e3a1;">()</span>;
-        <span style="color: #f9e2af;">}</span>
-        <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntList</span><span style="color: #f9e2af;">(</span>first + 1, newRest<span style="color: #f9e2af;">)</span>;
-    <span style="color: #fab387;">}</span>
-
     <span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">main</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
         <span style="color: #f9e2af;">IntList</span> <span style="color: #cdd6f4;">myList</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntList</span><span style="color: #f9e2af;">(</span>67, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
         myList.rest = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntList</span><span style="color: #f9e2af;">(</span>6, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
@@ -154,63 +271,120 @@ We can construct a very basic <a href="../COMPSCI_61A/linked_lists.html#orge476c
 </code></pre>
 
 <p>
-The implementation of an <code>IntList</code> is simple, but it takes a lot of effort to go through and index elements. Additionally, when we are creating new elements in our list, we have to know
-the implementation of the list itself: the linked list structure.
+The implementation of an <code>IntList</code> is simple, but apart from being dynamically sized, it doesn&rsquo;t really have any of the features we want in our dynamic list. Let&rsquo;s solve some of these problems in <code>SLList</code>, a more advanced version of this linked list.
 </p>
 </div>
 </div>
-<div id="outline-container-org152e578" class="outline-2">
-<h2 id="org152e578"><span class="section-number-2">2.</span> SLList</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-org152e578" class="outline-3">
+<h3 id="org152e578"><span class="section-number-3">1.2.</span> SLList</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org8447477" class="outline-4">
+<h4 id="org8447477"><span class="section-number-4">1.2.1.</span> Generics</h4>
+<div class="outline-text-4" id="text-1-2-1">
 <p>
-A <b>singly-linked list</b>, or <code>SLList</code>, is similar to an <code>IntList</code>, but we abstract away the linked list structure by wrapping our list class around a system of nodes:
+A glaring problem of <code>IntList</code> is that it only stores integers. To solve this, we can use <a href="java.html#org57b1a5e">generics</a>:
 </p>
 
-<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">IntNode</span> <span style="color: #f38ba8;">{</span>
-    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">item</span>;
-    <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">next</span>;
-
-    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">IntNode</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">item</span>, <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">next</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
-        <span style="color: #cba6f7;">this</span>.item = item;
-        <span style="color: #cba6f7;">this</span>.next = next;
-    <span style="color: #fab387;">}</span>
-<span style="color: #f38ba8;">}</span>
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">SLList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">SLList</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">first</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>    <span style="color: #fab387;">}</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span><span style="color: #f38ba8;">}</span>
 </code></pre>
-
+</div>
+</div>
+<div id="outline-container-org0699476" class="outline-4">
+<h4 id="org0699476"><span class="section-number-4">1.2.2.</span> Access Control</h4>
+<div class="outline-text-4" id="text-1-2-2">
 <p>
-Then we can create methods that use these nodes:
+The next problem of <code>IntList</code> is that it exposes too much of its own interface to the user, which may cause problems. For example, <code>IntList</code> allows the user to manually go in and edit pointers to nodes of the linked list. To prevent this, we use the <code>private</code> access control and a nested class to hide this logic from the user:
 </p>
-<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">SLList</span> <span style="color: #f38ba8;">{</span>
-    <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">first</span>;
-    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">size</span>;
 
-    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">SLList</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">first</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
-        tihs.first = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #f9e2af;">(</span>first, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
-        <span style="color: #cba6f7;">this</span>.size = 1;
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">SLList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">private</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Node</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">item</span>;
+        <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">next</span>;
+
+        <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">Node</span><span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">item</span>, <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">next</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">this</span>.item = item;
+            <span style="color: #cba6f7;">this</span>.next = next;
+        <span style="color: #f9e2af;">}</span>
+    <span style="color: #fab387;">}</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">SLList</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">first</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>    <span style="color: #fab387;">}</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span><span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org7875399" class="outline-4">
+<h4 id="org7875399"><span class="section-number-4">1.2.3.</span> Sentinel Node</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+In <code>IntList</code>, we had to deal with the edge case that the first node might be <code>null</code>. This is very annoying, and we can solve this by introducing a <b>sentinel node</b>. We don&rsquo;t care what value the sentinel node holds (it is technically not &ldquo;part&rdquo; of our list), but it allows the first node to never be null. The sentinel node would then point to the first node in our list:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">SLList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">private</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Node</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">item</span>;
+        <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">next</span>;
+
+        <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">Node</span><span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">item</span>, <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">next</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">this</span>.item = item;
+            <span style="color: #cba6f7;">this</span>.next = next;
+        <span style="color: #f9e2af;">}</span>
     <span style="color: #fab387;">}</span>
 
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">sentinel</span>;
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">SLList</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        sentinel = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span><span style="color: #fab387;">null</span>, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">SLList</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">first</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        sentinel = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span><span style="color: #fab387;">null</span>, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+        sentinel.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span>first, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span><span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org7855cbf" class="outline-4">
+<h4 id="org7855cbf"><span class="section-number-4">1.2.4.</span> Bureaucracy and Caching Size</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+<code>IntList</code> also depends on the user to extend the list by modifying the pointers. We can use bureaucracy to make this easier by defining some convenient methods. Additionally, we can cache the value of <code>size</code> so we don&rsquo;t have to recompute it every time:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">SLList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">sentinel</span>;
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">size</span>;
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>
     <span style="color: #6c7086;">/** Adds x to the front of this list. */</span>
-    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addFirst</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
-        first = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #f9e2af;">(</span>x, first<span style="color: #f9e2af;">)</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addFirst</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
         size += 1;
+        sentinel.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span>x, sentinel.next<span style="color: #f9e2af;">)</span>;
     <span style="color: #fab387;">}</span>
 
     <span style="color: #6c7086;">/** Adds x to the end of this list. */</span>
-    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addLast</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addLast</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
         size += 1;
-        <span style="color: #6c7086;">// </span><span style="color: #6c7086;">special case: null pointer when list is empty
-</span>        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>first == <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
-            first = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #a6e3a1;">(</span>x, <span style="color: #fab387;">null</span><span style="color: #a6e3a1;">)</span>;
-            <span style="color: #cba6f7;">return</span>;
-        <span style="color: #f9e2af;">}</span>
-        <span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">current</span> = first;
+        <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">current</span> = sentinel;
         <span style="color: #cba6f7;">while</span> <span style="color: #f9e2af;">(</span>current.next != <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
             current = current.next;
         <span style="color: #f9e2af;">}</span>
-        current.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #f9e2af;">(</span>x, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+        current.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span>x, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
     <span style="color: #fab387;">}</span>
 
-    <span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">node</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">T</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">node</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
         <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>i == 0<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
             <span style="color: #cba6f7;">return</span> node.item;
         <span style="color: #f9e2af;">}</span>
@@ -218,121 +392,350 @@ Then we can create methods that use these nodes:
     <span style="color: #fab387;">}</span>
 
     <span style="color: #6c7086;">/** Return the int at index i in the list. */</span>
-    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
-        get<span style="color: #f9e2af;">(</span>first, i<span style="color: #f9e2af;">)</span>;
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> get<span style="color: #f9e2af;">(</span>sentinel.next, i<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">/** Returns the number of items in the list. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">size</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> size;
+    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org6671820" class="outline-4">
+<h4 id="org6671820"><span class="section-number-4">1.2.5.</span> Implementation</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<p>
+The final implementation puts together all of our improvements above:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">SLList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">private</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Node</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">item</span>;
+        <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">next</span>;
+
+        <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">Node</span><span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">item</span>, <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">next</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">this</span>.item = item;
+            <span style="color: #cba6f7;">this</span>.next = next;
+        <span style="color: #f9e2af;">}</span>
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">sentinel</span>;
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">size</span>;
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">SLList</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        sentinel = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span><span style="color: #fab387;">null</span>, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+        size = 0;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">SLList</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">first</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        sentinel = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span><span style="color: #fab387;">null</span>, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+        sentinel.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span>first, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+        size = 1;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">/** Adds x to the front of this list. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addFirst</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        size += 1;
+        sentinel.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span>x, sentinel.next<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">/** Adds x to the end of this list. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addLast</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        size += 1;
+        <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">current</span> = sentinel;
+        <span style="color: #cba6f7;">while</span> <span style="color: #f9e2af;">(</span>current.next != <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            current = current.next;
+        <span style="color: #f9e2af;">}</span>
+        current.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span>x, <span style="color: #fab387;">null</span><span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">T</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">node</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>i == 0<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">return</span> node.item;
+        <span style="color: #f9e2af;">}</span>
+        <span style="color: #cba6f7;">return</span> get<span style="color: #f9e2af;">(</span>node.next, i - 1<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">/** Return the int at index i in the list. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> get<span style="color: #f9e2af;">(</span>sentinel.next, i<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">/** Returns the number of items in the list. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">size</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> size;
     <span style="color: #fab387;">}</span>
 <span style="color: #f38ba8;">}</span>
 </code></pre>
 
 <p>
-Notice that we have a special case that we have to remember when we implement <code>addLast</code>: it fails
-if the list is empty, so we need to first check if it is null or not.
+And these are our features:
 </p>
 
-<p>
-In order to remove this special case, we can add a <b>sentinel node</b> that is always there,
-regardless of whether the list is empty or not. This means that <code>first</code> will never be null:
-</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<pre><code class="language-java"><span style="color: #f9e2af;">IntNode</span> <span style="color: #cdd6f4;">sentinel</span>;
 
-<span style="color: #cba6f7;">public</span> SLList<span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
-    sentinel = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #fab387;">(</span>0, <span style="color: #fab387;">null</span><span style="color: #fab387;">)</span>;
-    size = 0;
-<span style="color: #f38ba8;">}</span>
+<colgroup>
+<col  class="org-left" />
 
-<span style="color: #cba6f7;">public</span> SLList<span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">first</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
-    <span style="color: #cba6f7;">this</span>.sentinel = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #fab387;">(</span>0, <span style="color: #fab387;">null</span><span style="color: #fab387;">)</span>;
-    sentinel.next = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">IntNode</span><span style="color: #fab387;">(</span>first, <span style="color: #fab387;">null</span><span style="color: #fab387;">)</span>;
-    size = 1;
-<span style="color: #f38ba8;">}</span>
-</code></pre>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Feature</th>
+<th scope="col" class="org-left">Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Dynamic</td>
+<td class="org-left">Linked list</td>
+</tr>
 
-<p>
-And we would have to change all the other methods to take into account this sentinel node.
-</p>
+<tr>
+<td class="org-left">Bureaucratic</td>
+<td class="org-left">Helper methods</td>
+</tr>
 
-<p>
-Here is a list of the improvements that <code>SLList</code> makes on top of <code>IntList</code>:
-</p>
+<tr>
+<td class="org-left">Access-controlled</td>
+<td class="org-left"><code>private</code> and <code>Node</code></td>
+</tr>
 
-<ol class="org-ol">
-<li>Rebranding: <code>IntList</code> -&gt; <code>IntNode</code></li>
-<li>Bureaucracy: <code>SLList</code></li>
-<li>Access Control: <code>public</code> -&gt; <code>private</code></li>
-<li>Nested Class</li>
-<li>Caching: saving <code>size</code></li>
-<li>Generalizing: adding a <code>sentinel</code> node to allow representation of the empty list</li>
-</ol>
+<tr>
+<td class="org-left">Fast size access</td>
+<td class="org-left">Caching <code>size</code></td>
+</tr>
 
-<p>
-However, some problems still remain:
-</p>
+<tr>
+<td class="org-left">No null pointers</td>
+<td class="org-left">Sentinel nodes</td>
+</tr>
 
-<ol class="org-ol">
-<li>Slow to get to the end of the list.</li>
-<li>Only stores integers.</li>
-<li>Slow to access items in the middle of the list.</li>
-</ol>
+<tr>
+<td class="org-left">Generic types</td>
+<td class="org-left">Generics</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast start access</td>
+<td class="org-left">Forward links</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast middle access</td>
+<td class="org-left">❌</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast end access</td>
+<td class="org-left">❌</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast insert everywhere</td>
+<td class="org-left">❌</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="outline-container-org7f636ce" class="outline-2">
-<h2 id="org7f636ce"><span class="section-number-2">3.</span> DLList</h2>
-<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org7f636ce" class="outline-3">
+<h3 id="org7f636ce"><span class="section-number-3">1.3.</span> DLList</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
 A <b>doubly-linked list</b> solves some of these problems. To solve the problem of reading or adding the end of the list, we can save a pointer <code>last</code> to the end of our list. However, removing from the end of the list is still a pain, because there is no way to retrieve the previous node. Therefore, a doubly-linked list also adds backwards links.
 </p>
 
 <p>
-However, this approach also has a slightly annoying edge case, which is that <code>last</code> sometimes points at the sentinel node, and sometimes points at a "real" node. We can have two sentinels, one at the front and one at the back, and have <code>last</code> point to the back one, but that feels a bit too complex.
+However, this approach also has a slightly annoying edge case, which is that <code>last</code> sometimes points at the sentinel node, and sometimes points at a &ldquo;real&rdquo; node. We can have two sentinels, one at the front and one at the back, and have <code>last</code> point to the back one, but that feels a bit too complex.
 </p>
 
 <p>
-Instead, a better topology would be for the sentinel node to point to both the front and end of the list. <code>sentinel.next</code> would be the first "real" node of the list, whereas <code>sentinel.prev</code> would have the last node:
+Instead, a better topology would be for the sentinel node to point to both the front and end of the list. <code>sentinel.next</code> would be the first &ldquo;real&rdquo; node of the list, whereas <code>sentinel.prev</code> would have the last node:
 </p>
 
 
-<div id="org96c2603" class="figure">
+<div id="org14d8811" class="figure">
 <p><img src="../static/COMPSCI_61B/lists1.png" alt="lists1.png" />
 </p>
 </div>
-
-<p>
-To solve the issue that our list only stores integers, we can use <a href="java.html#org57b1a5e">generics</a>. Using generics, our class would look like:
-</p>
-
+</div>
+<div id="outline-container-org75616b4" class="outline-4">
+<h4 id="org75616b4"><span class="section-number-4">1.3.1.</span> Implementation</h4>
+<div class="outline-text-4" id="text-1-3-1">
 <pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">DLList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
-    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">sentinel</span>;
-    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">size</span>;
-
-    <span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Node</span> <span style="color: #fab387;">{</span>
-        <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">item</span>;
+    <span style="color: #cba6f7;">private</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Node</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">value</span>;
+        <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">prev</span>;
         <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">next</span>;
-        <span style="color: #6c7086;">// </span><span style="color: #6c7086;">...
-</span>    <span style="color: #fab387;">}</span>
 
-    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">...
-</span><span style="color: #f38ba8;">}</span>
+        <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">Node</span><span style="color: #f9e2af;">()</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">this</span>.value = <span style="color: #fab387;">null</span>;
+            <span style="color: #cba6f7;">this</span>.next = <span style="color: #cba6f7;">this</span>;
+            <span style="color: #cba6f7;">this</span>.prev = <span style="color: #cba6f7;">this</span>;
+        <span style="color: #f9e2af;">}</span>
+
+        <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">Node</span><span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">value</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">this</span>.value = value;
+            <span style="color: #cba6f7;">this</span>.next = <span style="color: #cba6f7;">this</span>;
+            <span style="color: #cba6f7;">this</span>.prev = <span style="color: #cba6f7;">this</span>;
+        <span style="color: #f9e2af;">}</span>
+
+        <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">putBefore</span><span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">next</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">this</span>.next = next;
+            next.prev = <span style="color: #cba6f7;">this</span>;
+        <span style="color: #f9e2af;">}</span>
+
+        <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">putAfter</span><span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">prev</span><span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">this</span>.prev = prev;
+            prev.next = <span style="color: #cba6f7;">this</span>;
+        <span style="color: #f9e2af;">}</span>
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">private</span> <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">size</span>;
+    <span style="color: #cba6f7;">private</span> <span style="color: #cba6f7;">final</span> <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">sentinel</span>;
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #89b4fa;">DLList</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">this</span>.size = 0;
+        <span style="color: #cba6f7;">this</span>.sentinel = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">()</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addFirst</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">add</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span>x<span style="color: #f9e2af;">)</span>;
+        add.putBefore<span style="color: #f9e2af;">(</span>sentinel.next<span style="color: #f9e2af;">)</span>;
+        add.putAfter<span style="color: #f9e2af;">(</span>sentinel<span style="color: #f9e2af;">)</span>;
+        size++;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">addLast</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">add</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Node</span><span style="color: #f9e2af;">(</span>x<span style="color: #f9e2af;">)</span>;
+        add.putAfter<span style="color: #f9e2af;">(</span>sentinel.prev<span style="color: #f9e2af;">)</span>;
+        add.putBefore<span style="color: #f9e2af;">(</span>sentinel<span style="color: #f9e2af;">)</span>;
+        size++;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">size</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> size;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #89b4fa;">getFirst</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> sentinel.next.value;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #89b4fa;">getLast</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> sentinel.prev.value;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">T</span> <span style="color: #89b4fa;">get</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">index</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #6c7086;">// </span><span style="color: #6c7086;">guard for OOB get
+</span>        <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>index &gt;= size || index &lt; 0<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            <span style="color: #cba6f7;">return</span> <span style="color: #fab387;">null</span>;
+        <span style="color: #f9e2af;">}</span>
+
+        <span style="color: #f9e2af;">Node</span> <span style="color: #cdd6f4;">ptr</span> = sentinel.next;
+        <span style="color: #cba6f7;">while</span> <span style="color: #f9e2af;">(</span>index-- &gt; 0<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+            ptr = ptr.next;
+        <span style="color: #f9e2af;">}</span>
+        <span style="color: #cba6f7;">return</span> ptr.value;
+    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
 </code></pre>
 
 <p>
-This leaves us with one problem: it is slow to access items in the middle of the list.
+And these are our features:
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Feature</th>
+<th scope="col" class="org-left">Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Dynamic</td>
+<td class="org-left">Linked list</td>
+</tr>
+
+<tr>
+<td class="org-left">Bureaucratic</td>
+<td class="org-left">Helper methods</td>
+</tr>
+
+<tr>
+<td class="org-left">Access-controlled</td>
+<td class="org-left"><code>private</code> and <code>Node</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Fast size access</td>
+<td class="org-left">Caching <code>size</code></td>
+</tr>
+
+<tr>
+<td class="org-left">No null pointers</td>
+<td class="org-left">Sentinel nodes</td>
+</tr>
+
+<tr>
+<td class="org-left">Generic types</td>
+<td class="org-left">Generics</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast start access</td>
+<td class="org-left">Forward links</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast middle access</td>
+<td class="org-left">❌</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast end access</td>
+<td class="org-left">Reverse links</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast insert everywhere</td>
+<td class="org-left">Reverse links</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="outline-container-org0bb36da" class="outline-2">
-<h2 id="org0bb36da"><span class="section-number-2">4.</span> AList</h2>
-<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org0bb36da" class="outline-3">
+<h3 id="org0bb36da"><span class="section-number-3">1.4.</span> AList</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+The final problem that remains to be solved is that it is still time consuming to do anything near the middle of the array, since we have to traverse the array from either end.
+</p>
+
 <p>
 We can take advantage of the fact that retrieval from any position of an array is very fast (this is because memory boxes are the same size). Perhaps we can implement a list based on an array, called an <b>array list</b> or <code>AList</code>.
 </p>
 
 <p>
-To do this, we can initialize a really large array, and bind each element in our list to that array. When we get to the end of the array, we can <b>resize</b> the array by creating a new array that is even bigger (double the size), and then copying over the elements from the first array to the new one.
+To do this, we can initialize a really large array, and bind each element in our list to that array. When we get to the end of the array, we can <b>resize</b> the array by creating a new array that is even bigger (double the size), and then copying over the elements from the first array to the new one. 
 </p>
 
 <p>
-But then we also want our array to be <i>space efficient</i>: when we remove a lot of the items, we would also like our array to shrink in size. We can set objects to <code>null</code> when they are removed, so that Java's garbage collector can reduce memory for us.
+But then we also want our array to be <i>space efficient</i>: when we remove a lot of the items, we would also like our array to shrink in size. We can set objects to <code>null</code> when they are removed, so that Java&rsquo;s garbage collector can reduce memory for us.
 </p>
 
 <pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">AList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
@@ -384,13 +787,14 @@ Linked lists are still better than array lists for operations at the beginning o
 </div>
 </div>
 </div>
+</div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-06 13:52
+               Last modified: 2026-02-09 11:19
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
