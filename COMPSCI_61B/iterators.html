@@ -6,7 +6,7 @@
 <!-- 2026-02-11 Wed 14:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>COMPSCI 61B</title>
+<title>Iterators</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
    <script src="/pagefind/pagefind-ui.js"></script>
@@ -89,19 +89,71 @@
 <div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">COMPSCI 61B</h1>
+<h1 class="title">Iterators</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgc302cbd">1. Enhanced For Loop</a></li>
+<li><a href="#orgafb1a01">2. <code>Iterator</code></a>
+<ul>
+<li><a href="#org88fd7ac">2.1. <code>Iterable</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc302cbd" class="outline-2">
+<h2 id="orgc302cbd"><span class="section-number-2">1.</span> Enhanced For Loop</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Notes:</b></b>
+The <b>enhanced for loop</b>, or the <b>for each loop</b>, allows us to easily iterate over objects in some data structure without having to index each explicitly:
 </p>
 
-<ul class="org-ul">
-<li><a href="inheritance_polymorphism.html">Inheritance and Polymorphism</a></li>
-<li><a href="testing.html">Testing</a></li>
-<li><a href="iterators.html">Iterators</a></li>
-<li><a href="lists.html">Lists</a></li>
-<li><a href="references.html">References</a></li>
-<li><a href="java.html">Java</a></li>
-</ul>
+<pre><code class="language-java"><span style="color: #f9e2af;">Set</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Integer</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cdd6f4;">javaset</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">HashSet</span><span style="color: #f38ba8;">&lt;&gt;()</span>;
+javaset.add<span style="color: #f38ba8;">(</span>5<span style="color: #f38ba8;">)</span>;
+javaset.add<span style="color: #f38ba8;">(</span>23<span style="color: #f38ba8;">)</span>;
+javaset.add<span style="color: #f38ba8;">(</span>42<span style="color: #f38ba8;">)</span>;
+<span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span> : javaset<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    System.out.println<span style="color: #fab387;">(</span>i<span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+However, this doesn&rsquo;t work by default on any of our own, custom classes. Let&rsquo;s strip away the magic so we can build our own classes that also support this enhanced for loop.
+</p>
+</div>
+</div>
+<div id="outline-container-orgafb1a01" class="outline-2">
+<h2 id="orgafb1a01"><span class="section-number-2">2.</span> <code>Iterator</code></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The enhanced for loop uses an <b>iterator</b> that is obtained by calling a <code>.iterator()</code> method on the object, which should return an object of type <code>Iterator&lt;T&gt;</code>. The <code>Iterator</code> interface contains the <code>hasNext</code> method, which tells us if there are more values, and <code>next</code>, which gets the next value:
+</p>
+
+<pre><code class="language-java"><span style="color: #f9e2af;">Set</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Integer</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cdd6f4;">javaset</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">HashSet</span><span style="color: #f38ba8;">&lt;&gt;()</span>;
+javaset.add<span style="color: #f38ba8;">(</span>5<span style="color: #f38ba8;">)</span>;
+javaset.add<span style="color: #f38ba8;">(</span>23<span style="color: #f38ba8;">)</span>;
+javaset.add<span style="color: #f38ba8;">(</span>42<span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">Iterator</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Integer</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cdd6f4;">seer</span> = javaset.iterator<span style="color: #f38ba8;">()</span>;
+<span style="color: #cba6f7;">while</span> <span style="color: #f38ba8;">(</span>seer.hasNext<span style="color: #fab387;">()</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    System.out.println<span style="color: #fab387;">(</span>seer.next<span style="color: #f9e2af;">()</span><span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+<div id="outline-container-org88fd7ac" class="outline-3">
+<h3 id="org88fd7ac"><span class="section-number-3">2.1.</span> <code>Iterable</code></h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Adding this <code>iterator()</code> method allows our own classes to support this type of iteration, but the enhanced for loop would still not work. This is because Java needs a way of knowing our class supports this method.
+</p>
+
+<p>
+Therefore, we need to <code>implement Iterable&lt;T&gt;</code>, which is an <a href="inheritance_polymorphism.html#org23aeba1">interface</a> that includes the <code>iterator()</code> method.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -109,7 +161,7 @@
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-11 13:59
+               Last modified: 2026-02-11 13:29
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

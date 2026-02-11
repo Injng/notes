@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-09 Mon 14:09 -->
+<!-- 2026-02-11 Wed 14:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Inheritance and Polymorphism</title>
@@ -102,6 +102,12 @@
 </ul>
 </li>
 <li><a href="#org4f35c0c">1.2. Overrides</a></li>
+<li><a href="#org4ef71a9">1.3. Object Methods</a>
+<ul>
+<li><a href="#orgcd1a1d7">1.3.1. <code>toString()</code></a></li>
+<li><a href="#org139ef92">1.3.2. <code>equals()</code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -213,6 +219,58 @@ If a subclass implements an interface, that subclass <i>must override all of the
 </p>
 </div>
 </div>
+<div id="outline-container-org4ef71a9" class="outline-3">
+<h3 id="org4ef71a9"><span class="section-number-3">1.3.</span> Object Methods</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+All classes are hyponyms of <code>Object</code>. This means that there are always a set of Object methods that work on any class.
+</p>
+</div>
+<div id="outline-container-orgcd1a1d7" class="outline-4">
+<h4 id="orgcd1a1d7"><span class="section-number-4">1.3.1.</span> <code>toString()</code></h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+The <code>toString()</code> method provides a string representation of an object. For example, <code>System.out.println(Object x)</code> calls <code>x.toString()</code> to get a string representation of the object in order to print it:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">String</span> <span style="color: #89b4fa;">toString</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">return</span> getClass<span style="color: #fab387;">()</span>.getName<span style="color: #fab387;">()</span> + <span style="color: #a6e3a1;">"@"</span> + Integer.toHexString<span style="color: #fab387;">(</span>hashCode<span style="color: #f9e2af;">()</span><span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org139ef92" class="outline-4">
+<h4 id="org139ef92"><span class="section-number-4">1.3.2.</span> <code>equals()</code></h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+We know that the operator <code>==</code> and <code>equals()</code> operate differently. The operator <code>==</code> compares the <i>bits</i> of the data represented, which means that for classes, it is comparing <i>memory addresses</i>. This causes two instances of a class that contain the same value to be different under the <code>==</code> operator:
+</p>
+
+<pre><code class="language-java"><span style="color: #f9e2af;">Set</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Integer</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cdd6f4;">javaset</span> = Set.of<span style="color: #f38ba8;">(</span>5, 23, 42<span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">Set</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Integer</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cdd6f4;">javaset2</span> = Set.of<span style="color: #f38ba8;">(</span>5, 23, 42<span style="color: #f38ba8;">)</span>;
+IO.println<span style="color: #f38ba8;">(</span>javaset == javaset2<span style="color: #f38ba8;">)</span>;                    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">false
+</span>IO.println<span style="color: #f38ba8;">(</span>javaset.equals<span style="color: #fab387;">(</span>javaset2<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>;               <span style="color: #6c7086;">// </span><span style="color: #6c7086;">true</span>
+</code></pre>
+
+<p>
+On the other hand, we can implement the <code>equals()</code> method to check the actual values in the class:
+</p>
+
+<pre><code class="language-java"><span style="color: #fab387;">@Override</span>
+<span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">boolean</span> <span style="color: #89b4fa;">equals</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">Object</span> <span style="color: #cdd6f4;">o</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">if</span> <span style="color: #fab387;">(</span>o <span style="color: #cba6f7;">instanceof</span> Dog other<span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> <span style="color: #cba6f7;">this</span>.size == other.size;
+    <span style="color: #fab387;">}</span>
+    <span style="color: #cba6f7;">return</span> <span style="color: #fab387;">false</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+The <a href="https://github.com/openjdk/jdk25u/blob/40ec273de548b47fc08d02bbe7c1cb3b48ebad17/src/java.base/share/classes/java/lang/Object.java#L169">default implementation of equals</a> just uses <code>==</code>, so we usually override it and write our own for our custom classes.
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -221,7 +279,7 @@ If a subclass implements an interface, that subclass <i>must override all of the
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-09 13:44
+               Last modified: 2026-02-11 13:59
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
