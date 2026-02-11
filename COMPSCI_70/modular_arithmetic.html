@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-02-10 Tue 16:45 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Modular Arithmetic</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Modular Arithmetic</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6b90789">1. Modular Arithmetic</a>
+<ul>
+<li><a href="#org756a929">1.1. Exponentiation</a></li>
+<li><a href="#orgad7c8c9">1.2. Inverses</a></li>
+</ul>
+</li>
+<li><a href="#orge7d1666">2. Euclid&rsquo;s Algorithm</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6b90789" class="outline-2">
+<h2 id="org6b90789"><span class="section-number-2">1.</span> Modular Arithmetic</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Modular arithmetic</b> is arithmetic limited to a bounded range of <i>integers</i> \(\{0, 1, 2, \dots, m-1\}\) for some \(m\). We call two numbers \(a\) and \(b\) <b>congruent</b> modulo \(m\) if \(m\) divides \(a-b\):
+</p>
+
+\begin{align}
+a \equiv b \pmod{m} \iff m | (a-b)
+\end{align}
+
+<p>
+All of the congruent integers in some modulus form what is known as a <b>residue class</b> (a modulus \(m\) has a total of \(m\) residue classes, one for each remainder).
+</p>
+
+<p>
+Addition and multiplication are simple because we can always reduce intermediate results modulo \(m\). In other words, before doing an addition/subtraction or multiplication operation, we can first reduce each operand modulo \(m\), allowing us to potentially work with much smaller numbers. More formally:
+</p>
+
+\begin{align}
+a  \pm b &\equiv (a \text{ mod } m) \pm (b \text{ mod } m) \pmod{m} \\
+ab &\equiv (a \text{ mod } m) \times (b \text{ mod } m) \pmod{m}
+\end{align}
+</div>
+<div id="outline-container-org756a929" class="outline-3">
+<h3 id="org756a929"><span class="section-number-3">1.1.</span> Exponentiation</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Addition and multiplication are <i>efficient</i> — the number of operations neededs cales with respect to the number of bits, not the size of the number.
+</p>
+
+<p>
+However, for exponentiation, the naive method to compute \(x^m\) requires \(m-1\) multiplication operations, which scales according to the size of \(m\). A faster way is to use <b>repeated squaring</b>, where we express \(x^m\) as a product of several \(x^p\), where \(p\) is some power of \(2\). We can then repeatedly square \(x\) starting from \(x^2\) to obtain the necessary powers of \(2\) to then compute \(x^m\).
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Repeated squaring
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We want to use repeated squaring to compute \(3^{42} \pmod{53}\). First, we note that \(42\) is \(101010\) in binary, so we can represent \(3^{42} = 3^{32} \times 3^8 \times 3^2\). Then, we repeatedly square \(3^2\) to find:
+</p>
+
+\begin{align}
+3^2 &= 9 \notag \\
+3^4 &= 9^2 = 81 \equiv 28 \notag \\
+3^8 &= 28^2 = 784 \equiv 42 \notag \\
+3^{16} &= 42^2 = 1764 \equiv 15 \notag \\
+3^{32} &= 15^2 = 225 \equiv 13 \notag
+\end{align}
+
+<p>
+Thus,
+</p>
+
+\begin{align}
+3^{42} = 13 \cdot 42 \cdot 9 \equiv 13(-99) \equiv 91 \equiv \boxed{38} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orgad7c8c9" class="outline-3">
+<h3 id="orgad7c8c9"><span class="section-number-3">1.2.</span> Inverses</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Division is slightly different in modular arithmetic because we are limited to integers. Instead, we use multiplying by the <b>inverse</b> of \(x\), denoted as \(x^{-1}\), which is the unique number such that:
+</p>
+
+\begin{align}
+x(x^{-1}) \equiv 1 \pmod{m}
+\end{align}
+
+<p>
+For example, \(3\) is the inverse of \(12\) and \(36\). But, it is also possible for a number to have no inverse — it can be shown that there is no inverse of \(10\) and \(35\).
+</p>
+
+<p>
+<b>Theorem:</b> \(x\) has an inverse modulo \(m\) if and only if \(x\) and \(m\) are coprime.
+</p>
+
+<p>
+<b>Proof:</b> We first prove the forward direction that if \(x\) has an inverse modulo \(m\), then \(x\) and \(m\) are coprime. Suppose \(x\) has an inverse modulo \(m\). Then, \(ax=km+1\) for some \(k \in \mathbb{Z}\).
+</p>
+
+<p>
+Let \(d=\text{gcd}(x,m)\). Then \(d|ax\) and \(d|km\), hence \(d|ax-km \Rightarrow d|1\), so \(d=1\) and \(x\) and \(m\) must be coprime.
+</p>
+
+<p>
+For the reverse direction, we want to prove that if \(x\) and \(m\) are coprime, then there exists an inverse for \(x\) modulo \(m\). Consider the sequence of multiples of \(x\) \(\{0, x, 2x, \dots, (m-1)x\}\). If we prove that all these multiples are different modulo \(m\), then exactly one of them must be \(1\) modulo \(m\).
+</p>
+
+<p>
+Suppose then for contradiction that \(ax \equiv bx \pmod{m}\) with \(0 \leq b < a \leq m-1\). Then \(m|ax-bx\), or equivalently \((a-b)x = km\) for some \(k \in \mathbb{Z}\). Since \(x\) and \(m\) are coprime, \(m|a-b\). But, \(a-b\) must be less than \(m\), so we have a contradiction! \(\square\)
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Linear equations
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Inverses can be used to solve linear equations in modular arithmetic. For example, here we want to solve \(12x \equiv 11 \pmod{35}\).
+</p>
+
+<p>
+Since the inverse of \(12\) modulo \(35\) is \(3\), we can multiply by \(3\) to get:
+</p>
+
+\begin{align}
+12(3)x &\equiv 11 \cdot 3 \pmod{35} \notag \\
+x &\equiv 33 \pmod{35} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+</div>
+<div id="outline-container-orge7d1666" class="outline-2">
+<h2 id="orge7d1666"><span class="section-number-2">2.</span> Euclid&rsquo;s Algorithm</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Euclid&rsquo;s algorithm</b> is a way to quickly find the greatest common divisor of two numbers. To understand how it works, we must first understand the following claim:
+</p>
+
+<p>
+<b>Claim:</b> If \(x \geq y > 0\), then \(\text{gcd}(x,y) = \text{gcd}(y, x\text{ mod }y)\).
+</p>
+
+<p>
+<b>Proof:</b> It suffices to prove that \(d | x \land d | y \iff d | y \land d | x\text{ mod } y\). Then we can write \(x\) as :
+</p>
+
+\begin{align}
+x = (x \text{ div } y)y + (x \text{ mod } y) \notag
+\end{align}
+
+<p>
+where \(x \text{ div }y\) is the integer part of \(\frac{x}{y}\). It is clear that if \(d|x\), it must also \(d|x \text{ mod }y\), and vice versa. \(\square\)
+</p>
+
+<p>
+Euclid&rsquo;s algorithm uses this fact to recursively simplify the \(\text{gcd}\) function until one of the numbers is zero:
+</p>
+
+<pre><code class="language-txt">ALGORITHM gcd(x, y)
+CONDITION x &gt;= y &gt;= 0 AND x &gt; 0
+IF y == 0 THEN OUTPUT x
+ELSE OUTPUT gcd(y, x mod y)
+</code></pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-02-10 16:45
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
