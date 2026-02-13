@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-10 Tue 16:45 -->
+<!-- 2026-02-12 Thu 16:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Modular Arithmetic</title>
@@ -132,7 +132,17 @@
 <li><a href="#orgad7c8c9">1.2. Inverses</a></li>
 </ul>
 </li>
-<li><a href="#orge7d1666">2. Euclid&rsquo;s Algorithm</a></li>
+<li><a href="#orge7d1666">2. Euclid&rsquo;s Algorithm</a>
+<ul>
+<li><a href="#org74edd98">2.1. Extended Euclid&rsquo;s Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#org257c223">3. Chinese Remainder Theorem</a></li>
+<li><a href="#org48f7eee">4. Fermat&rsquo;s Little Theorem</a>
+<ul>
+<li><a href="#org2939c07">4.1. Euler&rsquo;s Totient Function</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -309,6 +319,203 @@ IF y == 0 THEN OUTPUT x
 ELSE OUTPUT gcd(y, x mod y)
 </code></pre>
 </div>
+<div id="outline-container-org74edd98" class="outline-3">
+<h3 id="org74edd98"><span class="section-number-3">2.1.</span> Extended Euclid&rsquo;s Algorithm</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The <b>extended Euclid&rsquo;s algorithm</b> provides a way for computing inverses. Given positive integers \(x\) and \(y\), suppose we could compute integers \(a, b\) such that:
+</p>
+
+\begin{align}
+\text{gcd}(x, y) = ax + by
+\end{align}
+
+<p>
+Then if \(\text{gcd}(x,y)=1\), we get \(ax+by=1\), and we have:
+</p>
+
+\begin{align}
+by \equiv 1 \pmod{x} \notag \\
+ax \equiv 1 \pmod{y} \notag
+\end{align}
+
+<p>
+So \(b = y^{-1} pmod{x}\) and \(a = x^{-1} \pmod{y}\).
+</p>
+
+<p>
+We can adapt Euclid&rsquo;s algorithm to compute \(a\) and \(b\). Suppose that our new function, <code>egcd(x, y)</code>, instead returns <code>(d, a, b)</code>, where <code>d</code> is the GCD, and <code>a, b</code> is what we defined above. In other words, from <code>(d, a, b) = egcd(y, x mod y)</code> we would like to compute <code>A, B</code> for <code>egcd(x, y)</code>.
+</p>
+
+<p>
+We know that:
+</p>
+
+\begin{align}
+d &= ay + b(x \text{ mod } y) \notag \\
+d &= ay + b\left( x - y(x \text{ div } y)\right) \notag \\
+d &= bx + \left[ a - (x \text{ div } y)b \right]y \notag
+\end{align}
+
+<p>
+So, we set:
+</p>
+
+\begin{align}
+A &= b \notag \\
+B &= a- (x \text{ div } y)b \notag
+\end{align}
+
+<p>
+Then, the extended Euclid&rsquo;s algorithm is:
+</p>
+
+<pre><code class="language-txt">ALGORITHM egcd(x, y)
+CONDITION x &gt;= y &gt;= 0 AND x &gt; 0
+IF y == 0 THEN 
+    OUTPUT (x, 1, 0)
+ELSE
+    (d, a, b) = egcd(y, x mod y)
+    OUTPUT (d, b, a - (x div y)*b)
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org257c223" class="outline-2">
+<h2 id="org257c223"><span class="section-number-2">3.</span> Chinese Remainder Theorem</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>Theorem (CRT):</b> Let \(n_1, n_2 , \dots , n_k\) be pairwise coprime, and let \(N = \prod_{i=1}^k n_i\). Then there is a unique \(x \pmod{N}\) that satisfies the following system of modular equations:
+</p>
+
+\begin{align}
+\begin{cases}
+x \equiv a_1 \pmod{n_1} & \\
+x \equiv a_2 \pmod{n_2} & \\
+\vdots & \\
+x \equiv a_k \pmod{n_k} &
+\end{cases} \notag
+\end{align}
+
+<p>
+<b>Proof:</b> Suppose we can construct numbers \(u_1, u_2, \dots, u_k\) such that for \(u_i\), it is equivalent to \(1 \text{ mod }n_i\) and \(0\) for all other modulo. In other words, we want to construct:
+</p>
+
+\begin{align}
+u_i \equiv \begin{cases}
+0 \pmod{n_1} & \\
+\vdots & \\
+1 \pmod{n_i} & \\
+\vdots & \\
+0 \pmod{n_k} & \\
+\end{cases} \notag
+\end{align}
+
+<p>
+Then, \(x = a_1u_1 + a_2u_2 + \cdots + a_ku_k\) satisfies the system of equations.
+</p>
+
+<p>
+Now, let:
+</p>
+
+\begin{align}
+u_i = \frac{N}{n_i}\left[\left(\frac{N}{n_1}\right)^{-1}\text{ mod } n_i\right]
+\end{align}
+
+<p>
+The \(\frac{N}{n_i}\) guarantees that this expression is a multiple of all \(n_1,\dots,n_k\) <i>except for</i> \(n_i\), which means that it will be \(0\) for all \(n_1, \dots,n_k\) except \(n_i\). Next, realize that we are multiplying \(\frac{N}{n_1}\) by its <i>inverse</i> modulo \(n_i\), which means that for \(n_i\), it will be equivalent to \(1\). This satisfies the properties that we want \(u_i\) to have, and all that remains is for us to prove that this solution is unique modulo \(N\).
+</p>
+
+<p>
+Suppose that \(x\) and \(y\) are two solutions to our system. Then for all modulo \(n_i\), \(x \equiv y\). This means that \(N | (x-y)\), and so \(x \equiv y \pmod{N}\). \(\square\)
+</p>
+</div>
+</div>
+<div id="outline-container-org48f7eee" class="outline-2">
+<h2 id="org48f7eee"><span class="section-number-2">4.</span> Fermat&rsquo;s Little Theorem</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<b>Fermat&rsquo;s Little Theorem:</b> For any prime \(p\), the following is true:
+</p>
+
+\begin{align}
+a^{p-1} \equiv 1 \pmod{p} \; \forall a \in \{1, 2, \dots, p-1\}
+\end{align}
+
+<p>
+<b>Corollary:</b> For any prime \(p\), we also have:
+</p>
+
+\begin{align}
+a^p \equiv a \pmod{p} \; \forall a \in \{0, 1, 2, \dots, p-1\}
+\end{align}
+
+<p>
+<b>Proof:</b> Consider the set of numbers \(S' = \{0, a, 2a, \dots, (p-1)a\} \text{ mod } p\). These numbers are all different, and since they are modulo \(p\), they must cover the set \(S = \{0, 1, \dots, (p-1)\}\). Hence, the sets \(S\) and \(S'\) are the same set.
+</p>
+
+<p>
+But, we know that:
+</p>
+
+\begin{align}
+\prod_{x \in S} x \equiv 1 \cdot 2 \cdot \cdots \cdot (p - 1) \equiv (p-1)! \pmod{p} \notag
+\end{align}
+
+<p>
+and
+</p>
+
+\begin{align}
+\prod_{x \in S'} x \equiv a \cdot 2a \cdot \cdots \cdot (p-1)a \equiv (p-1)!a^{p-1} \pmod{p} \notag
+\end{align}
+
+<p>
+Since \((p-1)!\) has an inverse modulo \(p\), we conclude that \(a^{p-1} \equiv 1 \pmod{p}\). \(\square\)
+</p>
+</div>
+<div id="outline-container-org2939c07" class="outline-3">
+<h3 id="org2939c07"><span class="section-number-3">4.1.</span> Euler&rsquo;s Totient Function</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+For positive integer \(n\), let \(\mathbb{Z}_n^*\) denote the set of integers \(x \text{ mod }n\) such that \(\text{gcd}(x, n)=1\). For example \(\mathbb{Z}_{10}^* = \{1, 3 ,7, 9\}\). Define Euler&rsquo;s <b>totient function</b> as:
+</p>
+
+\begin{align}
+\phi(n) = |\mathbb{Z}_n^*|
+\end{align}
+
+<p>
+<b>Euler&rsquo;s Theorem:</b> For any \(a \in \mathbb{Z}_n^*\), we have:
+</p>
+
+\begin{align}
+a^{\phi(n)} \equiv 1 \pmod{n}
+\end{align}
+
+<p>
+Realize that Fermat&rsquo;s little theorem is just a special case of when \(n\) is a prime number \(p\), and so then \(\phi(n) = p-1\).
+</p>
+
+<p>
+<b>Proof:</b> For \(a \in \mathbb{Z}_n^*\), consider the set \(S = \{ax \text{ mod }n: x \in \mathbb{Z}_n^*\}\). These numbers are all different, and all of them are in \(\mathbb{Z}_n^*\). Hence \(S\) is the same as the set \(\mathbb{Z}_n^*\).
+</p>
+
+<p>
+Thus, we have:
+</p>
+
+\begin{align}
+\prod_{x \in \mathbb{Z}_n^*} x &\equiv \prod_{x\in S}x \pmod{n} \notag \\
+&\equiv a^{\phi(n)} \prod_{x\in\mathbb{Z}_n^*} x \pmod{n} \notag
+\end{align}
+
+<p>
+So, we have \(a^{\phi(n)} \equiv 1 \pmod{n}\), and we are done. \(\square\)
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -317,7 +524,7 @@ ELSE OUTPUT gcd(y, x mod y)
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-10 16:45
+               Last modified: 2026-02-12 16:22
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
