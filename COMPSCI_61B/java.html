@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-09 Mon 14:09 -->
+<!-- 2026-02-13 Fri 14:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java</title>
@@ -139,7 +139,12 @@
 <li><a href="#org9853474">8.2. Static</a></li>
 <li><a href="#org5cc1d8e">8.3. Access Control</a></li>
 <li><a href="#orgaba2848">8.4. Nested Classes</a></li>
-<li><a href="#orgcfc5773">8.5. Interfaces</a></li>
+<li><a href="#orgcfc5773">8.5. Interfaces</a>
+<ul>
+<li><a href="#org82ef4aa">8.5.1. <code>Comparable</code></a></li>
+<li><a href="#orgefaac7c">8.5.2. <code>Comparator</code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#orgfda493f">9. Enums</a></li>
@@ -571,6 +576,41 @@ We can restrict access to classes and class variables by using the <code>private
 <span style="color: #f38ba8;">}</span>
 </code></pre>
 </div>
+<div id="outline-container-org82ef4aa" class="outline-4">
+<h4 id="org82ef4aa"><span class="section-number-4">8.5.1.</span> <code>Comparable</code></h4>
+<div class="outline-text-4" id="text-8-5-1">
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">interface</span> <span style="color: #f9e2af;">Comparable</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+ <span style="color: #6c7086;">/**
+  * Compares this object with the specified object for order. 
+  * Returns a negative integer, zero, or a positive integer 
+  * as this object is less than, equal to, or greater than the
+  * specified object.
+  * ...
+  */</span>
+ <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">compareTo</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">o</span><span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Dog</span> <span style="color: #cba6f7;">implements</span> <span style="color: #f9e2af;">Comparable</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Dog</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>   <span style="color: #fab387;">@Override</span>
+   <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">compareTo</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">other</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+       <span style="color: #cba6f7;">return</span> size - other.size;
+   <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-orgefaac7c" class="outline-4">
+<h4 id="orgefaac7c"><span class="section-number-4">8.5.2.</span> <code>Comparator</code></h4>
+<div class="outline-text-4" id="text-8-5-2">
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">interface</span> <span style="color: #f9e2af;">Comparator</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">compare</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">o1</span>, <span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">o2</span><span style="color: #fab387;">)</span>;
+    ...
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div id="outline-container-orgfda493f" class="outline-2">
@@ -604,7 +644,7 @@ Additionally, Java won&rsquo;t look at every folder on your computer. Instead, i
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-09 13:51
+               Last modified: 2026-02-13 13:45
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

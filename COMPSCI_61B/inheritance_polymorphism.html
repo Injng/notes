@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-11 Wed 14:00 -->
+<!-- 2026-02-13 Fri 14:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Inheritance and Polymorphism</title>
@@ -108,6 +108,12 @@
 <li><a href="#org139ef92">1.3.2. <code>equals()</code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#orga529ee2">2. Polymorphism</a>
+<ul>
+<li><a href="#orgbe66a49">2.1. Comparables</a></li>
+<li><a href="#org49bb859">2.2. Comparators</a></li>
 </ul>
 </li>
 </ul>
@@ -272,6 +278,87 @@ The <a href="https://github.com/openjdk/jdk25u/blob/40ec273de548b47fc08d02bbe7c1
 </div>
 </div>
 </div>
+<div id="outline-container-orga529ee2" class="outline-2">
+<h2 id="orga529ee2"><span class="section-number-2">2.</span> Polymorphism</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Polymorphism</b> is the ability in programming to present the same programming interface for differing underlying forms. In Python, we used <a href="COMPSCI_61A/functions.html#orgb6c4c1d">function passing</a> to achieve different behaviors for different types of input, but in Java, we typically use inheritance. For example, overloading an operator to handle different types of inputs is a type of polymorphism.
+</p>
+</div>
+<div id="outline-container-orgbe66a49" class="outline-3">
+<h3 id="orgbe66a49"><span class="section-number-3">2.1.</span> Comparables</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Say we have a list of <code>Dog</code>, and we wish to find the one with maximum size:
+</p>
+
+<pre><code class="language-java"><span style="color: #f9e2af;">List</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Dog</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cdd6f4;">dogs</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">ArrayList</span><span style="color: #f38ba8;">&lt;&gt;()</span>;
+dogs.add<span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Dog</span><span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"Grigometh"</span>, 200<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>;
+dogs.add<span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Dog</span><span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"Pelusa"</span>, 5<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>;
+dogs.add<span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">Dog</span><span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"Clifford"</span>, 9000<span style="color: #fab387;">)</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">maxDog</span> = Collections.max<span style="color: #f38ba8;">(</span>dogs<span style="color: #f38ba8;">)</span>;
+</code></pre>
+
+<p>
+However, an error message occurs here because <code>Collections.max</code> doesn&rsquo;t know how to compare two dogs. In Java, we must specify that <code>Dog</code> implements the <code>Comparable</code> interface. Looking at the <a href="https://github.com/openjdk/jdk/blob/jdk-25+0/src/java.base/share/classes/java/lang/Comparable.java">source code</a> for <code>Comparable</code>, we see:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">interface</span> <span style="color: #f9e2af;">Comparable</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">/**
+     * Compares this object with the specified object for order. 
+     * Returns a negative integer, zero, or a positive integer 
+     * as this object is less than, equal to, or greater than the
+     * specified object.
+     * ...
+     */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">compareTo</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">o</span><span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+So, we must implement this interface in our <code>Dog</code> class:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">Dog</span> <span style="color: #cba6f7;">implements</span> <span style="color: #f9e2af;">Comparable</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Dog</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">-- snip --
+</span>   <span style="color: #fab387;">@Override</span>
+   <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">compareTo</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">other</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+       <span style="color: #cba6f7;">return</span> size - other.size;
+   <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+The flavor of polymorphism that we&rsquo;ve used here is called <b>subtype polymorphism</b>. A supertype (<code>Comparable</code>) specifies the capability, and a subtype overrides the supertype&rsquo;s abstract method.
+</p>
+</div>
+</div>
+<div id="outline-container-org49bb859" class="outline-3">
+<h3 id="org49bb859"><span class="section-number-3">2.2.</span> Comparators</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The term <b>natural order</b> is sometimes used to refer to the ordering implied by the <code>comapreTo</code> method. Suppose, however, that we wish to order some objects by something <i>other than the natural order</i>.
+</p>
+
+<p>
+Java provides a <code>Comparator</code> interface for objects that are designed for comparing other objects:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">interface</span> <span style="color: #f9e2af;">Comparator</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">T</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">compare</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">o1</span>, <span style="color: #f9e2af;">T</span> <span style="color: #cdd6f4;">o2</span><span style="color: #fab387;">)</span>;
+    ...
+<span style="color: #f38ba8;">}</span>
+
+<span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">NameComparator</span> <span style="color: #cba6f7;">implements</span> <span style="color: #f9e2af;">Comparator</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Dog</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #fab387;">@Override</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">compare</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">a</span>, <span style="color: #f9e2af;">Dog</span> <span style="color: #cdd6f4;">b</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #cba6f7;">return</span> a.name.compareTo<span style="color: #f9e2af;">(</span>b.name<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -279,7 +366,7 @@ The <a href="https://github.com/openjdk/jdk25u/blob/40ec273de548b47fc08d02bbe7c1
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-11 13:59
+               Last modified: 2026-02-13 13:44
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
