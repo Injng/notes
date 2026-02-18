@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-11 Wed 20:37 -->
+<!-- 2026-02-17 Tue 19:52 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DTFS</title>
@@ -152,7 +152,7 @@ In general, for a \(p\) periodic signal, we can write:
 </p>
 
 \begin{align}
-\boxed{x[n] = \sum_{k=0}^{p-1} x_k e^{ik\omega_0 n}}
+\boxed{x[n] = \sum_{k=0}^{p-1} X_k e^{ik\omega_0 n}}
 \end{align}
 
 <p>
@@ -160,7 +160,7 @@ where \(\omega_0 = \frac{2\pi}{p}\). This equation is known as the <b>synthesis 
 </p>
 
 <p>
-Each of the \(\psi_k[n] = e^{ik\omega_0 n}\) are the frequencies that we are working with. Our goal now is to figure out what the coefficients \(x_k\) are, so we know what <i>amount of each frequency</i> exists in our signal.
+Each of the \(\psi_k[n] = e^{ik\omega_0 n}\) are the frequencies that we are working with. Our goal now is to figure out what the coefficients \(X_k\) are, so we know what <i>amount of each frequency</i> exists in our signal.
 </p>
 </div>
 </div>
@@ -212,7 +212,7 @@ Algebraically reducing the inner product, we find that:
 </p>
 
 \begin{align}
-\langle \psi_k, \psi_k \rangle &= \sum_{n=0}^{p-1} ]psi_k[n]\psi_k^*[n] \notag \\
+\langle \psi_k, \psi_k \rangle &= \sum_{n=0}^{p-1} \psi_k[n]\psi_k^*[n] \notag \\
 &= \sum_{n=0}^{p-1}e^{ik\omega_0 n}e^{-ik\omega_0 n} \notag \\ 
 &= \sum_{n=0}^{p-1}1 \notag \\
 &= p \notag
@@ -257,15 +257,15 @@ Now that we have proven that \(\psi_k\) are mutually orthogonal, consider the li
 </p>
 
 \begin{align}
-\mathbf{x} = x_0\boldsymbol{\psi_0} + \cdots + x_k\boldsymbol{\psi_k} + \cdots + x_{p-1}\boldsymbol{\psi_{p-1}} \notag
+\mathbf{x} = X_0\boldsymbol{\psi_0} + \cdots + X_k\boldsymbol{\psi_k} + \cdots + X_{p-1}\boldsymbol{\psi_{p-1}} \notag
 \end{align}
 
 <p>
-To find the coefficient \(x_k\), we can take the inner product of both sides with \(\boldsymbol{\psi_k}\), and due to orthogonality, all the terms will drop out except for one. However, we can also realize that we can obtain \(x_k\) by finding the <a href="../MATH_54/orthogonality.html#org289cbed">orthogonal projection</a> of \(\mathbf{x}\) onto \(\boldsymbol{\psi_k}\), which yields us this equation:
+To find the coefficient \(X_k\), we can take the inner product of both sides with \(\boldsymbol{\psi_k}\), and due to orthogonality, all the terms will drop out except for one. However, we can also realize that we can obtain \(X_k\) by finding the <a href="../MATH_54/orthogonality.html#org289cbed">orthogonal projection</a> of \(\mathbf{x}\) onto \(\boldsymbol{\psi_k}\), which yields us this equation:
 </p>
 
 \begin{align}
-x_k = \frac{\langle \mathbf{x}, \boldsymbol{\psi_k} \rangle}{\langle \boldsymbol{\psi_k}, \boldsymbol{\psi_k} \rangle} \notag
+X_k = \frac{\langle \mathbf{x}, \boldsymbol{\psi_k} \rangle}{\langle \boldsymbol{\psi_k}, \boldsymbol{\psi_k} \rangle} \notag
 \end{align}
 
 <p>
@@ -273,7 +273,7 @@ By (2), \(\langle\boldsymbol{\psi_k},\boldsymbol{\psi_k}\rangle\) is just \(p\),
 </p>
 
 \begin{align}
-x_k = \frac{1}{p}\sum_{n=0}^{p-1}x[n]\psi_k^*[n] \notag
+X_k = \frac{1}{p}\sum_{n=0}^{p-1}x[n]\psi_k^*[n] \notag
 \end{align}
 
 <p>
@@ -281,7 +281,7 @@ This gives us the <b>analysis equation</b>, which takes us from the time domain 
 </p>
 
 \begin{align}
-\boxed{x_k = \frac{1}{p}\sum_{n=0}^{p-1}x[n]e^{-ik\omega_0 n}}
+\boxed{X_k = \frac{1}{p}\sum_{n=0}^{p-1}x[n]e^{-ik\omega_0 n}}
 \end{align}
 </div>
 </div>
@@ -293,7 +293,7 @@ This gives us the <b>analysis equation</b>, which takes us from the time domain 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-11 20:37
+               Last modified: 2026-02-17 19:52
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
