@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-02-17 Tue 16:31 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RSA</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">RSA</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org07b566a">1. Cryptography</a></li>
+<li><a href="#org4e3b4dc">2. RSA</a>
+<ul>
+<li><a href="#org0d39a62">2.1. Correctness</a></li>
+<li><a href="#org6790a94">2.2. Security</a></li>
+<li><a href="#orgcd2978c">2.3. Efficiency</a>
+<ul>
+<li><a href="#org8aa9e30">2.3.1. Primality Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org07b566a" class="outline-2">
+<h2 id="org07b566a"><span class="section-number-2">1.</span> Cryptography</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Alice wishes to send a message (represented as numbers) to Bob <i>securely</i> (which means that nobody else can read it). Eve is a malicious eavesdropper who can monitor network traffic. A secure cryptographic system would prevent Eve from reading (decoding) the encrypted message that Alice sends to Bob.
+</p>
+
+<p>
+In <b>classical cryptography</b>, Alice and Bob must share a secret &ldquo;codebook&rdquo; in advance, and use that shared knowledge to encode and decode messages they send to each other. However, these encryption methods suffer from the &ldquo;key distribution problem.&rdquo; As the <a href="https://dl.acm.org/doi/pdf/10.1145/359340.359342">RSA paper</a> explains, &ldquo;the problem is that before a private communication can begin, <i>another</i> private transaction is necessary.&rdquo; Typically, this is done using a private courier of sorts, but this increases the risk of the codebook leaking or, in cases such as an electronic mail system, it is infeasible.
+</p>
+
+<p>
+In <b>public-key cryptography</b>, however, private couriers are not needed. In this system, Bob publishes <i>publicly</i> a <b>public key</b> \(K\), and keeps secret a <b>private key</b> \(P\). This system allows Alice to encrypt messages using the public key \(K\), but only the private key \(P\) can decrypt it. In other words, <i>anyone can send encrypted messages to Bob</i> using \(K\), but <i>only Bob can decrypt the messages</i> using his corresponding private key \(P\).
+</p>
+
+<p>
+Observe that in this system, no private transactions between Alice and Bob are needed to establish encrypted communication. This is because the only thing needed to encrypt messages are things that can be publicly known.
+</p>
+</div>
+</div>
+<div id="outline-container-org4e3b4dc" class="outline-2">
+<h2 id="org4e3b4dc"><span class="section-number-2">2.</span> RSA</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>RSA</b> (Rivest-Shamir-Adleman) is a public-key cryptosystem. First, Bob must generate a public-private key pair. To do so, Bob:
+</p>
+
+<ol class="org-ol">
+<li>Chooses two <i>large</i> primes (e.g. 1024 bits) \(p, q\) and an integer \(e\) coprime to \((p-1)(q-1)\).</li>
+<li>Publishes the public key \((N, e)\) where \(N=pq\).</li>
+<li>Retains the private key \((N, d)\) where \(d = e^{-1} \pmod{(p-1)(q-1)}\).</li>
+</ol>
+
+<p>
+Now Alice, to send a message \(x\) (an integer modulo \(N\)) to Bob:
+</p>
+
+<ol class="org-ol">
+<li>Computes \(E(x) = x^e \text{ mod } N\).</li>
+<li>Sends \(y=E(x)\) to Bob.</li>
+</ol>
+
+<p>
+Bob finally decrypts it using his private key:
+</p>
+
+<ol class="org-ol">
+<li>\(x=D(y) = y^d \text{ mod } N\).</li>
+</ol>
+
+<p>
+However, to show that the above procedures works and is secure, we need to know that it is <i>correct</i>, is is <i>secure</i>, and that it is <i>efficient</i>.
+</p>
+</div>
+<div id="outline-container-org0d39a62" class="outline-3">
+<h3 id="org0d39a62"><span class="section-number-3">2.1.</span> Correctness</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Proving correctness comes down to proving that \(D(E(x)) = x \; \forall x \in \{0, 1, \dots, N-1\}\).
+</p>
+
+<p>
+<b>Proof:</b> Recall that \(E(x) = x^e \text{ mod } N\) and \(D(x) = y^d \text{ mod }N\) where \(y=x^e\). Also, \(d=e^{-1} \pmod{(p-1)(q-1)}\). So, it is equivalent to prove that \(x^{ed} \equiv x \pmod{N}\).
+</p>
+
+<p>
+Equivalently, we have \(x(x^{ed-1} - 1) \equiv 0 \pmod{N}\). So, it is sufficient to prove that \(p | x(x^{ed-1}-1)\) and \(q | x(x^{ed-1}-1)\).
+</p>
+
+<p>
+Note that \(ed = k(p-1)(q-1)+1\) for some \(k\in\mathbb{Z}\). Thus, \(ed-1 = k(p-1)(q-1)\). In other words, we now want to prove that \(p | x(x^{k(p-1)(q-1)}-1)\) and \(q | x(x^{k(p-1)(q-1)}-1)\).
+</p>
+
+<p>
+If \(p|x\), then we are done. Otherwise, we need to prove that \(p | x^{k(p-1)(q-1)}-1\). Since we know that \(\text{gcd}(p,x)=1\), we know by <a href="modular_arithmetic.html#org48f7eee">Fermat&rsquo;s Little Theorem</a> that \(x^{p-1} \equiv 1 \pmod{p}\) for any prime \(p\). Then:
+</p>
+
+\begin{align}
+x^{k(p-1)(q-1)}-1 \equiv \left(x^{p-1}\right)^{k(q-1)}-1 \equiv 1-1 \equiv 0 \pmod{p} \notag
+\end{align}
+
+<p>
+Thus, \(p|x^{k(p-1)(q-1)}-1\). We can use the same argument to show the same for \(q\), and we are done. \(\square\)
+</p>
+
+<p>
+<b>Alternate Proof (Rivest-Shamir-Adleman):</b> Recall that <a href="modular_arithmetic.html#org2939c07">Euler&rsquo;s Theorem</a> states that \(x^{\phi (m)} \equiv 1 \pmod{m}\) for all \(x\) such that \(m\) and \(x\) are coprime. Then, when \(m=N=pq\), we have \(\phi(N)=pq-p-q+1 = (p-1)(q-1)\). This is because the only numbers less than \(N\) that are not coprime to \(N\) are the multiples of \(p\) and the multiples of \(q\).
+</p>
+
+<p>
+Thus, by Euler&rsquo;s Theorem, we have:
+</p>
+
+\begin{align}
+x^{ed} \equiv x^{k(p-1)(q-1)+1} \equiv \left(x^{(p-1)(q-1)}\right)^kx\equiv x \pmod{N} \notag
+\end{align}
+
+<p>
+For the special case \(x\) where \(x\) and \(N\) are not coprime, then we have \(p|x\) and \(q|x\) as before and it is true. \(\square\)
+</p>
+</div>
+</div>
+<div id="outline-container-org6790a94" class="outline-3">
+<h3 id="org6790a94"><span class="section-number-3">2.2.</span> Security</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+We want to argue that Eve learns nothing about the message \(x\) by observing \(E(x), N, e\). There are several approaches that Eve can take, but we can show that each of these is not a problem:
+</p>
+
+<ol class="org-ol">
+<li>Eve can try guessing \(x\). However, if we are working with \(1024\) bit numbers, there are \(2^{1024} \approx 10^{308}\) possibilities for \(x\), which is clearly not feasible.</li>
+<li>Eve can try to figure out the factors \(p\) and \(q\). However, there is no <i>known</i> way to efficiently factor \(N\), especially when \(N\) is very large.</li>
+<li>Eve can try to solve the equation \(x^e \equiv y \pmod{N}\) for \(x\). However, this is equivalent to the discrete log problem, which is known to be very hard.</li>
+</ol>
+
+<p>
+In other words, it is realistically infeasible (basically impossible) for these attacks to succeed due to the amount of computation required to calculate any of these values from what is publicly known. However, a <i>theoretical quantum computer</i> can efficiently factorize large numbers.<abbr class="tooltip" title="Shor&rsquo;s Algorithm">°</abbr>&emsp13;This has led to a new field of <b>post-quantum cryptography</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcd2978c" class="outline-3">
+<h3 id="orgcd2978c"><span class="section-number-3">2.3.</span> Efficiency</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Efficiency of the algorithm comes down to two main parts: computing \(e, d, E(x), D(y)\), and choosing the large primes in order to compute those.
+</p>
+
+<ol class="org-ol">
+<li>Computing \(e, d, E(x), D(y)\): for \(e\), we can trivially choose anything coprime to \((p-1)(q-1)\) (often this is \(2^{16} +1\), which is prime). For \(d\), we can use <a href="modular_arithmetic.html#org74edd98">extended Euclid</a> to find the inverse of \(e\). Finally, for \(E(x)\) and \(D(y)\), we can efficiently calculate these via <a href="modular_arithmetic.html#org756a929">repeated squaring</a>.</li>
+<li>Choosing large primes: The following algorithm works to choose a large prime. First, we pick a random \(1024\) bit number. Test to see if the number is prime; if it is, we are done, and if it isn&rsquo;t, we just try again. We can see that this is efficient because the <b>Prime Number Theorem</b> tells us that on average, \(1\) in every \(\text{ln }m\) numbers is prime.</li>
+</ol>
+</div>
+<div id="outline-container-org8aa9e30" class="outline-4">
+<h4 id="org8aa9e30"><span class="section-number-4">2.3.1.</span> Primality Testing</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+This leaves us with the question of how we test if a large number is prime. The naive method would be to try every integer up to \(\sqrt{n}\) to see if it divides \(n\), but the running time of this is way too high for large \(n\). Better is the <b>Fermat test</b>:
+</p>
+
+<pre><code class="language-txt">ALGORITHM Fermat(n)
+CHOOSE a FROM {2, 3, ..., n-1} AT RANDOM
+IF gcd(a, n) != 1
+    OUTPUT "not prime"
+ELSE IF a ** (n - 1) != 1 (mod n)
+    OUTPUT "not prime"
+ELSE
+    OUTPUT "prime"
+</code></pre>
+
+<p>
+If \(n\) is prime, the above algorithm <i>is always correct</i>.
+</p>
+
+<p>
+However, if \(n\) is not prime, the algorithm <i>may output a wrong answer</i>! This happens when the chosen \(a\) is not a <b>witness</b>, i.e. \(gcd(a, n) = 1\) and \(a^{n-1} \equiv 1 \pmod{n}\) even when \(n\) is not prime.
+</p>
+
+<p>
+The good news is, however, for almost all inputs \(n\), at least half of the \(a\) are witnesses. This means that if we repeat the test \(100\) times, the correct probability that the answer is correct becomes \(\geq 1-\frac{1}{2^{100}}\). This means that it is more likely for the computer to suffer a hardware failure while computing than to get the wrong answer. There are, however, inputs \(n\) that always fail the test: these are called <b>Carmichael numbers</b>, and they have no witnesses \(a\). Fortunately, real-world implementations do use tests that also work for Carmichael numbers.
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-02-17 16:31
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
