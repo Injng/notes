@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-17 Tue 19:52 -->
+<!-- 2026-02-18 Wed 21:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DTFS</title>
@@ -132,6 +132,13 @@
 <li><a href="#org4c7a3fb">1.2. Vector Representation</a></li>
 <li><a href="#orge80f6e4">1.3. Orthogonality</a></li>
 <li><a href="#org1350f5a">1.4. Analysis Equation</a></li>
+<li><a href="#orga1e28b3">1.5. Periodicity of the Basis Functions</a></li>
+</ul>
+</li>
+<li><a href="#org48304df">2. Matrix-Vector Form of DTFS</a>
+<ul>
+<li><a href="#org3ef48e4">2.1. Matrix-Vector Form of Synthesis Equation</a></li>
+<li><a href="#org0e85f2a">2.2. Matrix-Vector Form of Analysis Equation</a></li>
 </ul>
 </li>
 </ul>
@@ -285,6 +292,132 @@ This gives us the <b>analysis equation</b>, which takes us from the time domain 
 \end{align}
 </div>
 </div>
+<div id="outline-container-orga1e28b3" class="outline-3">
+<h3 id="orga1e28b3"><span class="section-number-3">1.5.</span> Periodicity of the Basis Functions</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+Realize that since the following is true:
+</p>
+
+\begin{align}
+\psi_k[n+p]=e^{ik\omega_0(n+p)}=e^{ik\omega_0n}e^{ik\omega_0p}=e^{ik\omega_0n}=\psi_k[n] \notag \\
+\psi_{k+p}[n]=e^{i(k+p)\omega_0n}=e^{ik\omega_0n}e^{ip\omega_0n}=e^{ik\omega_0n}=\psi_k[n] \notag
+\end{align}
+
+<p>
+The basis functions \(\psi_k[n]\) is therefore periodic in both \(n\) and \(k\). Therefore, we can write the synthesis and analysis equations in a more general form:
+</p>
+
+\begin{align}
+x[n] &= \sum_{k\in\langle p \rangle} X_k e^{ik\omega_0 n} \\
+X_k &= \frac{1}{p}\sum_{n\in\langle p \rangle}x[n]e^{-ik\omega_0 n}
+\end{align}
+
+<p>
+where \(\langle p \rangle\) refers to a contiguous interval of \(p\) integers.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org48304df" class="outline-2">
+<h2 id="org48304df"><span class="section-number-2">2.</span> Matrix-Vector Form of DTFS</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org3ef48e4" class="outline-3">
+<h3 id="org3ef48e4"><span class="section-number-3">2.1.</span> Matrix-Vector Form of Synthesis Equation</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+We know that we can write our signals as a linear combination of basis functions:
+</p>
+
+\begin{align}
+x[n] = \sum_{k=0}^{p-1}X_k\psi_k[n] \notag
+\end{align}
+
+<p>
+where \(\psi_k[n] = e^{ik\omega_0n}\). We can rewrite this as a product of two vectors:
+</p>
+
+\begin{align}
+x[n] = \begin{bmatrix}\psi_0[n] & \psi_1[n] & \cdots & \psi_{p-1}[n]\end{bmatrix}\begin{bmatrix}X_0 \\ \vdots \\ X_{p-1}\end{bmatrix} \notag
+\end{align}
+
+<p>
+Since \(x[n]\) is periodic, we can also represent it as a vector. Thus, we can write:
+</p>
+
+\begin{align}
+\begin{bmatrix} x[0] \\ x[1] \\ \vdots \\ x[p-1] \end{bmatrix} =
+\begin{bmatrix}
+\psi_0[0] & \cdots & \psi_{p-1}[0] \\
+\psi_0[1] & \cdots & \psi_{p-1}[1] \\
+\vdots & & \vdots \\
+\psi_0[p-1] & \cdots & \psi_{p-1}[p-1]
+\end{bmatrix}
+\begin{bmatrix} X_0 \\ X_1 \\ \vdots \\ X_{p-1} \end{bmatrix} \notag
+\end{align}
+
+<p>
+So, the synthesis equation in matrix-vector form is:
+</p>
+
+\begin{align}
+\boxed{\mathbf{x} = \Psi \mathbf{X}}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org0e85f2a" class="outline-3">
+<h3 id="org0e85f2a"><span class="section-number-3">2.2.</span> Matrix-Vector Form of Analysis Equation</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Now, we know that the following facts are true:
+</p>
+
+\begin{align}
+\langle \boldsymbol{\psi_k}, \boldsymbol{\psi_l} \rangle =  \boldsymbol{\psi_k}^T\boldsymbol{\psi_l}^* = \begin{cases} p & k = l \\ 0 & k \neq l \end{cases} \notag \\
+\langle \boldsymbol{\psi_k}, \boldsymbol{\psi_l} \rangle^* = \boldsymbol{\psi_k}^H\boldsymbol{\psi_l} = \begin{cases} p & k = l \\ 0 & k \neq l \end{cases} \notag \\
+\end{align}
+
+<p>
+where \(\mathbb{\psi}^H\) is the <b>Hermitian transpose</b> of \(\mathbb{\psi}\), defined as taking both the transpose and the complex conjugate of a matrix. Now, consider what happens when we take \(\Psi^H\Psi\):
+</p>
+
+\begin{align}
+\Psi^H\Psi = \begin{bmatrix} \boldsymbol{\psi_0}^H \\ \boldsymbol{\psi_1}^H \\ \vdots \\ \boldsymbol{\psi_{p-1}}^H \end{bmatrix} \begin{bmatrix} \boldsymbol{\psi_0} & \boldsymbol{\psi_1} & \cdots & \boldsymbol{\psi_{p-1}} \end{bmatrix} =
+\begin{bmatrix}
+\boldsymbol{\psi_0}^H\boldsymbol{\psi_0} & \cdots & \boldsymbol{\psi_0}^H\boldsymbol{\psi_{p-1}} \\
+\boldsymbol{\psi_1}^H\boldsymbol{\psi_0} & \cdots & \boldsymbol{\psi_1}^H\boldsymbol{\psi_{p-1}} \\
+\vdots & & \vdots \\
+\boldsymbol{\psi_{p-1}}^H\boldsymbol{\psi_0} & \cdots & \boldsymbol{\psi_{p-1}}^H\boldsymbol{\psi_{p-1}} \\
+\end{bmatrix} \notag
+\end{align}
+
+<p>
+Since \(\boldsymbol{\psi_k}^H\boldsymbol{\psi_l} = 0\) if \(k \neq l\), and \(p\) otherwise, we get:
+</p>
+
+\begin{align}
+\Psi^H\Psi &= pI \notag \\
+\frac{1}{p}\Psi^H\Psi &= I \notag
+\end{align}
+
+<p>
+Thus, the inverse of \(\Psi\) is:
+</p>
+
+\begin{align}
+\Psi^{-1} = \frac{1}{p} \Psi^H
+\end{align}
+
+<p>
+The synthesis equation multiplied by \(\Psi^{-1}\) then gives us the analysis equation in matrix-vector form:
+</p>
+
+\begin{align}
+\boxed{\mathbf{X} = \frac{1}{p}\Psi^H\mathbf{x}}
+\end{align}
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -293,7 +426,7 @@ This gives us the <b>analysis equation</b>, which takes us from the time domain 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-17 19:52
+               Last modified: 2026-02-18 21:00
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
