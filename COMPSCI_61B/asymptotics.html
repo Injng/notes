@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-02-20 Fri 13:50 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Asymptotics</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Asymptotics</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org979a384">1. Asymptotic Analysis</a>
+<ul>
+<li><a href="#org545bfad">1.1. Order of Growth</a></li>
+<li><a href="#orgf2d6869">1.2. Big Theta Notation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org979a384" class="outline-2">
+<h2 id="org979a384"><span class="section-number-2">1.</span> Asymptotic Analysis</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+In <b>asymptotic analysis</b>, what we wish to do is measure the efficiency of some piece of code. To do so, we need some way of characterizing the runtime of some program.
+</p>
+
+<p>
+The problem with measuring runtime absolutely is that it often does not depend just on the code written, but also the inputs that are given to it as well as the computer that the code is running on. To solve these problems, asymptotic analysis doesn&rsquo;t describe the efficiency of a program based on absolutely how long a program runs, but rather <i>the change in runtime</i> as \(N\) (the size of the input) gets large.
+</p>
+</div>
+<div id="outline-container-org545bfad" class="outline-3">
+<h3 id="org545bfad"><span class="section-number-3">1.1.</span> Order of Growth</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+We wish to find the <b>order of growth</b> for a program: as \(N\) grows, what happens to the runtime of the algorithm? To do so, we look at the operations being run in the algorithm, and we choose one as the <b>cost model</b>: use the count of that operation as the order of growth. This operation must be representative of the algorithm: we focus on behavior as \(N\) gets very large, which means any count that is small contributes negligibly overall.
+</p>
+
+<p>
+For example, the following program has an order of growth of \(N^2\):
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">countDuplicates</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span><span style="color: #fab387;">[]</span> <span style="color: #cdd6f4;">a</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+   <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">duplicates</span> = 0;
+   <span style="color: #cba6f7;">for</span> <span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span> = 0; i &lt; a.length; i++<span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+       <span style="color: #cba6f7;">for</span> <span style="color: #f9e2af;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">j</span> = i + 1; j &lt; a.length; j++<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+           <span style="color: #cba6f7;">if</span> <span style="color: #a6e3a1;">(</span>a<span style="color: #74c7ec;">[</span>i<span style="color: #74c7ec;">]</span> == a<span style="color: #74c7ec;">[</span>j<span style="color: #74c7ec;">]</span><span style="color: #a6e3a1;">)</span> <span style="color: #a6e3a1;">{</span>
+               duplicates += 1;
+           <span style="color: #a6e3a1;">}</span>
+       <span style="color: #f9e2af;">}</span>
+   <span style="color: #fab387;">}</span>
+   IO.println<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"Duplicates: "</span> + duplicates<span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+We choose the <code>==</code> operation as the representative cost model. If we take a look at the amount of times this is run, we see that it is \(\frac{N^2}{2}\):
+</p>
+
+
+<div id="org0a4a74d" class="figure">
+<p><img src="../static/COMPSCI_61B/asymptotics1.png" alt="asymptotics1.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf2d6869" class="outline-3">
+<h3 id="orgf2d6869"><span class="section-number-3">1.2.</span> Big Theta Notation</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<b>Big-theta notation</b> formalizes the order of growth by considering only the worst-case term. For example:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Function</th>
+<th scope="col" class="org-left">Order of Growth</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">\(N^3+3N^4\)</td>
+<td class="org-left">\(\Theta(N^4)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\frac{1}{N}+N^3\)</td>
+<td class="org-left">\(\Theta(N^3)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(\frac{1}{N}+5\)</td>
+<td class="org-left">\(\Theta(1)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(Ne^N+N\)</td>
+<td class="org-left">\(\Theta(Ne^N)\)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(40\sin(N)+4N^2\)</td>
+<td class="org-left">\(\Theta(N^2)\)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Formally, if \(R(N)\) is the function we care about, then \(R(N) \in \Theta(f(N))\) means that there exist positive constants \(k_1\) and \(k_2\) such that:
+</p>
+
+\begin{align}
+k_1f(N) \leq R(N) \leq k_2f(N)
+\end{align}
+
+<p>
+For example, \(40\sin(N)+4N^2\in\Theta(N^2)\), and \(3N^2 \leq 40\sin(N)+4N^2\leq 5N^2\).
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-02-20 13:50
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
