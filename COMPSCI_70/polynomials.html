@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-02-19 Thu 16:21 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Polynomials</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Polynomials</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5ff6bf2">1. Polynomials</a>
+<ul>
+<li><a href="#orgd9bac77">1.1. Maximum Number of Roots</a></li>
+<li><a href="#orgf9d11b7">1.2. Lagrange Interpolation</a></li>
+</ul>
+</li>
+<li><a href="#orgdc047d5">2. Modular Arithmetic with Polynomials</a></li>
+<li><a href="#orgd52d15b">3. Secret Sharing</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5ff6bf2" class="outline-2">
+<h2 id="org5ff6bf2"><span class="section-number-2">1.</span> Polynomials</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A <b>polynomial</b> in a single variable \(x\) is a function of the form:
+</p>
+
+\begin{align}
+p(x) = a_dx^d + a_{d-1}x^{d-1} + \cdots + a_1x + a_0
+\end{align}
+
+<p>
+This polynomial has <b>degree</b> \(d\) and <b>coefficients</b> \(a_i\). We call \(a\) a <b>root</b> of \(p(x)\) if \(p(a)=0\).
+</p>
+
+<p>
+When it comes to polynomials, we care about two key properties.
+</p>
+</div>
+<div id="outline-container-orgd9bac77" class="outline-3">
+<h3 id="orgd9bac77"><span class="section-number-3">1.1.</span> Maximum Number of Roots</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<b>Property 1:</b> A non-zero polynomial of degree \(d\) has at most \(d\) roots.
+</p>
+
+<p>
+<b>Proof:</b> Let \(a_1, \dots, a_d\) be the distinct roots of \(p\). It can be shown that \(p\) can be written as:
+</p>
+
+\begin{align}
+p(x) = c(x-a_1)(x-a_2)\cdots (x-a_d) \notag
+\end{align}
+
+<p>
+for some constant \(c\).<abbr class="tooltip" title="This can be shown rigorously with induction on d.">°</abbr>&emsp13;Then, if we have another root \(a \neq a_1, \dots, a_d\), then \(p(a) \neq 0\), so no other \(a\) can be a root. \(\square\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgf9d11b7" class="outline-3">
+<h3 id="orgf9d11b7"><span class="section-number-3">1.2.</span> Lagrange Interpolation</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<b>Property 2:</b> Given \(d+1\) points \((x_1, y_1), (x_2, y_2), \dots , (x_{d+1},y_{d+1})\) with all \(x_i\) distinct, there exists a unique polynomial of degree \(\leq d\) such that \(p(x_i) = y_i\) for \(1 \leq i \leq d+1\).
+</p>
+
+<p>
+<b>Proof:</b> We introduce the <b>Lagrange interpolation</b> algorithm to construct \(p(x)\). Suppose we can construct basis polynomials \(\Delta_i(x)\) for \(1 \leq i \leq d+1\) such that:
+</p>
+
+\begin{align}
+\Delta_i(x) = \begin{cases} 1 & x=x_i \\ 0 & x=x_j, \; j\neq i \end{cases} \notag
+\end{align}
+
+<p>
+Then, the following <b>Lagrange polynomial</b> fits the points given:
+</p>
+
+\begin{align}
+\boxed{p(x) = \sum_{i=1}^{d+1} y_i \Delta_i(x)}
+\end{align}
+
+<p>
+Realize that for some \(x_i\), \(p(x_i) = y_1\Delta_1(x_i) + y_2\Delta_2(x_i) + \cdots + y_{d+1}\Delta_{d+1}(x_i)\) has \(\Delta_k = 0\) for all \(k\) except when \(k=i\), so \(p(x_i) = y_i\Delta_i(x_i)=y_i\). Therefore, it is sufficient to prove that such basis polynomials \(\Delta_i\) exist.
+</p>
+
+<p>
+Let \(q_i(x)=(x-x_1)(x-x_2)\cdots (x-x_{i-1})(x-x_{i+1})\cdots (x-x_{d+1})\). Then, the degree of \(q_i\) is \(d\), \(q_i(x_j)=0 \; \forall j \neq i\), but \(q_i(x_i)=\prod_{j\neq i} (x_i-x_j) \neq 0\). So, we can define the basis polynomials as:
+</p>
+
+\begin{align}
+\boxed{\Delta_i(x) = \frac{q_i(x)}{q_i(x_i)}}
+\end{align}
+
+<p>
+We see that \(\Delta_i(x_j) = \frac{q_i(x_j)}{q_i(x_i)} = 0 \; \forall j \neq i\), and \(\Delta_i(x_i) = \frac{q_i(x_i)}{q_i(x_i)} = 1\), so we are done.
+</p>
+
+<p>
+Now, it remains to prove that such a polynomial is unique. Suppose for contradiction that there exists two different polynomials \(p_1(x), p_2(x)\) of degree \(\leq d\) that both go through the \(d+1\) points.
+</p>
+
+<p>
+Then \(q(x) = p_1(x)-p_2(x)\) is a non-zero polynomial of degree \(\leq d\). But \(q(x_i) = p_1(x_i)-p_2(x_i)=0\) for \(x_1,x_2,\dots , x_{d+1}\). So \(q\) is a polynomial of degree \(\leq d\) with \(d+1\) roots, which is a contradiction, and we are done. \(\square\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdc047d5" class="outline-2">
+<h2 id="orgdc047d5"><span class="section-number-2">2.</span> Modular Arithmetic with Polynomials</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Let \(p\) be prime. Then integers modulo \(p\) behave like real numbers in that they support \(0\) and \(1\), as well as the operators of addition, subtraction, multiplication, and division (all numbers have an <a href="modular_arithmetic.html#orgad7c8c9">inverse</a> when \(p\) is prime).
+</p>
+
+<p>
+Technically, integers modulo \(p\) is a <b>field</b> \(\mathbb{Z}_p\) or \(\text{GF}[p]\). Unlike \(\mathbb{Z}, \mathbb{N}\), etc., \(\text{GF}[p]\) is a <b>finite field</b> or <b>Galois field</b>. The key is that polynomials over \(\text{GF}[p]\) behave like real polynomials in that they satisfies the two properties defined above.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd52d15b" class="outline-2">
+<h2 id="orgd52d15b"><span class="section-number-2">3.</span> Secret Sharing</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Suppose that a commander wants to share a secret code \(s\) among \(n\) generals such that it fulfills the following conditions:
+</p>
+
+<ul class="org-ul">
+<li>any group of \(\geq k\) generals can figure out \(s\)</li>
+<li>any group of \(< k\) generals has <i>no information</i> about \(s\)</li>
+</ul>
+
+<p>
+To do so, the following method works:
+</p>
+
+<ol class="org-ol">
+<li>Construct a <i>random</i> polynomial \(p(x)\) of degree \(k-1 \pmod{p}\) such that \(p(0) = s\).</li>
+<li>Give each general \(i\) the value \(p(i)\), where \(i\) ranges from \(1\) to \(n\).</li>
+</ol>
+
+<p>
+Realize that with this scheme, any \(k\) generals can get together, run Lagrange interpolation, and retrieve the code. For any generals \(< k\) however, the minimum number of possibilities becomes \(p\) (which is also the maximum number of possibilities the secret can be, since \(p\) has to be greater than \(s\)).
+</p>
+
+<p>
+But, secret sharing works the same way over \(\mathbb{R}\), so why must we do it over \(\text{GF}[p]\)? For one, it keeps our arithmetic exact and limits us to relatively moderately-sized integers. More importantly, however, with real polynomials, it becomes possible for a smaller group of generals to learn information about the secret by using the fact that \(s\) is an integer (e.g. manipulating the polynomial to find that the secret must be even).
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-02-19 16:21
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
