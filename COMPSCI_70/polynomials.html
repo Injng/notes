@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-19 Thu 16:21 -->
+<!-- 2026-02-24 Tue 16:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Polynomials</title>
@@ -130,10 +130,16 @@
 <ul>
 <li><a href="#orgd9bac77">1.1. Maximum Number of Roots</a></li>
 <li><a href="#orgf9d11b7">1.2. Lagrange Interpolation</a></li>
+<li><a href="#orgdc047d5">1.3. Modular Arithmetic with Polynomials</a></li>
 </ul>
 </li>
-<li><a href="#orgdc047d5">2. Modular Arithmetic with Polynomials</a></li>
-<li><a href="#orgd52d15b">3. Secret Sharing</a></li>
+<li><a href="#orgd52d15b">2. Secret Sharing</a></li>
+<li><a href="#orge09ceac">3. Error Correcting Codes</a>
+<ul>
+<li><a href="#org4623e16">3.1. Erasure Errors</a></li>
+<li><a href="#orgf368936">3.2. General Errors (Berlekamp-Welch)</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -224,10 +230,9 @@ Then \(q(x) = p_1(x)-p_2(x)\) is a non-zero polynomial of degree \(\leq d\). But
 </p>
 </div>
 </div>
-</div>
-<div id="outline-container-orgdc047d5" class="outline-2">
-<h2 id="orgdc047d5"><span class="section-number-2">2.</span> Modular Arithmetic with Polynomials</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orgdc047d5" class="outline-3">
+<h3 id="orgdc047d5"><span class="section-number-3">1.3.</span> Modular Arithmetic with Polynomials</h3>
+<div class="outline-text-3" id="text-1-3">
 <p>
 Let \(p\) be prime. Then integers modulo \(p\) behave like real numbers in that they support \(0\) and \(1\), as well as the operators of addition, subtraction, multiplication, and division (all numbers have an <a href="modular_arithmetic.html#orgad7c8c9">inverse</a> when \(p\) is prime).
 </p>
@@ -237,9 +242,10 @@ Technically, integers modulo \(p\) is a <b>field</b> \(\mathbb{Z}_p\) or \(\text
 </p>
 </div>
 </div>
+</div>
 <div id="outline-container-orgd52d15b" class="outline-2">
-<h2 id="orgd52d15b"><span class="section-number-2">3.</span> Secret Sharing</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="orgd52d15b"><span class="section-number-2">2.</span> Secret Sharing</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 Suppose that a commander wants to share a secret code \(s\) among \(n\) generals such that it fulfills the following conditions:
 </p>
@@ -267,6 +273,92 @@ But, secret sharing works the same way over \(\mathbb{R}\), so why must we do it
 </p>
 </div>
 </div>
+<div id="outline-container-orge09ceac" class="outline-2">
+<h2 id="orge09ceac"><span class="section-number-2">3.</span> Error Correcting Codes</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Say Alice wishes to send a message \(m_1m_2\dots m_n\) to Bob across a communication channel. However, the channel is unreliable, which means we must find some way of ensuring that the message can be recovered even with errors.
+</p>
+
+<p>
+Thus, instead of sending the message \(m_1m_2\dots m_n\) directly, we derive a <b>codeword</b> \(c_1c_2\dots c_m\) where \(m > n\) that contains redundant information and send that instead. If Bob then receives \(r_1r_2\dots r_m\) (which may or may not be the same as the codeword sent, due to errors), he can recover the original message.
+</p>
+
+<p>
+More specifically, we wish to protect against two types of errors:
+</p>
+
+<ol class="org-ol">
+<li><b>Erasure:</b> up to \(k\) of the \(m_i\) gets dropped (erased).</li>
+<li><b>General:</b> up to \(k\) of the \(m_i\) gets corrupted (changed).</li>
+</ol>
+</div>
+<div id="outline-container-org4623e16" class="outline-3">
+<h3 id="org4623e16"><span class="section-number-3">3.1.</span> Erasure Errors</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Say we want to protect against \(k\) erasure errors. Then, we wish to be able to reconstruct \(m_1m_2\dots m_n\) from the codeword \(c_1c_2\dots c_{n+k}\).
+</p>
+
+<p>
+Let \(q > n+k\) be a large prime such that packets are integers modulo \(q\). Let \(p(x)\) be the unique degree \(n-1\) polynomial modulo \(q\) through the points \((i, m_i)\) for \(1 \leq i \leq n\).
+</p>
+
+<p>
+The idea is simple: we send \(k\) more points than we actually need. The codeword \(c_1c_2\dots c_{n+k}\) is built where \(c_j =p(j)\) for \(1 \leq j \leq n+k\). We can now reconstruct \(p(x)\) from any \(n\) of the \(c_i\) using Lagrange interpolation, and we are protected against up to \(k\) erasures.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf368936" class="outline-3">
+<h3 id="orgf368936"><span class="section-number-3">3.2.</span> General Errors (Berlekamp-Welch)</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Let \(q > n+2k\) be prime and let \(p(x)\) be the unique degree \(n-1\) polynomial modulo \(q\) through the points \((i, m_i)\) where \(1 \leq i \leq n\). Then, we want to construct a codeword \(c_1c_2 \dots c_{n+2k}\) where \(c_j=p(j)\) for \(1 \leq j \leq n+2k\).
+</p>
+
+<p>
+We want to show that we can reconstruct \(p(x)\) given \(n+2k\) points where up to \(k\) of the points can be corrupted (and we don&rsquo;t know which ones).
+</p>
+
+<p>
+First, we introduce the <b>error-locator polynomial</b> \(E(x)\) that is defined as:
+</p>
+
+\begin{align}
+E(x) = (x-e_1)(x-e_2)\cdots (x-e_k)
+\end{align}
+
+<p>
+where \(e_i\) are the values of the packet \(i\), where \(i\) is the position of an error. Note that for now, we don&rsquo;t actually know the values of \(e_i\).
+</p>
+
+<p>
+The key is that:
+</p>
+
+\begin{align}
+\boxed{P(i)E(i) = r_iE(i)}
+\end{align}
+
+<p>
+for all \(1 \leq i \leq n+2k\). To see why this is true, consider two cases. When \(P(i) = r_i\), it is accurate, and the equality holds. However, when there is an error, \(P(i) \neq r_i\), but then since it is an error \(E(i)=0\), and the equality becomes \(0=0\) which is true.
+</p>
+
+<p>
+Now, let \(Q(x)=P(x)E(x)\). Then \(Q\) has degree \(n+k-1\), and (5) becomes \(Q(i) = r_iE(i)\). We can write:
+</p>
+
+\begin{align}
+Q(x) &= a_{n+k-1}x^{n+k-1} + a_{n+k-2}x^{n+k-2} + \cdots + a_1x + a_0 \notag \\
+E(x) &= x^k + b_{k-1}x^{k-1} + \cdots + b_1x + b_0 \notag
+\end{align}
+
+<p>
+plugging in the \(n+2k\) points \((i, r_i)\) gives us a system of \(n+2k\) equations in \(n+2k\) unknowns, which is sufficient to solve for the polynomials \(Q\) and \(E\). Then, we can find the original polynomial \(P(x) = \frac{Q(x)}{E(x)}\).
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -274,7 +366,7 @@ But, secret sharing works the same way over \(\mathbb{R}\), so why must we do it
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-19 16:21
+               Last modified: 2026-02-24 16:13
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
