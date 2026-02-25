@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-23 Mon 13:29 -->
+<!-- 2026-02-25 Wed 13:23 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Asymptotics</title>
@@ -130,6 +130,8 @@
 <ul>
 <li><a href="#org545bfad">1.1. Order of Growth</a></li>
 <li><a href="#orgf2d6869">1.2. Big Theta Notation</a></li>
+<li><a href="#orgaa1d97d">1.3. Big O Notation</a></li>
+<li><a href="#org0b99ca1">1.4. Big Omega Notation</a></li>
 </ul>
 </li>
 </ul>
@@ -175,7 +177,7 @@ We choose the <code>==</code> operation as the representative cost model. If we 
 </p>
 
 
-<div id="org95882d6" class="figure">
+<div id="orgf59314a" class="figure">
 <p><img src="../static/COMPSCI_61B/asymptotics1.png" alt="asymptotics1.png" />
 </p>
 </div>
@@ -243,6 +245,30 @@ For example, \(40\sin(N)+4N^2\in\Theta(N^2)\), and \(3N^2 \leq 40\sin(N)+4N^2\le
 </p>
 </div>
 </div>
+<div id="outline-container-orgaa1d97d" class="outline-3">
+<h3 id="orgaa1d97d"><span class="section-number-3">1.3.</span> Big O Notation</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+<b>Big-O notation</b> is the <i>upper bound</i> of the order of growth. More formally, \(R(N) \in O(f(N))\) means that there exists a postive constant \(k\) such that:
+</p>
+
+\begin{align}
+R(N) \leq kf(N)
+\end{align}
+</div>
+</div>
+<div id="outline-container-org0b99ca1" class="outline-3">
+<h3 id="org0b99ca1"><span class="section-number-3">1.4.</span> Big Omega Notation</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+<b>Big-Omega notation</b> is the <i>lower bound</i> on the order of growth. More formally, \(R(N) \in \Omega(f(N))\) means that there exists a positive constant \(k\) such that:
+</p>
+
+\begin{align}
+kf(N) \leq R(N)
+\end{align}
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -251,7 +277,7 @@ For example, \(40\sin(N)+4N^2\in\Theta(N^2)\), and \(3N^2 \leq 40\sin(N)+4N^2\le
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-20 13:50
+               Last modified: 2026-02-25 13:23
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
