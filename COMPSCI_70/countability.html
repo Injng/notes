@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-02-26 Thu 17:07 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Countability</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Countability</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgdb7febf">1. Finite Sets</a></li>
+<li><a href="#org886f2c8">2. Infinite Sets</a></li>
+<li><a href="#orge0c1e18">3. Cantor&rsquo;s Diagonalization Argument</a>
+<ul>
+<li><a href="#orgd0cceef">3.1. Power Sets</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+The main question we want to answer is: when do two sets have the same <b>cardinality</b> (i.e. size)?
+</p>
+<div id="outline-container-orgdb7febf" class="outline-2">
+<h2 id="orgdb7febf"><span class="section-number-2">1.</span> Finite Sets</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Two <b>finite sets</b> have the same size if there is a <b>bijection</b> between them.
+</p>
+
+<p>
+A function \(f: A \rightarrow B\) is a <b>bijection</b> if \(f\) is both an <b>injection</b> (<b>one-to-one</b>, i.e. \(\forall a_1, a_2 \in A ((a_1\neq a_2) \Rightarrow f(a_1) \neq f(a_2))\)) and a <b>surjection</b> (<b>onto</b>, i.e. \((\forall b \in B)(\exists a \in A)(f(a) = b)\)):
+</p>
+
+
+<div id="org32c142a" class="figure">
+<p><img src="../static/COMPSCI_70/countability1.png" alt="countability1.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org886f2c8" class="outline-2">
+<h2 id="org886f2c8"><span class="section-number-2">2.</span> Infinite Sets</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Two <b>infinite sets</b> have the same cardinality if and only if there exists a bijection between them. For example, the set of natural numbers and positive integers have the same cardinality because \(f(n) = n+1\) is a bijection between them.
+</p>
+
+<p>
+More generally, a set \(S\) is <b>countable</b> if there exists a bijection between \(S\) and \(\mathbb{N}\), or some subset of \(\mathbb{N}\) (if \(S\) is finite). For example, any finite set is countable, as are \(\mathbb{N}, \mathbb{Z}_+, \mathbb{Z}\).
+</p>
+
+<p>
+<b>Theorem (Cantor-Schröder-Bernstein):</b> If there exists an injection \(f: A \rightarrow B\) and an injection \(g: B \rightarrow A\), then there exists a bijection \(h: A \rightarrow B\).
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Cartesian product of natural numbers
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+We wish to prove that the set \(\mathbb{N} \times \mathbb{N}\) is countable. This can be done by finding a path that covers all the points, as each &ldquo;step&rdquo; on the path can be mapped to a natural number:
+</p>
+
+
+<div id="org0955c62" class="figure">
+<p><img src="../static/COMPSCI_70/countability2.png" alt="countability2.png" />
+</p>
+</div>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-orge0c1e18" class="outline-2">
+<h2 id="orge0c1e18"><span class="section-number-2">3.</span> Cantor&rsquo;s Diagonalization Argument</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>Theorem:</b> \(\mathbb{R}\) is uncountable.
+</p>
+
+<p>
+<b>Proof:</b> It is sufficient to prove that the reals in \([0,1]\) is also uncountable. We proceed by contradiction using <b>diagonalization</b>.
+</p>
+
+<p>
+Suppose that \([0,1]\) is countable. Then it can be enumerated as follows:
+</p>
+
+\begin{align}
+f(0) &= 0.37255\dots \notag \\
+f(1) &= 0.89898\dots \notag \\
+f(2) &= 0.19999\dots \notag
+\end{align}
+
+<p>
+Note that any real in \([0,1]\) can be written as an infinite decimal.
+</p>
+
+<p>
+Now, look at the diagonal digits of our enumeration. Consider the number \(s\) that differs from each of these digits in the same place. Then, this number \(s\) differs from all of our existing numbers by at least one digit, which means it has not been enumerated, and we have a contradiction! Thus, we can always find a real number not in the enumeration, which means that \(\mathbb{R}\) is uncountable. \(\square\)
+</p>
+</div>
+<div id="outline-container-orgd0cceef" class="outline-3">
+<h3 id="orgd0cceef"><span class="section-number-3">3.1.</span> Power Sets</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The <b>power set</b> of a set \(A\), denoted \(\mathcal{P}(A)\), is the set of all subsets of \(A\). If \(A\) is finite, we&rsquo;ve seen that \(|\mathcal{P}(A)| = 2^{|A|}\). But what about infinite \(A\)?
+</p>
+
+<p>
+<b>Theorem:</b> \(\mathcal{P}(\mathbb{N})\) is uncountable.
+</p>
+
+<p>
+<b>Proof:</b> We proceed by contradiction using diagonalization. Suppose that \(\mathcal{P}(\mathbb{N})\) is countable. Then, represent any element of \(\mathcal{P}(\mathbb{N})\) as a bitstring, with \(1\) in a position denoting the existence of the element in \(\mathbb{N}\) corresponding to that position in that set:
+</p>
+
+\begin{align}
+f(0): \quad &101101\dots \notag \\
+f(1): \quad &111111\dots \notag \\
+f(2): \quad &000000\dots \notag \\
+\vdots \quad &\vdots \notag
+\end{align}
+
+<p>
+But, if we use diagonalization, we can construct a new subset of \(\mathbb{N}\) that is not in the enumeration, which means that \(\mathcal{P}(\mathbb{N})\) must be uncountable. \(\square\)
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-02-26 17:07
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
