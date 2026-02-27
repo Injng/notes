@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-25 Wed 13:23 -->
+<!-- 2026-02-27 Fri 13:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Asymptotics</title>
@@ -134,6 +134,7 @@
 <li><a href="#org0b99ca1">1.4. Big Omega Notation</a></li>
 </ul>
 </li>
+<li><a href="#org3437db5">2. Binary Search</a></li>
 </ul>
 </div>
 </div>
@@ -177,7 +178,7 @@ We choose the <code>==</code> operation as the representative cost model. If we 
 </p>
 
 
-<div id="orgf59314a" class="figure">
+<div id="org4a4a419" class="figure">
 <p><img src="../static/COMPSCI_61B/asymptotics1.png" alt="asymptotics1.png" />
 </p>
 </div>
@@ -270,6 +271,115 @@ kf(N) \leq R(N)
 </div>
 </div>
 </div>
+<div id="outline-container-org3437db5" class="outline-2">
+<h2 id="org3437db5"><span class="section-number-2">2.</span> Binary Search</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Binary search</b> is an algorithm to find a key in a sorted array. The idea is that at each step, you:
+</p>
+
+<ol class="org-ol">
+<li>Compare the key against the middle entry.</li>
+<li>If too small, go left.</li>
+<li>If too big, go right.</li>
+<li>If it is equal, you found the key.</li>
+</ol>
+
+<div id="bsearch-demo" style="margin: 1.5em 0; padding: 1.5em; border: 1px solid var(--surface1); border-radius: 0.75rem; background: var(--mantle);">
+  <div style="display: flex; gap: 0.5em; align-items: center; margin-bottom: 1em; flex-wrap: wrap;">
+    <label style="font-size: 0.9em; color: var(--subtext1);">Target:</label>
+    <select id="bs-target" style="padding: 0.3em 0.6em; border: 1px solid var(--surface1); border-radius: 4px; background: var(--base); color: var(--text); font-family: monospace;"></select>
+    <button onclick="bsReset()" style="padding: 0.3em 0.8em; border: 1px solid var(--surface1); border-radius: 4px; background: var(--base); color: var(--text); cursor: pointer;">Reset</button>
+    <button onclick="bsStep()" id="bs-step-btn" style="padding: 0.3em 0.8em; border: 1px solid var(--blue); border-radius: 4px; background: var(--blue); color: var(--base); cursor: pointer; font-weight: bold;">Step</button>
+  </div>
+  <div id="bs-array" style="display: flex; gap: 4px; margin-bottom: 0.8em; flex-wrap: wrap;"></div>
+  <div id="bs-log" style="font-size: 0.85em; color: var(--subtext1); font-family: monospace; min-height: 1.4em;"></div>
+</div>
+<script>
+(function() {
+  var arr = [2, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38];
+  var lo, hi, mid, found, done;
+  var sel = document.getElementById('bs-target');
+  arr.forEach(function(v) {
+    var o = document.createElement('option'); o.value = v; o.textContent = v; sel.appendChild(o);
+  });
+  // also add a value not in the array
+  var miss = document.createElement('option'); miss.value = 15; miss.textContent = '15 (not in array)'; sel.appendChild(miss);
+
+  function render() {
+    var container = document.getElementById('bs-array');
+    container.innerHTML = '';
+    var css = getComputedStyle(document.documentElement);
+    var cBase = css.getPropertyValue('--base').trim() || '#eff1f5';
+    var cText = css.getPropertyValue('--text').trim() || '#4c4f69';
+    var cBlue = css.getPropertyValue('--blue').trim() || '#1e66f5';
+    var cGreen = css.getPropertyValue('--green').trim() || '#40a02b';
+    var cSurface1 = css.getPropertyValue('--surface1').trim() || '#bcc0cc';
+    var cOverlay0 = css.getPropertyValue('--overlay0').trim() || '#9ca0b0';
+    for (var i = 0; i < arr.length; i++) {
+      var el = document.createElement('div');
+      el.textContent = arr[i];
+      var bg = cBase, border = cSurface1, fg = cText, fw = 'normal';
+      if (found && i === mid) {
+        bg = cGreen; fg = cBase; border = cGreen; fw = 'bold';
+      } else if (!done && i === mid) {
+        bg = cBlue; fg = cBase; border = cBlue; fw = 'bold';
+      } else if (!done && i >= lo && i <= hi) {
+        border = cBlue;
+      } else if (done || i < lo || i > hi) {
+        fg = cOverlay0;
+      }
+      el.style.cssText = 'padding:0.4em 0.7em;border:2px solid '+border+';border-radius:4px;background:'+bg+';color:'+fg+';font-family:monospace;font-weight:'+fw+';text-align:center;min-width:2.2em;font-size:0.95em;';
+      container.appendChild(el);
+    }
+  }
+
+  function log(msg) { document.getElementById('bs-log').textContent = msg; }
+
+  window.bsReset = function() {
+    lo = 0; hi = arr.length - 1; mid = null; found = false; done = false;
+    document.getElementById('bs-step-btn').disabled = false;
+    render(); log('Click Step to begin searching for ' + sel.value + '.');
+  };
+
+  window.bsStep = function() {
+    if (done) return;
+    var target = parseInt(sel.value);
+    if (mid === null) { mid = Math.floor((lo + hi) / 2); render(); log('Compare: arr[' + mid + '] = ' + arr[mid] + ' vs target ' + target); return; }
+    if (arr[mid] === target) {
+      found = true; done = true; render(); log('Found ' + target + ' at index ' + mid + '!');
+      document.getElementById('bs-step-btn').disabled = true; return;
+    }
+    if (lo >= hi) {
+      done = true; render(); log(target + ' is not in the array.');
+      document.getElementById('bs-step-btn').disabled = true; return;
+    }
+    if (arr[mid] < target) {
+      log(arr[mid] + ' < ' + target + ', search right half.'); lo = mid + 1;
+    } else {
+      log(arr[mid] + ' > ' + target + ', search left half.'); hi = mid - 1;
+    }
+    if (lo > hi) { done = true; render(); log(target + ' is not in the array.'); document.getElementById('bs-step-btn').disabled = true; return; }
+    mid = Math.floor((lo + hi) / 2); render();
+    var msg = document.getElementById('bs-log').textContent;
+    document.getElementById('bs-log').textContent = msg + ' Compare: arr[' + mid + '] = ' + arr[mid] + ' vs ' + target;
+  };
+
+  bsReset();
+})();
+</script>
+
+<p>
+Intuitively, we see that the asymptotic runtime grows by \(\log N\), as in the worst case the problem size halves over and over until it gets to 1:
+</p>
+
+
+<div id="org24d7236" class="figure">
+<p><img src="../static/COMPSCI_61B/asymptotics2.png" alt="asymptotics2.png" />
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -277,7 +387,7 @@ kf(N) \leq R(N)
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-25 13:23
+               Last modified: 2026-02-27 13:45
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
