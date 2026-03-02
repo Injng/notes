@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-24 Tue 16:48 -->
+<!-- 2026-03-02 Mon 15:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Voltage and Power</title>
@@ -544,8 +544,15 @@ Thus, maximum power is transferred to \(R_L\) when:
 \end{align}
 
 <p>
-This condition is called <b>impedance matching</b>.
+This condition is called <b>impedance matching</b>. We can find the efficiency of such a circuit like so:
 </p>
+
+\begin{align}
+\eta &= \frac{P_L}{P_{\text{total}}} \notag \\
+&= \frac{I^2R_L}{I^2(R_L+R_{th}} \notag \\
+&= \frac{R_L}{R_L+R_{th}} \notag \\
+&= \frac{1}{1+\frac{R_{th}}{R_L}} \notag
+\end{align}
 </div>
 </div>
 </div>
@@ -556,7 +563,7 @@ This condition is called <b>impedance matching</b>.
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-24 16:48
+               Last modified: 2026-03-02 15:54
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
