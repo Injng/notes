@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-03-02 Mon 14:11 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Binary Search Trees</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Binary Search Trees</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8d51f66">1. Derivation</a></li>
+<li><a href="#orge91fa84">2. Binary Search Tree</a>
+<ul>
+<li><a href="#org04c71fe">2.1. <code>contains</code></a></li>
+<li><a href="#orga7266e2">2.2. <code>insert</code></a></li>
+<li><a href="#org82a5476">2.3. <code>delete</code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8d51f66" class="outline-2">
+<h2 id="org8d51f66"><span class="section-number-2">1.</span> Derivation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We can start from an <code>OrderedLinkedListSet</code>, then make it better:
+</p>
+
+
+<div id="org2ae81d6" class="figure">
+<p><img src="../static/COMPSCI_61B/bst1.png" alt="bst1.png" />
+</p>
+</div>
+
+<p>
+Here, the runtime of <code>contains</code> and <code>add</code> is both \(\Theta (N)\), which is not very efficient. The fundamental problem is that searching through the list is slow, even though the elements are in order. Maybe we can take some inspiration from <a href="asymptotics.html#org3437db5">binary search</a>.
+</p>
+
+<p>
+We can first move the pointer to the middle, but now we can&rsquo;t reach elements before it:
+</p>
+
+
+<div id="org1809227" class="figure">
+<p><img src="../static/COMPSCI_61B/bst2.png" alt="bst2.png" />
+</p>
+</div>
+
+<p>
+We can fix this by flipping the links before the pointer to the left:
+</p>
+
+
+<div id="orgf120a22" class="figure">
+<p><img src="../static/COMPSCI_61B/bst3.png" alt="bst3.png" />
+</p>
+</div>
+
+<p>
+We&rsquo;ve now halved our search time, but it still grows linearly with respect to \(N\). What we can do is apply the optimization recursively in each half of the list:
+</p>
+
+
+<div id="orgfeb355e" class="figure">
+<p><img src="../static/COMPSCI_61B/bst4.png" alt="bst4.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge91fa84" class="outline-2">
+<h2 id="orge91fa84"><span class="section-number-2">2.</span> Binary Search Tree</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A <b>binary search tree</b> is a rooted binary <a href="../COMPSCI_61A/trees.html#orga2f4f5b">tree</a> such that for every node \(X\) in the tree, it has the following two properties:
+</p>
+
+<ol class="org-ol">
+<li>Every key in the left subtree is <i>less than</i> the key of \(X\)</li>
+<li>Every key in the right subtree is <i>greater than</i> the key of \(X\)</li>
+</ol>
+
+<p>
+The ordering of a BST must be <i>complete, transitive, and antisymmetric</i>. In other words, given keys \(p\) and \(q\):
+</p>
+
+<ul class="org-ul">
+<li>Exactly one of \(p < q\) and \(q < p\) must be true</li>
+<li>\(p < q \land q < r \Rightarrow p < r\)</li>
+</ul>
+</div>
+<div id="outline-container-org04c71fe" class="outline-3">
+<h3 id="org04c71fe"><span class="section-number-3">2.1.</span> <code>contains</code></h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+To find a key in a BST, we do the following:
+</p>
+
+<ol class="org-ol">
+<li>If <code>searchKey</code> equals <code>T.key</code>, return</li>
+<li>Otherwise:
+<ul class="org-ul">
+<li>If <code>searchKey &lt; T.key</code>, search <code>T.left</code> recursively</li>
+<li>If <code>searchKey &gt; T.key</code>, search <code>T.right</code> recursively</li>
+</ul></li>
+</ol>
+
+<p>
+Additionally, we see that the runtime to complete a search on a BST is proportional to the height of the tree. In the worst case, the height of a BST is \(\log N\), so completing a search on a BST takes \(\Theta (\log N)\) time.
+</p>
+</div>
+</div>
+<div id="outline-container-orga7266e2" class="outline-3">
+<h3 id="orga7266e2"><span class="section-number-3">2.2.</span> <code>insert</code></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+To insert a key into a BST, we do the following:
+</p>
+
+<ol class="org-ol">
+<li>Search for the key</li>
+<li>If the key is found, do nothing and return</li>
+<li>Otherwise:
+<ul class="org-ul">
+<li>Create a new node</li>
+<li>Set the appropriate link</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org82a5476" class="outline-3">
+<h3 id="org82a5476"><span class="section-number-3">2.3.</span> <code>delete</code></h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Deleting from a BST has three cases:
+</p>
+
+<ol class="org-ol">
+<li>Deletion key has no children</li>
+<li>Deletion key has one child</li>
+<li>Deletion key has two children</li>
+</ol>
+
+<p>
+If the deletion key has no children, we can just sever the parent&rsquo;s link. The deleted node will be garbage collected by Java.
+</p>
+
+<p>
+If the deletion key has just one child, we can move the parent&rsquo;s link to point to the child. This still preserves the properties of the BST, and also skips over the node we want to delete.
+</p>
+
+<p>
+The hardest case is when the deletion key has two children. The strategy is to find a new root node that replaces the deletion key and also satisfies the BST properties. To do so, we can either choose a <i>target node</i> to be the <i>predecessor</i> (the next smaller key), or the <i>successor</i> (the next larger key):
+</p>
+
+
+<div id="org2db55da" class="figure">
+<p><img src="../static/COMPSCI_61B/bst5.png" alt="bst5.png" />
+</p>
+</div>
+
+<p>
+Now, deleting this target node and then replacing the deletion key with this target node effectively deletes the deletion key. This process is known as <b>Hibbard deletion</b>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-03-02 14:11
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

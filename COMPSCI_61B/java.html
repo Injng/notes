@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-13 Fri 14:33 -->
+<!-- 2026-03-02 Mon 13:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Java</title>
@@ -145,6 +145,7 @@
 <li><a href="#orgefaac7c">8.5.2. <code>Comparator</code></a></li>
 </ul>
 </li>
+<li><a href="#orgc944f48">8.6. Extending Classes</a></li>
 </ul>
 </li>
 <li><a href="#orgfda493f">9. Enums</a></li>
@@ -612,6 +613,28 @@ We can restrict access to classes and class variables by using the <code>private
 </div>
 </div>
 </div>
+<div id="outline-container-orgc944f48" class="outline-3">
+<h3 id="orgc944f48"><span class="section-number-3">8.6.</span> Extending Classes</h3>
+<div class="outline-text-3" id="text-8-6">
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">class</span> <span style="color: #f9e2af;">RotatingLL</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Item</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #cba6f7;">extends</span> <span style="color: #f9e2af;">LinkedList</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Item</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">static</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">main</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">String</span><span style="color: #f9e2af;">[]</span> <span style="color: #cdd6f4;">args</span><span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">RotatingLL</span><span style="color: #f9e2af;">&lt;</span><span style="color: #f9e2af;">Integer</span><span style="color: #f9e2af;">&gt;</span> <span style="color: #cdd6f4;">rsl</span> = <span style="color: #cba6f7;">new</span> <span style="color: #f9e2af;">RotatingLL</span><span style="color: #f9e2af;">&lt;&gt;()</span>;
+        rsl.addLast<span style="color: #f9e2af;">(</span>10<span style="color: #f9e2af;">)</span>; rsl.addLast<span style="color: #f9e2af;">(</span>11<span style="color: #f9e2af;">)</span>; rsl.addLast<span style="color: #f9e2af;">(</span>12<span style="color: #f9e2af;">)</span>; rsl.addLast<span style="color: #f9e2af;">(</span>13<span style="color: #f9e2af;">)</span>;
+
+        <span style="color: #6c7086;">/* </span><span style="color: #6c7086;">Rotates from [10, 11, 12, 13] to [13, 10, 11, 12]</span><span style="color: #6c7086;"> */</span>
+        rsl.rotateLeft<span style="color: #f9e2af;">()</span>;
+        rsl.print<span style="color: #f9e2af;">()</span>;
+    <span style="color: #fab387;">}</span>
+
+    <span style="color: #6c7086;">/** Rotates list to the left. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">rotateLeft</span><span style="color: #fab387;">()</span> <span style="color: #fab387;">{</span>
+        <span style="color: #f9e2af;">Item</span> <span style="color: #cdd6f4;">oldFirst</span> = removeFirst<span style="color: #f9e2af;">()</span>;
+        addLast<span style="color: #f9e2af;">(</span>oldFirst<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
 </div>
 <div id="outline-container-orgfda493f" class="outline-2">
 <h2 id="orgfda493f"><span class="section-number-2">9.</span> Enums</h2>
@@ -644,7 +667,7 @@ Additionally, Java won&rsquo;t look at every folder on your computer. Instead, i
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-13 13:45
+               Last modified: 2026-03-02 13:31
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
