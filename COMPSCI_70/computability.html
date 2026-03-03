@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-03-03 Tue 15:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Computability</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Computability</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2d24474">1. Halting Problem</a>
+<ul>
+<li><a href="#org60652cf">1.1. Turing Machine</a></li>
+<li><a href="#orgee346eb">1.2. Programs as Data</a></li>
+<li><a href="#orgfbd1b86">1.3. Self-References</a></li>
+<li><a href="#orga7d46f7">1.4. Turing&rsquo;s Theorem</a></li>
+</ul>
+</li>
+<li><a href="#orgac436fe">2. Gödel&rsquo;s Incompleteness Theorem</a></li>
+</ul>
+</div>
+</div>
+<p>
+The question of computability asks if there is any problem that computers cannot solve, and similarly, is there any true mathematical theorem that cannot be proved? We see that the answers to both of these questions are true.
+</p>
+<div id="outline-container-org2d24474" class="outline-2">
+<h2 id="org2d24474"><span class="section-number-2">1.</span> Halting Problem</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A computer program can either <b>halt</b> (stops after some finite time), or run forever. The <b>Halting Problem</b> asks if we can always distinguish whether a program halts or not.
+</p>
+</div>
+<div id="outline-container-org60652cf" class="outline-3">
+<h3 id="org60652cf"><span class="section-number-3">1.1.</span> Turing Machine</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+First, we must define what a computer is. The <b>Turing machine</b> is the simplest representation of a computer, which consists of an infinite storage tape and a finite control <b>state</b>. The state has a read/write had that points to anywhere on the tape.
+</p>
+
+<p>
+The head can either move left, move right, or stop the program. This is shown by the <b>transition function</b>:
+</p>
+
+\begin{align}
+\delta: Q \times \{0. 1\} \rightarrow Q \times \{0, 1\} \times \{L, R, S\}
+\end{align}
+
+<p>
+While this model of a computer is primitive, it can be shown that it is equivalent to more complex models like random access machines, quantum computers, etc.
+</p>
+</div>
+</div>
+<div id="outline-container-orgee346eb" class="outline-3">
+<h3 id="orgee346eb"><span class="section-number-3">1.2.</span> Programs as Data</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The program of the Turing machine is just a finite string of bits. That means that computer programs and data are indistinguishable, which allows us to feed programs to another program as input. This type of Turing machine is known as a <b>universal Turing machine</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfbd1b86" class="outline-3">
+<h3 id="orgfbd1b86"><span class="section-number-3">1.3.</span> Self-References</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+When we have self-references, logical paradoxes may occur. Consider the following statements that can neither be true nor false:
+</p>
+<ul class="org-ul">
+<li>&ldquo;This sentence is false.&rdquo;</li>
+<li>&ldquo;The barber shaves those, and only those, who do not shave themselves.&rdquo; (who shaves the barber?)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga7d46f7" class="outline-3">
+<h3 id="orga7d46f7"><span class="section-number-3">1.4.</span> Turing&rsquo;s Theorem</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+<b>Theorem (Turing 1936):</b> There is no computer program that solves the Halting Problem for all inputs.
+</p>
+
+<p>
+<b>Proof:</b> We proceed by contradiction using <a href="countability.html#orge0c1e18">diagonalization</a>. Assume that there exists a program that solves the Halting Problem. Since programs and their inputs are just finite strings in \(\{0,1\}^*\), we can write a table of all possible programs and inputs:
+</p>
+
+
+<div id="org9beb6a2" class="figure">
+<p><img src="../static/COMPSCI_70/computability1.png" alt="computability1.png" />
+</p>
+</div>
+
+<p>
+Since we assumed that we can solve the Halting Problem, we can determine, for every program-input combination in the table (the columns are inputs and the rows are programs), whether it halts or not.
+</p>
+
+<p>
+Then, consider the following program: if the input \(P\) halts when given \(P\) to itself, then loop; otherwise, halt. Due to diagonalization, this program is different from every program in the table, so it must not be in the table. Yet, since programs are just binary strings, the table must contain every program, which means we have a contradiction. Hence there cannot exist a program that solves the Halting Problem. \(\square\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgac436fe" class="outline-2">
+<h2 id="orgac436fe"><span class="section-number-2">2.</span> Gödel&rsquo;s Incompleteness Theorem</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Theorem (Gödel 1931):</b> There does not exist a proof system for arithmetic that is both <b>consistent</b><abbr class="tooltip" title="can only prove true statements">°</abbr>&emsp13;and <b>complete</b>.<abbr class="tooltip" title="can prove all true statements">°</abbr>&emsp13;
+</p>
+
+<p>
+<b>Sketch of Proof:</b> We can write a statement in arithmetic<abbr class="tooltip" title="using &ldquo;Gödel numbering&rdquo;">°</abbr>&emsp13;of the form \(S: \text{This statement is not provable}\). Then, we have two cases. First, if \(S\) is provable, then by consistency \(S\) is true, so \(S\) is not provable, which is a contradiction. Second, if \(S\) is not provable, then by completeness \(S\) must be false, which means \(S\) is provable, which is also a contradiction.
+</p>
+
+<p>
+<b>Proof via Halting Problem:</b> Given \(\langle M, x\rangle\) we can write an arithmetic statement:
+</p>
+
+\begin{align}
+S: \exists z(z \text{ encodes a halting execution sequence of } M \text{ on input }x) \notag
+\end{align}
+
+<p>
+Then we can solve the Halting Problem by searching for a proof of either \(S\) or \(\lnot S\). If our proof system is complete and consistent, then this always decides the Halting Problem. But this is a contradiction, so a proof system cannot be both complete and consistent. \(\square\)
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-03-03 15:51
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
