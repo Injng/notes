@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-03-05 Thu 15:52 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Counting</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Counting</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org17c61c6">1. First Rule of Counting</a></li>
+<li><a href="#org17dc947">2. Second Rule of Counting</a></li>
+<li><a href="#org62f9c92">3. Sampling</a>
+<ul>
+<li><a href="#org32bd454">3.1. Ordered Objects Sampled With Replacement</a></li>
+<li><a href="#org5cec8c4">3.2. Ordered Objects Sampled Without Replacement</a></li>
+<li><a href="#org9cc9434">3.3. Unordered Objects Sampled Without Replacement</a></li>
+<li><a href="#orgc7a85ba">3.4. Unordered Objects Sampled With Replacement</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org17c61c6" class="outline-2">
+<h2 id="org17c61c6"><span class="section-number-2">1.</span> First Rule of Counting</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Suppose an ordered object is formed by a succession of \(k\) choices where there are \(n_1\) possibilities for the first choice, \(n_2\) possibilities for the second choice, and so on such that there are \(n_k\) possibilities for the kth choice. Then, the number of distinct such objects is given by:
+</p>
+
+\begin{align}
+\boxed{n_1 \cdot n_2 \cdot n_3 \cdot \cdots \cdot n_k}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org17dc947" class="outline-2">
+<h2 id="org17dc947"><span class="section-number-2">2.</span> Second Rule of Counting</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Suppose objects are formed by a succession of \(k\) choices, but the order does not matter. If there exists an \(m\) to \(1\) surjective map from the set of ordered objects \(U'\) to the set of unordered objects \(U\), then:
+</p>
+
+\begin{align}
+\boxed{|U| = \frac{|U'|}{m}}
+\end{align}
+
+<p>
+So, we can count as if order matters and then divide by \(m\). \(m\) is often easily determined by considering the unordered case, and figuring out how many ordered &ldquo;variations&rdquo; there are of that case.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Octopus socks and shoes
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Suppose we want to find the total number of ways we can put 8 distinct socks and 8 distinct shoes on an octopus, such that we must put on the sock before the shoe.
+</p>
+
+<p>
+By the First Rule of Counting, the number of total ways to order all 16 objects is \(16!\). But, some sequences are not valid. Since each invalid sequence can be mapped to a valid sequence by swapping the sock and the shoe, we have a total of \(2^8\) variations on each valid sequence. Therefore, by the Second Rule of Counting, or solution is:
+</p>
+
+\begin{align}
+\boxed{\frac{16!}{2^8}} \notag
+\end{align}
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org62f9c92" class="outline-2">
+<h2 id="org62f9c92"><span class="section-number-2">3.</span> Sampling</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Oftentimes, we <b>sample</b> from some population (a set). Sampled objects are either <b>ordered</b> or <b>unordered</b>, and can be done either with or without <b>replacement</b>.
+</p>
+
+<p>
+It is often helpful to represent counting problems in terms of the representative problem of <i>counting functions between two finite sets</i>. More specifically, we want to find the number of functions \(f: X \rightarrow S\), where \(|X| = k\) and \(|S|=n\).
+</p>
+
+<p>
+To fit this problem to the different cases (ordering and replacement), we can apply various conditions on \(f\):
+</p>
+
+<ol class="org-ol">
+<li>Restrictions on \(f\) (e.g. arbitrary, injective, surjective)</li>
+<li>Whether the elements of \(X\) and \(S\) are distinguishable or indistinguishable</li>
+</ol>
+
+<p>
+Oftentimes, it is useful to intuitively think of \(X\) as a collection of <i>balls</i>, and \(S\) as a collection of <i>bins</i>. The function \(f\) is then the way we distribute the balls among the bins, and counting the number of functions \(f\) amounts to counting the number of ways we can distribute the balls.
+</p>
+</div>
+<div id="outline-container-org32bd454" class="outline-3">
+<h3 id="org32bd454"><span class="section-number-3">3.1.</span> Ordered Objects Sampled With Replacement</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+This is equivalent to counting the number of <i>arbitrary</i> functions such that \(X\) and \(S\) are <i>distinguishable</i>. If \(n\) is the total number of choices, and \(k\) is the amount of objects we want to sample, this problem is equivalent to finding the number of ways we can put \(k\) balls in \(n\) bins arbitrarily.
+</p>
+
+<p>
+Here, we just use the First Rule of Counting:
+</p>
+
+\begin{align}
+\boxed{n^k}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org5cec8c4" class="outline-3">
+<h3 id="org5cec8c4"><span class="section-number-3">3.2.</span> Ordered Objects Sampled Without Replacement</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+This is equivalent to counting the number of <i>injective</i> functions such that \(X\) and \(S\) are <i>distinguishable</i>. If \(n\) is the total number of choices, and \(k\) is the amount of objects we want to sample, this problem is equivalent to finding the number of ways we can put \(k\) balls in \(n\) bins such that there is <i>at most one ball per bin</i>.
+</p>
+
+<p>
+Here, we just use the First Rule of Counting:
+</p>
+
+\begin{align}
+\boxed{n(n-1)(n-2)\cdots(n-k+1)=\frac{n!}{(n-k)!}}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org9cc9434" class="outline-3">
+<h3 id="org9cc9434"><span class="section-number-3">3.3.</span> Unordered Objects Sampled Without Replacement</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+This is equivalent to counting the number of <i>injective</i> functions such that \(X\) (balls) are <i>indistinguishable</i> and \(S\) (bins) are <i>distinguishable</i>. If \(n\) is the total number of choices, and \(k\) is the amount of objects we want to sample, this problem is equivalent to finding the number of ways we can put \(k\) indistinguishable balls in \(n\) bins such that there is <i>at most one ball per bin</i>.
+</p>
+
+<p>
+For such a problem, we introduce the <i>choose</i> notation:
+</p>
+
+\begin{align}
+\boxed{{n \choose k} = {n \choose n-k} = \frac{n!}{k!(n-k)!}}
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgc7a85ba" class="outline-3">
+<h3 id="orgc7a85ba"><span class="section-number-3">3.4.</span> Unordered Objects Sampled With Replacement</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+This is equivalent to counting the number of <i>arbitrary</i> functions such that \(X\) (balls) are <i>indistinguishable</i> and \(S\) (bins) are <i>distinguishable</i>. If \(n\) is the total number of choices, and \(k\) is the amount of objects we want to sample, this problem is equivalent to finding the number of ways we can put \(k\) indistinguishable balls in \(n\) bins arbitrarily:
+</p>
+
+<figure class="tikz-figure"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='200.64491pt' height='69.475516pt' viewBox='-70.007905 -70.007905 200.64491 69.475516'>
+<defs>
+<path id='g0-49' d='M3.443088-7.663263C3.443088-7.938232 3.443088-7.950187 3.203985-7.950187C2.917061-7.627397 2.319303-7.185056 1.08792-7.185056V-6.838356C1.362889-6.838356 1.960648-6.838356 2.618182-7.149191V-.920548C2.618182-.490162 2.582316-.3467 1.530262-.3467H1.159651V0C1.482441-.02391 2.642092-.02391 3.036613-.02391S4.578829-.02391 4.901619 0V-.3467H4.531009C3.478954-.3467 3.443088-.490162 3.443088-.920548V-7.663263Z'/>
+<path id='g0-50' d='M5.260274-2.008468H4.99726C4.961395-1.80523 4.865753-1.147696 4.746202-.956413C4.662516-.848817 3.981071-.848817 3.622416-.848817H1.41071C1.733499-1.123786 2.462765-1.888917 2.773599-2.175841C4.590785-3.849564 5.260274-4.471233 5.260274-5.654795C5.260274-7.029639 4.172354-7.950187 2.785554-7.950187S.585803-6.766625 .585803-5.738481C.585803-5.128767 1.111831-5.128767 1.147696-5.128767C1.398755-5.128767 1.709589-5.308095 1.709589-5.69066C1.709589-6.025405 1.482441-6.252553 1.147696-6.252553C1.0401-6.252553 1.016189-6.252553 .980324-6.240598C1.207472-7.053549 1.853051-7.603487 2.630137-7.603487C3.646326-7.603487 4.267995-6.75467 4.267995-5.654795C4.267995-4.638605 3.682192-3.753923 3.000747-2.988792L.585803-.286924V0H4.94944L5.260274-2.008468Z'/>
+<path id='g0-51' d='M2.199751-4.291905C1.996513-4.27995 1.948692-4.267995 1.948692-4.160399C1.948692-4.040847 2.008468-4.040847 2.223661-4.040847H2.773599C3.789788-4.040847 4.244085-3.203985 4.244085-2.056289C4.244085-.490162 3.431133-.071731 2.84533-.071731C2.271482-.071731 1.291158-.3467 .944458-1.135741C1.327024-1.075965 1.673724-1.291158 1.673724-1.721544C1.673724-2.068244 1.422665-2.307347 1.08792-2.307347C.800996-2.307347 .490162-2.139975 .490162-1.685679C.490162-.621669 1.554172 .251059 2.881196 .251059C4.303861 .251059 5.355915-.836862 5.355915-2.044334C5.355915-3.144209 4.471233-4.004981 3.323537-4.208219C4.363636-4.507098 5.033126-5.379826 5.033126-6.312329C5.033126-7.256787 4.052802-7.950187 2.893151-7.950187C1.697634-7.950187 .812951-7.220922 .812951-6.348194C.812951-5.869988 1.183562-5.774346 1.362889-5.774346C1.613948-5.774346 1.900872-5.953674 1.900872-6.312329C1.900872-6.694894 1.613948-6.862267 1.350934-6.862267C1.279203-6.862267 1.255293-6.862267 1.219427-6.850311C1.673724-7.663263 2.797509-7.663263 2.857285-7.663263C3.251806-7.663263 4.028892-7.483935 4.028892-6.312329C4.028892-6.085181 3.993026-5.415691 3.646326-4.901619C3.287671-4.375592 2.881196-4.339726 2.558406-4.327771L2.199751-4.291905Z'/>
+<path id='g0-52' d='M4.315816-7.782814C4.315816-8.009963 4.315816-8.069738 4.148443-8.069738C4.052802-8.069738 4.016936-8.069738 3.921295-7.926276L.32279-2.343213V-1.996513H3.466999V-.908593C3.466999-.466252 3.443088-.3467 2.570361-.3467H2.331258V0C2.606227-.02391 3.550685-.02391 3.88543-.02391S5.176588-.02391 5.451557 0V-.3467H5.212453C4.351681-.3467 4.315816-.466252 4.315816-.908593V-1.996513H5.523288V-2.343213H4.315816V-7.782814ZM3.526775-6.850311V-2.343213H.621669L3.526775-6.850311Z'/>
+<path id='g0-53' d='M1.530262-6.850311C2.044334-6.682939 2.462765-6.670984 2.594271-6.670984C3.945205-6.670984 4.805978-7.663263 4.805978-7.830635C4.805978-7.878456 4.782067-7.938232 4.710336-7.938232C4.686426-7.938232 4.662516-7.938232 4.554919-7.890411C3.88543-7.603487 3.311582-7.567621 3.000747-7.567621C2.211706-7.567621 1.649813-7.806725 1.422665-7.902366C1.338979-7.938232 1.315068-7.938232 1.303113-7.938232C1.207472-7.938232 1.207472-7.866501 1.207472-7.675218V-4.124533C1.207472-3.90934 1.207472-3.837609 1.350934-3.837609C1.41071-3.837609 1.422665-3.849564 1.542217-3.993026C1.876961-4.483188 2.438854-4.770112 3.036613-4.770112C3.670237-4.770112 3.981071-4.184309 4.076712-3.981071C4.27995-3.514819 4.291905-2.929016 4.291905-2.47472S4.291905-1.338979 3.957161-.800996C3.694147-.37061 3.227895-.071731 2.701868-.071731C1.912827-.071731 1.135741-.609714 .920548-1.482441C.980324-1.458531 1.052055-1.446575 1.111831-1.446575C1.315068-1.446575 1.637858-1.566127 1.637858-1.972603C1.637858-2.307347 1.41071-2.49863 1.111831-2.49863C.896638-2.49863 .585803-2.391034 .585803-1.924782C.585803-.908593 1.398755 .251059 2.725778 .251059C4.076712 .251059 5.260274-.884682 5.260274-2.402989C5.260274-3.825654 4.303861-5.009215 3.048568-5.009215C2.367123-5.009215 1.841096-4.710336 1.530262-4.375592V-6.850311Z'/>
+</defs>
+<g id='page1'>
+<path d='M-69.6094-27.0898V-16.460938H-39.8438V-27.0898' stroke='#000' fill='none' stroke-width='.79701'/>
+<g transform='matrix(1 0 0 1 39.5937 15.675841)'>
+<use x='-97.246471' y='-16.459289' xlink:href='#g0-49'/>
+</g>
+<path d='M-27.0898-27.0898V-16.460938H2.6758V-27.0898' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 82.1139 15.675841)'>
+<use x='-97.246471' y='-16.459289' xlink:href='#g0-50'/>
+</g>
+<path d='M15.4335-27.0898V-16.460938H45.1955V-27.0898' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 124.6341 15.675841)'>
+<use x='-97.246471' y='-16.459289' xlink:href='#g0-51'/>
+</g>
+<path d='M57.9535-27.0898V-16.460938H87.7145V-27.0898' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 167.1543 15.675841)'>
+<use x='-97.246471' y='-16.459289' xlink:href='#g0-52'/>
+</g>
+<path d='M100.4725-27.0898V-16.460938H130.2385V-27.0898' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 209.6745 15.675841)'>
+<use x='-97.246471' y='-16.459289' xlink:href='#g0-53'/>
+</g>
+<path d='M-46.2227-31.3398C-46.2227-36.0391-50.0313-39.8438-54.7266-39.8438S-63.2305-36.0391-63.2305-31.3398C-63.2305-26.6445-59.4219-22.83594-54.7266-22.83594S-46.2227-26.6445-46.2227-31.3398Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-3.7031-31.3398C-3.7031-36.0391-7.5078-39.8438-12.207-39.8438C-16.9023-39.8438-20.7109-36.0391-20.7109-31.3398C-20.7109-26.6445-16.9023-22.83594-12.207-22.83594C-7.5078-22.83594-3.7031-26.6445-3.7031-31.3398Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-3.7031-61.1055C-3.7031-65.8008-7.5078-69.6094-12.207-69.6094C-16.9023-69.6094-20.7109-65.8008-20.7109-61.1055S-16.9023-52.6016-12.207-52.6016C-7.5078-52.6016-3.7031-56.4102-3.7031-61.1055Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M81.3395-31.3398C81.3395-36.0391 77.5315-39.8438 72.8355-39.8438C68.1365-39.8438 64.3325-36.0391 64.3325-31.3398C64.3325-26.6445 68.1365-22.83594 72.8355-22.83594C77.5315-22.83594 81.3395-26.6445 81.3395-31.3398Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+</g>
+</svg></figure><p>
+However, we can use an alternative representation. Each bin is expanded into multiple consecutive bins with <i>1 ball per bin</i>, and an empty bin separating each consecutive sequence:
+</p>
+
+<figure class="tikz-figure"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='383.480384pt' height='66.949644pt' viewBox='-70.007879 -70.007905 383.480384 66.949644'>
+<defs>
+<path id='g0-49' d='M3.443088-7.663263C3.443088-7.938232 3.443088-7.950187 3.203985-7.950187C2.917061-7.627397 2.319303-7.185056 1.08792-7.185056V-6.838356C1.362889-6.838356 1.960648-6.838356 2.618182-7.149191V-.920548C2.618182-.490162 2.582316-.3467 1.530262-.3467H1.159651V0C1.482441-.02391 2.642092-.02391 3.036613-.02391S4.578829-.02391 4.901619 0V-.3467H4.531009C3.478954-.3467 3.443088-.490162 3.443088-.920548V-7.663263Z'/>
+<path id='g0-50' d='M5.260274-2.008468H4.99726C4.961395-1.80523 4.865753-1.147696 4.746202-.956413C4.662516-.848817 3.981071-.848817 3.622416-.848817H1.41071C1.733499-1.123786 2.462765-1.888917 2.773599-2.175841C4.590785-3.849564 5.260274-4.471233 5.260274-5.654795C5.260274-7.029639 4.172354-7.950187 2.785554-7.950187S.585803-6.766625 .585803-5.738481C.585803-5.128767 1.111831-5.128767 1.147696-5.128767C1.398755-5.128767 1.709589-5.308095 1.709589-5.69066C1.709589-6.025405 1.482441-6.252553 1.147696-6.252553C1.0401-6.252553 1.016189-6.252553 .980324-6.240598C1.207472-7.053549 1.853051-7.603487 2.630137-7.603487C3.646326-7.603487 4.267995-6.75467 4.267995-5.654795C4.267995-4.638605 3.682192-3.753923 3.000747-2.988792L.585803-.286924V0H4.94944L5.260274-2.008468Z'/>
+<path id='g0-51' d='M2.199751-4.291905C1.996513-4.27995 1.948692-4.267995 1.948692-4.160399C1.948692-4.040847 2.008468-4.040847 2.223661-4.040847H2.773599C3.789788-4.040847 4.244085-3.203985 4.244085-2.056289C4.244085-.490162 3.431133-.071731 2.84533-.071731C2.271482-.071731 1.291158-.3467 .944458-1.135741C1.327024-1.075965 1.673724-1.291158 1.673724-1.721544C1.673724-2.068244 1.422665-2.307347 1.08792-2.307347C.800996-2.307347 .490162-2.139975 .490162-1.685679C.490162-.621669 1.554172 .251059 2.881196 .251059C4.303861 .251059 5.355915-.836862 5.355915-2.044334C5.355915-3.144209 4.471233-4.004981 3.323537-4.208219C4.363636-4.507098 5.033126-5.379826 5.033126-6.312329C5.033126-7.256787 4.052802-7.950187 2.893151-7.950187C1.697634-7.950187 .812951-7.220922 .812951-6.348194C.812951-5.869988 1.183562-5.774346 1.362889-5.774346C1.613948-5.774346 1.900872-5.953674 1.900872-6.312329C1.900872-6.694894 1.613948-6.862267 1.350934-6.862267C1.279203-6.862267 1.255293-6.862267 1.219427-6.850311C1.673724-7.663263 2.797509-7.663263 2.857285-7.663263C3.251806-7.663263 4.028892-7.483935 4.028892-6.312329C4.028892-6.085181 3.993026-5.415691 3.646326-4.901619C3.287671-4.375592 2.881196-4.339726 2.558406-4.327771L2.199751-4.291905Z'/>
+<path id='g0-52' d='M4.315816-7.782814C4.315816-8.009963 4.315816-8.069738 4.148443-8.069738C4.052802-8.069738 4.016936-8.069738 3.921295-7.926276L.32279-2.343213V-1.996513H3.466999V-.908593C3.466999-.466252 3.443088-.3467 2.570361-.3467H2.331258V0C2.606227-.02391 3.550685-.02391 3.88543-.02391S5.176588-.02391 5.451557 0V-.3467H5.212453C4.351681-.3467 4.315816-.466252 4.315816-.908593V-1.996513H5.523288V-2.343213H4.315816V-7.782814ZM3.526775-6.850311V-2.343213H.621669L3.526775-6.850311Z'/>
+<path id='g0-53' d='M1.530262-6.850311C2.044334-6.682939 2.462765-6.670984 2.594271-6.670984C3.945205-6.670984 4.805978-7.663263 4.805978-7.830635C4.805978-7.878456 4.782067-7.938232 4.710336-7.938232C4.686426-7.938232 4.662516-7.938232 4.554919-7.890411C3.88543-7.603487 3.311582-7.567621 3.000747-7.567621C2.211706-7.567621 1.649813-7.806725 1.422665-7.902366C1.338979-7.938232 1.315068-7.938232 1.303113-7.938232C1.207472-7.938232 1.207472-7.866501 1.207472-7.675218V-4.124533C1.207472-3.90934 1.207472-3.837609 1.350934-3.837609C1.41071-3.837609 1.422665-3.849564 1.542217-3.993026C1.876961-4.483188 2.438854-4.770112 3.036613-4.770112C3.670237-4.770112 3.981071-4.184309 4.076712-3.981071C4.27995-3.514819 4.291905-2.929016 4.291905-2.47472S4.291905-1.338979 3.957161-.800996C3.694147-.37061 3.227895-.071731 2.701868-.071731C1.912827-.071731 1.135741-.609714 .920548-1.482441C.980324-1.458531 1.052055-1.446575 1.111831-1.446575C1.315068-1.446575 1.637858-1.566127 1.637858-1.972603C1.637858-2.307347 1.41071-2.49863 1.111831-2.49863C.896638-2.49863 .585803-2.391034 .585803-1.924782C.585803-.908593 1.398755 .251059 2.725778 .251059C4.076712 .251059 5.260274-.884682 5.260274-2.402989C5.260274-3.825654 4.303861-5.009215 3.048568-5.009215C2.367123-5.009215 1.841096-4.710336 1.530262-4.375592V-6.850311Z'/>
+<path id='g0-54' d='M1.470486-4.160399C1.470486-7.185056 2.940971-7.663263 3.58655-7.663263C4.016936-7.663263 4.447323-7.531756 4.674471-7.173101C4.531009-7.173101 4.076712-7.173101 4.076712-6.682939C4.076712-6.419925 4.25604-6.192777 4.566874-6.192777C4.865753-6.192777 5.068991-6.372105 5.068991-6.718804C5.068991-7.340473 4.614695-7.950187 3.574595-7.950187C2.068244-7.950187 .490162-6.40797 .490162-3.777833C.490162-.490162 1.924782 .251059 2.940971 .251059C4.244085 .251059 5.355915-.884682 5.355915-2.438854C5.355915-4.028892 4.244085-5.092902 3.048568-5.092902C1.984558-5.092902 1.590037-4.172354 1.470486-3.837609V-4.160399ZM2.940971-.071731C2.187796-.071731 1.829141-.74122 1.721544-.992279C1.613948-1.303113 1.494396-1.888917 1.494396-2.725778C1.494396-3.670237 1.924782-4.853798 3.000747-4.853798C3.658281-4.853798 4.004981-4.411457 4.184309-4.004981C4.375592-3.56264 4.375592-2.964882 4.375592-2.450809C4.375592-1.841096 4.375592-1.303113 4.148443-.848817C3.849564-.274969 3.419178-.071731 2.940971-.071731Z'/>
+<path id='g0-55' d='M5.678705-7.424159V-7.699128H2.797509C1.350934-7.699128 1.327024-7.854545 1.279203-8.081694H1.016189L.645579-5.69066H.908593C.944458-5.905853 1.052055-6.647073 1.207472-6.77858C1.303113-6.850311 2.199751-6.850311 2.367123-6.850311H4.901619L3.634371-5.033126C3.311582-4.566874 2.10411-2.606227 2.10411-.358655C2.10411-.227148 2.10411 .251059 2.594271 .251059C3.096389 .251059 3.096389-.215193 3.096389-.37061V-.968369C3.096389-2.749689 3.383313-4.136488 3.945205-4.937484L5.678705-7.424159Z'/>
+<path id='g0-56' d='M3.56264-4.315816C4.160399-4.638605 5.033126-5.188543 5.033126-6.192777C5.033126-7.232877 4.028892-7.950187 2.929016-7.950187C1.745455-7.950187 .812951-7.07746 .812951-5.989539C.812951-5.583064 .932503-5.176588 1.267248-4.770112C1.398755-4.614695 1.41071-4.60274 2.247572-4.016936C1.08792-3.478954 .490162-2.677958 .490162-1.80523C.490162-.537983 1.697634 .251059 2.917061 .251059C4.244085 .251059 5.355915-.729265 5.355915-1.984558C5.355915-3.203985 4.495143-3.741968 3.56264-4.315816ZM1.936737-5.391781C1.78132-5.499377 1.303113-5.810212 1.303113-6.396015C1.303113-7.173101 2.116065-7.663263 2.917061-7.663263C3.777833-7.663263 4.542964-7.041594 4.542964-6.180822C4.542964-5.451557 4.016936-4.865753 3.323537-4.483188L1.936737-5.391781ZM2.49863-3.849564L3.945205-2.905106C4.25604-2.701868 4.805978-2.331258 4.805978-1.601993C4.805978-.6934 3.88543-.071731 2.929016-.071731C1.912827-.071731 1.0401-.812951 1.0401-1.80523C1.0401-2.737733 1.721544-3.490909 2.49863-3.849564Z'/>
+</defs>
+<g id='page1'>
+<path d='M-41.9727-56.8516V-46.222656H-12.207V-56.8516' stroke='#000' fill='none' stroke-width='.79701'/>
+<g transform='matrix(1 0 0 1 39.5937 15.6758)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-49'/>
+</g>
+<path d='M.5508-56.8516V-46.222656H30.3125V-56.8516' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 82.1139 15.6758)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-50'/>
+</g>
+<path d='M43.07-56.8516V-46.222656H72.832V-56.8516' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 124.6341 15.6758)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-51'/>
+</g>
+<path d='M85.59-56.8516V-46.222656H115.355V-56.8516' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 167.1543 15.6758)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-52'/>
+</g>
+<path d='M128.109-56.8516V-46.222656H157.875V-56.8516' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 209.675 15.6758)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-53'/>
+</g>
+<path d='M170.629-56.8516V-46.222656H200.395V-56.8516' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 252.195 15.6758)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-54'/>
+</g>
+<path d='M213.148-56.8516V-46.222656H242.914V-56.8516' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 294.715 15.6758)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-55'/>
+</g>
+<path d='M255.672-56.8516V-46.222656H285.434V-56.8516' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 337.235 15.6758)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-56'/>
+</g>
+<path d='M-18.5859-61.1055C-18.5859-65.8008-22.3906-69.6094-27.0898-69.6094C-31.7852-69.6094-35.5937-65.8008-35.5937-61.1055S-31.7852-52.60156-27.0898-52.60156C-22.3906-52.60156-18.5859-56.4102-18.5859-61.1055Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M66.457-61.1055C66.457-65.8008 62.648-69.6094 57.953-69.6094C53.254-69.6094 49.449-65.8008 49.449-61.1055S53.254-52.60156 57.953-52.60156C62.648-52.60156 66.457-56.4102 66.457-61.1055Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M108.977-61.1055C108.977-65.8008 105.168-69.6094 100.473-69.6094C95.773-69.6094 91.969-65.8008 91.969-61.1055S95.773-52.60156 100.473-52.60156C105.168-52.60156 108.977-56.4102 108.977-61.1055Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M236.535-61.1055C236.535-65.8008 232.73-69.6094 228.031-69.6094C223.336-69.6094 219.527-65.8008 219.527-61.1055S223.336-52.60156 228.031-52.60156C232.73-52.60156 236.535-56.4102 236.535-61.1055Z' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<path d='M-69.609374-20.7109C-68.710936-18.918-66.62109-17.7227-63.63281-17.7227H-33.0664C-30.0781-17.7227-27.9844-16.5273-27.0898-14.7344C-26.1914-16.5273-24.1016-17.7227-21.1094-17.7227H9.4531C12.4414-17.7227 14.5352-18.918 15.4297-20.7109' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 39.5937 42.9136)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-49'/>
+</g>
+<path d='M15.4297-20.7109C16.3281-18.918 18.4219-17.7227 21.4102-17.7227H73.234C76.223-17.7227 78.316-16.5273 79.211-14.7344C80.109-16.5273 82.199-17.7227 85.188-17.7227H137.016C140.004-17.7227 142.094-18.918 142.992-20.7109' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 145.8942 42.9136)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-50'/>
+</g>
+<path d='M142.992-20.7109C143.891-18.918 145.98-17.7227 148.969-17.7227H158.273C161.262-17.7227 163.355-16.5273 164.254-14.7344C165.148-16.5273 167.242-17.7227 170.23-17.7227H179.535C182.523-17.7227 184.617-18.918 185.512-20.7109' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 230.935 42.9136)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-51'/>
+</g>
+<path d='M185.512-20.7109C186.41-18.918 188.5-17.7227 191.488-17.7227H222.055C225.043-17.7227 227.137-16.5273 228.031-14.7344C228.93-16.5273 231.02-17.7227 234.012-17.7227H264.574C267.563-17.7227 269.656-18.918 270.551-20.7109' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 294.715 42.9136)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-52'/>
+</g>
+<path d='M270.551-20.7109C271.449-18.918 273.543-17.7227 276.531-17.7227H285.836C288.824-17.7227 290.918-16.5273 291.813-14.7344C292.711-16.5273 294.801-17.7227 297.789-17.7227H307.094C310.086-17.7227 312.176-18.918 313.074-20.7109' stroke='#000' fill='none' stroke-width='.79701' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 358.495 42.9136)'>
+<use x='-69.608977' y='-46.22292' xlink:href='#g0-53'/>
+</g>
+</g>
+</svg></figure><p>
+This representation is also referred to as <b>stars and bars</b>, where stars are balls and bars are empty bins. This turns the problem into choosing an unordered set of \(k\) bins (to put balls in) out of a total of \(n+k-1\) bins, which is just:
+</p>
+
+\begin{align}
+\boxed{{n+k-1 \choose k}}
+\end{align}
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-03-05 15:52
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
