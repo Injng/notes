@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-26 Thu 17:07 -->
+<!-- 2026-03-04 Wed 17:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Countability</title>
@@ -151,7 +151,7 @@ A function \(f: A \rightarrow B\) is a <b>bijection</b> if \(f\) is both an <b>i
 </p>
 
 
-<div id="org32c142a" class="figure">
+<div id="org1157eb2" class="figure">
 <p><img src="../static/COMPSCI_70/countability1.png" alt="countability1.png" />
 </p>
 </div>
@@ -165,8 +165,16 @@ Two <b>infinite sets</b> have the same cardinality if and only if there exists a
 </p>
 
 <p>
-More generally, a set \(S\) is <b>countable</b> if there exists a bijection between \(S\) and \(\mathbb{N}\), or some subset of \(\mathbb{N}\) (if \(S\) is finite). For example, any finite set is countable, as are \(\mathbb{N}, \mathbb{Z}_+, \mathbb{Z}\).
+More generally, a set \(S\) is <b>countable</b> if there exists a bijection between \(S\) and \(\mathbb{N}\), or some subset of \(\mathbb{N}\) (if \(S\) is finite). The following sets are known to be countable:
 </p>
+
+<ul class="org-ul">
+<li>any finite set</li>
+<li>\(\mathbb{N}, \mathbb{Z}_+, \mathbb{Z}, \mathbb{Q}\)</li>
+<li>\(\{0, 1\}^*, \{0, 1, 2\}^*\)</li>
+<li>Cartesian product of any finite number of countable sets</li>
+<li>countable union of countable sets</li>
+</ul>
 
 <p>
 <b>Theorem (Cantor-Schröder-Bernstein):</b> If there exists an injection \(f: A \rightarrow B\) and an injection \(g: B \rightarrow A\), then there exists a bijection \(h: A \rightarrow B\).
@@ -191,7 +199,7 @@ We wish to prove that the set \(\mathbb{N} \times \mathbb{N}\) is countable. Thi
 </p>
 
 
-<div id="org0955c62" class="figure">
+<div id="org3b7eebe" class="figure">
 <p><img src="../static/COMPSCI_70/countability2.png" alt="countability2.png" />
 </p>
 </div>
@@ -264,7 +272,7 @@ But, if we use diagonalization, we can construct a new subset of \(\mathbb{N}\) 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-26 17:07
+               Last modified: 2026-03-04 17:22
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
