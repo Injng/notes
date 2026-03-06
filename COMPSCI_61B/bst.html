@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-02 Mon 15:55 -->
+<!-- 2026-03-06 Fri 14:38 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Binary Search Trees</title>
@@ -134,6 +134,11 @@
 <li><a href="#org82a5476">2.3. <code>delete</code></a></li>
 </ul>
 </li>
+<li><a href="#orga999aa0">3. Tree Rotation</a>
+<ul>
+<li><a href="#org049d495">3.1. Left-Leaning Red Black Binary Search Tree</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -145,7 +150,7 @@ We can start from an <code>OrderedLinkedListSet</code>, then make it better:
 </p>
 
 
-<div id="org352e0eb" class="figure">
+<div id="org2bad0cf" class="figure">
 <p><img src="../static/COMPSCI_61B/bst1.png" alt="bst1.png" />
 </p>
 </div>
@@ -159,7 +164,7 @@ We can first move the pointer to the middle, but now we can&rsquo;t reach elemen
 </p>
 
 
-<div id="org885ac1c" class="figure">
+<div id="org14d7a5c" class="figure">
 <p><img src="../static/COMPSCI_61B/bst2.png" alt="bst2.png" />
 </p>
 </div>
@@ -169,7 +174,7 @@ We can fix this by flipping the links before the pointer to the left:
 </p>
 
 
-<div id="org15da4b0" class="figure">
+<div id="org8ec99bf" class="figure">
 <p><img src="../static/COMPSCI_61B/bst3.png" alt="bst3.png" />
 </p>
 </div>
@@ -179,7 +184,7 @@ We&rsquo;ve now halved our search time, but it still grows linearly with respect
 </p>
 
 
-<div id="org8dc9db0" class="figure">
+<div id="orgb77fa58" class="figure">
 <p><img src="../static/COMPSCI_61B/bst4.png" alt="bst4.png" />
 </p>
 </div>
@@ -271,13 +276,285 @@ The hardest case is when the deletion key has two children. The strategy is to f
 </p>
 
 
-<div id="org904573e" class="figure">
+<div id="org0d3ffe4" class="figure">
 <p><img src="../static/COMPSCI_61B/bst5.png" alt="bst5.png" />
 </p>
 </div>
 
 <p>
 Now, deleting this target node and then replacing the deletion key with this target node effectively deletes the deletion key. This process is known as <b>Hibbard deletion</b>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga999aa0" class="outline-2">
+<h2 id="orga999aa0"><span class="section-number-2">3.</span> Tree Rotation</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The problem with binary search trees is that we need to keep them <b>balanced</b>, otherwise the performance drops.
+</p>
+
+<p>
+The key is <b>tree rotation</b>. By rotating trees, it is possible to move a BST to a balanced configuration. In general, if \(x\) is the right child of \(G\), we make \(G\) the <i>new left child</i> of \(x\). Then, since \(x\) has &ldquo;two&rdquo; left childs and \(G\) has no right child anymore, we can just make the original left child of \(x\) the <i>new right child</i> of \(G\).
+</p>
+
+<p>
+The above operation is called <code>rotateLeft(G)</code>. There is also a corresponding <code>rotateRight(G)</code>, which is the mirror image:
+</p>
+
+<style>
+#bst-demo {
+  margin: 1.5em 0; border: 1px solid var(--surface1, #bcc0cc);
+  border-radius: 0.75rem; padding: 1em 1em 0.5em;
+  background: var(--base, #eff1f5);
+}
+#bst-demo svg { display: block; width: 100%; }
+#bst-ctl {
+  display: flex; align-items: center; gap: 0.5em;
+  flex-wrap: wrap; margin-top: 0.75em; font-size: 0.9em;
+}
+#bst-demo button, #bst-demo input {
+  padding: 0.3em 0.7em; border: 1px solid var(--surface1, #bcc0cc);
+  border-radius: 6px; font-size: 0.85em; color: var(--text, #4c4f69);
+}
+#bst-demo button {
+  background: var(--surface0, #ccd0da); cursor: pointer;
+  font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+}
+#bst-demo button:hover:not(:disabled) { background: var(--surface1, #bcc0cc); }
+#bst-demo button:disabled { opacity: 0.5; cursor: default; }
+#bst-demo input {
+  background: var(--mantle, #e6e9ef); width: 4.5em;
+  font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+}
+#bst-demo input::-webkit-inner-spin-button,
+#bst-demo input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+#bst-demo input[type=number] { -moz-appearance: textfield; }
+#bst-info { color: var(--subtext1, #5c5f77); }
+#bst-sep { color: var(--surface2, #acb0be); }
+#bst-msg { font-size: 0.85em; margin-top: 0.3em; min-height: 1.2em; }
+</style>
+<div id="bst-demo">
+  <svg id="bst-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <div id="bst-ctl">
+    <span id="bst-info">Click a node to select it</span>
+    <button id="bst-rl" disabled>rotateLeft</button>
+    <button id="bst-rr" disabled>rotateRight</button>
+    <span id="bst-sep">&vert;</span>
+    <input id="bst-iv" type="number" placeholder="key">
+    <button id="bst-ib">Insert</button>
+    <button id="bst-rs">Reset</button>
+  </div>
+  <div id="bst-msg"></div>
+</div>
+<script>
+(function() {
+  var W = 600, MX = 40, MY = 35, LH = 65, NR = 20;
+
+  function node(k, l, r) { return { key: k, left: l || null, right: r || null }; }
+
+  function init() {
+    return node(7,
+      node(3, node(1), node(5)),
+      node(11, node(9), node(13)));
+  }
+
+  function size(n) { return n ? 1 + size(n.left) + size(n.right) : 0; }
+
+  function has(n, k) {
+    return n ? (k === n.key || has(k < n.key ? n.left : n.right, k)) : false;
+  }
+
+  function insert(n, k) {
+    if (!n) return node(k);
+    if (k < n.key) n.left = insert(n.left, k);
+    else if (k > n.key) n.right = insert(n.right, k);
+    return n;
+  }
+
+  function rotL(n) {
+    if (!n || !n.right) return null;
+    var x = n.right; n.right = x.left; x.left = n; return x;
+  }
+
+  function rotR(n) {
+    if (!n || !n.left) return null;
+    var x = n.left; n.left = x.right; x.right = n; return x;
+  }
+
+  function doRot(n, k, d) {
+    if (!n) return [null, false];
+    if (n.key === k) {
+      var r = d === 'l' ? rotL(n) : rotR(n);
+      return r ? [r, true] : [n, false];
+    }
+    if (k < n.key) {
+      var res = doRot(n.left, k, d);
+      n.left = res[0]; return [n, res[1]];
+    }
+    var res = doRot(n.right, k, d);
+    n.right = res[0]; return [n, res[1]];
+  }
+
+  function layout(root) {
+    var pos = {}, i = 0, n = size(root);
+    (function walk(nd, d) {
+      if (!nd) return;
+      walk(nd.left, d + 1);
+      pos[nd.key] = {
+        x: n === 1 ? W / 2 : MX + i * ((W - 2 * MX) / (n - 1)),
+        y: MY + d * LH
+      };
+      i++;
+      walk(nd.right, d + 1);
+    })(root, 0);
+    return pos;
+  }
+
+  function edges(n) {
+    var e = [];
+    (function walk(nd) {
+      if (!nd) return;
+      if (nd.left)  { e.push([nd.key, nd.left.key]);  walk(nd.left); }
+      if (nd.right) { e.push([nd.key, nd.right.key]); walk(nd.right); }
+    })(n);
+    return e;
+  }
+
+  function maxY(p) {
+    var m = 0;
+    for (var k in p) if (p[k].y > m) m = p[k].y;
+    return m + 40;
+  }
+
+  var root = init(), sel = null, prev = {}, af = null;
+  var svg  = document.getElementById('bst-svg');
+  var info = document.getElementById('bst-info');
+  var msg  = document.getElementById('bst-msg');
+
+  function drawFrame(pos, edg, svgH) {
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + svgH);
+    var s = '';
+    for (var i = 0; i < edg.length; i++) {
+      var a = pos[edg[i][0]], b = pos[edg[i][1]];
+      if (a && b)
+        s += '<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+
+             '" stroke="var(--overlay1,#8c8fa1)" stroke-width="2"/>';
+    }
+    for (var k in pos) {
+      var p = pos[k], isSel = parseInt(k) === sel;
+      var fill = isSel ? 'var(--blue,#1e66f5)' : 'var(--surface0,#ccd0da)';
+      var tf   = isSel ? '#fff' : 'var(--text,#4c4f69)';
+      s += '<g class="bst-n" data-key="'+k+'" style="cursor:pointer">' +
+        '<circle cx="'+p.x+'" cy="'+p.y+'" r="'+NR+'" fill="'+fill+
+        '" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>' +
+        '<text x="'+p.x+'" y="'+p.y+'" dy=".35em" text-anchor="middle" fill="'+tf+
+        '" font-size="14" font-weight="600" font-family="system-ui,sans-serif"' +
+        ' style="pointer-events:none">'+k+'</text></g>';
+    }
+    svg.innerHTML = s;
+    svg.querySelectorAll('.bst-n').forEach(function(g) {
+      g.addEventListener('click', function() {
+        sel = parseInt(this.dataset.key); refresh();
+      });
+    });
+  }
+
+  function draw(pos, edg) { drawFrame(pos, edg, maxY(pos)); }
+
+  function animate(from, to, edg, dur) {
+    if (af) cancelAnimationFrame(af);
+    var fH = maxY(from), tH = maxY(to), t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var t = Math.min((ts - t0) / dur, 1);
+      t = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2;
+      var cur = {};
+      for (var k in to) {
+        var f = from[k] || to[k];
+        cur[k] = { x: f.x + (to[k].x - f.x) * t, y: f.y + (to[k].y - f.y) * t };
+      }
+      drawFrame(cur, edg, fH + (tH - fH) * t);
+      if (t < 1) af = requestAnimationFrame(step);
+    }
+    af = requestAnimationFrame(step);
+  }
+
+  function refresh(anim) {
+    var pos = layout(root), edg = edges(root);
+    info.textContent = sel !== null ? 'Selected: ' + sel : 'Click a node to select it';
+    document.getElementById('bst-rl').disabled = sel === null;
+    document.getElementById('bst-rr').disabled = sel === null;
+    if (anim && Object.keys(prev).length) animate(prev, pos, edg, 400);
+    else draw(pos, edg);
+    prev = pos;
+  }
+
+  function showMsg(text, color) {
+    msg.textContent = text; msg.style.color = color;
+    setTimeout(function() { msg.textContent = ''; }, 2500);
+  }
+
+  function rotate(d) {
+    if (sel === null) return;
+    var old = layout(root), res = doRot(root, sel, d);
+    if (!res[1]) {
+      showMsg('Cannot rotate: no ' + (d === 'l' ? 'right' : 'left') + ' child',
+        'var(--red,#d20f39)');
+      return;
+    }
+    root = res[0];
+    showMsg((d === 'l' ? 'rotateLeft' : 'rotateRight') + '(' + sel + ')',
+      'var(--green,#40a02b)');
+    prev = old; refresh(true);
+  }
+
+  function doInsert() {
+    var input = document.getElementById('bst-iv'), v = parseInt(input.value);
+    if (isNaN(v)) return;
+    if (has(root, v)) {
+      showMsg('Node ' + v + ' already exists', 'var(--red,#d20f39)'); return;
+    }
+    var old = layout(root);
+    root = insert(root, v); input.value = ''; prev = old; refresh(true);
+  }
+
+  document.getElementById('bst-rl').addEventListener('click', function() { rotate('l'); });
+  document.getElementById('bst-rr').addEventListener('click', function() { rotate('r'); });
+  document.getElementById('bst-rs').addEventListener('click', function() {
+    root = init(); sel = null; msg.textContent = ''; refresh();
+  });
+  document.getElementById('bst-ib').addEventListener('click', doInsert);
+  document.getElementById('bst-iv').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') doInsert();
+  });
+  svg.addEventListener('click', function(e) {
+    if (e.target === svg) { sel = null; refresh(); }
+  });
+
+  refresh();
+})();
+</script>
+
+<p>
+Note that if there is no right child to &ldquo;take over&rdquo; when we rotate left, or equivalently if there is no left child to take over when we rotate right, then the rotation is invalid.
+</p>
+</div>
+<div id="outline-container-org049d495" class="outline-3">
+<h3 id="org049d495"><span class="section-number-3">3.1.</span> Left-Leaning Red Black Binary Search Tree</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Then, how do we know what rotations we need to do to balance the tree? Well, we know that a <a href="b_trees.html#org4de8f47">B-tree</a> is balanced, so what if we maintain a one-to-one correspondence with a B-tree:
+</p>
+
+
+<div id="org2c10396" class="figure">
+<p><img src="../static/COMPSCI_61B/bst6.png" alt="bst6.png" />
+</p>
+</div>
+
+<p>
+We can &ldquo;expand&rdquo; each node of a 2-3 tree towards the left, and it turns into a BST. Because 2-3 trees have logarithmic height, and the corresponding LLRB has height that is never more than around two times the 2-3 tree height, LLRBs <i>also have logarithmic height</i>!
 </p>
 </div>
 </div>
@@ -289,7 +566,7 @@ Now, deleting this target node and then replacing the deletion key with this tar
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-02 14:13
+               Last modified: 2026-03-06 14:37
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

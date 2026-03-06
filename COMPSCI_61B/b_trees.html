@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-04 Wed 15:32 -->
+<!-- 2026-03-06 Fri 13:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>B-Trees</title>
@@ -129,6 +129,7 @@
 <li><a href="#org4de8f47">1. B-Trees</a>
 <ul>
 <li><a href="#org97cb0d6">1.1. Inserting</a></li>
+<li><a href="#orge03e5cb">1.2. Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -139,7 +140,7 @@ The problem with <a href="bst.html#orge91fa84">binary search trees</a> is that i
 </p>
 
 
-<div id="org2c57e80" class="figure">
+<div id="org77ae054" class="figure">
 <p><img src="../static/COMPSCI_61B/b_trees1.png" alt="b_trees1.png" />
 </p>
 </div>
@@ -170,7 +171,7 @@ To insert a key, simply change the appropriate node like so:
 </p>
 
 
-<div id="org8cecdd9" class="figure">
+<div id="orgc5d4e00" class="figure">
 <p><img src="../static/COMPSCI_61B/b_trees2.png" alt="b_trees2.png" />
 </p>
 </div>
@@ -180,13 +181,21 @@ However, if the appropriate node is already full, then we can split the node int
 </p>
 
 
-<div id="org94dd8a5" class="figure">
+<div id="orga8bbb41" class="figure">
 <p><img src="../static/COMPSCI_61B/b_trees3.png" alt="b_trees3.png" />
 </p>
 </div>
 
 <p>
 This insertion technique preserves all of the B-tree properties.
+</p>
+</div>
+</div>
+<div id="outline-container-orge03e5cb" class="outline-3">
+<h3 id="orge03e5cb"><span class="section-number-3">1.2.</span> Performance</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The overall height of a B-Tree is \(\Theta(\log N)\). Both the <code>contains</code> and <code>add</code> operations are also \(\Theta(\log N)\)
 </p>
 </div>
 </div>
@@ -198,7 +207,7 @@ This insertion technique preserves all of the B-tree properties.
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-04 15:32
+               Last modified: 2026-03-06 13:22
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
