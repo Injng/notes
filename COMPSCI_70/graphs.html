@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-05 Thu 17:00 -->
+<!-- 2026-03-09 Mon 13:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Graphs</title>
@@ -140,8 +140,8 @@
 <li><a href="#orga6f7d1c">3. Complete Graphs</a></li>
 <li><a href="#orga88954a">4. Planar Graphs</a>
 <ul>
-<li><a href="#orgdbec8f3">4.1. Euler's Formula</a></li>
-<li><a href="#orgcc15b28">4.2. Kuratowski's Theorem</a></li>
+<li><a href="#orgdbec8f3">4.1. Euler&rsquo;s Formula</a></li>
+<li><a href="#orgcc15b28">4.2. Kuratowski&rsquo;s Theorem</a></li>
 </ul>
 </li>
 <li><a href="#org87c18d7">5. Connectivity</a>
@@ -247,7 +247,7 @@ We call \(u\) and \(v\) <b>adjacent</b> or <b>neighbors</b>, and the edge \(e\) 
 </p>
 
 <p>
-Graphs can either be <b>directed</b> or <b>undirected</b>. Directed graphs specify the direction of its edges, whereas undirected graphs do not. Notice that undirected graphs can be seen as a special case of a directed graph, just with each edge having a "pair" of directed edges both going out and in from a node. For directed graphs, we make a distinction between the <b>in-degree</b> and <b>out-degree</b> of a node.
+Graphs can either be <b>directed</b> or <b>undirected</b>. Directed graphs specify the direction of its edges, whereas undirected graphs do not. Notice that undirected graphs can be seen as a special case of a directed graph, just with each edge having a &ldquo;pair&rdquo; of directed edges both going out and in from a node. For directed graphs, we make a distinction between the <b>in-degree</b> and <b>out-degree</b> of a node.
 </p>
 
 <p>
@@ -370,7 +370,7 @@ We now attempt to prove the above theorem. First, we must prove the forward dire
 </p>
 
 <p>
-A tour must enter and exit every vertex in pairs. However, since we can only use one path once, they must do so on <i>different edges</i>. Therefore, edges must exist in "pairs" at each vertex, which means that the total number of edges at each vertex must be even.
+A tour must enter and exit every vertex in pairs. However, since we can only use one path once, they must do so on <i>different edges</i>. Therefore, edges must exist in &ldquo;pairs&rdquo; at each vertex, which means that the total number of edges at each vertex must be even.
 </p>
 
 <p>
@@ -400,7 +400,7 @@ Since by definition the algorithm will only travel on untraversed edges, what we
 </p>
 
 <p>
-Realize that for any vertex \(v \neq s\), whenever our tour arrives at \(v\) it has used up an odd number of deges, which means there always exists an "escape" edge available.
+Realize that for any vertex \(v \neq s\), whenever our tour arrives at \(v\) it has used up an odd number of deges, which means there always exists an &ldquo;escape&rdquo; edge available.
 </p>
 
 <p>
@@ -427,7 +427,7 @@ The idea here is that we can use any subtour to break up a graph into connected 
 </p>
 
 
-<div id="org162550a" class="figure">
+<div id="org7a92581" class="figure">
 <p><img src="../static/COMPSCI_70/graphs1.png" alt="graphs1.png" />
 </p>
 </div>
@@ -457,7 +457,7 @@ This concludes our inductive step, and we have proven that the algorithm outputs
 <h2 id="orgad88375"><span class="section-number-2">2.</span> Trees</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-An undirected graph $G4 with \(n\) vertices is a <b>tree</b> if either of the following equivalent conditions holds:
+An undirected graph \(G\) with \(n\) vertices is a <b>tree</b> if either of the following equivalent conditions holds:
 </p>
 
 <ol class="org-ol">
@@ -655,10 +655,10 @@ A <b>planar graph</b> is a graph that can be drawn on the plane so that none of 
 </svg></figure>
 </div>
 <div id="outline-container-orgdbec8f3" class="outline-3">
-<h3 id="orgdbec8f3"><span class="section-number-3">4.1.</span> Euler's Formula</h3>
+<h3 id="orgdbec8f3"><span class="section-number-3">4.1.</span> Euler&rsquo;s Formula</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
-<b>Theorem (Euler's Formula):</b> Any planar drawing of a <i>connected</i> graph satisfies the equation:
+<b>Theorem (Euler&rsquo;s Formula):</b> Any planar drawing of a <i>connected</i> graph satisfies the equation:
 </p>
 
 \begin{align}
@@ -691,7 +691,7 @@ The inductive step is complete, and we are done. \(\square\)
 </p>
 
 <p>
-<b>Proof:</b> If we draw the graph \(G\) in the plane, then it must satisfy \(e=v+f-2\) by Euler's Formula. For each face \(F_i\), let \(s_i\) be the number of sides of \(F_i\). Then \(\sum_{i=1}^f s_i = 2e\), since each edge is the side of exactly two faces. Also, \(s_i \geq 3 \Rightarrow 2e \geq 3f\). Then
+<b>Proof:</b> If we draw the graph \(G\) in the plane, then it must satisfy \(e=v+f-2\) by Euler&rsquo;s Formula. For each face \(F_i\), let \(s_i\) be the number of sides of \(F_i\). Then \(\sum_{i=1}^f s_i = 2e\), since each edge is the side of exactly two faces. Also, \(s_i \geq 3 \Rightarrow 2e \geq 3f\). Then
 </p>
 
 \begin{align}
@@ -702,14 +702,14 @@ e &\leq 3v - 6 \notag \quad \square
 </div>
 </div>
 <div id="outline-container-orgcc15b28" class="outline-3">
-<h3 id="orgcc15b28"><span class="section-number-3">4.2.</span> Kuratowski's Theorem</h3>
+<h3 id="orgcc15b28"><span class="section-number-3">4.2.</span> Kuratowski&rsquo;s Theorem</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
-<b>Kuratowski's Theorem:</b> A graph \(G\) is planar if and only if \(G\) does not <i>contain</i> \(K_5\) or \(K_{3,3}\).
+<b>Kuratowski&rsquo;s Theorem:</b> A graph \(G\) is planar if and only if \(G\) does not <i>contain</i> \(K_5\) or \(K_{3,3}\).
 </p>
 
 <p>
-The phrase "\(G\) contains \(H\)" means that we can find a copy of \(H\) inside \(G\), where vertices of \(H\) are distinct vertices of \(G\) and edges of \(H\) are <i>disjoint paths</i><abbr class="tooltip" title="paths that do not share any edges">°</abbr>&emsp13;in \(G\).
+The phrase &ldquo;\(G\) contains \(H\)&rdquo; means that we can find a copy of \(H\) inside \(G\), where vertices of \(H\) are distinct vertices of \(G\) and edges of \(H\) are <i>disjoint paths</i><abbr class="tooltip" title="paths that do not share any edges">°</abbr>&emsp13;in \(G\).
 </p>
 
 <p>
@@ -717,7 +717,7 @@ For example, we can find a copy of \(K_{3,3}\) inside of a 4-dimensional hypercu
 </p>
 
 
-<div id="org3cfe97d" class="figure">
+<div id="org9a7b4f0" class="figure">
 <p><img src="../static/COMPSCI_70/graphs2.png" alt="graphs2.png" />
 </p>
 </div>
@@ -1016,7 +1016,7 @@ Finally, there are also <i>crossing edges</i> (edges between subcubes), which is
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-02-05 17:00
+               Last modified: 2026-03-08 16:42
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-03-09 Mon 14:29 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Priority Queues</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Priority Queues</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org389953e">1. Priority Queue Interface</a></li>
+<li><a href="#org5506977">2. Implementations</a>
+<ul>
+<li><a href="#org4713e07">2.1. Heap</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org389953e" class="outline-2">
+<h2 id="org389953e"><span class="section-number-2">1.</span> Priority Queue Interface</h2>
+<div class="outline-text-2" id="text-1">
+<pre><code class="language-java"><span style="color: #6c7086;">/** (Min) Priority Queue: Allowing tracking and removal of the
+ * smallest item in a priority queue. */</span>
+<span style="color: #cba6f7;">public</span> <span style="color: #cba6f7;">interface</span> <span style="color: #f9e2af;">MinPQ</span><span style="color: #f38ba8;">&lt;</span><span style="color: #f9e2af;">Item</span><span style="color: #f38ba8;">&gt;</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #6c7086;">/** Adds the item to the priority queue. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">add</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">Item</span> <span style="color: #cdd6f4;">x</span><span style="color: #fab387;">)</span>;
+    <span style="color: #6c7086;">/** Returns the smallest item in the priority queue. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">Item</span> <span style="color: #89b4fa;">getSmallest</span><span style="color: #fab387;">()</span>;
+    <span style="color: #6c7086;">/** Removes the smallest item from the priority queue. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">Item</span> <span style="color: #89b4fa;">removeSmallest</span><span style="color: #fab387;">()</span>;
+    <span style="color: #6c7086;">/** Returns the size of the priority queue. */</span>
+    <span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">size</span><span style="color: #fab387;">()</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+This is an interface for a minimum <b>priority queue</b>, which is a queue that keeps track of the smallest item (the item with the highest &ldquo;priority&rdquo;).
+</p>
+</div>
+</div>
+<div id="outline-container-org5506977" class="outline-2">
+<h2 id="org5506977"><span class="section-number-2">2.</span> Implementations</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Here are some data structures we can use to implement <code>MinPQ</code>, and their efficiency:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">Ordered Array</th>
+<th scope="col" class="org-left">Balanced BST</th>
+<th scope="col" class="org-left">Hash Table</th>
+<th scope="col" class="org-left">Heap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>add</code></td>
+<td class="org-left">\(\Theta (N)\)</td>
+<td class="org-left">\(\Theta (\log N)\)</td>
+<td class="org-left">\(\Theta (1)\)</td>
+<td class="org-left">\(\Theta (\log N)\)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>getSmallest</code></td>
+<td class="org-left">\(\Theta (1)\)</td>
+<td class="org-left">\(\Theta (\log N)\)</td>
+<td class="org-left">\(\Theta (N)\)</td>
+<td class="org-left">\(\Theta (1)\)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>removeSmallest</code></td>
+<td class="org-left">\(\Theta (N)\)</td>
+<td class="org-left">\(\Theta (\log N)\)</td>
+<td class="org-left">\(\Theta (N)\)</td>
+<td class="org-left">\(\Theta (\log N)\)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+A <a href="bst.html#orge91fa84">BST</a> would work, but we need to keep them balanced and duplicates are complex to handle.
+</p>
+</div>
+<div id="outline-container-org4713e07" class="outline-3">
+<h3 id="org4713e07"><span class="section-number-3">2.1.</span> Heap</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Instead, we can use a <b>binary min-heap</b>: it is a binary tree that is <i>complete</i> and obeys the <i>min-heap property</i>. Min-heap means that every node is less than or equal to both of its children, and complete means that missing items are only at the bottom level, and all nodes are as far left as possible:
+</p>
+
+
+<div id="orga24cc45" class="figure">
+<p><img src="../static/COMPSCI_61B/priority_queues1.png" alt="priority_queues1.png" />
+</p>
+</div>
+
+<p>
+<code>getSmallest</code> is easy for a heap: we just return the root of the tree, which is guaranteed to be the smallest.
+</p>
+
+<p>
+Adding to a heap is slightly harder. However, realize that we can always just add the node to the next available spot in the heap, and then swap upwards until the min-heap property is satisfied:
+</p>
+
+<style>
+.heap-demo {
+  margin: 1.5em 0; border: 1px solid var(--surface1, #bcc0cc);
+  border-radius: 0.75rem; padding: 1em 1em 0.5em;
+  background: var(--base, #eff1f5);
+}
+.heap-demo svg { display: block; width: 100%; }
+.heap-ctl {
+  display: flex; align-items: center; gap: 0.5em;
+  flex-wrap: wrap; margin-top: 0.75em; font-size: 0.9em;
+}
+.heap-demo button, .heap-demo input {
+  padding: 0.3em 0.7em; border: 1px solid var(--surface1, #bcc0cc);
+  border-radius: 6px; font-size: 0.85em; color: var(--text, #4c4f69);
+}
+.heap-demo button {
+  background: var(--surface0, #ccd0da); cursor: pointer;
+  font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+}
+.heap-demo button:hover:not(:disabled) { background: var(--surface1, #bcc0cc); }
+.heap-demo button:disabled { opacity: 0.5; cursor: default; }
+.heap-demo input {
+  background: var(--mantle, #e6e9ef); width: 4.5em;
+  font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+}
+.heap-demo input::-webkit-inner-spin-button,
+.heap-demo input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.heap-demo input[type=number] { -moz-appearance: textfield; }
+.heap-msg { font-size: 0.85em; margin-top: 0.3em; min-height: 1.2em; }
+</style>
+<script>
+window.HeapDemo = function(cfg) {
+  var W = 500, MY = 28, LH = 52, NR = 17;
+  var heap = cfg.init.slice(), hl = {};
+  var svg = document.getElementById(cfg.svg);
+  var msgEl = document.getElementById(cfg.msg);
+
+  function pos(i) {
+    var lv = Math.floor(Math.log2(i + 1));
+    var p = i - ((1 << lv) - 1);
+    return { x: (2 * p + 1) / (1 << (lv + 1)) * W, y: MY + lv * LH };
+  }
+
+  function render(ov) {
+    if (!heap.length) {
+      svg.setAttribute('viewBox', '0 0 ' + W + ' 50');
+      svg.innerHTML = '<text x="' + W / 2 + '" y="28" text-anchor="middle" ' +
+        'fill="var(--subtext1,#5c5f77)" font-size="13" font-family="system-ui,sans-serif">' +
+        'Heap is empty</text>';
+      return;
+    }
+    var maxLv = Math.floor(Math.log2(heap.length));
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + (MY + (maxLv + 1) * LH + 10));
+    function g(i) { return ov && ov[i] || pos(i); }
+    var s = '';
+    for (var i = 0; i < heap.length; i++) {
+      var pi = g(i), li = 2 * i + 1, ri = 2 * i + 2;
+      if (li < heap.length) {
+        var c = g(li);
+        s += '<line x1="'+pi.x+'" y1="'+pi.y+'" x2="'+c.x+'" y2="'+c.y+'" stroke="var(--overlay1,#8c8fa1)" stroke-width="2"/>';
+      }
+      if (ri < heap.length) {
+        var c = g(ri);
+        s += '<line x1="'+pi.x+'" y1="'+pi.y+'" x2="'+c.x+'" y2="'+c.y+'" stroke="var(--overlay1,#8c8fa1)" stroke-width="2"/>';
+      }
+    }
+    for (var i = 0; i < heap.length; i++) {
+      var pi = g(i), fill = hl[i] || 'var(--surface0,#ccd0da)';
+      var tf = hl[i] ? '#fff' : 'var(--text,#4c4f69)';
+      s += '<circle cx="'+pi.x+'" cy="'+pi.y+'" r="'+NR+'" fill="'+fill+'" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>';
+      s += '<text x="'+pi.x+'" y="'+pi.y+'" dy=".35em" text-anchor="middle" fill="'+tf+
+        '" font-size="13" font-weight="600" font-family="system-ui,sans-serif" style="pointer-events:none">' +
+        heap[i] + '</text>';
+    }
+    svg.innerHTML = s;
+  }
+
+  function msg(t, c) { msgEl.textContent = t; msgEl.style.color = c || ''; }
+  function delay(ms) { return new Promise(function(r) { setTimeout(r, ms); }); }
+
+  function swap(a, b) {
+    return new Promise(function(resolve) {
+      var pa = pos(a), pb = pos(b), t0 = null;
+      function step(ts) {
+        if (!t0) t0 = ts;
+        var raw = Math.min((ts - t0) / 300, 1);
+        var t = raw < .5 ? 2*raw*raw : 1 - Math.pow(-2*raw+2, 2) / 2;
+        var ov = {};
+        ov[a] = { x: pa.x + (pb.x - pa.x) * t, y: pa.y + (pb.y - pa.y) * t };
+        ov[b] = { x: pb.x + (pa.x - pb.x) * t, y: pb.y + (pa.y - pb.y) * t };
+        render(ov);
+        if (raw < 1) requestAnimationFrame(step);
+        else {
+          var tmp = heap[a]; heap[a] = heap[b]; heap[b] = tmp;
+          render();
+          resolve();
+        }
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  render();
+
+  return {
+    heap: heap, pos: pos, render: render, msg: msg, delay: delay, swap: swap,
+    setHl: function(h) { hl = h; },
+    reset: function() {
+      heap.length = 0;
+      for (var i = 0; i < cfg.init.length; i++) heap.push(cfg.init[i]);
+      hl = {}; render(); msg('');
+    }
+  };
+};
+</script>
+<div class="heap-demo">
+  <svg id="ha-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="heap-ctl">
+    <input id="ha-inp" type="number" placeholder="key">
+    <button id="ha-btn">Add</button>
+    <button id="ha-rst">Reset</button>
+  </div>
+  <div class="heap-msg" id="ha-msg"></div>
+</div>
+<script>
+(function() {
+  var d = HeapDemo({ svg: 'ha-svg', msg: 'ha-msg', init: [1, 3, 5, 7, 9] });
+  var busy = false;
+
+  async function add() {
+    var inp = document.getElementById('ha-inp');
+    var v = parseInt(inp.value);
+    if (isNaN(v) || busy) return;
+    if (d.heap.length >= 15) { d.msg('Heap full (max 15).', 'var(--red,#d20f39)'); return; }
+    busy = true; inp.value = '';
+
+    var h = d.heap;
+    h.push(v);
+    var i = h.length - 1;
+    var hi = {}; hi[i] = 'var(--green,#40a02b)';
+    d.setHl(hi); d.render();
+    d.msg('Added ' + v + ' at next available spot.');
+    await d.delay(500);
+
+    while (i > 0) {
+      var p = (i - 1) >> 1;
+      var hi = {}; hi[i] = 'var(--blue,#1e66f5)'; hi[p] = 'var(--peach,#fe640b)';
+      d.setHl(hi); d.render();
+      d.msg('Compare ' + h[i] + ' with parent ' + h[p]);
+      await d.delay(500);
+      if (h[i] < h[p]) {
+        d.msg(h[i] + ' < ' + h[p] + ', swap upwards.');
+        await d.swap(i, p);
+        i = p;
+      } else {
+        d.msg(h[i] + ' \u2265 ' + h[p] + ', min-heap property satisfied.');
+        break;
+      }
+    }
+    if (i === 0) d.msg(h[0] + ' is now the root.');
+    d.setHl({}); d.render();
+    busy = false;
+  }
+
+  document.getElementById('ha-btn').addEventListener('click', add);
+  document.getElementById('ha-inp').addEventListener('keydown', function(e) { if (e.key === 'Enter') add(); });
+  document.getElementById('ha-rst').addEventListener('click', function() { if (!busy) d.reset(); });
+})();
+</script>
+
+<p>
+We can also delete the smallest item by swapping the last item in the heap to the root, and then sinking that item down the hierarchy, yielding to the most qualified nodes (the smallest of the two children), until the min-heap property is satisfied:
+</p>
+
+<div class="heap-demo">
+  <svg id="hd-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="heap-ctl">
+    <button id="hd-btn">Delete Min</button>
+    <button id="hd-rst">Reset</button>
+  </div>
+  <div class="heap-msg" id="hd-msg"></div>
+</div>
+<script>
+(function() {
+  var d = HeapDemo({ svg: 'hd-svg', msg: 'hd-msg', init: [1, 3, 5, 7, 9, 11, 13] });
+  var busy = false;
+
+  async function del() {
+    var h = d.heap;
+    if (busy || !h.length) return;
+    busy = true;
+    var min = h[0];
+
+    if (h.length === 1) {
+      var hi = {}; hi[0] = 'var(--red,#d20f39)';
+      d.setHl(hi); d.render();
+      d.msg('Removing ' + min);
+      await d.delay(500);
+      h.pop(); d.setHl({}); d.render();
+      d.msg('Removed ' + min + '.');
+      busy = false; return;
+    }
+
+    var last = h.length - 1;
+    var hi = {}; hi[0] = 'var(--red,#d20f39)'; hi[last] = 'var(--blue,#1e66f5)';
+    d.setHl(hi); d.render();
+    d.msg('Swap last element ' + h[last] + ' to root, remove ' + h[0]);
+    await d.delay(600);
+
+    h[0] = h[last]; h.pop();
+    var hi2 = {}; hi2[0] = 'var(--blue,#1e66f5)';
+    d.setHl(hi2); d.render();
+    d.msg('Sink ' + h[0] + ' down.');
+    await d.delay(400);
+
+    var i = 0;
+    while (2 * i + 1 < h.length) {
+      var l = 2 * i + 1, r = 2 * i + 2;
+      var sm = (r < h.length && h[r] < h[l]) ? r : l;
+      var hi3 = {}; hi3[i] = 'var(--blue,#1e66f5)'; hi3[sm] = 'var(--peach,#fe640b)';
+      d.setHl(hi3); d.render();
+      d.msg('Compare ' + h[i] + ' with smallest child ' + h[sm]);
+      await d.delay(500);
+      if (h[i] > h[sm]) {
+        d.msg(h[i] + ' > ' + h[sm] + ', swap down.');
+        await d.swap(i, sm);
+        i = sm;
+      } else {
+        d.msg(h[i] + ' \u2264 ' + h[sm] + ', min-heap property satisfied.');
+        break;
+      }
+    }
+
+    d.setHl({}); d.render();
+    d.msg('Removed ' + min + '.');
+    busy = false;
+  }
+
+  document.getElementById('hd-btn').addEventListener('click', del);
+  document.getElementById('hd-rst').addEventListener('click', function() { if (!busy) d.reset(); });
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-03-09 14:28
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
