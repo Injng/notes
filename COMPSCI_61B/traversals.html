@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-03-11 Wed 13:58 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Traversals</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Traversals</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8ff3f9b">1. Tree Traversals</a>
+<ul>
+<li><a href="#orgfef5f2d">1.1. Level Order Traversal</a></li>
+<li><a href="#org17bd915">1.2. Pre-order Traversal</a></li>
+<li><a href="#org5b56064">1.3. In-order Traversal</a></li>
+<li><a href="#orgba453f9">1.4. Post-order Traversal</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8ff3f9b" class="outline-2">
+<h2 id="org8ff3f9b"><span class="section-number-2">1.</span> Tree Traversals</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Sometimes you wish to iterate over a <a href="../COMPSCI_61A/trees.html#orga2f4f5b">tree</a>. Such an iteration is known as <b>tree traversal</b>. Unlike iterating over an array, there are several different ways to traverse a tree. We define <b>visiting</b> a node as applying some <i>action</i> at the node (for example, printing the key).
+</p>
+</div>
+<div id="outline-container-orgfef5f2d" class="outline-3">
+<h3 id="orgfef5f2d"><span class="section-number-3">1.1.</span> Level Order Traversal</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The idea behind this is simple: we iterate through each level of the tree, visiting all of the nodes in that level from left to right.
+</p>
+</div>
+</div>
+<div id="outline-container-org17bd915" class="outline-3">
+<h3 id="org17bd915"><span class="section-number-3">1.2.</span> Pre-order Traversal</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The steps for pre-order traversal are:
+</p>
+
+<ol class="org-ol">
+<li>Start at the root. Visit the root.</li>
+<li>If there is a left child, go left and recurse.</li>
+<li>Otherwise, go right and recurse.</li>
+</ol>
+
+<style>
+.trav-demo {
+  margin: 1.5em 0; border: 1px solid var(--surface1, #bcc0cc);
+  border-radius: 0.75rem; padding: 1em 1em 0.5em;
+  background: var(--base, #eff1f5);
+}
+.trav-demo svg { display: block; width: 100%; }
+.trav-ctl {
+  display: flex; align-items: center; gap: 0.5em;
+  flex-wrap: wrap; margin-top: 0.5em; font-size: 0.9em;
+}
+.trav-demo button {
+  padding: 0.3em 0.7em; border: 1px solid var(--surface1, #bcc0cc);
+  border-radius: 6px; font-size: 0.85em; color: var(--text, #4c4f69);
+  background: var(--surface0, #ccd0da); cursor: pointer;
+  font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+}
+.trav-demo button:hover:not(:disabled) { background: var(--surface1, #bcc0cc); }
+.trav-demo button:disabled { opacity: 0.5; cursor: default; }
+.trav-out {
+  font-size: 0.9em; margin-top: 0.5em; min-height: 1.4em;
+  font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+  color: var(--text, #4c4f69);
+}
+.trav-msg {
+  font-size: 0.85em; margin-top: 0.3em; min-height: 1.2em;
+  color: var(--subtext1, #5c5f77);
+}
+</style>
+<script>
+window.TravDemo = function(cfg) {
+  function N(v,l,r) { return {v:v, l:l||null, r:r||null}; }
+  var tree = N(4, N(2,N(1),N(3)), N(6,N(5),N(7)));
+
+  var frames = [];
+  function last() { return frames.length ? frames[frames.length-1].v : []; }
+
+  function pre(n) {
+    if (!n) return;
+    var v = last().slice(); v.push(n.v);
+    frames.push({c:n.v, v:v, m:'Visit '+n.v+': print('+n.v+')'});
+    pre(n.l); pre(n.r);
+  }
+  function ino(n) {
+    if (!n) return;
+    if (n.l) frames.push({c:n.v, v:last().slice(), m:'At '+n.v+', go left'});
+    ino(n.l);
+    var v = last().slice(); v.push(n.v);
+    frames.push({c:n.v, v:v, m:'Visit '+n.v+': print('+n.v+')'});
+    ino(n.r);
+  }
+  function post(n) {
+    if (!n) return;
+    if (n.l||n.r) frames.push({c:n.v, v:last().slice(), m:'At '+n.v+', go '+(n.l?'left':'right')});
+    post(n.l);
+    if (n.l&&n.r) frames.push({c:n.v, v:last().slice(), m:'At '+n.v+', go right'});
+    post(n.r);
+    var v = last().slice(); v.push(n.v);
+    frames.push({c:n.v, v:v, m:'Visit '+n.v+': print('+n.v+')'});
+  }
+
+  if (cfg.type === 'pre') pre(tree);
+  else if (cfg.type === 'in') ino(tree);
+  else post(tree);
+
+  var W = 500, MX = 40, MY = 28, LH = 55, NR = 17;
+  var pos = {}, edg = [];
+  (function() {
+    var idx = 0;
+    (function walk(nd, d) {
+      if (!nd) return;
+      walk(nd.l, d+1);
+      pos[nd.v] = { x: MX + idx * ((W - 2*MX) / 6), y: MY + d * LH };
+      idx++;
+      walk(nd.r, d+1);
+    })(tree, 0);
+    (function walk(nd) {
+      if (!nd) return;
+      if (nd.l) { edg.push([nd.v, nd.l.v]); walk(nd.l); }
+      if (nd.r) { edg.push([nd.v, nd.r.v]); walk(nd.r); }
+    })(tree);
+  })();
+
+  var svg = document.getElementById(cfg.svg);
+  var msgEl = document.getElementById(cfg.msg);
+  var outEl = document.getElementById(cfg.out);
+  var stepBtn = document.getElementById(cfg.stepBtn);
+  var maxH = MY + 2 * LH + 30;
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + maxH);
+
+  var step = -1;
+
+  function render() {
+    var frame = step >= 0 ? frames[step] : null;
+    var cursor = frame ? frame.c : null;
+    var visited = frame ? frame.v : [];
+    var vset = {};
+    visited.forEach(function(v) { vset[v] = true; });
+    var s = '';
+    for (var i = 0; i < edg.length; i++) {
+      var a = pos[edg[i][0]], b = pos[edg[i][1]];
+      s += '<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" stroke="var(--overlay1,#8c8fa1)" stroke-width="2"/>';
+    }
+    for (var k in pos) {
+      var p = pos[k], v = parseInt(k);
+      var fill, tf;
+      if (vset[v]) { fill = 'var(--green,#40a02b)'; tf = '#fff'; }
+      else if (v === cursor) { fill = 'var(--blue,#1e66f5)'; tf = '#fff'; }
+      else { fill = 'var(--surface0,#ccd0da)'; tf = 'var(--text,#4c4f69)'; }
+      s += '<circle cx="'+p.x+'" cy="'+p.y+'" r="'+NR+'" fill="'+fill+'" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>';
+      s += '<text x="'+p.x+'" y="'+p.y+'" dy=".35em" text-anchor="middle" fill="'+tf+'" font-size="14" font-weight="600" font-family="system-ui,sans-serif" style="pointer-events:none">'+v+'</text>';
+    }
+    svg.innerHTML = s;
+    outEl.textContent = visited.length ? 'Output: ' + visited.join(', ') : 'Output: \u2014';
+    msgEl.textContent = frame ? frame.m + (step === frames.length - 1 ? '. Done!' : '') : 'Click Step to begin.';
+    stepBtn.disabled = step >= frames.length - 1;
+  }
+
+  render();
+
+  return {
+    step: function() { if (step < frames.length - 1) { step++; render(); } },
+    reset: function() { step = -1; render(); }
+  };
+};
+</script>
+<div class="trav-demo">
+  <svg id="tp-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="trav-out" id="tp-out"></div>
+  <div class="trav-ctl">
+    <button id="tp-step">Step</button>
+    <button id="tp-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="tp-msg"></div>
+</div>
+<script>
+(function() {
+  var d = TravDemo({ type:'pre', svg:'tp-svg', msg:'tp-msg', out:'tp-out', stepBtn:'tp-step' });
+  document.getElementById('tp-step').addEventListener('click', function() { d.step(); });
+  document.getElementById('tp-rst').addEventListener('click', function() { d.reset(); });
+})();
+</script>
+</div>
+</div>
+<div id="outline-container-org5b56064" class="outline-3">
+<h3 id="org5b56064"><span class="section-number-3">1.3.</span> In-order Traversal</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+The steps for in-order traversal are:
+</p>
+
+<ol class="org-ol">
+<li>If there is a left child, go left and recurse.</li>
+<li>Otherwise if there is no left child, visit the node.</li>
+<li>If there is a right child, go right and recurse.</li>
+</ol>
+
+<p>
+In other words, here we first go down the left branch, and then we print:
+</p>
+
+<div class="trav-demo">
+  <svg id="ti-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="trav-out" id="ti-out"></div>
+  <div class="trav-ctl">
+    <button id="ti-step">Step</button>
+    <button id="ti-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="ti-msg"></div>
+</div>
+<script>
+(function() {
+  var d = TravDemo({ type:'in', svg:'ti-svg', msg:'ti-msg', out:'ti-out', stepBtn:'ti-step' });
+  document.getElementById('ti-step').addEventListener('click', function() { d.step(); });
+  document.getElementById('ti-rst').addEventListener('click', function() { d.reset(); });
+})();
+</script>
+</div>
+</div>
+<div id="outline-container-orgba453f9" class="outline-3">
+<h3 id="orgba453f9"><span class="section-number-3">1.4.</span> Post-order Traversal</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+The steps for post-order traversal are:
+</p>
+
+<ol class="org-ol">
+<li>If there is a left child, go left and recurse.</li>
+<li>Otherwise if there is a right child, go right and recurse.</li>
+<li>Finally, visit the node.</li>
+</ol>
+
+<div class="trav-demo">
+  <svg id="to-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="trav-out" id="to-out"></div>
+  <div class="trav-ctl">
+    <button id="to-step">Step</button>
+    <button id="to-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="to-msg"></div>
+</div>
+<script>
+(function() {
+  var d = TravDemo({ type:'post', svg:'to-svg', msg:'to-msg', out:'to-out', stepBtn:'to-step' });
+  document.getElementById('to-step').addEventListener('click', function() { d.step(); });
+  document.getElementById('to-rst').addEventListener('click', function() { d.reset(); });
+})();
+</script>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-03-11 13:58
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
