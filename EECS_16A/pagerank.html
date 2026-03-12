@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-10 Tue 11:37 -->
+<!-- 2026-03-12 Thu 11:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Adjacency Matrices</title>
@@ -129,7 +129,12 @@
 <li><a href="#orgf9a9651">1. PageRank</a></li>
 <li><a href="#orgbf72b50">2. Stochastic Matrices</a></li>
 <li><a href="#org8ae533e">3. Left Eigenvectors</a></li>
-<li><a href="#org557013d">4. State-Space Models</a></li>
+<li><a href="#org557013d">4. State-Space Models</a>
+<ul>
+<li><a href="#orga1c6491">4.1. State as a Linear Combination of Eigenvectors</a></li>
+<li><a href="#org4f6c5d8">4.2. Equilibrium State</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -430,7 +435,7 @@ In other words, \(\mathbf{w}\) is a left eigenvector of \(C\) if and only if it 
 </p>
 
 <p>
-Additionally, we claim that there also exists a right eigenvector with the same eigenvalue. Since \(C\) and \(C^T\) share eigenvalues, and \(\mathbf{w}\) is a right eigenvector for \(C^T\), there must also exist a right eigenvector for \(C\).
+Additionally, we claim that <i>there also exists a right eigenvector with the same eigenvalue</i>. Since \(C\) and \(C^T\) share eigenvalues, and \(\mathbf{w}\) is a right eigenvector for \(C^T\), there must also exist a right eigenvector for \(C\).
 </p>
 </div>
 </div>
@@ -567,7 +572,7 @@ Suppose we have a model of a system like so:
 </g>
 </g>
 </svg></figure><p>
-We can keep track of the <b>state</b>, which is the minimum information needed at time \(n\) so that we can determine the future state ass time goes on. We define the <b>state vector</b> to be:
+We can keep track of the <b>state</b>, which is the minimum information needed at time \(n\) so that we can determine the future state as time goes on. We define the <b>state vector</b> to be:
 </p>
 
 \begin{align}
@@ -582,6 +587,17 @@ where \(s_p[n]\) is the fraction of the population at node \(p\) at time \(n\). 
 \boxed{\mathbf{s}[n] = C^n\mathbf{s}[0]}
 \end{align}
 
+<p>
+Oftentimes, we represent the initial state with each entry represented as a fraction of the total population: in other words, the initial state vector is stochastic. It can then be seen that if the initial state vector is stochastic, then <i>all future state vectors are stochastic</i>:
+</p>
+
+\begin{align}
+\mathbb{1}^T\mathbf{s}[n] = \mathbb{1}^TC^n\mathbf{s}[0] = \mathbb{1}^T\mathbf{s}[0] = 1 \notag
+\end{align}
+</div>
+<div id="outline-container-orga1c6491" class="outline-3">
+<h3 id="orga1c6491"><span class="section-number-3">4.1.</span> State as a Linear Combination of Eigenvectors</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 We can represent the <a href="../MATH_54/matrix_similarity.html#orgf53550b">diagonalization</a> of \(C\) as:
 </p>
@@ -619,6 +635,32 @@ Then call \(\alpha_l = \mathbf{w_l}^T\mathbf{s}[0]\). Our equation becomes:
 \begin{align}
 \boxed{\mathbf{s}[n] = \alpha_1\lambda_1^n\mathbf{v_1} + \alpha_2\lambda_2^n\mathbf{v_2} + \cdots}
 \end{align}
+
+<p>
+If \(C\) has a full set of eigenvectors, then they form a basis. Therefore, we can represent the initial state vector \(\mathbf{s}[0]\) as a linear combination of the eigenvectors of \(C\), with \(\alpha_k\) being their coefficients. Then, we can view (4) as simply a linear combination of the eigenvectors of \(C\).
+</p>
+</div>
+</div>
+<div id="outline-container-org4f6c5d8" class="outline-3">
+<h3 id="org4f6c5d8"><span class="section-number-3">4.2.</span> Equilibrium State</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+We say \(\mathbf{s}[n] = \mathbf{s}^*\) is an <b>equilibrium state</b> of the system if:
+</p>
+
+\begin{align}
+\mathbf{s}[n+1] &= \mathbf{s}^* \notag \\
+C\mathbf{s}^* &= \mathbf{s}^* \notag
+\end{align}
+
+<p>
+Realize that this is exactly equation (1), which is the equation the <i>score vector for PageRank</i> satisfies. In other words, we can view the PageRank algorithm as a model of population movement in a closed state system, and the score vector as the equilibrium state of that system.
+</p>
+
+<p>
+By the <b>Perron-Frobenius Theorem</b>, we know that the largest magnitude of any eigenvalue for a column stochastic matrix (in this case, the connectivity matrix \(C\)) is \(1\). Therefore, if the only eigenvalue with magnitude \(1\) of a system is \(\lambda = 1\), then the system <i>must reach a steady state</i> since all of the other terms in (4) go to zero as time goes to infinity.
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -628,7 +670,7 @@ Then call \(\alpha_l = \mathbf{w_l}^T\mathbf{s}[0]\). Our equation becomes:
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-10 11:37
+               Last modified: 2026-03-12 11:54
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
