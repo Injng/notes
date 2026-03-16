@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-16 Mon 14:47 -->
+<!-- 2026-03-16 Mon 15:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Graphs</title>
@@ -190,7 +190,7 @@ The steps for pre-order traversal are:
   border-radius: 0.75rem; padding: 1em 1em 0.5em;
   background: var(--base, #eff1f5);
 }
-.trav-demo svg { display: block; width: 100%; }
+.trav-demo svg { display: block; margin: 0 auto; }
 .trav-ctl {
   display: flex; align-items: center; gap: 0.5em;
   flex-wrap: wrap; margin-top: 0.5em; font-size: 0.9em;
@@ -311,7 +311,7 @@ window.TravDemo = function(cfg) {
 };
 </script>
 <div class="trav-demo">
-  <svg id="tp-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <svg id="tp-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
   <div class="trav-out" id="tp-out"></div>
   <div class="trav-ctl">
     <button id="tp-step">Step</button>
@@ -346,7 +346,7 @@ In other words, here we first go down the left branch, and then we print:
 </p>
 
 <div class="trav-demo">
-  <svg id="ti-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <svg id="ti-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
   <div class="trav-out" id="ti-out"></div>
   <div class="trav-ctl">
     <button id="ti-step">Step</button>
@@ -377,7 +377,7 @@ The steps for post-order traversal are:
 </ol>
 
 <div class="trav-demo">
-  <svg id="to-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <svg id="to-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
   <div class="trav-out" id="to-out"></div>
   <div class="trav-ctl">
     <button id="to-step">Step</button>
@@ -475,7 +475,7 @@ window.GraphDemo = function(cfg) {
 };
 </script>
 <div class="trav-demo">
-  <svg id="gd-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <svg id="gd-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
   <div class="trav-out" id="gd-out"></div>
   <div class="trav-ctl">
     <button id="gd-step">Step</button>
@@ -522,7 +522,7 @@ The runtime of depth-first search is \(\Theta (V+E)\), where \(V\) is the number
 </p>
 
 <div class="trav-demo">
-  <svg id="gb-svg" preserveAspectRatio="xMidYMin meet"></svg>
+  <svg id="gb-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
   <div class="trav-out" id="gb-out"></div>
   <div class="graph-ds" id="gb-ds"></div>
   <div class="trav-ctl">
@@ -606,9 +606,131 @@ We first initialize a queue with the starting vertex. Then, we repeat the follow
 </ul></li>
 </ol>
 
-<p>
-[interactive demo here]
-</p>
+<style>
+.sp-tbl {
+  font-size: 0.85em; margin-top: 0.3em;
+  font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+  color: var(--text, #4c4f69); line-height: 1.6;
+}
+.sp-tbl .sp-lbl { color: var(--subtext1, #5c5f77); display: inline-block; width: 5.5em; }
+.sp-tbl .sp-val { display: inline-block; min-width: 1.8em; text-align: center; }
+.sp-tbl .sp-upd { color: var(--blue, #1e66f5); font-weight: 600; }
+</style>
+<script>
+window.SPDemo = function(cfg) {
+  var adj = {0:[1,3],1:[0,2,4],2:[1,5],3:[0,4],4:[1,3,5,6],5:[2,4],6:[4]};
+  var edges = [[0,1],[0,3],[1,2],[1,4],[2,5],[3,4],[4,5],[4,6]];
+  var gpos = {0:{x:100,y:45},1:{x:250,y:45},2:{x:400,y:45},
+              3:{x:100,y:140},4:{x:250,y:140},5:{x:400,y:140},6:{x:250,y:235}};
+  var NR = 17, W = 500, H = 275, INF = Infinity;
+  var frames = [];
+  (function() {
+    var distTo = [0,INF,INF,INF,INF,INF,INF];
+    var edgeTo = [-1,-1,-1,-1,-1,-1,-1];
+    var marked = {0:true}, queue = [0], te = [];
+    frames.push({c:-1,v:[],f:[0],te:[],distTo:distTo.slice(),edgeTo:edgeTo.slice(),
+      queue:[0],upd:[0],m:'Initialize: distTo[0] = 0, enqueue 0'});
+    while (queue.length) {
+      var v = queue.shift();
+      var vis = frames[frames.length-1].v.slice(); vis.push(v);
+      var added = [];
+      for (var i = 0; i < adj[v].length; i++) {
+        var w = adj[v][i];
+        if (!marked[w]) {
+          marked[w] = true; queue.push(w); te.push([v,w]);
+          distTo[w] = distTo[v] + 1; edgeTo[w] = v; added.push(w);
+        }
+      }
+      var msg = 'Dequeue ' + v;
+      if (added.length) msg += ': mark ' + added.join(', ') + ' \u2192 enqueue';
+      else msg += ': no unmarked neighbors';
+      frames.push({c:v,v:vis,f:queue.slice(),te:te.slice(),distTo:distTo.slice(),
+        edgeTo:edgeTo.slice(),queue:queue.slice(),upd:added,m:msg});
+    }
+  })();
+  var step = -1;
+  var svg = document.getElementById(cfg.svg);
+  var tblEl = document.getElementById(cfg.tbl);
+  var msgEl = document.getElementById(cfg.msg);
+  var stepBtn = document.getElementById(cfg.stepBtn);
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  function render() {
+    var frame = step >= 0 ? frames[step] : null;
+    var cursor = frame ? frame.c : -1;
+    var visited = frame ? frame.v : [];
+    var frontier = frame ? frame.f : [];
+    var tedges = frame ? frame.te : [];
+    var vset = {}, fset = {}, teset = {};
+    visited.forEach(function(v) { vset[v] = true; });
+    frontier.forEach(function(v) { fset[v] = true; });
+    tedges.forEach(function(e) { teset[Math.min(e[0],e[1])+'-'+Math.max(e[0],e[1])] = true; });
+    var s = '';
+    for (var i = 0; i < edges.length; i++) {
+      var a = gpos[edges[i][0]], b = gpos[edges[i][1]];
+      var key = Math.min(edges[i][0],edges[i][1])+'-'+Math.max(edges[i][0],edges[i][1]);
+      var te = teset[key];
+      s += '<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+
+        '" stroke="'+(te?'var(--green,#40a02b)':'var(--overlay1,#8c8fa1)')+
+        '" stroke-width="'+(te?'3':'1.5')+'" opacity="'+(te?'0.5':'0.35')+'"/>';
+    }
+    for (var v = 0; v <= 6; v++) {
+      var p = gpos[v], fill, tf;
+      if (v === cursor) { fill='var(--blue,#1e66f5)'; tf='#fff'; }
+      else if (vset[v]) { fill='var(--green,#40a02b)'; tf='#fff'; }
+      else if (fset[v]) { fill='var(--peach,#fe640b)'; tf='#fff'; }
+      else { fill='var(--surface0,#ccd0da)'; tf='var(--text,#4c4f69)'; }
+      s += '<circle cx="'+p.x+'" cy="'+p.y+'" r="'+NR+'" fill="'+fill+
+        '" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>';
+      s += '<text x="'+p.x+'" y="'+p.y+'" dy=".35em" text-anchor="middle" fill="'+tf+
+        '" font-size="14" font-weight="600" font-family="system-ui,sans-serif"'+
+        ' style="pointer-events:none">'+v+'</text>';
+    }
+    svg.innerHTML = s;
+    var updSet = {};
+    if (frame) frame.upd.forEach(function(u) { updSet[u] = true; });
+    var h = '<div><span class="sp-lbl">distTo:</span>';
+    for (var i = 0; i <= 6; i++) {
+      var d = frame ? frame.distTo[i] : (i === 0 ? 0 : INF);
+      h += '<span class="sp-val'+(updSet[i]?' sp-upd':'')+'">'+(d===INF?'\u221e':d)+'</span>';
+    }
+    h += '</div><div><span class="sp-lbl">edgeTo:</span>';
+    for (var i = 0; i <= 6; i++) {
+      var e = frame ? frame.edgeTo[i] : -1;
+      h += '<span class="sp-val'+(updSet[i]?' sp-upd':'')+'">'+(e===-1?'-':e)+'</span>';
+    }
+    h += '</div><div><span class="sp-lbl">vertex:</span>';
+    for (var i = 0; i <= 6; i++) {
+      h += '<span class="sp-val" style="color:var(--subtext1,#5c5f77)">'+i+'</span>';
+    }
+    h += '</div>';
+    if (frame) h += '<div style="margin-top:0.2em"><span class="sp-lbl">Queue:</span>['+frame.queue.join(', ')+']</div>';
+    tblEl.innerHTML = h;
+    msgEl.textContent = frame ? frame.m+(step===frames.length-1?'. Done!':'') : 'Click Step to begin.';
+    stepBtn.disabled = step >= frames.length - 1;
+  }
+  render();
+  return {
+    step: function() { if (step < frames.length-1) { step++; render(); } },
+    reset: function() { step = -1; render(); }
+  };
+};
+</script>
+<div class="trav-demo">
+  <svg id="sp-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="sp-tbl" id="sp-tbl"></div>
+  <div class="trav-ctl">
+    <button id="sp-step">Step</button>
+    <button id="sp-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="sp-msg"></div>
+</div>
+<script>
+(function() {
+  var d = SPDemo({svg:'sp-svg', tbl:'sp-tbl', msg:'sp-msg', stepBtn:'sp-step'});
+  document.getElementById('sp-step').addEventListener('click', function() { d.step(); });
+  document.getElementById('sp-rst').addEventListener('click', function() { d.reset(); });
+})();
+</script>
 </div>
 </div>
 <div id="outline-container-orgd820085" class="outline-3">
@@ -619,7 +741,7 @@ In the real world, however, different edges have different weights. For example,
 </p>
 
 
-<div id="org9c6afc8" class="figure">
+<div id="org83ad969" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs1.png" alt="graphs1.png" />
 </p>
 </div>
@@ -629,7 +751,7 @@ The problem is that since our BFS implementation doesn&rsquo;t consider these we
 </p>
 
 
-<div id="org3be5966" class="figure">
+<div id="org79d341e" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs2.png" alt="graphs2.png" />
 </p>
 </div>
@@ -639,7 +761,7 @@ Say we want to consider the union of the shortest path from some source vertex t
 </p>
 
 
-<div id="orge27ea98" class="figure">
+<div id="org69bfb3a" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs3.png" alt="graphs3.png" />
 </p>
 </div>
@@ -662,7 +784,7 @@ Say we have an incorrect SPT. Then, relaxing an edge from vertex <code>v</code> 
 </p>
 
 
-<div id="org5cdfbb4" class="figure">
+<div id="org37b7772" class="figure">
 <p><img src="../static/COPMSCI_61B/graphs4.png" alt="graphs4.png" />
 </p>
 </div>
@@ -678,9 +800,163 @@ The idea behind <b>Dijkstra&rsquo;s algorithm</b> is that we visit vertices in <
 First, we insert all of the vertices of our graph into the priority queue. Their starting weights will be infinity, since we don&rsquo;t know of any path to any of them yet. Then, repeating until the queue is empty, we remove the closest vertex from the priority queue and relax all edges pointing from that vertex, modifying <code>distTo</code> and <code>edgeTo</code> as necessary:
 </p>
 
-<p>
-[interactive demo here]
-</p>
+<script>
+window.DijkDemo = function(cfg) {
+  var wadj = {
+    0:[[1,2],[3,5]], 1:[[0,2],[2,4],[4,6]], 2:[[1,4],[5,1]],
+    3:[[0,5],[4,2]], 4:[[1,6],[3,2],[5,3],[6,7]], 5:[[2,1],[4,3]], 6:[[4,7]]
+  };
+  var edges = [[0,1,2],[0,3,5],[1,2,4],[1,4,6],[2,5,1],[3,4,2],[4,5,3],[4,6,7]];
+  var gpos = {0:{x:100,y:45},1:{x:250,y:45},2:{x:400,y:45},
+              3:{x:100,y:140},4:{x:250,y:140},5:{x:400,y:140},6:{x:250,y:235}};
+  var NR = 17, W = 500, H = 275, INF = Infinity;
+  var frames = [];
+  (function() {
+    var distTo = [0,INF,INF,INF,INF,INF,INF];
+    var edgeTo = [-1,-1,-1,-1,-1,-1,-1];
+    var visited = {}, pq = [0,1,2,3,4,5,6];
+    function sortPQ() {
+      return pq.slice().sort(function(a,b) {
+        if (distTo[a]===INF && distTo[b]===INF) return a-b;
+        if (distTo[a]===INF) return 1; if (distTo[b]===INF) return -1;
+        return distTo[a]-distTo[b];
+      });
+    }
+    frames.push({c:-1,v:[],te:[],distTo:distTo.slice(),edgeTo:edgeTo.slice(),
+      pq:sortPQ(),upd:[0],relaxed:[],m:'Initialize: distTo[0] = 0, all others = \u221e'});
+    while (pq.length) {
+      var minV = -1, minD = INF+1;
+      for (var i = 0; i < pq.length; i++) {
+        if (distTo[pq[i]] < minD) { minD = distTo[pq[i]]; minV = pq[i]; }
+      }
+      if (minV === -1) break;
+      pq.splice(pq.indexOf(minV), 1);
+      visited[minV] = true;
+      var vis = Object.keys(visited).map(Number);
+      var updated = [], relaxed = [];
+      for (var i = 0; i < wadj[minV].length; i++) {
+        var nb = wadj[minV][i][0], wt = wadj[minV][i][1];
+        var newDist = distTo[minV] + wt;
+        if (newDist < distTo[nb]) {
+          var oldDist = distTo[nb];
+          distTo[nb] = newDist; edgeTo[nb] = minV;
+          updated.push(nb); relaxed.push([minV,nb,wt,newDist,oldDist]);
+        }
+      }
+      var te = [];
+      for (var i = 0; i <= 6; i++) { if (edgeTo[i] !== -1) te.push([edgeTo[i],i]); }
+      var msg = 'Remove ' + minV + ' (dist ' + minD + ')';
+      if (relaxed.length) {
+        var parts = relaxed.map(function(r) {
+          if (r[4] !== INF) return r[0]+'\u2192'+r[1]+' ('+r[3]+' < '+r[4]+')';
+          return r[0]+'\u2192'+r[1]+' ('+r[3]+')';
+        });
+        msg += ': relax ' + parts.join(', ');
+      } else msg += ': no improvements';
+      frames.push({c:minV,v:vis,te:te,distTo:distTo.slice(),edgeTo:edgeTo.slice(),
+        pq:sortPQ(),upd:updated,relaxed:relaxed,m:msg});
+    }
+  })();
+  var step = -1;
+  var svg = document.getElementById(cfg.svg);
+  var tblEl = document.getElementById(cfg.tbl);
+  var msgEl = document.getElementById(cfg.msg);
+  var stepBtn = document.getElementById(cfg.stepBtn);
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+  function render() {
+    var frame = step >= 0 ? frames[step] : null;
+    var cursor = frame ? frame.c : -1;
+    var vis = frame ? frame.v : [];
+    var tedges = frame ? frame.te : [];
+    var vset = {}, teset = {};
+    vis.forEach(function(v) { vset[v] = true; });
+    tedges.forEach(function(e) { teset[Math.min(e[0],e[1])+'-'+Math.max(e[0],e[1])] = true; });
+    var rlSet = {};
+    if (frame && frame.relaxed) frame.relaxed.forEach(function(r) {
+      rlSet[Math.min(r[0],r[1])+'-'+Math.max(r[0],r[1])] = true;
+    });
+    var pqSet = {};
+    if (frame) frame.pq.forEach(function(v) { pqSet[v] = true; });
+    var s = '';
+    for (var i = 0; i < edges.length; i++) {
+      var a = gpos[edges[i][0]], b = gpos[edges[i][1]], w = edges[i][2];
+      var key = Math.min(edges[i][0],edges[i][1])+'-'+Math.max(edges[i][0],edges[i][1]);
+      var te = teset[key], rl = rlSet[key];
+      var col = rl ? 'var(--blue,#1e66f5)' : te ? 'var(--green,#40a02b)' : 'var(--overlay1,#8c8fa1)';
+      var sw = te || rl ? '3' : '1.5';
+      var op = te || rl ? '0.6' : '0.35';
+      s += '<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+
+        '" stroke="'+col+'" stroke-width="'+sw+'" opacity="'+op+'"/>';
+      var mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
+      var dx=b.x-a.x, dy=b.y-a.y, len=Math.sqrt(dx*dx+dy*dy);
+      var ox=-dy/len*12, oy=dx/len*12;
+      s += '<text x="'+(mx+ox)+'" y="'+(my+oy)+'" text-anchor="middle" dy=".35em"'+
+        ' font-size="11" font-weight="600" fill="var(--subtext1,#5c5f77)"'+
+        ' font-family="system-ui,sans-serif" style="pointer-events:none">'+w+'</text>';
+    }
+    for (var v = 0; v <= 6; v++) {
+      var p = gpos[v], fill, tf;
+      if (v === cursor) { fill='var(--blue,#1e66f5)'; tf='#fff'; }
+      else if (vset[v]) { fill='var(--green,#40a02b)'; tf='#fff'; }
+      else if (pqSet[v] && frame && frame.distTo[v] !== INF) { fill='var(--peach,#fe640b)'; tf='#fff'; }
+      else { fill='var(--surface0,#ccd0da)'; tf='var(--text,#4c4f69)'; }
+      s += '<circle cx="'+p.x+'" cy="'+p.y+'" r="'+NR+'" fill="'+fill+
+        '" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>';
+      s += '<text x="'+p.x+'" y="'+p.y+'" dy=".35em" text-anchor="middle" fill="'+tf+
+        '" font-size="14" font-weight="600" font-family="system-ui,sans-serif"'+
+        ' style="pointer-events:none">'+v+'</text>';
+    }
+    svg.innerHTML = s;
+    var updSet = {};
+    if (frame) frame.upd.forEach(function(u) { updSet[u] = true; });
+    var h = '<div><span class="sp-lbl">distTo:</span>';
+    for (var i = 0; i <= 6; i++) {
+      var d = frame ? frame.distTo[i] : (i === 0 ? 0 : INF);
+      h += '<span class="sp-val'+(updSet[i]?' sp-upd':'')+'">'+(d===INF?'\u221e':d)+'</span>';
+    }
+    h += '</div><div><span class="sp-lbl">edgeTo:</span>';
+    for (var i = 0; i <= 6; i++) {
+      var e = frame ? frame.edgeTo[i] : -1;
+      h += '<span class="sp-val'+(updSet[i]?' sp-upd':'')+'">'+(e===-1?'-':e)+'</span>';
+    }
+    h += '</div><div><span class="sp-lbl">vertex:</span>';
+    for (var i = 0; i <= 6; i++) {
+      h += '<span class="sp-val" style="color:var(--subtext1,#5c5f77)">'+i+'</span>';
+    }
+    h += '</div>';
+    if (frame && frame.pq.length) {
+      h += '<div style="margin-top:0.2em"><span class="sp-lbl">PQ:</span>['+
+        frame.pq.map(function(v) {
+          return v+'('+(frame.distTo[v]===INF?'\u221e':frame.distTo[v])+')';
+        }).join(', ')+']</div>';
+    }
+    tblEl.innerHTML = h;
+    msgEl.textContent = frame ? frame.m+(step===frames.length-1?'. Done!':'') : 'Click Step to begin.';
+    stepBtn.disabled = step >= frames.length - 1;
+  }
+  render();
+  return {
+    step: function() { if (step < frames.length-1) { step++; render(); } },
+    reset: function() { step = -1; render(); }
+  };
+};
+</script>
+<div class="trav-demo">
+  <svg id="dj-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="sp-tbl" id="dj-tbl"></div>
+  <div class="trav-ctl">
+    <button id="dj-step">Step</button>
+    <button id="dj-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="dj-msg"></div>
+</div>
+<script>
+(function() {
+  var d = DijkDemo({svg:'dj-svg', tbl:'dj-tbl', msg:'dj-msg', stepBtn:'dj-step'});
+  document.getElementById('dj-step').addEventListener('click', function() { d.step(); });
+  document.getElementById('dj-rst').addEventListener('click', function() { d.reset(); });
+})();
+</script>
 </div>
 </div>
 </div>
@@ -691,7 +967,7 @@ First, we insert all of the vertices of our graph into the priority queue. Their
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-16 14:21
+               Last modified: 2026-03-16 15:09
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
