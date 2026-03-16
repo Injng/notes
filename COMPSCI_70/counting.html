@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-11 Wed 13:55 -->
+<!-- 2026-03-16 Mon 14:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Counting</title>
@@ -134,6 +134,16 @@
 <li><a href="#org5cec8c4">3.2. Ordered Objects Sampled Without Replacement</a></li>
 <li><a href="#org9cc9434">3.3. Unordered Objects Sampled Without Replacement</a></li>
 <li><a href="#orgc7a85ba">3.4. Unordered Objects Sampled With Replacement</a></li>
+</ul>
+</li>
+<li><a href="#orgb22319d">4. Combinatorial Proofs</a>
+<ul>
+<li><a href="#org64088af">4.1. Pascal&rsquo;s Triangle</a></li>
+</ul>
+</li>
+<li><a href="#org937d30c">5. Principle of Inclusion-Exclusion</a>
+<ul>
+<li><a href="#org0fc0968">5.1. Permutations and Derangements</a></li>
 </ul>
 </li>
 </ul>
@@ -396,6 +406,149 @@ This representation is also referred to as <b>stars and bars</b>, where stars ar
 </div>
 </div>
 </div>
+<div id="outline-container-orgb22319d" class="outline-2">
+<h2 id="orgb22319d"><span class="section-number-2">4.</span> Combinatorial Proofs</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<b>Binomial Theorem:</b> For all \(n \in \mathbb{N}\), we have:
+</p>
+
+\begin{align}
+(a+b)^n = \sum_{k=0}^n {n \choose k} a^kb^{n-k}
+\end{align}
+
+<p>
+<b>Proof:</b> When we expand \((a+b)^n = (a+b)(a+b)\cdots(a+b)\), each factor contributes either \(a\) or \(b\) in each expanded term. We know that each term is of the form \(a^kb^{n-k}\). Then, the number of ways to choose exactly \(k\) factors so that they contribute \(a\) instead of \(b\) is \({n \choose k}\). \(\square\)
+</p>
+
+<p>
+<b>Lemma:</b> For all \(n \in \mathbb{N}\), we have:
+</p>
+
+\begin{align}
+\sum_{k=0}^n (-1)^k {n \choose k} = 0
+\end{align}
+
+<p>
+<b>Proof</b>: By the binomial theorem when \(a=-1\) and \(b=1\). \(\square\)
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Proof by counting
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> For all \(n, m, k \in \mathbb{Z}^+\), we have:
+</p>
+
+\begin{align}
+\sum_{j=0}^k {m \choose j} {n \choose k-j} = {m+n \choose k} \notag
+\end{align}
+
+<p>
+<b>Proof:</b> The right hand side represents choosing \(k\) objects from \(m+n\) objects. Realize that we can divide \(m+n\) objects into two sets of \(m\) and \(n\) objects. Then, for \(j\) choices in the first set, there are \(k-j\) choices in the second set. Summing all the possibilities up, we get \(\sum_{j=0}^k {m \choose j} {n \choose k-j}\). \(\square\)
+</p>
+
+
+</details>
+</div>
+<div id="outline-container-org64088af" class="outline-3">
+<h3 id="org64088af"><span class="section-number-3">4.1.</span> Pascal&rsquo;s Triangle</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<b>Pascal&rsquo;s triangle</b> can be represented as follows:
+</p>
+
+\begin{array}{c}
+\binom{0}{0} \\[6pt]
+\binom{1}{0} \quad \binom{1}{1} \\[6pt]
+\binom{2}{0} \quad \binom{2}{1} \quad \binom{2}{2} \\[6pt]
+\binom{3}{0} \quad \binom{3}{1} \quad \binom{3}{2} \quad \binom{3}{3} \\[6pt]
+\binom{4}{0} \quad \binom{4}{1} \quad \binom{4}{2} \quad \binom{4}{3} \quad \binom{4}{4} \\[6pt]
+\binom{5}{0} \quad \binom{5}{1} \quad \binom{5}{2} \quad \binom{5}{3} \quad \binom{5}{4} \quad \binom{5}{5}
+\end{array}
+
+<p>
+By definition, \(\binom{n}{k} + \binom{n}{k+1} = \binom{n+1}{k+1}\).
+</p>
+
+<p>
+<b>Hockey Stick Identity:</b> For all \(n, k \in \mathbb{N}\), we have:
+</p>
+
+\begin{align}
+\binom{k}{k} + \binom{k+1}{k} + \cdots + \binom{n-1}{k} = \binom{n}{k+1}
+\end{align}
+
+<p>
+<b>Proof:</b> The right hand side is the number of ways to choose \(k+1\) elements from a set of \(n\) elements \(S = \{1, \dots , n\}\). Say \(j+1\) is the largest element in our sample from \(S=\{1, 2, \dots , j, j+1, \dots, n-1, n\}\). Then, we have to choose \(k\) elements from \(\{1, 2, \dots, j\}\), so it is \(\binom{j}{k}\). Since \(j\) can be from \(k\) to \(n-1\), we have \(\binom{k}{k} + \binom{k+1}{k} + \cdots + \binom{n-1}{k}\). \(\square\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org937d30c" class="outline-2">
+<h2 id="org937d30c"><span class="section-number-2">5.</span> Principle of Inclusion-Exclusion</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<b>Theorem:</b> Let \(A_1, \dots , A_n\) be arbitrary subsets of the same set \(\Omega\). Then,
+</p>
+
+\begin{align}
+|A_1 \cup A_2 \cup \cdots \cup A_n| = \sum_{k=1}^n(-1)^{k-1}\sum_{S\subseteq\{1,\dots,n\}:|S|=k} \left|\bigcap_{i\in S}A_i\right|
+\end{align}
+</div>
+<div id="outline-container-org0fc0968" class="outline-3">
+<h3 id="org0fc0968"><span class="section-number-3">5.1.</span> Permutations and Derangements</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+A <b>permutation</b> is a sample without replacement for an n-element ordered object from a set of n objects. This generates some permutation of \(\{1, 2, 3, \dots, n\}\). After permuting the set, if an element appears in the same spot, that spot is called a <b>fixed point</b> (e.g. \(\{1, 2, 3\} \rightarrow \{3, 2, 1\}\) has a fixed point at the element \(2\)).
+</p>
+
+<p>
+A <b>derangement</b> is a permutation with no fixed points. Let \(D_n\) denote the number of derangements of \(\{1, 2, \dots, n\}\).
+</p>
+
+<p>
+<b>Theorem:</b> For \(n \geq 3\), we have:
+</p>
+
+\begin{align}
+D_n = (n-1)(D_{n-1}+D_{n-2})
+\end{align}
+
+<p>
+<b>Proof:</b> Let \(\pi\) be a derangement for \(\{1, 2, \dots, n\}\). So, \(\pi_i \neq i\) for all \(i=1, \dots, n\).
+</p>
+
+<p>
+Suppose \(\pi_n = 1\). Then, we have \(n-1\) choices to put \(n\):
+</p>
+
+\begin{matrix}
+\pi_1 & \pi_2 & \pi_3 & \cdots & \pi_{n-1} & \pi_n \\
+n & * & * & \cdots & * & 1 \\
+ * & n & * & \cdots & * & 1 \\
+ * & * & n & \cdots & * & 1 \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+ * & * & * & \cdots & n & 1
+\end{matrix}
+
+<p>
+In the first row, the remaining spots is just the derangement \(D_{n-2}\). Then, in the remaining rows, realize that if we treat the \(n\) as \(1\), then the remaining spots are just the derangements \(D_{n-1}\). Since we have \(n-1\) choices for \(\pi_n\), we have \(D_n = (n-1)(D_{n-1} + D_{n-2})\). \(\square\)
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -403,7 +556,7 @@ This representation is also referred to as <b>stars and bars</b>, where stars ar
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-10 16:00
+               Last modified: 2026-03-16 14:48
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
