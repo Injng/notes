@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-12 Thu 17:09 -->
+<!-- 2026-03-19 Thu 16:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>AC Analysis</title>
@@ -131,6 +131,7 @@
 <ul>
 <li><a href="#orgb310e3a">2.1. Impedance of Resistors</a></li>
 <li><a href="#orgcadf7bd">2.2. Impedance of Capacitors</a></li>
+<li><a href="#orgf3185d6">2.3. Impedance of Inductors</a></li>
 </ul>
 </li>
 <li><a href="#org88741ac">3. Phasor Domain Analysis</a></li>
@@ -184,6 +185,10 @@ Similar to how conductance is the inverse of resistance, we define <b>admittance
 \begin{align}
 \boxed{\tilde{Y} = \frac{\tilde{I}}{\tilde{V}} = \frac{1}{\tilde{Z}}}
 \end{align}
+
+<p>
+Additionally, the same <a href="equivalent_circuits.html#org54ce237">circuit transformations</a> that we used for resistance can also be used for impedance.
+</p>
 </div>
 <div id="outline-container-orgb310e3a" class="outline-3">
 <h3 id="orgb310e3a"><span class="section-number-3">2.1.</span> Impedance of Resistors</h3>
@@ -268,12 +273,59 @@ Then, the impedance of a capacitor is:
 </p>
 
 \begin{align}
-\boxed{\tilde{Z_C} = \frac{1}{j\omega C}}
+\boxed{\tilde{Z}_C = \frac{1}{j\omega C}}
 \end{align}
 
 <p>
 Realize that if we have DC, then \(\omega =0\) and \(\tilde{Z_C}\) goes to infinity. In other words, the capacitor blocks DC current. However if we have AC, then when \(\omega = \infty\), \(\tilde{Z_C}\) goes to zero, so the capacitor lets AC current through.
 </p>
+</div>
+</div>
+<div id="outline-container-orgf3185d6" class="outline-3">
+<h3 id="orgf3185d6"><span class="section-number-3">2.3.</span> Impedance of Inductors</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+For <a href="inductors.html#orgafc8675">inductors</a>, we know that:
+</p>
+
+\begin{align}
+V_L = L\frac{\text{d}i}{\text{d}t} \notag
+\end{align}
+
+<p>
+Converting to the phasor domain, we have:
+</p>
+
+\begin{align}
+\text{Re}\{\tilde{V}_Le^{j\omega t}\} &= L\frac{\text{d}}{\text{d}t}\text{Re}\{\tilde{I}_Le^{j\omega t}\} \notag \\
+&= \text{Re}\{\frac{\text{d}}{\text{d}t}L\tilde{I}_Le^{j\omega t}\} \notag \\
+&= \text{Re}\{j\omega L\tilde{I}_Le^{j\omega t}\} \notag
+\end{align}
+
+<p>
+Rearranging, we get:
+</p>
+
+\begin{align}
+\text{Re}\{e^{j\omega t}\left(\tilde{V}_L-j\omega L\tilde{I}_L\right)\} = 0 \notag
+\end{align}
+
+<p>
+Since \(e^{j\omega t}\) is nonzero, we have:
+</p>
+
+\begin{align}
+\tilde{V}_L &= j\omega L\tilde{I}_L \notag \\
+\frac{\tilde{V}_L}{\tilde{I}_L} &= j\omega L \notag
+\end{align}
+
+<p>
+Thus, the impedance of an inductor is:
+</p>
+
+\begin{align}
+\boxed{\tilde{Z}_L = j\omega L}
+\end{align}
 </div>
 </div>
 </div>
@@ -424,7 +476,7 @@ Thus, the real part and our answer is:
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-12 17:09
+               Last modified: 2026-03-19 16:33
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
