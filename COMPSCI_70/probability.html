@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-19 Thu 10:49 -->
+<!-- 2026-03-19 Thu 13:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Probability</title>
@@ -126,7 +126,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org4bc9929">1. Probability</a></li>
+<li><a href="#org4bc9929">1. Probability</a>
+<ul>
+<li><a href="#org4b4b859">1.1. Properties of Probability</a></li>
+</ul>
+</li>
+<li><a href="#org8f434e3">2. Conditional Probability</a>
+<ul>
+<li><a href="#orgc0761bc">2.1. Law of Total Probability</a></li>
+<li><a href="#org1d67252">2.2. Independence</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -220,6 +230,102 @@ for large \(n\). Since \(n=365\), \(B_{23} > 0.5\).
 
 </details>
 </div>
+<div id="outline-container-org4b4b859" class="outline-3">
+<h3 id="org4b4b859"><span class="section-number-3">1.1.</span> Properties of Probability</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+An event \(B \subseteq \Omega\) is said to be <b>partitioned</b> into \(n\) events \(B_1, \dots , B_n\) if the following conditions are satisfied:
+</p>
+
+<ol class="org-ol">
+<li>\(B = B_1 \cup B_2 \cup \cdots \cup B_n\)</li>
+<li>\(B_i \cap B_j = \varnothing \; \forall i \neq j\) (that is, \(B_1, \dots, B_n\) are mutually exclusive)</li>
+</ol>
+
+<p>
+Then, the following properties are satisfied for any valid probability space:
+</p>
+
+<ul class="org-ul">
+<li><b>Non-negativity:</b> \(\mathbb{P}(A) \geq 0 \; \forall A \subseteq \Omega\)</li>
+<li><b>Countable Additivity:</b> if \(B_1, B_2, \dots, B_n\) are partitions of \(B\), then</li>
+</ul>
+\begin{align}
+\mathbb{P}(B) = \sum_{k=1}^n \mathbb{P}(B_k), \quad \forall B \subseteq \Omega \notag
+\end{align}
+<ul class="org-ul">
+<li><b>Normalization:</b> \(\mathbb{P}(\Omega) = 1\)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org8f434e3" class="outline-2">
+<h2 id="org8f434e3"><span class="section-number-2">2.</span> Conditional Probability</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Consider two events \(A, B \subseteq \Omega\). \(B\) can then be partitioned into \(A \cap B\) and \(B \setminus (A \cap B)\). <b>Conditional probability</b> asks what the probability of \(A\) is given that \(B\) happens.
+</p>
+
+<p>
+Conditioning on event \(B\) changes the probability space from \((\Omega, \mathbb{P})\) to \((B, \mathbb{P}_B)\). Then, the conditional probability of \(A\) given \(B\) is defined as:
+</p>
+
+\begin{align}
+\mathbb{P}(A | B) = \mathbb{P}_B(A \cap B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}}
+\end{align}
+
+<p>
+We see that this is due to the <b>multiplication rule</b>:
+</p>
+
+\begin{align}
+\boxed{\mathbb{P}(A \cap B) = \mathbb{P}(A | B)\mathbb{P}(B)}
+\end{align}
+</div>
+<div id="outline-container-orgc0761bc" class="outline-3">
+<h3 id="orgc0761bc"><span class="section-number-3">2.1.</span> Law of Total Probability</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Suppose \(B_1, \dots, B_n\) are partitions of \(\Omega\). Then, for any \(A \subseteq \Omega\), we have:
+</p>
+
+\begin{align}
+\boxed{\mathbb{P}(A) = \sum_{i=1}^n \mathbb{P}(A | B)\mathbb{P}(B_i)}
+\end{align}
+
+<p>
+This is true because we see that it becomes the sum of the intersections of each partition \(B_i\) with \(A\):
+</p>
+
+
+<div id="org2063269" class="figure">
+<p><img src="../static/COMPSCI_70/probability1.png" alt="probability1.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1d67252" class="outline-3">
+<h3 id="org1d67252"><span class="section-number-3">2.2.</span> Independence</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Consider any two events \(A, B \subseteq \Omega\) and suppose that the chance of \(A\) does not depend on whether or not \(B\) occurs, i.e. \(\mathbb{P}(A | B) = \mathbb{P}(A | B^C)\). Then, since \(B\) and \(B^C\) partitions \(\Omega\), by the Law of Total Probability:
+</p>
+
+\begin{align}
+\mathbb{P}(A) &= \mathbb{P}(A | B)\mathbb{P}(B) + \mathbb{P}(A|B^C)\mathbb{P}(B^C) \notag \\
+&= \mathbb{P}(A|B)\left(\mathbb{P}(B)+\mathbb{P}(B^C)\right) \notag \\
+&= \mathbb{P}(A|B) \notag
+\end{align}
+
+<p>
+Then, if \(A\) and \(B\) are independent, by (3) we know that \(\mathbb{P}(A \cap B) = \mathbb{P}(A | B)\mathbb{P}(B)\). But \(\mathbb{P}(A | B) = \mathbb{P}(A)\), so:
+</p>
+
+\begin{align}
+\boxed{\mathbb{P}(A\cap B) = \mathbb{P}(A)\mathbb{P}(B)}
+\end{align}
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -228,7 +334,7 @@ for large \(n\). Since \(n=365\), \(B_{23} > 0.5\).
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-17 17:24
+               Last modified: 2026-03-19 13:58
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
