@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-16 Mon 15:11 -->
+<!-- 2026-03-19 Thu 10:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Graphs</title>
@@ -151,6 +151,22 @@
 <li><a href="#org41390c4">4. Relaxation</a>
 <ul>
 <li><a href="#org08682e7">4.1. Dijkstra&rsquo;s Algorithm</a></li>
+</ul>
+</li>
+<li><a href="#orgffe9547">5. Minimum Spanning Trees</a>
+<ul>
+<li><a href="#orgeaaf99d">5.1. Cut Property</a></li>
+<li><a href="#orgeb87bdc">5.2. Prim&rsquo;s Algorithm</a>
+<ul>
+<li><a href="#orgfb5f122">5.2.1. Optimized Prim&rsquo;s Algorithm</a></li>
+<li><a href="#org9fd6892">5.2.2. Runtime</a></li>
+</ul>
+</li>
+<li><a href="#orge5c11d1">5.3. Kruskal&rsquo;s Algorithm</a>
+<ul>
+<li><a href="#org7fed2b6">5.3.1. Runtime</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -741,7 +757,7 @@ In the real world, however, different edges have different weights. For example,
 </p>
 
 
-<div id="org83ad969" class="figure">
+<div id="org1ba22da" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs1.png" alt="graphs1.png" />
 </p>
 </div>
@@ -751,7 +767,7 @@ The problem is that since our BFS implementation doesn&rsquo;t consider these we
 </p>
 
 
-<div id="org79d341e" class="figure">
+<div id="org43aa166" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs2.png" alt="graphs2.png" />
 </p>
 </div>
@@ -761,7 +777,7 @@ Say we want to consider the union of the shortest path from some source vertex t
 </p>
 
 
-<div id="org69bfb3a" class="figure">
+<div id="org0d8ec2b" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs3.png" alt="graphs3.png" />
 </p>
 </div>
@@ -784,7 +800,7 @@ Say we have an incorrect SPT. Then, relaxing an edge from vertex <code>v</code> 
 </p>
 
 
-<div id="org37b7772" class="figure">
+<div id="org64908f8" class="figure">
 <p><img src="../static/COPMSCI_61B/graphs4.png" alt="graphs4.png" />
 </p>
 </div>
@@ -960,6 +976,228 @@ window.DijkDemo = function(cfg) {
 </div>
 </div>
 </div>
+<div id="outline-container-orgffe9547" class="outline-2">
+<h2 id="orgffe9547"><span class="section-number-2">5.</span> Minimum Spanning Trees</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Given an undirected graph \(G\), a <b>spanning tree</b> \(T\) is a subgraph of \(G\), where \(T\) is a tree and it includes all of the vertices of \(G\) (this makes it spanning):
+</p>
+
+
+<div id="org84e4570" class="figure">
+<p><img src="../static/COMPSCI_61B/graphs5.png" alt="graphs5.png" />
+</p>
+</div>
+
+<p>
+A <b>minimum spanning tree</b> (MST) is a spanning tree of minimum total weight (if edges in the graph are weighted).
+</p>
+</div>
+<div id="outline-container-orgeaaf99d" class="outline-3">
+<h3 id="orgeaaf99d"><span class="section-number-3">5.1.</span> Cut Property</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+A <b>cut</b> is an assignment of a graph&rsquo;s nodes to two non-empty sets. A <b>crossing edge</b> is an edge which connects a node from one set to a node from the other set:
+</p>
+
+
+<div id="orgb17d148" class="figure">
+<p><img src="../static/COMPSCI_61B/graphs6.png" alt="graphs6.png" />
+</p>
+</div>
+
+<p>
+The <b>cut property</b> states that given any cut, the <i>minimum weight crossing edge</i> must be in the minimum spanning tree.
+</p>
+</div>
+</div>
+<div id="outline-container-orgeb87bdc" class="outline-3">
+<h3 id="orgeb87bdc"><span class="section-number-3">5.2.</span> Prim&rsquo;s Algorithm</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+We start from some arbitrary start node. Then, out of all the edges that has one node inside the current MST, we add the shortest one to the MST. Repeat this until we get \(V-1\) edges:
+</p>
+
+<script>
+window.PrimDemo = function(cfg) {
+  var wadj = {0:[[1,2],[3,5]],1:[[0,2],[2,4],[4,6]],2:[[1,4],[5,1]],
+    3:[[0,5],[4,2]],4:[[1,6],[3,2],[5,3],[6,7]],5:[[2,1],[4,3]],6:[[4,7]]};
+  var edges = [[0,1,2],[0,3,5],[1,2,4],[1,4,6],[2,5,1],[3,4,2],[4,5,3],[4,6,7]];
+  var gpos = {0:{x:100,y:45},1:{x:250,y:45},2:{x:400,y:45},
+    3:{x:100,y:140},4:{x:250,y:140},5:{x:400,y:140},6:{x:250,y:235}};
+  var NR=17,W=500,H=275;
+  var frames=[];
+  (function(){
+    var inMST={0:true},mstE=[],tw=0;
+    function fr(){
+      var f={};
+      for(var n in inMST){var nb=wadj[parseInt(n)];for(var i=0;i<nb.length;i++)if(!inMST[nb[i][0]])f[nb[i][0]]=true;}
+      return Object.keys(f).map(Number);
+    }
+    frames.push({mn:[0],me:[],fr:fr(),ae:null,nn:-1,tw:0,m:'Start at node 0'});
+    for(var s=0;s<6;s++){
+      var minE=null,minW=Infinity;
+      for(var i=0;i<edges.length;i++){
+        var u=edges[i][0],v=edges[i][1],w=edges[i][2];
+        if((inMST[u]&&!inMST[v])||(!inMST[u]&&inMST[v]))if(w<minW){minW=w;minE=edges[i];}
+      }
+      if(!minE)break;
+      var nn=inMST[minE[0]]?minE[1]:minE[0];
+      inMST[nn]=true;mstE.push([minE[0],minE[1]]);tw+=minE[2];
+      frames.push({mn:Object.keys(inMST).map(Number),me:mstE.map(function(e){return e.slice();}),
+        fr:fr(),ae:[minE[0],minE[1]],nn:nn,tw:tw,
+        m:'Add edge '+minE[0]+'\u2013'+minE[1]+' (weight '+minE[2]+')'});
+    }
+  })();
+  var step=-1;
+  var svg=document.getElementById(cfg.svg);
+  var outEl=document.getElementById(cfg.out);
+  var msgEl=document.getElementById(cfg.msg);
+  var stepBtn=document.getElementById(cfg.stepBtn);
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  function render(){
+    var frame=step>=0?frames[step]:null;
+    var mstSet={},teSet={},fSet={},addKey=null;
+    if(frame){
+      frame.mn.forEach(function(v){mstSet[v]=true;});
+      frame.me.forEach(function(e){teSet[Math.min(e[0],e[1])+'-'+Math.max(e[0],e[1])]=true;});
+      frame.fr.forEach(function(v){fSet[v]=true;});
+      if(frame.ae)addKey=Math.min(frame.ae[0],frame.ae[1])+'-'+Math.max(frame.ae[0],frame.ae[1]);
+    }
+    var nn=frame?frame.nn:-1;
+    var s='';
+    for(var i=0;i<edges.length;i++){
+      var a=gpos[edges[i][0]],b=gpos[edges[i][1]],w=edges[i][2];
+      var key=Math.min(edges[i][0],edges[i][1])+'-'+Math.max(edges[i][0],edges[i][1]);
+      var isA=key===addKey,isM=teSet[key];
+      var col=isA?'var(--blue,#1e66f5)':isM?'var(--green,#40a02b)':'var(--overlay1,#8c8fa1)';
+      s+='<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" stroke="'+col+
+        '" stroke-width="'+(isM||isA?'3':'1.5')+'" opacity="'+(isM||isA?'0.6':'0.35')+'"/>';
+      var mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dx=b.x-a.x,dy=b.y-a.y,len=Math.sqrt(dx*dx+dy*dy);
+      s+='<text x="'+(mx-dy/len*12)+'" y="'+(my+dx/len*12)+'" text-anchor="middle" dy=".35em"'+
+        ' font-size="11" font-weight="600" fill="var(--subtext1,#5c5f77)"'+
+        ' font-family="system-ui,sans-serif" style="pointer-events:none">'+w+'</text>';
+    }
+    for(var v=0;v<=6;v++){
+      var p=gpos[v],fill,tf;
+      if(v===nn){fill='var(--blue,#1e66f5)';tf='#fff';}
+      else if(mstSet[v]){fill='var(--green,#40a02b)';tf='#fff';}
+      else if(fSet[v]){fill='var(--peach,#fe640b)';tf='#fff';}
+      else{fill='var(--surface0,#ccd0da)';tf='var(--text,#4c4f69)';}
+      s+='<circle cx="'+p.x+'" cy="'+p.y+'" r="'+NR+'" fill="'+fill+
+        '" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>';
+      s+='<text x="'+p.x+'" y="'+p.y+'" dy=".35em" text-anchor="middle" fill="'+tf+
+        '" font-size="14" font-weight="600" font-family="system-ui,sans-serif"'+
+        ' style="pointer-events:none">'+v+'</text>';
+    }
+    svg.innerHTML=s;
+    outEl.textContent='MST weight: '+(frame?frame.tw:0);
+    msgEl.textContent=frame?frame.m+(step===frames.length-1?'. Done!':''):'Click Step to begin.';
+    stepBtn.disabled=step>=frames.length-1;
+  }
+  render();
+  return {
+    step:function(){if(step<frames.length-1){step++;render();}},
+    reset:function(){step=-1;render();}
+  };
+};
+</script>
+<div class="trav-demo">
+  <svg id="pn-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="trav-out" id="pn-out"></div>
+  <div class="trav-ctl">
+    <button id="pn-step">Step</button>
+    <button id="pn-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="pn-msg"></div>
+</div>
+<script>
+(function(){
+  var d=PrimDemo({svg:'pn-svg',out:'pn-out',msg:'pn-msg',stepBtn:'pn-step'});
+  document.getElementById('pn-step').addEventListener('click',function(){d.step();});
+  document.getElementById('pn-rst').addEventListener('click',function(){d.reset();});
+})();
+</script>
+
+<p>
+Prim&rsquo;s works because if we consider all the nodes connected to the start node as one side, and all the other nodes as the other side, the cut property tells us that the edge chosen must be in the MST.
+</p>
+</div>
+<div id="outline-container-orgfb5f122" class="outline-4">
+<h4 id="orgfb5f122"><span class="section-number-4">5.2.1.</span> Optimized Prim&rsquo;s Algorithm</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+Iterating through all of the edges every iteration is not very efficient. Instead, we can borrow some ideas from edge relaxation.
+</p>
+
+<p>
+First, we insert all of our vertices into a priority queue in order of the distance from the tree. At the start, all the vertices except for our start vertex should be distance infinity away. Then, for each iteration, we remove the closest vertex from the priority queue (and add it to our MST), and relax all edges pointing from that vertex. The distance that we store in <code>distTo</code> should be the distance to the MST, not the start node:
+</p>
+
+<p>
+[interactive demo here]
+</p>
+
+<p>
+Prim&rsquo;s and Dijkstra&rsquo;s algorithms are exactly the same, except Prim&rsquo;s considers the distance to the tree, whereas Dijkstra&rsquo;s considers the distance to some start node.
+</p>
+</div>
+</div>
+<div id="outline-container-org9fd6892" class="outline-4">
+<h4 id="org9fd6892"><span class="section-number-4">5.2.2.</span> Runtime</h4>
+<div class="outline-text-4" id="text-5-2-2">
+<p>
+The runtime is how fast we can do each of the priority queue operations. We do:
+</p>
+
+<ul class="org-ul">
+<li>insertion: \(V\), each costing \(O(\log V)\) time</li>
+<li>delete min: \(V\), each costing \(O(\log V)\) time</li>
+<li>decrease priority: \(E\), each costing \(O(\log V)\) time</li>
+</ul>
+
+<p>
+Assuming that \(E > V\), the overall runtime is just \(O(E \log V)\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge5c11d1" class="outline-3">
+<h3 id="orge5c11d1"><span class="section-number-3">5.3.</span> Kruskal&rsquo;s Algorithm</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+We consider edges in order of increasing weight. Add them to the MST unless a cycle is created. Repeat until we get \(V-1\) edges:
+</p>
+
+<p>
+[interactive demo here]
+</p>
+
+<p>
+To check if adding an edge creates a cycle, we can use a <a href="disjoint_sets.html#org73c8b98">weighted quick union</a> to store what connections we have.
+</p>
+</div>
+<div id="outline-container-org7fed2b6" class="outline-4">
+<h4 id="org7fed2b6"><span class="section-number-4">5.3.1.</span> Runtime</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<p>
+We do the following operations for Kruskal&rsquo;s:
+</p>
+
+<ul class="org-ul">
+<li>insertion into priority queue: \(E\), each costing \(O(\log E)\) time</li>
+<li>delete min from priority queue: \(E\), each costing \(O(\log E)\) time</li>
+<li>connecting nodes in WQU: \(V\), each costing \(O(\log V)\) time</li>
+<li>checking if nodes are connected: \(E\), each costing \(O(\log V)\) time</li>
+</ul>
+
+<p>
+Overall, our runtime comes to \(O(E \log E)\).
+</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -967,7 +1205,7 @@ window.DijkDemo = function(cfg) {
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-16 15:09
+               Last modified: 2026-03-18 23:32
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
