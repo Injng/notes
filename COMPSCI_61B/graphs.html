@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-19 Thu 10:49 -->
+<!-- 2026-03-20 Fri 11:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Graphs</title>
@@ -159,12 +159,12 @@
 <li><a href="#orgeb87bdc">5.2. Prim&rsquo;s Algorithm</a>
 <ul>
 <li><a href="#orgfb5f122">5.2.1. Optimized Prim&rsquo;s Algorithm</a></li>
-<li><a href="#org9fd6892">5.2.2. Runtime</a></li>
+<li><a href="#org7fed2b6">5.2.2. Runtime</a></li>
 </ul>
 </li>
 <li><a href="#orge5c11d1">5.3. Kruskal&rsquo;s Algorithm</a>
 <ul>
-<li><a href="#org7fed2b6">5.3.1. Runtime</a></li>
+<li><a href="#org11154e5">5.3.1. Runtime</a></li>
 </ul>
 </li>
 </ul>
@@ -757,7 +757,7 @@ In the real world, however, different edges have different weights. For example,
 </p>
 
 
-<div id="org1ba22da" class="figure">
+<div id="org09901aa" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs1.png" alt="graphs1.png" />
 </p>
 </div>
@@ -767,7 +767,7 @@ The problem is that since our BFS implementation doesn&rsquo;t consider these we
 </p>
 
 
-<div id="org43aa166" class="figure">
+<div id="org8e9903f" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs2.png" alt="graphs2.png" />
 </p>
 </div>
@@ -777,7 +777,7 @@ Say we want to consider the union of the shortest path from some source vertex t
 </p>
 
 
-<div id="org0d8ec2b" class="figure">
+<div id="orgfa9658e" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs3.png" alt="graphs3.png" />
 </p>
 </div>
@@ -800,7 +800,7 @@ Say we have an incorrect SPT. Then, relaxing an edge from vertex <code>v</code> 
 </p>
 
 
-<div id="org64908f8" class="figure">
+<div id="org2ed0cbf" class="figure">
 <p><img src="../static/COPMSCI_61B/graphs4.png" alt="graphs4.png" />
 </p>
 </div>
@@ -984,7 +984,7 @@ Given an undirected graph \(G\), a <b>spanning tree</b> \(T\) is a subgraph of \
 </p>
 
 
-<div id="org84e4570" class="figure">
+<div id="org0b38686" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs5.png" alt="graphs5.png" />
 </p>
 </div>
@@ -1001,7 +1001,7 @@ A <b>cut</b> is an assignment of a graph&rsquo;s nodes to two non-empty sets. A 
 </p>
 
 
-<div id="orgb17d148" class="figure">
+<div id="orgce6f598" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs6.png" alt="graphs6.png" />
 </p>
 </div>
@@ -1134,17 +1134,164 @@ Iterating through all of the edges every iteration is not very efficient. Instea
 First, we insert all of our vertices into a priority queue in order of the distance from the tree. At the start, all the vertices except for our start vertex should be distance infinity away. Then, for each iteration, we remove the closest vertex from the priority queue (and add it to our MST), and relax all edges pointing from that vertex. The distance that we store in <code>distTo</code> should be the distance to the MST, not the start node:
 </p>
 
-<p>
-[interactive demo here]
-</p>
+<script>
+window.PrimOptDemo = function(cfg) {
+  var wadj = {0:[[1,2],[3,5]],1:[[0,2],[2,4],[4,6]],2:[[1,4],[5,1]],
+    3:[[0,5],[4,2]],4:[[1,6],[3,2],[5,3],[6,7]],5:[[2,1],[4,3]],6:[[4,7]]};
+  var edges = [[0,1,2],[0,3,5],[1,2,4],[1,4,6],[2,5,1],[3,4,2],[4,5,3],[4,6,7]];
+  var gpos = {0:{x:100,y:45},1:{x:250,y:45},2:{x:400,y:45},
+    3:{x:100,y:140},4:{x:250,y:140},5:{x:400,y:140},6:{x:250,y:235}};
+  var NR=17,W=500,H=275,INF=Infinity;
+  var frames=[];
+  (function(){
+    var distTo=[0,INF,INF,INF,INF,INF,INF];
+    var edgeTo=[-1,-1,-1,-1,-1,-1,-1];
+    var visited={},pq=[0,1,2,3,4,5,6];
+    function sortPQ(){return pq.slice().sort(function(a,b){
+      if(distTo[a]===INF&&distTo[b]===INF)return a-b;
+      if(distTo[a]===INF)return 1;if(distTo[b]===INF)return -1;
+      return distTo[a]-distTo[b];
+    });}
+    frames.push({c:-1,v:[],te:[],distTo:distTo.slice(),edgeTo:edgeTo.slice(),
+      pq:sortPQ(),upd:[0],relaxed:[],m:'Initialize: distTo[0] = 0, all others = \u221e'});
+    while(pq.length){
+      var minV=-1,minD=INF+1;
+      for(var i=0;i<pq.length;i++){if(distTo[pq[i]]<minD){minD=distTo[pq[i]];minV=pq[i];}}
+      if(minV===-1)break;
+      pq.splice(pq.indexOf(minV),1);
+      visited[minV]=true;
+      var vis=Object.keys(visited).map(Number);
+      var updated=[],relaxed=[];
+      for(var i=0;i<wadj[minV].length;i++){
+        var nb=wadj[minV][i][0],wt=wadj[minV][i][1];
+        if(!visited[nb]&&wt<distTo[nb]){
+          var oldDist=distTo[nb];
+          distTo[nb]=wt;edgeTo[nb]=minV;
+          updated.push(nb);relaxed.push([minV,nb,wt,oldDist]);
+        }
+      }
+      var te=[];
+      for(var i=0;i<=6;i++){if(edgeTo[i]!==-1)te.push([edgeTo[i],i]);}
+      var msg='Remove '+minV+' (dist '+minD+')';
+      if(relaxed.length){
+        var parts=relaxed.map(function(r){
+          if(r[3]!==INF)return r[0]+'\u2192'+r[1]+' (w='+r[2]+' < '+r[3]+')';
+          return r[0]+'\u2192'+r[1]+' (w='+r[2]+')';
+        });
+        msg+=': relax '+parts.join(', ');
+      }else msg+=': no improvements';
+      frames.push({c:minV,v:vis,te:te,distTo:distTo.slice(),edgeTo:edgeTo.slice(),
+        pq:sortPQ(),upd:updated,relaxed:relaxed,m:msg});
+    }
+  })();
+  var step=-1;
+  var svg=document.getElementById(cfg.svg);
+  var tblEl=document.getElementById(cfg.tbl);
+  var msgEl=document.getElementById(cfg.msg);
+  var stepBtn=document.getElementById(cfg.stepBtn);
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  function render(){
+    var frame=step>=0?frames[step]:null;
+    var cursor=frame?frame.c:-1;
+    var vis=frame?frame.v:[];
+    var tedges=frame?frame.te:[];
+    var vset={},teset={};
+    vis.forEach(function(v){vset[v]=true;});
+    tedges.forEach(function(e){teset[Math.min(e[0],e[1])+'-'+Math.max(e[0],e[1])]=true;});
+    var rlSet={};
+    if(frame&&frame.relaxed)frame.relaxed.forEach(function(r){
+      rlSet[Math.min(r[0],r[1])+'-'+Math.max(r[0],r[1])]=true;
+    });
+    var pqSet={};
+    if(frame)frame.pq.forEach(function(v){pqSet[v]=true;});
+    var s='';
+    for(var i=0;i<edges.length;i++){
+      var a=gpos[edges[i][0]],b=gpos[edges[i][1]],w=edges[i][2];
+      var key=Math.min(edges[i][0],edges[i][1])+'-'+Math.max(edges[i][0],edges[i][1]);
+      var te=teset[key],rl=rlSet[key];
+      var col=rl?'var(--blue,#1e66f5)':te?'var(--green,#40a02b)':'var(--overlay1,#8c8fa1)';
+      var sw=te||rl?'3':'1.5';
+      var op=te||rl?'0.6':'0.35';
+      s+='<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+
+        '" stroke="'+col+'" stroke-width="'+sw+'" opacity="'+op+'"/>';
+      var mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
+      var dx=b.x-a.x,dy=b.y-a.y,len=Math.sqrt(dx*dx+dy*dy);
+      var ox=-dy/len*12,oy=dx/len*12;
+      s+='<text x="'+(mx+ox)+'" y="'+(my+oy)+'" text-anchor="middle" dy=".35em"'+
+        ' font-size="11" font-weight="600" fill="var(--subtext1,#5c5f77)"'+
+        ' font-family="system-ui,sans-serif" style="pointer-events:none">'+w+'</text>';
+    }
+    for(var v=0;v<=6;v++){
+      var p=gpos[v],fill,tf;
+      if(v===cursor){fill='var(--blue,#1e66f5)';tf='#fff';}
+      else if(vset[v]){fill='var(--green,#40a02b)';tf='#fff';}
+      else if(pqSet[v]&&frame&&frame.distTo[v]!==INF){fill='var(--peach,#fe640b)';tf='#fff';}
+      else{fill='var(--surface0,#ccd0da)';tf='var(--text,#4c4f69)';}
+      s+='<circle cx="'+p.x+'" cy="'+p.y+'" r="'+NR+'" fill="'+fill+
+        '" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>';
+      s+='<text x="'+p.x+'" y="'+p.y+'" dy=".35em" text-anchor="middle" fill="'+tf+
+        '" font-size="14" font-weight="600" font-family="system-ui,sans-serif"'+
+        ' style="pointer-events:none">'+v+'</text>';
+    }
+    svg.innerHTML=s;
+    var updSet={};
+    if(frame)frame.upd.forEach(function(u){updSet[u]=true;});
+    var h='<div><span class="sp-lbl">distTo:</span>';
+    for(var i=0;i<=6;i++){
+      var d=frame?frame.distTo[i]:(i===0?0:INF);
+      h+='<span class="sp-val'+(updSet[i]?' sp-upd':'')+'">'+(d===INF?'\u221e':d)+'</span>';
+    }
+    h+='</div><div><span class="sp-lbl">edgeTo:</span>';
+    for(var i=0;i<=6;i++){
+      var e=frame?frame.edgeTo[i]:-1;
+      h+='<span class="sp-val'+(updSet[i]?' sp-upd':'')+'">'+(e===-1?'-':e)+'</span>';
+    }
+    h+='</div><div><span class="sp-lbl">vertex:</span>';
+    for(var i=0;i<=6;i++){
+      h+='<span class="sp-val" style="color:var(--subtext1,#5c5f77)">'+i+'</span>';
+    }
+    h+='</div>';
+    if(frame&&frame.pq.length){
+      h+='<div style="margin-top:0.2em"><span class="sp-lbl">PQ:</span>['+
+        frame.pq.map(function(v){
+          return v+'('+(frame.distTo[v]===INF?'\u221e':frame.distTo[v])+')';
+        }).join(', ')+']</div>';
+    }
+    tblEl.innerHTML=h;
+    msgEl.textContent=frame?frame.m+(step===frames.length-1?'. Done!':''):'Click Step to begin.';
+    stepBtn.disabled=step>=frames.length-1;
+  }
+  render();
+  return {
+    step:function(){if(step<frames.length-1){step++;render();}},
+    reset:function(){step=-1;render();}
+  };
+};
+</script>
+<div class="trav-demo">
+  <svg id="po-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="sp-tbl" id="po-tbl"></div>
+  <div class="trav-ctl">
+    <button id="po-step">Step</button>
+    <button id="po-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="po-msg"></div>
+</div>
+<script>
+(function(){
+  var d=PrimOptDemo({svg:'po-svg',tbl:'po-tbl',msg:'po-msg',stepBtn:'po-step'});
+  document.getElementById('po-step').addEventListener('click',function(){d.step();});
+  document.getElementById('po-rst').addEventListener('click',function(){d.reset();});
+})();
+</script>
 
 <p>
 Prim&rsquo;s and Dijkstra&rsquo;s algorithms are exactly the same, except Prim&rsquo;s considers the distance to the tree, whereas Dijkstra&rsquo;s considers the distance to some start node.
 </p>
 </div>
 </div>
-<div id="outline-container-org9fd6892" class="outline-4">
-<h4 id="org9fd6892"><span class="section-number-4">5.2.2.</span> Runtime</h4>
+<div id="outline-container-org7fed2b6" class="outline-4">
+<h4 id="org7fed2b6"><span class="section-number-4">5.2.2.</span> Runtime</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <p>
 The runtime is how fast we can do each of the priority queue operations. We do:
@@ -1169,16 +1316,150 @@ Assuming that \(E > V\), the overall runtime is just \(O(E \log V)\).
 We consider edges in order of increasing weight. Add them to the MST unless a cycle is created. Repeat until we get \(V-1\) edges:
 </p>
 
-<p>
-[interactive demo here]
-</p>
+<style>
+.kr-edges {
+  font-size: 0.85em; margin-top: 0.3em; line-height: 1.8;
+  font-family: 'SF Mono', Monaco, Consolas, 'Courier New', monospace;
+}
+.kr-e {
+  display: inline-block; padding: 0.15em 0.5em; margin: 0.1em 0.15em;
+  border-radius: 4px; font-size: 0.9em;
+}
+.kr-pending { background: var(--surface0, #ccd0da); color: var(--text, #4c4f69); }
+.kr-current { background: var(--blue, #1e66f5); color: #fff; }
+.kr-added { background: var(--green, #40a02b); color: #fff; }
+.kr-skipped { background: var(--surface0, #ccd0da); color: var(--overlay1, #8c8fa1);
+  text-decoration: line-through; }
+</style>
+<script>
+window.KruskalDemo = function(cfg) {
+  var edges = [[0,1,2],[0,3,5],[1,2,4],[1,4,6],[2,5,1],[3,4,2],[4,5,3],[4,6,7]];
+  var sorted = edges.slice().sort(function(a,b){return a[2]-b[2];});
+  var gpos = {0:{x:100,y:45},1:{x:250,y:45},2:{x:400,y:45},
+    3:{x:100,y:140},4:{x:250,y:140},5:{x:400,y:140},6:{x:250,y:235}};
+  var NR=17,W=500,H=275;
+  var frames=[];
+  (function(){
+    var parent=[],size=[];
+    for(var i=0;i<7;i++){parent[i]=i;size[i]=1;}
+    function find(x){while(parent[x]!==x){parent[x]=parent[parent[x]];x=parent[x];}return x;}
+    function union(a,b){
+      var ra=find(a),rb=find(b);if(ra===rb)return false;
+      if(size[ra]<size[rb]){parent[ra]=rb;size[rb]+=size[ra];}
+      else{parent[rb]=ra;size[ra]+=size[rb];}return true;
+    }
+    var status=[],mstE=[],tw=0;
+    for(var i=0;i<sorted.length;i++)status.push('pending');
+    frames.push({cur:-1,status:status.slice(),mstE:[],mn:[],tw:0,
+      m:'Edges sorted by weight. Click Step to process.'});
+    for(var i=0;i<sorted.length;i++){
+      var u=sorted[i][0],v=sorted[i][1],w=sorted[i][2];
+      if(union(u,v)){
+        status[i]='added';mstE.push([u,v]);tw+=w;
+        var msg='Add '+u+'\u2013'+v+' (weight '+w+')';
+      }else{
+        status[i]='skipped';
+        var msg='Skip '+u+'\u2013'+v+' (weight '+w+'): creates cycle';
+      }
+      var mn={};
+      mstE.forEach(function(e){mn[e[0]]=true;mn[e[1]]=true;});
+      frames.push({cur:i,status:status.slice(),mstE:mstE.map(function(e){return e.slice();}),
+        mn:Object.keys(mn).map(Number),tw:tw,m:msg});
+    }
+  })();
+  var step=-1;
+  var svg=document.getElementById(cfg.svg);
+  var edgesEl=document.getElementById(cfg.edgesEl);
+  var outEl=document.getElementById(cfg.out);
+  var msgEl=document.getElementById(cfg.msg);
+  var stepBtn=document.getElementById(cfg.stepBtn);
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  function render(){
+    var frame=step>=0?frames[step]:null;
+    var teSet={},mstSet={},curKey=null;
+    if(frame){
+      frame.mstE.forEach(function(e){teSet[Math.min(e[0],e[1])+'-'+Math.max(e[0],e[1])]=true;});
+      frame.mn.forEach(function(v){mstSet[v]=true;});
+      if(frame.cur>=0){
+        var ce=sorted[frame.cur];
+        curKey=Math.min(ce[0],ce[1])+'-'+Math.max(ce[0],ce[1]);
+      }
+    }
+    var s='';
+    for(var i=0;i<edges.length;i++){
+      var a=gpos[edges[i][0]],b=gpos[edges[i][1]],w=edges[i][2];
+      var key=Math.min(edges[i][0],edges[i][1])+'-'+Math.max(edges[i][0],edges[i][1]);
+      var isCur=key===curKey&&frame&&frame.status[frame.cur]==='added';
+      var isSkip=key===curKey&&frame&&frame.status[frame.cur]==='skipped';
+      var isM=teSet[key]&&!isCur;
+      var col=isCur?'var(--blue,#1e66f5)':isSkip?'var(--red,#d20f39)':isM?'var(--green,#40a02b)':'var(--overlay1,#8c8fa1)';
+      var sw=isCur||isSkip||isM?'3':'1.5';
+      var op=isCur||isSkip||isM?'0.6':'0.35';
+      s+='<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" stroke="'+col+
+        '" stroke-width="'+sw+'" opacity="'+op+'"'+(isSkip?' stroke-dasharray="6,4"':'')+'"/>';
+      var mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dx=b.x-a.x,dy=b.y-a.y,len=Math.sqrt(dx*dx+dy*dy);
+      s+='<text x="'+(mx-dy/len*12)+'" y="'+(my+dx/len*12)+'" text-anchor="middle" dy=".35em"'+
+        ' font-size="11" font-weight="600" fill="var(--subtext1,#5c5f77)"'+
+        ' font-family="system-ui,sans-serif" style="pointer-events:none">'+w+'</text>';
+    }
+    var curNodes={};
+    if(frame&&frame.cur>=0){curNodes[sorted[frame.cur][0]]=true;curNodes[sorted[frame.cur][1]]=true;}
+    for(var v=0;v<=6;v++){
+      var p=gpos[v],fill,tf;
+      if(curNodes[v]&&frame&&frame.status[frame.cur]==='added'){fill='var(--blue,#1e66f5)';tf='#fff';}
+      else if(mstSet[v]){fill='var(--green,#40a02b)';tf='#fff';}
+      else if(curNodes[v]){fill='var(--red,#d20f39)';tf='#fff';}
+      else{fill='var(--surface0,#ccd0da)';tf='var(--text,#4c4f69)';}
+      s+='<circle cx="'+p.x+'" cy="'+p.y+'" r="'+NR+'" fill="'+fill+
+        '" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>';
+      s+='<text x="'+p.x+'" y="'+p.y+'" dy=".35em" text-anchor="middle" fill="'+tf+
+        '" font-size="14" font-weight="600" font-family="system-ui,sans-serif"'+
+        ' style="pointer-events:none">'+v+'</text>';
+    }
+    svg.innerHTML=s;
+    var h='';
+    var st=frame?frame.status:[];
+    for(var i=0;i<sorted.length;i++){
+      var cls=i<st.length?st[i]:'pending';
+      if(frame&&frame.cur===i)cls='current';
+      h+='<span class="kr-e kr-'+cls+'">'+sorted[i][0]+'\u2013'+sorted[i][1]+' ('+sorted[i][2]+')</span>';
+    }
+    edgesEl.innerHTML=h;
+    outEl.textContent='MST weight: '+(frame?frame.tw:0);
+    msgEl.textContent=frame?frame.m+(step===frames.length-1?'. Done!':''):'Click Step to begin.';
+    stepBtn.disabled=step>=frames.length-1;
+  }
+  render();
+  return {
+    step:function(){if(step<frames.length-1){step++;render();}},
+    reset:function(){step=-1;render();}
+  };
+};
+</script>
+<div class="trav-demo">
+  <svg id="kr-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="kr-edges" id="kr-edges"></div>
+  <div class="trav-out" id="kr-out"></div>
+  <div class="trav-ctl">
+    <button id="kr-step">Step</button>
+    <button id="kr-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="kr-msg"></div>
+</div>
+<script>
+(function(){
+  var d=KruskalDemo({svg:'kr-svg',edgesEl:'kr-edges',out:'kr-out',msg:'kr-msg',stepBtn:'kr-step'});
+  document.getElementById('kr-step').addEventListener('click',function(){d.step();});
+  document.getElementById('kr-rst').addEventListener('click',function(){d.reset();});
+})();
+</script>
 
 <p>
 To check if adding an edge creates a cycle, we can use a <a href="disjoint_sets.html#org73c8b98">weighted quick union</a> to store what connections we have.
 </p>
 </div>
-<div id="outline-container-org7fed2b6" class="outline-4">
-<h4 id="org7fed2b6"><span class="section-number-4">5.3.1.</span> Runtime</h4>
+<div id="outline-container-org11154e5" class="outline-4">
+<h4 id="org11154e5"><span class="section-number-4">5.3.1.</span> Runtime</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 We do the following operations for Kruskal&rsquo;s:
@@ -1205,7 +1486,7 @@ Overall, our runtime comes to \(O(E \log E)\).
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-18 23:32
+               Last modified: 2026-03-20 11:46
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
