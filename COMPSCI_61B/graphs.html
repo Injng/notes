@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-20 Fri 11:50 -->
+<!-- 2026-03-20 Fri 17:20 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Graphs</title>
@@ -159,14 +159,20 @@
 <li><a href="#orgeb87bdc">5.2. Prim&rsquo;s Algorithm</a>
 <ul>
 <li><a href="#orgfb5f122">5.2.1. Optimized Prim&rsquo;s Algorithm</a></li>
-<li><a href="#org7fed2b6">5.2.2. Runtime</a></li>
+<li><a href="#org0db355f">5.2.2. Runtime</a></li>
 </ul>
 </li>
 <li><a href="#orge5c11d1">5.3. Kruskal&rsquo;s Algorithm</a>
 <ul>
-<li><a href="#org11154e5">5.3.1. Runtime</a></li>
+<li><a href="#org0235f1c">5.3.1. Runtime</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#org98bdbd0">6. Directed Acyclic Graphs</a>
+<ul>
+<li><a href="#org42b6609">6.1. Topological Sort</a></li>
+<li><a href="#orgdffe94d">6.2. Shortest Paths</a></li>
 </ul>
 </li>
 </ul>
@@ -757,7 +763,7 @@ In the real world, however, different edges have different weights. For example,
 </p>
 
 
-<div id="org09901aa" class="figure">
+<div id="orgd45dfa0" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs1.png" alt="graphs1.png" />
 </p>
 </div>
@@ -767,7 +773,7 @@ The problem is that since our BFS implementation doesn&rsquo;t consider these we
 </p>
 
 
-<div id="org8e9903f" class="figure">
+<div id="orgca848c5" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs2.png" alt="graphs2.png" />
 </p>
 </div>
@@ -777,7 +783,7 @@ Say we want to consider the union of the shortest path from some source vertex t
 </p>
 
 
-<div id="orgfa9658e" class="figure">
+<div id="org2da9f09" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs3.png" alt="graphs3.png" />
 </p>
 </div>
@@ -800,7 +806,7 @@ Say we have an incorrect SPT. Then, relaxing an edge from vertex <code>v</code> 
 </p>
 
 
-<div id="org2ed0cbf" class="figure">
+<div id="org6e3f202" class="figure">
 <p><img src="../static/COPMSCI_61B/graphs4.png" alt="graphs4.png" />
 </p>
 </div>
@@ -984,7 +990,7 @@ Given an undirected graph \(G\), a <b>spanning tree</b> \(T\) is a subgraph of \
 </p>
 
 
-<div id="org0b38686" class="figure">
+<div id="orgcd93050" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs5.png" alt="graphs5.png" />
 </p>
 </div>
@@ -1001,7 +1007,7 @@ A <b>cut</b> is an assignment of a graph&rsquo;s nodes to two non-empty sets. A 
 </p>
 
 
-<div id="orgce6f598" class="figure">
+<div id="orgc453616" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs6.png" alt="graphs6.png" />
 </p>
 </div>
@@ -1290,8 +1296,8 @@ Prim&rsquo;s and Dijkstra&rsquo;s algorithms are exactly the same, except Prim&r
 </p>
 </div>
 </div>
-<div id="outline-container-org7fed2b6" class="outline-4">
-<h4 id="org7fed2b6"><span class="section-number-4">5.2.2.</span> Runtime</h4>
+<div id="outline-container-org0db355f" class="outline-4">
+<h4 id="org0db355f"><span class="section-number-4">5.2.2.</span> Runtime</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <p>
 The runtime is how fast we can do each of the priority queue operations. We do:
@@ -1458,8 +1464,8 @@ window.KruskalDemo = function(cfg) {
 To check if adding an edge creates a cycle, we can use a <a href="disjoint_sets.html#org73c8b98">weighted quick union</a> to store what connections we have.
 </p>
 </div>
-<div id="outline-container-org11154e5" class="outline-4">
-<h4 id="org11154e5"><span class="section-number-4">5.3.1.</span> Runtime</h4>
+<div id="outline-container-org0235f1c" class="outline-4">
+<h4 id="org0235f1c"><span class="section-number-4">5.3.1.</span> Runtime</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 We do the following operations for Kruskal&rsquo;s:
@@ -1479,6 +1485,336 @@ Overall, our runtime comes to \(O(E \log E)\).
 </div>
 </div>
 </div>
+<div id="outline-container-org98bdbd0" class="outline-2">
+<h2 id="org98bdbd0"><span class="section-number-2">6.</span> Directed Acyclic Graphs</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<b>Directed acyclic graphs</b> (DAGs) are graphs that are <i>directed</i> (edges point from a source vertex to a sink vertex) and <i>acyclic</i> (there are no cycles).
+</p>
+</div>
+<div id="outline-container-org42b6609" class="outline-3">
+<h3 id="org42b6609"><span class="section-number-3">6.1.</span> Topological Sort</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+A <b>topological sort</b> of a directed graph returns an ordering that ensures that if there is an edge pointing from vertex <code>v</code> to vertex <code>w</code>, <code>v</code> appears before <code>w</code> in the ordering. In other words, we are sorting our nodes so that they appear in an order <i>consistent with the edges</i>:
+</p>
+
+
+<div id="orgf81adab" class="figure">
+<p><img src="../static/COMPSCI_61B/graphs7.png" alt="graphs7.png" />
+</p>
+</div>
+
+<p>
+To find the topological sort, we can perform a DFS postorder traversal on every vertex with indegree 0, storing the postorder nodes in a list. Then, the topological ordering is given by the reverse of the list:
+</p>
+
+<script>
+window.TopoDemo = function(cfg) {
+  var adj = {0:[1,2],1:[3,4],2:[4,5],3:[6],4:[6],5:[6],6:[]};
+  var dedges = [[0,1],[0,2],[1,3],[1,4],[2,4],[2,5],[3,6],[4,6],[5,6]];
+  var gpos = {0:{x:250,y:35},1:{x:130,y:115},2:{x:370,y:115},
+    3:{x:70,y:195},4:{x:250,y:195},5:{x:430,y:195},6:{x:250,y:275}};
+  var NR=17,W=500,H=310;
+  var frames=[];
+  (function(){
+    var visited={},activeSet={},postorder=[],treeEdges=[];
+    frames.push({c:-1,active:[],finished:[],te:[],post:[],
+      m:'Node 0 has indegree 0. Start DFS from 0.'});
+    function dfs(v,from){
+      visited[v]=true;activeSet[v]=true;
+      if(from!==undefined)treeEdges.push([from,v]);
+      var unvis=[];
+      for(var i=0;i<adj[v].length;i++)if(!visited[adj[v][i]])unvis.push(adj[v][i]);
+      var msg='Visit '+v;
+      if(from!==undefined)msg+=' (from '+from+')';
+      if(unvis.length)msg+=': explore '+unvis.join(', ');
+      else if(adj[v].length)msg+=': neighbors already visited';
+      else msg+=': no neighbors';
+      frames.push({c:v,active:Object.keys(activeSet).map(Number),
+        finished:postorder.slice(),te:treeEdges.map(function(e){return e.slice();}),
+        post:postorder.slice(),m:msg});
+      for(var i=0;i<adj[v].length;i++){
+        if(!visited[adj[v][i]])dfs(adj[v][i],v);
+      }
+      delete activeSet[v];postorder.push(v);
+      frames.push({c:v,active:Object.keys(activeSet).map(Number),
+        finished:postorder.slice(),te:treeEdges.map(function(e){return e.slice();}),
+        post:postorder.slice(),m:'Finish '+v+' \u2192 postorder: ['+postorder.join(', ')+']'});
+    }
+    dfs(0);
+    var topo=postorder.slice().reverse();
+    frames.push({c:-1,active:[],finished:postorder.slice(),
+      te:treeEdges.map(function(e){return e.slice();}),
+      post:postorder.slice(),topo:topo,
+      m:'Reverse postorder \u2192 topological order: ['+topo.join(', ')+']'});
+  })();
+  var step=-1;
+  var svg=document.getElementById(cfg.svg);
+  var tblEl=document.getElementById(cfg.tbl);
+  var msgEl=document.getElementById(cfg.msg);
+  var stepBtn=document.getElementById(cfg.stepBtn);
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  function render(){
+    var frame=step>=0?frames[step]:null;
+    var cursor=frame?frame.c:-1;
+    var activeArr=frame?frame.active:[];
+    var finArr=frame?frame.finished:[];
+    var tedges=frame?frame.te:[];
+    var actSet={},finSet={},teSet={};
+    activeArr.forEach(function(v){actSet[v]=true;});
+    finArr.forEach(function(v){finSet[v]=true;});
+    tedges.forEach(function(e){teSet[e[0]+'-'+e[1]]=true;});
+    var s='';
+    // arrowhead helper
+    function arrow(ax,ay,bx,by,col,sw,op){
+      var dx=bx-ax,dy=by-ay,len=Math.sqrt(dx*dx+dy*dy);
+      var ux=dx/len,uy=dy/len;
+      var x1=ax+ux*NR,y1=ay+uy*NR;
+      var x2=bx-ux*(NR+4),y2=by-uy*(NR+4);
+      s+='<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+
+        '" stroke="'+col+'" stroke-width="'+sw+'" opacity="'+op+'"/>';
+      var tipX=bx-ux*NR,tipY=by-uy*NR;
+      var px=-uy,py=ux,as=6;
+      var bX=tipX-ux*as,bY=tipY-uy*as;
+      s+='<polygon points="'+tipX+','+tipY+' '+(bX+px*as*0.45)+','+(bY+py*as*0.45)+
+        ' '+(bX-px*as*0.45)+','+(bY-py*as*0.45)+'" fill="'+col+'" opacity="'+op+'"/>';
+    }
+    for(var i=0;i<dedges.length;i++){
+      var u=dedges[i][0],v=dedges[i][1];
+      var a=gpos[u],b=gpos[v];
+      var te=teSet[u+'-'+v];
+      var col=te?'var(--green,#40a02b)':'var(--overlay1,#8c8fa1)';
+      var sw=te?'2.5':'1.5';
+      var op=te?'0.6':'0.35';
+      arrow(a.x,a.y,b.x,b.y,col,sw,op);
+    }
+    for(var v=0;v<=6;v++){
+      var p=gpos[v],fill,tf;
+      if(v===cursor&&finSet[v]){fill='var(--green,#40a02b)';tf='#fff';}
+      else if(v===cursor){fill='var(--blue,#1e66f5)';tf='#fff';}
+      else if(finSet[v]){fill='var(--green,#40a02b)';tf='#fff';}
+      else if(actSet[v]){fill='var(--peach,#fe640b)';tf='#fff';}
+      else{fill='var(--surface0,#ccd0da)';tf='var(--text,#4c4f69)';}
+      s+='<circle cx="'+p.x+'" cy="'+p.y+'" r="'+NR+'" fill="'+fill+
+        '" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>';
+      s+='<text x="'+p.x+'" y="'+p.y+'" dy=".35em" text-anchor="middle" fill="'+tf+
+        '" font-size="14" font-weight="600" font-family="system-ui,sans-serif"'+
+        ' style="pointer-events:none">'+v+'</text>';
+    }
+    svg.innerHTML=s;
+    var h='<div><span class="sp-lbl">Stack:</span>['+activeArr.join(', ')+']</div>';
+    h+='<div><span class="sp-lbl">Postorder:</span>['+(frame?frame.post.join(', '):'')+']</div>';
+    if(frame&&frame.topo)
+      h+='<div style="margin-top:0.2em;font-weight:600;color:var(--green,#40a02b)"><span class="sp-lbl">Topo sort:</span>['+frame.topo.join(', ')+']</div>';
+    tblEl.innerHTML=h;
+    msgEl.textContent=frame?frame.m+(step===frames.length-1?'. Done!':''):'Click Step to begin.';
+    stepBtn.disabled=step>=frames.length-1;
+  }
+  render();
+  return {
+    step:function(){if(step<frames.length-1){step++;render();}},
+    reset:function(){step=-1;render();}
+  };
+};
+</script>
+<div class="trav-demo">
+  <svg id="ts-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="sp-tbl" id="ts-tbl"></div>
+  <div class="trav-ctl">
+    <button id="ts-step">Step</button>
+    <button id="ts-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="ts-msg"></div>
+</div>
+<script>
+(function(){
+  var d=TopoDemo({svg:'ts-svg',tbl:'ts-tbl',msg:'ts-msg',stepBtn:'ts-step'});
+  document.getElementById('ts-step').addEventListener('click',function(){d.step();});
+  document.getElementById('ts-rst').addEventListener('click',function(){d.reset();});
+})();
+</script>
+
+<p>
+This algorithm takes \(O(V+E)\) time.
+</p>
+
+<p>
+Additionally, a topological sort exists only if the graph is a directed acyclic graph.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdffe94d" class="outline-3">
+<h3 id="orgdffe94d"><span class="section-number-3">6.2.</span> Shortest Paths</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+The problem with Dijkstra&rsquo;s is that it fails when trying to find a shortest path on a graph with negative weights. However, for the specific case of working with DAGs, we can solve this by visiting the vertices in topological order and relaxing all of its edges when we visit it:
+</p>
+
+<script>
+window.DAGSPDemo = function(cfg) {
+  var wadj = {0:[[1,2],[2,1]],1:[[3,3],[4,5]],2:[[4,6],[5,4]],
+    3:[[6,-1]],4:[[6,2]],5:[[6,3]],6:[]};
+  var dedges = [[0,1,2],[0,2,1],[1,3,3],[1,4,5],[2,4,6],[2,5,4],[3,6,-1],[4,6,2],[5,6,3]];
+  var gpos = {0:{x:250,y:35},1:{x:130,y:115},2:{x:370,y:115},
+    3:{x:70,y:195},4:{x:250,y:195},5:{x:430,y:195},6:{x:250,y:275}};
+  var NR=17,W=500,H=310,INF=Infinity;
+  // compute topo order
+  var topo;
+  (function(){
+    var vis={},post=[];
+    function dfs(v){vis[v]=true;for(var i=0;i<wadj[v].length;i++){var w=wadj[v][i][0];if(!vis[w])dfs(w);}post.push(v);}
+    var indeg={};for(var v=0;v<=6;v++)indeg[v]=0;
+    for(var i=0;i<dedges.length;i++)indeg[dedges[i][1]]++;
+    for(var v=0;v<=6;v++)if(indeg[v]===0&&!vis[v])dfs(v);
+    topo=post.reverse();
+  })();
+  var frames=[];
+  (function(){
+    var distTo=[0,INF,INF,INF,INF,INF,INF];
+    var edgeTo=[-1,-1,-1,-1,-1,-1,-1];
+    var processed={};
+    frames.push({c:-1,proc:[],te:[],distTo:distTo.slice(),edgeTo:edgeTo.slice(),
+      ti:-1,upd:[0],relaxed:[],m:'Topo order: ['+topo.join(', ')+']. distTo[0] = 0, all others = \u221e'});
+    for(var ti=0;ti<topo.length;ti++){
+      var v=topo[ti];processed[v]=true;
+      var updated=[],relaxed=[];
+      for(var i=0;i<wadj[v].length;i++){
+        var nb=wadj[v][i][0],wt=wadj[v][i][1];
+        if(distTo[v]===INF)continue;
+        var nd=distTo[v]+wt;
+        if(nd<distTo[nb]){
+          var od=distTo[nb];distTo[nb]=nd;edgeTo[nb]=v;
+          updated.push(nb);relaxed.push([v,nb,wt,nd,od]);
+        }
+      }
+      var te=[];for(var i=0;i<=6;i++){if(edgeTo[i]!==-1)te.push([edgeTo[i],i]);}
+      var msg='Process '+v+' (dist '+(distTo[v]===INF?'\u221e':distTo[v])+')';
+      if(relaxed.length){
+        var parts=relaxed.map(function(r){
+          if(r[4]!==INF)return r[0]+'\u2192'+r[1]+' ('+r[3]+' < '+r[4]+')';
+          return r[0]+'\u2192'+r[1]+' ('+r[3]+')';
+        });
+        msg+=': relax '+parts.join(', ');
+      }else if(!wadj[v].length)msg+=': no outgoing edges';
+      else msg+=': no improvements';
+      frames.push({c:v,proc:Object.keys(processed).map(Number),te:te,
+        distTo:distTo.slice(),edgeTo:edgeTo.slice(),
+        ti:ti,upd:updated,relaxed:relaxed,m:msg});
+    }
+  })();
+  var step=-1;
+  var svg=document.getElementById(cfg.svg);
+  var tblEl=document.getElementById(cfg.tbl);
+  var msgEl=document.getElementById(cfg.msg);
+  var stepBtn=document.getElementById(cfg.stepBtn);
+  svg.setAttribute('viewBox','0 0 '+W+' '+H);
+  function render(){
+    var frame=step>=0?frames[step]:null;
+    var cursor=frame?frame.c:-1;
+    var procSet={},teSet={},rlSet={};
+    if(frame){
+      frame.proc.forEach(function(v){procSet[v]=true;});
+      frame.te.forEach(function(e){teSet[e[0]+'-'+e[1]]=true;});
+      if(frame.relaxed)frame.relaxed.forEach(function(r){rlSet[r[0]+'-'+r[1]]=true;});
+    }
+    var s='';
+    function arrow(ax,ay,bx,by,col,sw,op){
+      var dx=bx-ax,dy=by-ay,len=Math.sqrt(dx*dx+dy*dy);
+      var ux=dx/len,uy=dy/len;
+      var x1=ax+ux*NR,y1=ay+uy*NR,x2=bx-ux*(NR+4),y2=by-uy*(NR+4);
+      s+='<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+
+        '" stroke="'+col+'" stroke-width="'+sw+'" opacity="'+op+'"/>';
+      var tipX=bx-ux*NR,tipY=by-uy*NR,px=-uy,py=ux,as=6;
+      var bX=tipX-ux*as,bY=tipY-uy*as;
+      s+='<polygon points="'+tipX+','+tipY+' '+(bX+px*as*0.45)+','+(bY+py*as*0.45)+
+        ' '+(bX-px*as*0.45)+','+(bY-py*as*0.45)+'" fill="'+col+'" opacity="'+op+'"/>';
+    }
+    for(var i=0;i<dedges.length;i++){
+      var u=dedges[i][0],v=dedges[i][1],w=dedges[i][2];
+      var a=gpos[u],b=gpos[v];
+      var rl=rlSet[u+'-'+v],te=teSet[u+'-'+v];
+      var col=rl?'var(--blue,#1e66f5)':te?'var(--green,#40a02b)':'var(--overlay1,#8c8fa1)';
+      var sw=rl||te?'2.5':'1.5';
+      var op=rl||te?'0.6':'0.35';
+      arrow(a.x,a.y,b.x,b.y,col,sw,op);
+      var mx=(a.x+b.x)/2,my=(a.y+b.y)/2,dx=b.x-a.x,dy=b.y-a.y,len=Math.sqrt(dx*dx+dy*dy);
+      s+='<text x="'+(mx-dy/len*12)+'" y="'+(my+dx/len*12)+'" text-anchor="middle" dy=".35em"'+
+        ' font-size="11" font-weight="600" fill="var(--subtext1,#5c5f77)"'+
+        ' font-family="system-ui,sans-serif" style="pointer-events:none">'+w+'</text>';
+    }
+    for(var v=0;v<=6;v++){
+      var p=gpos[v],fill,tf;
+      if(v===cursor){fill='var(--blue,#1e66f5)';tf='#fff';}
+      else if(procSet[v]){fill='var(--green,#40a02b)';tf='#fff';}
+      else if(frame&&frame.distTo[v]!==INF){fill='var(--peach,#fe640b)';tf='#fff';}
+      else{fill='var(--surface0,#ccd0da)';tf='var(--text,#4c4f69)';}
+      s+='<circle cx="'+p.x+'" cy="'+p.y+'" r="'+NR+'" fill="'+fill+
+        '" stroke="var(--overlay2,#7c7f93)" stroke-width="1.5"/>';
+      s+='<text x="'+p.x+'" y="'+p.y+'" dy=".35em" text-anchor="middle" fill="'+tf+
+        '" font-size="14" font-weight="600" font-family="system-ui,sans-serif"'+
+        ' style="pointer-events:none">'+v+'</text>';
+    }
+    svg.innerHTML=s;
+    var updSet={};
+    if(frame)frame.upd.forEach(function(u){updSet[u]=true;});
+    var h='<div><span class="sp-lbl">distTo:</span>';
+    for(var i=0;i<=6;i++){
+      var d=frame?frame.distTo[i]:(i===0?0:INF);
+      h+='<span class="sp-val'+(updSet[i]?' sp-upd':'')+'">'+(d===INF?'\u221e':d)+'</span>';
+    }
+    h+='</div><div><span class="sp-lbl">edgeTo:</span>';
+    for(var i=0;i<=6;i++){
+      var e=frame?frame.edgeTo[i]:-1;
+      h+='<span class="sp-val'+(updSet[i]?' sp-upd':'')+'">'+(e===-1?'-':e)+'</span>';
+    }
+    h+='</div><div><span class="sp-lbl">vertex:</span>';
+    for(var i=0;i<=6;i++){
+      h+='<span class="sp-val" style="color:var(--subtext1,#5c5f77)">'+i+'</span>';
+    }
+    h+='</div><div style="margin-top:0.2em"><span class="sp-lbl">Topo:</span>';
+    var curTi=frame?frame.ti:-1;
+    for(var i=0;i<topo.length;i++){
+      var cls='';
+      if(i===curTi)cls=' sp-upd';
+      else if(i<curTi)cls='';
+      h+='<span class="sp-val'+cls+'"'+(i<curTi?' style="color:var(--green,#40a02b)"':'')+'>'+topo[i]+'</span>';
+    }
+    h+='</div>';
+    tblEl.innerHTML=h;
+    msgEl.textContent=frame?frame.m+(step===frames.length-1?'. Done!':''):'Click Step to begin.';
+    stepBtn.disabled=step>=frames.length-1;
+  }
+  render();
+  return {
+    step:function(){if(step<frames.length-1){step++;render();}},
+    reset:function(){step=-1;render();}
+  };
+};
+</script>
+<div class="trav-demo">
+  <svg id="ds-svg" width="500" preserveAspectRatio="xMidYMin meet"></svg>
+  <div class="sp-tbl" id="ds-tbl"></div>
+  <div class="trav-ctl">
+    <button id="ds-step">Step</button>
+    <button id="ds-rst">Reset</button>
+  </div>
+  <div class="trav-msg" id="ds-msg"></div>
+</div>
+<script>
+(function(){
+  var d=DAGSPDemo({svg:'ds-svg',tbl:'ds-tbl',msg:'ds-msg',stepBtn:'ds-step'});
+  document.getElementById('ds-step').addEventListener('click',function(){d.step();});
+  document.getElementById('ds-rst').addEventListener('click',function(){d.reset();});
+})();
+</script>
+
+<p>
+The runtime for this algorithm takes \(O(V+E)\) time.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -1486,7 +1822,7 @@ Overall, our runtime comes to \(O(E \log E)\).
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-20 11:46
+               Last modified: 2026-03-20 17:20
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
