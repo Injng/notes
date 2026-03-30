@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-03-30 Mon 14:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hashing</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Hashing</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2c13572">1. Derivation</a></li>
+<li><a href="#org8b81598">2. Hash Functions</a></li>
+<li><a href="#org1c9d017">3. Hash Table</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2c13572" class="outline-2">
+<h2 id="org2c13572"><span class="section-number-2">1.</span> Derivation</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We&rsquo;ve been implementing sets so far with <a href="bst.html#orge91fa84">search trees</a>, which give us great logarithmic performance when retrieving elements. However, this requires that the elements in our set be <i>comparable</i> in some way. Is there some way to remove this restriction, and perhaps even be faster than logarithmic time?
+</p>
+
+<p>
+Suppose we have some set of integers in a <a href="lists.html#orgcb078b8">list</a>. Finding any one integer in the list will require us to search through the entire list, which is not particularly efficient. But what if instead we keep track of <i>two lists</i>, one of odd integers and another of even integers. Then, we are able to halve our search time by just knowing whether or not the integer we want is even or odd!
+</p>
+
+<p>
+Then suppose instead of two lists, we have some large number of <i>buckets</i> into which our integers can be distributed. We can then define some function that reduces an integer to an index that points to the bucket the integer should go in. For example, if our function is \(h(x) = x \text{ mod } 10\), and we have \(10\) buckets:
+</p>
+
+
+<div id="org6939378" class="figure">
+<p><img src="../static/COMPSCI_61B/hashing1.png" alt="hashing1.png" />
+</p>
+</div>
+
+<p>
+We&rsquo;ve now achieved a 10x speedup, but it still is constant time. Can we choose some \(M\) amount of buckets such that for \(N\) elements, we can find an element in constant-time?
+</p>
+
+<p>
+The answer is yes: we can make \(M\) <i>depend on</i> \(N\). Specifically, we define \(M = kN\), so then our runtime is now constant.
+</p>
+</div>
+</div>
+<div id="outline-container-org8b81598" class="outline-2">
+<h2 id="org8b81598"><span class="section-number-2">2.</span> Hash Functions</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The function we defined before is an example of a <b>hash function</b>. Data is converted by a hash function into a finite integer representation called a <b>hash code</b>. Java hash codes must be in <code>[-2,147,483,648 to 2,147,483,647]</code>. The hash code is then reduced to a valid index.
+</p>
+
+<p>
+For example, if we were to represent some sequence of letters, we can use the ASCII character set. There are 126 possible values, and so we can represent any sequence as a number in base-126. We can then convert this back to base-10 as our hash function.
+</p>
+</div>
+</div>
+<div id="outline-container-org1c9d017" class="outline-2">
+<h2 id="org1c9d017"><span class="section-number-2">3.</span> Hash Table</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+For Java&rsquo;s implementation of hash tables, all objects in Java must implement a <code>.hashCode()</code> method. For example, this is the <code>hashCode</code> method for strings:
+</p>
+
+<pre><code class="language-java"><span style="color: #cba6f7;">public</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">hashCode</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">String</span> <span style="color: #cdd6f4;">s</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">intRep</span> = 0;
+    <span style="color: #cba6f7;">for</span> <span style="color: #fab387;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span> = 0; i &lt; s.length<span style="color: #f9e2af;">()</span>; i += 1<span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>           
+        intRep = intRep * 31;
+        intRep = intRep + s.charAt<span style="color: #f9e2af;">(</span>i<span style="color: #f9e2af;">)</span>;
+    <span style="color: #fab387;">}</span>
+    <span style="color: #cba6f7;">return</span> intRep;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+A hash table has \(\Theta(1)\) runtime, and \(\Theta(N)\) when it resizes. This is because it has to retrieve and recalculate the hashes for each of the elements in the hash table.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-03-30 13:56
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
