@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-19 Thu 13:58 -->
+<!-- 2026-03-31 Tue 16:32 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Probability</title>
@@ -134,7 +134,14 @@
 <li><a href="#org8f434e3">2. Conditional Probability</a>
 <ul>
 <li><a href="#orgc0761bc">2.1. Law of Total Probability</a></li>
-<li><a href="#org1d67252">2.2. Independence</a></li>
+<li><a href="#orgc107c5e">2.2. Bayes&rsquo; Rule</a></li>
+<li><a href="#org1d67252">2.3. Independence</a>
+<ul>
+<li><a href="#orgacfe946">2.3.1. Mutual Independence</a></li>
+</ul>
+</li>
+<li><a href="#org62fb1ed">2.4. Product Rule</a></li>
+<li><a href="#org45be09c">2.5. Union of Events</a></li>
 </ul>
 </li>
 </ul>
@@ -298,15 +305,31 @@ This is true because we see that it becomes the sum of the intersections of each
 </p>
 
 
-<div id="org2063269" class="figure">
+<div id="org691a100" class="figure">
 <p><img src="../static/COMPSCI_70/probability1.png" alt="probability1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org1d67252" class="outline-3">
-<h3 id="org1d67252"><span class="section-number-3">2.2.</span> Independence</h3>
+<div id="outline-container-orgc107c5e" class="outline-3">
+<h3 id="orgc107c5e"><span class="section-number-3">2.2.</span> Bayes&rsquo; Rule</h3>
 <div class="outline-text-3" id="text-2-2">
+<p>
+Suppose \(B_1, \dots, B_n\) partition \(\Omega\). Then, for any \(A \subseteq \Omega\), with \(\mathbb{P}(A) > 0\), we have:
+</p>
+
+\begin{align}
+\mathbb{P}(B_i | A) = \frac{\mathbb{P}(A | B_i)\mathbb{P}(B_i)}{\mathbb{P}(A)} = \frac{\mathbb{P}(A|B_i)\mathbb{P}(B_i)}{\sum_{j=1}^n \mathbb{P}(A|B_j)\mathbb{P}(B_j)}
+\end{align}
+
+<p>
+Intuitively, if \(A\) is some event we are studying, then the \(B_i\) partitions are the different &ldquo;ways&rdquo; that event can occur (e.g. a positive test result is \(A\), then real positive and false positive are two ways that can occur). <b>Bayes&rsquo; rule</b> tells us that the probability it is one of those ways is equal to the probability of \(A \cap B_i\) happening (\(A\) happening via \(B_i\)) over the total probability of \(A\) happening.
+</p>
+</div>
+</div>
+<div id="outline-container-org1d67252" class="outline-3">
+<h3 id="org1d67252"><span class="section-number-3">2.3.</span> Independence</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
 Consider any two events \(A, B \subseteq \Omega\) and suppose that the chance of \(A\) does not depend on whether or not \(B\) occurs, i.e. \(\mathbb{P}(A | B) = \mathbb{P}(A | B^C)\). Then, since \(B\) and \(B^C\) partitions \(\Omega\), by the Law of Total Probability:
 </p>
@@ -324,6 +347,117 @@ Then, if \(A\) and \(B\) are independent, by (3) we know that \(\mathbb{P}(A \ca
 \begin{align}
 \boxed{\mathbb{P}(A\cap B) = \mathbb{P}(A)\mathbb{P}(B)}
 \end{align}
+
+<p>
+Considering the box model, this means that in our probability space, the events of \(A\) and \(B\) must overlap in a very specific way such that either \(A\) or \(B\) happening tells us nothing about the other. To achieve this, the proportion of \(B\) that falls inside \(A\) must be exactly the same as the proportion of \(B\) with respect to the entire box. 
+</p>
+
+<p>
+This implies that the complements of the events must also be independent:
+</p>
+
+<ul class="org-ul">
+<li>\(\mathbb{P}(A^C \cap B) = \mathbb{P}(A^C)\mathbb{P}(B)\)</li>
+<li>\(\mathbb{P}(A \cap B^C) = \mathbb{P}(A)\mathbb{P}(B^C)\)</li>
+<li>\(\mathbb{P}(A^C \cap B^C) = \mathbb{P}(A^C)\mathbb{P}(B^C)\)</li>
+</ul>
+</div>
+<div id="outline-container-orgacfe946" class="outline-4">
+<h4 id="orgacfe946"><span class="section-number-4">2.3.1.</span> Mutual Independence</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+Events \(A_1, \dots , A_n\) are <b>mutually independent</b> if for all subsets \(I \subseteq \{1, \dots, n\}\) with \(|I| \geq 2\):
+</p>
+
+\begin{align}
+\mathbb{P}\left(\bigcap_{i\in I} A_i\right) = \prod_{i \in I}\mathbb{P}\left(A_i\right)
+\end{align}
+
+<p>
+In other words, a set of events are mutually independent if <i>any intersection of any subset of those events</i> is equivalent to the probabilities of each event multiplied together. 
+</p>
+
+<p>
+Alternatively, events \(A_1,\dots,A_n\) are mutually independent if for all \(B_i \in \{A_i, A_i^C\}\) such that \(i = 1,\dots,n\), we have:
+</p>
+
+\begin{align}
+\mathbb{P}(B_1 \cap \cdots \cap B_n) = \prod_{i=1}^n \mathbb{P}(B_i)
+\end{align}
+
+<p>
+This is similar to the above but with complements as well.
+</p>
+
+<p>
+Events \(A_1,\dots,A_n\) are said to be <b>pairwise independent</b> if \(\mathbb{P}(A_i \cap A_j) = \mathbb{P}(A_i)\mathbb{P}(A_j)\) for all \(i,j\) such that \(i \neq j\). Note that pairwise independence <i>does not imply</i> mutual independence!
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org62fb1ed" class="outline-3">
+<h3 id="org62fb1ed"><span class="section-number-3">2.4.</span> Product Rule</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+For events \(A_1,\dots,A_n\) on the same probability space, the <b>product rule</b> says that:
+</p>
+
+\begin{align}
+\boxed{\mathbb{P}(A_1 \cap \cdots \cap A_n) = \mathbb{P}(A_1)\mathbb{P}(A_2|A_1)\mathbb{P}(A_3|A_1\cap A_2) \cdots \mathbb{P}(A_n|A_1 \cap \cdots \cap A_{n-1})}
+\end{align}
+
+<p>
+Intuitively, this just says that the probability of events \(A_1\) through \(A_n\) happening is just the probability of \(A_1\) happening, times the probability of \(A_2\) happening after \(A_1\) has happened, and so on.
+</p>
+
+<p>
+<b>Proof:</b> We proceed by induction on \(n\). The base case of \(n=1\) holds since \(\mathbb{P}(A_1) = \mathbb{P}(A_1)\).
+</p>
+
+<p>
+Assume that the product rule holds for all \(n \leq k\). Then, for \(n=k+1\), we have:
+</p>
+
+\begin{align}
+\mathbb{P}(A_1 \cap \cdots \cap A_{k+1}) = \mathbb{P}\left(\left(\bigcap_{i=1}^k A_i\right) \cap A_{k+1}\right) \notag
+\end{align}
+
+<p>
+Let&rsquo;s call the event \(B=\bigcap_{i=1}^k A_i\). Then, we have:
+</p>
+
+\begin{align}
+\mathbb{P}(A_1 \cap \cdots \cap A_{k+1}) &= \mathbb{P}(B \cap A_{k+1})  \notag \\
+&= \mathbb{P}(B)\mathbb{P}(A_{k+1}|B) \notag
+\end{align}
+
+<p>
+By the inductive hypothesis, \(\mathbb{P}(B) = \mathbb{P}(A_1)\cdots\mathbb{P}(A_k|A_1\cap \cdots \cap A_{k-1})\), so we find that our expression is equal to \(\mathbb{P}(A_1) \cdots \mathbb{P}(A_{k+1}|A_1 \cap \cdots \cap A_k)\), and we are done. \(\square\)
+</p>
+</div>
+</div>
+<div id="outline-container-org45be09c" class="outline-3">
+<h3 id="org45be09c"><span class="section-number-3">2.5.</span> Union of Events</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+If \(A_1,\dots,A_n\) are mutually exclusive, then we have:
+</p>
+
+\begin{align}
+\mathbb{P}\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n \mathbb{P}(A_i)
+\end{align}
+
+<p>
+It can be seen that this is true since intuitively mutually exclusive events have no overlapping area between them in the box model. 
+</p>
+
+<p>
+We can also define a <b>union bound</b>, such that for <i>all</i> events \(A_1, \dots, A_n\) on the same probability space:
+</p>
+
+\begin{align}
+\boxed{\mathbb{P}\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \mathbb{P}(A_i)}
+\end{align}
 </div>
 </div>
 </div>
@@ -334,7 +468,7 @@ Then, if \(A\) and \(B\) are independent, by (3) we know that \(\mathbb{P}(A \ca
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-19 13:58
+               Last modified: 2026-03-31 16:32
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
