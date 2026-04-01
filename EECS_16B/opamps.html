@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-03-31 Tue 17:47 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Operational Amplifiers</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/EECS_16B/index.html">EECS 16B</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Operational Amplifiers</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgbd485b9">1. Operational Amplifiers</a>
+<ul>
+<li><a href="#org656f8f8">1.1. Dependent Source Model</a></li>
+<li><a href="#org9e9cb28">1.2. Input Impedance</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbd485b9" class="outline-2">
+<h2 id="orgbd485b9"><span class="section-number-2">1.</span> Operational Amplifiers</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Operational amplifiers</b>, or op-amps (OPA) are the workhorse of analog applications. The following is an example of the symbol of an op-amp:
+</p>
+
+<figure class="tikz-figure"><?xml version='1.0' encoding='UTF-8'?>
+<!-- This file was generated by dvisvgm 3.6 -->
+<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='155.96273pt' height='108.626944pt' viewBox='-66.042317 -66.683562 155.96273 108.626944'>
+<defs>
+<path id='g0-0' d='M7.878456-2.749689C8.081694-2.749689 8.296887-2.749689 8.296887-2.988792S8.081694-3.227895 7.878456-3.227895H1.41071C1.207472-3.227895 .992279-3.227895 .992279-2.988792S1.207472-2.749689 1.41071-2.749689H7.878456Z'/>
+<path id='g1-99' d='M3.259776-3.052553C2.933001-3.012702 2.82939-2.765629 2.82939-2.606227C2.82939-2.375093 3.036613-2.311333 3.140224-2.311333C3.180075-2.311333 3.58655-2.343213 3.58655-2.82939S3.060523-3.514819 2.582316-3.514819C1.45056-3.514819 .350685-2.414944 .350685-1.299128C.350685-.541968 .868742 .079701 1.753425 .079701C3.012702 .079701 3.674222-.72528 3.674222-.828892C3.674222-.900623 3.594521-.956413 3.5467-.956413S3.474969-.932503 3.435118-.884682C2.805479-.143462 1.912827-.143462 1.769365-.143462C1.338979-.143462 .996264-.406476 .996264-1.012204C.996264-1.362889 1.155666-2.207721 1.530262-2.701868C1.880946-3.148194 2.279452-3.291656 2.590286-3.291656C2.685928-3.291656 3.052553-3.283686 3.259776-3.052553Z'/>
+<path id='g1-110' d='M1.594022-1.307098C1.617933-1.42665 1.697634-1.729514 1.721544-1.849066C1.833126-2.279452 1.833126-2.287422 2.016438-2.550436C2.279452-2.940971 2.654047-3.291656 3.188045-3.291656C3.474969-3.291656 3.642341-3.124284 3.642341-2.749689C3.642341-2.311333 3.307597-1.40274 3.156164-1.012204C3.052553-.749191 3.052553-.70137 3.052553-.597758C3.052553-.143462 3.427148 .079701 3.769863 .079701C4.550934 .079701 4.877709-1.036115 4.877709-1.139726C4.877709-1.219427 4.813948-1.243337 4.758157-1.243337C4.662516-1.243337 4.646575-1.187547 4.622665-1.107846C4.431382-.454296 4.096638-.143462 3.793773-.143462C3.666252-.143462 3.602491-.223163 3.602491-.406476S3.666252-.765131 3.745953-.964384C3.865504-1.267248 4.216189-2.183811 4.216189-2.630137C4.216189-3.227895 3.801743-3.514819 3.227895-3.514819C2.582316-3.514819 2.16787-3.124284 1.936737-2.82142C1.880946-3.259776 1.530262-3.514819 1.123786-3.514819C.836862-3.514819 .637609-3.331507 .510087-3.084433C.318804-2.709838 .239103-2.311333 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.223661 .526027-2.430884C.621669-2.82142 .765131-3.291656 1.099875-3.291656C1.307098-3.291656 1.354919-3.092403 1.354919-2.917061C1.354919-2.773599 1.315068-2.622167 1.251308-2.359153C1.235367-2.295392 1.115816-1.825156 1.083935-1.713574L.789041-.518057C.757161-.398506 .70934-.199253 .70934-.167372C.70934 .01594 .860772 .079701 .964384 .079701C1.107846 .079701 1.227397-.01594 1.283188-.111582C1.307098-.159402 1.370859-.430386 1.41071-.597758L1.594022-1.307098Z'/>
+<path id='g1-111' d='M3.969116-2.13599C3.969116-2.917061 3.411208-3.514819 2.582316-3.514819C1.45056-3.514819 .350685-2.414944 .350685-1.299128C.350685-.486177 .924533 .079701 1.737484 .079701C2.87721 .079701 3.969116-1.036115 3.969116-2.13599ZM1.745455-.143462C1.466501-.143462 .996264-.286924 .996264-1.020174C.996264-1.346949 1.147696-2.207721 1.530262-2.701868C1.920797-3.203985 2.359153-3.291656 2.574346-3.291656C2.901121-3.291656 3.323537-3.092403 3.323537-2.422914C3.323537-2.10411 3.180075-1.346949 2.87721-.868742C2.582316-.414446 2.14396-.143462 1.745455-.143462Z'/>
+<path id='g1-112' d='M.414446 .964384C.350685 1.219427 .334745 1.283188 .01594 1.283188C-.095641 1.283188-.191283 1.283188-.191283 1.43462C-.191283 1.506351-.119552 1.546202-.079701 1.546202C0 1.546202 .03188 1.522291 .621669 1.522291C1.195517 1.522291 1.362889 1.546202 1.41868 1.546202C1.45056 1.546202 1.570112 1.546202 1.570112 1.39477C1.570112 1.283188 1.458531 1.283188 1.362889 1.283188C.980324 1.283188 .980324 1.235367 .980324 1.163636C.980324 1.107846 1.123786 .541968 1.362889-.390535C1.466501-.207223 1.713574 .079701 2.14396 .079701C3.124284 .079701 4.144458-1.052055 4.144458-2.207721C4.144458-2.996762 3.634371-3.514819 2.996762-3.514819C2.518555-3.514819 2.13599-3.188045 1.904857-2.948941C1.737484-3.514819 1.203487-3.514819 1.123786-3.514819C.836862-3.514819 .637609-3.331507 .510087-3.084433C.326775-2.725778 .239103-2.319303 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.223661 .526027-2.430884C.629639-2.83736 .773101-3.291656 1.099875-3.291656C1.299128-3.291656 1.354919-3.108344 1.354919-2.917061C1.354919-2.83736 1.323039-2.646077 1.307098-2.582316L.414446 .964384ZM1.880946-2.454795C1.920797-2.590286 1.920797-2.606227 2.040349-2.749689C2.343213-3.108344 2.685928-3.291656 2.972852-3.291656C3.371357-3.291656 3.52279-2.901121 3.52279-2.542466C3.52279-2.247572 3.347447-1.39477 3.108344-.924533C2.901121-.494147 2.518555-.143462 2.14396-.143462C1.601993-.143462 1.474471-.765131 1.474471-.820922C1.474471-.836862 1.490411-.924533 1.498381-.948443L1.880946-2.454795Z'/>
+<path id='g1-116' d='M1.761395-3.172105H2.542466C2.693898-3.172105 2.789539-3.172105 2.789539-3.323537C2.789539-3.435118 2.685928-3.435118 2.550436-3.435118H1.825156L2.11208-4.566874C2.14396-4.686426 2.14396-4.726276 2.14396-4.734247C2.14396-4.901619 2.016438-4.98132 1.880946-4.98132C1.609963-4.98132 1.554172-4.766127 1.466501-4.407472L1.219427-3.435118H.454296C.302864-3.435118 .199253-3.435118 .199253-3.283686C.199253-3.172105 .302864-3.172105 .438356-3.172105H1.155666L.67746-1.259278C.629639-1.060025 .557908-.781071 .557908-.669489C.557908-.191283 .948443 .079701 1.370859 .079701C2.223661 .079701 2.709838-1.044085 2.709838-1.139726C2.709838-1.227397 2.638107-1.243337 2.590286-1.243337C2.502615-1.243337 2.494645-1.211457 2.438854-1.091905C2.279452-.70934 1.880946-.143462 1.39477-.143462C1.227397-.143462 1.131756-.255044 1.131756-.518057C1.131756-.669489 1.155666-.757161 1.179577-.860772L1.761395-3.172105Z'/>
+<path id='g1-117' d='M2.988792-.868742C2.948941-.71731 2.574346-.143462 2.040349-.143462C1.649813-.143462 1.514321-.430386 1.514321-.789041C1.514321-1.259278 1.793275-1.976588 1.968618-2.422914C2.048319-2.622167 2.072229-2.693898 2.072229-2.83736C2.072229-3.275716 1.721544-3.514819 1.354919-3.514819C.565878-3.514819 .239103-2.391034 .239103-2.295392C.239103-2.223661 .294894-2.191781 .358655-2.191781C.462267-2.191781 .470237-2.239601 .494147-2.319303C.70137-3.028643 1.052055-3.291656 1.331009-3.291656C1.45056-3.291656 1.522291-3.211955 1.522291-3.028643S1.45056-2.662017 1.346949-2.383064C1.012204-1.538232 .940473-1.195517 .940473-.908593C.940473-.127522 1.530262 .079701 2.000498 .079701C2.598257 .079701 2.964882-.398506 2.996762-.438356C3.124284-.063761 3.482939 .079701 3.769863 .079701C4.144458 .079701 4.327771-.239103 4.383562-.358655C4.542964-.645579 4.654545-1.107846 4.654545-1.139726C4.654545-1.187547 4.622665-1.243337 4.527024-1.243337S4.415442-1.203487 4.367621-.996264C4.26401-.597758 4.120548-.143462 3.793773-.143462C3.610461-.143462 3.53873-.294894 3.53873-.518057C3.53873-.653549 3.610461-.924533 3.658281-1.123786S3.825654-1.801245 3.857534-1.944707L4.016936-2.550436C4.064757-2.765629 4.160399-3.140224 4.160399-3.188045C4.160399-3.387298 4.000996-3.435118 3.905355-3.435118C3.793773-3.435118 3.618431-3.363387 3.56264-3.172105L2.988792-.868742Z'/>
+<path id='g2-86' d='M7.400249-6.838356C7.806725-7.483935 8.177335-7.770859 8.787049-7.81868C8.9066-7.830635 9.002242-7.830635 9.002242-8.045828C9.002242-8.093649 8.978331-8.16538 8.870735-8.16538C8.655542-8.16538 8.141469-8.141469 7.926276-8.141469C7.579577-8.141469 7.220922-8.16538 6.886177-8.16538C6.790535-8.16538 6.670984-8.16538 6.670984-7.938232C6.670984-7.830635 6.77858-7.81868 6.826401-7.81868C7.268742-7.782814 7.316563-7.567621 7.316563-7.424159C7.316563-7.244832 7.149191-6.969863 7.137235-6.957908L3.383313-1.004234L2.546451-7.44807C2.546451-7.79477 3.16812-7.81868 3.299626-7.81868C3.478954-7.81868 3.58655-7.81868 3.58655-8.045828C3.58655-8.16538 3.455044-8.16538 3.419178-8.16538C3.21594-8.16538 2.976837-8.141469 2.773599-8.141469H2.10411C1.231382-8.141469 .872727-8.16538 .860772-8.16538C.789041-8.16538 .645579-8.16538 .645579-7.950187C.645579-7.81868 .729265-7.81868 .920548-7.81868C1.530262-7.81868 1.566127-7.711083 1.601993-7.412204L2.558406-.035866C2.594271 .215193 2.594271 .251059 2.761644 .251059C2.905106 .251059 2.964882 .215193 3.084433 .02391L7.400249-6.838356Z'/>
+<path id='g3-0' d='M7.491905-2.191781C7.641345-2.191781 7.940224-2.191781 7.940224-2.49066C7.940224-2.799502 7.651308-2.799502 7.491905-2.799502H1.404732C1.255293-2.799502 .956413-2.799502 .956413-2.500623C.956413-2.191781 1.24533-2.191781 1.404732-2.191781H7.491905Z'/>
+<path id='g4-43' d='M4.752179-2.191781H7.830635C7.960149-2.191781 8.259029-2.191781 8.259029-2.49066C8.259029-2.799502 7.970112-2.799502 7.830635-2.799502H4.752179V-5.88792C4.752179-6.007472 4.752179-6.306351 4.4533-6.306351C4.144458-6.306351 4.144458-6.017435 4.144458-5.88792V-2.799502H1.066002C.926526-2.799502 .637609-2.799502 .637609-2.49066C.637609-2.191781 .936488-2.191781 1.066002-2.191781H4.144458V.896638C4.144458 1.016189 4.144458 1.315068 4.443337 1.315068C4.752179 1.315068 4.752179 1.026152 4.752179 .896638V-2.191781Z'/>
+<path id='g5-43' d='M4.770112-2.761644H8.069738C8.237111-2.761644 8.452304-2.761644 8.452304-2.976837C8.452304-3.203985 8.249066-3.203985 8.069738-3.203985H4.770112V-6.503611C4.770112-6.670984 4.770112-6.886177 4.554919-6.886177C4.327771-6.886177 4.327771-6.682939 4.327771-6.503611V-3.203985H1.028144C.860772-3.203985 .645579-3.203985 .645579-2.988792C.645579-2.761644 .848817-2.761644 1.028144-2.761644H4.327771V.537983C4.327771 .705355 4.327771 .920548 4.542964 .920548C4.770112 .920548 4.770112 .71731 4.770112 .537983V-2.761644Z'/>
+</defs>
+<g id='page1'>
+<path d='M32.15628-12.410157L-15.07032-40.1914V15.3672Z' stroke='#000' fill='none' stroke-width='.797'/>
+<path d='M-25.19142-26.3008H-15.07032M-25.19142 1.4766H-15.07032M42.27348-12.410157H32.15628' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10' stroke-linecap='square'/>
+<g transform='matrix(1 0 0 1 -23.61268 -11.3991)'>
+<use x='11.862559' y='-12.411982' xlink:href='#g3-0'/>
+</g>
+<g transform='matrix(1 0 0 1 -23.61268 16.38051)'>
+<use x='11.862559' y='-12.411982' xlink:href='#g4-43'/>
+</g>
+<path d='M-25.19532-26.3047L-37.96092-26.3086M-37.96092-26.3086L-50.70702-26.3047' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<path d='M-49.12112-26.3047C-49.12112-27.1797-49.83202-27.8906-50.70702-27.8906S-52.29292-27.1797-52.29292-26.3047C-52.29292-25.4258-51.58202-24.7148-50.70702-24.7148S-49.12112-25.4258-49.12112-26.3047Z' fill='#fff'/>
+<path d='M-49.12112-26.3047C-49.12112-27.1797-49.83202-27.8906-50.70702-27.8906S-52.29292-27.1797-52.29292-26.3047C-52.29292-25.4258-51.58202-24.7148-50.70702-24.7148S-49.12112-25.4258-49.12112-26.3047Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -75.22958 -10.7034)'>
+<use x='8.541684' y='-12.411982' xlink:href='#g2-86'/>
+<use x='15.366034' y='-10.618719' xlink:href='#g1-110'/>
+</g>
+<path d='M-25.19532 1.4805L-37.96092 1.4844M-37.96092 1.4844L-50.70702 1.4805' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<path d='M-49.12112 1.4805C-49.12112 .6016-49.83202-.1094-50.70702-.1094S-52.29292 .6016-52.29292 1.4805C-52.29292 2.3555-51.58202 3.0664-50.70702 3.0664S-49.12112 2.3555-49.12112 1.4805Z' fill='#fff'/>
+<path d='M-49.12112 1.4805C-49.12112 .6016-49.83202-.1094-50.70702-.1094S-52.29292 .6016-52.29292 1.4805C-52.29292 2.3555-51.58202 3.0664-50.70702 3.0664S-49.12112 2.3555-49.12112 1.4805Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -74.35418 16.30469)'>
+<use x='8.541684' y='-12.411982' xlink:href='#g2-86'/>
+<use x='15.366034' y='-10.618719' xlink:href='#g1-112'/>
+</g>
+<path d='M42.27738-12.410157H55.04688M55.04688-12.410157H67.78908' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<path d='M69.37888-12.410157C69.37888-13.289063 68.66798-14 67.78908-14C66.91408-14 66.20308-13.289063 66.20308-12.410157C66.20308-11.535157 66.91408-10.82422 67.78908-10.82422C68.66798-10.82422 69.37888-11.535157 69.37888-12.410157Z' fill='#fff'/>
+<path d='M69.37888-12.410157C69.37888-13.289063 68.66798-14 67.78908-14C66.91408-14 66.20308-13.289063 66.20308-12.410157C66.20308-11.535157 66.91408-10.82422 67.78908-10.82422C68.66798-10.82422 69.37888-11.535157 69.37888-12.410157Z' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 62.76882 3.18808)'>
+<use x='8.541684' y='-12.411982' xlink:href='#g2-86'/>
+<use x='15.366034' y='-10.618719' xlink:href='#g1-111'/>
+<use x='19.459083' y='-10.618719' xlink:href='#g1-117'/>
+<use x='24.362053' y='-10.618719' xlink:href='#g1-116'/>
+</g>
+<path d='M6.17969-27.6914V-53.207' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -14.24315 -46.1062)'>
+<use x='8.541684' y='-12.411982' xlink:href='#g5-43'/>
+<use x='17.646335' y='-12.411982' xlink:href='#g2-86'/>
+<use x='24.470685' y='-10.618719' xlink:href='#g1-99'/>
+<use x='28.138465' y='-10.618719' xlink:href='#g1-99'/>
+</g>
+<path d='M6.17969 2.8672V28.3828' stroke='#000' fill='none' stroke-width='.3985' stroke-miterlimit='10'/>
+<g transform='matrix(1 0 0 1 -14.34007 52.4824)'>
+<use x='8.541684' y='-12.411982' xlink:href='#g0-0'/>
+<use x='17.840181' y='-12.411982' xlink:href='#g2-86'/>
+<use x='24.664531' y='-10.618719' xlink:href='#g1-99'/>
+<use x='28.332311' y='-10.618719' xlink:href='#g1-99'/>
+</g>
+</g>
+</svg></figure><p>
+Important properties of op-amps include <b>gain</b>, <b>input impedance</b>, <b>output impedance</b>, <b>bandwidth</b>, and <b>linearity</b>. Op-amps typically have high input impedance and low output impedance:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Parameter</th>
+<th scope="col" class="org-left">Typical Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Open-loop gain (\(A\))</td>
+<td class="org-left">\(10^4\) to \(10^8\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Input impedance (\(R_{\text{in}}\))</td>
+<td class="org-left">\(10^6 \Omega\) to \(10^{13} \Omega\)</td>
+</tr>
+
+<tr>
+<td class="org-left">Output impedance (\(R_{\text{out}}\))</td>
+<td class="org-left">\(1 \Omega\) to \(100 \Omega\)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org656f8f8" class="outline-3">
+<h3 id="org656f8f8"><span class="section-number-3">1.1.</span> Dependent Source Model</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+While real operational amplifiers often require a lot of complicated components to work, we can use a <b>dependent-source model</b> to approximately model the linear behavior of an op-amp:
+</p>
+
+<p>
+Here, \(V_{\text{in}} = v_p - v_n\), and \(A\) is our open-loop gain (\(\frac{V_{\text{out}}{V_{\text{in}}}\)).
+</p>
+</div>
+</div>
+<div id="outline-container-org9e9cb28" class="outline-3">
+<h3 id="org9e9cb28"><span class="section-number-3">1.2.</span> Input Impedance</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+To determine input impedance, we can:
+</p>
+
+<ol class="org-ol">
+<li>Leave the output open.</li>
+<li>Apply a test voltage, \(v_x\), to the input.</li>
+<li>Measure the current, \(i_x\), going out of \(v_x\).</li>
+<li>Compute \(R_i = \frac{v_x}{i_x}\).</li>
+</ol>
+
+<p>
+Or, we can use the voltage divider:
+</p>
+
+\begin{align}
+v_p &= v_s\frac{R_i}{R_s+R_i} \notag \\
+\frac{v_p}{v_s} &= \frac{R_i}{R_s+R_i} \notag \\
+v_pR_s + v_pR_i &= v_sR_i \notag \\
+(v_s-v_p)R_i &= v_pR_s \notag
+\end{align}
+
+<p>
+Then, the input impedance is:
+</p>
+
+\begin{align}
+\boxed{R_i = \frac{v_p}{v_s-v_p}R_s}
+\end{align}
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-03-31 17:47
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
