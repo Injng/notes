@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-30 Mon 14:23 -->
+<!-- 2026-04-01 Wed 15:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Hashing</title>
@@ -128,7 +128,11 @@
 <ul>
 <li><a href="#org2c13572">1. Derivation</a></li>
 <li><a href="#org8b81598">2. Hash Functions</a></li>
-<li><a href="#org1c9d017">3. Hash Table</a></li>
+<li><a href="#org1c9d017">3. Hash Table</a>
+<ul>
+<li><a href="#org34153b2">3.1. <code>contains</code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -148,7 +152,7 @@ Then suppose instead of two lists, we have some large number of <i>buckets</i> i
 </p>
 
 
-<div id="org6939378" class="figure">
+<div id="org43475b7" class="figure">
 <p><img src="../static/COMPSCI_61B/hashing1.png" alt="hashing1.png" />
 </p>
 </div>
@@ -194,6 +198,22 @@ For Java&rsquo;s implementation of hash tables, all objects in Java must impleme
 <p>
 A hash table has \(\Theta(1)\) runtime, and \(\Theta(N)\) when it resizes. This is because it has to retrieve and recalculate the hashes for each of the elements in the hash table.
 </p>
+
+<p>
+Additionally, keys that are used in a hash table should <i>not be mutable</i>.
+</p>
+</div>
+<div id="outline-container-org34153b2" class="outline-3">
+<h3 id="org34153b2"><span class="section-number-3">3.1.</span> <code>contains</code></h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<code>contains</code> uses the hashcode of an object to check if that object is in the hash table. Specifically, it uses the hashcode to find which &ldquo;bin&rdquo; the objects should be in, and then uses <code>.equals()</code> to check if that bin contains the object that is equal to yours.
+</p>
+
+<p>
+The default Java implementation of the hashcode for objects relies upon the memory address of that object. Therefore, two instances of a class with seemingly &ldquo;equal&rdquo; values may actually be treated differently if you <i>do not override the hashcode method</i>.
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -203,7 +223,7 @@ A hash table has \(\Theta(1)\) runtime, and \(\Theta(N)\) when it resizes. This 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-30 13:56
+               Last modified: 2026-04-01 13:57
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
