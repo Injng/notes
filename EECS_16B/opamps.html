@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-31 Tue 20:47 -->
+<!-- 2026-04-02 Thu 15:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Operational Amplifiers</title>
@@ -130,6 +130,14 @@
 <ul>
 <li><a href="#org656f8f8">1.1. Dependent Source Model</a></li>
 <li><a href="#org9e9cb28">1.2. Input Impedance</a></li>
+<li><a href="#orgcc15c66">1.3. Output Impedance</a></li>
+</ul>
+</li>
+<li><a href="#org9c64ec6">2. Ideal Op-Amp</a>
+<ul>
+<li><a href="#orgcb359a5">2.1. Feedback</a></li>
+<li><a href="#orgd92f5f8">2.2. Inverting Amplifier</a></li>
+<li><a href="#org7905f42">2.3. Non-Inverting Amplifier</a></li>
 </ul>
 </li>
 </ul>
@@ -326,7 +334,7 @@ While real operational amplifiers often require a lot of complicated components 
 </g>
 </g>
 </svg></figure><p>
-Here, \(V_{\text{in}} = v_p - v_n\), and \(A\) is our open-loop gain (\(\frac{V_{\text{out}}{V_{\text{in}}}\)).
+Here, \(V_{\text{in}} = v_p - v_n\), and \(A\) is our open-loop gain.
 </p>
 </div>
 </div>
@@ -364,6 +372,153 @@ Then, the input impedance is:
 \end{align}
 </div>
 </div>
+<div id="outline-container-orgcc15c66" class="outline-3">
+<h3 id="orgcc15c66"><span class="section-number-3">1.3.</span> Output Impedance</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+To determine output impedance, we can:
+</p>
+
+<ol class="org-ol">
+<li>Replace the input with a short to ground.</li>
+<li>Attach a test voltage \(v_x\) to the output.</li>
+<li>Measure the resulting current \(i_x\).</li>
+<li>Compute \(R_o = \frac{v_x}{i_x}\).</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org9c64ec6" class="outline-2">
+<h2 id="org9c64ec6"><span class="section-number-2">2.</span> Ideal Op-Amp</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+An ideal OPA has several properties that make analyzing the device easier. Firstly, the input impedance is infinite, which means that no current flows into the input terminals:
+</p>
+
+\begin{align}
+R_i = \infty \Rightarrow i_p = i_n = 0
+\end{align}
+
+<p>
+Second, the output impedance is zero, which means it can supply high current:
+</p>
+
+\begin{align}
+R_o = 0
+\end{align}
+
+<p>
+Third, the open-loop gain is infinite, which means the voltages \(v_p\) and \(v_n\) are equal (a virtual short):
+</p>
+
+\begin{align}
+A = \infty \Rightarrow v_p = v_n
+\end{align}
+
+<p>
+Finally, an ideal op-amp has <i>infinite bandwidth</i>, which means it can amplify all voltages and frequencies without distortion or noise:
+</p>
+
+\begin{align}
+\Delta f = \infty
+\end{align}
+</div>
+<div id="outline-container-orgcb359a5" class="outline-3">
+<h3 id="orgcb359a5"><span class="section-number-3">2.1.</span> Feedback</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Practically, in a real op-amp, we can make \(A\) very large, <i>but not very precise</i>. Our goal is to design an OPA circuit that is &ldquo;immune&rdquo; to the precise value of \(A\). Consider the following circuit that incorporates a <i>negative feedback loop</i>:
+</p>
+
+<p>
+Here, \(x_o = Ax_i\), \(x_i = x_s-x_f\), and \(x_f = \beta x_0\). Then, we want to find the gain \(G = \frac{x_0}{x_s}\):
+</p>
+
+\begin{align}
+x_0 &= A(x_s-\beta x_o) \notag \\
+\frac{x_0}{A} &= x_s-\beta x_0 \notag \\
+\frac{x_0}{A}+\beta x_0 &= x_s \notag \\
+\left(\frac{A\beta + 1}{A}\right)x_0 &= x_s \notag
+\end{align}
+
+<p>
+Then, the gain can be found by:
+</p>
+
+\begin{align}
+G = \frac{x_0}{x_s} = \frac{A}{1+A\beta} = \frac{1}{\frac{1}{A} + \beta} \approx \frac{1}{1 + \beta} \notag
+\end{align}
+
+<p>
+This approximation works for <i>sufficiently large</i> \(A\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgd92f5f8" class="outline-3">
+<h3 id="orgd92f5f8"><span class="section-number-3">2.2.</span> Inverting Amplifier</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The following circuit is an <b>inverting amplifier</b>:
+</p>
+
+<p>
+KCL tells us that \(i_1 + i_2 - i_n = 0\). Recall that for an ideal OPA, \(i_n=i_p=0\), which means that \(i_1+i_2=0\). Then, expanding \(i_1\) and \(i_2\) using voltages, we get:
+</p>
+
+\begin{align}
+\frac{v_i-v_n}{R_i} + \frac{v_0-v_n}{R_f} = 0 \notag
+\end{align}
+
+<p>
+Since \(v_p = 0\), we know that by virtual ground \(v_n=0\). Then,
+</p>
+
+\begin{align}
+\frac{v_i}{R_i} + \frac{v_0}{R_f} &= 0 \notag \\
+\frac{v_0}{R_f} &= -\frac{v_i}{R_i} \notag
+\end{align}
+
+<p>
+Then, our gain is:
+</p>
+
+\begin{align}
+G = -\frac{R_f}{R_i} \notag
+\end{align}
+
+<p>
+Notice that since our gain is negative, the circuit flips the polarity of the input signal, which is why this circuit is called an <i>inverting</i> amplifier.
+</p>
+</div>
+</div>
+<div id="outline-container-org7905f42" class="outline-3">
+<h3 id="org7905f42"><span class="section-number-3">2.3.</span> Non-Inverting Amplifier</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+The following circuit is a <b>non-inverting amplifier</b>:
+</p>
+
+<p>
+Recall that for an ideal op-amp, \(i_p=0\), which means that \(v_p=v_s\). Additionally, \(v_p=v_n\), which means that \(v_n=v_s\). By the voltage divider, we know that:
+</p>
+
+\begin{align}
+v_n = v_o\frac{R_2}{R_1+R_2} = v_s \notag
+\end{align}
+
+<p>
+Since gain \(G\) is \(\frac{v_0}{v_s}\), we have:
+</p>
+
+\begin{align}
+G = \frac{R_1+R_2}{R_2} = 1 + \frac{R_1}{R_2} \notag
+\end{align}
+
+<p>
+Notice that for this amplifier, this gain must be greater than one.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -372,7 +527,7 @@ Then, the input impedance is:
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-31 20:47
+               Last modified: 2026-04-02 15:15
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
