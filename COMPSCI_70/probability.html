@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-03-31 Tue 16:32 -->
+<!-- 2026-04-02 Thu 14:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Probability</title>
@@ -141,7 +141,13 @@
 </ul>
 </li>
 <li><a href="#org62fb1ed">2.4. Product Rule</a></li>
-<li><a href="#org45be09c">2.5. Union of Events</a></li>
+</ul>
+</li>
+<li><a href="#org5bc3b6a">3. Union Bound</a>
+<ul>
+<li><a href="#org7dcceef">3.1. Hashing</a></li>
+<li><a href="#orgf603999">3.2. Load Balancing</a></li>
+<li><a href="#org53dba7f">3.3. Coupon Collection</a></li>
 </ul>
 </li>
 </ul>
@@ -305,7 +311,7 @@ This is true because we see that it becomes the sum of the intersections of each
 </p>
 
 
-<div id="org691a100" class="figure">
+<div id="orgfa13a84" class="figure">
 <p><img src="../static/COMPSCI_70/probability1.png" alt="probability1.png" />
 </p>
 </div>
@@ -436,9 +442,10 @@ By the inductive hypothesis, \(\mathbb{P}(B) = \mathbb{P}(A_1)\cdots\mathbb{P}(A
 </p>
 </div>
 </div>
-<div id="outline-container-org45be09c" class="outline-3">
-<h3 id="org45be09c"><span class="section-number-3">2.5.</span> Union of Events</h3>
-<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-org5bc3b6a" class="outline-2">
+<h2 id="org5bc3b6a"><span class="section-number-2">3.</span> Union Bound</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 If \(A_1,\dots,A_n\) are mutually exclusive, then we have:
 </p>
@@ -458,6 +465,149 @@ We can also define a <b>union bound</b>, such that for <i>all</i> events \(A_1, 
 \begin{align}
 \boxed{\mathbb{P}\left(\bigcup_{i=1}^n A_i\right) \leq \sum_{i=1}^n \mathbb{P}(A_i)}
 \end{align}
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Monochromatic subgraphs
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+<b>Theorem:</b> If \(n \leq 2^{\frac{m}{2}}\) for \(m \geq 3\), then there exists a 2-coloring of the edges of \(K_n\) such that it contains no monochromatic \(K_m\) subgraph.
+</p>
+
+<p>
+<b>Proof:</b> We proceed using the <i>probabilistic method</i>: we prove the existence of this coloring by showing that there is a positive probability that a randomly chosen object has the desired probability.
+</p>
+
+<p>
+Say we color each edge of \(K_m\) either blue or red with probability \(\frac{1}{2}\). There are \(\binom{n}{m}\) distinct subgraphs \(K_m\) in \(K_n\). Let \(E_i\) be the event that the i-th \(K_m\) is monochromatic.
+</p>
+
+<p>
+We know that for a graph \(K_m\), we must color \(\binom{m}{2}\) edges with the same color, and we have two choices for the color. Therefore, the probability that a graph \(K_m\) is monochromatic is \(\mathbb{P}(E_i) = \frac{2}{2^{\binom{m}{2}}}\). Then, the probability that at least one \(K_m\) subgraph in \(K_n\) is monochromatic is the union of all the events \(E_i\):
+</p>
+
+\begin{align}
+\mathbb{P}\left(\bigcup_{i=1}^{\binom{n}{m}}\right) \notag
+\end{align}
+
+<p>
+Then, using the union bound, we can set an upper bound to this probability:
+</p>
+
+\begin{align}
+\mathbb{P}\left(\bigcup_{i=1}^{\binom{n}{m}}\right) &\leq \sum_{i=1}^{\binom{n}{m}} \mathbb{P}[E_i]  \notag \\
+&= \binom{n}{m}\frac{2}{2^{\binom{m}{2}}}  \notag \\
+&\leq \frac{2^m}{m!} \frac{2}{2^{\binom{m}{2}}} \notag \\
+&\leq \frac{2^{\frac{m^2}{2}}}{m!}\frac{2}{2^{\binom{m}{2}}} \notag \\
+&= \frac{2^{\frac{m}{2}+1}}{m!} \notag \\
+&\leq 1 \notag
+\end{align}
+
+<p>
+Thus, the probability that at least one \(K_m\) in \(K_n\) is monochromatic is less than one. Since the probability that no \(K_m\) in \(K_n\) is monochromatic is the complement, that probability <i>must be greater than zero</i>. \(\square\)
+</p>
+
+
+</details>
+</div>
+<div id="outline-container-org7dcceef" class="outline-3">
+<h3 id="org7dcceef"><span class="section-number-3">3.1.</span> Hashing</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Hashing uses a <b>hash function</b> \(h: U \rightarrow T\) to map an input from a large domain into a fixed-size representation, where \(U\) is the universe of keys and \(T\) is the space of our hash table.
+</p>
+
+<p>
+We can model a hash function as mapping each key uniformly at random to \(n\) labelled bins. However, we want to minimize the probability that a <b>collision</b> will occur (i.e. two keys maps to the same location). The question is, for a given hash table size \(n\) and some \(\epsilon > 0\), what is the largest number of keys \(m\) such that the probability of collision is <i>less than</i> \(\epsilon\)?
+</p>
+
+<p>
+The number of pairs of keys is \(\binom{m}{2}\). For \(i\) in \(1, ..., \binom{m}{2}\), let \(C_i\) be the event that pair \(i\) collides. Then, the probability \(\mathbb{P}(C_i) = \frac{1}{n}\), as there is one slot out of the \(n\) locations that the second key can pick to collide with the first.
+</p>
+
+<p>
+Then the probability of the event \(C\) that at least one pair collides is given by the union \(\bigcup_{i=1}^{\binom{m}{2}}C_i\). Then, by union bound, we have:
+</p>
+
+\begin{align}
+\mathbb{P}\left(\bigcup_{i=1}^{\binom{m}{2}}C_i\right) & \leq \sum_{i=1}^{\binom{m}{2}}\mathbb{P}(C_i) \notag \\
+&= \binom{m}{2}\frac{1}{n} \notag \\
+&\leq \frac{m^2}{2}\frac{1}{n} \notag
+\end{align}
+
+<p>
+Thus, we want to find \(m\) such that \(frac{m^2}{2}\frac{1}{n} \leq \epsilon\). This is satisfied when:
+</p>
+
+\begin{align}
+m \leq \sqrt{2\epsilon n} \notag
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgf603999" class="outline-3">
+<h3 id="orgf603999"><span class="section-number-3">3.2.</span> Load Balancing</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Say we have \(m\) identical jobs that we wish to load balance across \(n\) identical processors. Define \(L_i\) as the load (i.e. number of jobs) of processor \(i\). Call event \(A_k\) to be the event that some processor has a load of at least \(k\). Then, the event \(\bar{A}_k\) is the event that <i>all processors have less than</i> \(k\) jobs. We want to find the smallest \(k\) such that \(\mathbb{P}(\bar{A}_k) \geq \frac{1}{2}\) (i.e. the smallest \(k\) such that the probability that all processors have less than \(k\) jobs allocated to them is greater than half). Equivalently, we want to find \(k\) such that \(\mathbb{P}(A_k)\leq\frac{1}{2}\).
+</p>
+
+<p>
+We know that \(\mathbb{P}(A_k) = \mathbb{P}\left(\bigcup_{i=1}^{n} \left(L_i \geq k\right)\right)\). Then, by union bound:
+</p>
+
+\begin{align}
+\mathbb{P}\left(\bigcup_{i=1}^{n} \left(L_i \geq k\right)\right) &\leq \sum_{i=1}^n\mathbb{P}(L_i \geq k) \notag \\
+&= n \mathbb{P}(L_1 \geq k) \notag
+\end{align}
+
+<p>
+Say \(B_S\) is the event that all jobs in some subset \(S \subseteq \{1, \dots, m\}\) land in bin 1 (i.e. processor 1). Since each job has probability \(\frac{1}{n}\) in landing in processor 1, the probability of \(B_S\) is \(\mathbb{P}(B_S) = \frac{1}{n^{|S|}}\).
+</p>
+
+<p>
+Then, the event \(L_1 \geq k\) is just the union of events \(B_S\) such that \(S\) is all the possible subsets of the jobs such that \(S\) is of size \(k\). Thus, by union bound:
+</p>
+
+\begin{align}
+\mathbb{P}(L_1 \geq k) &\leq \sum_{S \subseteq \{1, \dots, m\}: |S|=k} \mathbb{P}(B_S) \notag \\
+&= \binom{m}{k} \frac{1}{n^k} \notag
+\end{align}
+
+<p>
+Say \(n=m\) (number of processors is equal to number of jobs). Then, \(\mathbb{P}(A_k) \leq n\binom{n}{k}\frac{1}{n^k} \leq \frac{n}{k!}\). Thus, \(k\) just needs to satisfy \(\frac{n}{k!} \leq \frac{1}{2}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org53dba7f" class="outline-3">
+<h3 id="org53dba7f"><span class="section-number-3">3.3.</span> Coupon Collection</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Say we have \(n\) distinct coupons, with \(1\) coupon per box. All coupon types are equally likely to be in any give box, and we wish to collect all \(n\) distinct coupons to &ldquo;win.&rdquo; Let \(A_i\) be the event that coupon \(i\) is not collected after \(m\) purchases.
+</p>
+
+<p>
+We can think of this problem as throwing \(m\) unlabelled balls uniformly at random into \(n\) labelled bins. The probability that some coupon is not collected is:
+</p>
+
+\begin{align}
+\mathbb{P}\left(\bigcup_{i=1}^n A_i\right) &\leq \sum_{i=1}^n\mathbb{P}(A_i) \notag \\
+&= n\mathbb{P}(A_1) \notag \\
+&= n\left(1-\frac{1}{n}\right)^m \notag
+\end{align}
+
+<p>
+Since \(\left(1-\frac{1}{n}\right)^n \approx e^{-1}\) as \(n\) approaches infinity, we can write the probability approximately as \(ne^{-\frac{m}{n}}\). Suppose we want \(\mathbb{P}\left(\bigcup_{i=1}^n A_i\right) \leq e^{-1} \approx 0.368\). Then, solving for \(m\), we find that \(m \geq n\ln n + n\).
+</p>
 </div>
 </div>
 </div>
@@ -468,7 +618,7 @@ We can also define a <b>union bound</b>, such that for <i>all</i> events \(A_1, 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-03-31 16:32
+               Last modified: 2026-04-02 14:00
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
