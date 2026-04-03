@@ -6,7 +6,7 @@
 <!-- 2026-04-03 Fri 16:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Notes</title>
+<title>Tries</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
    <script src="/pagefind/pagefind-ui.js"></script>
@@ -83,33 +83,105 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
-<div id="search"></div>
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61B/index.html">COMPSCI 61B</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Notes</h1>
+<h1 class="title">Tries</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6e1ae00">1. Tries</a>
+<ul>
+<li><a href="#org0087016">1.1. Implementation</a></li>
+<li><a href="#orgc620d5c">1.2. Trie Operations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6e1ae00" class="outline-2">
+<h2 id="org6e1ae00"><span class="section-number-2">1.</span> Tries</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-<b><b>Subdirectories:</b></b>
+<b>Tries</b> are a way to store a set of String keys, where every node stores only one letter and nodes can be shared by multiple keys. Each node additionally has a boolean variable that marks whether that node is the end of a word:
 </p>
 
-<ul class="org-ul">
-<li><a href="COMPSCI_61A/index.html">COMPSCI 61A</a></li>
-<li><a href="COMPSCI_61B/index.html">COMPSCI 61B</a></li>
-<li><a href="COMPSCI_70/index.html">COMPSCI 70</a></li>
-<li><a href="EECS_16A/index.html">EECS 16A</a></li>
-<li><a href="EECS_16B/index.html">EECS 16B</a></li>
-<li><a href="MATH_53/index.html">MATH 53</a></li>
-<li><a href="MATH_54/index.html">MATH 54</a></li>
-<li><a href="PHYSICS_7A/index.html">PHYSICS 7A</a></li>
-<li><a href="PHYSICS_7B/index.html">PHYSICS 7B</a></li>
-</ul>
+
+<div id="org8ccbad8" class="figure">
+<p><img src="../static/COMPSCI_61B/tries1.png" alt="tries1.png" />
+</p>
+</div>
+
+<p>
+In this trie, the words &ldquo;sam&rdquo;, &ldquo;sad&rdquo;, &ldquo;sap&rdquo;, &ldquo;same&rdquo;, &ldquo;a&rdquo;, and &ldquo;awls&rdquo; exist.
+</p>
+</div>
+<div id="outline-container-org0087016" class="outline-3">
+<h3 id="org0087016"><span class="section-number-3">1.1.</span> Implementation</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The implementation mostly depends on how each of our nodes keeps track of their children. One way to do this could be to use a data-indexed array, in which each character is transformed into the ASCII code that is used to index an array. However, this is memory-inefficient as each node would have to store an array of size 128, even if most of that array is unused.
+</p>
+
+<p>
+Instead, we can use something like a <a href="hashing.html#org1c9d017">hash table</a> with the characters as keys and the nodes as values. This would allow us to increase memory effiency at minimal cost to speed (slightly slower than data-indexed array).
+</p>
+
+<p>
+However, for both, <code>get</code> and <code>add</code> operations are \(\Theta(1)\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgc620d5c" class="outline-3">
+<h3 id="orgc620d5c"><span class="section-number-3">1.2.</span> Trie Operations</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The main appeal of tries is their ability to support string-specific operations. For example, we can easily find the longest prefix of a string (that is a key), or finding all keys that match some prefix. We can also print the keys in alphabetical order by just implementing a <a href="graphs.html#org62e1407">pre-order traversal</a>.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
-               <div class="lang-switcher"><a href="/index.zh.html">中文</a></div>
+               
              </div>
              <div class="last-modified">
                Last modified: 2026-04-03 16:16
