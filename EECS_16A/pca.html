@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-06 Mon 10:24 -->
+<!-- 2026-04-06 Mon 21:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Principal Component Analysis</title>
@@ -203,8 +203,71 @@ Crucially, since the singular values \(\sigma\) are ordered by decreasing magnit
 <h2 id="orgad84fe5"><span class="section-number-2">2.</span> Principal Component Analysis</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-<b>Principal component analysis</b>, or PCA provides a data-driven hierarchical system to extract important directions in a set of data — directions of <i>maximum variance</i>. Say we have \(n\) subjects or samples, \(m\) features, and a \(m \times n\) data matrix \(X\). PCA gives a pre-processing step of the raw data matrix.
+<b>Principal component analysis</b>, or PCA provides a data-driven hierarchical system to extract important directions in a set of data — directions of <i>maximum variance</i>. Say we have \(n\) subjects or samples, \(m\) features, and a \(m \times n\) data matrix \(X\).
 </p>
+
+<p>
+First, we apply a pre-processing step to <b>de-mean</b> the data matrix \(X \in \mathbb{R}^{m \times n}\). To do this, we first calculate the average vector \(\bar{\mathbf{x}}\):
+</p>
+
+\begin{align}
+\bar{\mathbf{x}} = \frac{1}{n}\sum_{k=1}^n\mathbf{x}_k = \frac{1}{n}X\mathbb{1}
+\end{align}
+
+<p>
+We can view this vector as the mean of the features across all of the samples.
+</p>
+
+<p>
+Then, we create the de-meaned data matrix \(A\) by subtracting each column of \(X\) with the average vector:
+</p>
+
+\begin{align}
+A = \begin{bmatrix}
+| & & | \\
+x_1 - \bar{x} & \cdots & x_n - \bar{x} \\
+| & & |
+\end{bmatrix} &= \begin{bmatrix}
+| & | & & | \\
+x_1 & x_2 & \cdots & x_n \\
+| & | & & |
+\end{bmatrix} - \begin{bmatrix}
+| & | & & | \\
+\bar{x} & \bar{x} & \cdots & \bar{x} \\
+| & | & & |
+\end{bmatrix} \notag \\
+&= X-\bar{\mathbf{x}}\mathbb{1}^T \notag
+\end{align}
+
+<p>
+Thus, we get:
+</p>
+
+\begin{align}
+\boxed{A = X-\frac{1}{n}X\mathbb{1}\mathbb{1}^T}
+\end{align}
+
+<p>
+We can view this matrix \(A\) as how far each sample is from the &ldquo;average sample&rdquo;. Basically, we&rsquo;ve shifted the coordinate space of \(X\) by the vector \(\bar{\mathbf{x}}\).
+</p>
+
+<p>
+Now, we perform SVD on this matrix. PCA gives us the <b>principal components</b> of the matrix \(A\), which are the <i>most important vectors</i> that form a basis for the column vectors in \(A\). In other words, we&rsquo;re interested in the \(\mathbf{u}\) vectors.
+</p>
+
+<p>
+Notice that to describe the column space of \(A\), we only need \(m\) vectors (if \(m < n\)), since our matrix would be of rank \(m\). Thus, we only need \(m\) of the \(\mathbf{u}\) vectors. Moreover, since SVD sorts these vectors in order of importance, we know that \(\mathbf{u}_1\) would be the <i>direction of maximum variation</i>.
+</p>
+
+<p>
+If we want to represent a column vector in \(A\) with just one coordinate, we would do its projection onto \(\mathbf{u}_1\) and use its coordinate along \(\mathbf{u}_1\):
+</p>
+
+
+<div id="org3a70fec" class="figure">
+<p><img src="../static/EECS_16A/pca1.png" alt="pca1.png" />
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -214,7 +277,7 @@ Crucially, since the singular values \(\sigma\) are ordered by decreasing magnit
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-06 10:24
+               Last modified: 2026-04-06 21:25
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
