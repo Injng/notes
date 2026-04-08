@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-07 Tue 17:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Random Variables</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Random Variables</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgf7ba87a">1. Random Variables</a></li>
+<li><a href="#orga7ca627">2. Probability Distributions</a>
+<ul>
+<li><a href="#orgd1de7a6">2.1. Bernoulli Distribution</a></li>
+<li><a href="#org63ab9ac">2.2. Binomial Distribution</a></li>
+<li><a href="#orgdeec613">2.3. Hypergeometric Distribution</a></li>
+</ul>
+</li>
+<li><a href="#orgbef9273">3. Multiple Random Variables</a>
+<ul>
+<li><a href="#org105e0a6">3.1. Joint and Marginal Distributions</a></li>
+<li><a href="#org0eb1152">3.2. Independence</a></li>
+<li><a href="#orgcdb32df">3.3. Exchangeability</a></li>
+</ul>
+</li>
+<li><a href="#org64c275a">4. Expectation</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf7ba87a" class="outline-2">
+<h2 id="orgf7ba87a"><span class="section-number-2">1.</span> Random Variables</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A <b>random variable</b> is a function \(X: \Omega \rightarrow \mathbb{R}^n\) satisfying certain technical conditions. For example, say we toss a fair coin twice. Our probability space is then \(\Omega = \{(H, H), (H, T), (T, H), (T, T)\}\). We can define a random variable \(X(\omega)\) where \(\omega\) is an event in \(\Omega\) and \(X\) is the number of heads in \(\omega\):
+</p>
+
+
+<div id="orgaa3c609" class="figure">
+<p><img src="../static/COMPSCI_70/random_variables1.png" alt="random_variables1.png" />
+</p>
+</div>
+
+<p>
+Let \(\mathcal{A} = \{a \in \mathbb{R} | \exists \omega \in \Omega ( X(\omega) = a)\}\) denote the <b>range</b> of \(X\). Then, for a given \(a \in \mathcal{A}\), the event \(X=a\) is defined as the <b>pre-image</b>:
+</p>
+
+\begin{align}
+X^{-1}(a) = \{\omega \in \Omega | X(\omega) = a\} \subseteq \Omega
+\end{align}
+</div>
+</div>
+<div id="outline-container-orga7ca627" class="outline-2">
+<h2 id="orga7ca627"><span class="section-number-2">2.</span> Probability Distributions</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Similar to how for a <a href="probability.html#org4bc9929">probabilty space</a> we define a sample space and a probability for each sample point in that space, a random variable is characterized by:
+</p>
+
+<ol class="org-ol">
+<li>The set of values \(\mathcal{A}\) it can take.</li>
+<li>The probabilities \(\mathbb{P}(X = a, a \in \mathcal{A})\) with which it takes on those values.</li>
+</ol>
+
+<p>
+The collection of all these probabilities \(\mathbb{P}(X=a)\) for all possible values of \(a \in \mathcal{A}\) is known as the <b>probability distribution</b> of the random variable \(X\).
+</p>
+
+<p>
+Notice that the collection of events \(X=a\) for \(a \in \mathcal{A}\) satisfy two important properties:
+</p>
+
+<ul class="org-ul">
+<li>Any two events \(X=a_1\) and \(X=a_2\) with \(a_1\neq a_2\) are disjoint.</li>
+<li>The union of all these events \(X=a\) is equal to the entire sample space \(\Omega\).</li>
+</ul>
+
+<p>
+Therefore, the collection of these events form a <a href="probability.html#orgda38543">partition</a> of the sample space \(\Omega\):
+</p>
+
+
+<div id="org43670f0" class="figure">
+<p><img src="../static/COMPSCI_70/random_variables2.png" alt="random_variables2.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-orgd1de7a6" class="outline-3">
+<h3 id="orgd1de7a6"><span class="section-number-3">2.1.</span> Bernoulli Distribution</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The <b>Bernoulli distribution</b> is a probability distribution of a random variable which takes on a value in \(\{0, 1\}\):
+</p>
+
+\begin{align}
+\mathbb{P}[X=i] = \begin{cases}
+p & i=1 \\
+1-p & i=0
+\end{cases}
+\end{align}
+
+<p>
+where \(0 \leq p \leq 1\). We write \(X \sim \text{Bernoulli}(p)\) or \(X \sim \text{Ber}(p)\) to say that \(X\) is distributed as a Bernoulli random variable with parameter \(p\).
+</p>
+</div>
+</div>
+<div id="outline-container-org63ab9ac" class="outline-3">
+<h3 id="org63ab9ac"><span class="section-number-3">2.2.</span> Binomial Distribution</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Say we have \(B\) blue balls, \(R\) red balls, and we sample \(n\) times with replacement. Call drawing a blue ball with probability \(p\) a <i>success</i>. Then, let our random variable \(X\) be the number of successes in our \(n\) samples.
+</p>
+
+<p>
+The probability of getting exactly \(k\) successes follows a <b>binomial distribution</b> as follows:
+</p>
+
+\begin{align}
+\mathbb{P}[X=k] = \binom{n}{k}p^k(1-p)^{n-k}
+\end{align}
+
+<p>
+for \(k = 0, 1, \dots , n\). A random variable with this distribution is called a binomial random variable, and we write \(X \sim \text{Bin}(n,p)\) where \(n\) denotes the number of trials and \(p\) is the probability of success.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdeec613" class="outline-3">
+<h3 id="orgdeec613"><span class="section-number-3">2.3.</span> Hypergeometric Distribution</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Say we have \(B\) blue balls and \(R = N-B\) red balls. We sample \(n\) times <i>without</i> replacement. Let the event \(\omega\) be when we have exactly \(k\) blue balls and \(n-k\) red balls. Then, the probability of this particular sequence of samples is:
+</p>
+
+\begin{align}
+\mathbb{P}[\omega] &= \frac{B}{N}\left(\frac{B-1}{N-1}\right)\cdots\left(\frac{B-k+1}{N-k+1}\right)\left(\frac{R}{N-k}\right)\cdots\left(\frac{R-(n-k)+1}{N-n+1}\right) = \frac{\binom{B}{k}\binom{W}{n-k}}{\binom{N}{n}}\frac{1}{\binom{n}{k}} \notag
+\end{align}
+
+<p>
+Furthermore, any other sequence \(\omega'\) of \(k\) blue balls and \(n-k\) red balls have the same exact probability as \(\omega\). Since there are a total of \(\binom{n}{k}\) distinct sequences, we obtain:
+</p>
+
+\begin{align}
+\mathbb{P}[X=k] = \frac{\binom{B}{k}\binom{N-B}{n-k}}{\binom{N}{n}}
+\end{align}
+
+<p>
+for \(k=0,1,\dots ,n\). This probability distribution is called the <b>hypergeometric distribution</b>, and we write \(X \sim \text{Hypergeometric}(N, B, n)\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbef9273" class="outline-2">
+<h2 id="orgbef9273"><span class="section-number-2">3.</span> Multiple Random Variables</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org105e0a6" class="outline-3">
+<h3 id="org105e0a6"><span class="section-number-3">3.1.</span> Joint and Marginal Distributions</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Oftentimes we are interested in multiple random variables on the same sample space. When this happens, we can define the <b>joint distribution</b> of two discrete random variables \(X\) and \(Y\) as the collection of all the probabilities \(\mathbb{P}(X=a, Y=b)\) for \(a\in\mathcal{A}\) and \(b\in\mathcal{B}\), where \(\mathcal{A}\) is the set of all possible values taken by \(X\) and \(\mathcal{B}\) is the set of all possible values taken by \(Y\).
+</p>
+
+<p>
+Given a joint distribution of \(X\) and \(Y\), the distribution \(\mathbb{P}[X=a]\) of \(X\) is called the <b>marginal distribution</b> of \(X\), and can be found by summing over the values of \(Y\), that is:
+</p>
+
+\begin{align}
+\mathbb{P}[X=a] = \sum_{b \in \mathcal{B}} \mathbb{P}[X=a,Y=b] \notag
+\end{align}
+</div>
+</div>
+<div id="outline-container-org0eb1152" class="outline-3">
+<h3 id="org0eb1152"><span class="section-number-3">3.2.</span> Independence</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Random variables \(X\) and \(Y\) on the same probability space are said to be <b>independent</b> if the events \(X=a\) and \(X=b\) are independent for all values of \(a,b\). Equivalently, the following holds:
+</p>
+
+\begin{align}
+\mathbb{P}[X=a, Y=b] = \mathbb{P}[X=a]\mathbb{P}[Y=b] \quad \forall a,b
+\end{align}
+
+<p>
+For example, the <i>indicator random variables</i> \(I_1, ... ,I_n\) for tossing a coin (where each indicator random variable is the state of each coin toss), then \(I_1, ... , I_n\) are mutually independent but also have the same probability distribution. These types of random variables are known as a set of <i>independent and identically distributed</i> (i.i.d.) random variables.
+</p>
+</div>
+</div>
+<div id="outline-container-orgcdb32df" class="outline-3">
+<h3 id="orgcdb32df"><span class="section-number-3">3.3.</span> Exchangeability</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+A collection of random variables \(X_1, \dots, X_n\) with common range \(\mathcal{A}\) is said to be <b>exchangeable</b> if \(\left(X_{\pi(1)}, \dots , X_{\pi(n)}\right)\) has the same joint distribution as \((X_1, \dots, X_n)\) for every permutation \(\pi\) of \(\{1, \dots, n\}\).
+</p>
+
+<p>
+For example, in the case of drawing red or blue balls out of an urn with replacement, we can break down the hypergeometric probability distribution into the joint probability distribution of each indicator random variable (whether we draw red or blue for one sample). Notice that it doesn&rsquo;t matter what order we draw the \(k\) red balls in: the joint probability is invariant under permutations of the indices. Thus, these indicator random variables are exchangeable random variables.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org64c275a" class="outline-2">
+<h2 id="org64c275a"><span class="section-number-2">4.</span> Expectation</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The <b>expectation</b> of a random variable \(X\) with range \(\mathcal{A}\) is defined as:<abbr class="tooltip" title="Expectation is well defined provided that the sum of the right hand side is absolutely convergent.">°</abbr>&emsp13;
+</p>
+
+\begin{align}
+\mathbb{E}[X] = \sum_{a \in \mathcal{A}} a\mathbb{P}[X=a]
+\end{align}
+
+<p>
+We can view the expectation as a type of weighted average over the random variable. Addition, expectation has an important property of <i>linearity</i>:
+</p>
+
+\begin{align}
+\mathbb{E}[\alpha X+Y] = \alpha\mathbb{E}[X] + \mathbb{E}[Y]
+\end{align}
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-04-07 17:02
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
