@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-07 Tue 17:02 -->
+<!-- 2026-04-10 Fri 17:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Random Variables</title>
@@ -141,7 +141,18 @@
 <li><a href="#orgcdb32df">3.3. Exchangeability</a></li>
 </ul>
 </li>
-<li><a href="#org64c275a">4. Expectation</a></li>
+<li><a href="#org64c275a">4. Expectation</a>
+<ul>
+<li><a href="#org7f7698f">4.1. Funcions of Random Variables</a></li>
+<li><a href="#org41fc1a2">4.2. Conditional Expectation</a></li>
+</ul>
+</li>
+<li><a href="#org6fcbe97">5. Variance</a>
+<ul>
+<li><a href="#org7dcad37">5.1. Sum of Independent Random Variables</a></li>
+</ul>
+</li>
+<li><a href="#org4d451c1">6. Covariance and Correlation</a></li>
 </ul>
 </div>
 </div>
@@ -153,7 +164,7 @@ A <b>random variable</b> is a function \(X: \Omega \rightarrow \mathbb{R}^n\) sa
 </p>
 
 
-<div id="orgaa3c609" class="figure">
+<div id="orgb8fda9c" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables1.png" alt="random_variables1.png" />
 </p>
 </div>
@@ -197,7 +208,7 @@ Therefore, the collection of these events form a <a href="probability.html#orgda
 </p>
 
 
-<div id="org43670f0" class="figure">
+<div id="org14d6f00" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables2.png" alt="random_variables2.png" />
 </p>
 </div>
@@ -334,6 +345,156 @@ We can view the expectation as a type of weighted average over the random variab
 \mathbb{E}[\alpha X+Y] = \alpha\mathbb{E}[X] + \mathbb{E}[Y]
 \end{align}
 </div>
+<div id="outline-container-org7f7698f" class="outline-3">
+<h3 id="org7f7698f"><span class="section-number-3">4.1.</span> Funcions of Random Variables</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Let \(X\) be a random variable on a sample space \(\Omega\) with probability distribution \(\mathbb{P}_X\). Then, for a function \(f(\cdot)\) on the range of \(X\), \(Y=f(X)\) is also a random variable on \(\Omega\):
+</p>
+
+
+<div id="org8dc54b0" class="figure">
+<p><img src="../static/COMPSCI_70/random_variables3.png" alt="random_variables3.png" />
+</p>
+</div>
+
+<p>
+The event \(Y=y\) is equivalent to the event \(X \in f^{-1}(y)\), where \(f^{-1}\) denotes the preimage \(\{x | f(x)=y\}\) — in other words, the set of events \(X=x\) where \(f(x)=y\).
+</p>
+
+<p>
+With this view, the distribution \(\mathbb{P}_Y\) is then:
+</p>
+
+\begin{align}
+\mathbb{P}_Y[Y=y] = \sum_{x:f(x)=y} \mathbb{P}_X[X=x]
+\end{align}
+
+<p>
+Then, by the definition of expectation we have:
+</p>
+
+\begin{align}
+\mathbb{E}[Y] &= \sum_y y\mathbb{P}_Y[Y=y] \notag \\
+&= \sum_{y}\sum_{x:f(x)=y} y \mathbb{P}_X[X=x] \notag \\
+&= \sum_{x}f(x)\mathbb{P}_X [X=x] \notag
+\end{align}
+
+<p>
+Thus, we have the following identity:
+</p>
+
+\begin{align}
+\boxed{\mathbb{E}[f(x)] = \sum_X f(x) \mathbb{P}_X[X=x]}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org41fc1a2" class="outline-3">
+<h3 id="org41fc1a2"><span class="section-number-3">4.2.</span> Conditional Expectation</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Given \(X\) and \(Y\) to be two ranom variables on the same probability space, we can define the conditional probability of \(X=a\) given \(Y=b\) as:
+</p>
+
+\begin{align}
+\mathbb{P}[X=a|Y=b] = \frac{\mathbb{P}[X=a,Y=b]}{\mathbb{P}[Y=b]}
+\end{align}
+
+<p>
+Then, for any \(b\) with \(\mathbb{P}(Y=b) > 0\), we can define the <b>conditional expectation</b> of \(X\) given \(Y=b\):
+</p>
+
+\begin{align}
+\boxed{\mathbb{E}[X | Y=b] = \sum_{a\in \mathcal{A}} a \mathbb{P}[X=a|Y=b]}
+\end{align}
+
+<p>
+The <b>Law of Total Expectation</b> says that if \(\mathbb{E}[|X|] < \infty\), then
+</p>
+
+\begin{align}
+\boxed{\mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X|Y]]}
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org6fcbe97" class="outline-2">
+<h2 id="org6fcbe97"><span class="section-number-2">5.</span> Variance</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Say we perform a large amount of independent draws from a binomial distribution of a random variable \(X\). We would find that the sample average of these draws is very close to the expectation \(\mathbb{E}[X]\). By taking the squared difference of the random variable with its expectation, we can measure how each sample deviates from the expected value. Taking the expectation of that, we get <b>variance</b>:
+</p>
+
+\begin{align}
+\text{Var}(X) = \mathbb{E}[(X-\mu)^2]
+\end{align}
+
+<p>
+The square root of the variance, \(\sigma(X) = \sqrt{\text{Var}(X)}\) is called the <b>standard deviation</b> of \(X\).
+</p>
+
+<p>
+Additionally, if we expand out the definition of variance, we get an equivalent expression \(\text{Var}(X) = \mathbb{E}[X^2 - 2\mu X + \mu^2] = \mathbb{E}[X^2] - 2\mu\mathbb{E}[X] + \mu^2 = \mathbb{E}[X^2] - \mu^2\).
+</p>
+
+<p>
+Next, given constants \(a, b\) and a random variable \(X\), if we do a linear transformation \(Y = aX+b\), the variance of \(Y\) is:
+</p>
+
+\begin{align}
+\text{Var}(aX+b) = a^2\text{Var}(X)
+\end{align}
+</div>
+<div id="outline-container-org7dcad37" class="outline-3">
+<h3 id="org7dcad37"><span class="section-number-3">5.1.</span> Sum of Independent Random Variables</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+If a random variable \(X\) is the sum of <i>independent</i> random variables \(X=X_1 + \cdots + X_n\), then its variance is the sum of the variances of the individual random variables.
+</p>
+
+<p>
+Formally, for independent random variables \(X\) and \(Y\), we have:
+</p>
+
+\begin{align}
+\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]
+\end{align}
+
+<p>
+Note that the converse is not true. Additionally, for independent random variables \(X\) and \(Y\), we have:
+</p>
+
+\begin{align}
+\text{Var}(X+Y) = \text{Var}(X)+\text{Var}(Y)
+\end{align}
+
+<p>
+<b>Proof:</b> Using linearity of expectation, we get:
+</p>
+
+\begin{align}
+\mathbb{E}[(X+Y)^2] - \left[\mathbb{E}[X+Y]\right]^2 &= \mathbb{E}[X^2 + 2XY+Y^2]-\left[\mathbb{E}[X]+\mathbb{E}[Y]\right]^2 \notag \\
+&= \mathbb{E}[X^2]-\left[\mathbb{E}[X]\right]^2 + \mathbb{E}[Y^2]-\left[\mathbb{E}[Y]\right]^2 + 2\left[\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y]\right] \notag \\
+&= \text{Var}(X) + \text{Var}(Y) \notag
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org4d451c1" class="outline-2">
+<h2 id="org4d451c1"><span class="section-number-2">6.</span> Covariance and Correlation</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+The <b>covariance</b> of random variables \(X\) and \(Y\), denoted \(\text{cov}(X,Y)\), is defined as
+</p>
+
+\begin{align}
+\text{cov}(X,Y) = \mathbb{E}[(X-\mu_x)(Y-\mu_y)] = \mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]
+\end{align}
+
+<p>
+where \(\mu_x=\mathbb{E}[X]\) and \(\mu_y=\mathbb{E}[Y]\).
+</p>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -342,7 +503,7 @@ We can view the expectation as a type of weighted average over the random variab
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-07 17:02
+               Last modified: 2026-04-09 13:59
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

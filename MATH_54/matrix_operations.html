@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-01-11 Sun 13:42 -->
+<!-- 2026-04-10 Fri 17:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matrix Operations</title>
@@ -17,140 +17,6 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
-          <style>
-          /* From: https://endlessparentheses.com/public/css/endless.css */
-          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
-          kbd
-          {
-            -moz-border-radius: 6px;
-            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            -webkit-border-radius: 6px;
-            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            background-color: #f7f7f7;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
-            color: #333;
-            display: inline-block;
-            font-family: 'Droid Sans Mono', monospace;
-            font-size: 80%;
-            font-weight: normal;
-            line-height: inherit;
-            margin: 0 .1em;
-            padding: .08em .4em;
-            text-shadow: 0 1px 0 #fff;
-            word-spacing: -4px;
-        
-            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
-          }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
-        
-          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
-        
-          <script type="text/javascript">
-              if (typeof jQuery == 'undefined') {
-                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
-              }
-          </script>
-        
-           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-        
-            <script>
-                   $(document).ready(function() {
-                       $('.tooltip').tooltipster({
-                           theme: 'tooltipster-punk',
-                           contentAsHTML: true,
-                           animation: 'grow',
-                           delay: [100,500],
-                           // trigger: 'click'
-                           trigger: 'custom',
-                           triggerOpen: {
-                               mouseenter: true
-                           },
-                           triggerClose: {
-                               originClick: true,
-                               scroll: true
-                           }
-           });
-                   });
-               </script>
-        
-          <style>
-             abbr {color: red;}
-        
-             .tooltip { border-bottom: 1px dotted #000;
-                        color:red;
-                        text-decoration: none;}
-          </style>
-          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -265,6 +131,14 @@
 <ul>
 <li><a href="#org5c552f2">2.1. Multiplication Properties</a></li>
 <li><a href="#org130bc50">2.2. Identity</a></li>
+<li><a href="#org41b1da3">2.3. Perspectives of Matrix Multiplication</a>
+<ul>
+<li><a href="#orgeb72189">2.3.1. Dot Product</a></li>
+<li><a href="#org9229920">2.3.2. Linear Combination of Columns</a></li>
+<li><a href="#org369d251">2.3.3. Linear Combination of Rows</a></li>
+<li><a href="#orgf116866">2.3.4. Sum of Outer Products</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#org2e1dcf9">3. Matrix Transposition</a>
@@ -360,6 +234,123 @@ A \cdot I_n = I_n \cdot A = A
 \end{align}
 </div>
 </div>
+<div id="outline-container-org41b1da3" class="outline-3">
+<h3 id="org41b1da3"><span class="section-number-3">2.3.</span> Perspectives of Matrix Multiplication</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+Say we have an \(m \times n\) matrix \(A\) and a \(n \times p\) matrix \(B\), with product \(C=AB\) of size \(m \times p\). Then we have four equivalent views on this matrix multiplication:
+</p>
+</div>
+<div id="outline-container-orgeb72189" class="outline-4">
+<h4 id="orgeb72189"><span class="section-number-4">2.3.1.</span> Dot Product</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+Each entry \({\color{purple}c_{ij}}\) is the dot product of \({\color{blue}\text{row } i \text{ of } A}\) with \({\color{red}\text{column } j \text{ of } B}\):
+</p>
+\begin{align}
+{\color{purple}c_{ij}}
+= {\color{blue}\begin{pmatrix} a_{i1} & a_{i2} & \cdots & a_{in} \end{pmatrix}}
+{\color{red}\begin{pmatrix} b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj} \end{pmatrix}}
+= \sum_{k=1}^{n} {\color{blue}a_{ik}}\,{\color{red}b_{kj}}
+\notag
+\end{align}
+</div>
+</div>
+<div id="outline-container-org9229920" class="outline-4">
+<h4 id="org9229920"><span class="section-number-4">2.3.2.</span> Linear Combination of Columns</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+Each \({\color{purple}\text{column of } C}\) is a linear combination of the \({\color{blue}\text{columns of } A}\), with coefficients given by the corresponding \({\color{red}\text{column of } B}\). Writing \({\color{blue}\mathbf{a}_k}\) for column \(k\) of \({\color{blue}A}\) and \({\color{purple}\mathbf{c}_j}\) for column \(j\) of \({\color{purple}C}\):
+</p>
+\begin{align}
+{\color{purple}\mathbf{c}_j}
+= {\color{red}b_{1j}}\,{\color{blue}\mathbf{a}_1}
++ {\color{red}b_{2j}}\,{\color{blue}\mathbf{a}_2}
++ \cdots
++ {\color{red}b_{nj}}\,{\color{blue}\mathbf{a}_n}
+= \sum_{k=1}^{n} {\color{red}b_{kj}}\,{\color{blue}\mathbf{a}_k}
+\notag
+\end{align}
+<p>
+For example, with \(n=3\) and \(p=2\):
+</p>
+\begin{align}
+{\color{blue}\begin{pmatrix} \mid & \mid & \mid \\ \mathbf{a}_1 & \mathbf{a}_2 & \mathbf{a}_3 \\ \mid & \mid & \mid \end{pmatrix}}
+{\color{red}\begin{pmatrix} b_{11} & b_{12} \\ b_{21} & b_{22} \\ b_{31} & b_{32} \end{pmatrix}}
+=
+\begin{pmatrix}
+\mid & \mid \\
+{\color{red}b_{11}}{\color{blue}\mathbf{a}_1} + {\color{red}b_{21}}{\color{blue}\mathbf{a}_2} + {\color{red}b_{31}}{\color{blue}\mathbf{a}_3}
+& {\color{red}b_{12}}{\color{blue}\mathbf{a}_1} + {\color{red}b_{22}}{\color{blue}\mathbf{a}_2} + {\color{red}b_{32}}{\color{blue}\mathbf{a}_3} \\
+\mid & \mid
+\end{pmatrix}
+\notag
+\end{align}
+</div>
+</div>
+<div id="outline-container-org369d251" class="outline-4">
+<h4 id="org369d251"><span class="section-number-4">2.3.3.</span> Linear Combination of Rows</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+Each \({\color{purple}\text{row of } C}\) is a linear combination of the \({\color{red}\text{rows of } B}\), with coefficients given by the corresponding \({\color{blue}\text{row of } A}\). Writing \({\color{red}\mathbf{b}_{k*}}\) for row \(k\) of \({\color{red}B}\) and \({\color{purple}\mathbf{c}_{i*}}\) for row \(i\) of \({\color{purple}C}\):
+</p>
+\begin{align}
+{\color{purple}\mathbf{c}_{i*}}
+= {\color{blue}a_{i1}}\,{\color{red}\mathbf{b}_{1*}}
++ {\color{blue}a_{i2}}\,{\color{red}\mathbf{b}_{2*}}
++ \cdots
++ {\color{blue}a_{in}}\,{\color{red}\mathbf{b}_{n*}}
+= \sum_{k=1}^{n} {\color{blue}a_{ik}}\,{\color{red}\mathbf{b}_{k*}}
+\notag
+\end{align}
+<p>
+For example, with \(m=2\) and \(n=3\):
+</p>
+\begin{align}
+{\color{blue}\begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \end{pmatrix}}
+{\color{red}\begin{pmatrix} \text{---}\; \mathbf{b}_{1*} \;\text{---} \\ \text{---}\; \mathbf{b}_{2*} \;\text{---} \\ \text{---}\; \mathbf{b}_{3*} \;\text{---} \end{pmatrix}}
+=
+\begin{pmatrix}
+\text{---}\; {\color{blue}a_{11}}{\color{red}\mathbf{b}_{1*}} + {\color{blue}a_{12}}{\color{red}\mathbf{b}_{2*}} + {\color{blue}a_{13}}{\color{red}\mathbf{b}_{3*}} \;\text{---} \\
+\text{---}\; {\color{blue}a_{21}}{\color{red}\mathbf{b}_{1*}} + {\color{blue}a_{22}}{\color{red}\mathbf{b}_{2*}} + {\color{blue}a_{23}}{\color{red}\mathbf{b}_{3*}} \;\text{---}
+\end{pmatrix}
+\notag
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgf116866" class="outline-4">
+<h4 id="orgf116866"><span class="section-number-4">2.3.4.</span> Sum of Outer Products</h4>
+<div class="outline-text-4" id="text-2-3-4">
+<p>
+\({\color{purple}C}\) is the sum of \(n\) rank-1 matrices, where the k-th term is \({\color{blue}\text{column } k \text{ of } A}\) times \({\color{red}\text{row } k \text{ of } B}\):
+</p>
+\begin{align}
+{\color{purple}C}
+= \sum_{k=1}^{n} {\color{blue}\mathbf{a}_k} \, {\color{red}\mathbf{b}_{k*}}
+= {\color{blue}\mathbf{a}_1} {\color{red}\mathbf{b}_{1*}}
++ {\color{blue}\mathbf{a}_2} {\color{red}\mathbf{b}_{2*}}
++ \cdots
++ {\color{blue}\mathbf{a}_n} {\color{red}\mathbf{b}_{n*}}
+\notag
+\end{align}
+<p>
+Each term is an \(m \times p\) rank-1 matrix:
+</p>
+\begin{align}
+{\color{blue}\begin{pmatrix} a_{1k} \\ a_{2k} \\ \vdots \\ a_{mk} \end{pmatrix}}
+{\color{red}\begin{pmatrix} b_{k1} & b_{k2} & \cdots & b_{kp} \end{pmatrix}}
+=
+\begin{pmatrix}
+{\color{blue}a_{1k}}{\color{red}b_{k1}} & {\color{blue}a_{1k}}{\color{red}b_{k2}} & \cdots & {\color{blue}a_{1k}}{\color{red}b_{kp}} \\
+{\color{blue}a_{2k}}{\color{red}b_{k1}} & {\color{blue}a_{2k}}{\color{red}b_{k2}} & \cdots & {\color{blue}a_{2k}}{\color{red}b_{kp}} \\
+\vdots & \vdots & \ddots & \vdots \\
+{\color{blue}a_{mk}}{\color{red}b_{k1}} & {\color{blue}a_{mk}}{\color{red}b_{k2}} & \cdots & {\color{blue}a_{mk}}{\color{red}b_{kp}}
+\end{pmatrix}
+\notag
+\end{align}
+</div>
+</div>
+</div>
 </div>
 <div id="outline-container-org2e1dcf9" class="outline-2">
 <h2 id="org2e1dcf9"><span class="section-number-2">3.</span> Matrix Transposition</h2>
@@ -393,7 +384,7 @@ Two useful properties of transpose:
                
              </div>
              <div class="last-modified">
-               Last modified: 2025-09-16 09:58
+               Last modified: 2026-04-10 17:44
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

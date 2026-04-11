@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-01 Wed 17:49 -->
+<!-- 2026-04-09 Thu 13:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Graphs</title>
@@ -142,7 +142,7 @@
 <li><a href="#org0f54b39">2.4. Pathfinding with DFS versus BFS</a></li>
 </ul>
 </li>
-<li><a href="#orgdffe94d">3. Shortest Paths</a>
+<li><a href="#org95e925f">3. Shortest Paths</a>
 <ul>
 <li><a href="#orga512efa">3.1. Shortest Paths Problem</a></li>
 <li><a href="#orgd820085">3.2. Shortest Paths Tree</a></li>
@@ -159,12 +159,12 @@
 <li><a href="#orgeb87bdc">5.2. Prim&rsquo;s Algorithm</a>
 <ul>
 <li><a href="#orgfb5f122">5.2.1. Optimized Prim&rsquo;s Algorithm</a></li>
-<li><a href="#org0235f1c">5.2.2. Runtime</a></li>
+<li><a href="#org68a17b0">5.2.2. Runtime</a></li>
 </ul>
 </li>
 <li><a href="#orge5c11d1">5.3. Kruskal&rsquo;s Algorithm</a>
 <ul>
-<li><a href="#org68a17b0">5.3.1. Runtime</a></li>
+<li><a href="#org0a27884">5.3.1. Runtime</a></li>
 </ul>
 </li>
 </ul>
@@ -172,7 +172,7 @@
 <li><a href="#org98bdbd0">6. Directed Acyclic Graphs</a>
 <ul>
 <li><a href="#org42b6609">6.1. Topological Sort</a></li>
-<li><a href="#org95e925f">6.2. Shortest Paths</a></li>
+<li><a href="#orgbeed333">6.2. Shortest Paths</a></li>
 </ul>
 </li>
 </ul>
@@ -604,8 +604,8 @@ DFS is worse for spindly graphs, as the call stack gets very deep. On the other 
 </div>
 </div>
 </div>
-<div id="outline-container-orgdffe94d" class="outline-2">
-<h2 id="orgdffe94d"><span class="section-number-2">3.</span> Shortest Paths</h2>
+<div id="outline-container-org95e925f" class="outline-2">
+<h2 id="org95e925f"><span class="section-number-2">3.</span> Shortest Paths</h2>
 <div class="outline-text-2" id="text-3">
 </div>
 <div id="outline-container-orga512efa" class="outline-3">
@@ -763,7 +763,7 @@ In the real world, however, different edges have different weights. For example,
 </p>
 
 
-<div id="orge03cabb" class="figure">
+<div id="orgc97c8d6" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs1.png" alt="graphs1.png" />
 </p>
 </div>
@@ -773,7 +773,7 @@ The problem is that since our BFS implementation doesn&rsquo;t consider these we
 </p>
 
 
-<div id="org94c51a7" class="figure">
+<div id="org1ecfc4a" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs2.png" alt="graphs2.png" />
 </p>
 </div>
@@ -783,7 +783,7 @@ Say we want to consider the union of the shortest path from some source vertex t
 </p>
 
 
-<div id="orge78e37e" class="figure">
+<div id="orgd132aa2" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs3.png" alt="graphs3.png" />
 </p>
 </div>
@@ -806,7 +806,7 @@ Say we have an incorrect SPT. Then, relaxing an edge from vertex <code>v</code> 
 </p>
 
 
-<div id="org230e22f" class="figure">
+<div id="orgc81ba09" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs4.png" alt="graphs4.png" />
 </p>
 </div>
@@ -990,13 +990,13 @@ Given an undirected graph \(G\), a <b>spanning tree</b> \(T\) is a subgraph of \
 </p>
 
 
-<div id="org971d170" class="figure">
+<div id="orga21c142" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs5.png" alt="graphs5.png" />
 </p>
 </div>
 
 <p>
-A <b>minimum spanning tree</b> (MST) is a spanning tree of minimum total weight (if edges in the graph are weighted).
+A <b>minimum spanning tree</b> (MST) is a spanning tree of minimum total weight (if edges in the graph are weighted). The minimum spanning tree is <i>unique when all weights are distinct</i>.
 </p>
 </div>
 <div id="outline-container-orgeaaf99d" class="outline-3">
@@ -1007,7 +1007,7 @@ A <b>cut</b> is an assignment of a graph&rsquo;s nodes to two non-empty sets. A 
 </p>
 
 
-<div id="orgb3a38a4" class="figure">
+<div id="orgeee9dcf" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs6.png" alt="graphs6.png" />
 </p>
 </div>
@@ -1296,8 +1296,8 @@ Prim&rsquo;s and Dijkstra&rsquo;s algorithms are exactly the same, except Prim&r
 </p>
 </div>
 </div>
-<div id="outline-container-org0235f1c" class="outline-4">
-<h4 id="org0235f1c"><span class="section-number-4">5.2.2.</span> Runtime</h4>
+<div id="outline-container-org68a17b0" class="outline-4">
+<h4 id="org68a17b0"><span class="section-number-4">5.2.2.</span> Runtime</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <p>
 The runtime is how fast we can do each of the priority queue operations. We do:
@@ -1464,8 +1464,8 @@ window.KruskalDemo = function(cfg) {
 To check if adding an edge creates a cycle, we can use a <a href="disjoint_sets.html#org73c8b98">weighted quick union</a> to store what connections we have.
 </p>
 </div>
-<div id="outline-container-org68a17b0" class="outline-4">
-<h4 id="org68a17b0"><span class="section-number-4">5.3.1.</span> Runtime</h4>
+<div id="outline-container-org0a27884" class="outline-4">
+<h4 id="org0a27884"><span class="section-number-4">5.3.1.</span> Runtime</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 We do the following operations for Kruskal&rsquo;s:
@@ -1500,7 +1500,7 @@ A <b>topological sort</b> of a directed graph returns an ordering that ensures t
 </p>
 
 
-<div id="org1db8100" class="figure">
+<div id="org9d048dd" class="figure">
 <p><img src="../static/COMPSCI_61B/graphs7.png" alt="graphs7.png" />
 </p>
 </div>
@@ -1644,8 +1644,8 @@ Additionally, a topological sort exists only if the graph is a directed acyclic 
 </p>
 </div>
 </div>
-<div id="outline-container-org95e925f" class="outline-3">
-<h3 id="org95e925f"><span class="section-number-3">6.2.</span> Shortest Paths</h3>
+<div id="outline-container-orgbeed333" class="outline-3">
+<h3 id="orgbeed333"><span class="section-number-3">6.2.</span> Shortest Paths</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 The problem with Dijkstra&rsquo;s is that it fails when trying to find a shortest path on a graph with negative weights. However, for the specific case of working with DAGs, we can solve this by visiting the vertices in topological order and relaxing all of its edges when we visit it:
@@ -1822,7 +1822,7 @@ The runtime for this algorithm takes \(O(V+E)\) time.
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-01 17:49
+               Last modified: 2026-04-08 16:51
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
