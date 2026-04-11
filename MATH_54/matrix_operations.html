@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-10 Fri 17:44 -->
+<!-- 2026-04-10 Fri 17:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matrix Operations</title>
@@ -249,8 +249,8 @@ Each entry \({\color{purple}c_{ij}}\) is the dot product of \({\color{blue}\text
 </p>
 \begin{align}
 {\color{purple}c_{ij}}
-= {\color{blue}\begin{pmatrix} a_{i1} & a_{i2} & \cdots & a_{in} \end{pmatrix}}
-{\color{red}\begin{pmatrix} b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj} \end{pmatrix}}
+= {\color{blue}\begin{bmatrix} a_{i1} & a_{i2} & \cdots & a_{in} \end{bmatrix}}
+{\color{red}\begin{bmatrix} b_{1j} \\ b_{2j} \\ \vdots \\ b_{nj} \end{bmatrix}}
 = \sum_{k=1}^{n} {\color{blue}a_{ik}}\,{\color{red}b_{kj}}
 \notag
 \end{align}
@@ -275,15 +275,15 @@ Each \({\color{purple}\text{column of } C}\) is a linear combination of the \({\
 For example, with \(n=3\) and \(p=2\):
 </p>
 \begin{align}
-{\color{blue}\begin{pmatrix} \mid & \mid & \mid \\ \mathbf{a}_1 & \mathbf{a}_2 & \mathbf{a}_3 \\ \mid & \mid & \mid \end{pmatrix}}
-{\color{red}\begin{pmatrix} b_{11} & b_{12} \\ b_{21} & b_{22} \\ b_{31} & b_{32} \end{pmatrix}}
+{\color{blue}\begin{bmatrix} \mid & \mid & \mid \\ \mathbf{a}_1 & \mathbf{a}_2 & \mathbf{a}_3 \\ \mid & \mid & \mid \end{bmatrix}}
+{\color{red}\begin{bmatrix} b_{11} & b_{12} \\ b_{21} & b_{22} \\ b_{31} & b_{32} \end{bmatrix}}
 =
-\begin{pmatrix}
+\begin{bmatrix}
 \mid & \mid \\
 {\color{red}b_{11}}{\color{blue}\mathbf{a}_1} + {\color{red}b_{21}}{\color{blue}\mathbf{a}_2} + {\color{red}b_{31}}{\color{blue}\mathbf{a}_3}
 & {\color{red}b_{12}}{\color{blue}\mathbf{a}_1} + {\color{red}b_{22}}{\color{blue}\mathbf{a}_2} + {\color{red}b_{32}}{\color{blue}\mathbf{a}_3} \\
 \mid & \mid
-\end{pmatrix}
+\end{bmatrix}
 \notag
 \end{align}
 </div>
@@ -307,13 +307,13 @@ Each \({\color{purple}\text{row of } C}\) is a linear combination of the \({\col
 For example, with \(m=2\) and \(n=3\):
 </p>
 \begin{align}
-{\color{blue}\begin{pmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \end{pmatrix}}
-{\color{red}\begin{pmatrix} \text{---}\; \mathbf{b}_{1*} \;\text{---} \\ \text{---}\; \mathbf{b}_{2*} \;\text{---} \\ \text{---}\; \mathbf{b}_{3*} \;\text{---} \end{pmatrix}}
+{\color{blue}\begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \end{bmatrix}}
+{\color{red}\begin{bmatrix} \text{---}\; \mathbf{b}_{1*} \;\text{---} \\ \text{---}\; \mathbf{b}_{2*} \;\text{---} \\ \text{---}\; \mathbf{b}_{3*} \;\text{---} \end{bmatrix}}
 =
-\begin{pmatrix}
+\begin{bmatrix}
 \text{---}\; {\color{blue}a_{11}}{\color{red}\mathbf{b}_{1*}} + {\color{blue}a_{12}}{\color{red}\mathbf{b}_{2*}} + {\color{blue}a_{13}}{\color{red}\mathbf{b}_{3*}} \;\text{---} \\
 \text{---}\; {\color{blue}a_{21}}{\color{red}\mathbf{b}_{1*}} + {\color{blue}a_{22}}{\color{red}\mathbf{b}_{2*}} + {\color{blue}a_{23}}{\color{red}\mathbf{b}_{3*}} \;\text{---}
-\end{pmatrix}
+\end{bmatrix}
 \notag
 \end{align}
 </div>
@@ -337,15 +337,15 @@ For example, with \(m=2\) and \(n=3\):
 Each term is an \(m \times p\) rank-1 matrix:
 </p>
 \begin{align}
-{\color{blue}\begin{pmatrix} a_{1k} \\ a_{2k} \\ \vdots \\ a_{mk} \end{pmatrix}}
-{\color{red}\begin{pmatrix} b_{k1} & b_{k2} & \cdots & b_{kp} \end{pmatrix}}
+{\color{blue}\begin{bmatrix} a_{1k} \\ a_{2k} \\ \vdots \\ a_{mk} \end{bmatrix}}
+{\color{red}\begin{bmatrix} b_{k1} & b_{k2} & \cdots & b_{kp} \end{bmatrix}}
 =
-\begin{pmatrix}
+\begin{bmatrix}
 {\color{blue}a_{1k}}{\color{red}b_{k1}} & {\color{blue}a_{1k}}{\color{red}b_{k2}} & \cdots & {\color{blue}a_{1k}}{\color{red}b_{kp}} \\
 {\color{blue}a_{2k}}{\color{red}b_{k1}} & {\color{blue}a_{2k}}{\color{red}b_{k2}} & \cdots & {\color{blue}a_{2k}}{\color{red}b_{kp}} \\
 \vdots & \vdots & \ddots & \vdots \\
 {\color{blue}a_{mk}}{\color{red}b_{k1}} & {\color{blue}a_{mk}}{\color{red}b_{k2}} & \cdots & {\color{blue}a_{mk}}{\color{red}b_{kp}}
-\end{pmatrix}
+\end{bmatrix}
 \notag
 \end{align}
 </div>
@@ -384,7 +384,7 @@ Two useful properties of transpose:
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-10 17:44
+               Last modified: 2026-04-10 17:45
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
