@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-06 Mon 21:25 -->
+<!-- 2026-04-12 Sun 15:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Principal Component Analysis</title>
@@ -252,7 +252,7 @@ We can view this matrix \(A\) as how far each sample is from the &ldquo;average 
 </p>
 
 <p>
-Now, we perform SVD on this matrix. PCA gives us the <b>principal components</b> of the matrix \(A\), which are the <i>most important vectors</i> that form a basis for the column vectors in \(A\). In other words, we&rsquo;re interested in the \(\mathbf{u}\) vectors.
+Now, we perform SVD on this matrix. PCA gives us the <b>principal components</b> of the matrix \(A\), which are the <i>most important vectors</i> that form a basis for the column vectors in \(A\). In other words, we&rsquo;re interested in the \(\mathbf{u}\) vectors. Note that instead if we had our subjects be the different rows of the matrix, we would instead by interested in the \(\mathbf{v}\) vectors since we want a basis for the rowspace.
 </p>
 
 <p>
@@ -264,7 +264,7 @@ If we want to represent a column vector in \(A\) with just one coordinate, we wo
 </p>
 
 
-<div id="org3a70fec" class="figure">
+<div id="org12dea4c" class="figure">
 <p><img src="../static/EECS_16A/pca1.png" alt="pca1.png" />
 </p>
 </div>
@@ -277,7 +277,7 @@ If we want to represent a column vector in \(A\) with just one coordinate, we wo
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-06 21:25
+               Last modified: 2026-04-12 13:56
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
