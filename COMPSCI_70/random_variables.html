@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-12 Sun 16:34 -->
+<!-- 2026-04-14 Tue 15:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Random Variables</title>
@@ -132,6 +132,12 @@
 <li><a href="#orgd1de7a6">2.1. Bernoulli Distribution</a></li>
 <li><a href="#org63ab9ac">2.2. Binomial Distribution</a></li>
 <li><a href="#orgdeec613">2.3. Hypergeometric Distribution</a></li>
+<li><a href="#org3248644">2.4. Geometric Distribution</a>
+<ul>
+<li><a href="#org4143d68">2.4.1. Memoryless Property</a></li>
+</ul>
+</li>
+<li><a href="#orgbf2dbb1">2.5. Poisson Distribution</a></li>
 </ul>
 </li>
 <li><a href="#orgbef9273">3. Multiple Random Variables</a>
@@ -145,6 +151,7 @@
 <ul>
 <li><a href="#org7f7698f">4.1. Funcions of Random Variables</a></li>
 <li><a href="#org41fc1a2">4.2. Conditional Expectation</a></li>
+<li><a href="#org01761ce">4.3. Tail Sum Formula</a></li>
 </ul>
 </li>
 <li><a href="#org6fcbe97">5. Variance</a>
@@ -152,7 +159,12 @@
 <li><a href="#org7dcad37">5.1. Sum of Independent Random Variables</a></li>
 </ul>
 </li>
-<li><a href="#org4d451c1">6. Covariance and Correlation</a></li>
+<li><a href="#org4d451c1">6. Covariance and Correlation</a>
+<ul>
+<li><a href="#org278c4e2">6.1. Covariance</a></li>
+<li><a href="#org5ca270b">6.2. Correlation</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -164,7 +176,7 @@ A <b>random variable</b> is a function \(X: \Omega \rightarrow \mathbb{R}^n\) sa
 </p>
 
 
-<div id="orgb38668d" class="figure">
+<div id="org1888b63" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables1.png" alt="random_variables1.png" />
 </p>
 </div>
@@ -208,7 +220,7 @@ Therefore, the collection of these events form a <a href="probability.html#orgda
 </p>
 
 
-<div id="org0c1fb21" class="figure">
+<div id="org66cf37c" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables2.png" alt="random_variables2.png" />
 </p>
 </div>
@@ -273,6 +285,112 @@ Furthermore, any other sequence \(\omega'\) of \(k\) blue balls and \(n-k\) red 
 
 <p>
 for \(k=0,1,\dots ,n\). This probability distribution is called the <b>hypergeometric distribution</b>, and we write \(X \sim \text{Hypergeometric}(N, B, n)\).
+</p>
+</div>
+</div>
+<div id="outline-container-org3248644" class="outline-3">
+<h3 id="org3248644"><span class="section-number-3">2.4.</span> Geometric Distribution</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Say we have a number of \(\text{Bernoulli}(p)\) trials, where \(p\) is the success probability. Define the random variable \(X\) as the number of trials it takes to the <i>first success</i>. Then the distribution of \(X\) is a <b>geometric distribution</b>:
+</p>
+
+\begin{align}
+\mathbb{P}(X=k) = (1-p)^{k-1}p
+\end{align}
+
+<p>
+for \(k \in \mathbb{Z}^+\), and we write \(X \sim \text{Geometric}(p)\) where \(0<p<1\).
+</p>
+
+<p>
+As \(p\) decreases, \(\mathbb{E}[X]\) should increase, as it takes more trials to get a success. Observe that \(\mathbb{P}[X\geq k] = (1-p)^{k-1}\). Then, by the tail sum formula, we get:
+</p>
+
+\begin{align}
+\mathbb{E}[X] = \sum_{k=1}^{\infty}\mathbb{P}[X\geq k] = \sum_{k=1}^{\infty}(1-p)^{k-1} = \frac{1}{1-(1-p)} = \frac{1}{p} \notag
+\end{align}
+
+<p>
+Alternatively, observe that the derivative of \((1-p)^k\) is \(-k(1-p)^{k-1}\). We can use this fact to simplify our calculations when we directly use the definition of expectation:
+</p>
+
+\begin{align}
+\mathbb{E}[X] &= \sum_{k=1}^{\infty}k\mathbb{P}[X=k] \notag \\
+&= \sum_{k=1}^{\infty}k(1-p)^{k-1}p \notag \\
+&= -p\frac{\text{d}}{\text{d}p}\sum_{k=1}^{\infty}(1-p)^k \notag \\
+&= -p\frac{\text{d}}{\text{d}p}\left[\frac{1}{1-(1-p)}-1\right] \notag \\
+&= -p\frac{\text{d}}{\text{d}p}\left[\frac{1}{p}-1\right] \notag \\
+&= \frac{1}{p} \notag
+\end{align}
+</div>
+<div id="outline-container-org4143d68" class="outline-4">
+<h4 id="org4143d68"><span class="section-number-4">2.4.1.</span> Memoryless Property</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+Say we are doing a series of \(\text{Bernoulli}(p)\) trials, and we have seen a string of failures. The question is, how much longer do we ned to wait to see a success?
+</p>
+
+<p>
+The <b>memoryless property</b> says that this wait time is independent of what has happened in the past. More specifically,
+</p>
+
+\begin{align}
+\mathbb{P}[X>n+m | X>m] = \mathbb{P}[X>n]
+\end{align}
+
+<p>
+It turns out that the geometric distribution is the only discrete probability distribution that satisfies the memoryless property.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbf2dbb1" class="outline-3">
+<h3 id="orgbf2dbb1"><span class="section-number-3">2.5.</span> Poisson Distribution</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+If a random variable is distributed according to a <b>Poisson distribution</b>, then we write \(N \sim \text{Poisson}(\lambda)\), where \(\lambda\) is a measure of <b>intensity</b> such that \(\lambda > 0\). Then
+</p>
+
+\begin{align}
+\mathbb{P}[N=k] = e^{-\lambda}\frac{\lambda^k}{k!}
+\end{align}
+
+<p>
+This is used to model processes such as the number of rain drops hitting a surface per second.
+</p>
+
+<p>
+Say we have \(Q \sim \text{Binomial}(n,p)\) such that \(n \rightarrow \infty\) and \(p \rightarrow 0\), while \(np = \lambda\) is held fixed. Then \(Q_k = \binom{n}{k}p^k(1-p)^{n-k}\). Thus, \(Q_0 = (1-p)^n=\left(1-\frac{\lambda}{n}\right)^n \rightarrow e^{-\lambda}\).
+</p>
+
+<p>
+Now consider the ratio \(\frac{Q_k}{Q_{k-1}}\):
+</p>
+
+\begin{align}
+\frac{Q_k}{Q_{k-1}} = \frac{\binom{n}{k}p^k(1-p)^{n-k}}{\binom{n}{k-1}p^{k-1}(1-p)^{n-k+1}} = \frac{np}{k}\left[\frac{1-\frac{k-1}{n}}{1-p}\right] \notag
+\end{align}
+
+<p>
+As we consider the limits, the term \(\frac{1-\frac{k-1}{n}}{1-p} \rightarrow 1\), so we have:
+</p>
+
+\begin{align}
+\frac{Q_k}{Q_{k-1}} = \frac{\lambda}{k} \notag
+\end{align}
+
+<p>
+Then, we can find \(Q_k\) by the telescoping product:
+</p>
+
+\begin{align}
+Q_k=Q_0\frac{Q_1}{Q_0}\frac{Q_2}{Q_1}\cdots\frac{Q_k}{Q_{k-1}} &= e^{-\lambda}\left(\frac{\lambda}{1}\right)\left(\frac{\lambda}{2}\right)\cdots\left(\frac{\lambda}{k}\right) \notag \\
+&= e^{-\lambda}\frac{\lambda^k}{k!} \notag
+\end{align}
+
+<p>
+This is precisely the Poisson distribution! So, the Poisson distribution is an <i>approximation of the binomial distribution</i> for rare events (\(p \rightarrow 0\)) over a continuous time (\(n \rightarrow \infty\)).
 </p>
 </div>
 </div>
@@ -353,7 +471,7 @@ Let \(X\) be a random variable on a sample space \(\Omega\) with probability dis
 </p>
 
 
-<div id="org2d9537d" class="figure">
+<div id="orge8b759e" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables3.png" alt="random_variables3.png" />
 </p>
 </div>
@@ -414,6 +532,33 @@ The <b>Law of Total Expectation</b> says that if \(\mathbb{E}[|X|] < \infty\), t
 
 \begin{align}
 \boxed{\mathbb{E}[X] = \mathbb{E}[\mathbb{E}[X|Y]]}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org01761ce" class="outline-3">
+<h3 id="org01761ce"><span class="section-number-3">4.3.</span> Tail Sum Formula</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+Let \(X\) be a random variable that takes values in \(0, 1, \dots, n\). Then,
+</p>
+
+\begin{align}
+\mathbb{E}[X] = \sum_{a=1}^n \mathbb{P}[X\geq a]
+\end{align}
+
+<p>
+<b>Proof:</b> By the definition of expectation, we have:
+</p>
+
+\begin{align}
+\mathbb{E}[X] &= \sum_{a=0}^n a\mathbb{P}[X=a] \notag \\
+&= \mathbb{P}[X=1] \notag \\
+&+ \mathbb{P}[X=2] + \mathbb{P}[X=2] \notag \\
+&+ \mathbb{P}[X=3] + \mathbb{P}[X=3] + \mathbb{P}[X=3] \notag \\
+&\vdots \notag \\
+&+ \mathbb{P}[X=n] + \mathbb{P}[X=n] + \mathbb{P}[X=n] + \cdots + \mathbb{P}[X=n] \notag \\
+&= \mathbb{P}[X\geq 1] + \mathbb{P}[X\geq 2] + \mathbb{P}[X\geq 3] + \cdots + \mathbb{P}[X \geq n] \notag \\
+&= \sum_{a=1}^n \mathbb{P}[X\geq a] \quad \square \notag
 \end{align}
 </div>
 </div>
@@ -483,12 +628,16 @@ Note that the converse is not true. Additionally, for independent random variabl
 <div id="outline-container-org4d451c1" class="outline-2">
 <h2 id="org4d451c1"><span class="section-number-2">6.</span> Covariance and Correlation</h2>
 <div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org278c4e2" class="outline-3">
+<h3 id="org278c4e2"><span class="section-number-3">6.1.</span> Covariance</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 The <b>covariance</b> of random variables \(X\) and \(Y\), denoted \(\text{cov}(X,Y)\), is defined as
 </p>
 
 \begin{align}
-\text{cov}(X,Y) = \mathbb{E}[(X-\mu_x)(Y-\mu_y)] = \mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]
+\text{Cov}(X,Y) = \mathbb{E}[(X-\mu_x)(Y-\mu_y)] = \mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y]
 \end{align}
 
 <p>
@@ -496,12 +645,54 @@ where \(\mu_x=\mathbb{E}[X]\) and \(\mu_y=\mathbb{E}[Y]\).
 </p>
 
 <p>
-Suppose \(X\) and \(Y\) are random variables with \(\sigma(X)>0\) and \(\sigma(Y)>0\). Then, the correlation of \(X\) and \(Y\) is defined as:
+Covariance is also <i>bilinear</i>: let \(X_1, \dots, X_n\) and \(Y_1, \dots, Y_n\) be random variables on the same probability space, and let \(a_1, \dots, a_n\) and \(b_1, \dots, b_m\) be arbitrary constants. Then:
 </p>
 
 \begin{align}
-\text{corr}(X, Y) = \frac{\text{cov}(X,Y)}{\sigma(X) \sigma(Y)}
+\text{Cov}\left(\sum_{i=1}^n a_iX_i, \sum_{j=1}^m b_jY_j \right) = \sum_{i=1}^n\sum_{j=1}^m a_ib_j \text{Cov}(X_i, Y_j)
 \end{align}
+
+<p>
+There is also an intuitive interpretation for the sign of the covariance:
+</p>
+
+<ol class="org-ol">
+<li>If \(\text{Cov}(X, Y)>0\):
+<ul class="org-ul">
+<li>\(X > \mathbb{E}[X]\) and \(Y > \mathbb{E}[Y]\) tend to co-occur, and/or</li>
+<li>\(X < \mathbb{E}[X]\) and \(Y < \mathbb{E}[Y]\) tend to co-occur</li>
+</ul></li>
+<li>If \(\text{Cov}(X, Y)<0\):
+<ul class="org-ul">
+<li>\(X > \mathbb{E}[X]\) and \(Y < \mathbb{E}[Y]\) tend to co-occur, and/or</li>
+<li>\(X < \mathbb{E}[X]\) and \(Y > \mathbb{E}[Y]\) tend to co-occur</li>
+</ul></li>
+<li>If \(\text{Cov}(X, Y)=0\):
+<ul class="org-ul">
+<li>No such association</li>
+</ul></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org5ca270b" class="outline-3">
+<h3 id="org5ca270b"><span class="section-number-3">6.2.</span> Correlation</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Suppose \(X\) and \(Y\) are random variables with \(\sigma(X)>0\) and \(\sigma(Y)>0\). Then, the <b>correlation</b> of \(X\) and \(Y\) is defined as:
+</p>
+
+\begin{align}
+\text{Corr}(X, Y) = \frac{\text{Cov}(X,Y)}{\sigma(X) \sigma(Y)}
+\end{align}
+
+<p>
+For any pair of random variables \(X\) and \(Y\) on the same probability space with \(\sigma(X)>0\) and \(\sigma(Y)>0\),
+</p>
+
+\begin{align}
+-1 \leq \text{Corr}(X,Y) \leq 1
+\end{align}
+</div>
 </div>
 </div>
 </div>
@@ -511,7 +702,7 @@ Suppose \(X\) and \(Y\) are random variables with \(\sigma(X)>0\) and \(\sigma(Y
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-12 16:34
+               Last modified: 2026-04-14 15:36
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
