@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-14 Tue 12:01 -->
+<!-- 2026-04-14 Tue 15:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sorting</title>
@@ -420,9 +420,103 @@ To heap sort \(N\) items, we can then:
 <li>Put deleted item at the first open slot starting from the end of our output array.</li>
 </ol>
 
-<p>
-[interactive demo of heap sort here]
-</p>
+<div id="hs1-demo">
+  <style>
+    .hd-tree { display: block; margin: 0 auto; }
+    .hd-arr { display: flex; gap: 6px; margin: 0.5em 0; justify-content: center; flex-wrap: wrap; }
+    .hd-cell {
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      border-radius: 6px; font-weight: bold; font-size: 1em; color: #4c4f69;
+      border: 2px solid #ccd0da; background: #e6e9ef;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .hd-cell.sorted { background: #dce8d8; border-color: #40a02b; }
+    .hd-cell.hl { background: #d5e4f7; border-color: #1e66f5; }
+    .hd-cell.sink { background: #f5eacd; border-color: #df8e1d; }
+    .hd-cell.swap { background: #f2d5d8; border-color: #e64553; }
+    .hd-cell.empty { border-style: dashed; background: transparent; color: transparent; }
+    .hd-ctl { display: flex; gap: 8px; margin: 0.5em 0; justify-content: center; flex-wrap: wrap; }
+    .hd-ctl button {
+      padding: 0.4em 1em; border: 1px solid #bcc0cc; border-radius: 6px;
+      background: #e6e9ef; color: #4c4f69; cursor: pointer; font-size: 0.9em;
+    }
+    .hd-ctl button:hover { background: #ccd0da; }
+    .hd-ctl button:disabled { opacity: 0.4; cursor: default; }
+    .hd-st { text-align: center; margin: 0.5em 0; color: #5c5f77; min-height: 2.5em; font-size: 0.95em; }
+    .hd-leg { display: flex; gap: 12px; justify-content: center; margin-top: 0.75em; font-size: 0.85em; color: #6c6f85; flex-wrap: wrap; }
+    .hd-leg-i { display: flex; align-items: center; gap: 4px; }
+    .hd-leg-s { width: 14px; height: 14px; border-radius: 3px; border: 1px solid #acb0be; }
+    .hd-lbl { text-align: center; font-size: 0.9em; color: #6c6f85; margin-top: 0.5em; }
+  </style>
+  <div id="hs1-st" class="hd-st">Click <b>Step</b> to begin heap sort.</div>
+  <svg id="hs1-svg" class="hd-tree" viewBox="0 0 450 210" style="width:100%;max-width:450px"></svg>
+  <div class="hd-lbl">Output:</div>
+  <div id="hs1-out" class="hd-arr"></div>
+  <div class="hd-ctl">
+    <button id="hs1-step" onclick="hs1Step()">Step</button>
+    <button id="hs1-play" onclick="hs1Play()">Play</button>
+    <button id="hs1-reset" onclick="hs1Reset()">Reset</button>
+  </div>
+  <div class="hd-leg">
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#d5e4f7;border-color:#1e66f5"></span> Largest (root)</span>
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#dce8d8;border-color:#40a02b"></span> Sorted output</span>
+  </div>
+  <script>
+  (function(){
+    var INIT=[8,7,6,4,3,2,5,1];
+    var P=[{x:225,y:30},{x:125,y:80},{x:325,y:80},{x:75,y:130},{x:175,y:130},{x:275,y:130},{x:375,y:130},{x:50,y:180}];
+    var R=18, heap, output, phase, playing, timer;
+    function sink(a,k,n){while(2*k+1<n){var j=2*k+1;if(j+1<n&&a[j+1]>a[j])j++;if(a[k]>=a[j])break;var t=a[k];a[k]=a[j];a[j]=t;k=j;}}
+    function render(){
+      var s=document.getElementById('hs1-svg'),h='';
+      for(var i=0;i<heap.length;i++){var l=2*i+1,r=2*i+2;
+        if(l<heap.length)h+='<line x1="'+P[i].x+'" y1="'+P[i].y+'" x2="'+P[l].x+'" y2="'+P[l].y+'" stroke="#acb0be" stroke-width="2"/>';
+        if(r<heap.length)h+='<line x1="'+P[i].x+'" y1="'+P[i].y+'" x2="'+P[r].x+'" y2="'+P[r].y+'" stroke="#acb0be" stroke-width="2"/>';
+      }
+      for(var i=0;i<heap.length;i++){
+        var f='#e6e9ef',c='#ccd0da';
+        if(phase==='hl'&&i===0){f='#d5e4f7';c='#1e66f5';}
+        h+='<circle cx="'+P[i].x+'" cy="'+P[i].y+'" r="'+R+'" fill="'+f+'" stroke="'+c+'" stroke-width="2"/>';
+        h+='<text x="'+P[i].x+'" y="'+P[i].y+'" text-anchor="middle" dominant-baseline="central" fill="#4c4f69" font-weight="bold" font-size="14">'+heap[i]+'</text>';
+      }
+      s.innerHTML=h;
+      var o=document.getElementById('hs1-out');o.innerHTML='';
+      for(var i=0;i<output.length;i++){
+        var d=document.createElement('div');d.className='hd-cell';
+        if(output[i]!==null){d.textContent=output[i];d.classList.add('sorted');}
+        else {d.classList.add('empty');d.textContent='.';}
+        o.appendChild(d);
+      }
+      document.getElementById('hs1-step').disabled=(phase==='done');
+      document.getElementById('hs1-play').disabled=(phase==='done');
+    }
+    function step(){
+      if(phase==='done')return;
+      if(phase==='idle'){
+        if(!heap.length){phase='done';msg('The output array is sorted!');render();sp();return;}
+        phase='hl';
+        msg('Delete the largest item (<b>'+heap[0]+'</b>) from the max heap.');
+        render();
+      }else if(phase==='hl'){
+        var v=heap[0];
+        if(heap.length===1)heap=[];
+        else{heap[0]=heap[heap.length-1];heap.pop();sink(heap,0,heap.length);}
+        for(var i=output.length-1;i>=0;i--)if(output[i]===null){output[i]=v;break;}
+        var m='Put <b>'+v+'</b> at the first open slot from the end of the output array.';
+        if(!heap.length){phase='done';m+=' The output array is sorted!';sp();}
+        else phase='idle';
+        msg(m);render();
+      }
+    }
+    function msg(m){document.getElementById('hs1-st').innerHTML=m;}
+    function reset(){heap=INIT.slice();output=[null,null,null,null,null,null,null,null];phase='idle';sp();msg('Click <b>Step</b> to begin heap sort.');render();}
+    function play(){if(playing){sp();return;}playing=true;document.getElementById('hs1-play').textContent='Pause';timer=setInterval(function(){step();},600);}
+    function sp(){playing=false;clearInterval(timer);var b=document.getElementById('hs1-play');if(b)b.textContent='Play';}
+    window.hs1Step=step;window.hs1Play=play;window.hs1Reset=reset;
+    reset();
+  })();
+  </script>
+</div>
 
 <p>
 The time complexity of heap sort is \(O(N \log N)\). The space complexity of heap sort is the memory we need to build the copy of our data, so it is \(\Theta (N)\).
@@ -440,9 +534,83 @@ To increase memory efficiency, instead of using a separate output array, we can 
 <li>After sinking, we guarantee that the tree rooted at that node is a heap.</li>
 </ol>
 
-<p>
-[interactive demo of heapification here]
-</p>
+<div id="hf-demo">
+  <div id="hf-st" class="hd-st">Click <b>Step</b> to begin heapification. Nodes are sunk in reverse level order.</div>
+  <svg id="hf-svg" class="hd-tree" viewBox="0 0 450 215" style="width:100%;max-width:450px"></svg>
+  <div id="hf-arr" class="hd-arr"></div>
+  <div class="hd-ctl">
+    <button id="hf-step" onclick="hfStep()">Step</button>
+    <button id="hf-play" onclick="hfPlay()">Play</button>
+    <button id="hf-reset" onclick="hfReset()">Reset</button>
+  </div>
+  <div class="hd-leg">
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#f5eacd;border-color:#df8e1d"></span> Sinking</span>
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#dce8d8;border-color:#40a02b"></span> Valid heap subtree</span>
+  </div>
+  <script>
+  (function(){
+    var INIT=[5,3,8,1,7,2,6,4];
+    var P=[{x:225,y:30},{x:125,y:80},{x:325,y:80},{x:75,y:130},{x:175,y:130},{x:275,y:130},{x:375,y:130},{x:50,y:180}];
+    var R=18, arr, sinkOrder, si, phase, hlIdx, done, playing, timer;
+    function sink(a,k,n){while(2*k+1<n){var j=2*k+1;if(j+1<n&&a[j+1]>a[j])j++;if(a[k]>=a[j])break;var t=a[k];a[k]=a[j];a[j]=t;k=j;}}
+    function inSub(idx,root){while(idx>=root){if(idx===root)return true;if(idx===0)return false;idx=Math.floor((idx-1)/2);}return false;}
+    function isHpd(idx){for(var i=0;i<done.length;i++)if(inSub(idx,done[i]))return true;return false;}
+    function render(){
+      var s=document.getElementById('hf-svg'),h='',n=arr.length;
+      for(var i=0;i<n;i++){var l=2*i+1,r=2*i+2;
+        if(l<n)h+='<line x1="'+P[i].x+'" y1="'+P[i].y+'" x2="'+P[l].x+'" y2="'+P[l].y+'" stroke="#acb0be" stroke-width="2"/>';
+        if(r<n)h+='<line x1="'+P[i].x+'" y1="'+P[i].y+'" x2="'+P[r].x+'" y2="'+P[r].y+'" stroke="#acb0be" stroke-width="2"/>';
+      }
+      for(var i=0;i<n;i++){
+        var f='#e6e9ef',c='#ccd0da';
+        if(phase==='hl'&&i===hlIdx){f='#f5eacd';c='#df8e1d';}
+        else if(isHpd(i)){f='#dce8d8';c='#40a02b';}
+        h+='<circle cx="'+P[i].x+'" cy="'+P[i].y+'" r="'+R+'" fill="'+f+'" stroke="'+c+'" stroke-width="2"/>';
+        h+='<text x="'+P[i].x+'" y="'+P[i].y+'" text-anchor="middle" dominant-baseline="central" fill="#4c4f69" font-weight="bold" font-size="14">'+arr[i]+'</text>';
+        h+='<text x="'+P[i].x+'" y="'+(P[i].y+R+12)+'" text-anchor="middle" fill="#9ca0b0" font-size="10">'+i+'</text>';
+      }
+      s.innerHTML=h;
+      var c=document.getElementById('hf-arr');c.innerHTML='';
+      for(var i=0;i<n;i++){
+        var d=document.createElement('div');d.className='hd-cell';d.textContent=arr[i];
+        if(phase==='hl'&&i===hlIdx)d.classList.add('sink');
+        else if(isHpd(i))d.classList.add('sorted');
+        c.appendChild(d);
+      }
+      document.getElementById('hf-step').disabled=(phase==='done');
+      document.getElementById('hf-play').disabled=(phase==='done');
+    }
+    function step(){
+      if(phase==='done')return;
+      if(phase==='idle'){
+        if(si>=sinkOrder.length){phase='done';msg('Heapification complete! The array is now a valid max heap.');render();sp();return;}
+        hlIdx=sinkOrder[si];phase='hl';
+        msg('Sink node at index '+hlIdx+' (value <b>'+arr[hlIdx]+'</b>) in reverse level order.');
+        render();
+      }else if(phase==='hl'){
+        var idx=hlIdx;
+        sink(arr,hlIdx,arr.length);
+        done.push(hlIdx);si++;hlIdx=-1;
+        if(si>=sinkOrder.length){phase='done';msg('After sinking, the tree rooted at index '+idx+' is a heap. Heapification complete!');sp();}
+        else{phase='idle';msg('After sinking, the tree rooted at index '+idx+' is a heap.');}
+        render();
+      }
+    }
+    function msg(m){document.getElementById('hf-st').innerHTML=m;}
+    function reset(){
+      arr=INIT.slice();sinkOrder=[];
+      for(var i=Math.floor((arr.length-2)/2);i>=0;i--)sinkOrder.push(i);
+      si=0;hlIdx=-1;done=[];phase='idle';sp();
+      msg('Click <b>Step</b> to begin heapification. Nodes are sunk in reverse level order.');
+      render();
+    }
+    function play(){if(playing){sp();return;}playing=true;document.getElementById('hf-play').textContent='Pause';timer=setInterval(function(){step();},700);}
+    function sp(){playing=false;clearInterval(timer);var b=document.getElementById('hf-play');if(b)b.textContent='Play';}
+    window.hfStep=step;window.hfPlay=play;window.hfReset=reset;
+    reset();
+  })();
+  </script>
+</div>
 
 <p>
 Now that we have our heap, we can run heap sort in-place like so:
@@ -458,9 +626,74 @@ Now that we have our heap, we can run heap sort in-place like so:
 Then, the resulting array is sorted:
 </p>
 
-<p>
-[interactive demo of in-place heap sort here]
-</p>
+<div id="iphs-demo">
+  <div id="iphs-st" class="hd-st">Click <b>Step</b> to begin in-place heap sort. The array starts as a valid max heap.</div>
+  <svg id="iphs-svg" class="hd-tree" viewBox="0 0 450 210" style="width:100%;max-width:450px"></svg>
+  <div id="iphs-arr" class="hd-arr"></div>
+  <div class="hd-ctl">
+    <button id="iphs-step" onclick="iphsStep()">Step</button>
+    <button id="iphs-play" onclick="iphsPlay()">Play</button>
+    <button id="iphs-reset" onclick="iphsReset()">Reset</button>
+  </div>
+  <div class="hd-leg">
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#f5eacd;border-color:#df8e1d"></span> Needs sinking</span>
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#dce8d8;border-color:#40a02b"></span> Sorted</span>
+  </div>
+  <script>
+  (function(){
+    var INIT=[8,7,6,4,3,2,5,1];
+    var P=[{x:225,y:30},{x:125,y:80},{x:325,y:80},{x:75,y:130},{x:175,y:130},{x:275,y:130},{x:375,y:130},{x:50,y:180}];
+    var R=18, arr, hs, phase, playing, timer;
+    function sink(a,k,n){while(2*k+1<n){var j=2*k+1;if(j+1<n&&a[j+1]>a[j])j++;if(a[k]>=a[j])break;var t=a[k];a[k]=a[j];a[j]=t;k=j;}}
+    function render(){
+      var s=document.getElementById('iphs-svg'),h='';
+      for(var i=0;i<hs;i++){var l=2*i+1,r=2*i+2;
+        if(l<hs)h+='<line x1="'+P[i].x+'" y1="'+P[i].y+'" x2="'+P[l].x+'" y2="'+P[l].y+'" stroke="#acb0be" stroke-width="2"/>';
+        if(r<hs)h+='<line x1="'+P[i].x+'" y1="'+P[i].y+'" x2="'+P[r].x+'" y2="'+P[r].y+'" stroke="#acb0be" stroke-width="2"/>';
+      }
+      for(var i=0;i<arr.length;i++){
+        var f='#e6e9ef',c='#ccd0da';
+        if(i>=hs){f='#dce8d8';c='#40a02b';}
+        else if(phase==='sw'&&i===0){f='#f5eacd';c='#df8e1d';}
+        h+='<circle cx="'+P[i].x+'" cy="'+P[i].y+'" r="'+R+'" fill="'+f+'" stroke="'+c+'" stroke-width="2"/>';
+        h+='<text x="'+P[i].x+'" y="'+P[i].y+'" text-anchor="middle" dominant-baseline="central" fill="#4c4f69" font-weight="bold" font-size="14">'+arr[i]+'</text>';
+      }
+      s.innerHTML=h;
+      var co=document.getElementById('iphs-arr');co.innerHTML='';
+      for(var i=0;i<arr.length;i++){
+        var d=document.createElement('div');d.className='hd-cell';d.textContent=arr[i];
+        if(i>=hs)d.classList.add('sorted');
+        else if(phase==='sw'&&i===0)d.classList.add('sink');
+        co.appendChild(d);
+      }
+      document.getElementById('iphs-step').disabled=(phase==='done');
+      document.getElementById('iphs-play').disabled=(phase==='done');
+    }
+    function step(){
+      if(phase==='done')return;
+      if(phase==='idle'){
+        if(hs<=1){hs=0;phase='done';msg('The array is sorted!');render();sp();return;}
+        var rv=arr[0],lv=arr[hs-1];
+        arr[0]=lv;arr[hs-1]=rv;hs--;
+        phase='sw';
+        msg('Delete the largest item (<b>'+rv+'</b>) from the max heap by swapping the root with the last item in the heap (<b>'+lv+'</b>).');
+        render();
+      }else if(phase==='sw'){
+        sink(arr,0,hs);
+        if(hs<=1){hs=0;phase='done';msg('Sink until the heap is valid again. The array is sorted!');sp();}
+        else{phase='idle';msg('Sink until the heap is valid again.');}
+        render();
+      }
+    }
+    function msg(m){document.getElementById('iphs-st').innerHTML=m;}
+    function reset(){arr=INIT.slice();hs=arr.length;phase='idle';sp();msg('Click <b>Step</b> to begin in-place heap sort. The array starts as a valid max heap.');render();}
+    function play(){if(playing){sp();return;}playing=true;document.getElementById('iphs-play').textContent='Pause';timer=setInterval(function(){step();},600);}
+    function sp(){playing=false;clearInterval(timer);var b=document.getElementById('iphs-play');if(b)b.textContent='Play';}
+    window.iphsStep=step;window.iphsPlay=play;window.iphsReset=reset;
+    reset();
+  })();
+  </script>
+</div>
 
 <p>
 Now, our space complexity is just \(\Theta(1)\) since we don&rsquo;t need any extra memory.
@@ -499,7 +732,7 @@ The time complexity for this is \(\Theta(N \log N)\), and its space complexity i
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-13 13:59
+               Last modified: 2026-04-14 15:49
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
