@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-12 Sun 16:24 -->
+<!-- 2026-04-14 Tue 12:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Time-Invariant Systems</title>
@@ -130,7 +130,14 @@
 <ul>
 <li><a href="#org6de50bf">1.1. Linearity</a></li>
 <li><a href="#org6ccef79">1.2. Time Invariance</a></li>
-<li><a href="#orgd2fc55f">1.3. Convolution</a></li>
+</ul>
+</li>
+<li><a href="#org97fe38f">2. Convolutions</a>
+<ul>
+<li><a href="#org4528712">2.1. Echo Model</a></li>
+<li><a href="#org517de8d">2.2. Flip and Shift</a></li>
+<li><a href="#org4774808">2.3. Convolution with an Impulse</a></li>
+<li><a href="#orgb2e1c94">2.4. Interconnections of DT-LTI Systems</a></li>
 </ul>
 </li>
 </ul>
@@ -347,9 +354,10 @@ This system is an example of a <i>modulator</i>, which is used by AM (amplitude 
 </details>
 </div>
 </div>
-<div id="outline-container-orgd2fc55f" class="outline-3">
-<h3 id="orgd2fc55f"><span class="section-number-3">1.3.</span> Convolution</h3>
-<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org97fe38f" class="outline-2">
+<h2 id="org97fe38f"><span class="section-number-2">2.</span> Convolutions</h2>
+<div class="outline-text-2" id="text-2">
 <p>
 A DT-LTI (discrete-time linear time-invariant) system is <i>characterized completely</i> by its response to the DT impulse (<a href="vectors_signals.html#orgcd408f2">Kronecker Delta</a>). In other words, given a DT-LTI system \(H\), the <b>impulse response</b> \(h[n]\) of \(H\) when given the input \(\delta[n]\) describes \(H\) completely.
 </p>
@@ -386,6 +394,67 @@ If we do the change of variables \(l=n-k\), then we see that \(\sum_{k=-\infty}^
 x*h=h*x
 \end{align}
 </div>
+<div id="outline-container-org4528712" class="outline-3">
+<h3 id="org4528712"><span class="section-number-3">2.1.</span> Echo Model</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Intuitively, we can view a signal as a train of pulses happening one after each other. Imagine that each pulse in time creates an instantaneous &ldquo;echo&rdquo; that rings and fades away. Then, each point on the convolved signal is the sum of all previous rings that haven&rsquo;t faded out yet. When we convolve \(x*h\), \(h\) is the <i>impulse response</i>, which tells us the weights of all the past echoes:
+</p>
+
+\begin{align}
+y[n] = \sum_{k=-\infty}^{\infty} x[k]h[n-k] = \cdots + x[-1]h[n+1] + x[0]h[n] + x[1]h[n-1] + \cdots
+\end{align}
+
+<p>
+\(k\) represents the specific time a pulse occurred, and \(x[k]\) represents the force of that pulse. \(n\) represents &ldquo;now,&rdquo; and the \(n-k\) represents the <i>elapsed time</i> since that pulse. The multiplication of the terms \(x[k]h[n-k]\) is how strong an echo is currently, and the sum of all the echoes gives the convolution.
+</p>
+</div>
+</div>
+<div id="outline-container-org517de8d" class="outline-3">
+<h3 id="org517de8d"><span class="section-number-3">2.2.</span> Flip and Shift</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+To calculate a convolution, we can view the convolution as a <i>flip and shift</i> operation. Given the convolution of two signals \(x\) and \(h\):
+</p>
+
+\begin{align}
+x*h = \sum_{k=-\infty}^{\infty} x[k]h[n-k] \notag
+\end{align}
+
+<p>
+The \(h[n-k]\) term means that we first flip the signal along the horizontal axis, and then shift it to the right by \(n\) steps. Each point in the convolved signal is essentially a linear combination of the <i>current and past inputs</i> of \(x\), whose weights are determined by \(h\). We flip \(h\) because time runs backwards into the past, and shifting it aligns the starts. Then, we multiply the two signals and add them up to get the magnitude of the convolved signal at a particular point \(n\).
+</p>
+</div>
+</div>
+<div id="outline-container-org4774808" class="outline-3">
+<h3 id="org4774808"><span class="section-number-3">2.3.</span> Convolution with an Impulse</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+The <a href="vectors_signals.html#orgcd408f2">Kronecker delta</a> is the identity element for convolution:
+</p>
+
+\begin{align}
+\delta * h &= \sum_{k=-\infty}^{\infty} \delta[k]h[n-k] \notag \\
+&= \delta[0]h[n-0] \notag \\
+&= h[n] \notag
+\end{align}
+
+<p>
+Additionally, convolution with a shifted impulse shifts the signal by the amount of the shift of the impulse.
+</p>
+
+<p>
+Therefore, if we can represent \(x\) in \(x*h\) as a linear combination of Kronecker deltas, we can distribute the convolution operation among them. For example, if \(x[n] = \delta[n] + \delta[n-2]\), then \((x*h)[n] = (\delta[n] + \delta[n-2])*h[n] = h[n] + h[n-2]\).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb2e1c94" class="outline-3">
+<h3 id="orgb2e1c94"><span class="section-number-3">2.4.</span> Interconnections of DT-LTI Systems</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Say we have two DT-LTI systems represented by the functions \(f[n]\) and \(g[n]\) respectively, and an interconnected DT-LTI system composed of \(f[n]\) and \(g[n]\) represented by the function \(h[n]\). If the interconnection is <i>in series</i>, then the total system is just the convolution of the two subsystems, i.e. \(h[n] = (f*g)[n]\). If the interconnection is <i>in parallel</i>, then the total system is the sum of the two subsystems, i.e. \(h[n] = f[n] + g[n]\).
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -395,7 +464,7 @@ x*h=h*x
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-12 16:24
+               Last modified: 2026-04-14 12:00
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
