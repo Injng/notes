@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-14 Tue 15:49 -->
+<!-- 2026-04-15 Wed 13:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sorting</title>
@@ -135,6 +135,7 @@
 </ul>
 </li>
 <li><a href="#org097366b">1.3. Merge Sort</a></li>
+<li><a href="#org445e1d9">1.4. Insertion Sort</a></li>
 </ul>
 </li>
 </ul>
@@ -718,9 +719,171 @@ To merge sort \(N\) items, we:
 To merge two sorted halves together, we compare elements from the first half with elements from the second half, and build a new auxiliary array:
 </p>
 
+<div id="ms-demo">
+  <div id="ms-st" class="hd-st">Click <b>Step</b> to merge the two sorted halves by comparing elements and building a new auxiliary array.</div>
+  <div class="hd-lbl">Left half:</div>
+  <div id="ms-left" class="hd-arr"></div>
+  <div class="hd-lbl">Right half:</div>
+  <div id="ms-right" class="hd-arr"></div>
+  <div class="hd-lbl">Auxiliary array:</div>
+  <div id="ms-aux" class="hd-arr"></div>
+  <div class="hd-ctl">
+    <button id="ms-step" onclick="msStep()">Step</button>
+    <button id="ms-play" onclick="msPlay()">Play</button>
+    <button id="ms-reset" onclick="msReset()">Reset</button>
+  </div>
+  <div class="hd-leg">
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#d5e4f7;border-color:#1e66f5"></span> Current pointer</span>
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#dce8d8;border-color:#40a02b"></span> Placed in aux</span>
+  </div>
+  <script>
+  (function(){
+    var LEFT_INIT=[1,3,5,8], RIGHT_INIT=[2,4,6,7];
+    var left, right, aux, i, j, k, phase, playing, timer;
+    function render(){
+      var L=document.getElementById('ms-left');L.innerHTML='';
+      for(var x=0;x<left.length;x++){
+        var c=document.createElement('div');c.className='hd-cell';c.textContent=left[x];
+        if(x<i)c.style.opacity='0.3';
+        else if(x===i&&phase!=='done')c.classList.add('hl');
+        L.appendChild(c);
+      }
+      var R=document.getElementById('ms-right');R.innerHTML='';
+      for(var x=0;x<right.length;x++){
+        var c=document.createElement('div');c.className='hd-cell';c.textContent=right[x];
+        if(x<j)c.style.opacity='0.3';
+        else if(x===j&&phase!=='done')c.classList.add('hl');
+        R.appendChild(c);
+      }
+      var A=document.getElementById('ms-aux');A.innerHTML='';
+      for(var x=0;x<aux.length;x++){
+        var c=document.createElement('div');c.className='hd-cell';
+        if(aux[x]!==null){c.textContent=aux[x];c.classList.add('sorted');}
+        else{c.textContent='.';c.classList.add('empty');}
+        A.appendChild(c);
+      }
+      document.getElementById('ms-step').disabled=(phase==='done');
+      document.getElementById('ms-play').disabled=(phase==='done');
+    }
+    function step(){
+      if(phase==='done')return;
+      var m;
+      if(i<left.length&&j<right.length){
+        if(left[i]<=right[j]){
+          var v=left[i];aux[k++]=v;
+          m='Compare left[<b>'+i+'</b>]=<b>'+v+'</b> with right[<b>'+j+'</b>]=<b>'+right[j]+'</b>. Place <b>'+v+'</b> in aux; advance left pointer.';
+          i++;
+        }else{
+          var v=right[j];aux[k++]=v;
+          m='Compare left[<b>'+i+'</b>]=<b>'+left[i]+'</b> with right[<b>'+j+'</b>]=<b>'+v+'</b>. Place <b>'+v+'</b> in aux; advance right pointer.';
+          j++;
+        }
+      }else if(i<left.length){
+        var v=left[i];aux[k++]=v;i++;
+        m='Right half exhausted. Copy remaining <b>'+v+'</b> from the left half.';
+      }else if(j<right.length){
+        var v=right[j];aux[k++]=v;j++;
+        m='Left half exhausted. Copy remaining <b>'+v+'</b> from the right half.';
+      }
+      if(i>=left.length&&j>=right.length){phase='done';sp();m+=' Merge complete!';}
+      msg(m);render();
+    }
+    function msg(x){document.getElementById('ms-st').innerHTML=x;}
+    function reset(){left=LEFT_INIT.slice();right=RIGHT_INIT.slice();aux=[null,null,null,null,null,null,null,null];i=j=k=0;phase='active';sp();msg('Click <b>Step</b> to merge the two sorted halves by comparing elements and building a new auxiliary array.');render();}
+    function play(){if(playing){sp();return;}playing=true;document.getElementById('ms-play').textContent='Pause';timer=setInterval(function(){step();},700);}
+    function sp(){playing=false;clearInterval(timer);var b=document.getElementById('ms-play');if(b)b.textContent='Play';}
+    window.msStep=step;window.msPlay=play;window.msReset=reset;
+    reset();
+  })();
+  </script>
+</div>
+
 
 <p>
 The time complexity for this is \(\Theta(N \log N)\), and its space complexity is \(O(N)\).
+</p>
+</div>
+</div>
+<div id="outline-container-org445e1d9" class="outline-3">
+<h3 id="org445e1d9"><span class="section-number-3">1.4.</span> Insertion Sort</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+To insertion sort \(N\) items, we:
+</p>
+
+<ol class="org-ol">
+<li>Start with an empty output sequence.</li>
+<li>Add each item from the input, inserting into the output at the right point.</li>
+</ol>
+
+<p>
+We can also do this in-place by maintaining a sorted and unexamined section of the input array. To insert, we can swap item backwards until it is in the right place among all previously sorted items:
+</p>
+
+<div id="is-demo">
+  <div id="is-st" class="hd-st">Click <b>Step</b> to begin in-place insertion sort.</div>
+  <div id="is-arr" class="hd-arr"></div>
+  <div class="hd-ctl">
+    <button id="is-step" onclick="isStep()">Step</button>
+    <button id="is-play" onclick="isPlay()">Play</button>
+    <button id="is-reset" onclick="isReset()">Reset</button>
+  </div>
+  <div class="hd-leg">
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#dce8d8;border-color:#40a02b"></span> Sorted</span>
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#d5e4f7;border-color:#1e66f5"></span> Item being inserted</span>
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#fbe6c2;border-color:#df8e1d"></span> Comparing against</span>
+  </div>
+  <script>
+  (function(){
+    var INIT=[5,3,8,1,7,2,6,4];
+    var arr,i,j,phase,playing,timer;
+    function render(){
+      var A=document.getElementById('is-arr');A.innerHTML='';
+      for(var x=0;x<arr.length;x++){
+        var c=document.createElement('div');c.className='hd-cell';c.textContent=arr[x];
+        if(phase==='done'){c.classList.add('sorted');}
+        else if(phase==='swapping'){
+          if(x===j)c.classList.add('hl');
+          else if(x===j-1)c.classList.add('sink');
+          else if(x<=i)c.classList.add('sorted');
+        }else if(x<=i)c.classList.add('sorted');
+        A.appendChild(c);
+      }
+      document.getElementById('is-step').disabled=(phase==='done');
+      document.getElementById('is-play').disabled=(phase==='done');
+    }
+    function step(){
+      if(phase==='done')return;
+      var m;
+      if(phase==='idle'){
+        i=1;j=1;phase='swapping';
+        m='Insert arr[<b>'+i+'</b>]=<b>'+arr[i]+'</b> into the sorted section.';
+      }else if(phase==='swapping'){
+        if(j>0&&arr[j]<arr[j-1]){
+          var t=arr[j];arr[j]=arr[j-1];arr[j-1]=t;
+          m='arr[<b>'+j+'</b>]=<b>'+arr[j-1]+'</b> &lt; arr[<b>'+(j-1)+'</b>]=<b>'+arr[j]+'</b>. Swap backward.';
+          j--;
+        }else{
+          m='Item is in place.';
+          i++;
+          if(i>=arr.length){phase='done';sp();m='Sorted!';}
+          else{j=i;m+=' Insert arr[<b>'+i+'</b>]=<b>'+arr[i]+'</b> into the sorted section.';}
+        }
+      }
+      msg(m);render();
+    }
+    function msg(x){document.getElementById('is-st').innerHTML=x;}
+    function reset(){arr=INIT.slice();i=0;j=0;phase='idle';sp();msg('Click <b>Step</b> to begin in-place insertion sort.');render();}
+    function play(){if(playing){sp();return;}playing=true;document.getElementById('is-play').textContent='Pause';timer=setInterval(function(){step();},600);}
+    function sp(){playing=false;clearInterval(timer);var b=document.getElementById('is-play');if(b)b.textContent='Play';}
+    window.isStep=step;window.isPlay=play;window.isReset=reset;
+    reset();
+  })();
+  </script>
+</div>
+
+<p>
+The best case time complexity is \(\Theta(N)\) (when it is already sorted), and the worst case time complexity is \(\Theta(N^2)\). Realize that when an array that is almost sorted, insertion sort does very little work due to its best case time complexity. Additionally, for small arrays (\(N < 15\) or so), insertion sort is fastest.
 </p>
 </div>
 </div>
@@ -732,7 +895,7 @@ The time complexity for this is \(\Theta(N \log N)\), and its space complexity i
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-14 15:49
+               Last modified: 2026-04-15 13:55
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
