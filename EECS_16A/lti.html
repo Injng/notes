@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-14 Tue 12:01 -->
+<!-- 2026-04-16 Thu 10:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Time-Invariant Systems</title>
@@ -138,6 +138,11 @@
 <li><a href="#org517de8d">2.2. Flip and Shift</a></li>
 <li><a href="#org4774808">2.3. Convolution with an Impulse</a></li>
 <li><a href="#orgb2e1c94">2.4. Interconnections of DT-LTI Systems</a></li>
+</ul>
+</li>
+<li><a href="#org5722e19">3. Frequency Response</a>
+<ul>
+<li><a href="#orge079cd5">3.1. Region of Support</a></li>
 </ul>
 </li>
 </ul>
@@ -393,6 +398,10 @@ If we do the change of variables \(l=n-k\), then we see that \(\sum_{k=-\infty}^
 \begin{align}
 x*h=h*x
 \end{align}
+
+<p>
+Additionally, convolution distributes over addition, so the convolution of a function with a linear combination is the same as the linear combination of the individual convolutions.
+</p>
 </div>
 <div id="outline-container-org4528712" class="outline-3">
 <h3 id="org4528712"><span class="section-number-3">2.1.</span> Echo Model</h3>
@@ -457,6 +466,68 @@ Say we have two DT-LTI systems represented by the functions \(f[n]\) and \(g[n]\
 </div>
 </div>
 </div>
+<div id="outline-container-org5722e19" class="outline-2">
+<h2 id="org5722e19"><span class="section-number-2">3.</span> Frequency Response</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+If we send as input into a DT-LTI system \(h[n]\) the <a href="complex_exponentials.html#orgbf8dfe5">complex exponential</a> \(e^{i\omega n}\), then the output is:
+</p>
+
+\begin{align}
+y[n] &= (h*x)[n] \notag \\
+&= \sum_{k=-\infty}^{\infty} h[k]e^{-i\omega k}e^{i\omega n} \notag \\
+&= \left(\sum_{k=-\infty}^{\infty}h[k]e^{-i\omega k}\right)e^{i\omega n} \notag
+\end{align}
+
+<p>
+The term in the parantheses is \(H(\omega)\), the <b>frequency response</b> of the system:
+</p>
+
+\begin{align}
+y[n] = H(\omega)e^{i\omega n}
+\end{align}
+
+<p>
+Notice that sending in the signal \(e^{i\omega n}\) returns the same signal, but scaled by \(H(\omega)\). This is called the <b>eigenfunction property</b> of DT-LTI systems with respect to complex exponentials. The impulse signal also satisfies tihs property; these eigenfunction signals can be used to break down input signals.
+</p>
+
+<p>
+<a href="dtfs.html#org69903b4">DTFS</a> tells us that we can decompose any DT p-periodic signal into:
+</p>
+
+\begin{align}
+x[n] = \sum_{k\in\langle p \rangle} X_ke^{ik\omega_0 n} \notag
+\end{align}
+
+<p>
+Then, if we feed this function into a DT-LTI system with frequency response \(H(\omega)\), we get:
+</p>
+
+\begin{align}
+y[n] = \sum_{k\in\langle p \rangle}X_kH(k\omega_0)e^{ik\omega_0 n} \notag
+\end{align}
+
+<p>
+Thus, the response of a DT-LTI system to a p-periodic input is also p-periodic with DTFS coefficients \(Y_k=X_kH(k\omega_0)\).
+</p>
+</div>
+<div id="outline-container-orge079cd5" class="outline-3">
+<h3 id="orge079cd5"><span class="section-number-3">3.1.</span> Region of Support</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The <b>support</b> of a DT signal \(x: \mathbb{Z} \rightarrow \mathbb{R}\) is defined as:
+</p>
+
+\begin{align}
+\text{supp}(x) = \{n \in \mathbb{Z} | x[n] \neq 0 \}
+\end{align}
+
+<p>
+If \(|\text{supp}(x)|<\infty\), then the function has a fin.ite support DT signals that have finite support are called <b>finite impulse response</b> (FIR) signals. On the other hand, a signal that has infinite support are called <b>infinite impulse response</b> (IIR) signals.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -464,7 +535,7 @@ Say we have two DT-LTI systems represented by the functions \(f[n]\) and \(g[n]\
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-14 12:00
+               Last modified: 2026-04-16 10:57
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
