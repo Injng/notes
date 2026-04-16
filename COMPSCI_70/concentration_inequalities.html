@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-04-16 Thu 16:10 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Concentration Inequalities</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Concentration Inequalities</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2149eab">1. Concentration Inequalities</a>
+<ul>
+<li><a href="#orga255551">1.1. Indicator Random Variables</a></li>
+<li><a href="#org964bb62">1.2. Markov&rsquo;s Inequality</a></li>
+<li><a href="#org38d61be">1.3. Chebyshev&rsquo;s Inequality</a></li>
+</ul>
+</li>
+<li><a href="#org34e4eff">2. Estimating the Mean of a Distribution</a>
+<ul>
+<li><a href="#org56f19c0">2.1. Weak Law of Large Numbers</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2149eab" class="outline-2">
+<h2 id="org2149eab"><span class="section-number-2">1.</span> Concentration Inequalities</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Concentration inequalities allow us to bound tail probabilities or quantify derivations from the mean:
+</p>
+
+
+<div id="org2c78a90" class="figure">
+<p><img src="../static/COMPSCI_70/random_variables4.png" alt="random_variables4.png" />
+</p>
+</div>
+
+<p>
+In real scenarios, we often have finite sample sizes, so we would like to quantify the uncertainty in our estimations.
+</p>
+</div>
+<div id="outline-container-orga255551" class="outline-3">
+<h3 id="orga255551"><span class="section-number-3">1.1.</span> Indicator Random Variables</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The <b>indicator random variable</b> for an event \(A\) is defined as:
+</p>
+
+\begin{align}
+I_A(\omega) = \begin{cases}
+1 & \omega \in A \\
+0 & \omega \not\in A
+\end{cases}
+\end{align}
+
+<p>
+In other words, it returns \(1\) if the event \(\omega\) is contained in \(A\), and \(0\) otherwise.
+</p>
+
+<p>
+<b>Lemma:</b> Let \(X\) be a non-negative random variable. Then, for all \(\omega \in \Omega\) and for all constants \(c > 0\),
+</p>
+
+\begin{align}
+X(\omega) \geq cI_{\{X\geq c\}}(\omega)
+\end{align}
+
+<p>
+<b>Proof:</b> We know that the event \(X \geq c\) is \(\{\omega \in \Omega | X(\omega)\geq c\}\). Then, we have 2 cases:
+</p>
+
+<p>
+Case 1: \(X(\omega) < c \Rightarrow I_{\{X\geq c\}}(\omega) = 0\). Since \(X\) is non-negative, we have \(X(\omega) \geq cI_{\{X\geq c\}}(\omega)=0\).
+</p>
+
+<p>
+Case 2: \(X(\omega) \geq c \Rightarrow I_{\{X\geq c\}}(\omega)=1\), so \(X(\omega) \geq cI_{\{X\geq c\}}(\omega)=c\).
+</p>
+
+<p>
+Since both cases satisfy the lemma, we are done. \(\square\)
+</p>
+</div>
+</div>
+<div id="outline-container-org964bb62" class="outline-3">
+<h3 id="org964bb62"><span class="section-number-3">1.2.</span> Markov&rsquo;s Inequality</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+<b>Markov&rsquo;s inequality</b> states that if \(X\) is a non-negative random variable with \(\mathbb{E}[|X|] < \infty\), then for all constants \(c > 0\),
+</p>
+
+\begin{align}
+\boxed{\mathbb{P}[X\geq c] \leq \frac{\mathbb{E}[X]}{c}}
+\end{align}
+
+<p>
+<b>Proof:</b> By the previous section&rsquo;s lemma, we know that \(X(\omega) \geq cI_{\{X\geq c\}}(\omega)\). Then, we have
+</p>
+
+\begin{align}
+X(\omega) &\geq cI_{\{X\geq c\}}(\omega) \notag \\
+\sum_{\omega}X(\omega)\mathbb{P}[\omega] &\geq \sum_{\omega}cI_{\{X\geq c\}}(\omega)\mathbb{P}[\omega] \notag \\
+\mathbb{E}[X] &\geq c\mathbb{E}[I_{\{X\geq c\}}] = c\mathbb{P}[X\geq c] \quad \square \notag
+\end{align}
+</div>
+</div>
+<div id="outline-container-org38d61be" class="outline-3">
+<h3 id="org38d61be"><span class="section-number-3">1.3.</span> Chebyshev&rsquo;s Inequality</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+<b>Chebyshev&rsquo;s inequality</b> is a stronger and more generalized form of Markov&rsquo;s inequality. For all random variables \(X\) with \(\mathbb{E}[X]=\mu < \infty\) and for all constants \(c>0\),
+</p>
+
+\begin{align}
+\boxed{\mathbb{P}[|X-\mu|\geq c] \leq \frac{\text{Var}(X)}{c^2}}
+\end{align}
+
+<p>
+<b>Proof:</b> We know that \(|X-\mu|\geq c \Rightarrow |X_\mu|^2 \geq c^2\). Then, by Markov&rsquo;s inequality,
+</p>
+
+\begin{align}
+\mathbb{P}[|X-\mu|\geq c] &= \mathbb{P}[|X-\mu|^2 \geq c^2] \notag \\
+&\leq \frac{\mathbb{E}[|X-\mu|^2]}{c^2} \notag \\
+&= \frac{\text{Var}(X)}{c^2} \quad \square \notag
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org34e4eff" class="outline-2">
+<h2 id="org34e4eff"><span class="section-number-2">2.</span> Estimating the Mean of a Distribution</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Suppose \(X_1, \dots, X_n\) are i.i.d. random variables from some distribution, and \(\mathbb{E}[X_i]=\mu\) and \(\text{Var}(X_i) = \sigma^2\) for all \(i=1,\dots,n\). Suppose that \(\mu\) is unknown, whereas \(\sigma^2\) is known, and our goal is to estimate \(\mu\).
+</p>
+
+<p>
+Let \(S_n=X_1 + \cdots + X_n\). Then \(\mathbb{E}\left[\frac{S_n}{n}\right]=\mu\). Call \(\hat{\mu}_n\) the <b>estimator</b> equal to \(\hat{\mu}_n=\frac{S_n}{n}\). The question is, what sample size \(n\) should one use to achieve a desired error control with confidence \(1-\delta\)?
+</p>
+
+<p>
+By Chebyshev&rsquo;s inequality, we know that
+</p>
+
+\begin{align}
+\mathbb{P}[|\hat{\mu}_n-\mu|\geq \epsilon] \leq \frac{\text{Var}(\hat{\mu}_n)}{\epsilon^2} \notag
+\end{align}
+
+<p>
+The variance \(\text{Var}(\hat{\mu}_n)\) can be calculated like so:
+</p>
+
+\begin{align}
+\text{Var}(\hat{\mu}_n) = \frac{1}{n^2}\left(\text{Var}(X_1) + \text{Var}(X_2) + \cdots + \text{Var}(X_n)\right) = \frac{\sigma^2}{n} \notag
+\end{align}
+
+<p>
+Thus, we have
+</p>
+
+\begin{align}
+\frac{\sigma^2}{\epsilon^2 n} \leq \delta \notag
+\end{align}
+
+<p>
+Rearranging, we find that:
+</p>
+
+\begin{align}
+\boxed{n \geq \frac{\sigma^2}{\epsilon^2\delta}} \notag
+\end{align}
+</div>
+<div id="outline-container-org56f19c0" class="outline-3">
+<h3 id="org56f19c0"><span class="section-number-3">2.1.</span> Weak Law of Large Numbers</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The weak <b>Law of Large Numbers</b> states that if \(X_1, X_2, \dots\) are a sequence of i.i.d. random variables with a finite mean \(\mu\) and a finite variance<abbr class="tooltip" title="technically, LLN still holds for infinite variance, although this proof needs it">°</abbr>&emsp13; \(\sigma^2\), and \(S_n=X_1+ \cdots + X_n\), then for all \(\epsilon > 0\),
+</p>
+
+\begin{align}
+\boxed{\lim_{n\to \infty} \mathbb{P}\left[\left|\frac{S_n}{n}-\mu\right|>\epsilon\right] = 0}
+\end{align}
+
+<p>
+<b>Proof:</b> By Chebyshev&rsquo;s inequality, we know that
+</p>
+
+\begin{align}
+\mathbb{P}\left[\left|\frac{S_n}{n}-\mu\right|>\epsilon\right] &\leq \frac{\text{Var}\left(\frac{S_n}{n}\right)}{\epsilon^2} \notag \\
+&= \frac{\frac{1}{n^2}\left(\text{Var}(X_1)+\text{Var}(X_2) + \cdots + \text{Var}(X_n)\right)}{\epsilon^2} \notag \\
+&= \frac{\sigma^2}{\epsilon^2n} \notag
+\end{align}
+
+<p>
+Then, as \(n\rightarrow\infty\), the expression \(\frac{\sigma^2}{\epsilon^2n}\rightarrow 0\). \(\square\)
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-04-16 16:10
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

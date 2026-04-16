@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-14 Tue 15:49 -->
+<!-- 2026-04-16 Thu 16:08 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Random Variables</title>
@@ -176,7 +176,7 @@ A <b>random variable</b> is a function \(X: \Omega \rightarrow \mathbb{R}^n\) sa
 </p>
 
 
-<div id="org83ed8c5" class="figure">
+<div id="org27871cf" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables1.png" alt="random_variables1.png" />
 </p>
 </div>
@@ -220,7 +220,7 @@ Therefore, the collection of these events form a <a href="probability.html#orgda
 </p>
 
 
-<div id="org2c65cb3" class="figure">
+<div id="org1300df9" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables2.png" alt="random_variables2.png" />
 </p>
 </div>
@@ -392,6 +392,41 @@ Q_k=Q_0\frac{Q_1}{Q_0}\frac{Q_2}{Q_1}\cdots\frac{Q_k}{Q_{k-1}} &= e^{-\lambda}\l
 <p>
 This is precisely the Poisson distribution! So, the Poisson distribution is an <i>approximation of the binomial distribution</i> for rare events (\(p \rightarrow 0\)) over a continuous time (\(n \rightarrow \infty\)).
 </p>
+
+<p>
+Additionally, we have:
+</p>
+
+\begin{align}
+\mathbb{E}[X] = \lambda \notag \\
+\text{Var}(X) = \lambda \notag
+\end{align}
+
+<p>
+<b>Theorem:</b> We can also add Poisson distributions. Suppose \(X \sim \text{Poisson}(\lambda)\) and \(Y \sim \text{Poisson}(\mu)\) are independent random variables. Then, \(X+Y \sim \text{Poisson}(\lambda + \mu)\).
+</p>
+
+<p>
+<b>Proof:</b> We can partition the event \(\mathbb{P}[X+Y=n]\) as \(\sum_{k=0}^n \mathbb{P}[X=k,Y=n-k]\). Then, by independence we have:
+</p>
+
+\begin{align}
+\mathbb{P}[X+Y=n] &= \sum_{k=0}^n\mathbb{P}[X=k]\mathbb{P}[Y=n-k] \notag \\
+&= \sum_{k=0}^n\frac{e^{-\lambda}\lambda^k}{k!} \cdot \frac{e^{-\mu}\mu^{n-k}}{(n-k)!} \notag \\
+&= \frac{e^{-(\lambda + \mu)}}{n!}\sum_{k=0}^n\frac{n!}{k!(n-k)!}\lambda^k\mu^{n-k} \notag
+\end{align}
+
+<p>
+By the <a href="counting.html#orgb22319d">binomial theorem</a>, we get
+</p>
+
+\begin{align}
+\mathbb{P}[X+Y=n] = \frac{e^{-(\lambda + \mu)}(\lambda+\mu)^n}{n!} \notag
+\end{align}
+
+<p>
+Thus, \(X+Y \sim \text{Poisson}(\lambda + \mu)\). \(\square\)
+</p>
 </div>
 </div>
 </div>
@@ -471,7 +506,7 @@ Let \(X\) be a random variable on a sample space \(\Omega\) with probability dis
 </p>
 
 
-<div id="org8c5c5fa" class="figure">
+<div id="orgbeb87eb" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables3.png" alt="random_variables3.png" />
 </p>
 </div>
@@ -702,7 +737,7 @@ For any pair of random variables \(X\) and \(Y\) on the same probability space w
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-14 15:37
+               Last modified: 2026-04-16 15:57
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

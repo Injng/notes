@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-14 Tue 17:42 -->
+<!-- 2026-04-16 Thu 15:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Second-Order Circuits</title>
@@ -272,7 +272,7 @@ Depending on \(\alpha\) and \(\omega_0\), we can get several different situation
 </p>
 
 
-<div id="org5a17abc" class="figure">
+<div id="orgc0b5f95" class="figure">
 <p><img src="../static/EECS_16B/second_order_circuits1.png" alt="second_order_circuits1.png" />
 </p>
 </div>
@@ -324,7 +324,7 @@ To convert this into a strictly real function, we use <a href="../EECS_16A/compl
 \begin{align}
 v_C(t) &= e^{-\alpha t} \left[ A_1(\cos\omega_dt + j\sin\omega_dt) + A_2(\cos\omega_dt - j\sin\omega_dt) \right] \notag \\
        &= e^{-\alpha t} \left[ (A_1 + A_2)\cos\omega_dt + j(A_1 - A_2)\sin\omega_dt \right] \notag \\
-       &= e^{-\alpha t} \left( B_1\cos\omega_dt + B_2\sin\omega_dt \right) \notag
+       &= e^{-\alpha t} \left[ B_1\cos(\omega_dt) + B_2\sin(\omega_dt) \right] \notag
 \end{align}
 
 <p>
@@ -409,7 +409,7 @@ Because there is no resistance to dissipate energy, the circuit experiences no e
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-14 17:42
+               Last modified: 2026-04-16 15:07
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
