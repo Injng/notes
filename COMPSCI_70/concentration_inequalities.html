@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-16 Thu 16:10 -->
+<!-- 2026-04-16 Thu 20:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Concentration Inequalities</title>
@@ -149,7 +149,7 @@ Concentration inequalities allow us to bound tail probabilities or quantify deri
 </p>
 
 
-<div id="org2c78a90" class="figure">
+<div id="orga9c8cf9" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables4.png" alt="random_variables4.png" />
 </p>
 </div>
@@ -175,6 +175,15 @@ I_A(\omega) = \begin{cases}
 <p>
 In other words, it returns \(1\) if the event \(\omega\) is contained in \(A\), and \(0\) otherwise.
 </p>
+
+<p>
+The expectation and variance of an indicator random variable is:
+</p>
+
+\begin{align}
+\mathbb{E}[I_A] &= p \\
+\text{Var}(I_A) &= p(1-p)
+\end{align}
 
 <p>
 <b>Lemma:</b> Let \(X\) be a non-negative random variable. Then, for all \(\omega \in \Omega\) and for all constants \(c > 0\),
@@ -323,7 +332,7 @@ Then, as \(n\rightarrow\infty\), the expression \(\frac{\sigma^2}{\epsilon^2n}\r
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-16 16:10
+               Last modified: 2026-04-16 20:12
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
