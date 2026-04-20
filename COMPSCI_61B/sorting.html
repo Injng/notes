@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-15 Wed 13:55 -->
+<!-- 2026-04-20 Mon 13:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sorting</title>
@@ -136,8 +136,16 @@
 </li>
 <li><a href="#org097366b">1.3. Merge Sort</a></li>
 <li><a href="#org445e1d9">1.4. Insertion Sort</a></li>
+<li><a href="#orgb475428">1.5. Quicksort</a>
+<ul>
+<li><a href="#org7899bc6">1.5.1. Naive Partitioning</a></li>
+<li><a href="#org7261960">1.5.2. Hoare Partitioning</a></li>
+<li><a href="#orgaef5187">1.5.3. Runtime</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#org5a6a1fe">2. Theoretical Bound on Comparison Sorts</a></li>
 </ul>
 </div>
 </div>
@@ -887,6 +895,156 @@ The best case time complexity is \(\Theta(N)\) (when it is already sorted), and 
 </p>
 </div>
 </div>
+<div id="outline-container-orgb475428" class="outline-3">
+<h3 id="orgb475428"><span class="section-number-3">1.5.</span> Quicksort</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+The idea behind <b>quicksort</b> is that for an array, we can pick one item (called the <b>pivot</b>), get it in the correct spot, and then just ensure that the rest of the items are on the <i>correct side</i>:
+</p>
+
+
+<div id="org496e078" class="figure">
+<p><img src="../static/COMPSCI_61B/sorting1.png" alt="sorting1.png" />
+</p>
+</div>
+
+<p>
+If we then run quicksort recursively on the two subarrays on the left and right of the pivot, we end up with a sorted array. The process of picking the pivot to split the array up into left and right subarrays is called <b>partitioning</b>.
+</p>
+</div>
+<div id="outline-container-org7899bc6" class="outline-4">
+<h4 id="org7899bc6"><span class="section-number-4">1.5.1.</span> Naive Partitioning</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+Naively, we can simply create another array. Then, we can scan through the array, adding the elements smaller than our pivot at the front. Then, we add our pivot. Finally, we scan through the array again, adding all the elements greater than our pivot at the back.
+</p>
+</div>
+</div>
+<div id="outline-container-org7261960" class="outline-4">
+<h4 id="org7261960"><span class="section-number-4">1.5.2.</span> Hoare Partitioning</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+A faster way is to have two pointers walk towards each other. The left pointer favors items smaller than the pivot, whereas the right pointer favors items larger than the pivot. The idea is that they walk towards each other, swapping anything they don&rsquo;t like.
+</p>
+
+<p>
+More specifically, both pointers step towards each other. Each pointer stops when they find an element they don&rsquo;t like. When both pointers stop, they swap their elements with each other, and then move on. When both pointers cross, all that is left to do is to swap the pivot to the right spot:
+</p>
+
+<div id="hp-demo">
+  <div id="hp-st" class="hd-st">Click <b>Step</b> to begin Hoare partitioning with the first element as the pivot.</div>
+  <div id="hp-arr" class="hd-arr"></div>
+  <div class="hd-ctl">
+    <button id="hp-step" onclick="hpStep()">Step</button>
+    <button id="hp-play" onclick="hpPlay()">Play</button>
+    <button id="hp-reset" onclick="hpReset()">Reset</button>
+  </div>
+  <div class="hd-leg">
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#fcd1d7;border-color:#d20f39"></span> Pivot</span>
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#d5e4f7;border-color:#1e66f5"></span> Left pointer (L)</span>
+    <span class="hd-leg-i"><span class="hd-leg-s" style="background:#fbe6c2;border-color:#df8e1d"></span> Right pointer (R)</span>
+  </div>
+  <script>
+  (function(){
+    var INIT=[5,3,8,1,7,2,6,4];
+    var arr,pivotIdx,L,R,phase,playing,timer;
+    function render(){
+      var A=document.getElementById('hp-arr');A.innerHTML='';
+      for(var x=0;x<arr.length;x++){
+        var c=document.createElement('div');c.className='hd-cell';c.textContent=arr[x];
+        if(phase==='done'){
+          if(x===pivotIdx)c.classList.add('sorted');
+          else if(x<pivotIdx)c.style.background='#e8f0e3';
+          else c.style.background='#f0ecf7';
+        }else{
+          if(x===pivotIdx)c.classList.add('swap');
+          if(x===L&&L<arr.length)c.classList.add('hl');
+          if(x===R&&R>pivotIdx)c.classList.add('sink');
+        }
+        A.appendChild(c);
+      }
+      document.getElementById('hp-step').disabled=(phase==='done');
+      document.getElementById('hp-play').disabled=(phase==='done');
+    }
+    function step(){
+      if(phase==='done')return;
+      var m,p=arr[pivotIdx];
+      if(phase==='move-L'){
+        if(L<=R&&arr[L]<p){
+          m='arr[L=<b>'+L+'</b>]=<b>'+arr[L]+'</b> &lt; pivot=<b>'+p+'</b>. L likes it; advance L.';
+          L++;
+        }else if(L>R){
+          m='L passed R. L stops.';phase='check';
+        }else{
+          m='arr[L=<b>'+L+'</b>]=<b>'+arr[L]+'</b> &ge; pivot=<b>'+p+'</b>. L stops.';phase='move-R';
+        }
+      }else if(phase==='move-R'){
+        if(R>pivotIdx&&arr[R]>p){
+          m='arr[R=<b>'+R+'</b>]=<b>'+arr[R]+'</b> &gt; pivot=<b>'+p+'</b>. R doesn\'t like it; advance R.';
+          R--;
+        }else{
+          m='arr[R=<b>'+R+'</b>]=<b>'+arr[R]+'</b> &le; pivot=<b>'+p+'</b>. R stops.';phase='check';
+        }
+      }else if(phase==='check'){
+        if(L<R){
+          var t=arr[L];arr[L]=arr[R];arr[R]=t;
+          m='Pointers haven\'t crossed. Swap arr[<b>'+L+'</b>] and arr[<b>'+R+'</b>]; advance both.';
+          L++;R--;phase='move-L';
+        }else{
+          var t=arr[pivotIdx];arr[pivotIdx]=arr[R];arr[R]=t;
+          m='Pointers crossed. Swap pivot with arr[<b>'+R+'</b>]. Pivot is now in its final spot.';
+          pivotIdx=R;phase='done';sp();
+        }
+      }
+      msg(m);render();
+    }
+    function msg(x){document.getElementById('hp-st').innerHTML=x;}
+    function reset(){arr=INIT.slice();pivotIdx=0;L=1;R=arr.length-1;phase='move-L';sp();msg('Click <b>Step</b> to begin Hoare partitioning with the first element as the pivot.');render();}
+    function play(){if(playing){sp();return;}playing=true;document.getElementById('hp-play').textContent='Pause';timer=setInterval(function(){step();},700);}
+    function sp(){playing=false;clearInterval(timer);var b=document.getElementById('hp-play');if(b)b.textContent='Play';}
+    window.hpStep=step;window.hpPlay=play;window.hpReset=reset;
+    reset();
+  })();
+  </script>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaef5187" class="outline-4">
+<h4 id="orgaef5187"><span class="section-number-4">1.5.3.</span> Runtime</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<p>
+The runtime for quicksort highly depends on what element you choose as the pivot. It turns out that it is fastest if we choose the <i>median as the pivot</i>. With this in mind, the best case time complexity for quicksort is \(\Theta(N \log N)\), and worst case it is \(\Theta(N^2)\).
+</p>
+
+<p>
+But how is it better than mergesort if the worst case it is \(\Theta(N^2)\)? It turns out that with analysis, the <i>average runtime</i> of quicksort is \(\Theta(N \log N)\), and it is faster than mergesort. 
+</p>
+
+<p>
+Usually, however, most pivots we choose come out to a runtime of \(\Theta(N \log N)\). What we need to do is to figure out <i>how to avoid the worst case</i>. The worst case happens when the array is already in sorted order (or almost sorted order). To avoid this, we can employ a few different strategies:
+</p>
+
+<ul class="org-ul">
+<li>Randomness: pick a random pivot or shuffle before sorting.</li>
+<li>Smarter pivot selection: calculate or approximate the median</li>
+<li>Introspection: switch to a safer sort if recursion goes too deep</li>
+<li>Preprocess: analyze first to see if quicksort would be slow (no obvious way to do this)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5a6a1fe" class="outline-2">
+<h2 id="org5a6a1fe"><span class="section-number-2">2.</span> Theoretical Bound on Comparison Sorts</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Of the comparison sorts above, the best time complexity is \(O(N\log N)\). We also know that for a comparison sorting algorithm, we must at least look at every element in the array (\(\Omega(N)\)). The question is, is there a better lower bound we can find, i.e. an algorithm that can theoretically run faster than \(\Theta(N\log N)\) in the worst case?
+</p>
+
+<p>
+It turns out that the best possible worst-case time complexity of a sorting algorithm using comparisons is \(\Theta(N \log N)\). This is because if you look at the <i>decision tree</i> of sorting \(N\) items, you must make \(\log N!\) comparisons to <i>definitively know the items are sorted</i>. Then, it can be shown that \(\log N! \in \Omega(N \log N)\), so the best time complexity we can find is \(\Theta(N \log N)\).
+</p>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -895,7 +1053,7 @@ The best case time complexity is \(\Theta(N)\) (when it is already sorted), and 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-15 13:55
+               Last modified: 2026-04-20 13:41
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
