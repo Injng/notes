@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-17 Fri 14:33 -->
+<!-- 2026-04-21 Tue 23:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Random Variables</title>
+<title>Discrete Random Variables</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
    <script src="/pagefind/pagefind-ui.js"></script>
@@ -121,7 +121,7 @@
 <div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_70/index.html">COMPSCI 70</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Random Variables</h1>
+<h1 class="title">Discrete Random Variables</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
@@ -149,7 +149,7 @@
 </li>
 <li><a href="#org64c275a">4. Expectation</a>
 <ul>
-<li><a href="#org7f7698f">4.1. Funcions of Random Variables</a></li>
+<li><a href="#org028b5c1">4.1. Functions of Random Variables</a></li>
 <li><a href="#org41fc1a2">4.2. Conditional Expectation</a></li>
 <li><a href="#org01761ce">4.3. Tail Sum Formula</a></li>
 </ul>
@@ -176,7 +176,7 @@ A <b>random variable</b> is a function \(X: \Omega \rightarrow \mathbb{R}^n\) sa
 </p>
 
 
-<div id="org9ff7e27" class="figure">
+<div id="org050d6f8" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables1.png" alt="random_variables1.png" />
 </p>
 </div>
@@ -220,7 +220,7 @@ Therefore, the collection of these events form a <a href="probability.html#orgda
 </p>
 
 
-<div id="org7dd5a05" class="figure">
+<div id="org9b8f902" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables2.png" alt="random_variables2.png" />
 </p>
 </div>
@@ -498,15 +498,15 @@ We can view the expectation as a type of weighted average over the random variab
 \mathbb{E}[\alpha X+Y] = \alpha\mathbb{E}[X] + \mathbb{E}[Y]
 \end{align}
 </div>
-<div id="outline-container-org7f7698f" class="outline-3">
-<h3 id="org7f7698f"><span class="section-number-3">4.1.</span> Funcions of Random Variables</h3>
+<div id="outline-container-org028b5c1" class="outline-3">
+<h3 id="org028b5c1"><span class="section-number-3">4.1.</span> Functions of Random Variables</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Let \(X\) be a random variable on a sample space \(\Omega\) with probability distribution \(\mathbb{P}_X\). Then, for a function \(f(\cdot)\) on the range of \(X\), \(Y=f(X)\) is also a random variable on \(\Omega\):
 </p>
 
 
-<div id="orgef4233b" class="figure">
+<div id="org7efa3a6" class="figure">
 <p><img src="../static/COMPSCI_70/random_variables3.png" alt="random_variables3.png" />
 </p>
 </div>
@@ -737,7 +737,7 @@ For any pair of random variables \(X\) and \(Y\) on the same probability space w
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-17 14:33
+               Last modified: 2026-04-21 16:19
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
