@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-09 Thu 13:13 -->
+<!-- 2026-04-21 Tue 23:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Frequency Response</title>
+<title>Filters</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
    <script src="/pagefind/pagefind-ui.js"></script>
@@ -121,19 +121,34 @@
 <div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/EECS_16B/index.html">EECS 16B</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Frequency Response</h1>
+<h1 class="title">Filters</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd3c6a76">1. Transfer Functions</a></li>
-<li><a href="#orgb580e34">2. Bode Plots</a></li>
+<li><a href="#orgffd8c13">1. Filters</a>
+<ul>
+<li><a href="#orgd3c6a76">1.1. Transfer Functions</a></li>
+</ul>
+</li>
+<li><a href="#orgb580e34">2. Bode Plots</a>
+<ul>
+<li><a href="#org5fd021f">2.1. Poles and Zeroes</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd3c6a76" class="outline-2">
-<h2 id="orgd3c6a76"><span class="section-number-2">1.</span> Transfer Functions</h2>
+<div id="outline-container-orgffd8c13" class="outline-2">
+<h2 id="orgffd8c13"><span class="section-number-2">1.</span> Filters</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+<b>Filters</b> filter an input signal and allow certain frequencies through while rejecting others. <b>Low pass filters</b> are filters that allow low frequencies through and blocks high frequencies. Similarly, <b>high pass filters</b> allow high frequencies and blocks low frequencies. The band of frequencies that are allowed to pass is called the <b>passband</b>, and the band that is blocked is called the <b>stopband</b>. We can also create filters that allow a certain <i>middle band</i> of frequencies through (the <b>bandpass</b> filter) or block that middle band (the <b>bandreject</b> filter).
+</p>
+</div>
+<div id="outline-container-orgd3c6a76" class="outline-3">
+<h3 id="orgd3c6a76"><span class="section-number-3">1.1.</span> Transfer Functions</h3>
+<div class="outline-text-3" id="text-1-1">
 <p>
 We can define a <b>transfer function</b> that describes the voltage response of a linear circuit like so:
 </p>
@@ -180,6 +195,7 @@ Then, when \(M(\omega_c) = \frac{M(0)}{\sqrt{2}}\), \(M^2(\omega_c) = \frac{M^2(
 </p>
 </div>
 </div>
+</div>
 <div id="outline-container-orgb580e34" class="outline-2">
 <h2 id="orgb580e34"><span class="section-number-2">2.</span> Bode Plots</h2>
 <div class="outline-text-2" id="text-2">
@@ -199,6 +215,53 @@ For <b>decibel scales</b>, each increment is represented by the <b>decibel</b>. 
 \boxed{|H(\omega)|_{\text{dB}} = 20\log_{10}(|H(f)|)}
 \end{align}
 </div>
+<div id="outline-container-org5fd021f" class="outline-3">
+<h3 id="org5fd021f"><span class="section-number-3">2.1.</span> Poles and Zeroes</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Given a function like
+</p>
+
+\begin{align}
+f(s) = \frac{(s-z_1)(s-z_2)\cdots}{(s-p_1)(s-p_2)\cdots} \notag
+\end{align}
+
+<p>
+The <b>zeroes</b> are the values for which the function goes to \(0\) (e.g. \(z_1, z_2, \dots\)). The <b>poles</b> are the values for which the function goes to \(\infty\) (e.g \(p_1, p_2, \dots\)).
+</p>
+
+<p>
+In the context of transfer functions, say we have a system composed of three cascaded filters \(V_{\text{out}} = A_1A_2A_3V_{\text{in}}\), then \(H(\omega)=A_1A_2A_3\). We can represent \(A_i=M_ie^{j\omega\phi_i}\), and then our transfer function is:
+</p>
+
+\begin{align}
+H(\omega)=Me^{j\omega\phi} \notag
+\end{align}
+
+<p>
+where \(M=M_1M_2M_3\) and \(\phi=\phi_1+\phi_2+\phi_3\). The fact that the total phase shift is just the sum of each of the components makes it easy to simply plot each component and then consider its sum. But since for magnitude, we represent the gain in terms of decibels, we find that:
+</p>
+
+\begin{align}
+20\log_{10}M &= 20\log_{10}(M_1M_2M_3) \notag \\
+&= 20\log_{10}M_1 + 20\log_{10}M_2 + 10\log_{10}M_3 \notag
+\end{align}
+
+<p>
+Thus, we can also add the Bode plots for the magnitude components together as well.
+</p>
+
+<p>
+The following chart shows the Bode straight-line approximates for poles and zeroes:
+</p>
+
+
+<div id="org67e9a56" class="figure">
+<p><img src="../static/EECS_16B/filters1.png" alt="filters1.png" />
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -207,7 +270,7 @@ For <b>decibel scales</b>, each increment is represented by the <b>decibel</b>. 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-08 10:52
+               Last modified: 2026-04-21 23:50
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
