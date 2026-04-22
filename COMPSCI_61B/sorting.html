@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-20 Mon 13:53 -->
+<!-- 2026-04-22 Wed 13:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Sorting</title>
@@ -126,26 +126,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org72ee564">1. Sorting</a>
+<li><a href="#org72ee564">1. Sorting</a></li>
+<li><a href="#org7a21608">2. Comparison Sorts</a>
 <ul>
-<li><a href="#orgabd15d8">1.1. Selection Sort</a></li>
-<li><a href="#orgbcedcad">1.2. Heap Sort</a>
+<li><a href="#orgabd15d8">2.1. Selection Sort</a></li>
+<li><a href="#orgbcedcad">2.2. Heap Sort</a>
 <ul>
-<li><a href="#orgb83abd1">1.2.1. In-Place Heap Sort</a></li>
+<li><a href="#orgb83abd1">2.2.1. In-Place Heap Sort</a></li>
 </ul>
 </li>
-<li><a href="#org097366b">1.3. Merge Sort</a></li>
-<li><a href="#org445e1d9">1.4. Insertion Sort</a></li>
-<li><a href="#orgb475428">1.5. Quicksort</a>
+<li><a href="#org097366b">2.3. Merge Sort</a></li>
+<li><a href="#org445e1d9">2.4. Insertion Sort</a></li>
+<li><a href="#orgb475428">2.5. Quicksort</a>
 <ul>
-<li><a href="#org7899bc6">1.5.1. Naive Partitioning</a></li>
-<li><a href="#org7261960">1.5.2. Hoare Partitioning</a></li>
-<li><a href="#orgaef5187">1.5.3. Runtime</a></li>
+<li><a href="#org7899bc6">2.5.1. Naive Partitioning</a></li>
+<li><a href="#org7261960">2.5.2. Hoare Partitioning</a></li>
+<li><a href="#orgaef5187">2.5.3. Runtime</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5a6a1fe">2. Theoretical Bound on Comparison Sorts</a></li>
+<li><a href="#org5a6a1fe">3. Theoretical Bound on Comparison Sorts</a></li>
+<li><a href="#org0d2d145">4. Sorting Stability</a></li>
+<li><a href="#orgab50076">5. Non-Comparison Sorts</a>
+<ul>
+<li><a href="#orgb18606e">5.1. Counting Sort</a></li>
+<li><a href="#org5ba5083">5.2. Radix Sort</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -165,9 +173,14 @@
 An <b>inversion</b> is a pair of elements that are out of order with respect to our relation \(<\).
 </p>
 </div>
+</div>
+<div id="outline-container-org7a21608" class="outline-2">
+<h2 id="org7a21608"><span class="section-number-2">2.</span> Comparison Sorts</h2>
+<div class="outline-text-2" id="text-2">
+</div>
 <div id="outline-container-orgabd15d8" class="outline-3">
-<h3 id="orgabd15d8"><span class="section-number-3">1.1.</span> Selection Sort</h3>
-<div class="outline-text-3" id="text-1-1">
+<h3 id="orgabd15d8"><span class="section-number-3">2.1.</span> Selection Sort</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 To <b>selection sort</b> \(N\) items, we:
 </p>
@@ -414,8 +427,8 @@ The time complexity of selection sort is \(N + (N-1) + \cdots + 1 = \Theta(N^2)\
 </div>
 </div>
 <div id="outline-container-orgbcedcad" class="outline-3">
-<h3 id="orgbcedcad"><span class="section-number-3">1.2.</span> Heap Sort</h3>
-<div class="outline-text-3" id="text-1-2">
+<h3 id="orgbcedcad"><span class="section-number-3">2.2.</span> Heap Sort</h3>
+<div class="outline-text-3" id="text-2-2">
 <p>
 Selection sort is inefficient because we have to search the entire unsorted array for the smallest item every time. The fix is to first insert all the items into a max heap.
 </p>
@@ -532,8 +545,8 @@ The time complexity of heap sort is \(O(N \log N)\). The space complexity of hea
 </p>
 </div>
 <div id="outline-container-orgb83abd1" class="outline-4">
-<h4 id="orgb83abd1"><span class="section-number-4">1.2.1.</span> In-Place Heap Sort</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<h4 id="orgb83abd1"><span class="section-number-4">2.2.1.</span> In-Place Heap Sort</h4>
+<div class="outline-text-4" id="text-2-2-1">
 <p>
 To increase memory efficiency, instead of using a separate output array, we can use the same input array and sort <i>in-place</i>. First, we can create a complete binary tree directly using the elements in our input array, and then &ldquo;heapify&rdquo; the result. To do this, we:
 </p>
@@ -711,8 +724,8 @@ Now, our space complexity is just \(\Theta(1)\) since we don&rsquo;t need any ex
 </div>
 </div>
 <div id="outline-container-org097366b" class="outline-3">
-<h3 id="org097366b"><span class="section-number-3">1.3.</span> Merge Sort</h3>
-<div class="outline-text-3" id="text-1-3">
+<h3 id="org097366b"><span class="section-number-3">2.3.</span> Merge Sort</h3>
+<div class="outline-text-3" id="text-2-3">
 <p>
 To merge sort \(N\) items, we:
 </p>
@@ -813,8 +826,8 @@ The time complexity for this is \(\Theta(N \log N)\), and its space complexity i
 </div>
 </div>
 <div id="outline-container-org445e1d9" class="outline-3">
-<h3 id="org445e1d9"><span class="section-number-3">1.4.</span> Insertion Sort</h3>
-<div class="outline-text-3" id="text-1-4">
+<h3 id="org445e1d9"><span class="section-number-3">2.4.</span> Insertion Sort</h3>
+<div class="outline-text-3" id="text-2-4">
 <p>
 To insertion sort \(N\) items, we:
 </p>
@@ -896,14 +909,14 @@ The best case time complexity is \(\Theta(N)\) (when it is already sorted), and 
 </div>
 </div>
 <div id="outline-container-orgb475428" class="outline-3">
-<h3 id="orgb475428"><span class="section-number-3">1.5.</span> Quicksort</h3>
-<div class="outline-text-3" id="text-1-5">
+<h3 id="orgb475428"><span class="section-number-3">2.5.</span> Quicksort</h3>
+<div class="outline-text-3" id="text-2-5">
 <p>
 The idea behind <b>quicksort</b> is that for an array, we can pick one item (called the <b>pivot</b>), get it in the correct spot, and then just ensure that the rest of the items are on the <i>correct side</i>:
 </p>
 
 
-<div id="org496e078" class="figure">
+<div id="orgd187118" class="figure">
 <p><img src="../static/COMPSCI_61B/sorting1.png" alt="sorting1.png" />
 </p>
 </div>
@@ -913,16 +926,16 @@ If we then run quicksort recursively on the two subarrays on the left and right 
 </p>
 </div>
 <div id="outline-container-org7899bc6" class="outline-4">
-<h4 id="org7899bc6"><span class="section-number-4">1.5.1.</span> Naive Partitioning</h4>
-<div class="outline-text-4" id="text-1-5-1">
+<h4 id="org7899bc6"><span class="section-number-4">2.5.1.</span> Naive Partitioning</h4>
+<div class="outline-text-4" id="text-2-5-1">
 <p>
 Naively, we can simply create another array. Then, we can scan through the array, adding the elements smaller than our pivot at the front. Then, we add our pivot. Finally, we scan through the array again, adding all the elements greater than our pivot at the back.
 </p>
 </div>
 </div>
 <div id="outline-container-org7261960" class="outline-4">
-<h4 id="org7261960"><span class="section-number-4">1.5.2.</span> Hoare Partitioning</h4>
-<div class="outline-text-4" id="text-1-5-2">
+<h4 id="org7261960"><span class="section-number-4">2.5.2.</span> Hoare Partitioning</h4>
+<div class="outline-text-4" id="text-2-5-2">
 <p>
 A faster way is to have two pointers walk towards each other. The left pointer favors items smaller than the pivot, whereas the right pointer favors items larger than the pivot. The idea is that they walk towards each other, swapping anything they don&rsquo;t like.
 </p>
@@ -1010,8 +1023,8 @@ More specifically, both pointers step towards each other. Each pointer stops whe
 </div>
 </div>
 <div id="outline-container-orgaef5187" class="outline-4">
-<h4 id="orgaef5187"><span class="section-number-4">1.5.3.</span> Runtime</h4>
-<div class="outline-text-4" id="text-1-5-3">
+<h4 id="orgaef5187"><span class="section-number-4">2.5.3.</span> Runtime</h4>
+<div class="outline-text-4" id="text-2-5-3">
 <p>
 The runtime for quicksort highly depends on what element you choose as the pivot. It turns out that it is fastest if we choose the <i>median as the pivot</i>. With this in mind, the best case time complexity for quicksort is \(\Theta(N \log N)\), and worst case it is \(\Theta(N^2)\).
 </p>
@@ -1035,8 +1048,8 @@ Usually, however, most pivots we choose come out to a runtime of \(\Theta(N \log
 </div>
 </div>
 <div id="outline-container-org5a6a1fe" class="outline-2">
-<h2 id="org5a6a1fe"><span class="section-number-2">2.</span> Theoretical Bound on Comparison Sorts</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="org5a6a1fe"><span class="section-number-2">3.</span> Theoretical Bound on Comparison Sorts</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 Of the comparison sorts above, the best time complexity is \(O(N\log N)\). We also know that for a comparison sorting algorithm, we must at least look at every element in the array (\(\Omega(N)\)). The question is, is there a better lower bound we can find, i.e. an algorithm that can theoretically run faster than \(\Theta(N\log N)\) in the worst case?
 </p>
@@ -1046,6 +1059,56 @@ It turns out that the best possible worst-case time complexity of a sorting algo
 </p>
 </div>
 </div>
+<div id="outline-container-org0d2d145" class="outline-2">
+<h2 id="org0d2d145"><span class="section-number-2">4.</span> Sorting Stability</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+A sort is said to be <b>stable</b> if the order of equivalent items is preserved:
+</p>
+
+
+<div id="org16820ae" class="figure">
+<p><img src="../static/COMPSCI_61B/sorting2.png" alt="sorting2.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgab50076" class="outline-2">
+<h2 id="orgab50076"><span class="section-number-2">5.</span> Non-Comparison Sorts</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Since comparison sorts are limited to \(\Theta(N\log N)\) time complexity, perhaps we can achieve better time complexity for sorting certain special sets.
+</p>
+</div>
+<div id="outline-container-orgb18606e" class="outline-3">
+<h3 id="orgb18606e"><span class="section-number-3">5.1.</span> Counting Sort</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<b>Counting sort</b> exploits the space instead of time. Say we have a list of names that have IDs ranging from 0 to 11. Then, we can sort this list of names by ID by simply relating their ID to an index in an array.
+</p>
+
+<p>
+Running this algorithm, we would be able to sort \(N\) items in \(\Theta(N)\) worst case time.
+</p>
+
+<p>
+More generally, we call the set of possible indices that our keys can take on the <b>alphabet</b>. Then, if our alphabet is of size \(R\) and we have \(N\) keys, counting sort runs in \(\Theta(N+R)\) worst case time.
+</p>
+</div>
+</div>
+<div id="outline-container-org5ba5083" class="outline-3">
+<h3 id="org5ba5083"><span class="section-number-3">5.2.</span> Radix Sort</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Counting sort is slow when our alphabet is large. By decomposing our input keys into a string of characters from a finite alphabet, we can force \(R\) ot be small. We can sort each digit independently from the rightmost digit (least significant digit) towards the left by running counting sort independently on each digit, or <b>radix</b>.
+</p>
+
+<p>
+Then, the runtime of this algorith mis \(\Theta(WN+WR)\), where \(N\) is the number of items, \(R\) is the size of the alphabet, and \(W\) is the width of each item in digits.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -1053,7 +1116,7 @@ It turns out that the best possible worst-case time complexity of a sorting algo
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-20 13:41
+               Last modified: 2026-04-22 13:48
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
