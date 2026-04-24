@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-21 Tue 23:29 -->
+<!-- 2026-04-24 Fri 00:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Continuous Random Variables</title>
@@ -140,8 +140,14 @@
 <ul>
 <li><a href="#orgfac136d">2.1. Uniform Distribution</a></li>
 <li><a href="#org6f9c8f7">2.2. Exponential Distribution</a></li>
+<li><a href="#orgda75349">2.3. Normal Distribution</a>
+<ul>
+<li><a href="#org9d0ec58">2.3.1. Sum of Independent Normal Random Variables</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#org984fa2f">3. Central Limit Theorem</a></li>
 </ul>
 </div>
 </div>
@@ -351,6 +357,99 @@ is called an exponential random variable with parameter \(\lambda\), and we writ
 \end{align}
 </div>
 </div>
+<div id="outline-container-orgda75349" class="outline-3">
+<h3 id="orgda75349"><span class="section-number-3">2.3.</span> Normal Distribution</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+A continuous random variable \(X\) has a <b>normal distribution</b> (or Gaussian distribution) if it has a PDF of:
+</p>
+
+\begin{align}
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^{\frac{-(x-\mu)^2}{2\sigma^2}}
+\end{align}
+
+<p>
+We write \(A \sim N(\mu,\sigma^2)\). In the special case of \(N(0,1)\), \(X\) is said to have the <b>standard normal distribution</b>. In fact, given any normal distribution, we can shift and rescale it to become the standard normal distribution.
+</p>
+
+<p>
+More specifically, if \(X \sim N(\mu,\sigma^2)\), then \(Y=\frac{X-\mu}{\sigma} \sim N(0,1)\). Equivalently, if \(Y\sim N(0,1)\), then \(X=\sigma Y + \mu \sim N(\mu,\sigma^2)\).
+</p>
+
+<p>
+The expectation and variance of the normal distribution is:
+</p>
+
+\begin{align}
+\mathbb{E}[X] &= \mu \\
+\text{Var}(X) &= \sigma^2
+\end{align}
+</div>
+<div id="outline-container-org9d0ec58" class="outline-4">
+<h4 id="org9d0ec58"><span class="section-number-4">2.3.1.</span> Sum of Independent Normal Random Variables</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+An important property of the normal distribution is that the <i>sum of independent normal random variables</i> is also normally distributed.
+</p>
+
+<p>
+For the standard normal case: if \(X \sim N(0,1)\) and \(Y \sim N(0,1)\) are independent and \(a,b\in\mathbb{R}\) are constants, then \(Z = aX + bY \sim N(0,a^2+b^2)\).
+</p>
+
+<p>
+The key insight behind this is that the joint density of two independent standard normals, \(f_{X,Y}(x,y)=\frac{1}{2\pi}e^{-(x^2+y^2)/2}\), is <i>rotationally symmetric</i> around the origin (it only depends on the distance \(x^2+y^2\) from the origin). This means that rotating the half-plane \(\{(x,y) \mid ax+by \leq t\}\) into \(\{(x,y) \mid x \leq \frac{t}{\sqrt{a^2+b^2}}\}\) does not change the probability, so \(Z\) has the same distribution as \(\sqrt{a^2+b^2}\,X\), which by the shift/scale lemma is \(N(0,a^2+b^2)\).
+</p>
+
+<p>
+The general case follows from the shift/scale property. If \(X \sim N(\mu_X,\sigma_X^2)\) and \(Y \sim N(\mu_Y,\sigma_Y^2)\) are independent, then for any constants \(a,b\in\mathbb{R}\):
+</p>
+
+\begin{align}
+\boxed{Z = aX + bY \sim N(a\mu_X + b\mu_Y,\; a^2\sigma_X^2 + b^2\sigma_Y^2)}
+\end{align}
+
+<p>
+This follows by standardizing: let \(Z_1 = \frac{X-\mu_X}{\sigma_X}\) and \(Z_2 = \frac{Y-\mu_Y}{\sigma_Y}\), which are independent standard normals. Then \(Z = (a\mu_X + b\mu_Y) + (a\sigma_X Z_1 + b\sigma_Y Z_2)\), and the standard normal result tells us the second term is \(N(0, a^2\sigma_X^2 + b^2\sigma_Y^2)\). Shifting by the constant gives the result.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org984fa2f" class="outline-2">
+<h2 id="org984fa2f"><span class="section-number-2">3.</span> Central Limit Theorem</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The Central Limit Theorem (CLT) is a much stronger statement than the <a href="concentration_inequalities.html#org56f19c0">Law of Large Numbers</a>. While the Law of Large Numbers tells us that the sample average \(\frac{S_n}{n}\) converges to the mean \(\mu\), the CLT tells us that the <i>distribution</i> of the sample average, for large enough \(n\), looks like a normal distribution with mean \(\mu\) and variance \(\frac{\sigma^2}{n}\).
+</p>
+
+<p>
+To state the CLT precisely, we standardize \(\frac{S_n}{n}\) so that the limiting distribution is a fixed constant (rather than depending on \(n\)):
+</p>
+
+\begin{align}
+\frac{\frac{S_n}{n} - \mu}{\frac{\sigma}{\sqrt{n}}} = \frac{S_n - n\mu}{\sigma\sqrt{n}}
+\end{align}
+
+<p>
+Let \(X_1,X_2,\ldots\) be a sequence of i.i.d. random variables with common finite expectation \(\mathbb{E}[X_i]=\mu\) and finite variance \(\text{Var}(X_i)=\sigma^2\). Let \(S_n = \sum_{i=1}^{n}X_i\). Then:
+</p>
+
+\begin{align}
+\boxed{\mathbb{P}\left[\frac{S_n - n\mu}{\sigma\sqrt{n}} \leq c\right] \to \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{c}e^{-x^2/2}\text{ d}x \quad \text{as } n\to\infty}
+\end{align}
+
+<p>
+In other words, the distribution of \(\frac{S_n - n\mu}{\sigma\sqrt{n}}\) converges to \(N(0,1)\) as \(n\to\infty\).
+</p>
+
+<p>
+This is a striking result: <i>all trace of the original distribution of \(X\) disappears as \(n\) gets large</i>. No matter how complex the distribution of \(X\) is, the sample average always looks normal for large \(n\). The only effect of the original distribution is through the variance \(\sigma^2\), which determines the width of the bell curve (and hence how fast it shrinks to a spike at \(\mu\)).
+</p>
+
+<p>
+This immediately explains why the normal distribution shows up so often in practice. Much of the data we work with in real life (mean wealth, mean height, mean temperature, etc.) is the result of averaging, so by the CLT it naturally follows a normal distribution. Even something like the height of a population tends to be normal, because a person&rsquo;s height is itself the result of averaging many independent factors (nutrition, environment, various genetic factors, etc.).
+</p>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -359,7 +458,7 @@ is called an exponential random variable with parameter \(\lambda\), and we writ
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-21 23:29
+               Last modified: 2026-04-24 00:50
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
