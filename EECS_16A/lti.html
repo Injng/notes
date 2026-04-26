@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-16 Thu 10:57 -->
+<!-- 2026-04-26 Sun 14:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Time-Invariant Systems</title>
@@ -130,6 +130,7 @@
 <ul>
 <li><a href="#org6de50bf">1.1. Linearity</a></li>
 <li><a href="#org6ccef79">1.2. Time Invariance</a></li>
+<li><a href="#org63cd91a">1.3. Causality</a></li>
 </ul>
 </li>
 <li><a href="#org97fe38f">2. Convolutions</a>
@@ -145,6 +146,7 @@
 <li><a href="#orge079cd5">3.1. Region of Support</a></li>
 </ul>
 </li>
+<li><a href="#orgd571d5e">4. Bounded-Input Bounded-Output Stability</a></li>
 </ul>
 </div>
 </div>
@@ -359,6 +361,27 @@ This system is an example of a <i>modulator</i>, which is used by AM (amplitude 
 </details>
 </div>
 </div>
+<div id="outline-container-org63cd91a" class="outline-3">
+<h3 id="org63cd91a"><span class="section-number-3">1.3.</span> Causality</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+We say a system \(H: \mathcal{X} \to \mathcal{Y}\) is <b>causal</b> if for every pair of \(x_1,x_2 \in \mathcal{X}\) and \(\forall N \in \mathbb{Z}\) such that \(x_1[n]=x_2[n] \; \forall n \leq N\) then \(y_1[n]=y_2[n] \; \forall n \leq N\). In other words, if two different input signals have the same value in a range \(n \leq N\), then the resulting outut signals will also have the same value in that range; the system does not <i>peek ahead in time</i>. To produce \(y[n]\), the system uses \(x[m]\) for \(m \leq n\) only.
+</p>
+
+<p>
+Thus, a DT LTI system is causal if and only if the terms in the future are zero:
+</p>
+
+\begin{align}
+y[n] &= \sum_{k=-\infty}^{\infty} h[k] x[n-k] \notag \\
+&= \cdots + 0x[2] + 0x[n+1] + h[0]x[n] + h[1]x[n-1] + \cdots \notag
+\end{align}
+
+<p>
+Therefore, a DT LTI system is causal if and only if \(h[n]=0\) for \(n < 0\).
+</p>
+</div>
+</div>
 </div>
 <div id="outline-container-org97fe38f" class="outline-2">
 <h2 id="org97fe38f"><span class="section-number-2">2.</span> Convolutions</h2>
@@ -528,6 +551,60 @@ If \(|\text{supp}(x)|<\infty\), then the function has a fin.ite support DT signa
 </div>
 </div>
 </div>
+<div id="outline-container-orgd571d5e" class="outline-2">
+<h2 id="orgd571d5e"><span class="section-number-2">4.</span> Bounded-Input Bounded-Output Stability</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+A DT signal \(x: \mathbb{Z} \to \mathbb{R}\) is <b>bounded</b> if there exists \(B_x \in \mathbb{R}\) such that:
+</p>
+
+\begin{align}
+|x[n]| \leq B_x \quad \forall n \in \mathbb{Z}
+\end{align}
+
+<p>
+In other words, a DT signal is bounded if there exists some \(B_x \in \mathbb{R}\) such that the <i>output magnitude of the signal never exceeds</i> \(B_x\).
+</p>
+
+<p>
+A system is <b>bounded-input bounded-output stable</b> (BIBO stable) if every bounded input produces a bounded output. A DT LTI system is BIBO stable if and only if:
+</p>
+
+\begin{align}
+\sum_{n=-\infty}^{\infty} |h[n]| < \infty
+\end{align}
+
+<p>
+To prove sufficiency, let \(x\) be a bounded input signal with bound \(B_x\). Then, the magnitude of the output of the system is:
+</p>
+
+\begin{align}
+|y[n]| = \left| \sum_{n=-\infty}^{\infty} h[k]x[n-k] \right| \notag
+\end{align}
+
+<p>
+Using the triangle inequality, we can bound this like so:
+</p>
+
+\begin{align}
+|y[n]| &\leq \sum_{n=-\infty}^{\infty}|h[k]x[n-k]| \notag \\
+&= \sum_{n=-\infty}^{\infty} |h[k]||x[n-k]| \notag \\
+&\leq B_x \sum_{n=-\infty}^{\infty}|h[k]| \notag
+\end{align}
+
+<p>
+Since \(\sum_{n=-\infty}^{\infty}|h[k]| < \infty\), the output is also bounded.
+</p>
+
+<p>
+To prove necessity, we use contraposition to prove that if \(h\) is not absolutely summable, then there exists some bounded input signal such that \(H\) is not BIBO stable.
+</p>
+
+<p>
+Using this theorem, we can see that every FIR DT LTI filter is BIBO stable.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -535,7 +612,7 @@ If \(|\text{supp}(x)|<\infty\), then the function has a fin.ite support DT signa
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-16 10:57
+               Last modified: 2026-04-26 14:01
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
