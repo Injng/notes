@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-21 Tue 23:50 -->
+<!-- 2026-04-29 Wed 01:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Filters</title>
@@ -136,6 +136,7 @@
 <li><a href="#org5fd021f">2.1. Poles and Zeroes</a></li>
 </ul>
 </li>
+<li><a href="#orge280278">3. Q Factor</a></li>
 </ul>
 </div>
 </div>
@@ -256,11 +257,31 @@ The following chart shows the Bode straight-line approximates for poles and zero
 </p>
 
 
-<div id="org67e9a56" class="figure">
+<div id="org5bc693e" class="figure">
 <p><img src="../static/EECS_16B/filters1.png" alt="filters1.png" />
 </p>
 </div>
 </div>
+</div>
+</div>
+<div id="outline-container-orge280278" class="outline-2">
+<h2 id="orge280278"><span class="section-number-2">3.</span> Q Factor</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<b>Q factor</b> or quality factor of a resonant circuit is defined as:
+</p>
+
+\begin{align}
+Q = \frac{\omega_0}{B}
+\end{align}
+
+<p>
+Q factor is also often defined as the ratio of stored energy to the energy dissipated per cycle:
+</p>
+
+\begin{align}
+Q = 2\pi\frac{\text{stored energy}}{\text{energy dissipated per cycle}}
+\end{align}
 </div>
 </div>
 </div>
@@ -270,7 +291,7 @@ The following chart shows the Bode straight-line approximates for poles and zero
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-21 23:50
+               Last modified: 2026-04-29 01:28
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
