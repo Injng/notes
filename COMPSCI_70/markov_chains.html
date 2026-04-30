@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-28 Tue 21:21 -->
+<!-- 2026-04-30 Thu 15:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Markov Chains</title>
@@ -134,6 +134,13 @@
 <li><a href="#org2d8bd3d">2.3. Hitting Probability</a></li>
 </ul>
 </li>
+<li><a href="#org99af550">3. Distributions</a>
+<ul>
+<li><a href="#orgc5ae556">3.1. Stationary Distribution</a></li>
+<li><a href="#org9cebb69">3.2. Limiting Distribution</a></li>
+</ul>
+</li>
+<li><a href="#org7285b30">4. Random Walk on Undirected Graph</a></li>
 </ul>
 </div>
 </div>
@@ -265,6 +272,90 @@ where \(r = \frac{1-p}{p}\).
 </div>
 </div>
 </div>
+<div id="outline-container-org99af550" class="outline-2">
+<h2 id="org99af550"><span class="section-number-2">3.</span> Distributions</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgc5ae556" class="outline-3">
+<h3 id="orgc5ae556"><span class="section-number-3">3.1.</span> Stationary Distribution</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The row state vector \(\pi\) is called a <b>stationary distribution</b> or <b>invariant distribution</b> of the Markov chain with transition probability matrix \(P\) if
+</p>
+
+<ol class="org-ol">
+<li>\(\pi_i \geq 0 \; \forall i \in S\) and \(\sum_{i\in S}\pi_i = 1\)</li>
+<li>\(\pi P = \pi\) (left eigenvector with eigenvalue \(1\))</li>
+</ol>
+
+<p>
+State \(j\) is <b>accessible</b> from state \(i\) if \([P^n]_{ij} > 0\) for some positive \(n \in \mathbb{N}\) (there is a path from \(i\) to \(j\)). States \(i\) and \(j\) <b>intercommunicate</b> if \(j\) is accessible from \(i\) and \(i\) is also accessible from \(j\).
+</p>
+
+<p>
+A Markov chain is called <b>irreducible</b> if any state \(i\) and \(j\) in the state space are intercommunicable, i.e. any state can reach any other state. Every Markov chain with finite state space has at least one stationary distribution. Additionally, if that chain is irreducible, that stationary distribution is unique.
+</p>
+
+<p>
+The <b>period</b> \(d(i)\) of a state \(i\in S\) is defined as
+</p>
+
+\begin{align}
+d(i) = \text{gcd}(n \geq 1 | [P^n]_{ii}>0)
+\end{align}
+
+<p>
+In other words, the GCD of the number of steps it takes for all paths that go back to that state. A state is <b>periodic</b> if \(d(i) > 1\), and <b>aperiodic</b> if \(d(i) = 1\).
+</p>
+
+<p>
+<b>Theorem:</b> If \(i\) and \(j\) intercommunicate, then \(d(i)=d(j)\).
+</p>
+
+<p>
+<b>Proof:</b> Recall that \(d(i) = \text{gcd}(n\geq 1 | [P^n]_{ii}>0)\). We want to show that \(d(i)=d(j)\), so it is equivalent to show that \(d(i) | d(j)\) and \(d(j) | d(i)\).
+</p>
+
+<p>
+Since \(i\) and \(j\) intercommunicate, there is a path from \(i\) to \(j\) with length \(l_{ij}\), and a path from \(j\) to \(i\) with length \(l_{ji}\). We know that there exists a path from \(j\) back to \(j\) with length \(l_{ij}+l_{ji}\). Then, an arbitrary path from \(j\) back to \(j\) with length \(k\) means that we also have a path from \(i\) back to \(i\) with length \(l_{ij}+l_{ji}+k\). Then,
+</p>
+
+\begin{align}
+d(i)&|l_{ij}+l_{ji}+k \notag \\
+d(i) &| l_{ij} + l_{ji} \notag \\
+\Rightarrow d(i) &| k \notag
+\end{align}
+
+<p>
+Since \(k\) must be a multiple of \(d(j)\), we have \(d(i)|d(j)\). By symmetry, we can also see that \(d(j)|d(i)\). \(\square\)
+</p>
+</div>
+</div>
+<div id="outline-container-org9cebb69" class="outline-3">
+<h3 id="org9cebb69"><span class="section-number-3">3.2.</span> Limiting Distribution</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+The <b>Fundamental Theorem of Markov Chains</b> says that if a finite Markov chain is irreducible and aperiodic, then it converges to a stationary distribution.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org7285b30" class="outline-2">
+<h2 id="org7285b30"><span class="section-number-2">4.</span> Random Walk on Undirected Graph</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Let \(G=(V,E)\) be a finite, connected, undirected graph. We can model a random walk on this graph with a Markov chain: given that the current state is \(u\), we move to a neighbor with probability \(\frac{1}{\text{deg}(u)}\).
+</p>
+
+<p>
+A random walk on a finite, connected, undirected graph has the following unique stationary distribution:
+</p>
+
+\begin{align}
+\pi_v = \frac{\text{deg}(v)}{2|E|} \quad \forall v \in V
+\end{align}
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -272,7 +363,7 @@ where \(r = \frac{1-p}{p}\).
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-28 21:21
+               Last modified: 2026-04-30 15:33
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
