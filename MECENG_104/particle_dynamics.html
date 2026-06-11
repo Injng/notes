@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-06-11 Thu 13:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Particle Dynamics</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MECENG_104/index.html">MECENG 104</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Particle Dynamics</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd31a217">1. Rectilinear Motion</a></li>
+<li><a href="#org79faa22">2. Balance of Linear Momentum</a>
+<ul>
+<li><a href="#org1d0d5b0">2.1. Degree of Freedom</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd31a217" class="outline-2">
+<h2 id="orgd31a217"><span class="section-number-2">1.</span> Rectilinear Motion</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Rectilinear motion</b> is motion along a straight line.  Take \(\mathbf{E}_x\) to be along the particle&rsquo;s line of motion. Then,
+</p>
+
+\begin{align}
+\mathbf{r} &= x\mathbf{E}_x + y\mathbf{E}_y + z\mathbf{E}_z \notag \\
+\mathbf{v} &= \dot{x}\mathbf{E}_x \notag \\
+\mathbf{a} &= \ddot{x}\mathbf{E}_x \notag
+\end{align}
+
+<p>
+If \(s\) is arc length, then \(\dot{s}\) and \(\dot{x}\) may not always be the same: they are only the same if the particle&rsquo;s trajectory direction \(\mathbf{e}_x = \mathbf{E}_x\). Assuming that this is the case, we have:
+</p>
+
+\begin{align}
+\mathbf{a} &= \frac{\text{d}v}{\text{d}s}\frac{\text{d}s}{\text{d}t} \notag \\
+a\mathbf{E}_x &= \frac{\text{d}v}{\text{d}s}v\mathbf{E}_x \notag
+\end{align}
+
+<p>
+Projecting this equation along \(\mathbf{E}_x\) to turn it into a scalar equation, we have:
+</p>
+
+\begin{align}
+\boxed{a\text{ d}s = v\text{ d}v}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org79faa22" class="outline-2">
+<h2 id="org79faa22"><span class="section-number-2">2.</span> Balance of Linear Momentum</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+A particle is endowed with an inertial measure \(m\) called its <b>mass</b>. The <a href="../PHYSICS_7A/momentum.html#orgd2c837a">linear momentum</a> \(\mathbf{G}\) of a particle is defined to be the product of its mass and velocity:
+</p>
+
+\begin{align}
+\boxed{\mathbf{G} = m\mathbf{v}}
+\end{align}
+
+<p>
+Then, we can postulate the following balance law for particles:
+</p>
+
+\begin{align}
+\boxed{\mathbf{F} = \dot{\mathbf{G}}}
+\end{align}
+
+<p>
+where \(\mathbf{F}\) is the sum of all external forces acting on the particle. This law is known as <a href="../PHYSICS_7A/newtons_laws.html#org744e6d3">Newton&rsquo;s 2nd Law</a>, Euler&rsquo;s 1st Law (extended for rigid bodies), or the balance of linear momentum. Note that if the mass of a system is conserved, \(\dot{\mathbf{G}} = m\dot{\mathbf{v}} = m\mathbf{a}\), which gives rise to the \(\mathbf{F} = m\mathbf{a}\) form that is commonly seen.
+</p>
+
+<p>
+Realize that linear momentum is conserved if \(\mathbf{F} = 0\), since this implies that \(\dot{\mathbf{G}}=0\).
+</p>
+
+<p>
+If we write \(\mathbf{F} = m\mathbf{a}\) in the Cartesian basis \(\{\mathbf{E}_x, \mathbf{E}_y, \mathbf{E}_z\}\), we get:
+</p>
+
+\begin{align}
+F_x\mathbf{E}_x + F_y\mathbf{E}_y + F_z\mathbf{E}_z = m(a_x\mathbf{E}_x + a_y\mathbf{E}_y + a_z\mathbf{E}_z) \notag
+\end{align}
+
+<p>
+Projecting along each direction, we can get three scalar <i>equations of motion</i> (EOM). We can then solve the three differential equations they represent for the motion of the particle.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         4 Steps to Solve Particle Kinetics
+                      </font>
+                    </strong>
+                  </summary>
+<ol class="org-ol">
+<li>Kinematics: choose the system, basis, and write expressions for \(\mathbf{r}, \mathbf{v}, \mathbf{a}\) if they are easy.</li>
+<li>Draw the free body diagram and write expressions for the forces if applicable.</li>
+<li>Write the vector equation of the balance of linear momentum.</li>
+<li>Project the vector equation and analyze for the solution.</li>
+</ol>
+
+
+</details>
+</div>
+<div id="outline-container-org1d0d5b0" class="outline-3">
+<h3 id="org1d0d5b0"><span class="section-number-3">2.1.</span> Degree of Freedom</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+The <b>degree of freedom</b> of a system is the minimum number of coordinates needed to describe the motion of the system. For example, one particle in space has 3 DOF and 2 particles in space has 6 DOF. However, 2 particles connected by a rod introduces a constraint, and so it only has 5 DOF.
+</p>
+
+<p>
+The number of (scalar) EOM needed to describe the motion of a system is equal to the number of DOF of that system.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-06-11 13:23
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

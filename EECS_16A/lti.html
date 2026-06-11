@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-04-29 Wed 16:54 -->
+<!-- 2026-06-11 Thu 13:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Linear Time-Invariant Systems</title>
@@ -230,7 +230,7 @@ Using superposition, we can say that if \(H(x_1)=y_1\) and \(H(x_2)=y_2\), then 
 </p>
 
 <p>
-The <b>zero-input zero-output</b> (ZIZO) property follows from linearity: if \(H\) is linear, then \(H(0) = 0\). Similarly, if \(H(0) \neq 0\), then \(H\) is not linear. This is clear when we consider scaling with $&alpha; =0 $: \(H((0)x) = H(0) = (0)y = 0\).
+The <b>zero-input zero-output</b> (ZIZO) property follows from linearity: if \(H\) is linear, then \(H(0) = 0\). Similarly, if \(H(0) \neq 0\), then \(H\) is not linear. This is clear when we consider scaling with \(\alpha=0\): \(H((0)x) = H(0) = (0)y = 0\).
 </p>
 </div>
 </div>
@@ -553,7 +553,7 @@ The <b>support</b> of a DT signal \(x: \mathbb{Z} \rightarrow \mathbb{R}\) is de
 \end{align}
 
 <p>
-If \(|\text{supp}(x)|<\infty\), then the function has a fin.ite support DT signals that have finite support are called <b>finite impulse response</b> (FIR) signals. On the other hand, a signal that has infinite support are called <b>infinite impulse response</b> (IIR) signals.
+If \(|\text{supp}(x)|<\infty\), then the function has a finite support DT signals that have finite support are called <b>finite impulse response</b> (FIR) signals. On the other hand, a signal that has infinite support are called <b>infinite impulse response</b> (IIR) signals.
 </p>
 </div>
 </div>
@@ -769,7 +769,7 @@ Just like for discrete time LTI systems, if we know the response to \(\delta(t)\
 </p>
 
 \begin{align}
-y(t) = \int_{-\infty}^{\infty}x(\tau)\delta(t-\tau)\text{ d}\tau
+y(t) = \int_{-\infty}^{\infty}x(\tau)h(t-\tau)\text{ d}\tau
 \end{align}
 
 <p>
@@ -785,7 +785,7 @@ This is just the continuous time convolution \((x * h)(t)\).
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-04-29 16:53
+               Last modified: 2026-05-12 13:55
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
