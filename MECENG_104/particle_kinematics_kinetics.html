@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-06-11 Thu 13:25 -->
+<!-- 2026-06-16 Tue 16:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Particle Dynamics</title>
+<title>Particle Kinematics and Kinetics</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
    <script src="/pagefind/pagefind-ui.js"></script>
@@ -121,22 +121,27 @@
 <div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MECENG_104/index.html">MECENG 104</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Particle Dynamics</h1>
+<h1 class="title">Particle Kinematics and Kinetics</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd31a217">1. Rectilinear Motion</a></li>
-<li><a href="#org79faa22">2. Balance of Linear Momentum</a>
+<li><a href="#org5b56a5c">1. Rectilinear Motion</a></li>
+<li><a href="#orgefc6548">2. Balance of Linear Momentum</a>
 <ul>
-<li><a href="#org1d0d5b0">2.1. Degree of Freedom</a></li>
+<li><a href="#org2810da8">2.1. Degree of Freedom</a></li>
+</ul>
+</li>
+<li><a href="#orgf33b417">3. Polar Coordinates</a>
+<ul>
+<li><a href="#org9e61557">3.1. Cylindrical Polar Coordinates</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd31a217" class="outline-2">
-<h2 id="orgd31a217"><span class="section-number-2">1.</span> Rectilinear Motion</h2>
+<div id="outline-container-org5b56a5c" class="outline-2">
+<h2 id="org5b56a5c"><span class="section-number-2">1.</span> Rectilinear Motion</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Rectilinear motion</b> is motion along a straight line.  Take \(\mathbf{E}_x\) to be along the particle&rsquo;s line of motion. Then,
@@ -166,8 +171,8 @@ Projecting this equation along \(\mathbf{E}_x\) to turn it into a scalar equatio
 \end{align}
 </div>
 </div>
-<div id="outline-container-org79faa22" class="outline-2">
-<h2 id="org79faa22"><span class="section-number-2">2.</span> Balance of Linear Momentum</h2>
+<div id="outline-container-orgefc6548" class="outline-2">
+<h2 id="orgefc6548"><span class="section-number-2">2.</span> Balance of Linear Momentum</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 A particle is endowed with an inertial measure \(m\) called its <b>mass</b>. The <a href="../PHYSICS_7A/momentum.html#orgd2c837a">linear momentum</a> \(\mathbf{G}\) of a particle is defined to be the product of its mass and velocity:
@@ -229,8 +234,8 @@ Projecting along each direction, we can get three scalar <i>equations of motion<
 
 </details>
 </div>
-<div id="outline-container-org1d0d5b0" class="outline-3">
-<h3 id="org1d0d5b0"><span class="section-number-3">2.1.</span> Degree of Freedom</h3>
+<div id="outline-container-org2810da8" class="outline-3">
+<h3 id="org2810da8"><span class="section-number-3">2.1.</span> Degree of Freedom</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 The <b>degree of freedom</b> of a system is the minimum number of coordinates needed to describe the motion of the system. For example, one particle in space has 3 DOF and 2 particles in space has 6 DOF. However, 2 particles connected by a rod introduces a constraint, and so it only has 5 DOF.
@@ -242,6 +247,169 @@ The number of (scalar) EOM needed to describe the motion of a system is equal to
 </div>
 </div>
 </div>
+<div id="outline-container-orgf33b417" class="outline-2">
+<h2 id="orgf33b417"><span class="section-number-2">3.</span> Polar Coordinates</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Consider a particle moving in the plane like so:
+</p>
+
+
+<div id="org66709e9" class="figure">
+<p><img src="../static/MECENG_104/particle_kinematics_kinetics1.png" alt="particle_kinematics_kinetics1.png" />
+</p>
+</div>
+
+<p>
+Then, the position vector is \(\mathbf{r} = x\mathbf{E}_x + y\mathbf{E}_y\). Define \(r=\|\mathbf{r}\| = \sqrt{x^2+y^2}\) and an angle \(\theta\) such that \(\tan \theta = \frac{y}{x}\).
+</p>
+
+<p>
+Now, define \(\mathbf{e}_r = \frac{r}{\| r\|}\) as the unit vector in the direction of \(\mathbf{e}_r\), and \(\mathbf{e}_\theta\) as the unit vector orthogonal to \(\mathbf{e}_r\). However, since there are two choices for the direction of \(\mathbf{e}_\theta\), we choose the one such that \(\mathbf{e}_r \times \mathbf{e}_\theta = \mathbf{E}_x \times \mathbf{E}_y\). \(\mathbf{e}_\theta\) then points <i>in the direction of increasing</i> \(\theta\). Then, the polar basis \(\{\mathbf{e}_r, \mathbf{e}_\theta\}\) is a rotation of \(\{\mathbf{E}_x,\mathbf{E}_y\}\) by \(\theta\):
+</p>
+
+
+<div id="orgd765f43" class="figure">
+<p><img src="../static/MECENG_104/particle_kinematics_kinetics2.png" alt="particle_kinematics_kinetics2.png" />
+</p>
+</div>
+
+<p>
+Using trigonometry, we can convert between the Cartesian basis and the polar basis:
+</p>
+
+\begin{align}
+\mathbf{e}_r &= \cos\theta\mathbf{E}_x + \sin\theta\mathbf{E}_y \\
+\mathbf{e}_\theta &= -\sin\theta\mathbf{E}_x + \cos\theta\mathbf{E}_y
+\end{align}
+
+<p>
+Taking derivatives of the polar basis vectors, we find that:
+</p>
+
+\begin{align}
+\dot{\mathbf{e}}_r &= \dot{\theta}\left(-\sin\theta\mathbf{E}_x + \cos\theta\mathbf{E}_y\right) = \dot{\theta}\mathbf{e}_\theta \notag \\
+\dot{\mathbf{e}}_\theta &= -\dot{\theta}\left(\cos\theta\mathbf{E}_x + \sin\theta\mathbf{E}_y\right) = -\dot{\theta}\mathbf{e}_r \notag
+\end{align}
+
+<p>
+Then, we can use these derivatives to derive the position, velocity, and acceleration equations in the polar basis:
+</p>
+
+\begin{align}
+\mathbf{r} &= r\mathbf{e}_r \\
+\mathbf{v} &= \dot{r}\mathbf{e}_r + r\dot{\theta}\mathbf{e}_\theta \\
+\mathbf{a} &= \big(\underbrace{\ddot{r}}_{\text{radial}} - \underbrace{r\dot{\theta}^2}_{\text{centripetal}}\big)\mathbf{e}_r
++ \big(\underbrace{2\dot{r}\dot{\theta}}_{\text{Coriolis}} + \underbrace{r\ddot{\theta}}_{\text{tangential}}\big)\mathbf{e}_\theta
+\end{align}
+
+<p>
+The following gives a rough intuition for the different components of the acceleration \(\mathbf{a}\):
+</p>
+
+<ul class="org-ul">
+<li><span class="underline">Radial</span>: \(\mathbf{a} = \ddot{r}\mathbf{e}_r\) happens when both \(\dot{\theta}\) and \(\ddot{\theta}\) are zero, so when a particle&rsquo;s trajectory is purely linearly (rectilinear motion).</li>
+<li><span class="underline">Centripetal</span>: \(\mathbf{a} = -r\dot{\theta}^2\mathbf{e}_r\) happens when \(\dot{r}, \dot{\theta}, r\) are all constant, so when a particle is tracing a circle at constant speed.</li>
+<li><span class="underline">Tangential</span>: \(\mathbf{a} = r\ddot{\theta}\mathbf{e}_\theta\) occurs only when \(\dot{\theta}=0\), but then \(\ddot{\theta}=0\), so it is impossible. At minimum, we must also have centripetal acceleration.</li>
+<li><span class="underline">Coriolis</span>: \(\mathbf{a} = 2\dot{r}\dot{\theta}\mathbf{e}_\theta\) is impossible, at minimum we also need centripetal acceleration. This occurs in a &ldquo;rotating frame of reference.&rdquo;</li>
+</ul>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Simple pendulum
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+A particle of mass \(m\) is suspended by an inextensible massless string. Find the differential equation representing the equation of motion of the particle:
+</p>
+
+
+<div id="orgdd0f3a0" class="figure">
+<p><img src="../static/MECENG_104/particle_kinematics_kinetics3.png" alt="particle_kinematics_kinetics3.png" />
+</p>
+</div>
+
+<p>
+We use the polar basis \(\{\mathbf{e}_r, \mathbf{e}_\theta\}\):
+</p>
+
+\begin{align}
+\mathbf{r} &= l\mathbf{e}_r \notag \\
+\mathbf{v} &= l\dot{\theta}\mathbf{e}_\theta \notag \\
+\mathbf{a} &= -l\dot{\theta}^2\mathbf{e}_r + l\ddot{\theta}\mathbf{e}_\theta \notag
+\end{align}
+
+<p>
+We have two forces acting on the mass, the weight and the tension force:
+</p>
+
+\begin{align}
+\mathbf{W} &= mg\mathbf{E}_x \notag \\
+\mathbf{T} &= -T\mathbf{e}_r \notag
+\end{align}
+
+<p>
+Using the balance of linear momentum, we get:
+</p>
+
+\begin{align}
+-T\mathbf{e}_r + mg\mathbf{E}_x = m(-l\dot{\theta}^2\mathbf{e}_r + l\ddot{\theta}\mathbf{e}_\theta) \notag
+\end{align}
+
+<p>
+We can get rid of \(T\) by projecting along \(\mathbf{e}_\theta\):
+</p>
+
+\begin{align}
+-g\sin\theta = l\ddot{\theta} \notag
+\end{align}
+
+<p>
+Therefore, our differential equation is:
+</p>
+
+\begin{align}
+\boxed{\ddot{\theta} + \frac{g}{l}\sin\theta = 0} \notag
+\end{align}
+
+
+</details>
+</div>
+<div id="outline-container-org9e61557" class="outline-3">
+<h3 id="org9e61557"><span class="section-number-3">3.1.</span> Cylindrical Polar Coordinates</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+We can extend the idea of polar coordinates to three dimensions by using \(\mathbf{E}_z\) to represent height:
+</p>
+
+
+<div id="org7a4378a" class="figure">
+<p><img src="../static/MECENG_104/particle_kinematics_kinetics4.png" alt="particle_kinematics_kinetics4.png" />
+</p>
+</div>
+
+<p>
+Note that \(\mathbf{e}_r\) no longer points along \(\mathbf{r}\)! Then, our position, velocity, and acceleration vectors are the same as the polar ones, but with derivatives of \(z\mathbf{E}_z\):
+</p>
+
+\begin{align}
+\mathbf{r} = r\mathbf{e}_r + z\mathbf{E}_z \\
+\mathbf{v} &= \dot{r}\mathbf{e}_r + r\dot{\theta}\mathbf{e}_\theta + \dot{z}\mathbf{E}_z \\
+\mathbf{a} &= (\ddot{r} -r\dot{\theta}^2)\mathbf{e}_r
++ (2\dot{r}\dot{\theta} + r\ddot{\theta})\mathbf{e}_\theta + \ddot{z}\mathbf{E}_z
+\end{align}
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -249,7 +417,7 @@ The number of (scalar) EOM needed to describe the motion of a system is equal to
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-06-11 13:23
+               Last modified: 2026-06-16 13:32
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
