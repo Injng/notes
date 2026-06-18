@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-06-16 Tue 16:31 -->
+<!-- 2026-06-18 Thu 13:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Particle Kinematics and Kinetics</title>
@@ -132,11 +132,12 @@
 <li><a href="#org2810da8">2.1. Degree of Freedom</a></li>
 </ul>
 </li>
-<li><a href="#orgf33b417">3. Polar Coordinates</a>
+<li><a href="#org44e7636">3. Polar Basis</a>
 <ul>
-<li><a href="#org9e61557">3.1. Cylindrical Polar Coordinates</a></li>
+<li><a href="#org7db2ec7">3.1. Cylindrical Polar Basis</a></li>
 </ul>
 </li>
+<li><a href="#org52009fe">4. Frenet-Serret Basis</a></li>
 </ul>
 </div>
 </div>
@@ -247,15 +248,15 @@ The number of (scalar) EOM needed to describe the motion of a system is equal to
 </div>
 </div>
 </div>
-<div id="outline-container-orgf33b417" class="outline-2">
-<h2 id="orgf33b417"><span class="section-number-2">3.</span> Polar Coordinates</h2>
+<div id="outline-container-org44e7636" class="outline-2">
+<h2 id="org44e7636"><span class="section-number-2">3.</span> Polar Basis</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Consider a particle moving in the plane like so:
 </p>
 
 
-<div id="org66709e9" class="figure">
+<div id="org34b1371" class="figure">
 <p><img src="../static/MECENG_104/particle_kinematics_kinetics1.png" alt="particle_kinematics_kinetics1.png" />
 </p>
 </div>
@@ -269,7 +270,7 @@ Now, define \(\mathbf{e}_r = \frac{r}{\| r\|}\) as the unit vector in the direct
 </p>
 
 
-<div id="orgd765f43" class="figure">
+<div id="orge6c6476" class="figure">
 <p><img src="../static/MECENG_104/particle_kinematics_kinetics2.png" alt="particle_kinematics_kinetics2.png" />
 </p>
 </div>
@@ -333,7 +334,7 @@ A particle of mass \(m\) is suspended by an inextensible massless string. Find t
 </p>
 
 
-<div id="orgdd0f3a0" class="figure">
+<div id="org2382106" class="figure">
 <p><img src="../static/MECENG_104/particle_kinematics_kinetics3.png" alt="particle_kinematics_kinetics3.png" />
 </p>
 </div>
@@ -384,15 +385,15 @@ Therefore, our differential equation is:
 
 </details>
 </div>
-<div id="outline-container-org9e61557" class="outline-3">
-<h3 id="org9e61557"><span class="section-number-3">3.1.</span> Cylindrical Polar Coordinates</h3>
+<div id="outline-container-org7db2ec7" class="outline-3">
+<h3 id="org7db2ec7"><span class="section-number-3">3.1.</span> Cylindrical Polar Basis</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-We can extend the idea of polar coordinates to three dimensions by using \(\mathbf{E}_z\) to represent height:
+We can extend the idea of the polar basis to three dimensions by using \(\mathbf{E}_z\) to represent height:
 </p>
 
 
-<div id="org7a4378a" class="figure">
+<div id="orga8ddb2d" class="figure">
 <p><img src="../static/MECENG_104/particle_kinematics_kinetics4.png" alt="particle_kinematics_kinetics4.png" />
 </p>
 </div>
@@ -402,12 +403,101 @@ Note that \(\mathbf{e}_r\) no longer points along \(\mathbf{r}\)! Then, our posi
 </p>
 
 \begin{align}
-\mathbf{r} = r\mathbf{e}_r + z\mathbf{E}_z \\
+\mathbf{r} &= r\mathbf{e}_r + z\mathbf{E}_z \\
 \mathbf{v} &= \dot{r}\mathbf{e}_r + r\dot{\theta}\mathbf{e}_\theta + \dot{z}\mathbf{E}_z \\
 \mathbf{a} &= (\ddot{r} -r\dot{\theta}^2)\mathbf{e}_r
 + (2\dot{r}\dot{\theta} + r\ddot{\theta})\mathbf{e}_\theta + \ddot{z}\mathbf{E}_z
 \end{align}
 </div>
+</div>
+</div>
+<div id="outline-container-org52009fe" class="outline-2">
+<h2 id="org52009fe"><span class="section-number-2">4.</span> Frenet-Serret Basis</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The <b>Frenet-Serret basis</b> is a moving, right-handed orthonormal basis attached to a particle on a 3D curve. Consider a particle tracing a path. Recall that arc length \(s\) is defined as \(\frac{\text{d}s}{\text{d}t} = \| \frac{\text{d}\mathbf{r}}{\text{d}t}\|\). Then, we can write velocity as:
+</p>
+
+\begin{align}
+\mathbf{v} = \frac{\text{d}\mathbf{r}}{\text{d}t} = \frac{\text{d}\hat{\mathbf{r}}}{\text{d}s}\frac{\text{d}s}{\text{d}t} = v\frac{\text{d}\hat{\mathbf{r}}}{\text{d}s} \notag
+\end{align}
+
+<p>
+where \(\hat{\mathbf{r}}\) denotes \(\mathbf{r}\) expressed in terms of arc length \(s\) instead. Now, realize that the change in position vector \(\mathbf{r}\) with respect to change in \(s\) is a vector that is tangent to the trajectory of the particle. In other words, \(\frac{\text{d}\hat{\mathbf{r}}}{\text{d}s}\) is the <b>unit tangent</b> vector, denoted as \(\mathbf{e}_t\):
+</p>
+
+\begin{align}
+\mathbf{v} = v\mathbf{e}_t
+\end{align}
+
+<p>
+Now, to determine acceleration:
+</p>
+
+\begin{align}
+\mathbf{a} &= \dot{\mathbf{v}} = \dot{v}\mathbf{e}_t + v\dot{\mathbf{e}}_t \notag \\
+\dot{\mathbf{e}}_t &= \frac{\text{d}\hat{\mathbf{e}}_t}{\text{d}s}\frac{\text{d}s}{\text{d}t} = v\frac{\text{d}\hat{\mathbf{e}}_t}{\text{d}s} \notag
+\end{align}
+
+<p>
+The question is, what is the magnitude and direction of \(\frac{\text{d}\hat{\mathbf{e}}_t}{\text{d}s}\)? To find direction, we can make the following derivation:
+</p>
+
+\begin{align}
+&\mathbf{e}_t \cdot \mathbf{e}_t = 1 \notag \\
+\Rightarrow&\frac{\text{d}}{\text{d}s}(\mathbf{e}_t \cdot \mathbf{e}_t) = \frac{\text{d}}{\text{d}s}(1) \notag \\
+\Rightarrow&\frac{\text{d}\mathbf{e}_t}{\text{d}s}\cdot\mathbf{e}_t + \mathbf{e}_t\cdot\frac{\text{d}\mathbf{e}_t}{\text{d}s} = 0 \notag \\
+\Rightarrow&\frac{\text{d}\mathbf{e}_t}{\text{d}s}\cdot\mathbf{e}_t = 0 \notag \\
+\Rightarrow&\mathbf{e}_t\perp \frac{\text{d}\mathbf{e}_t}{\text{d}s} \notag
+\end{align}
+
+<p>
+Now we know the direction: it is perpendicular to \(\mathbf{e}_t\). Now, consider the magnitude:
+</p>
+
+
+<div id="orgda7b017" class="figure">
+<p><img src="../static/MECENG_104/particle_kinematics_kinetics5.png" alt="particle_kinematics_kinetics5.png" />
+</p>
+</div>
+
+<p>
+The magnitude appears to depend on how &ldquo;curved&rdquo; the trajectory is, the <b>curvature</b> \(\kappa\):
+</p>
+
+\begin{align}
+\frac{\text{d}\mathbf{e}_t}{\text{d}s} = \kappa \mathbf{e}_n \notag
+\end{align}
+
+<p>
+where \(\mathbf{e}_n\) is the <b>unit normal</b> vector such that \(\mathbf{e}_n \cdot \mathbf{e}_t = 0\). Thus, acceleration is:
+</p>
+
+\begin{align}
+\mathbf{a} = \dot{v}\mathbf{e}_t + \kappa v^2 \mathbf{e}_n
+\end{align}
+
+<p>
+Then, to complete the orthonormal basis, we define the <b>unit binomial</b> to be \(\mathbf{e}_b = \mathbf{e}_t \times \mathbf{e}_n\). This completes the Frenet-Serret basis \(\{\mathbf{e}_t, \mathbf{e}_n, \mathbf{e}_b\}\):
+</p>
+
+
+<div id="org33dcc1e" class="figure">
+<p><img src="../static/MECENG_104/particle_kinematics_kinetics6.png" alt="particle_kinematics_kinetics6.png" />
+</p>
+</div>
+
+<p>
+\(\mathbf{e}_n\) always points towards the center of curvature, where \(\rho\) is the radius of curvature and:
+</p>
+
+\begin{align}
+\kappa = \frac{1}{\rho}
+\end{align}
+
+<p>
+For a straight line and at inflection points, \(\mathbf{e}_n\) is not uniquely defined. At the corner, \(\mathbf{e}_t\) is not well defined since \(\hat{\mathbf{r}}\) is not differentiable at that point.
+</p>
 </div>
 </div>
 </div>
@@ -417,7 +507,7 @@ Note that \(\mathbf{e}_r\) no longer points along \(\mathbf{r}\)! Then, our posi
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-06-16 13:32
+               Last modified: 2026-06-18 13:21
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
