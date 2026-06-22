@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-06-22 Mon 16:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Number Representation</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61C/index.html">COMPSCI 61C</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Number Representation</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org3faf010">1. Binary</a>
+<ul>
+<li><a href="#orgcfb97dc">1.1. Decimal Conversions</a></li>
+</ul>
+</li>
+<li><a href="#org9dfab68">2. Hexadecimal</a></li>
+<li><a href="#orgf93fdd4">3. Representing Integers</a></li>
+<li><a href="#org4827818">4. Boolean Values</a></li>
+<li><a href="#org44d9a04">5. Bitwise Operations</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3faf010" class="outline-2">
+<h2 id="org3faf010"><span class="section-number-2">1.</span> Binary</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Binary</b> is a system of storing data using just two digits: 1 and 0. Everything in a computer is ultimately stored in binary (with high voltage being 1, and low voltage being 0), so we need a way to represent any piece of data using binary.
+</p>
+
+<p>
+Binary data has no meaning in and of itself; we must assign meaning to each bitstring, and read each bitstring as if it was that particular meaning. For example, the bitstring <code>0b00111001</code> can represent <code>56</code> if we interpret it as an integer, or the character <code>'9'</code> if we interpret it as ASCII.
+</p>
+
+<p>
+A system to data as binary is known as a <b>representation scheme</b>. As long as we use a consistent scheme to read and write this data, our program will work (even if outside users don&rsquo;t know our scheme). Ideally, schemes should:
+</p>
+
+<ul class="org-ul">
+<li>represent data that&rsquo;s relevant to whatever we&rsquo;re making</li>
+<li>store things efficiently
+<ul class="org-ul">
+<li>optimal memory usage</li>
+<li>efficient operations</li>
+</ul></li>
+<li>be intuitive for humans to understand (usually)</li>
+</ul>
+</div>
+<div id="outline-container-orgcfb97dc" class="outline-3">
+<h3 id="orgcfb97dc"><span class="section-number-3">1.1.</span> Decimal Conversions</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+An analogous system is <b>decimal</b>. Decimal numbers are stored using ten digits, zero through nine. Binary is the same, except we only get two digits: the number <code>0b1010</code> is equivalent to \(1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 0 \times 2^0\). Since every integer can be uniquely expressed as a sum of powers of 2, we can write any number in binary.
+</p>
+
+<p>
+Since \(2^{10} = 1024\) is extremely close to 1000, we can approximate large powers of 2 in decimal. For example, we can write:
+</p>
+
+\begin{align}
+2^{32} = 2^{30} \times 2^2 = (2^{10})^3 \times 4 \approx 4 \text{ billion} \notag
+\end{align}
+
+<p>
+The actual number is \(4294967296\), which is approximately 7% off from our approximation.
+</p>
+
+<p>
+There are also <b>binary SI prefixes</b>: kibi, mebi, gibi intsead of kilo, mega, giga. For example, 512 TiB is called 512 Tebibytes, which is equal to \(512 \times 2^{40}\) bytes.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9dfab68" class="outline-2">
+<h2 id="org9dfab68"><span class="section-number-2">2.</span> Hexadecimal</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Hexadecimal</b> is a system of stroing numbers using 16 digits: 0123456789ABCDEF. Hexadecimal numbers are often prefixed with <code>0x</code> to distinguish them from decimal numbers. In practice, hex numbers is often used as a proxy for binary.
+</p>
+
+<p>
+Since base 16 is \(2^4\), translation between binary and hex is much easier. For example, the hex number <code>0x87</code> can be converted to binary by converting each digit separately to binary and then concatenating the results.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf93fdd4" class="outline-2">
+<h2 id="orgf93fdd4"><span class="section-number-2">3.</span> Representing Integers</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The problem is, there&rsquo;s infinitely many integers. Making a representation that could represent any integer would require infinitely many bits.
+</p>
+
+<p>
+One solution is to treat an integer as an array of digits and extend the array as needed (e.g. Python&rsquo;s large integer primitive). However, this would require variable amounts of time to compute operations.
+</p>
+
+<p>
+Or, we can only allow for numbers up to a max value (fixed bitlength). This is often referred to as an n-bit unsigned integer, where we allow numbers from \(0\) to \(2^n - 1\) (e.g. an 8-bit unsigned int goes from \(0\) to \(255\)). To write an n-bit number, we always write out the full n bits, including leading zeroes.
+</p>
+</div>
+</div>
+<div id="outline-container-org4827818" class="outline-2">
+<h2 id="org4827818"><span class="section-number-2">4.</span> Boolean Values</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+We can use binary to represent the boolean states: 1 to mean TRUE, and 0 to mean FALSE. We define the operators OR, AND, NOT, and XOR for boolean values:
+</p>
+
+<div style="display: flex; gap: 2em; align-items: flex-start;">
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">x OR y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">x AND y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">y</th>
+<th scope="col" class="org-right">x XOR y</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+<td class="org-right">0</td>
+</tr>
+
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">x</th>
+<th scope="col" class="org-right">NOT x</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">0</td>
+<td class="org-right">1</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="outline-container-org44d9a04" class="outline-2">
+<h2 id="org44d9a04"><span class="section-number-2">5.</span> Bitwise Operations</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<b>Bitwise operations</b> are operators designed to work directly with bits. In C, these are:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Operator</th>
+<th scope="col" class="org-left">Operation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>&amp;</code></td>
+<td class="org-left">bitwise AND</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&#124;</code></td>
+<td class="org-left">bitwise OR</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>^</code></td>
+<td class="org-left">bitwise XOR</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>~</code></td>
+<td class="org-left">bitwise NOT</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&lt;&lt;</code></td>
+<td class="org-left">left shift</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>&gt;&gt;</code></td>
+<td class="org-left">right shift</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-06-22 16:24
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
