@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-06-23 Tue 20:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>C</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61C/index.html">COMPSCI 61C</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">C</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org875543e">1. Hello World</a>
+<ul>
+<li><a href="#org1d78cb4">1.1. <code>printf</code></a></li>
+</ul>
+</li>
+<li><a href="#org1da13d8">2. Control Flow</a></li>
+<li><a href="#orgd3ffaca">3. Types</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org875543e" class="outline-2">
+<h2 id="org875543e"><span class="section-number-2">1.</span> Hello World</h2>
+<div class="outline-text-2" id="text-1">
+<pre><code class="language-c"><span style="color: #f9e2af;">#include</span> <span style="color: #f38ba8;">&lt;</span><span style="color: #a6e3a1;">stdio.h</span><span style="color: #f38ba8;">&gt;</span>                             <span style="color: #6c7086;">// </span><span style="color: #6c7086;">import library using #include
+</span>
+<span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">main</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">argc</span>, <span style="color: #f9e2af;">char</span> *<span style="color: #cdd6f4;">argv</span><span style="color: #fab387;">[]</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>             <span style="color: #6c7086;">// </span><span style="color: #6c7086;">main function signature
+</span>  printf<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"Hello World!\n"</span><span style="color: #fab387;">)</span>;                    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">print
+</span>  <span style="color: #cba6f7;">return</span> 0;                                    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">main returns an integer return code
+</span><span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+<div id="outline-container-org1d78cb4" class="outline-3">
+<h3 id="org1d78cb4"><span class="section-number-3">1.1.</span> <code>printf</code></h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<code>printf</code> takes in as input a <i>format string</i>, which specifies the general structure of the printed line, followed by arguments. Common format specifiers include:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Format Specifier</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>%d</code></td>
+<td class="org-left">Signed integer (decimal)</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%u</code></td>
+<td class="org-left">Unsigned integer</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%x</code></td>
+<td class="org-left">Hexadecimal, lowercase</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%X</code></td>
+<td class="org-left">Hexadecimal, uppercase</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%s</code></td>
+<td class="org-left">Strings</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%c</code></td>
+<td class="org-left">Characters</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%f</code></td>
+<td class="org-left">Floating point</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%e</code></td>
+<td class="org-left">Scientific notation</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>%p</code></td>
+<td class="org-left">Pointers/memory addresses</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org1da13d8" class="outline-2">
+<h2 id="org1da13d8"><span class="section-number-2">2.</span> Control Flow</h2>
+<div class="outline-text-2" id="text-2">
+<pre><code class="language-c"><span style="color: #cba6f7;">while</span> <span style="color: #f38ba8;">(</span>expression<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+  statements;
+<span style="color: #f38ba8;">}</span>
+
+<span style="color: #cba6f7;">for</span> <span style="color: #f38ba8;">(</span>init-statement; condition; inc-expression<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+  statements;
+<span style="color: #f38ba8;">}</span>
+
+<span style="color: #cba6f7;">if</span> <span style="color: #f38ba8;">(</span>condition<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+  statements;
+<span style="color: #f38ba8;">}</span> <span style="color: #cba6f7;">else</span> <span style="color: #cba6f7;">if</span> <span style="color: #f38ba8;">(</span>condition<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+  statements;
+<span style="color: #f38ba8;">}</span> <span style="color: #cba6f7;">else</span> <span style="color: #f38ba8;">{</span>
+  statements;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+<div id="outline-container-orgd3ffaca" class="outline-2">
+<h2 id="orgd3ffaca"><span class="section-number-2">3.</span> Types</h2>
+<div class="outline-text-2" id="text-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">Description</th>
+<th scope="col" class="org-left">Library</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>int</code></td>
+<td class="org-left">Signed integers</td>
+<td class="org-left">C</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>unsigned int</code></td>
+<td class="org-left">Unsigned integers</td>
+<td class="org-left">C</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>float</code></td>
+<td class="org-left">Floating point decimal</td>
+<td class="org-left">C</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>double</code></td>
+<td class="org-left">Higher precision floating point</td>
+<td class="org-left">C</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>char</code></td>
+<td class="org-left">Character</td>
+<td class="org-left">C</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>long</code></td>
+<td class="org-left">Longer integer</td>
+<td class="org-left">C</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>long long</code></td>
+<td class="org-left">Even longer integer</td>
+<td class="org-left">C</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>int32_t</code></td>
+<td class="org-left">32-bit signed integer</td>
+<td class="org-left">stdint.h</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>uint32_t</code></td>
+<td class="org-left">32-bit unsigned integer</td>
+<td class="org-left">stdint.h</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-06-23 20:14
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

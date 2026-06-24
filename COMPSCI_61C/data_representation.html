@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-06-22 Mon 16:24 -->
+<!-- 2026-06-23 Tue 20:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Number Representation</title>
+<title>Data Representation</title>
 <meta name="generator" content="Org Mode" />
 <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
    <script src="/pagefind/pagefind-ui.js"></script>
@@ -121,25 +121,36 @@
 <div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61C/index.html">COMPSCI 61C</a></div>
 </div>
 <div id="content" class="content">
-<h1 class="title">Number Representation</h1>
+<h1 class="title">Data Representation</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3faf010">1. Binary</a>
+<li><a href="#org01a10cf">1. Binary</a>
 <ul>
-<li><a href="#orgcfb97dc">1.1. Decimal Conversions</a></li>
+<li><a href="#org573efba">1.1. Decimal Conversions</a></li>
 </ul>
 </li>
-<li><a href="#org9dfab68">2. Hexadecimal</a></li>
-<li><a href="#orgf93fdd4">3. Representing Integers</a></li>
-<li><a href="#org4827818">4. Boolean Values</a></li>
-<li><a href="#org44d9a04">5. Bitwise Operations</a></li>
+<li><a href="#org50aa3f8">2. Hexadecimal</a></li>
+<li><a href="#orge909218">3. Representing Integers</a>
+<ul>
+<li><a href="#org0ab493f">3.1. Unsigned Numbers</a></li>
+<li><a href="#org01bc6c0">3.2. Signed Numbers</a>
+<ul>
+<li><a href="#org20a2387">3.2.1. Sign-Magnitude</a></li>
+<li><a href="#org6345fae">3.2.2. Biased Numbers</a></li>
+<li><a href="#orgd360470">3.2.3. Two&rsquo;s Complement</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga3191cd">4. Boolean Values</a></li>
+<li><a href="#org60a9b07">5. Bitwise Operations</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3faf010" class="outline-2">
-<h2 id="org3faf010"><span class="section-number-2">1.</span> Binary</h2>
+<div id="outline-container-org01a10cf" class="outline-2">
+<h2 id="org01a10cf"><span class="section-number-2">1.</span> Binary</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <b>Binary</b> is a system of storing data using just two digits: 1 and 0. Everything in a computer is ultimately stored in binary (with high voltage being 1, and low voltage being 0), so we need a way to represent any piece of data using binary.
@@ -163,8 +174,8 @@ A system to data as binary is known as a <b>representation scheme</b>. As long a
 <li>be intuitive for humans to understand (usually)</li>
 </ul>
 </div>
-<div id="outline-container-orgcfb97dc" class="outline-3">
-<h3 id="orgcfb97dc"><span class="section-number-3">1.1.</span> Decimal Conversions</h3>
+<div id="outline-container-org573efba" class="outline-3">
+<h3 id="org573efba"><span class="section-number-3">1.1.</span> Decimal Conversions</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 An analogous system is <b>decimal</b>. Decimal numbers are stored using ten digits, zero through nine. Binary is the same, except we only get two digits: the number <code>0b1010</code> is equivalent to \(1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 0 \times 2^0\). Since every integer can be uniquely expressed as a sum of powers of 2, we can write any number in binary.
@@ -188,8 +199,8 @@ There are also <b>binary SI prefixes</b>: kibi, mebi, gibi intsead of kilo, mega
 </div>
 </div>
 </div>
-<div id="outline-container-org9dfab68" class="outline-2">
-<h2 id="org9dfab68"><span class="section-number-2">2.</span> Hexadecimal</h2>
+<div id="outline-container-org50aa3f8" class="outline-2">
+<h2 id="org50aa3f8"><span class="section-number-2">2.</span> Hexadecimal</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 <b>Hexadecimal</b> is a system of stroing numbers using 16 digits: 0123456789ABCDEF. Hexadecimal numbers are often prefixed with <code>0x</code> to distinguish them from decimal numbers. In practice, hex numbers is often used as a proxy for binary.
@@ -200,8 +211,8 @@ Since base 16 is \(2^4\), translation between binary and hex is much easier. For
 </p>
 </div>
 </div>
-<div id="outline-container-orgf93fdd4" class="outline-2">
-<h2 id="orgf93fdd4"><span class="section-number-2">3.</span> Representing Integers</h2>
+<div id="outline-container-orge909218" class="outline-2">
+<h2 id="orge909218"><span class="section-number-2">3.</span> Representing Integers</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The problem is, there&rsquo;s infinitely many integers. Making a representation that could represent any integer would require infinitely many bits.
@@ -210,14 +221,95 @@ The problem is, there&rsquo;s infinitely many integers. Making a representation 
 <p>
 One solution is to treat an integer as an array of digits and extend the array as needed (e.g. Python&rsquo;s large integer primitive). However, this would require variable amounts of time to compute operations.
 </p>
+</div>
+<div id="outline-container-org0ab493f" class="outline-3">
+<h3 id="org0ab493f"><span class="section-number-3">3.1.</span> Unsigned Numbers</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Or, we can only allow for numbers up to a max value (fixed bitlength). This is often referred to as an n-bit <b>unsigned integer</b>, where we allow numbers from \(0\) to \(2^n - 1\) (e.g. an 8-bit unsigned int goes from \(0\) to \(255\)). To write an n-bit number, we always write out the full n bits, including leading zeroes.
+</p>
 
 <p>
-Or, we can only allow for numbers up to a max value (fixed bitlength). This is often referred to as an n-bit unsigned integer, where we allow numbers from \(0\) to \(2^n - 1\) (e.g. an 8-bit unsigned int goes from \(0\) to \(255\)). To write an n-bit number, we always write out the full n bits, including leading zeroes.
+However, we need to handle cases where calculations yield a number outside of the allowed range. There are three main cases here (examples below use 8-bit unsigned int):
+</p>
+
+<ol class="org-ol">
+<li>Going too high (<b>overflow</b>, e.g. \(200 + 100 = 300\))</li>
+<li>Going too low (also <b>overflow</b>, e.g. \(100 - 200 = -100\))</li>
+<li>Fractional results</li>
+</ol>
+
+<p>
+For fractional results, we treat division as floor division when both numbers are integers.
+</p>
+
+<p>
+For numbers too big or too small, we "wrap around&rsquo; so that the largest number representable plus one becomes the smallest number (e.g. for a 8-bit unsigned integer, <code>255 + 1 =</code> 0=). Equivalently, we are taking the result modulo \(2^n\), or take only the lowest n bits of the number.
 </p>
 </div>
 </div>
-<div id="outline-container-org4827818" class="outline-2">
-<h2 id="org4827818"><span class="section-number-2">4.</span> Boolean Values</h2>
+<div id="outline-container-org01bc6c0" class="outline-3">
+<h3 id="org01bc6c0"><span class="section-number-3">3.2.</span> Signed Numbers</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+However, unsigned integers cannot represent negative numbers. To support this, we use a <b>signed integer</b>, which does support negative numbers. There are several ways to implement signed integers.
+</p>
+</div>
+<div id="outline-container-org20a2387" class="outline-4">
+<h4 id="org20a2387"><span class="section-number-4">3.2.1.</span> Sign-Magnitude</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+The main idea is that in decimal, we write negative numbers by first writing a &ldquo;-&rdquo; sign. Here, we can reserve the first bit of the number to represent the sign of the number, where 1 indicates negative and 0 is positive. 
+</p>
+
+<p>
+While this is a very intuitive representation, we make tradeoffs since (1) the number 0 gets two representations, and (2) comparators and addition/subtraction require additional handling for the sign bit.
+</p>
+</div>
+</div>
+<div id="outline-container-org6345fae" class="outline-4">
+<h4 id="org6345fae"><span class="section-number-4">3.2.2.</span> Biased Numbers</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+We can also bias our numbers, shifting them so that they center on zero instead. Then, for an 8-bit number, our smallest number becomes -127 (instead of 0), and our largest number becomes 128 (instead of 255):
+</p>
+
+
+<div id="org5973aab" class="figure">
+<p><img src="../static/COMPSCI_61C/data_representation1.png" alt="data_representation1.png" />
+</p>
+</div>
+
+<p>
+This gives us optimal memory usage, but arithmetic operations become significantly harder to do.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd360470" class="outline-4">
+<h4 id="orgd360470"><span class="section-number-4">3.2.3.</span> Two&rsquo;s Complement</h4>
+<div class="outline-text-4" id="text-3-2-3">
+<p>
+The main idea is that when working with unsigned numbers, we noted that overflows were handled by taking the results modulo \(2^n\). Why not handle negative numbers the same way? Here:
+</p>
+
+<ul class="org-ul">
+<li>if the leading bit is 0, interpret the number as a normal unsigned integer</li>
+<li>if the leading bit is 1, interpret the number as a <i>overflow</i> unsigned integer (take the unsigned integer and subtract \(2^n\) to get the corresponding negative number)</li>
+</ul>
+
+<p>
+The result is that the 2&rsquo;s complement value of a bitstring is always equal to the unsigned value. The shortcut for negating numbers in two&rsquo;s complement is <i>to flip the bits and add 1</i>.
+</p>
+
+<p>
+<b>Two&rsquo;s complement</b> trades intuition for optimal memory usage and very efficient operations. This is because since the system is equivalent to unsigned numbers modulo \(2^n\), we can just use the operations that we&rsquo;ve <i>already defined for unsigned integers</i>. For this reason,  two&rsquo;s complement is generaly the implementation of choice for signed numbers. Unless otherwise stated, &ldquo;signed number&rdquo; will refer to two&rsquo;s complement.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orga3191cd" class="outline-2">
+<h2 id="orga3191cd"><span class="section-number-2">4.</span> Boolean Values</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 We can use binary to represent the boolean states: 1 to mean TRUE, and 0 to mean FALSE. We define the operators OR, AND, NOT, and XOR for boolean values:
@@ -387,8 +479,8 @@ We can use binary to represent the boolean states: 1 to mean TRUE, and 0 to mean
 </div>
 </div>
 </div>
-<div id="outline-container-org44d9a04" class="outline-2">
-<h2 id="org44d9a04"><span class="section-number-2">5.</span> Bitwise Operations</h2>
+<div id="outline-container-org60a9b07" class="outline-2">
+<h2 id="org60a9b07"><span class="section-number-2">5.</span> Bitwise Operations</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 <b>Bitwise operations</b> are operators designed to work directly with bits. In C, these are:
@@ -440,6 +532,10 @@ We can use binary to represent the boolean states: 1 to mean TRUE, and 0 to mean
 </tr>
 </tbody>
 </table>
+
+<p>
+In binary, left shift is equivalent to <i>multiplying by a power of 2</i>, and right shift is equivalent to <i>dividing by a power of 2</i>.
+</p>
 </div>
 </div>
 </div>
@@ -449,7 +545,7 @@ We can use binary to represent the boolean states: 1 to mean TRUE, and 0 to mean
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-06-22 16:24
+               Last modified: 2026-06-23 20:24
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
