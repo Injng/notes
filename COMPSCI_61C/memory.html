@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-06-24 Wed 16:40 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Memory</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61C/index.html">COMPSCI 61C</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Memory</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2990101">1. Pointers</a></li>
+<li><a href="#org79d5315">2. Arrays</a>
+<ul>
+<li><a href="#orgdcbb2a9">2.1. Pointer Arithmetic</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2990101" class="outline-2">
+<h2 id="org2990101"><span class="section-number-2">1.</span> Pointers</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A <b>bit</b> is a single binary digit, corresponding to a single 1 or 0. A <b>byte</b> is a collection of 8 bits. A <b>nibble</b> is a collection of 4 bits. Most modern systems are 32-bit or 64-bit systems. Usually, these systems only work with either 32 bits or 64 bits at a time.
+</p>
+
+<p>
+The memory of a program acts like a large array of bytes, with each cell of the array having a corresponding <b>memory address</b>. Since each cell stores one byte of data, we can use adjacent cells to store larger values. Even if a value takes up multiple addresses, we say that the value is located at its <i>lowest memory address</i>.
+</p>
+
+<p>
+A <b>pointer</b> is a type of variable that contains the <i>memory address of another variable</i> — in other words, it &ldquo;points&rdquo; to a memory location. All pointers are the same size: 4 bytes in a system with a 32-bit address space. In C, pointers are declared by adding a star (*) next to the pointed type:
+</p>
+
+
+<div id="orgbf68a78" class="figure">
+<p><img src="../static/COMPSCI_61C/memory1.png" alt="memory1.png" />
+</p>
+</div>
+
+<p>
+The <code>&amp;</code> is the <b>address operator</b>: it gets the address of a variable. The <code>*</code> is the <b>dereference operator</b>: it gets the value pointed to by the variable. For example:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">int</span> *<span style="color: #cdd6f4;">p</span>;      <span style="color: #6c7086;">// </span><span style="color: #6c7086;">pointer p
+</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span> = 3;   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">set x to 3
+</span>p = &amp;x;      <span style="color: #6c7086;">// </span><span style="color: #6c7086;">set p to the memory address of x
+</span>*p = 5;      <span style="color: #6c7086;">// </span><span style="color: #6c7086;">dereference p, and set it to 5 (sets x to 5)</span>
+</code></pre>
+
+<p>
+The pointer of all 0s is the <code>NULL</code> pointer. Reading from or writing to a null pointer should cause your program to crash.
+</p>
+
+<p>
+C is <b>pass-by-value</b>: a function parameter gets assigned a <i>copy of the argument value</i>. Thus, if we want to pass in a lot of data (such as a large struct), a better approach is often to pass in a pointer instead, and dereference the struct inside the function. The arrow notation is often used for this: <code>d-&gt;x</code> is the same as <code>(*d).x</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org79d5315" class="outline-2">
+<h2 id="org79d5315"><span class="section-number-2">2.</span> Arrays</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+An <b>array</b> is just a block of variables of the same type, in consecutive memory addresses:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">arr</span><span style="color: #f38ba8;">[</span>2<span style="color: #f38ba8;">]</span>;
+<span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">arr_filled</span><span style="color: #f38ba8;">[]</span> = <span style="color: #f38ba8;">{</span>795, 635<span style="color: #f38ba8;">}</span>;
+<span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span> = arr_filled<span style="color: #f38ba8;">[</span>0<span style="color: #f38ba8;">]</span>;
+</code></pre>
+
+<p>
+In most circumstances, if an array is used as a variable, it is interpreted as a pointer to the first element. Note that <code>arr</code> (which returns the address of the first element) is the same as <code>&amp;arr</code>.
+</p>
+</div>
+<div id="outline-container-orgdcbb2a9" class="outline-3">
+<h3 id="orgdcbb2a9"><span class="section-number-3">2.1.</span> Pointer Arithmetic</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Since pointers are just numbers, you can add and stubrtact to them. When you add <code>n</code> to a <code>int</code> pointer, we increment the memory address in the pointer by <code>n*sizeof(int)</code>:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">uint32_t</span> <span style="color: #cdd6f4;">arr</span><span style="color: #f38ba8;">[]</span> = <span style="color: #f38ba8;">{</span>50, 60, 70<span style="color: #f38ba8;">}</span>;
+<span style="color: #f9e2af;">uint32_t</span> *<span style="color: #cdd6f4;">q</span> = arr;     <span style="color: #6c7086;">// </span><span style="color: #6c7086;">points to 50
+</span><span style="color: #f9e2af;">uint32_t</span> *<span style="color: #cdd6f4;">r</span> = q + 1;   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">now points to 60</span>
+</code></pre>
+
+<p>
+In reality, <code>arr[1]</code> is just shorthand for <code>*(arr+1)</code>. Because of how C defines pointer arithmetic, it works the same way as usual array access.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-06-24 16:40
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

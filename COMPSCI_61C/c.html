@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-06-23 Tue 20:24 -->
+<!-- 2026-06-24 Wed 16:40 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>C</title>
@@ -101,6 +101,7 @@
 </li>
 <li><a href="#org1da13d8">2. Control Flow</a></li>
 <li><a href="#orgd3ffaca">3. Types</a></li>
+<li><a href="#orgb2eec36">4. Constants, Enums, and Macros</a></li>
 </ul>
 </div>
 </div>
@@ -283,6 +284,46 @@
 </tr>
 </tbody>
 </table>
+
+<p>
+The number of bytes in a <code>int</code> depends on the computer. Use types such as <code>int32_t</code> to guarantee the size of an integer.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb2eec36" class="outline-2">
+<h2 id="orgb2eec36"><span class="section-number-2">4.</span> Constants, Enums, and Macros</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The keyword <code>const</code> defines a constant:
+</p>
+
+<pre><code class="language-c"><span style="color: #cba6f7;">const</span> <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">DAYS</span> = 7;
+</code></pre>
+
+<p>
+Can define a preprocessor macro using the <code>#define</code> directive:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">#define</span> <span style="color: #cdd6f4;">PI</span> <span style="color: #f38ba8;">(</span>3.14159<span style="color: #f38ba8;">)</span> <span style="color: #6c7086;">// </span><span style="color: #6c7086;">will replace every instance of PI with 3.14159</span>
+</code></pre>
+
+<p>
+Can define enums:
+</p>
+
+<pre><code class="language-c"><span style="color: #cba6f7;">enum</span> <span style="color: #f9e2af;">cardsuit</span><span style="color: #f38ba8;">{</span><span style="color: #cdd6f4;">DIAMONDS</span>, <span style="color: #cdd6f4;">SPADES</span>, <span style="color: #cdd6f4;">HEARTS</span>, <span style="color: #cdd6f4;">CLUBS</span><span style="color: #f38ba8;">}</span>;
+</code></pre>
+
+<p>
+We can also define and name our own types with <code>typedef</code> and <code>struct</code>:
+</p>
+
+<pre><code class="language-c"><span style="color: #cba6f7;">typedef</span> <span style="color: #cba6f7;">enum</span> <span style="color: #f9e2af;">cardsuit</span><span style="color: #f38ba8;">{</span><span style="color: #cdd6f4;">DIAMONDS</span>, <span style="color: #cdd6f4;">SPADES</span>, <span style="color: #cdd6f4;">HEARTS</span>, <span style="color: #cdd6f4;">CLUBS</span><span style="color: #f38ba8;">}</span> <span style="color: #f9e2af;">suit_t</span>;
+<span style="color: #cba6f7;">typedef</span> <span style="color: #cba6f7;">struct</span> <span style="color: #f9e2af;">cardstruct</span> <span style="color: #f38ba8;">{</span>
+  <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">rank</span>;
+  <span style="color: #f9e2af;">suit_t</span> <span style="color: #cdd6f4;">suit</span>;
+<span style="color: #f38ba8;">}</span> <span style="color: #f9e2af;">card_t</span>;
+</code></pre>
 </div>
 </div>
 </div>
@@ -292,7 +333,7 @@
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-06-23 20:14
+               Last modified: 2026-06-24 14:28
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
