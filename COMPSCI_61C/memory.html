@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-06-25 Thu 15:20 -->
+<!-- 2026-06-30 Tue 16:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Memory</title>
@@ -126,7 +126,17 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2990101">1. Pointers</a></li>
+<li><a href="#org2990101">1. Pointers</a>
+<ul>
+<li><a href="#orgac1360b">1.1. Function Pointers</a></li>
+<li><a href="#orgaafb943">1.2. Generic Pointers</a>
+<ul>
+<li><a href="#org2a660fe">1.2.1. <code>void *memcpy(void *dest, void *src, size_t count)</code></a></li>
+<li><a href="#org03a4339">1.2.2. <code>void *memmove(void *dest, void *src, size_t count)</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#org79d5315">2. Arrays</a>
 <ul>
 <li><a href="#orgdcbb2a9">2.1. Pointer Arithmetic</a></li>
@@ -147,6 +157,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#orgb5aea1d">5. Endianness</a></li>
 </ul>
 </div>
 </div>
@@ -166,7 +177,7 @@ A <b>pointer</b> is a type of variable that contains the <i>memory address of an
 </p>
 
 
-<div id="orgcec0768" class="figure">
+<div id="org4ac9d28" class="figure">
 <p><img src="../static/COMPSCI_61C/memory1.png" alt="memory1.png" />
 </p>
 </div>
@@ -188,6 +199,50 @@ The pointer of all 0s is the <code>NULL</code> pointer. Reading from or writing 
 <p>
 C is <b>pass-by-value</b>: a function parameter gets assigned a <i>copy of the argument value</i>. Thus, if we want to pass in a lot of data (such as a large struct), a better approach is often to pass in a pointer instead, and dereference the struct inside the function. The arrow notation is often used for this: <code>d-&gt;x</code> is the same as <code>(*d).x</code>.
 </p>
+</div>
+<div id="outline-container-orgac1360b" class="outline-3">
+<h3 id="orgac1360b"><span class="section-number-3">1.1.</span> Function Pointers</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Pointers can also point to functions:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">int</span> *<span style="color: #f38ba8;">(</span>*<span style="color: #89b4fa;">fp</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span>, <span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">)</span> = &amp;foo;   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">function fp (int, int) -&gt; int*
+</span><span style="color: #f9e2af;">int</span> *<span style="color: #f38ba8;">(</span>*<span style="color: #89b4fa;">fp</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span>, <span style="color: #f9e2af;">int</span><span style="color: #f38ba8;">)</span> = foo;    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">can only be omitted for function pointers</span>
+</code></pre>
+
+<p>
+We can then use the function by calling <code>(*fp)(x, y)</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaafb943" class="outline-3">
+<h3 id="orgaafb943"><span class="section-number-3">1.2.</span> Generic Pointers</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+The <code>void*</code> pointer is the <i>generic pointer</i>, which means a &ldquo;pointer to anything.&rdquo; Thus, you can never dereference a <code>void*</code> pointer (since you don&rsquo;t really know what <code>void</code> is), or do pointer arithmetic with <code>void*</code> pointers (since you don&rsquo;t know the size of the data type represented). You can, however, safely convert <code>void*</code> pointers into other pointer types.
+</p>
+
+<p>
+We have two main functions to work with memory:
+</p>
+</div>
+<div id="outline-container-org2a660fe" class="outline-4">
+<h4 id="org2a660fe"><span class="section-number-4">1.2.1.</span> <code>void *memcpy(void *dest, void *src, size_t count)</code></h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+This copies <code>count</code> bytes from <code>src</code> to <code>dest</code>. Undefined behavior if <code>src</code> and <code>dest</code> overlap.
+</p>
+</div>
+</div>
+<div id="outline-container-org03a4339" class="outline-4">
+<h4 id="org03a4339"><span class="section-number-4">1.2.2.</span> <code>void *memmove(void *dest, void *src, size_t count)</code></h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+This copies <code>count</code> bytes from <code>src</code> to <code>dest</code>, but there are no problems if <code>src</code> and <code>dest</code> overlap. However, this function is slower than <code>memcpy</code>.
+</p>
+</div>
+</div>
 </div>
 </div>
 <div id="outline-container-org79d5315" class="outline-2">
@@ -561,6 +616,18 @@ The <code>realloc</code> function &ldquo;resizes&rdquo; the block pointed to by 
 </div>
 </div>
 </div>
+<div id="outline-container-orgb5aea1d" class="outline-2">
+<h2 id="orgb5aea1d"><span class="section-number-2">5.</span> Endianness</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+There are two main ways you can split data into bytes. <b>Big-endian</b> is where the <i>most significant byte</i> comes first. <b>Little-endian</b> is where the <i>least significant byte</i> comes first. Little-endian is common in most computer architectures (unless otherwise stated, assume little-endian), and big-endian is common in network communications.
+</p>
+
+<p>
+Regardless of endianness, the integer we write is the integer we read. <i>Endianness only affects when we read a part of a block at a time</i>. Additionally, strings are not affected by endianness: since they are just an array of characters (bytes), they are stored in the same order you write them.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -568,7 +635,7 @@ The <code>realloc</code> function &ldquo;resizes&rdquo; the block pointed to by 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-06-25 15:20
+               Last modified: 2026-06-29 14:58
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

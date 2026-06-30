@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-06-30 Tue 16:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Floating Point</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61C/index.html">COMPSCI 61C</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Floating Point</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org7caf7f5">1. The Base Model</a>
+<ul>
+<li><a href="#orgb1931d2">1.1. Optimization 1: The Implicit 1</a></li>
+<li><a href="#org57138bd">1.2. Optimization 2: Infinity</a></li>
+</ul>
+</li>
+<li><a href="#org0eb9d38">2. IEEE-754</a></li>
+</ul>
+</div>
+</div>
+<p>
+What numbers do we want to store?
+</p>
+
+<p>
+IEEE-754 was designed as a &ldquo;universal&rdquo; number system (in order to encourage consistency). As such, we want to handle:
+</p>
+<ul class="org-ul">
+<li>really large numbers (e.g. Avogadro&rsquo;s number \(6.022 \times 10^{23}\))</li>
+<li>really small numbers (e.g. Planck&rsquo;s constant \(6.626 \times 10^{-34}\))</li>
+</ul>
+
+<p>
+Our goal is to store numbers to a certain <i>relative precision</i>. If we can&rsquo;t store a number exactly, we make sure that we can store a number that&rsquo;s accurate to within 0.001% of the actual number. This allows us to store a much wider range of numbers, but some numbers get &ldquo;rounded&rdquo; to the nearest representable number. Therefore, each operation in a floating-point scheme causes some slight error.
+</p>
+
+<p>
+Scientific notation already does this! We have one bit (for the sign), then a few decimal digits called the <b>mantissa</b>, and an exponent. Four decimal digits means we get precision up to \(10^{-3}\) (0.1% error).
+</p>
+<div id="outline-container-org7caf7f5" class="outline-2">
+<h2 id="org7caf7f5"><span class="section-number-2">1.</span> The Base Model</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Our goal is to store numbers to a certain <i>relative precision</i>. If we can&rsquo;t store a number exactly, we make sure that we can store a number that&rsquo;s accurate to within 0.001% of the actual number. This allows us to store a much wider range of numbers, but some numbers get &ldquo;rounded&rdquo; to the nearest representable number. Therefore, each operation in a floating-point scheme causes some slight error.
+</p>
+
+<p>
+Scientific notation already does this! We have one bit (for the sign), then a few decimal digits called the <b>mantissa</b>, and an exponent. Four decimal digits means we get precision up to \(10^{-3}\) (0.1% error).
+</p>
+
+<p>
+A floating point number shall save one bit for the sign (0 for positive, 1 for negative), <code>x</code> bits for the exponent, and <code>y</code> bits for the mantissa, stored like so:
+</p>
+
+<p>
+<code>SXXX MMMM</code>
+</p>
+
+<p>
+The mantissa will be a regular <a href="data_representation.html#org0ab493f">unsigned integer</a>. We have a few options to store the exponent as a signed integer. Adding, subtracting, multiplying, and dividing affects the exponent in complicated ways, and it is unclear which system is better here. However, for comparisons, <a href="data_representation.html#org6345fae">biased numbers</a> work the best. Thus, we store our exponent using a biased number scheme.
+</p>
+
+<p>
+Since we work with binary, we&rsquo;ll use scientific notation with a base of 2. Thus, the floating point number represented by <code>SXXX MMMM</code> is equivalent to \((-1)^{\text{S}}\cdot\text{0bM.MMMM}\cdot 2^{\text{0bXXX} + (-3)}\). The \(-3\) represents our bias.
+</p>
+</div>
+<div id="outline-container-orgb1931d2" class="outline-3">
+<h3 id="orgb1931d2"><span class="section-number-3">1.1.</span> Optimization 1: The Implicit 1</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Our mantissa is guaranteed to not have any leading zeros. In binary, since every digit is either 0 or 1, the MSB of the mantissa <i>must be a 1</i>. Thus, we can save one bit by not including the first 1, making it <i>implicit</i>.
+</p>
+
+<p>
+However, the problem with this is that we can no longer represent the number 0. This is known as an <b>underflow</b> — the result of computation gets too small to be represented:
+</p>
+
+
+<div id="org1e45dde" class="figure">
+<p><img src="../static/COMPSCI_61C/floating_point1.png" alt="floating_point1.png" />
+</p>
+</div>
+
+<p>
+Our solution is <i>denormalized numbers</i>. We change the behavior of exponent <code>0b000...0</code> so that its range extends to 0 — we treat the number as if it had an exponent of <code>0b000...1</code>, but with a leading 0 instead of a leading 1:
+</p>
+
+
+<div id="org33e04b2" class="figure">
+<p><img src="../static/COMPSCI_61C/floating_point2.png" alt="floating_point2.png" />
+</p>
+</div>
+
+<p>
+If the exponent bits are all zero, then it instead represents \((-1)^{\text{S}}\cdot\text{0b0.MMMM}\cdot2^{\text{0bXXX}+(-3)+1}\).
+</p>
+</div>
+</div>
+<div id="outline-container-org57138bd" class="outline-3">
+<h3 id="org57138bd"><span class="section-number-3">1.2.</span> Optimization 2: Infinity</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We would like to have a way to represent results of &ldquo;infinity,&rdquo; as well as reserve some &ldquo;NaN&rdquo; values for error handling. To do so, we reserve the exponent of <i>all ones</i>, so that we can use the mantissa to represent either infinity or NaN.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0eb9d38" class="outline-2">
+<h2 id="org0eb9d38"><span class="section-number-2">2.</span> IEEE-754</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>IEEE-754</b> is a standard that incorporates the above base model and optimizations. A 32-bit <b>IEEE-754 standard binary</b> floating point number uses 8 bits for the exponent and 23 bits for the mantissa:
+</p>
+
+<p>
+<code>SXXX XXXX XMMM MMMM MMMM MMMM MMMM MMMM</code>
+</p>
+
+
+<p>
+If the exponent bits are nonzero and not all ones, then it represents the number \((-1)^{\text{S}}\cdot\text{0b1.MMMMMMMM}\cdots \cdot2^{\text{0bXXXXXXXX}+(-127)}\).
+</p>
+
+<p>
+If the exponent bits are all zero, then it instead represents \((-1)^{\text{S}}\cdot\text{0b0.MMMMMMMM}\cdots \cdot2^{\text{0bXXXXXXXX}+(-127)+1}\).
+</p>
+
+<p>
+If the exponent bits are all ones, then:
+</p>
+
+<ul class="org-ul">
+<li>if the mantissa is all zeros, it&rsquo;s either positive or negative infinity depending on the sign bit</li>
+<li>otherwise, then it&rsquo;s a NaN</li>
+</ul>
+
+<p>
+IEEE-754 also specifies certain combinations of exponent and mantissa bits with special names:
+</p>
+
+<ol class="org-ol">
+<li>Single precision (also known as <code>float</code>):
+<ul class="org-ul">
+<li>8 exponent bits, -127 bias, 23 mantissa bits (32 bits total)</li>
+</ul></li>
+<li>Double precision (also known as <code>double</code>):
+<ul class="org-ul">
+<li>11 exponent bits, -1023 bias, 52 mantissa bits (64 bits total)</li>
+</ul></li>
+<li>Quad precision:
+<ul class="org-ul">
+<li>15 exponent bits, 112 mantissa bits</li>
+</ul></li>
+<li>Half precision:
+<ul class="org-ul">
+<li>5 exponent bits, 10 mantissa bits</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-06-30 16:24
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

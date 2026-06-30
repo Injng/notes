@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-06-30 Tue 16:24 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RISC-V</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61C/index.html">COMPSCI 61C</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">RISC-V</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org5ec43b5">1. Assembly</a></li>
+<li><a href="#org2e7f359">2. Registers</a></li>
+<li><a href="#org91bb312">3. Instructions</a>
+<ul>
+<li><a href="#org1306b92">3.1. Addition and Subtraction</a></li>
+<li><a href="#org28d85af">3.2. Immediates</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5ec43b5" class="outline-2">
+<h2 id="org5ec43b5"><span class="section-number-2">1.</span> Assembly</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We don&rsquo;t want to change the CPU after we build it, so we must decide beforehand on a specific set of instructions that will be supported. Different CPUs implement different instructions, so the set of instructions a particular CPU implements is known as the <b>Instruction Set Architecture</b> (ISA), and the programming language defined by the ISA is commonly known as an <b>assembly language</b>.
+</p>
+
+<p>
+Early on, the trend in ISA design was to add more and more complicated instructions to new CPUs to do more elaborate operations. <b>RISC</b>, or Reduced Instruction Set Computing, introduced the philosophy of keeping the instruction set <i>small and simple</i>, and leaving it up to software to do complicated operations by composing smaller ones. This allows RISC-based CPUs to be simpler and faster than a more complex CPU.
+</p>
+
+<p>
+<b>RISC-V</b> is a relatively popular, open source version of RISC that was invented at Berkeley in 2010. A RISC-V system is composed of two main parts: the CPU, which is responsible for computing, and main memory, which is responsible for long-term data storage.
+</p>
+</div>
+</div>
+<div id="outline-container-org2e7f359" class="outline-2">
+<h2 id="org2e7f359"><span class="section-number-2">2.</span> Registers</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The CPU is designed to be extremely fast, often completing one instruction every nanosecond or faster. Thus, going to main memory would take hundreds or even thousands of times longer, so the CPU can also store a small amount of memory through components called <b>registers</b>. Each register stores 32 bits of data (for RV32, a 32-bit variant).
+</p>
+
+<p>
+Registers are numbered from 0 to 31, referred to as <code>x0</code> to <code>x31</code>. The register <code>x0</code> is special and always stores 0. The other 31 registers are available to hold variables, however we have specific conventions on how to use them.
+</p>
+</div>
+</div>
+<div id="outline-container-org91bb312" class="outline-2">
+<h2 id="org91bb312"><span class="section-number-2">3.</span> Instructions</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Each line of RISC-V code is a single <b>instruction</b>, which executes a simple operation on registers. Instructions are generally written in the format:
+</p>
+
+<pre><code class="language-nil">&lt;instruction name&gt; &lt;destination register&gt; &lt;operands&gt;
+</code></pre>
+
+<p>
+For example, the instruction <code>add x5 x6 x7</code> means &ldquo;add the values in <code>x6</code> and <code>x7</code>, then store the result in <code>x5</code>&rdquo;.
+</p>
+
+<p>
+Comments are written using the <code>#</code> symbol. Since RISC-V does not have variable names, comments are far more important in assembly than a high-level language.
+</p>
+</div>
+<div id="outline-container-org1306b92" class="outline-3">
+<h3 id="org1306b92"><span class="section-number-3">3.1.</span> Addition and Subtraction</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Use the <code>add</code> instruction for addition:
+</p>
+
+<pre><code class="language-asm"><span style="color: #89b4fa;">add</span> <span style="color: #cba6f7;">x1</span> x2 x3   # x1 = x2 + x3
+</code></pre>
+
+<p>
+Use the <code>sub</code> instruction for subtraction:
+</p>
+
+<pre><code class="language-asm"><span style="color: #89b4fa;">sub</span> <span style="color: #cba6f7;">x1</span> x2 x3   # x1 = x2 - x3
+</code></pre>
+
+
+<pre><code class="language-asm"><span style="color: #89b4fa;">add</span> <span style="color: #cba6f7;">x10</span> x11 x12
+<span style="color: #89b4fa;">sub</span> <span style="color: #cba6f7;">x10</span> x10 x13
+<span style="color: #89b4fa;">sub</span> <span style="color: #cba6f7;">x10</span> x10 x14 
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org28d85af" class="outline-3">
+<h3 id="org28d85af"><span class="section-number-3">3.2.</span> Immediates</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Immediates are numerical constants. To add an immediate to a register, use the special instruction <code>addi</code>:
+</p>
+
+<pre><code class="language-asm"><span style="color: #89b4fa;">addi</span> <span style="color: #cba6f7;">x3</span> x4 10   # x3 = x4 + 10
+</code></pre>
+
+<p>
+Note that both <code>addi x3 x4 x5</code> and <code>add x3 x4 10</code> are both invalid RISC-V instructions: be careful with using the register versus the immediate version of an instruction. An immediate subtraction instruction does not exist because we can subtract an immediate by using its negative version.
+</p>
+
+<p>
+Additionally, since the number zero appears very often in code, the register <code>x0</code> is &ldquo;hard-wired&rdquo; to the value 0.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-06-30 15:28
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
