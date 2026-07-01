@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-06-30 Tue 16:24 -->
+<!-- 2026-07-01 Wed 16:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Data Representation</title>
@@ -275,7 +275,7 @@ We can also bias our numbers, shifting them so that they center on zero instead.
 </p>
 
 
-<div id="orgdbee1ab" class="figure">
+<div id="orga8ff5f0" class="figure">
 <p><img src="../static/COMPSCI_61C/data_representation1.png" alt="data_representation1.png" />
 </p>
 </div>
@@ -536,6 +536,16 @@ We can use binary to represent the boolean states: 1 to mean TRUE, and 0 to mean
 <p>
 In binary, left shift is equivalent to <i>multiplying by a power of 2</i>, and right shift is equivalent to <i>dividing by a power of 2</i>.
 </p>
+
+<p>
+Note the following usecases of bitwise operations as it applies to <i>state variables</i>:
+</p>
+
+<ul class="org-ul">
+<li>turning bits on: <code>x | 1 = 1</code></li>
+<li>turning bits off: <code>x &amp; 0 = 0</code></li>
+<li>flipping bits: <code>x ^ 1 = ~x</code></li>
+</ul>
 </div>
 </div>
 </div>
@@ -545,7 +555,7 @@ In binary, left shift is equivalent to <i>multiplying by a power of 2</i>, and r
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-06-29 15:23
+               Last modified: 2026-06-30 20:26
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

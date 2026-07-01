@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-06-30 Tue 16:24 -->
+<!-- 2026-07-01 Wed 16:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RISC-V</title>
@@ -95,11 +95,18 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#org5ec43b5">1. Assembly</a></li>
-<li><a href="#org2e7f359">2. Registers</a></li>
+<li><a href="#org2e7f359">2. Registers</a>
+<ul>
+<li><a href="#org317f733">2.1. Register Names</a></li>
+</ul>
+</li>
 <li><a href="#org91bb312">3. Instructions</a>
 <ul>
-<li><a href="#org1306b92">3.1. Addition and Subtraction</a></li>
+<li><a href="#org07a3a91">3.1. Arithmetic Operations</a></li>
 <li><a href="#org28d85af">3.2. Immediates</a></li>
+<li><a href="#org0c7ce61">3.3. Sign and Zero Extending</a></li>
+<li><a href="#orgf46caa3">3.4. Control Flow</a></li>
+<li><a href="#org2d2c233">3.5. Pseudoinstructions</a></li>
 </ul>
 </li>
 </ul>
@@ -132,6 +139,14 @@ The CPU is designed to be extremely fast, often completing one instruction every
 Registers are numbered from 0 to 31, referred to as <code>x0</code> to <code>x31</code>. The register <code>x0</code> is special and always stores 0. The other 31 registers are available to hold variables, however we have specific conventions on how to use them.
 </p>
 </div>
+<div id="outline-container-org317f733" class="outline-3">
+<h3 id="org317f733"><span class="section-number-3">2.1.</span> Register Names</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Each register has a name associated with them. They signal the most common use case for that register.
+</p>
+</div>
+</div>
 </div>
 <div id="outline-container-org91bb312" class="outline-2">
 <h2 id="org91bb312"><span class="section-number-2">3.</span> Instructions</h2>
@@ -151,8 +166,8 @@ For example, the instruction <code>add x5 x6 x7</code> means &ldquo;add the valu
 Comments are written using the <code>#</code> symbol. Since RISC-V does not have variable names, comments are far more important in assembly than a high-level language.
 </p>
 </div>
-<div id="outline-container-org1306b92" class="outline-3">
-<h3 id="org1306b92"><span class="section-number-3">3.1.</span> Addition and Subtraction</h3>
+<div id="outline-container-org07a3a91" class="outline-3">
+<h3 id="org07a3a91"><span class="section-number-3">3.1.</span> Arithmetic Operations</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Use the <code>add</code> instruction for addition:
@@ -168,10 +183,18 @@ Use the <code>sub</code> instruction for subtraction:
 <pre><code class="language-asm"><span style="color: #89b4fa;">sub</span> <span style="color: #cba6f7;">x1</span> x2 x3   # x1 = x2 - x3
 </code></pre>
 
+<p>
+These are all the arithmetic operations supported by RISC-V:
+</p>
 
-<pre><code class="language-asm"><span style="color: #89b4fa;">add</span> <span style="color: #cba6f7;">x10</span> x11 x12
-<span style="color: #89b4fa;">sub</span> <span style="color: #cba6f7;">x10</span> x10 x13
-<span style="color: #89b4fa;">sub</span> <span style="color: #cba6f7;">x10</span> x10 x14 
+<pre><code class="language-asm"><span style="color: #89b4fa;">add</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # add
+<span style="color: #89b4fa;">sub</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # subtract
+<span style="color: #89b4fa;">and</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # bitwise and
+<span style="color: #89b4fa;">or</span> <span style="color: #cba6f7;">rd</span> rs1 rs2     # bitwise or
+<span style="color: #89b4fa;">xor</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # bitwise xor
+<span style="color: #89b4fa;">sll</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # shift left logical
+<span style="color: #89b4fa;">srl</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # shift right logical
+<span style="color: #89b4fa;">sra</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # shift right airthmetic
 </code></pre>
 </div>
 </div>
@@ -179,7 +202,7 @@ Use the <code>sub</code> instruction for subtraction:
 <h3 id="org28d85af"><span class="section-number-3">3.2.</span> Immediates</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-Immediates are numerical constants. To add an immediate to a register, use the special instruction <code>addi</code>:
+Immediates are numerical constants. For example, to add an immediate to a register, use the special instruction <code>addi</code>:
 </p>
 
 <pre><code class="language-asm"><span style="color: #89b4fa;">addi</span> <span style="color: #cba6f7;">x3</span> x4 10   # x3 = x4 + 10
@@ -194,6 +217,51 @@ Additionally, since the number zero appears very often in code, the register <co
 </p>
 </div>
 </div>
+<div id="outline-container-org0c7ce61" class="outline-3">
+<h3 id="org0c7ce61"><span class="section-number-3">3.3.</span> Sign and Zero Extending</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+There are two main representation schemes used: unsigned numbers, and <a href="data_representation.html#orgd360470">two&rsquo;s complement</a> for signed numbers.
+</p>
+
+<p>
+For unsigned numbers, we fill the unused top bits with zeros (<b>zero-extension</b>).
+</p>
+
+<p>
+For signed numbers, we fill the unused top bits with the MSB (<b>sign-extension</b>).
+</p>
+</div>
+</div>
+<div id="outline-container-orgf46caa3" class="outline-3">
+<h3 id="orgf46caa3"><span class="section-number-3">3.4.</span> Control Flow</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+In RISC-V, every control flow operation tries to move to a specified instruction in memory. <b>Labels</b> identify a specific instruction in code so we can reference it with a control flow operation. The following are all of the RISC-V control flow operations:
+</p>
+
+<pre><code class="language-asm"><span style="color: #89b4fa;">beq</span> <span style="color: #cba6f7;">rs1</span> rs2 label    # branch if equal: if rs1 == rs2, jump to label
+<span style="color: #89b4fa;">bne</span> <span style="color: #cba6f7;">rs2</span> rs2 label    # branch if not equal
+<span style="color: #89b4fa;">blt</span> <span style="color: #cba6f7;">rs1</span> rs2 label    # branch if less than <span style="color: #f38ba8;">(</span>signed<span style="color: #f38ba8;">)</span>
+<span style="color: #89b4fa;">bge</span> <span style="color: #cba6f7;">rs1</span> rs2 label    # branch if greater or equal <span style="color: #f38ba8;">(</span>signed<span style="color: #f38ba8;">)</span>
+<span style="color: #89b4fa;">bltu</span> <span style="color: #cba6f7;">rs1</span> rs2 label   # branch if less than <span style="color: #f38ba8;">(</span>unsigned<span style="color: #f38ba8;">)</span>
+<span style="color: #89b4fa;">bgeu</span> <span style="color: #cba6f7;">rs1</span> rs2 label   # branch if greater or equal <span style="color: #f38ba8;">(</span>unsigned<span style="color: #f38ba8;">)</span>
+<span style="color: #89b4fa;">j</span> <span style="color: #cba6f7;">label</span>              # jump to label unconditionally
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org2d2c233" class="outline-3">
+<h3 id="org2d2c233"><span class="section-number-3">3.5.</span> Pseudoinstructions</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+A <b>pseudoinstruction</b> is an instruction that does not exist as a <i>hardware instruction</i>, but is composed of one or more actual hardware instructions that is translated automatically by the assembler. Pseudoinstructions exist to make certain operations easier:
+</p>
+
+<pre><code class="language-asm"><span style="color: #89b4fa;">li</span> <span style="color: #cba6f7;">rs1</span> 1   # load immediate: loads the immediate value 1 to rs1
+<span style="color: #89b4fa;">not</span> <span style="color: #cba6f7;">rd</span> rs  # flips all the bits in rs
+</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -202,7 +270,7 @@ Additionally, since the number zero appears very often in code, the register <co
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-06-30 15:28
+               Last modified: 2026-07-01 14:58
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
