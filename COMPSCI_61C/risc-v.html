@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-01 Wed 16:26 -->
+<!-- 2026-07-02 Thu 15:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RISC-V</title>
@@ -17,6 +17,140 @@
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
 
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+          
           <style>
           /* From: https://endlessparentheses.com/public/css/endless.css */
           /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
@@ -97,16 +231,17 @@
 <li><a href="#org5ec43b5">1. Assembly</a></li>
 <li><a href="#org2e7f359">2. Registers</a>
 <ul>
-<li><a href="#org317f733">2.1. Register Names</a></li>
+<li><a href="#org66deabc">2.1. Calling Convention</a></li>
 </ul>
 </li>
 <li><a href="#org91bb312">3. Instructions</a>
 <ul>
 <li><a href="#org07a3a91">3.1. Arithmetic Operations</a></li>
-<li><a href="#org28d85af">3.2. Immediates</a></li>
+<li><a href="#orgee07551">3.2. Immediate Operations</a></li>
 <li><a href="#org0c7ce61">3.3. Sign and Zero Extending</a></li>
 <li><a href="#orgf46caa3">3.4. Control Flow</a></li>
-<li><a href="#org2d2c233">3.5. Pseudoinstructions</a></li>
+<li><a href="#orgd6c5a21">3.5. Memory</a></li>
+<li><a href="#org2d2c233">3.6. Pseudoinstructions</a></li>
 </ul>
 </li>
 </ul>
@@ -139,11 +274,111 @@ The CPU is designed to be extremely fast, often completing one instruction every
 Registers are numbered from 0 to 31, referred to as <code>x0</code> to <code>x31</code>. The register <code>x0</code> is special and always stores 0. The other 31 registers are available to hold variables, however we have specific conventions on how to use them.
 </p>
 </div>
-<div id="outline-container-org317f733" class="outline-3">
-<h3 id="org317f733"><span class="section-number-3">2.1.</span> Register Names</h3>
+<div id="outline-container-org66deabc" class="outline-3">
+<h3 id="org66deabc"><span class="section-number-3">2.1.</span> Calling Convention</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-Each register has a name associated with them. They signal the most common use case for that register.
+To ensure functions in RISC-V behave properly, we use a <b>calling convention</b> to ensure that registers are used properly. Each register has a name associated with them. They signal the most common use case for that register:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Register</th>
+<th scope="col" class="org-left">Name</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>x0</code></td>
+<td class="org-left"><code>zero</code></td>
+<td class="org-left">zero</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x1</code></td>
+<td class="org-left"><code>ra</code></td>
+<td class="org-left">return address</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x2</code></td>
+<td class="org-left"><code>sp</code></td>
+<td class="org-left">stack pointer</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x3</code></td>
+<td class="org-left"><code>gp</code></td>
+<td class="org-left">global pointer</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x4</code></td>
+<td class="org-left"><code>tp</code></td>
+<td class="org-left">thread pointer</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x5-x7</code></td>
+<td class="org-left"><code>t0-t2</code></td>
+<td class="org-left">temporary registers</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x8-x9</code></td>
+<td class="org-left"><code>s0</code>-<code>s1</code></td>
+<td class="org-left">saved registers</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x10</code>-<code>x17</code></td>
+<td class="org-left"><code>a0</code>-<code>a7</code></td>
+<td class="org-left">argument registers</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x18</code>-<code>x27</code></td>
+<td class="org-left"><code>s2</code>-<code>s11</code></td>
+<td class="org-left">saved registers</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>x28</code>-<code>x31</code></td>
+<td class="org-left"><code>t3</code>-<code>t6</code></td>
+<td class="org-left">temporary registers</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The <b>stack pointer</b> tracks the end of the stack. Everything above the stack pointer (higher memory addresses) is reserved, whereas everything below is unallocated. Everything between <code>sp</code> and the original location of <code>sp</code> is useable space for your program. To use the stack, move <code>sp</code> down, and store data in the new space. After freeing the space, <code>sp</code> should moved back up.
+</p>
+
+<p>
+The <b>return address</b> stores where a function should return back to after completing. A function will assume that <code>ra</code> is where to jump back to when returning.
+</p>
+
+<p>
+The <b>argument registers</b> are used to store function arguments. <code>a0</code> and <code>a1</code> are also used for return values. These can be changed by functions, so we can&rsquo;t assume they are unchanged after a function call.
+</p>
+
+<p>
+The <b>temporary registers</b> are used for intermediate calculations. These can also be changed by functions.
+</p>
+
+<p>
+The <b>saved registers</b> are used for permanent variables. They cannot be changed by functions. If a function changes a saved register, it is responsible for restoring the old value before returning.
 </p>
 </div>
 </div>
@@ -164,6 +399,10 @@ For example, the instruction <code>add x5 x6 x7</code> means &ldquo;add the valu
 
 <p>
 Comments are written using the <code>#</code> symbol. Since RISC-V does not have variable names, comments are far more important in assembly than a high-level language.
+</p>
+
+<p>
+Just like in C, RISC-V uses a similar <a href="memory.html#org744d184">memory model</a>. Code is stored in the text section of memory, where every instruction is stored as a 32-bit number — the next instruction is always stored 4 bytes after the current one. A special 33rd register called the <b>program counter</b> (<code>pc</code>) keeps track of which line of code is being run.
 </p>
 </div>
 <div id="outline-container-org07a3a91" class="outline-3">
@@ -198,11 +437,11 @@ These are all the arithmetic operations supported by RISC-V:
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org28d85af" class="outline-3">
-<h3 id="org28d85af"><span class="section-number-3">3.2.</span> Immediates</h3>
+<div id="outline-container-orgee07551" class="outline-3">
+<h3 id="orgee07551"><span class="section-number-3">3.2.</span> Immediate Operations</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-Immediates are numerical constants. For example, to add an immediate to a register, use the special instruction <code>addi</code>:
+<b>Immediates</b> are numerical constants. For example, to add an immediate to a register, use the special instruction <code>addi</code>:
 </p>
 
 <pre><code class="language-asm"><span style="color: #89b4fa;">addi</span> <span style="color: #cba6f7;">x3</span> x4 10   # x3 = x4 + 10
@@ -229,7 +468,7 @@ For unsigned numbers, we fill the unused top bits with zeros (<b>zero-extension<
 </p>
 
 <p>
-For signed numbers, we fill the unused top bits with the MSB (<b>sign-extension</b>).
+For signed numbers, we fill the unused top bits with the most significant bit (<b>sign-extension</b>).
 </p>
 </div>
 </div>
@@ -248,11 +487,38 @@ In RISC-V, every control flow operation tries to move to a specified instruction
 <span style="color: #89b4fa;">bgeu</span> <span style="color: #cba6f7;">rs1</span> rs2 label   # branch if greater or equal <span style="color: #f38ba8;">(</span>unsigned<span style="color: #f38ba8;">)</span>
 <span style="color: #89b4fa;">j</span> <span style="color: #cba6f7;">label</span>              # jump to label unconditionally
 </code></pre>
+
+<p>
+We can use the <code>jal</code> (jump and link) and the <code>jr</code> (jump register) instructions to create functions:
+</p>
+
+<pre><code class="language-asm"><span style="color: #89b4fa;">jal</span> <span style="color: #cba6f7;">rd</span> label         # jump and link: jumps to label, sets rd to pc+4 <span style="color: #f38ba8;">(</span>next instruction<span style="color: #f38ba8;">)</span>
+<span style="color: #89b4fa;">jr</span> <span style="color: #cba6f7;">rs1</span>               # jump register: jump to instruction at address rs1
+</code></pre>
+</div>
+</div>
+<div id="outline-container-orgd6c5a21" class="outline-3">
+<h3 id="orgd6c5a21"><span class="section-number-3">3.5.</span> Memory</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+When registers are not enough to store our data, we may need to use main memory instead. Here, we can use these instructions:
+</p>
+
+<pre><code class="language-asm"><span style="color: #89b4fa;">lw</span> <span style="color: #cba6f7;">rd</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>       # load word: load 4 bytes from memory at imm+rs1 into rd
+<span style="color: #89b4fa;">sw</span> <span style="color: #cba6f7;">rs2</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>      # store word: store the 4 bytes in rs2 into memory at imm+rs1
+<span style="color: #89b4fa;">lb</span> <span style="color: #cba6f7;">rd</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>       # load byte <span style="color: #f38ba8;">(</span>signed, sign extend the byte<span style="color: #f38ba8;">)</span>
+<span style="color: #89b4fa;">lbu</span> <span style="color: #cba6f7;">rd</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>      # load byte <span style="color: #f38ba8;">(</span>unsigned, zero extend the byte<span style="color: #f38ba8;">)</span>
+<span style="color: #89b4fa;">sb</span> <span style="color: #cba6f7;">rs2</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>      # store byte <span style="color: #f38ba8;">(</span>LSB only<span style="color: #f38ba8;">)</span>
+</code></pre>
+
+<p>
+Remember since we use little-endian, the LSB is stored in the lower memory address. Additionally, when we store a byte, we take the LSB from the register.
+</p>
 </div>
 </div>
 <div id="outline-container-org2d2c233" class="outline-3">
-<h3 id="org2d2c233"><span class="section-number-3">3.5.</span> Pseudoinstructions</h3>
-<div class="outline-text-3" id="text-3-5">
+<h3 id="org2d2c233"><span class="section-number-3">3.6.</span> Pseudoinstructions</h3>
+<div class="outline-text-3" id="text-3-6">
 <p>
 A <b>pseudoinstruction</b> is an instruction that does not exist as a <i>hardware instruction</i>, but is composed of one or more actual hardware instructions that is translated automatically by the assembler. Pseudoinstructions exist to make certain operations easier:
 </p>
@@ -270,7 +536,7 @@ A <b>pseudoinstruction</b> is an instruction that does not exist as a <i>hardwar
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-01 14:58
+               Last modified: 2026-07-02 15:25
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
