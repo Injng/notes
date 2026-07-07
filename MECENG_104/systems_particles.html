@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-07-07 Tue 14:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Systems of Particles</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MECENG_104/index.html">MECENG 104</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Systems of Particles</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6aefd47">1. Kinematics for Systems of Particles</a></li>
+<li><a href="#orgf664506">2. Kinetics for Systems of Particles</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6aefd47" class="outline-2">
+<h2 id="org6aefd47"><span class="section-number-2">1.</span> Kinematics for Systems of Particles</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The <b>mass</b> for a system of particles is the sum of the masses of each particle:
+</p>
+
+\begin{align}
+m = \sum m_i
+\end{align}
+
+<p>
+The <b>position</b> vector for a system of particles is the <i>weighted average of position vectors by mass</i>, or the <b>center of mass</b>:
+</p>
+
+\begin{align}
+\mathbf{r}_c = \frac{\sum m_i\mathbf{r}_i}{\sum m_i}
+\end{align}
+
+<p>
+The <b>velocity</b> vector is the velocity of the center of mass:
+</p>
+
+\begin{align}
+\mathbf{v}_c = \frac{\sum m_i\mathbf{v}_i}{\sum m_i}
+\end{align}
+
+<p>
+The <b>acceleration</b> vector is the acceleration of the center of mass:
+</p>
+
+\begin{align}
+\mathbf{a}_c = \frac{\sum m_i\mathbf{a}_i}{\sum m_i}
+\end{align}
+
+<p>
+The <b>linear momentum</b> of a system of particles is the sum of the linear momenta of its constituents:
+</p>
+
+\begin{align}
+\mathbf{G} = m\mathbf{v}_c
+\end{align}
+
+<p>
+The <b>angular momentum</b> of a system of particles is the sum of the angular momenta of its constituents:
+</p>
+
+\begin{align}
+\mathbf{H}^P = \sum(\mathbf{r}_i - \mathbf{r}_p)\times m_i\mathbf{v}_i = \mathbf{H}^C + (\mathbf{r}_C-\mathbf{r}_P)\times G
+\end{align}
+
+<p>
+The <b>kinetic energy</b> of a system of particles is the sum of all its individual kinetic energies:
+</p>
+
+\begin{align}
+T = \sum \frac{1}{2}m_i\mathbf{v}_i \cdot \mathbf{v}_i = \frac{1}{2}m\mathbf{v}_C\cdot\mathbf{v}_C + \frac{1}{2}\sum m_i(\mathbf{v}_i-\mathbf{v}_C)\cdot(\mathbf{v}_i-\mathbf{v}_C)
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgf664506" class="outline-2">
+<h2 id="orgf664506"><span class="section-number-2">2.</span> Kinetics for Systems of Particles</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The <a href="particle_kinetics.html#orgb18dbd0">balance of linear momentum</a> for a system of particles sums the balance of linear momentum for each particle:
+</p>
+
+\begin{align}
+\mathbf{F} = m\mathbf{a}_C
+\end{align}
+
+<p>
+The <a href="particle_kinetics.html#org2876b11">balance of angular momentum</a> for a system of particles is derived by taking the derivative of angular momentum for a system of particles:
+</p>
+
+\begin{align}
+\dot{\mathbf{H}}^P = \mathbf{M}^P - \mathbf{v}_P\times\mathbf{G}
+\end{align}
+
+<p>
+Specifically, if the point \(P\) is the center of mass \(C\), we can simplify this to:
+</p>
+
+\begin{align}
+\dot{\mathbf{H}}^C = \mathbf{M}^C
+\end{align}
+
+<p>
+Additionally, if \(P\) is some <i>fixed</i> origin \(O\) (with \(\mathbf{v}_O = 0\)), we can simplify to:
+</p>
+
+\begin{align}
+\dot{\mathbf{H}}^O = \mathbf{M}^O
+\end{align}
+
+<p>
+Taking the integral with respect to time yields the linear impulse-linear momentum equations and the angular impulse-angular momentum equations:
+</p>
+
+\begin{align}
+\int_{t_1}^{t_2} \mathbf{F}\text{ d}t &= \mathbf{G}_C(t_2) - \mathbf{G}_C(t_1) \\
+\int_{t_1}^{t_2} \mathbf{M}^C\text{ d}t &= \mathbf{H}^C(t_2) - \mathbf{H}^C(t_1) \\
+\int_{t_1}^{t_2} \mathbf{M}^O\text{ d}t &= \mathbf{H}^O(t_2) - \mathbf{H}^O(t_1)
+\end{align}
+
+<p>
+Finally, the <a href="particle_kinetics.html#org555c94e">work-energy theorem</a> is the sum for each particle:
+</p>
+
+\begin{align}
+\boxed{T(t_2) - T(t_1) = \sum W_{\mathbf{F}_i, 12}}
+\end{align}
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-07-07 14:02
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
