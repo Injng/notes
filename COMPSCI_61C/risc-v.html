@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-07 Tue 14:01 -->
+<!-- 2026-07-08 Wed 14:29 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RISC-V</title>
@@ -13,6 +13,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="https://raw.githubusercontent.com/highlightjs/highlightjs-riscvasm/refs/heads/main/dist/riscvasm.min.js"></script>
    <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
    <link rel="stylesheet" href="/style.css" type="text/css"/>
    <script>hljs.highlightAll();</script>
@@ -83,6 +84,38 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -108,6 +141,20 @@
 <li><a href="#orgf46caa3">3.4. Control Flow</a></li>
 <li><a href="#orgd6c5a21">3.5. Memory</a></li>
 <li><a href="#org2d2c233">3.6. Pseudoinstructions</a></li>
+</ul>
+</li>
+<li><a href="#orga1e1485">4. Instruction Formats</a>
+<ul>
+<li><a href="#org3048991">4.1. R-Type</a></li>
+<li><a href="#org870e966">4.2. I-Type</a>
+<ul>
+<li><a href="#orgff679d5">4.2.1. I-Type with Shift</a></li>
+</ul>
+</li>
+<li><a href="#org105916b">4.3. S-Type</a></li>
+<li><a href="#orgd038fc4">4.4. U-Type</a></li>
+<li><a href="#org77494f0">4.5. B-Type</a></li>
+<li><a href="#org30e60d9">4.6. J-Type</a></li>
 </ul>
 </li>
 </ul>
@@ -278,28 +325,30 @@ Just like in C, RISC-V uses a similar <a href="memory.html#org744d184">memory mo
 Use the <code>add</code> instruction for addition:
 </p>
 
-<pre><code class="language-asm"><span style="color: #89b4fa;">add</span> <span style="color: #cba6f7;">x1</span> x2 x3   # x1 = x2 + x3
+<pre><code class="language-riscvasm">add x1 x2 x3   # x1 = x2 + x3
 </code></pre>
 
 <p>
 Use the <code>sub</code> instruction for subtraction:
 </p>
 
-<pre><code class="language-asm"><span style="color: #89b4fa;">sub</span> <span style="color: #cba6f7;">x1</span> x2 x3   # x1 = x2 - x3
+<pre><code class="language-riscvasm">sub x1 x2 x3   # x1 = x2 - x3
 </code></pre>
 
 <p>
 These are all the arithmetic operations supported by RISC-V:
 </p>
 
-<pre><code class="language-asm"><span style="color: #89b4fa;">add</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # add
-<span style="color: #89b4fa;">sub</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # subtract
-<span style="color: #89b4fa;">and</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # bitwise and
-<span style="color: #89b4fa;">or</span> <span style="color: #cba6f7;">rd</span> rs1 rs2     # bitwise or
-<span style="color: #89b4fa;">xor</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # bitwise xor
-<span style="color: #89b4fa;">sll</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # shift left logical
-<span style="color: #89b4fa;">srl</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # shift right logical
-<span style="color: #89b4fa;">sra</span> <span style="color: #cba6f7;">rd</span> rs1 rs2    # shift right airthmetic
+<pre><code class="language-riscvasm">add rd rs1 rs2    # add
+sub rd rs1 rs2    # subtract
+and rd rs1 rs2    # bitwise and
+or rd rs1 rs2     # bitwise or
+xor rd rs1 rs2    # bitwise xor
+sll rd rs1 rs2    # shift left logical
+srl rd rs1 rs2    # shift right logical
+sra rd rs1 rs2    # shift right airthmetic
+slt rd rs1 rs2    # set less than (signed): rd = (rs1 &lt; rs2) ? 1 : 0
+sltu rd rs1 rs2   # set less than (unsigned)
 </code></pre>
 </div>
 </div>
@@ -310,11 +359,11 @@ These are all the arithmetic operations supported by RISC-V:
 <b>Immediates</b> are numerical constants. For example, to add an immediate to a register, use the special instruction <code>addi</code>:
 </p>
 
-<pre><code class="language-asm"><span style="color: #89b4fa;">addi</span> <span style="color: #cba6f7;">x3</span> x4 10   # x3 = x4 + 10
+<pre><code class="language-riscvasm">addi x3 x4 10   # x3 = x4 + 10
 </code></pre>
 
 <p>
-Note that both <code>addi x3 x4 x5</code> and <code>add x3 x4 10</code> are both invalid RISC-V instructions: be careful with using the register versus the immediate version of an instruction. An immediate subtraction instruction does not exist because we can subtract an immediate by using its negative version.
+Note that both <code>addi x3 x4 x5</code> and <code>add x3 x4 10</code> are both invalid RISC-V instructions: be careful with using the register versus the immediate version of an instruction. An immediate subtraction instruction does not exist because we can subtract an immediate by using its negative version. Therefore, <code>addi</code> is a <i>signed instruction</i>.
 </p>
 
 <p>
@@ -345,21 +394,21 @@ For signed numbers, we fill the unused top bits with the most significant bit (<
 In RISC-V, every control flow operation tries to move to a specified instruction in memory. <b>Labels</b> identify a specific instruction in code so we can reference it with a control flow operation. The following are all of the RISC-V control flow operations:
 </p>
 
-<pre><code class="language-asm"><span style="color: #89b4fa;">beq</span> <span style="color: #cba6f7;">rs1</span> rs2 label    # branch if equal: if rs1 == rs2, jump to label
-<span style="color: #89b4fa;">bne</span> <span style="color: #cba6f7;">rs2</span> rs2 label    # branch if not equal
-<span style="color: #89b4fa;">blt</span> <span style="color: #cba6f7;">rs1</span> rs2 label    # branch if less than <span style="color: #f38ba8;">(</span>signed<span style="color: #f38ba8;">)</span>
-<span style="color: #89b4fa;">bge</span> <span style="color: #cba6f7;">rs1</span> rs2 label    # branch if greater or equal <span style="color: #f38ba8;">(</span>signed<span style="color: #f38ba8;">)</span>
-<span style="color: #89b4fa;">bltu</span> <span style="color: #cba6f7;">rs1</span> rs2 label   # branch if less than <span style="color: #f38ba8;">(</span>unsigned<span style="color: #f38ba8;">)</span>
-<span style="color: #89b4fa;">bgeu</span> <span style="color: #cba6f7;">rs1</span> rs2 label   # branch if greater or equal <span style="color: #f38ba8;">(</span>unsigned<span style="color: #f38ba8;">)</span>
-<span style="color: #89b4fa;">j</span> <span style="color: #cba6f7;">label</span>              # jump to label unconditionally
+<pre><code class="language-riscvasm">beq rs1 rs2 label    # branch if equal: if rs1 == rs2, jump to label
+bne rs2 rs2 label    # branch if not equal
+blt rs1 rs2 label    # branch if less than (signed)
+bge rs1 rs2 label    # branch if greater or equal (signed)
+bltu rs1 rs2 label   # branch if less than (unsigned)
+bgeu rs1 rs2 label   # branch if greater or equal (unsigned)
+j label              # jump to label unconditionally
 </code></pre>
 
 <p>
 We can use the <code>jal</code> (jump and link) and the <code>jr</code> (jump register) instructions to create functions:
 </p>
 
-<pre><code class="language-asm"><span style="color: #89b4fa;">jal</span> <span style="color: #cba6f7;">rd</span> label         # jump and link: jumps to label, sets rd to pc+4 <span style="color: #f38ba8;">(</span>next instruction<span style="color: #f38ba8;">)</span>
-<span style="color: #89b4fa;">jr</span> <span style="color: #cba6f7;">rs1</span>               # jump register: jump to instruction at address rs1
+<pre><code class="language-riscvasm">jal rd label         # jump and link: jumps to label, sets rd to pc+4 (next instruction)
+jr rs1               # jump register: jump to instruction at address rs1
 </code></pre>
 </div>
 </div>
@@ -370,11 +419,11 @@ We can use the <code>jal</code> (jump and link) and the <code>jr</code> (jump re
 When registers are not enough to store our data, we may need to use main memory instead. Here, we can use these instructions:
 </p>
 
-<pre><code class="language-asm"><span style="color: #89b4fa;">lw</span> <span style="color: #cba6f7;">rd</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>       # load word: load 4 bytes from memory at imm+rs1 into rd
-<span style="color: #89b4fa;">sw</span> <span style="color: #cba6f7;">rs2</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>      # store word: store the 4 bytes in rs2 into memory at imm+rs1
-<span style="color: #89b4fa;">lb</span> <span style="color: #cba6f7;">rd</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>       # load byte <span style="color: #f38ba8;">(</span>signed, sign extend the byte<span style="color: #f38ba8;">)</span>
-<span style="color: #89b4fa;">lbu</span> <span style="color: #cba6f7;">rd</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>      # load byte <span style="color: #f38ba8;">(</span>unsigned, zero extend the byte<span style="color: #f38ba8;">)</span>
-<span style="color: #89b4fa;">sb</span> <span style="color: #cba6f7;">rs2</span> imm<span style="color: #f38ba8;">(</span>rs1<span style="color: #f38ba8;">)</span>      # store byte <span style="color: #f38ba8;">(</span>LSB only<span style="color: #f38ba8;">)</span>
+<pre><code class="language-riscvasm">lw rd imm(rs1)       # load word: load 4 bytes from memory at imm+rs1 into rd
+sw rs2 imm(rs1)      # store word: store the 4 bytes in rs2 into memory at imm+rs1
+lb rd imm(rs1)       # load byte (signed, sign extend the byte)
+lbu rd imm(rs1)      # load byte (unsigned, zero extend the byte)
+sb rs2 imm(rs1)      # store byte (LSB only)
 </code></pre>
 
 <p>
@@ -389,11 +438,153 @@ Remember since we use little-endian, the LSB is stored in the lower memory addre
 A <b>pseudoinstruction</b> is an instruction that does not exist as a <i>hardware instruction</i>, but is composed of one or more actual hardware instructions that is translated automatically by the assembler. Pseudoinstructions exist to make certain operations easier:
 </p>
 
-<pre><code class="language-asm"><span style="color: #89b4fa;">li</span> <span style="color: #cba6f7;">rs1</span> 1       # load immediate: loads the immediate value 1 to rs1
-<span style="color: #89b4fa;">la</span> <span style="color: #cba6f7;">rd</span> label    # load address: loads the address of the label
-<span style="color: #89b4fa;">mv</span> <span style="color: #cba6f7;">rd</span> rs1      # move: copies the value in rs1 into rd
-<span style="color: #89b4fa;">not</span> <span style="color: #cba6f7;">rd</span> rs      # flips all the bits in rs
+<pre><code class="language-riscvasm">li rs1 1       # load immediate: loads the immediate value 1 to rs1
+la rd label    # load address: loads the address of the label
+mv rd rs1      # move: copies the value in rs1 into rd
+not rd rs      # flips all the bits in rs
 </code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga1e1485" class="outline-2">
+<h2 id="orga1e1485"><span class="section-number-2">4.</span> Instruction Formats</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+In RISC-V, every instruction is 32 bits (4 bytes) long. However, since different instructions require different values (e.g. <code>add</code> needs 3 register inputs, whereas <code>addi</code> requires 2 registers and 1 immediate), we define multiple <b>formats</b> based on what we need to store.
+</p>
+</div>
+<div id="outline-container-org3048991" class="outline-3">
+<h3 id="org3048991"><span class="section-number-3">4.1.</span> R-Type</h3>
+<div class="outline-text-3" id="text-4-1">
+
+<div id="orgd18c3f4" class="figure">
+<p><img src="../static/COMPSCI_61C/risc-v1.png" alt="risc-v1.png" />
+</p>
+</div>
+
+<p>
+The <b>R-type</b> (register-type) is designed for instructions with <i>3 registers and no imemdiates</i> (e.g. <code>add</code>, <code>sub</code>). Each register is identified by its number: 32 registers, so we need 5 bits to identify each register.
+</p>
+
+<p>
+The <b>opcode</b> identifies the specific instruction in use. It is <i>always</i> the last 7 bits of the instruction across all formats, so we can use this to determine which format is in use. However, some similar instructions get assigned the same opcode (e.g. all arithmetic R-type instructions). In these cases, <code>funct3</code> and <code>funct7</code> are used to further differentiate instructions with the same opcode.
+</p>
+</div>
+</div>
+<div id="outline-container-org870e966" class="outline-3">
+<h3 id="org870e966"><span class="section-number-3">4.2.</span> I-Type</h3>
+<div class="outline-text-3" id="text-4-2">
+
+<div id="orgd1826be" class="figure">
+<p><img src="../static/COMPSCI_61C/risc-v2.png" alt="risc-v2.png" />
+</p>
+</div>
+
+<p>
+The <b>I-type</b> (immediate-type) is designed for instructions with <i>2 registers (rs1 and rd) and 1 immediate</i>. Note that stores use <code>rs1</code> and <code>rs2</code> (no destination register <code>rd</code>), so they use a different type. Notice that the immediate is only allocated 12 types, which means they can only hold values between -2048 and 2047.
+</p>
+</div>
+<div id="outline-container-orgff679d5" class="outline-4">
+<h4 id="orgff679d5"><span class="section-number-4">4.2.1.</span> I-Type with Shift</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+Shift instructions use a slightly modified I-type format:
+</p>
+
+
+<div id="orgcd9e824" class="figure">
+<p><img src="../static/COMPSCI_61C/risc-v3.png" alt="risc-v3.png" />
+</p>
+</div>
+
+<p>
+This is because shift instructions only have a max shift of 31, so they are only allocated 5 bits for the immediate.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org105916b" class="outline-3">
+<h3 id="org105916b"><span class="section-number-3">4.3.</span> S-Type</h3>
+<div class="outline-text-3" id="text-4-3">
+
+<div id="org9df2bb8" class="figure">
+<p><img src="../static/COMPSCI_61C/risc-v4.png" alt="risc-v4.png" />
+</p>
+</div>
+
+<p>
+The <b>S-type</b> (store-type) is designed for store instructions, where you have <i>2 source registers and an immediate</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-orgd038fc4" class="outline-3">
+<h3 id="orgd038fc4"><span class="section-number-3">4.4.</span> U-Type</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+<b>U-type</b> (upper immediate) instructions are for <code>lui</code> and <code>auipc</code>:
+</p>
+
+<pre><code class="language-riscvasm">lui rd imm        # load upper immediate: rd = imm &lt;&lt; 12
+auipc rd imm      # add upper immediate to program counter: rd = (imm &lt;&lt; 12) + PC
+</code></pre>
+
+<p>
+These are primarily used in the <code>li</code> and <code>la</code> pseudoinstructions. Since <code>addi</code> only accepts a 12-bit immediate, we need a way to load immediates larger than 12 bits: <code>li</code> uses <code>lui</code> to accomplish this under the hood.
+</p>
+
+<p>
+For <code>auipc</code>, often when we write code, we want to allow multiple programs to be combined. However, each time we do this, it would change the absolute positions of our labels. Therefore, many instructions involving labels use relative addressing with <code>auipc</code>.
+</p>
+
+
+<div id="orga120b6a" class="figure">
+<p><img src="../static/COMPSCI_61C/risc-v5.png" alt="risc-v5.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org77494f0" class="outline-3">
+<h3 id="org77494f0"><span class="section-number-3">4.5.</span> B-Type</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+Labels don&rsquo;t actually exist at the machine level, so the assembler actually converts the labels into explicit references to a particular line of code. It does this by calculating an <i>offset</i>, which specifies how many bytes off we would need to jump to get to that label.
+</p>
+
+<p>
+Note that these offsets will always be at least a multiple of 2 (since RISC-V core instructions are all 32-bit, and some extensions use 16-bit). Thus, we don&rsquo;t actually need to store the last 0 in the binary representation.
+</p>
+
+<p>
+Branch instructions use the <b>B-type</b> (branch-type) format:
+</p>
+
+
+<div id="org614ea6b" class="figure">
+<p><img src="../static/COMPSCI_61C/risc-v6.png" alt="risc-v6.png" />
+</p>
+</div>
+
+<p>
+Note that branch instructions have 13-bit immediates, which gives us \([-4096, 4094]\) bytes of offset, which is \(2^10\) instructions up and down.
+</p>
+</div>
+</div>
+<div id="outline-container-org30e60d9" class="outline-3">
+<h3 id="org30e60d9"><span class="section-number-3">4.6.</span> J-Type</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+<b>J-type</b> (jump-type) instructions are for the jump instruction <code>jal</code>:
+</p>
+
+
+<div id="org3e49ad3" class="figure">
+<p><img src="../static/COMPSCI_61C/risc-v7.png" alt="risc-v7.png" />
+</p>
+</div>
+
+<p>
+As with the B-type, the last 0 bit is not stored. Jumps have 21-bit immediates, so we have a range of up to \(2^18\) instructions up and down.
+</p>
 </div>
 </div>
 </div>
@@ -404,7 +595,7 @@ A <b>pseudoinstruction</b> is an instruction that does not exist as a <i>hardwar
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-06 17:52
+               Last modified: 2026-07-08 14:29
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
