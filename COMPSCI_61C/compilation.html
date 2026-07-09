@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-09 Thu 13:22 -->
+<!-- 2026-07-09 Thu 14:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Compilation</title>
@@ -130,6 +130,8 @@
 <li><a href="#org795e4db">1. Execution Steps</a></li>
 <li><a href="#org36952c3">2. Compiler</a></li>
 <li><a href="#orga749b3e">3. Assembler</a></li>
+<li><a href="#org6c42eb9">4. Linker</a></li>
+<li><a href="#org430af46">5. Loader</a></li>
 </ul>
 </div>
 </div>
@@ -377,6 +379,22 @@ The assembler performs <i>two passes</i> over the program to compute all offsets
 </p>
 </div>
 </div>
+<div id="outline-container-org6c42eb9" class="outline-2">
+<h2 id="org6c42eb9"><span class="section-number-2">4.</span> Linker</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The linker links multiple assembly files by putting together the text segments and data segments. It also resolves references in the relocation table by filling in absolute addresses for external labels and static data. This method is known as <b>static linking</b>.
+</p>
+</div>
+</div>
+<div id="outline-container-org430af46" class="outline-2">
+<h2 id="org430af46"><span class="section-number-2">5.</span> Loader</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The loader loads a program into a newly created address space. It reads the <code>a.out</code> file header for sizes of text and data segments, and creates a new address space for the program large enough to hold its text and data segments, along with a stack segments
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -384,7 +402,7 @@ The assembler performs <i>two passes</i> over the program to compute all offsets
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-08 16:20
+               Last modified: 2026-07-09 14:24
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
