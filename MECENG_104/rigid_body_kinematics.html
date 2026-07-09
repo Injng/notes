@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-07-09 Thu 13:23 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Rigid Body Kinematics</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MECENG_104/index.html">MECENG 104</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Rigid Body Kinematics</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1b98a75">1. Tensors</a>
+<ul>
+<li><a href="#org999a5db">1.1. Tensor Products</a></li>
+</ul>
+</li>
+<li><a href="#orgb923fa8">2. Rigid Bodies</a>
+<ul>
+<li><a href="#org72ebd8d">2.1. Corotational Basis</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1b98a75" class="outline-2">
+<h2 id="org1b98a75"><span class="section-number-2">1.</span> Tensors</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Tensors</b> are a mathematical object defined by its action on vectors and is independent of any basis. When a basis is chosen, we can represent it using a matrix. Tensors represent a <i>linear transformation</i>.
+</p>
+</div>
+<div id="outline-container-org999a5db" class="outline-3">
+<h3 id="org999a5db"><span class="section-number-3">1.1.</span> Tensor Products</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+For two vectors \(\mathbf{a}\) and \(\mathbf{b}\), the <b>tensor product</b> \(\mathbf{a} \otimes \mathbf{b}\) is defined such that:
+</p>
+
+\begin{align}
+(\mathbf{a} \otimes \mathbf{b})\mathbf{c} = (\mathbf{b} \cdot \mathbf{c})\mathbf{a}
+\end{align}
+
+<p>
+for any vector \(\mathbf{c}\). It can be shown that the tensor product follows linearity: thus, the tensor product yields a tensor.
+</p>
+
+<p>
+If \(\mathbf{a}\) and \(\mathbf{b}\) are unit vectors, then applying \(\mathbf{a} \otimes \mathbf{b}\) to a vector is equivalent to taking the component of the vector along \(\mathbf{a}\) and moving it to be along \(\mathbf{b}\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb923fa8" class="outline-2">
+<h2 id="orgb923fa8"><span class="section-number-2">2.</span> Rigid Bodies</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Consider a body \(B\) in motion:
+</p>
+
+
+<div id="orgc2f0dce" class="figure">
+<p><img src="../static/MECENG_104/rigid_body_kinematics1.png" alt="rigid_body_kinematics1.png" />
+</p>
+</div>
+
+<p>
+\(X\) is a <b>material point</b> on a rigid body. When a body moves, we define the <b>reference configuration</b> \(\kappa_O\) to be its initial state, and the <b>current configuration</b> \(\kappa\) to be its current state. Then, \(\mathbf{X}\) is the position vector of \(X\) in \(\kappa_O\), and \(\mathbf{x}\) is the position vector of \(X\) in \(\kappa\).
+</p>
+
+<p>
+A <b>rigid body</b> is a body in which the distance between any two material points remains perfectly constant over time, and whose motion can be completely evaluated as a combination of translation and rotation:2
+</p>
+
+
+<div id="orgf863afe" class="figure">
+<p><img src="../static/MECENG_104/rigid_body_kinematics2.png" alt="rigid_body_kinematics2.png" />
+</p>
+</div>
+
+<p>
+We can represent the position vector of the current configuration \(\mathbf{x}\) like so:
+</p>
+
+\begin{align}
+\mathbf{x} = \mathbf{Q}\mathbf{X} + \mathbf{q}
+\end{align}
+
+<p>
+where \(\mathbf{Q}\) is a rotation tensor and \(\mathbf{q}\) is a translation vector.
+</p>
+</div>
+<div id="outline-container-org72ebd8d" class="outline-3">
+<h3 id="org72ebd8d"><span class="section-number-3">2.1.</span> Corotational Basis</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+A <b>corotational basis</b> is a basis that is fiexd to a moving rigid body. It initially coincides with a fixed basis. Vectors between two material points on a rigid body remain the same relative to a corotational basis of the rigid body.
+</p>
+
+<p>
+From (2), we can represent the current configuration of a rigid body as:
+</p>
+
+\begin{align}
+\mathbf{x} = \mathbf{Q}\mathbf{X} + \mathbf{q} \notag
+\end{align}
+
+<p>
+Let \(A\) and \(B\) be two material points on the rigid body. Then:
+</p>
+
+\begin{align}
+\mathbf{x}_B - \mathbf{x}_A &= \mathbf{Q}(\mathbf{X}_B-\mathbf{X}_A) \notag \\
+\Rightarrow \dot{\mathbf{x}}_B-\dot{\mathbf{x}}_A &= \dot{\mathbf{Q}}(\mathbf{X}_B-\mathbf{X}_A) \notag
+\end{align}
+
+<p>
+\(\mathbf{Q}\) can be shown to be an <a href="../MATH_54/orthogonality.html#orgf787f5d">orthogonal tensor</a>, so its inverse is its transpose. Then,
+</p>
+
+\begin{align}
+\mathbf{X}_B - \mathbf{X}_A &= \mathbf{Q}^T(\mathbf{x}_B-\mathbf{x}_A) \notag \\
+\Rightarrow \dot{\mathbf{x}}_B - \dot{\mathbf{x}}_A &= \dot{\mathbf{Q}}\mathbf{Q}^T(\mathbf{x}_B-\mathbf{x}_A) \notag
+\end{align}
+
+<p>
+Finally, we can write:
+</p>
+
+\begin{align}
+\boxed{\dot{\mathbf{x}}_B-\dot{\mathbf{X}}_A = \mathbf{\omega}\times(\mathbf{x}_B-\mathbf{x}_A)}
+\end{align}
+
+<p>
+where \(\mathbf{\omega}\) is the angular velocity vector.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-07-09 13:18
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
