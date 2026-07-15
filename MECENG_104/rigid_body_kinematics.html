@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-09 Thu 13:23 -->
+<!-- 2026-07-14 Tue 21:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rigid Body Kinematics</title>
@@ -135,8 +135,10 @@
 <li><a href="#orgb923fa8">2. Rigid Bodies</a>
 <ul>
 <li><a href="#org72ebd8d">2.1. Corotational Basis</a></li>
+<li><a href="#orge51a9d9">2.2. Instantaneous Center of Rotation</a></li>
 </ul>
 </li>
+<li><a href="#org1b6ebd6">3. Non-Inertial Frames of Reference</a></li>
 </ul>
 </div>
 </div>
@@ -176,7 +178,7 @@ Consider a body \(B\) in motion:
 </p>
 
 
-<div id="orgc2f0dce" class="figure">
+<div id="org51a98f3" class="figure">
 <p><img src="../static/MECENG_104/rigid_body_kinematics1.png" alt="rigid_body_kinematics1.png" />
 </p>
 </div>
@@ -190,7 +192,7 @@ A <b>rigid body</b> is a body in which the distance between any two material poi
 </p>
 
 
-<div id="orgf863afe" class="figure">
+<div id="org4538ac0" class="figure">
 <p><img src="../static/MECENG_104/rigid_body_kinematics2.png" alt="rigid_body_kinematics2.png" />
 </p>
 </div>
@@ -204,54 +206,135 @@ We can represent the position vector of the current configuration \(\mathbf{x}\)
 \end{align}
 
 <p>
-where \(\mathbf{Q}\) is a rotation tensor and \(\mathbf{q}\) is a translation vector.
+where \(\mathbf{Q}\) is a rotation tensor and \(\mathbf{q}\) is a translation vector. For any two material points \(A\) and \(B\) on the rigid body, their rotation tensor and translation vector are the same:
+</p>
+
+\begin{align}
+\mathbf{x}_A &= \mathbf{Q}\mathbf{X}_A+\mathbf{q} \notag \\
+\mathbf{x}_B &= \mathbf{Q}\mathbf{X}_B+\mathbf{q} \notag
+\end{align}
+
+<p>
+Taking the derivative, we get velocity:
+</p>
+
+\begin{align}
+\mathbf{v}_A &= \dot{\mathbf{Q}}\mathbf{X}_A+\dot{\mathbf{q}} \notag \\
+\mathbf{v}_B &= \dot{\mathbf{Q}}\mathbf{X}_B+\dot{\mathbf{q}} \notag
+\end{align}
+
+<p>
+Taking the difference of each, we have:
+</p>
+
+\begin{align}
+\mathbf{x}_B - \mathbf{x}_A &= \mathbf{Q}(\mathbf{X}_B-\mathbf{X}_A) \notag \\
+\mathbf{v}_B-\mathbf{v}_A &= \dot{\mathbf{Q}}(\mathbf{X}_B-\mathbf{X}_A) \notag
+\end{align}
+
+<p>
+\(\mathbf{Q}\) can be shown to be an <a href="../MATH_54/orthogonality.html#orgf787f5d">orthogonal tensor</a>, so its inverse is its transpose. Then \(\mathbf{X}_B-\mathbf{X}_A=\mathbf{Q}^T(\mathbf{x}_B-\mathbf{x}_A)\), so
+</p>
+
+\begin{align}
+\mathbf{v}_B - \mathbf{v}_A &= \dot{\mathbf{Q}}\mathbf{Q}^T(\mathbf{x}_B-\mathbf{x}_A) \notag
+\end{align}
+
+<p>
+Now, we know that \(\mathbf{Q}\mathbf{Q}^T=\mathbf{I}\). Taking the derivative, we get:
+</p>
+
+\begin{align}
+\dot{\mathbf{Q}}\mathbf{Q}^T &= -\mathbf{Q}\dot{\mathbf{Q}}^T \notag \\
+\Rightarrow \dot{\mathbf{Q}}\mathbf{Q}^T &= -\left(\dot{\mathbf{Q}}\mathbf{Q}^T\right)^T \notag
+\end{align}
+
+<p>
+Therefore, \(\dot{\mathbf{Q}}\mathbf{Q}^T\) is a <b>skew-symmetric matrix</b>. For these types of matrices, it is possible to define a vector whose cross product is an equivalent. Here, we call this vector \(\mathbf{\omega}\), the angular velocity vector:
+</p>
+
+\begin{align}
+\boxed{\mathbf{v}_B-\mathbf{v}_A = \mathbf{\omega}\times(\mathbf{x}_B-\mathbf{x}_A)}
+\end{align}
+
+<p>
+Taking the derivative to get acceleration:
+</p>
+
+\begin{align}
+\boxed{\mathbf{a}_B-\mathbf{a}_A = \mathbf{\alpha}\times(\mathbf{x}_B-\mathbf{x}_A)+\mathbf{\omega}\times\left(\mathbf{\omega}\times(\mathbf{x}_B-\mathbf{x}_A)\right)}
+\end{align}
+
+<p>
+where \(\mathbf{alpha}=\dot{\mathbf{\omega}}\), the angular acceleration vector. This can be shown to be the same for <i>any material lines</i> on the rigid body.
 </p>
 </div>
 <div id="outline-container-org72ebd8d" class="outline-3">
 <h3 id="org72ebd8d"><span class="section-number-3">2.1.</span> Corotational Basis</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
-A <b>corotational basis</b> is a basis that is fiexd to a moving rigid body. It initially coincides with a fixed basis. Vectors between two material points on a rigid body remain the same relative to a corotational basis of the rigid body.
-</p>
-
-<p>
-From (2), we can represent the current configuration of a rigid body as:
-</p>
-
-\begin{align}
-\mathbf{x} = \mathbf{Q}\mathbf{X} + \mathbf{q} \notag
-\end{align}
-
-<p>
-Let \(A\) and \(B\) be two material points on the rigid body. Then:
-</p>
-
-\begin{align}
-\mathbf{x}_B - \mathbf{x}_A &= \mathbf{Q}(\mathbf{X}_B-\mathbf{X}_A) \notag \\
-\Rightarrow \dot{\mathbf{x}}_B-\dot{\mathbf{x}}_A &= \dot{\mathbf{Q}}(\mathbf{X}_B-\mathbf{X}_A) \notag
-\end{align}
-
-<p>
-\(\mathbf{Q}\) can be shown to be an <a href="../MATH_54/orthogonality.html#orgf787f5d">orthogonal tensor</a>, so its inverse is its transpose. Then,
-</p>
-
-\begin{align}
-\mathbf{X}_B - \mathbf{X}_A &= \mathbf{Q}^T(\mathbf{x}_B-\mathbf{x}_A) \notag \\
-\Rightarrow \dot{\mathbf{x}}_B - \dot{\mathbf{x}}_A &= \dot{\mathbf{Q}}\mathbf{Q}^T(\mathbf{x}_B-\mathbf{x}_A) \notag
-\end{align}
-
-<p>
-Finally, we can write:
-</p>
-
-\begin{align}
-\boxed{\dot{\mathbf{x}}_B-\dot{\mathbf{X}}_A = \mathbf{\omega}\times(\mathbf{x}_B-\mathbf{x}_A)}
-\end{align}
-
-<p>
-where \(\mathbf{\omega}\) is the angular velocity vector.
+A <b>corotational basis</b> \(\{\mathbf{e}_x,\mathbf{e}_y\}\) is a basis that is fixed to a moving rigid body. It initially coincides with a fixed basis. Vectors between two material points on a rigid body remain the same relative to a corotational basis of the rigid body.
 </p>
 </div>
+</div>
+<div id="outline-container-orge51a9d9" class="outline-3">
+<h3 id="orge51a9d9"><span class="section-number-3">2.2.</span> Instantaneous Center of Rotation</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Consider the velocity profile of a bar rotation about a fixed point \(O\). For a point \(A\) a distance \(d\) away from \(O\), the velocity at that point is:
+</p>
+
+\begin{align}
+\mathbf{v}_B &= \mathbf{\omega} \times (\mathbf{x}_B-\mathbf{x}_O) \notag \\
+&= \mathbf{\omega}\mathbf{E}_z\times d\mathbf{e}_x \notag \\
+&= \omega d \mathbf{e}_y \notag
+\end{align}
+
+<p>
+Thus, the velocity is perpendicular to the bar and linearly scales with distance from \(O\).
+</p>
+
+<p>
+But many rigid bodies don&rsquo;t rotate about a fixed point. For these, we can define an <b>instantaneous center of rotation</b> where \(\mathbf{v}_{\text{IC}}=0\) at that instant. The IC does not have to be located on the rigid body, however it acts like a material point of the rigid body (think of it like a massless extension of the rigid body).
+</p>
+
+<p>
+Taking two points \(A\) and \(B\), we see that:
+</p>
+
+\begin{align}
+\mathbf{v}_A&=\mathbf{\omega}\times(\mathbf{x}_A-\mathbf{x}_{\text{IC}})\notag \\
+\mathbf{v}_B&=\mathbf{\omega}\times(\mathbf{x}_A-\mathbf{x}_{\text{IC}}) \notag
+\end{align}
+
+<p>
+Then, the velocities must be perpendicular to the line connecting the IC and the point:
+</p>
+
+
+<div id="orgaaf81e4" class="figure">
+<p><img src="../static/MECENG_104/rigid_body_kinematics3.png" alt="rigid_body_kinematics3.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1b6ebd6" class="outline-2">
+<h2 id="org1b6ebd6"><span class="section-number-2">3.</span> Non-Inertial Frames of Reference</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Let \(A\) be a material point on a rigid body, and \(B\) be a point moving relative to the rigid body. Using the corotational basis, we get the following equations:
+</p>
+
+\begin{align}
+\mathbf{x}_B-\mathbf{x}_A&=x\mathbf{e}_x+y\mathbf{e}_y \\
+\mathbf{v}_B-\mathbf{v}_A&={\buildrel o \over {\mathbf{x}}}+\mathbf{\omega}\times(\mathbf{x}_B-\mathbf{x}_A) \\
+\mathbf{a}_B-\mathbf{a}_A &= {\buildrel oo \over {\mathbf{x}}}+\mathbf{\alpha}\times(\mathbf{x}_B-\mathbf{x}_A) + 2\mathbf{\omega}\times{\buildrel o \over {\mathbf{x}}} + \mathbf{\omega}\times\left(\mathbf{\omega}\times(\mathbf{x}_B-\mathbf{x}_A)\right)
+\end{align}
+
+<p>
+where \({\buildrel o \over {\mathbf{x}}}=\dot{x}\mathbf{e}_x+\dot{y}\mathbf{e}_y\) and \({\buildrel oo \over {\mathbf{x}}}=\ddot{x}\mathbf{e}_x+\ddot{y}\mathbf{e}_y\) are <b>corotational derivatives</b> of \(B\) relative to \(A\).
+</p>
 </div>
 </div>
 </div>
@@ -261,7 +344,7 @@ where \(\mathbf{\omega}\) is the angular velocity vector.
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-09 13:18
+               Last modified: 2026-07-14 21:21
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
