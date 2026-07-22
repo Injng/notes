@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-14 Tue 21:21 -->
+<!-- 2026-07-22 Wed 11:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rigid Body Kinematics</title>
@@ -139,6 +139,8 @@
 </ul>
 </li>
 <li><a href="#org1b6ebd6">3. Non-Inertial Frames of Reference</a></li>
+<li><a href="#orgf8e7f9d">4. Rolling and Sliding</a></li>
+<li><a href="#org769bf29">5. Momentum of Rigid Bodies</a></li>
 </ul>
 </div>
 </div>
@@ -178,7 +180,7 @@ Consider a body \(B\) in motion:
 </p>
 
 
-<div id="org51a98f3" class="figure">
+<div id="orgf603d22" class="figure">
 <p><img src="../static/MECENG_104/rigid_body_kinematics1.png" alt="rigid_body_kinematics1.png" />
 </p>
 </div>
@@ -192,7 +194,7 @@ A <b>rigid body</b> is a body in which the distance between any two material poi
 </p>
 
 
-<div id="org4538ac0" class="figure">
+<div id="org6b056db" class="figure">
 <p><img src="../static/MECENG_104/rigid_body_kinematics2.png" alt="rigid_body_kinematics2.png" />
 </p>
 </div>
@@ -312,7 +314,7 @@ Then, the velocities must be perpendicular to the line connecting the IC and the
 </p>
 
 
-<div id="orgaaf81e4" class="figure">
+<div id="org0ee82a2" class="figure">
 <p><img src="../static/MECENG_104/rigid_body_kinematics3.png" alt="rigid_body_kinematics3.png" />
 </p>
 </div>
@@ -337,6 +339,69 @@ where \({\buildrel o \over {\mathbf{x}}}=\dot{x}\mathbf{e}_x+\dot{y}\mathbf{e}_y
 </p>
 </div>
 </div>
+<div id="outline-container-orgf8e7f9d" class="outline-2">
+<h2 id="orgf8e7f9d"><span class="section-number-2">4.</span> Rolling and Sliding</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Given a wheel and the ground, call point \(Q\) the point on the ground contacting the wheel, and point \(P\) the point on the wheel that is instantaneously in contact with the ground. The wheel is rolling without slipping if there is no relative velocity between \(P\) and \(Q\), i.e. \(\mathbf{v}_P = \mathbf{v}_Q\). Since \(P\) changes as the rigid body rolls, \(P\) is <i>not</i> a material point of the wheel.
+</p>
+</div>
+</div>
+<div id="outline-container-org769bf29" class="outline-2">
+<h2 id="org769bf29"><span class="section-number-2">5.</span> Momentum of Rigid Bodies</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+For a rigid body, the <b>center of mass</b> can be expressed as:
+</p>
+
+\begin{align}
+\mathbf{r}_C = \frac{\int_B \mathbf{r}\text{ d}m}{\int_B\text{ d}m} \\
+\mathbf{v}_C = \frac{\int_B \mathbf{v}\text{ d}m}{\int_B\text{ d}m}
+\end{align}
+
+<p>
+Similarly, the <b>linear momentum of a rigid body</b> can be written as:
+</p>
+
+\begin{align}
+\mathbf{G} = \int_B \mathbf{v}\text{ d}m = m\mathbf{v}_C
+\end{align}
+
+<p>
+The <b>angular momentum of a rigid body</b> around some point \(P\) is given as:
+</p>
+
+\begin{align}
+\mathbf{H}^P = \int_B (\mathbf{r}-\mathbf{r}_P)\times\mathbf{v}\text{ d}m
+\end{align}
+
+<p>
+We can also write the angular momentum in terms of the angular momentum around the center of mass:
+</p>
+
+\begin{align}
+\mathbf{H}^P &= \int_B (\mathbf{r}-\mathbf{r}_C + \mathbf{r}_C - \mathbf{r}_P)\times\mathbf{v}\text{ d}m \notag \\
+&= \int_B(\mathbf{r}-\mathbf{r}_C)\times\mathbf{v}\text{ d}m + \int_B(\mathbf{r}_C-\mathbf{r}_P)\times\mathbf{v}\text{ d}m \notag \\
+&= \mathbf{H}^C +(\mathbf{r}_C-\mathbf{r}_P)\times\int_B\mathbf{v}\text{ d}m \notag
+\end{align}
+
+<p>
+Therefore, the angular momentum of a rigid body around some point \(P\) expressed in terms of \(\mathbf{H}^C\) is:
+</p>
+
+\begin{align}
+\boxed{\mathbf{H}^P = \mathbf{H}^C + (\mathbf{r}_C-\mathbf{r}_P)\times m\mathbf{v}_C}
+\end{align}
+
+<p>
+However, for \(\mathbf{H}^C\), we still need to calculate integrals. We can simplify this further by using the <a href="moments_of_inertia.html#org66de73d">inertia tensor</a> after isolating \(\omega\) in the equation:
+</p>
+
+\begin{align}
+\boxed{\mathbf{H}^C=\mathbf{I}^C\mathbf{\omega}}
+\end{align}
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -344,7 +409,7 @@ where \({\buildrel o \over {\mathbf{x}}}=\dot{x}\mathbf{e}_x+\dot{y}\mathbf{e}_y
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-14 21:21
+               Last modified: 2026-07-22 11:50
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

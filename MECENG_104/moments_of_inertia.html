@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-07-22 Wed 11:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Moments of Inertia</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/MECENG_104/index.html">MECENG 104</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Moments of Inertia</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgcad199e">1. Matrix Representation of Tensors</a></li>
+<li><a href="#org66de73d">2. Inertia Tensor</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcad199e" class="outline-2">
+<h2 id="orgcad199e"><span class="section-number-2">1.</span> Matrix Representation of Tensors</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+We can express any tensor \(\mathbf{T}\) like so:
+</p>
+
+\begin{align}
+\mathbf{T} = \sum_{i=1}^3\sum_{j=1}^3 T_{ij} \mathbf{e}_i \otimes \mathbf{e}_j \notag
+\end{align}
+
+<p>
+Applied to a vector \(\mathbf{u} = u_1\mathbf{e}_1 + u_2\mathbf{e}_2 + u_3\mathbf{e}_3\), we can represent the tensor operation using <a href="../MATH_54/matrix_operations.html#orgca8e17d">matrix multiplication</a>:
+</p>
+
+\begin{align}
+\begin{bmatrix}\mathbf{T}_{\mathbf{u}}\end{bmatrix} =
+\begin{bmatrix} T_{11} & T_{12} & T_{13} \\ T_{21} & T_{22} & T_{23} \\ T_{31} & T_{32} & T_{33} \end{bmatrix}
+\begin{bmatrix} u_1 \\ u_2 \\ u_3 \end{bmatrix} \notag
+\end{align}
+</div>
+</div>
+<div id="outline-container-org66de73d" class="outline-2">
+<h2 id="org66de73d"><span class="section-number-2">2.</span> Inertia Tensor</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+We know that the <a href="rigid_body_kinematics.html#org769bf29">inertia tensor</a> is given by:
+</p>
+
+\begin{align}
+\mathbf{I}^C = \int_B \| \mathbf{r}-\mathbf{r}_C\|^2 - (\mathbf{r}-\mathbf{r}_C)\otimes(\mathbf{r}-\mathbf{r}_C)\text{ d}m
+\end{align}
+
+<p>
+Let \(\mathbf{r}-\mathbf{r}_C = x\mathbf{e}_x + y\mathbf{e}_y+z\mathbf{e}_z\), where \(\{\mathbf{e}_x,\mathbf{e}_y,\mathbf{e}_z\}\) is a corotational basis of the rigid body. Then, we can express the parts inside the integral of \(\mathbf{I}^C\) as
+</p>
+
+\begin{align}
+(x^2+y^2+z^2)\begin{bmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end{bmatrix} - \begin{bmatrix}x^2 & xy & xz \\ xy & y^2 & yz \\ xz & yz & z^2 \end{bmatrix} = \begin{bmatrix} y^2+z^2 & -xy & -xz \\ -xy & x^2+z^2 & -yz \\ -xz & -yz & x^2+y^2 \end{bmatrix} \notag
+\end{align}
+
+<p>
+Then, the inertia tensor can be represented as
+</p>
+
+\begin{align}
+\boxed{\begin{bmatrix}\mathbf{I}^C\end{bmatrix} = 
+\begin{bmatrix} \int_B y^2+z^2 \text{ d}m & -\int_B xy \text{ d}m & -\int_B xz \text{ d}m \\ -\int_B xy \text{ d}m & \int_B x^2+z^2 \text{ d}m & -\int_B yz \text{ d}m \\ -\int_B xz \text{ d}m & -\int_B yz \text{ d}m & \int_B x^2+y^2 \text{ d}m \end{bmatrix} = \begin{bmatrix} I_{xx}^C & I_{xy}^C & I_{xz}^C \\ & I_{yy}^C & I_{yz}^C \\ \text{sym.} & & I_{zz}^C \end{bmatrix}}
+\end{align}
+
+<p>
+The diagonal terms of the resulting symmetric matrix are called the <b>moments of inertia</b>, and the off-diagonal terms are the <b>products of inertia</b>. The moments of inertia relate to rotating about their respective axes.
+</p>
+
+<p>
+We do not always need to calculate moments of inertia by hand. For common shapes, they are present in the form of tables.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-07-22 11:49
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
