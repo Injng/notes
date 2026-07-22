@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-21 Tue 17:36 -->
+<!-- 2026-07-22 Wed 13:10 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RISC-V Processors</title>
@@ -162,15 +162,16 @@
 </li>
 </ul>
 </li>
-<li><a href="#org6feabd5">3. Stage Pipelining</a>
+<li><a href="#orge681f58">3. Critical Paths</a></li>
+<li><a href="#org6feabd5">4. Stage Pipelining</a>
 <ul>
-<li><a href="#org631818c">3.1. Iron Law of Processor Perforamnce</a></li>
-<li><a href="#org3e21431">3.2. Pipelining</a></li>
-<li><a href="#org4a32c84">3.3. Hazards</a>
+<li><a href="#org631818c">4.1. Iron Law of Processor Perforamnce</a></li>
+<li><a href="#org3e21431">4.2. Pipelining</a></li>
+<li><a href="#org4a32c84">4.3. Hazards</a>
 <ul>
-<li><a href="#org7c73ba0">3.3.1. Structural Hazard</a></li>
-<li><a href="#org9c72754">3.3.2. Data Hazard</a></li>
-<li><a href="#org14eee83">3.3.3. Control Hazard</a></li>
+<li><a href="#org7c73ba0">4.3.1. Structural Hazard</a></li>
+<li><a href="#org9c72754">4.3.2. Data Hazard</a></li>
+<li><a href="#org14eee83">4.3.3. Control Hazard</a></li>
 </ul>
 </li>
 </ul>
@@ -3095,9 +3096,29 @@ Under the hood, the ROM controller can be implemented as combinatorial logic gat
 </div>
 </div>
 </div>
-<div id="outline-container-org6feabd5" class="outline-2">
-<h2 id="org6feabd5"><span class="section-number-2">3.</span> Stage Pipelining</h2>
+<div id="outline-container-orge681f58" class="outline-2">
+<h2 id="orge681f58"><span class="section-number-2">3.</span> Critical Paths</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+The total time delay of a <b>critical path</b> directly influences how fast our processor can run. In a single-cycle datapath, the clock speed of a processor <i>must encompass the critical path delay of the longest instruction</i>.
+</p>
+
+<p>
+A critical path always starts at the output of and ends at the input to a state element, such as a flip flop. The state elements in our RISC-V processor are generally <i>combinational read</i> (doesn&rsquo;t require a clock tick), but <i>sequential write</i>. For our datapath, the clock period must obey the following time delay:
+</p>
+
+\begin{align}
+\boxed{t_{\text{clk-to-q}} + t_{\text{logic}} + t_{\text{setup}} \leq t_{clk}}
+\end{align}
+
+<p>
+The clock-to-q and setup times are for the registers we start and end at, and the logic times are for all the combinational logic gates that we go through.
+</p>
+</div>
+</div>
+<div id="outline-container-org6feabd5" class="outline-2">
+<h2 id="org6feabd5"><span class="section-number-2">4.</span> Stage Pipelining</h2>
+<div class="outline-text-2" id="text-4">
 <p>
 Our single-cycle datapath is reasonably fast, but it&rsquo;s not as efficient as it could be: most components do nothing most of the time (e.g. IMEM is idle while the ALU is running).
 </p>
@@ -3113,8 +3134,8 @@ We want to improve the following performance measures for our processor:
 </ul>
 </div>
 <div id="outline-container-org631818c" class="outline-3">
-<h3 id="org631818c"><span class="section-number-3">3.1.</span> Iron Law of Processor Perforamnce</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="org631818c"><span class="section-number-3">4.1.</span> Iron Law of Processor Perforamnce</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 The <b>iron law of processor performance</b> states the following:
 </p>
@@ -3141,8 +3162,8 @@ For example, the classical instruction set CISC optimized for instructions per p
 </div>
 </div>
 <div id="outline-container-org3e21431" class="outline-3">
-<h3 id="org3e21431"><span class="section-number-3">3.2.</span> Pipelining</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org3e21431"><span class="section-number-3">4.2.</span> Pipelining</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 The idea behind <b>pipelining</b> is that once one stage of an instruction is done, that stage can be used by the next instruction. This way, components don&rsquo;t have to wait for the current instruction to be done. Pipelining allows us to increase instruction throughput, <i>not</i> instruction latency (the same instruction still takes the same amount of time).
 </p>
@@ -3658,23 +3679,23 @@ We do this by adding registers between the stages we want to pipeline. This allo
 </div>
 </div>
 <div id="outline-container-org4a32c84" class="outline-3">
-<h3 id="org4a32c84"><span class="section-number-3">3.3.</span> Hazards</h3>
-<div class="outline-text-3" id="text-3-3">
+<h3 id="org4a32c84"><span class="section-number-3">4.3.</span> Hazards</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 We may run into some issues when we run code using naive pipelining. These issues are called <b>hazards</b>.
 </p>
 </div>
 <div id="outline-container-org7c73ba0" class="outline-4">
-<h4 id="org7c73ba0"><span class="section-number-4">3.3.1.</span> Structural Hazard</h4>
-<div class="outline-text-4" id="text-3-3-1">
+<h4 id="org7c73ba0"><span class="section-number-4">4.3.1.</span> Structural Hazard</h4>
+<div class="outline-text-4" id="text-4-3-1">
 <p>
 A <b>structural hazard</b> occurs when multiple instructions compete for <i>access to a single physical resource</i>. There are two potential structural hazards in RISC-V: simultaneous regfile access, or simultaneous memory access. For example, a structural hazard can happen when a previous instruction&rsquo;s writeback stage coincides with the decode stage for another instruction. To solve this hazard, we can simply add more hardware specifications: how it handles simultaneous read/write. For example, requiring separate write ports on the regfile and separate IMEM and DMEM hardware solves this hazard in RV32I.
 </p>
 </div>
 </div>
 <div id="outline-container-org9c72754" class="outline-4">
-<h4 id="org9c72754"><span class="section-number-4">3.3.2.</span> Data Hazard</h4>
-<div class="outline-text-4" id="text-3-3-2">
+<h4 id="org9c72754"><span class="section-number-4">4.3.2.</span> Data Hazard</h4>
+<div class="outline-text-4" id="text-4-3-2">
 <p>
 A <b>data hazard</b> occurs when instructions have data dependencies: one instruction needs to wait for a previous instruction to complete its data read/write. If the same register is read on the same cycle it is written, we always <i>write first, then read</i>. Additionally, we can insert <code>nop</code> stalls in order wait for a previous instruction to write before reading a register for the current instruction.
 </p>
@@ -3689,8 +3710,8 @@ The instruction slot after a load is known as a <b>load delay slot</b>. This is 
 </div>
 </div>
 <div id="outline-container-org14eee83" class="outline-4">
-<h4 id="org14eee83"><span class="section-number-4">3.3.3.</span> Control Hazard</h4>
-<div class="outline-text-4" id="text-3-3-3">
+<h4 id="org14eee83"><span class="section-number-4">4.3.3.</span> Control Hazard</h4>
+<div class="outline-text-4" id="text-4-3-3">
 <p>
 A <b>control hazard</b> occurs when the flow of execution depends on previous instructions. When we pipeline naively, we might load in instructions that we don&rsquo;t want to run next, such as due to a <code>jal</code> instruction. For jump and branch instructions, we can naively insert three stalls to prevent this hazard.
 </p>
@@ -3709,7 +3730,7 @@ An optimization that we can take is to run following instructions on branches <i
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-21 17:36
+               Last modified: 2026-07-22 13:09
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
