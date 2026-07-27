@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-22 Wed 15:49 -->
+<!-- 2026-07-27 Mon 15:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Caches</title>
@@ -133,8 +133,18 @@
 <li><a href="#org853bdad">2.1. Blocks</a></li>
 </ul>
 </li>
-<li><a href="#orgc968ce6">3. Fully Associative Caches</a></li>
-<li><a href="#org3569f81">4. Eviction Policies</a></li>
+<li><a href="#orgc968ce6">3. Fully Associative Caches</a>
+<ul>
+<li><a href="#org3569f81">3.1. Eviction Policies</a></li>
+</ul>
+</li>
+<li><a href="#org6b36366">4. Direct-Mapped Cache</a>
+<ul>
+<li><a href="#orge6d0de9">4.1. Thrashing</a></li>
+</ul>
+</li>
+<li><a href="#org5cb9a24">5. Set Associative Cache</a></li>
+<li><a href="#org6826263">6. Write Policies</a></li>
 </ul>
 </div>
 </div>
@@ -186,6 +196,10 @@ To speed up memory access, we can use <b>caches</b>. Using the library analogy, 
 
 <p>
 Caches are faster but more expensive than DRAM. They are often placed close to or on the same chip as the processor, since we want fast access times.
+</p>
+
+<p>
+The <b>hit rate</b> of a cache is the percentage of accesses that result in a hit. The <b>miss rate</b> of a cache is the percentage of accesses that result in a miss. <b>Hit time</b> is how long it takes to check the cache, and the <b>miss penalty</b> is how long it takes to access main memory. Thus, if we get a cache miss, the total runtime is equal to the hit time plus the miss penalty. The <b>average memory access time</b> (AMAT) is the average time it takes for one memory access, given a hit rate.
 </p>
 
 <p>
@@ -408,10 +422,9 @@ When reading memory, 3 things can happen:
 A cache is considered <b>cold</b> if it doesn&rsquo;t have valid data in it, and <b>hot</b> if it has valid data with a high ratio of cache hits.
 </p>
 </div>
-</div>
-<div id="outline-container-org3569f81" class="outline-2">
-<h2 id="org3569f81"><span class="section-number-2">4.</span> Eviction Policies</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org3569f81" class="outline-3">
+<h3 id="org3569f81"><span class="section-number-3">3.1.</span> Eviction Policies</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 When a cache gets full, we need to follow an <b>eviction policy</b> to determine what data to evict in order to make space for more data. We have the following eviction policies to choose from:
 </p>
@@ -432,13 +445,71 @@ When a cache gets full, we need to follow an <b>eviction policy</b> to determine
 </div>
 </div>
 </div>
+<div id="outline-container-org6b36366" class="outline-2">
+<h2 id="org6b36366"><span class="section-number-2">4.</span> Direct-Mapped Cache</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+While nice, an actual implementation of a fully associative cache is complicated and requires a lot of circuitry. The main problem is that any slot in our cache could store our data, so we need to check all spots.
+</p>
+
+<p>
+Our solution to this is to group blocks together. In a <b>direct-mapped cache</b>, we store one block per group: so if we need to store another block of that group, we must first evict the previous block. We will group by the <i>bottom three bits of a tag</i>, as this gives us a pretty even distribution (since memory is often located in consecutive locations).
+</p>
+
+<p>
+A memory address can be divided into a <b>tag</b>, and <b>index</b>, and an <b>offset</b>. The bottom bits of our address is our offset, the next few bits the index, and the top bits will be the tag. The index determines which group the block goes into, the offset determines which byte we are pointing to in the block, and the tag determines if the block stored in the group is the one we want.
+</p>
+
+<p>
+Notice that we do not need an eviction policy since there is only one place our block can go.
+</p>
+</div>
+<div id="outline-container-orge6d0de9" class="outline-3">
+<h3 id="orge6d0de9"><span class="section-number-3">4.1.</span> Thrashing</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+If we access two distinct segments of memory that are aligned, we end up continuously evicting blocks. This is known as <b>thrashing</b>, and causes a significant increase in misses.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5cb9a24" class="outline-2">
+<h2 id="org5cb9a24"><span class="section-number-2">5.</span> Set Associative Cache</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Direct-mapped caches thrash a lot, but fully associative caches use a lot of comparators. To solve this, we can make a compromise by using a <b>N-way set associative cache</b>.
+</p>
+
+<p>
+A set-associative cache can be thought of as a set of multiple direct-mapped caches. In other words, blocks are still grouped together, and we still find the group using the index, <i>but there can be multiple blocks with the same index</i>. This solves a lot of thrashing issues because even if two segments of memory have the same index, we can store both of them in our cache.
+</p>
+</div>
+</div>
+<div id="outline-container-org6826263" class="outline-2">
+<h2 id="org6826263"><span class="section-number-2">6.</span> Write Policies</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+When we write data to memory, we have two policies that we can use to govern the write:
+</p>
+
+<ul class="org-ul">
+<li><b>Write-through</b>: when a write occurs, update the data both in the cache and in main memory.</li>
+<li><b>Write-back</b>: when a write occurs, only update the data in the cache, and update in memory only when that block gets evicted.</li>
+</ul>
+
+<p>
+The write-back policy is much faster than write-through, but it is also more complicated. We purposefully let main memory go <b>stale</b>, and rely on the cache as the main source of truth. When we later evict the block from the cache, we write all changes for that block to main memory at once. This means we need to keep track of which blocks changed in the cache using a <b>dirty bit</b>.
+</p>
+</div>
+</div>
+</div>
 <div id="postamble" class="status">
 <div class="footer">
                <p>Author: Lin Jiang</p>
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-22 15:31
+               Last modified: 2026-07-27 15:31
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
