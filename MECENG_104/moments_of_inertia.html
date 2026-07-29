@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-22 Wed 11:54 -->
+<!-- 2026-07-29 Wed 13:04 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Moments of Inertia</title>
@@ -128,7 +128,11 @@
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
 <li><a href="#orgcad199e">1. Matrix Representation of Tensors</a></li>
-<li><a href="#org66de73d">2. Inertia Tensor</a></li>
+<li><a href="#org66de73d">2. Inertia Tensor</a>
+<ul>
+<li><a href="#org7980648">2.1. Radius of Gyration</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -190,6 +194,18 @@ The diagonal terms of the resulting symmetric matrix are called the <b>moments o
 We do not always need to calculate moments of inertia by hand. For common shapes, they are present in the form of tables.
 </p>
 </div>
+<div id="outline-container-org7980648" class="outline-3">
+<h3 id="org7980648"><span class="section-number-3">2.1.</span> Radius of Gyration</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+A rigid body has a <b>radius of gyration</b> \(k_z^C\) about \(\mathbf{e}_z\) passing through the center of mass \(C\). Then, its moment of inertia about \(\mathbf{e}_z\) is:
+</p>
+
+\begin{align}
+I_{zz}^C = mk_z^{C^2}
+\end{align}
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -198,7 +214,7 @@ We do not always need to calculate moments of inertia by hand. For common shapes
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-22 11:53
+               Last modified: 2026-07-29 13:04
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-27 Mon 15:31 -->
+<!-- 2026-07-29 Wed 13:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Caches</title>
@@ -145,6 +145,7 @@
 </li>
 <li><a href="#org5cb9a24">5. Set Associative Cache</a></li>
 <li><a href="#org6826263">6. Write Policies</a></li>
+<li><a href="#org3db84de">7. Multilevel Caches</a></li>
 </ul>
 </div>
 </div>
@@ -502,6 +503,18 @@ The write-back policy is much faster than write-through, but it is also more com
 </p>
 </div>
 </div>
+<div id="outline-container-org3db84de" class="outline-2">
+<h2 id="org3db84de"><span class="section-number-2">7.</span> Multilevel Caches</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+With one cache, if we get a cache hit, then we get fast access; if we get a cache miss, we get slow access. The problem is that hit rate scales with access time: the higher the hit rate we want, the slower we&rsquo;ll end up making cache accesses (e.g. larger cache means more places to search).
+</p>
+
+<p>
+A solution is to add <i>multiple layers of caches</i>, with each layer being larger than the last. When we check caches, we first check the <b>L1 cache</b>, otherwise check <b>L2 cache</b>, and so on. Each level of cache is larger than the previous level and should have a subset of its data in the next cache: a hit in L3 cache causes the data to brought up to both the L1 and L2 caches.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -509,7 +522,7 @@ The write-back policy is much faster than write-through, but it is also more com
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-27 15:31
+               Last modified: 2026-07-28 15:11
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
