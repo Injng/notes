@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-29 Wed 13:03 -->
+<!-- 2026-07-29 Wed 17:09 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parallelism</title>
@@ -100,6 +100,17 @@
 <li><a href="#org2256dbf">1.1. Amdahl&rsquo;s Law</a></li>
 </ul>
 </li>
+<li><a href="#org34bb69e">2. SIMD Instructions</a>
+<ul>
+<li><a href="#org720971e">2.1. Intel Intrinsics</a>
+<ul>
+<li><a href="#orgadcc9e0">2.1.1. Types</a></li>
+<li><a href="#orgffd27f5">2.1.2. Instructions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org3f1747c">3. Multithreading</a></li>
 </ul>
 </div>
 </div>
@@ -123,6 +134,224 @@ If half of our original runtime is at 1x speed, we have to speedup the second ha
 </div>
 </div>
 </div>
+<div id="outline-container-org34bb69e" class="outline-2">
+<h2 id="org34bb69e"><span class="section-number-2">2.</span> SIMD Instructions</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Instead of doing math on one number at a time, we can instead do math on several numbers at a time, in a single clock cycle. Instructions that do this are known as <b>SIMD instructions</b>, or <i>single-instruction, multiple data</i> instructions. These use specialized &ldquo;vector&rdquo; registers which store 128, 256, or even 512 bits; processors must support these instructions at the hardware-level, and act as extensions to the base instruction set.
+</p>
+
+<p>
+Generally speaking, most of the speedup comes not from doing math operations at the same time, but instead from doing less memory accesses.
+</p>
+</div>
+<div id="outline-container-org720971e" class="outline-3">
+<h3 id="org720971e"><span class="section-number-3">2.1.</span> Intel Intrinsics</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<a href="risc-v.html#org5ec43b5">RISC-V</a> doesn&rsquo;t have a standard vector library, so we will be using x86 vector operations instead. <b>Intel Intrinsics</b> are C functions that allow access to the x86 SIMD instructions that may be present on a machine. These instructions belong to one of several libraries that were developed over the years:
+</p>
+
+<ul class="org-ul">
+<li>SSE (Streaming SIMD Extensions)
+<ul class="org-ul">
+<li>64-bit and 128-bit registers (4 32-bit integers at a time or 2 doubles at a time)</li>
+</ul></li>
+<li>AVX (Advanced Vector Extensions)
+<ul class="org-ul">
+<li>successor of SSE, 256-bit registers</li>
+</ul></li>
+<li>AVX-2
+<ul class="org-ul">
+<li>extension of AVX with more supported instructions</li>
+</ul></li>
+<li>AVX-512
+<ul class="org-ul">
+<li>512-bit registers, has various performance and compatibility issues</li>
+</ul></li>
+<li>AVX10
+<ul class="org-ul">
+<li>successor to AVX-512, introduced in 2023 to solve the complexity of AVX-512</li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-orgadcc9e0" class="outline-4">
+<h4 id="orgadcc9e0"><span class="section-number-4">2.1.1.</span> Types</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+The following types are used to store variables:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Type</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>__m256</code></td>
+<td class="org-left">256-bit register for storing floats</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>__m256d</code></td>
+<td class="org-left">256-bit register for storing doubles</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>__m256i</code></td>
+<td class="org-left">256-bit register for storing integers</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>__m128</code>, <code>__m128d</code>, <code>__m128i</code></td>
+<td class="org-left">128-bit register for the respective data</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Each type corresponds directly to a type of SIMD register (note that x86 has different sets of registers for floats, doubles, or integers). Each register can <b>pack</b> multiple pieces of data at once so we can operate on them at the same time — for example, <code>__m128</code> can store 4 32-bit floats.
+</p>
+</div>
+</div>
+<div id="outline-container-orgffd27f5" class="outline-4">
+<h4 id="orgffd27f5"><span class="section-number-4">2.1.2.</span> Instructions</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+SIMD instructions (functions) are generally of the format:
+</p>
+
+<pre><code class="language-nil">_&lt;register size&gt;_&lt;instruction&gt;_&lt;component type&gt;()
+</code></pre>
+
+<p>
+For example, <code>_mm256_add_epi32()</code> adds two 256-bit vectors, treating the vectors as arrays of 32-bit integers. There exists a <a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html">full list of Intel Intrinsics instructions</a>.
+</p>
+
+<p>
+When working with these instructions, avoid these common mistakes:
+</p>
+
+<ul class="org-ul">
+<li>trying to directly access a 32-bit chunk of a SIMD vector (such as through typecasting)
+<ul class="org-ul">
+<li>need to do an explicit load/store, since registers are different from memory</li>
+</ul></li>
+<li>trying to <code>_mm_load</code> or <code>_mm_store</code> with unaligned addresses
+<ul class="org-ul">
+<li>if you must, use <code>_mm_loadu</code> or <code>_mm_storeu</code> instead</li>
+<li>use <code>aligned_alloc()</code> instead of <code>malloc()</code> to get aligned heap memory</li>
+<li>force a stack/local variable by using compiler attributes, e.g. <code>float arr[4] __attribute__((aligned(16)));</code></li>
+</ul></li>
+<li>forgetting the tail case
+<ul class="org-ul">
+<li>some data at the end may not be a multiple of your vector size, so these must be handled one at a time</li>
+</ul></li>
+<li>using too many vectors
+<ul class="org-ul">
+<li>ends up slowing down since the compiler tries to load/store many SIMD vectors to the stack a bunch of times</li>
+</ul></li>
+</ul>
+
+<p>
+When parallelizing using SIMD instructions, it usually comes down to these following steps:
+</p>
+
+<ol class="org-ol">
+<li>Broadcast any constants and initialize any vectors/registers you will use.</li>
+<li>Loop over your input one vector-width chunk at a time.</li>
+<li>Perform operations across all lanes in parallel.</li>
+<li>Reduce or store the vector result as needed.</li>
+<li>Handle the remaining elements.</li>
+</ol>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Dot product
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+Here, we will use the above 5 steps to write SIMD code to perform a dot product operation on two arrays. The main idea is that we can use the <code>_mm_fmadd_ps(a, b, c)</code> instruction, which multiplies packed elements in <code>a</code> and <code>b</code>, adds it to the elements in <code>c</code>, and stores the result in the destination:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">#include</span> <span style="color: #f38ba8;">&lt;</span><span style="color: #a6e3a1;">immintrin.h</span><span style="color: #f38ba8;">&gt;</span>
+<span style="color: #f9e2af;">#include</span> <span style="color: #f38ba8;">&lt;</span><span style="color: #a6e3a1;">stdio.h</span><span style="color: #f38ba8;">&gt;</span>
+
+<span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">main</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+  <span style="color: #6c7086;">// </span><span style="color: #6c7086;">the two vectors we are doing the dot product on
+</span>  <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">length</span> = 10;
+  <span style="color: #f9e2af;">float</span> <span style="color: #cdd6f4;">arr1</span><span style="color: #fab387;">[</span>10<span style="color: #fab387;">]</span> <span style="color: #cba6f7;">__attribute__</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">(</span>aligned<span style="color: #a6e3a1;">(</span>32<span style="color: #a6e3a1;">)</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span> = <span style="color: #fab387;">{</span>1, 2, 3, 4, 5, 6, 7, 8, 9, 10<span style="color: #fab387;">}</span>;
+  <span style="color: #f9e2af;">float</span> <span style="color: #cdd6f4;">arr2</span><span style="color: #fab387;">[</span>10<span style="color: #fab387;">]</span> <span style="color: #cba6f7;">__attribute__</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">(</span>aligned<span style="color: #a6e3a1;">(</span>32<span style="color: #a6e3a1;">)</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span> = <span style="color: #fab387;">{</span>1, 1, 1, 1, 1, 1, 1, 1, 1, 1<span style="color: #fab387;">}</span>;
+
+  <span style="color: #6c7086;">// </span><span style="color: #6c7086;">STEP 1: broadcast 0 over vec3
+</span>  <span style="color: #f9e2af;">__m128</span> <span style="color: #cdd6f4;">vec3</span> = _mm_set_ps1<span style="color: #fab387;">(</span>0<span style="color: #fab387;">)</span>;
+
+  <span style="color: #6c7086;">// </span><span style="color: #6c7086;">STEP 2: loop over our arrays by chunks of 4
+</span>  <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">i</span> = 0;
+  <span style="color: #cba6f7;">while</span> <span style="color: #fab387;">(</span>i + 4 &lt; length<span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+    <span style="color: #f9e2af;">__m128</span> <span style="color: #cdd6f4;">vec1</span> = _mm_load_ps<span style="color: #f9e2af;">(</span>arr1 + i<span style="color: #f9e2af;">)</span>;
+    <span style="color: #f9e2af;">__m128</span> <span style="color: #cdd6f4;">vec2</span> = _mm_load_ps<span style="color: #f9e2af;">(</span>arr2 + i<span style="color: #f9e2af;">)</span>;
+
+    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">STEP 3: perform operations across all lanes in parallel
+</span>    vec3 = _mm_fmadd_ps<span style="color: #f9e2af;">(</span>vec1, vec2, vec3<span style="color: #f9e2af;">)</span>;
+    i += 4;
+  <span style="color: #fab387;">}</span>
+
+  <span style="color: #6c7086;">// </span><span style="color: #6c7086;">STEP 4: store the vector result on the stack
+</span>  <span style="color: #f9e2af;">float</span> <span style="color: #cdd6f4;">sum</span><span style="color: #fab387;">[</span>4<span style="color: #fab387;">]</span> <span style="color: #cba6f7;">__attribute__</span><span style="color: #fab387;">(</span><span style="color: #f9e2af;">(</span>aligned<span style="color: #a6e3a1;">(</span>32<span style="color: #a6e3a1;">)</span><span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span>;
+  _mm_store_ps<span style="color: #fab387;">(</span>sum, vec3<span style="color: #fab387;">)</span>;
+
+  <span style="color: #6c7086;">// </span><span style="color: #6c7086;">STEP 5: handle our remaining elements
+</span>  <span style="color: #cba6f7;">while</span> <span style="color: #fab387;">(</span>i &lt; length<span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+    sum<span style="color: #f9e2af;">[</span>0<span style="color: #f9e2af;">]</span> += arr1<span style="color: #f9e2af;">[</span>i<span style="color: #f9e2af;">]</span> * arr2<span style="color: #f9e2af;">[</span>i<span style="color: #f9e2af;">]</span>;
+    i++;
+  <span style="color: #fab387;">}</span>
+  printf<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"%f\n"</span>, sum<span style="color: #f9e2af;">[</span>0<span style="color: #f9e2af;">]</span> + sum<span style="color: #f9e2af;">[</span>1<span style="color: #f9e2af;">]</span> + sum<span style="color: #f9e2af;">[</span>2<span style="color: #f9e2af;">]</span> + sum<span style="color: #f9e2af;">[</span>3<span style="color: #f9e2af;">]</span><span style="color: #fab387;">)</span>;
+  <span style="color: #cba6f7;">return</span> 0;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+
+</details>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3f1747c" class="outline-2">
+<h2 id="org3f1747c"><span class="section-number-2">3.</span> Multithreading</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A <b>program</b> is a sequence of instructions to run. A <b>process</b> is the actual execution of a program: each process is a largely separate entity, with its own memory space. Each process is composed of <b>threads</b>, which are independently running instruction sequences that share most memory. The <a href="processors.html#orga46635b">datapath</a> we&rsquo;ve discussed so far is a CPU <b>core</b>, which can run one thread at any given time. A CPU can be composed of multiple cores, which thus allows multiple threads to be run simultaneously.
+</p>
+
+<p>
+A <b>single-threaded program</b> is a program that only runs one thread. <b>Multi-threaded</b> and <b>multi-process</b> programs are programs that use multiple threads or processes. The operating system is responsible for managing which threads get run on which CPUs.
+</p>
+
+<p>
+On most modern computers, the number of active threads is way larger than the number of available cores, so most threads are idle at any given time. This is one of the big reasons why runtime can vary, even when running the same program.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -130,7 +359,7 @@ If half of our original runtime is at 1x speed, we have to speedup the second ha
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-28 14:54
+               Last modified: 2026-07-29 17:09
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
