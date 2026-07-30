@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-29 Wed 17:09 -->
+<!-- 2026-07-30 Thu 16:14 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parallelism</title>
@@ -110,7 +110,21 @@
 </li>
 </ul>
 </li>
-<li><a href="#org3f1747c">3. Multithreading</a></li>
+<li><a href="#org3f1747c">3. Multithreading</a>
+<ul>
+<li><a href="#org8d1c07a">3.1. OpenMP</a>
+<ul>
+<li><a href="#orgef4f2a9">3.1.1. Multithreaded For Loops</a></li>
+</ul>
+</li>
+<li><a href="#orgd4fa88d">3.2. Race Conditions</a></li>
+<li><a href="#orga8b052d">3.3. Atomic Operations</a>
+<ul>
+<li><a href="#org685084d">3.3.1. Locks</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -350,6 +364,144 @@ A <b>single-threaded program</b> is a program that only runs one thread. <b>Mult
 <p>
 On most modern computers, the number of active threads is way larger than the number of available cores, so most threads are idle at any given time. This is one of the big reasons why runtime can vary, even when running the same program.
 </p>
+
+<p>
+In multithreading, each thread has its own registers, its own PC, and its own stack. Each thread shares the same heap, and communication is done through shared memory. Since threads run simultaneously, we have no control over the order in which threads do their work.
+</p>
+
+<p>
+The <b>fork-join model</b> involves a master thread then can be forked into multiple threads to do some parallel work, and then <i>join</i> back together to coordinate again. Forks and joins take a while, so our goal is to minimize the number of forks/joins, and minimize the serial parts.
+</p>
+</div>
+<div id="outline-container-org8d1c07a" class="outline-3">
+<h3 id="org8d1c07a"><span class="section-number-3">3.1.</span> OpenMP</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<b>OpenMP</b> is an extension of C used for multi-threaded code which generally fllows the fork-join framework. Include the header file <code>&lt;omp.h&gt;</code> and is generally uses pragmas to define multithreaded code.
+</p>
+
+<p>
+In order to create a parallel section, write:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">#pragma</span> omp parallel
+<span style="color: #f38ba8;">{</span>
+  <span style="color: #6c7086;">// </span><span style="color: #6c7086;">parallel code
+</span><span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+The code in the parallel section gets run on all threads, so we need some way to distinguish threads. In a parallel segment, we can run:
+</p>
+
+<ul class="org-ul">
+<li><code>omp_get_num_threads()</code> returns the number of threads running</li>
+<li><code>omp_get_thread_num()</code> returns a unique number from 0 to the number of threads per thread</li>
+</ul>
+
+<p>
+By default, any variable declared outside the parallel segment is shared, and any variable declared inside the parallel segment is private. You can also explicitly scope variables by writing <code>#pragma omp parallel private(private_var) shared(shared_var)</code>.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Example: Parallel hello world
+                      </font>
+                    </strong>
+                  </summary>
+<pre><code class="language-c"><span style="color: #f9e2af;">#include</span> <span style="color: #f38ba8;">&lt;</span><span style="color: #a6e3a1;">stdio.h</span><span style="color: #f38ba8;">&gt;</span>
+<span style="color: #f9e2af;">#include</span> <span style="color: #f38ba8;">&lt;</span><span style="color: #a6e3a1;">omp.h</span><span style="color: #f38ba8;">&gt;</span>
+
+<span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">main</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+  <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span> = 0;    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">shared variable
+</span><span style="color: #f9e2af;">  #pragma</span> omp parallel
+  <span style="color: #fab387;">{</span>
+    <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">tid</span> = omp_get_thread_num<span style="color: #f9e2af;">()</span>;    <span style="color: #6c7086;">// </span><span style="color: #6c7086;">private variable
+</span>    x++;
+    printf<span style="color: #f9e2af;">(</span><span style="color: #a6e3a1;">"Hello World from thread %d, x = %d\n"</span>, tid, x<span style="color: #f9e2af;">)</span>;
+    <span style="color: #cba6f7;">if</span> <span style="color: #f9e2af;">(</span>tid == 0<span style="color: #f9e2af;">)</span> <span style="color: #f9e2af;">{</span>
+      printf<span style="color: #a6e3a1;">(</span><span style="color: #a6e3a1;">"Number of threads = %d\n"</span>, omp_get_num_threads<span style="color: #74c7ec;">()</span><span style="color: #a6e3a1;">)</span>;
+    <span style="color: #f9e2af;">}</span>
+  <span style="color: #fab387;">}</span>
+  printf<span style="color: #fab387;">(</span><span style="color: #a6e3a1;">"Done with parallel segment\n"</span><span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+
+</details>
+</div>
+<div id="outline-container-orgef4f2a9" class="outline-4">
+<h4 id="orgef4f2a9"><span class="section-number-4">3.1.1.</span> Multithreaded For Loops</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+Say we want to write a multithreaded for loop over an array of 1 million integers. We have two options here:
+</p>
+
+<ol class="org-ol">
+<li><b>Interweaving</b>: <code>for (int i = tid; i &lt; 1000000; i+=4)</code></li>
+<li><b>Blocking</b>: <code>for (int i = tid * 250000; i &lt; (tid + 1) * 250000; i++)</code></li>
+</ol>
+
+<p>
+With standard multithreading, option 1 is actually as slow as the serial version of the code due to <b>cache coherency</b> issues. Cache coherency ensures that all the <a href="caches.html#orgf6ebb51">caches</a> share the same view of memory. Since cores have their own L1 and L2 caches, whenever a thread updates data in their cache, if another cache has that data, that cache must first evict that block before our thread can modify it. Therefore, we must ensure that only one thread&rsquo;s cache has the data to be modified.
+</p>
+
+<p>
+You can also just use <code>#pragma omp parallel for</code> before a for loop to parallelize it correctly. Note that this must be done within an existing parallel block. This also only works if the loop bounds are known beforehand, and with no break statements in the loop.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd4fa88d" class="outline-3">
+<h3 id="orgd4fa88d"><span class="section-number-3">3.2.</span> Race Conditions</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Recall that the operating system can choose whichever threads it wants to run, and in what order. This is one of the biggest downsides to multithreading: a multithreaded program is no longer deterministic in terms of the execution order. Formally, a multithreaded program is correct only when <i>any execution order yields the same result</i>.
+</p>
+
+<p>
+For example, the following code contains a race condition:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">x</span> = 0;
+<span style="color: #f9e2af;">#pragma</span> omp parallel
+<span style="color: #f38ba8;">{</span>
+  x = x + 1;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+The problem is that some threads might read before other threads have written, so it is possible for <code>x</code> to end up becoming 1, instead of 4. In practice, most times you run this code, the result will be 4; however, there is a 0.01% chance you get the wrong result. Therefore, race condition bugs are extremely hard to debug since they are usually silent-failing and non-deterministic.
+</p>
+</div>
+</div>
+<div id="outline-container-orga8b052d" class="outline-3">
+<h3 id="orga8b052d"><span class="section-number-3">3.3.</span> Atomic Operations</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Regardless of how we do some things, multithreading will never work if the instructions happen to be perfectly interleaved. Our solution is to create an instruction that checks a value <i>and</i> writes to memory at the same time. These are known as <b>atomic instructions</b>.
+</p>
+</div>
+<div id="outline-container-org685084d" class="outline-4">
+<h4 id="org685084d"><span class="section-number-4">3.3.1.</span> Locks</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+A <b>lock</b> is an object that helps with synchronization. Essentially, each thread can try to acquire a &ldquo;lock&rdquo; on an object, but only one thread can have the lock at a given time. Formally, locks have two operations: acquire and release.
+</p>
+
+<p>
+Code surrounded by a lock is called a <i>critical section</i>, because only one thread is allowed to run that section at a time.
+</p>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -359,7 +511,7 @@ On most modern computers, the number of active threads is way larger than the nu
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-29 17:09
+               Last modified: 2026-07-30 16:14
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
