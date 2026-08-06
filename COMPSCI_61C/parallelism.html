@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-30 Thu 16:14 -->
+<!-- 2026-08-06 Thu 12:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parallelism</title>
@@ -125,6 +125,7 @@
 </li>
 </ul>
 </li>
+<li><a href="#org21a0cff">4. Multiprocess Programs</a></li>
 </ul>
 </div>
 </div>
@@ -498,10 +499,41 @@ A <b>lock</b> is an object that helps with synchronization. Essentially, each th
 </p>
 
 <p>
-Code surrounded by a lock is called a <i>critical section</i>, because only one thread is allowed to run that section at a time.
+Code surrounded by a lock is called a <b>critical section</b>, because only one thread is allowed to run that section at a time. OpenMP has several commands for this:
 </p>
+
+<ul class="org-ul">
+<li><code>#pragma omp barrier</code>
+<ul class="org-ul">
+<li>forces all threads to wait until all threads have hit the barrier</li>
+</ul></li>
+<li><code>#pragma omp critical</code>
+<ul class="org-ul">
+<li>creates a critical segment in parallel code: only one thread can run a critical segment at a time</li>
+</ul></li>
+</ul>
 </div>
 </div>
+</div>
+</div>
+<div id="outline-container-org21a0cff" class="outline-2">
+<h2 id="org21a0cff"><span class="section-number-2">4.</span> Multiprocess Programs</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+While a multithreaded program is fundamentally one program, individual processes are essentially distinct program instances entirely. In a multithreaded program, the entire process crashes if any single thread crashes. In a multiprocess program, each process runs independently.<abbr class="tooltip" title="note that this can create &ldquo;zombie processes&rdquo; that stay alive past the main process, and just eat resources until a system restart happens">°</abbr>&emsp13;
+</p>
+
+<p>
+Because you don&rsquo;t share memory, you can&rsquo;t use locks or concurrency primitives. This effectively restricts multiprocess programs to problems that can be split entirely into independent tasks.
+</p>
+
+<p>
+<b>Inter-process communication</b> is done by sending messages between nodes. Generally, messages take a lot of time to transmit/communicate. In any exchange, the sender should be ready to send a message, and the receiver should be ready to receive a message.
+</p>
+
+<p>
+A very common framework is the <b>manager-worker</b> system: you have a manager, whose job is to assign work to processes, and workers, who receives work from the manager and does work.
+</p>
 </div>
 </div>
 </div>
@@ -511,7 +543,7 @@ Code surrounded by a lock is called a <i>critical section</i>, because only one 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-30 16:14
+               Last modified: 2026-08-03 15:06
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

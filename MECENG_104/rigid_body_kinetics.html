@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-29 Wed 13:14 -->
+<!-- 2026-08-06 Thu 13:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Rigid Body Kinetics</title>
@@ -129,6 +129,8 @@
 <ul>
 <li><a href="#org954a1ef">1. Euler&rsquo;s 1st Law</a></li>
 <li><a href="#org02b4fce">2. Euler&rsquo;s 2nd Law</a></li>
+<li><a href="#org1acf99d">3. Impulse and Momentum of Rigid Bodies</a></li>
+<li><a href="#orga9e7d9e">4. Kinetic Energy of Rigid Bodies</a></li>
 </ul>
 </div>
 </div>
@@ -184,6 +186,83 @@ For the case of <i>planar motion</i>, when \(\mathbf{\omega} = \dot{\theta}\math
 \end{align}
 </div>
 </div>
+<div id="outline-container-org1acf99d" class="outline-2">
+<h2 id="org1acf99d"><span class="section-number-2">3.</span> Impulse and Momentum of Rigid Bodies</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The <b>linear impulse-linear momentum equation</b> for rigid bodies is:
+</p>
+
+\begin{align}
+\boxed{\int_{t_1}^{t_2} \mathbf{F}\text{ d}t = \mathbf{G}(t_2) - \mathbf{G}(t_1)}
+\end{align}
+
+<p>
+There are two forms of the <b>angular impulse-angular momentum equation</b> for rigid bodies, one around a fixed point \(O\), and the other around the center of mass \(C\):
+</p>
+
+\begin{align}
+\boxed{\int_{t_1}^{t_2} \mathbf{M}^O\text{ d}t = \mathbf{H}^O(t_2) - \mathbf{H}^O(t_1)} \\
+\boxed{\int_{t_1}^{t_2} \mathbf{M}^C\text{ d}t = \mathbf{H}^C(t_2) - \mathbf{H}^C(t_1)}
+\end{align}
+</div>
+</div>
+<div id="outline-container-orga9e7d9e" class="outline-2">
+<h2 id="orga9e7d9e"><span class="section-number-2">4.</span> Kinetic Energy of Rigid Bodies</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+We can view the kinetic energy of a rigid body as the sum of kinetic energies of each infinitesimal mass on the rigid body:
+</p>
+
+\begin{align}
+T = \int_B \frac{1}{2}\mathbf{v}\cdot\mathbf{v}\text{ d}m \notag
+\end{align}
+
+<p>
+<a href="rigid_body_kinematics.html#orgb923fa8">We know that</a> \(\mathbf{v}-\mathbf{v}_C = \mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\), so we can rewrite this integral as:
+</p>
+
+\begin{align}
+T &= \frac{1}{2} \int_B \left[ \mathbf{v}_C + \mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\right] \cdot \left[ \mathbf{v}_C + \mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\right]\text{ d}m \notag \\
+&= \frac{1}{2}\int_B\mathbf{v}_C\cdot\mathbf{v}_C + 2\mathbf{v}_C\cdot\left(\mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\right)+\left[\mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\right]\cdot\left[\mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\right]\text{ d}m \notag \\
+&= \frac{1}{2}m\mathbf{v}_C\cdot\mathbf{v}_C + \mathbf{v}_C\cdot\mathbf{\omega}\times\int_B \mathbf{r}-\mathbf{r}_C\text{ d}m + \frac{1}{2}\int_B\left[\mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\right]\cdot\left[\mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\right]\text{ d}m \notag \\
+&= \frac{1}{2}m\mathbf{v}_C\cdot\mathbf{v}_C + \frac{1}{2}\int_B\left[\mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\right]\cdot\left[\mathbf{\omega}\times(\mathbf{r}-\mathbf{r}_C)\right]\text{ d}m \notag
+\end{align}
+
+<p>
+It can be shown that \((\mathbf{a} \times \mathbf{b})\cdot(\mathbf{c}\times\mathbf{d}) = (\mathbf{a}\cdot\mathbf{c})(\mathbf{b}\cdot\mathbf{d})-(\mathbf{a}\cdot\mathbf{d})(\mathbf{b}\cdot\mathbf{c})\), so
+</p>
+
+\begin{align}
+T &= \frac{1}{2}m\mathbf{v}_C \cdot\mathbf{v}_C + \frac{1}{2}\int_B\mathbf{\omega}\cdot\mathbf{\omega}\|\mathbf{r}-\mathbf{r}_C\|^2 - \left[\mathbf{\omega}\cdot(\mathbf{r}-\mathbf{r}_C)\right]\left[\mathbf{\omega}\cdot(\mathbf{r}-\mathbf{r}_C)\right]\text{ d}m \notag \\
+&= \frac{1}{2}m\mathbf{v}_C \cdot\mathbf{v}_C + \frac{1}{2}\mathbf{\omega} \cdot \int_B \|\mathbf{r}-\mathbf{r}_C\| \mathbf{1} - (\mathbf{r}-\mathbf{r}_C)\otimes(\mathbf{r}-\mathbf{r}_C)\text{ d}m \mathbf{\omega} \notag
+\end{align}
+
+<p>
+Simplifying, we get that the kinetic energy of a rigid body is:
+</p>
+
+\begin{align}
+\boxed{T = \frac{1}{2}m\mathbf{v}_C\cdot\mathbf{v}_C + \frac{1}{2}\mathbf{I}^C\mathbf{\omega}\cdot\mathbf{\omega} =  \frac{1}{2}m\mathbf{v}_C\cdot\mathbf{v}_C + \frac{1}{2}\mathbf{H}^C\cdot\mathbf{\omega}}
+\end{align}
+
+<p>
+If there is a <i>fixed material point</i> \(O\), then this simplifies to:
+</p>
+
+\begin{align}
+\boxed{T = \frac{1}{2} \mathbf{I}^O\mathbf{\omega}\cdot\mathbf{\omega} = \frac{1}{2}\mathbf{H}^O\cdot\mathbf{\omega}}
+\end{align}
+
+<p>
+Taking the derivative of the kinetic energy, we get the <b>work-energy theorem</b> for rigid bodies:
+</p>
+
+\begin{align}
+\dot{T} = \mathbf{F}\cdot\mathbf{v}_C + \mathbf{M}^C\cdot\mathbf{\omega}
+\end{align}
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -191,7 +270,7 @@ For the case of <i>planar motion</i>, when \(\mathbf{\omega} = \dot{\theta}\math
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-29 13:14
+               Last modified: 2026-08-06 13:07
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-08-06 Thu 12:30 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Virtual Memory</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_61C/index.html">COMPSCI 61C</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Virtual Memory</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgd16f226">1. Virtual Memory</a>
+<ul>
+<li><a href="#org841a177">1.1. Paged Memory</a></li>
+<li><a href="#org325e43f">1.2. Page Table</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd16f226" class="outline-2">
+<h2 id="orgd16f226"><span class="section-number-2">1.</span> Virtual Memory</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Computers need to run a lot of processes. If each process was given its own address space on a 64-bit computer, your RAM will quickly run out of space.
+</p>
+
+<p>
+Most processes don&rsquo;t use all their address space: they mostly use one block of memory in the code segment, another block in the stack, and maybe a few blocks in the heap/data segments. However, we still want to give processes the illusion that they own the entire contiguous segment of memory.
+</p>
+
+<p>
+The solution is <b>virtual memory</b>: to chop up main memory into pages of a few KiB each, then only store the pages the process actually tries to access. Virtual memory is responsible for given each process the illusion it has access to the entire address space, then translating that to the actual pages located in physical memory.
+</p>
+
+<p>
+We can think of our computer as having two address spaces: the <i>virtual address space</i> is the set of addresses the program knows about, and the <i>physical address space</i> is the set of addresses that map to actual physical locations in memory. For each process, the memory manager then translates between these two spaces.
+</p>
+</div>
+<div id="outline-container-org841a177" class="outline-3">
+<h3 id="org841a177"><span class="section-number-3">1.1.</span> Paged Memory</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Memory is paged, which means memory addresses can be split into two parts: the <b>page number</b>, and an offset. Memory translation translates <b>virtual page numbers</b> (VPN) to <b>physical page numbers</b> (PPN). Offsets within the same page are the same across virtual memory and physical memory.
+</p>
+</div>
+</div>
+<div id="outline-container-org325e43f" class="outline-3">
+<h3 id="org325e43f"><span class="section-number-3">1.2.</span> Page Table</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+A <b>page table</b> is a lookup table used to translate virtual addresses to physicsal addreses for a given process. Each entry in the table corresponds to a virtual page number, and if that page is in memory, the entry has a corresponding physical page number. Otherwise, the entry should tell the OS to trigger <i>page fault</i> or to <i>load page from disk</i>.
+</p>
+
+<p>
+Each page table entry also stores various status bits, which include a valid bit, a dirty bit, and a write protection bit. The valid bit indicates if the page is in memory (DRAM) or only on disk. The dirty bit tracks if the virtual memory was changed, and uses <a href="caches.html#org6826263">write-back</a> to write to disk. Finally, the write protection bit tracks if that page should never be modified.
+</p>
+
+<p>
+Page tabes are stored in main memory. To minimize performance penalties, we transfer <i>cache lines</i> instead of individual words between DRAM and a processor cache. We can also use a cache for frequently used page table entries. This cache is called the <b>translation lookaside buffer</b> (TLB), which tracks VPN-PPN mappings. The TLB is much closer to the CPU and predates data caches (hence the older name).
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-08-04 15:28
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
