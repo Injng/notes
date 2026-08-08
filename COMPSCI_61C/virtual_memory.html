@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-06 Thu 12:30 -->
+<!-- 2026-08-08 Sat 11:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Virtual Memory</title>
@@ -135,7 +135,7 @@ Memory is paged, which means memory addresses can be split into two parts: the <
 <h3 id="org325e43f"><span class="section-number-3">1.2.</span> Page Table</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
-A <b>page table</b> is a lookup table used to translate virtual addresses to physicsal addreses for a given process. Each entry in the table corresponds to a virtual page number, and if that page is in memory, the entry has a corresponding physical page number. Otherwise, the entry should tell the OS to trigger <i>page fault</i> or to <i>load page from disk</i>.
+A <b>page table</b> is a lookup table used to translate virtual addresses to physical addreses for a given process. Each entry in the table stores a physical page number, and the entries are <i>indexed by</i> the virtual page number. If that page is in memory, the physical page number is valid (this is tracked by a valid status bit, see below). Otherwise, the entry should tell the OS to trigger <i>page fault</i> or to <i>load page from disk</i>.
 </p>
 
 <p>
@@ -155,7 +155,7 @@ Page tabes are stored in main memory. To minimize performance penalties, we tran
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-08-04 15:28
+               Last modified: 2026-08-08 11:21
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
