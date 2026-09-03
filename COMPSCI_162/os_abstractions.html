@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-09-03 Thu 15:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Operating System Abstractions</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_162/index.html">COMPSCI 162</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Operating System Abstractions</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgb58f69e">1. Threads</a>
+<ul>
+<li><a href="#org9b618c3">1.1. Simultaneous Mulithreading</a></li>
+</ul>
+</li>
+<li><a href="#org63d9a7f">2. Address Spaces</a>
+<ul>
+<li><a href="#org59a4d5a">2.1. Base and Bound</a></li>
+<li><a href="#orgfe344ee">2.2. Paged Virtual Address Space</a></li>
+</ul>
+</li>
+<li><a href="#orgbe64226">3. Processes</a>
+<ul>
+<li><a href="#org68a4a6a">3.1. Process Control Blocks</a></li>
+</ul>
+</li>
+<li><a href="#org2b5466a">4. Dual Mode Operation</a></li>
+</ul>
+</div>
+</div>
+<p>
+The operating system <i>abstracts</i> underlying hardware to help tame complexity. The bottom line of an operating system is to provide the ability to run programs. 
+</p>
+<div id="outline-container-orgb58f69e" class="outline-2">
+<h2 id="orgb58f69e"><span class="section-number-2">1.</span> Threads</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A <b>thread</b> is a single unique execution context, which contains things like the program counter, registers, execution flags, stack, and its memory state. 
+</p>
+
+<p>
+A thread is executing on a processor (core) when it is <i>resident</i> in the processor registers. <b>Resident</b> means that the registers of the processor are currently holding the state for that thread.
+</p>
+
+<p>
+A thread is said to be <b>suspended</b> (not executing) when its state is not resident in the processor. This happens when the processor is executing some other thread, and the previous state for the suspended thread is usually stored somewhere in memory.
+</p>
+
+<p>
+Threads are used to create the illusion that there are <i>more cores than there are processors</i>: threads are virtual cores. To do this, threads multiplex between different &ldquo;vCPUs&rdquo; in real time:
+</p>
+
+
+<div id="orgc96783d" class="figure">
+<p><img src="../static/COMPSCI_162/os_abstractions1.png" alt="os_abstractions1.png" />
+</p>
+</div>
+
+<p>
+When the thread is not running, the contents of their registers are stored in a <b>Thread Control Block</b> (TCB), which is a data structure in the kernel.
+</p>
+
+<p>
+We can use the <code>pthreads</code> interface to create and manage threads. Specifically, we can use <code>pthread_create()</code>, <code>pthread_exit()</code>, and <code>pthread_join()</code>.
+</p>
+</div>
+<div id="outline-container-org9b618c3" class="outline-3">
+<h3 id="org9b618c3"><span class="section-number-3">1.1.</span> Simultaneous Mulithreading</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<b>Simultaneous multithreading</b> (also called <b>hyperthreading</b> by Intel) is a hardware scheduling technique that allows multiple threads to run on the same processor core. Since execution of a program often requires stalls due to <a href="../COMPSCI_61C/processors.html#org4a32c84">hazards</a>, we can make use of the free hardware to run computation on other threads.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org63d9a7f" class="outline-2">
+<h2 id="org63d9a7f"><span class="section-number-2">2.</span> Address Spaces</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+An <b>address space</b> is the set of accessible addresses and the state associated with them. Address spaces may be <i>virtual</i>, in which case it is distinct from the memory space of the actual physical machine.
+</p>
+
+<p>
+Threads have to share non-CPU resources such as memory and I/O devices, which means that each thread can possibly read/write memory of other processes or even the OS. This is a problem, which means our OS must implement some kind of protection on what memory programs can access.
+</p>
+</div>
+<div id="outline-container-org59a4d5a" class="outline-3">
+<h3 id="org59a4d5a"><span class="section-number-3">2.1.</span> Base and Bound</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+We can define a block of memory a program can use using a <b>base</b> address and a <b>bound</b> offset/size. The virtual address space of the program starts at zero, so our OS translates on-the-fly these addresses by adding them to our base address. Protection is done by ensuring that our addresses never exceed the bound.
+</p>
+
+<p>
+Base and bound has several problems, however. Base and bound is wasteful, as it must dedicate physical memory for <i>future use</i>. Additionally, we must also solve the fragmentation problem, as the kernel must somehow fit whole processes into contiguous blocks of memory.
+</p>
+</div>
+</div>
+<div id="outline-container-orgfe344ee" class="outline-3">
+<h3 id="orgfe344ee"><span class="section-number-3">2.2.</span> Paged Virtual Address Space</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+We can also break the entire virtual address space for our program into equal sized chunks (i.e. pages), with each page having its own base. The processor translates each virtual address according to the bases stored in a <a href="COMPSCI_61C/virtual_memory.html#org325e43f">page table</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbe64226" class="outline-2">
+<h2 id="orgbe64226"><span class="section-number-2">3.</span> Processes</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A <b>process</b> is an execution environment with restricted rights, which consists of a (protected) address space along with one or more threads. Application programs executes as processes.
+</p>
+
+<p>
+Processes are protected by the OS from each other. This is done by creating protected address spaces for each process, such as using translation techniques like those described earlier. However, there is a tradeoff, as communication becomes harder between processes.
+</p>
+</div>
+<div id="outline-container-org68a4a6a" class="outline-3">
+<h3 id="org68a4a6a"><span class="section-number-3">3.1.</span> Process Control Blocks</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The kernel represents each process using a <b>process control block</b> (PCB). This includes information on status (running, ready, blocked), space for register state, the process ID, execution time, etc.
+</p>
+
+<p>
+The kernel scheduler then maintains a data structure containing these PCBs. It is then up to the scheduler to make policy decisions regarding the allocation of processors to each process:
+</p>
+
+
+<div id="orgbfd5580" class="figure">
+<p><img src="../static/COMPSCI_162/os_abstractions2.png" alt="os_abstractions2.png" />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org2b5466a" class="outline-2">
+<h2 id="org2b5466a"><span class="section-number-2">4.</span> Dual Mode Operation</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The hardware provides at least two modes of operation: the <b>kernel mode</b> (or &ldquo;supervisor&rdquo; mode) and the <b>user mode</b>. Certain operations will be prohibited when running in user mode, such as changing the page table pointer, diabling interrupts, etc. 
+</p>
+
+<p>
+Additionally, we need carefully controlled transitions between user mode and kernel mode. There are three ways user mode can transfer into kernel mode, with the primary one being the <b>system call interface</b>: this is the primary way the user mode interacts with the kernel mode. The two other methods are <b>interrupts</b> and <b>traps</b> (or exceptions).
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-09-03 15:25
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

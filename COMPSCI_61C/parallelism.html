@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-06 Thu 12:30 -->
+<!-- 2026-09-03 Thu 15:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Parallelism</title>
@@ -456,7 +456,7 @@ With standard multithreading, option 1 is actually as slow as the serial version
 </p>
 
 <p>
-You can also just use <code>#pragma omp parallel for</code> before a for loop to parallelize it correctly. Note that this must be done within an existing parallel block. This also only works if the loop bounds are known beforehand, and with no break statements in the loop.
+You can also just use <code>#pragma omp parallel for</code> before a for loop to parallelize it correctly. This also only works if the loop bounds are known beforehand, and with no break statements in the loop.
 </p>
 </div>
 </div>
@@ -543,7 +543,7 @@ A very common framework is the <b>manager-worker</b> system: you have a manager,
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-08-03 15:06
+               Last modified: 2026-08-10 17:53
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
