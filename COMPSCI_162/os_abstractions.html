@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-03 Thu 15:25 -->
+<!-- 2026-09-10 Thu 15:30 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Operating System Abstractions</title>
@@ -109,9 +109,16 @@
 <li><a href="#orgbe64226">3. Processes</a>
 <ul>
 <li><a href="#org68a4a6a">3.1. Process Control Blocks</a></li>
+<li><a href="#org6972776">3.2. Managing Processes</a></li>
 </ul>
 </li>
-<li><a href="#org2b5466a">4. Dual Mode Operation</a></li>
+<li><a href="#org2b5466a">4. Dual Mode Operation</a>
+<ul>
+<li><a href="#orga16036c">4.1. Separate Kernel Stack</a></li>
+<li><a href="#org2fdd961">4.2. Syscall Handlers</a></li>
+<li><a href="#orgf187735">4.3. Interrupt Handlers</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -138,7 +145,7 @@ Threads are used to create the illusion that there are <i>more cores than there 
 </p>
 
 
-<div id="orgc96783d" class="figure">
+<div id="org7756021" class="figure">
 <p><img src="../static/COMPSCI_162/os_abstractions1.png" alt="os_abstractions1.png" />
 </p>
 </div>
@@ -149,6 +156,10 @@ When the thread is not running, the contents of their registers are stored in a 
 
 <p>
 We can use the <code>pthreads</code> interface to create and manage threads. Specifically, we can use <code>pthread_create()</code>, <code>pthread_exit()</code>, and <code>pthread_join()</code>.
+</p>
+
+<p>
+When we run threads, we use the stack to keep track of sequencing. However, when we have multiple stacks for multiple threads for our process, we have to consider how we position our stacks relative to each other in memory.
 </p>
 </div>
 <div id="outline-container-org9b618c3" class="outline-3">
@@ -215,10 +226,31 @@ The kernel scheduler then maintains a data structure containing these PCBs. It i
 </p>
 
 
-<div id="orgbfd5580" class="figure">
+<div id="orgf071c23" class="figure">
 <p><img src="../static/COMPSCI_162/os_abstractions2.png" alt="os_abstractions2.png" />
 </p>
 </div>
+</div>
+</div>
+<div id="outline-container-org6972776" class="outline-3">
+<h3 id="org6972776"><span class="section-number-3">3.2.</span> Managing Processes</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Processes are created and managed by processes. But if processes are created by other processes, how does the first process start?
+</p>
+
+<p>
+The first process is started by the kernel, often called the INIT process. After the INIT process is started, all other processes are created by other processes. This is done by a set of system calls:
+</p>
+
+<ul class="org-ul">
+<li><code>exit</code>: terminate a process</li>
+<li><code>fork</code>: copy the current process</li>
+<li><code>exec</code>: change the <i>program</i> being run by the current process</li>
+<li><code>wait</code>: wait for a child process to finish</li>
+<li><code>kill</code>: send a signal to another process</li>
+<li><code>sigaction</code>: set handlers for signals</li>
+</ul>
 </div>
 </div>
 </div>
@@ -232,6 +264,48 @@ The hardware provides at least two modes of operation: the <b>kernel mode</b> (o
 <p>
 Additionally, we need carefully controlled transitions between user mode and kernel mode. There are three ways user mode can transfer into kernel mode, with the primary one being the <b>system call interface</b>: this is the primary way the user mode interacts with the kernel mode. The two other methods are <b>interrupts</b> and <b>traps</b> (or exceptions).
 </p>
+
+<p>
+Interrupts are external asynchronous events (e.g. timer or I/O) that trigger a mode switch. Traps are internal synchronous events (e.g. segfault, divide by zero) that trigger a mode switch. All three methods are known as <b>unprogrammed control transfer</b>: the process doesn&rsquo;t identify the specific address but rather an index into the <b>interrupt vector table</b> (IVT) which contains the address and properties of each interrupt handler.
+</p>
+
+<p>
+So how do we implement a safe kernel mode transfer? We need to keep in mind some important security aspects here:
+</p>
+
+<ul class="org-ul">
+<li>atomic transfer to a well defined kernel entry point</li>
+<li>separate kernel stack (don&rsquo;t trust the user&rsquo;s stack pointer)</li>
+<li>restrict entry points by using an indirection table: interrupt handler table and syscall table</li>
+</ul>
+</div>
+<div id="outline-container-orga16036c" class="outline-3">
+<h3 id="orga16036c"><span class="section-number-3">4.1.</span> Separate Kernel Stack</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+The kernel needs space to work, so it must have a stack. However, the kernel uses its own <i>separate</i> <b>kernel stack</b> for security reasons: we can&rsquo;t trust the user&rsquo;s stack pointer. We also can&rsquo;t trust other threads to not mess with information on user stack. This is called the <b>two-stack model</b>, where each thread has both user stack (located in user memory) and kernel stack (located in kernel memory).
+</p>
+</div>
+</div>
+<div id="outline-container-org2fdd961" class="outline-3">
+<h3 id="org2fdd961"><span class="section-number-3">4.2.</span> Syscall Handlers</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+For security reasons, we also want to vector through <i>well-defined syscall entry points</i>. To do this, we have a table mapping <i>system call numbers</i> to their <i>handler</i>. The syscall handler will locate arguments in registers or on user stack, then very carefully copy those arguments from user memory to kernel memory — this protects the kernel from other threads changing the arguments in user memory.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf187735" class="outline-3">
+<h3 id="orgf187735"><span class="section-number-3">4.3.</span> Interrupt Handlers</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+We also want to vector through a <i>table of interrupt handlers</i>: this table maps interrupt numbers to their handler. Interrupt processing is not visible to user processes, with no change to process state.
+</p>
+
+<p>
+The interrupt controller is a piece of hardware that handles interrupts from various devices. Hardware interrupts are invoked with interrupt lines from devices. The interrupt controller choose which interrupt request to honor by using a mask and a priority encoder to pick the highest priority interrupt.
+</p>
+</div>
 </div>
 </div>
 </div>
@@ -241,7 +315,7 @@ Additionally, we need carefully controlled transitions between user mode and ker
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-09-03 15:25
+               Last modified: 2026-09-08 15:07
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

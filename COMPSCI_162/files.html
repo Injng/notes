@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-09-10 Thu 15:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Files and I/O</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_162/index.html">COMPSCI 162</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Files and I/O</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org077bcef">1. Everything is a File</a></li>
+<li><a href="#orgea72dd2">2. Filesystems</a></li>
+<li><a href="#orgde35916">3. File API</a>
+<ul>
+<li><a href="#org371afe6">3.1. Streams</a></li>
+<li><a href="#org2224b43">3.2. Reading and Writing</a></li>
+<li><a href="#org88052ec">3.3. Pointer Positioning</a></li>
+<li><a href="#org79d6161">3.4. File Syscalls</a></li>
+</ul>
+</li>
+<li><a href="#org641bade">4. Device Drivers</a></li>
+<li><a href="#org1f29994">5. Inter-Process Communication (IPC)</a></li>
+<li><a href="#org4bfcf00">6. Sockets</a>
+<ul>
+<li><a href="#org7f36b2d">6.1. TCP/IP</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org077bcef" class="outline-2">
+<h2 id="org077bcef"><span class="section-number-2">1.</span> Everything is a File</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The <a href="https://dl.acm.org/doi/pdf/10.1145/361011.361061">basic UNIX philosophy</a> is that <i>everything is a &ldquo;file&rdquo;</i>. In other words, the same identical file interface is used for:
+</p>
+
+<ul class="org-ul">
+<li>files on disk</li>
+<li>devices (terminals, printers, etc.)</li>
+<li>networking (sockets)</li>
+<li>local interprocess communication</li>
+</ul>
+
+<p>
+The file interface is based on four fundamental system calls: <code>open()</code>, <code>read()</code>, <code>write()</code>, and <code>close()</code>. There is also the additional <code>ioctl()</code> for custom configuration that doesn&rsquo;t fit.
+</p>
+</div>
+</div>
+<div id="outline-container-orgea72dd2" class="outline-2">
+<h2 id="orgea72dd2"><span class="section-number-2">2.</span> Filesystems</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The <b>filesystem</b> abstraction is used to represent files on disk. A <b>file</b> is a named collection of data in a file system (a sequence of bytes). We can also store some amount of file metadata with information about the file.
+</p>
+
+<p>
+A <b>directory</b> is a &ldquo;folder&rdquo; containing files and possibly other directories. The path defined by directories uniquely identifies a file or directory.
+</p>
+
+<p>
+Every process has a <b>current working directory</b> (CWD). All relative paths are relative to this CWD, which can be changed with the <code>chdir()</code> system call.
+</p>
+</div>
+</div>
+<div id="outline-container-orgde35916" class="outline-2">
+<h2 id="orgde35916"><span class="section-number-2">3.</span> File API</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org371afe6" class="outline-3">
+<h3 id="org371afe6"><span class="section-number-3">3.1.</span> Streams</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+At the high level, we operate on <b>streams</b>: unformatted sequences of bytes, with a position. Streams in C a represented by a pointer to a <code>FILE</code> data structure, which are returned by functions such as <code>fopen()</code>.
+</p>
+
+<p>
+Three predefined streams are opened implicitly when the program is executed:
+</p>
+
+<ul class="org-ul">
+<li><code>FILE *stdin</code> — normal source of input</li>
+<li><code>FILE *stdout</code> — normal source of output</li>
+<li><code>FILE *stderr</code> — diagnostics and errors</li>
+</ul>
+
+<p>
+High level operations on streams are buffered in user memory, which means that printing, sleeping, and then printing again may actually cause everything to be printed out at once. However, low level operations on file descriptors are immediate.
+</p>
+</div>
+</div>
+<div id="outline-container-org2224b43" class="outline-3">
+<h3 id="org2224b43"><span class="section-number-3">3.2.</span> Reading and Writing</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+C also gives us several different functions to read and write to files:
+</p>
+
+<pre><code class="language-c"><span style="color: #6c7086;">// </span><span style="color: #6c7086;">character oriented
+</span><span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">fputc</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">c</span>, <span style="color: #f9e2af;">FILE</span> *<span style="color: #cdd6f4;">fp</span> <span style="color: #f38ba8;">)</span>; <span style="color: #6c7086;">// </span><span style="color: #6c7086;">rtn c or EOF on err
+</span><span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">fputs</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">const</span> <span style="color: #f9e2af;">char</span> *<span style="color: #cdd6f4;">s</span>, <span style="color: #f9e2af;">FILE</span> *<span style="color: #cdd6f4;">fp</span> <span style="color: #f38ba8;">)</span>; <span style="color: #6c7086;">// </span><span style="color: #6c7086;">rtn &gt; 0 or EOF
+</span><span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">fgetc</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">FILE</span> * <span style="color: #cdd6f4;">fp</span> <span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">char</span> *<span style="color: #89b4fa;">fgets</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">char</span> *<span style="color: #cdd6f4;">buf</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">n</span>, <span style="color: #f9e2af;">FILE</span> *<span style="color: #cdd6f4;">fp</span> <span style="color: #f38ba8;">)</span>;
+
+<span style="color: #6c7086;">// </span><span style="color: #6c7086;">block oriented
+</span><span style="color: #f9e2af;">size_t</span> <span style="color: #89b4fa;">fread</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">void</span> *<span style="color: #cdd6f4;">ptr</span>, <span style="color: #f9e2af;">size_t</span> <span style="color: #cdd6f4;">size_of_elements</span>, <span style="color: #f9e2af;">size_t</span> <span style="color: #cdd6f4;">number_of_elements</span>, <span style="color: #f9e2af;">FILE</span> *<span style="color: #cdd6f4;">a_file</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">size_t</span> <span style="color: #89b4fa;">fwrite</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">const</span> <span style="color: #f9e2af;">void</span> *<span style="color: #cdd6f4;">ptr</span>, <span style="color: #f9e2af;">size_t</span> <span style="color: #cdd6f4;">size_of_elements</span>, <span style="color: #f9e2af;">size_t</span> <span style="color: #cdd6f4;">number_of_elements</span>, <span style="color: #f9e2af;">FILE</span> *<span style="color: #cdd6f4;">a_file</span><span style="color: #f38ba8;">)</span>;
+
+<span style="color: #6c7086;">// </span><span style="color: #6c7086;">formatted
+</span><span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">fprintf</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">FILE</span> *<span style="color: #cba6f7;">restrict</span> <span style="color: #cdd6f4;">stream</span>, <span style="color: #cba6f7;">const</span> <span style="color: #f9e2af;">char</span> *<span style="color: #cba6f7;">restrict</span> <span style="color: #cdd6f4;">format</span>, ...<span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">fscanf</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">FILE</span> *<span style="color: #cba6f7;">restrict</span> <span style="color: #cdd6f4;">stream</span>, <span style="color: #cba6f7;">const</span> <span style="color: #f9e2af;">char</span> *<span style="color: #cba6f7;">restrict</span> <span style="color: #cdd6f4;">format</span>, ... <span style="color: #f38ba8;">)</span>;
+</code></pre>
+</div>
+</div>
+<div id="outline-container-org88052ec" class="outline-3">
+<h3 id="org88052ec"><span class="section-number-3">3.3.</span> Pointer Positioning</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+The file stream also includes a pointer to the current position in the file. These below functions can help with positioning the pointer:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">fseek</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">FILE</span> *<span style="color: #cdd6f4;">stream</span>, <span style="color: #f9e2af;">long</span> <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">offset</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">whence</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">long</span> <span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">ftell</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">FILE</span> *<span style="color: #cdd6f4;">stream</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">void</span> <span style="color: #89b4fa;">rewind</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">FILE</span> *<span style="color: #cdd6f4;">stream</span><span style="color: #f38ba8;">)</span>;
+</code></pre>
+
+<p>
+For <code>fseek()</code>, the offset is interpreted based on the <code>whence</code> argument, which can be set the <code>SEEK_SET</code> (from beginning), <code>SEEK_CUR</code>, or <code>SEEK_END</code> (from end).
+</p>
+</div>
+</div>
+<div id="outline-container-org79d6161" class="outline-3">
+<h3 id="org79d6161"><span class="section-number-3">3.4.</span> File Syscalls</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+The high level C functions presented above are built upon a low level file I/O system call interface:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">open</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">const</span> <span style="color: #f9e2af;">char</span> *<span style="color: #cdd6f4;">filename</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">flags</span>, <span style="color: #f9e2af;">mode_t</span> <span style="color: #cdd6f4;">mode</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">creat</span><span style="color: #f38ba8;">(</span><span style="color: #cba6f7;">const</span> <span style="color: #f9e2af;">char</span> *<span style="color: #cdd6f4;">filename</span>, <span style="color: #f9e2af;">mode_t</span> <span style="color: #cdd6f4;">mode</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">close</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">filedes</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">ssize_t</span> <span style="color: #89b4fa;">read</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">filedes</span>, <span style="color: #f9e2af;">void</span> *<span style="color: #cdd6f4;">buffer</span>, <span style="color: #f9e2af;">size_t</span> <span style="color: #cdd6f4;">maxsize</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">ssize_t</span> <span style="color: #89b4fa;">write</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">filedes</span>, <span style="color: #cba6f7;">const</span> <span style="color: #f9e2af;">void</span> *<span style="color: #cdd6f4;">buffer</span>, <span style="color: #f9e2af;">size_t</span> <span style="color: #cdd6f4;">size</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">off_t</span> <span style="color: #89b4fa;">lseek</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">filedes</span>, <span style="color: #f9e2af;">off_t</span> <span style="color: #cdd6f4;">offset</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">whence</span><span style="color: #f38ba8;">)</span>;
+</code></pre>
+
+<p>
+Opening a file with <code>open()</code> returns a <b>file descriptor</b>, an integer that represents an open file. <code>STDIN_FILENO</code>, <code>STDOUT_FILENO</code>, and <code>STDERR_FILENO</code> are pre-opened standard descriptors that can be used as macros. File descriptors refer to <b>file descriptions</b>, which is a data structure inside of the kernel that store information about where to find the data on disk and the current position within the file. 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org641bade" class="outline-2">
+<h2 id="org641bade"><span class="section-number-2">4.</span> Device Drivers</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<b>Device drivers</b> are device-specific code in the kernel that interacts directly with the device hardware. It supports the standard system call interface so that the kernel can interact easily with different device drivers, with special device-specific configuration supported with the <code>ioctl()</code> syscall.
+</p>
+
+<p>
+Device drivers are typically divided into two pieces. The top half is accessed via system calls, which implements a set of standard calls like <code>open()</code>, <code>close()</code>, <code>read()</code>, etc — this is the kernel&rsquo;s interface to the device driver. The bottom half runs as a interrupt routine which gets input or transfers next block of output.
+</p>
+</div>
+</div>
+<div id="outline-container-org1f29994" class="outline-2">
+<h2 id="org1f29994"><span class="section-number-2">5.</span> Inter-Process Communication (IPC)</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Recall that a process has a <i>protected</i> address space with one or more threads that by default cannot share information between processes. Thus, communication between processes must be set up explicitly using a variety of abstractions, such as streams, files, sockets, and pipes. 
+</p>
+</div>
+</div>
+<div id="outline-container-org4bfcf00" class="outline-2">
+<h2 id="org4bfcf00"><span class="section-number-2">6.</span> Sockets</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Communication across the world looks like file I/O! The interface underpinning this are <b>sockets</b>, which is an abstraction for one endpoint of a network connection. It is the same abstraction for any kind of network: whether local, the Internet (TCP/IP, UDP/IP), and even legacy systems (OSI, Appletalk, IPX).
+</p>
+
+<p>
+A socket acts just like a file with a file descriptor. We can then connect sockets together to perform communication across the network. Each socket represents a queue, where <code>write()</code> adds to the output queue (data destined for the other side), and <code>read()</code> removes from the input queue (data destined for this side). 
+</p>
+</div>
+<div id="outline-container-org7f36b2d" class="outline-3">
+<h3 id="org7f36b2d"><span class="section-number-3">6.1.</span> TCP/IP</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+We have a hostname (e.g. www.eecs.berkeley.edu) that resolves into some kind of IP address (128.32.244.172), and then finally a port number that identifies a socket. Port numbers are allocated as follows:
+</p>
+
+<ul class="org-ul">
+<li>0-1023 are &ldquo;well-known&rdquo; or &ldquo;system&rdquo; ports that require superuser privileges</li>
+<li>1024-49151 are &ldquo;registered&rdquo; ports assigned by IANA for specific services</li>
+<li>49152-65535 are &ldquo;dynamic&rdquo; or &ldquo;private&rdquo;, and are automatically allocated as &ldquo;ephemeral ports&rdquo;</li>
+</ul>
+
+<p>
+To setup a connection over <b>TCP/IP</b>, the client side must first request a connection to the server via a <i>server socket</i>. If the server accepts, then it will create a new socket to handle communication with the client. A <b>5-tuple</b> identifies each connection:
+</p>
+
+<ol class="org-ol">
+<li>Source IP address</li>
+<li>Destination IP address</li>
+<li>Source port number</li>
+<li>Destination port number</li>
+<li>Protocol (always TCP here)</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-09-10 15:32
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
