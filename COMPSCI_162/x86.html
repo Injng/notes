@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-09-15 Tue 14:38 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>x86 Assembly</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_162/index.html">COMPSCI 162</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">x86 Assembly</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org720cb66">1. Registers</a>
+<ul>
+<li><a href="#org49f1a95">1.1. Calling Convention</a></li>
+</ul>
+</li>
+<li><a href="#orgf81781f">2. Instructions</a></li>
+</ul>
+</div>
+</div>
+<p>
+<b>x86</b> is a family of instruction set architectures based on the complex instruction set computer (CISC) architecture (unlike <a href="../COMPSCI_61C/risc-v.html">RISC-V</a>). Here, we will focus on the 32-bit ISA, called <b>IA-32</b> or <b>i386</b>. There are also two different syntaxes for IA-32 assembly, Intel and AT&amp;T; the instructions below will use AT&amp;T syntax.
+</p>
+<div id="outline-container-org720cb66" class="outline-2">
+<h2 id="org720cb66"><span class="section-number-2">1.</span> Registers</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+x86 has only 8 <b>general purpose registers</b> (GPR):
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Register</th>
+<th scope="col" class="org-left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>ax</code></td>
+<td class="org-left">accumulator</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>bx</code></td>
+<td class="org-left">base</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>cx</code></td>
+<td class="org-left">counter</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>dx</code></td>
+<td class="org-left">data</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>sp</code></td>
+<td class="org-left">stack pointer</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>bp</code></td>
+<td class="org-left">base pointer</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>si</code></td>
+<td class="org-left">source index</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>di</code></td>
+<td class="org-left">destination index</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Originally, these GPRs started as 16-bits. The 32-bit registers used in i386 are therefore denoted with the e prefix (e.g. <code>eax</code> for <code>ax</code>) and with the r prefix for 62-bits (e.g. <code>rax</code> for <code>ax</code>). The lower and upper 8 bits of each 16-bit register can also be explicitly addressed by replacing <code>x</code> with either <code>l</code> or <code>h</code>.
+</p>
+
+<p>
+In AT&amp;T syntax, registers are addressed using the percent sign (e.g. <code>%eax</code> for <code>eax</code>). <a href="../COMPSCI_61C/risc-v.html#orgee07551">Immediates</a> such as constants are preceded by a dollar sign (e.g. <code>$162</code> for the constant 162).
+</p>
+</div>
+<div id="outline-container-org49f1a95" class="outline-3">
+<h3 id="org49f1a95"><span class="section-number-3">1.1.</span> Calling Convention</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Before calling a function, the <i>caller</i> needs to:
+</p>
+
+<ol class="org-ol">
+<li>Save caller-saved GPRs onto the stack <i>if needed after the function call</i>.</li>
+<li>Push parameters onto the stack in <i>reverse order</i> (e.g. start with the &ldquo;rightmost&rdquo; parameter). Add padding <i>before the parameters</i> to ensure a 16-byte alignment.</li>
+</ol>
+
+<p>
+Then the caller calls the function by pushing the return address onto the stack and jumping to the function. Then, before executing any function logic, the <i>callee</i> needs to:
+</p>
+
+<ol class="org-ol">
+<li>Push <code>ebp</code> onto the stack and set <code>ebp</code> to be the new <code>esp</code>. This marks the start of a new stack frame.</li>
+<li>Allocate stack space for any local variables (i.e. decrement <code>esp</code>).</li>
+<li>Save callee-saved GPRs onto the stack if used during the function call.</li>
+</ol>
+
+<p>
+Then, the callee will perform the function logic. Before returning, the callee needs to:
+</p>
+
+<ol class="org-ol">
+<li>Store the return value in <code>eax</code>.</li>
+<li>Restore callee-saved GPRs from the prologue.</li>
+<li>Deallocate local variables (e.g. set <code>esp</code> to be the current <code>ebp</code>).</li>
+<li>Restore the caller&rsquo;s <code>ebp</code> from the stack.</li>
+<li>Return from the function by popping the return address that was pushed to the caller and jumping to it.</li>
+</ol>
+
+<p>
+Finally, after the function call returns back to the caller, we need to:
+</p>
+
+<ol class="org-ol">
+<li>Remove the parameters from the stack.</li>
+<li>Restore caller-saved GPRs from the prologue.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf81781f" class="outline-2">
+<h2 id="orgf81781f"><span class="section-number-2">2.</span> Instructions</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+In AT&amp;T syntax, the source precedes the destination. There are also a few commonly used instructions that will show up in nearly every assembly code due to calling convention:
+</p>
+
+<pre><code class="language-riscvasm">pushl src    # push src onto stack
+popl dest    # pop from stack into dest
+call addr    # push return address onto stack and jump to addr
+leave        # restore ebp and esp to previous stack frame
+ret          # pop return address from stack and jump to it
+</code></pre>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-09-15 14:38
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

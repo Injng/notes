@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-10 Thu 15:32 -->
+<!-- 2026-09-24 Thu 14:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Files and I/O</title>
@@ -95,47 +95,49 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org077bcef">1. Everything is a File</a></li>
-<li><a href="#orgea72dd2">2. Filesystems</a></li>
-<li><a href="#orgde35916">3. File API</a>
+<li><a href="#org925c203">1. Design Philosophy</a></li>
+<li><a href="#orge2d80c7">2. Filesystems</a></li>
+<li><a href="#orgbc7d71e">3. File API</a>
 <ul>
-<li><a href="#org371afe6">3.1. Streams</a></li>
-<li><a href="#org2224b43">3.2. Reading and Writing</a></li>
-<li><a href="#org88052ec">3.3. Pointer Positioning</a></li>
-<li><a href="#org79d6161">3.4. File Syscalls</a></li>
+<li><a href="#orgeba10af">3.1. Streams</a></li>
+<li><a href="#org40abb9c">3.2. Reading and Writing</a></li>
+<li><a href="#org55471a1">3.3. Pointer Positioning</a></li>
+<li><a href="#org70a44e0">3.4. File Syscalls</a></li>
+<li><a href="#orge79b85e">3.5. File Descriptors</a>
+<ul>
+<li><a href="#orgac332bd">3.5.1. Aliased File Descriptions</a></li>
 </ul>
 </li>
-<li><a href="#org641bade">4. Device Drivers</a></li>
-<li><a href="#org1f29994">5. Inter-Process Communication (IPC)</a></li>
-<li><a href="#org4bfcf00">6. Sockets</a>
+</ul>
+</li>
+<li><a href="#org8882320">4. Device Drivers</a></li>
+<li><a href="#orgcc15611">5. Inter-Process Communication (IPC)</a></li>
+<li><a href="#org3daf411">6. Sockets</a>
 <ul>
-<li><a href="#org7f36b2d">6.1. TCP/IP</a></li>
+<li><a href="#orgd8360fd">6.1. TCP/IP</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org077bcef" class="outline-2">
-<h2 id="org077bcef"><span class="section-number-2">1.</span> Everything is a File</h2>
+<div id="outline-container-org925c203" class="outline-2">
+<h2 id="org925c203"><span class="section-number-2">1.</span> Design Philosophy</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-The <a href="https://dl.acm.org/doi/pdf/10.1145/361011.361061">basic UNIX philosophy</a> is that <i>everything is a &ldquo;file&rdquo;</i>. In other words, the same identical file interface is used for:
+POSIX has a set of design philosophies that define the standard for UNIX-based operating systems:
 </p>
 
-<ul class="org-ul">
-<li>files on disk</li>
-<li>devices (terminals, printers, etc.)</li>
-<li>networking (sockets)</li>
-<li>local interprocess communication</li>
-</ul>
-
-<p>
-The file interface is based on four fundamental system calls: <code>open()</code>, <code>read()</code>, <code>write()</code>, and <code>close()</code>. There is also the additional <code>ioctl()</code> for custom configuration that doesn&rsquo;t fit.
-</p>
+<ol class="org-ol">
+<li><b>Uniformity:</b> The <a href="https://dl.acm.org/doi/pdf/10.1145/361011.361061">basic UNIX philosophy</a> is that <i>everything is a &ldquo;file&rdquo;</i>. In other words, the same identical file interface is used for files on disk, devices, networking, IPC, etc. The file interface is based on four fundamental system calls: <code>open()</code>, <code>read()</code>, <code>write()</code>, and <code>close()</code>. There is also the additional <code>ioctl()</code> for custom configuration that doesn&rsquo;t fit.</li>
+<li><b>Open Before Use:</b> Before any I/O operation, the &ldquo;device&rdquo; must be opened before using. This process allows the OS to perform various checks and bookkeeping operations before the device can be used.</li>
+<li><b>Byte Oriented:</b> All data from devices are addressed in bytes, even for devices with different block sizes.</li>
+<li><b>Buffered Read/Writes:</b> Data from devices are stored in a kernel buffer and returned on request. Similarly, outgoing data to devices is also stored in a kernel buffer until the device is ready. Buffering allows the same interface for devices with different read block sizes and write speeds.</li>
+<li><b>Explicit Close:</b> <code>close()</code> must be explicitly called upon a device when an appication is done with it. Similar to <code>open</code>, this allows the OS to perform various bookkeeping operations.</li>
+</ol>
 </div>
 </div>
-<div id="outline-container-orgea72dd2" class="outline-2">
-<h2 id="orgea72dd2"><span class="section-number-2">2.</span> Filesystems</h2>
+<div id="outline-container-orge2d80c7" class="outline-2">
+<h2 id="orge2d80c7"><span class="section-number-2">2.</span> Filesystems</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The <b>filesystem</b> abstraction is used to represent files on disk. A <b>file</b> is a named collection of data in a file system (a sequence of bytes). We can also store some amount of file metadata with information about the file.
@@ -150,12 +152,12 @@ Every process has a <b>current working directory</b> (CWD). All relative paths a
 </p>
 </div>
 </div>
-<div id="outline-container-orgde35916" class="outline-2">
-<h2 id="orgde35916"><span class="section-number-2">3.</span> File API</h2>
+<div id="outline-container-orgbc7d71e" class="outline-2">
+<h2 id="orgbc7d71e"><span class="section-number-2">3.</span> File API</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org371afe6" class="outline-3">
-<h3 id="org371afe6"><span class="section-number-3">3.1.</span> Streams</h3>
+<div id="outline-container-orgeba10af" class="outline-3">
+<h3 id="orgeba10af"><span class="section-number-3">3.1.</span> Streams</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 At the high level, we operate on <b>streams</b>: unformatted sequences of bytes, with a position. Streams in C a represented by a pointer to a <code>FILE</code> data structure, which are returned by functions such as <code>fopen()</code>.
@@ -176,8 +178,8 @@ High level operations on streams are buffered in user memory, which means that p
 </p>
 </div>
 </div>
-<div id="outline-container-org2224b43" class="outline-3">
-<h3 id="org2224b43"><span class="section-number-3">3.2.</span> Reading and Writing</h3>
+<div id="outline-container-org40abb9c" class="outline-3">
+<h3 id="org40abb9c"><span class="section-number-3">3.2.</span> Reading and Writing</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 C also gives us several different functions to read and write to files:
@@ -199,8 +201,8 @@ C also gives us several different functions to read and write to files:
 </code></pre>
 </div>
 </div>
-<div id="outline-container-org88052ec" class="outline-3">
-<h3 id="org88052ec"><span class="section-number-3">3.3.</span> Pointer Positioning</h3>
+<div id="outline-container-org55471a1" class="outline-3">
+<h3 id="org55471a1"><span class="section-number-3">3.3.</span> Pointer Positioning</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 The file stream also includes a pointer to the current position in the file. These below functions can help with positioning the pointer:
@@ -216,8 +218,8 @@ For <code>fseek()</code>, the offset is interpreted based on the <code>whence</c
 </p>
 </div>
 </div>
-<div id="outline-container-org79d6161" class="outline-3">
-<h3 id="org79d6161"><span class="section-number-3">3.4.</span> File Syscalls</h3>
+<div id="outline-container-org70a44e0" class="outline-3">
+<h3 id="org70a44e0"><span class="section-number-3">3.4.</span> File Syscalls</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 The high level C functions presented above are built upon a low level file I/O system call interface:
@@ -229,16 +231,34 @@ The high level C functions presented above are built upon a low level file I/O s
 <span style="color: #f9e2af;">ssize_t</span> <span style="color: #89b4fa;">read</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">filedes</span>, <span style="color: #f9e2af;">void</span> *<span style="color: #cdd6f4;">buffer</span>, <span style="color: #f9e2af;">size_t</span> <span style="color: #cdd6f4;">maxsize</span><span style="color: #f38ba8;">)</span>;
 <span style="color: #f9e2af;">ssize_t</span> <span style="color: #89b4fa;">write</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">filedes</span>, <span style="color: #cba6f7;">const</span> <span style="color: #f9e2af;">void</span> *<span style="color: #cdd6f4;">buffer</span>, <span style="color: #f9e2af;">size_t</span> <span style="color: #cdd6f4;">size</span><span style="color: #f38ba8;">)</span>;
 <span style="color: #f9e2af;">off_t</span> <span style="color: #89b4fa;">lseek</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">filedes</span>, <span style="color: #f9e2af;">off_t</span> <span style="color: #cdd6f4;">offset</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">whence</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">dup</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">oldfd</span><span style="color: #f38ba8;">)</span>;
+<span style="color: #f9e2af;">int</span> <span style="color: #89b4fa;">dup2</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">oldfd</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">newfd</span><span style="color: #f38ba8;">)</span>;
 </code></pre>
+</div>
+</div>
+<div id="outline-container-orge79b85e" class="outline-3">
+<h3 id="orge79b85e"><span class="section-number-3">3.5.</span> File Descriptors</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Opening a file with <code>open()</code> returns a <b>file descriptor</b>, an integer that represents an open file. <code>STDIN_FILENO</code>, <code>STDOUT_FILENO</code>, and <code>STDERR_FILENO</code> are pre-opened standard descriptors that can be used as macros.
+</p>
 
 <p>
-Opening a file with <code>open()</code> returns a <b>file descriptor</b>, an integer that represents an open file. <code>STDIN_FILENO</code>, <code>STDOUT_FILENO</code>, and <code>STDERR_FILENO</code> are pre-opened standard descriptors that can be used as macros. File descriptors refer to <b>file descriptions</b>, which is a data structure inside of the kernel that store information about where to find the data on disk and the current position within the file. 
+File descriptors are indices into a <b>file descriptor table</b> (FDT). Each process has its own FDT stored in <i>kernel memory</i>, where each entry points to a <b>file description</b>, which is a data structure inside of the kernel that store information about where to find the data on disk and the current position within the file.
+</p>
+</div>
+<div id="outline-container-orgac332bd" class="outline-4">
+<h4 id="orgac332bd"><span class="section-number-4">3.5.1.</span> Aliased File Descriptions</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<p>
+Suppose that we open a file description in a process, and then we fork that process. Then, the file descriptor of that open file is copied to the FDT of the new process, and the open file description is <i>aliased</i> with the file description of the original process. Thus, changing the file description of the open file in the new process also changes the file description for the original process. The open file description will remain alive until no file descriptors point to it.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org641bade" class="outline-2">
-<h2 id="org641bade"><span class="section-number-2">4.</span> Device Drivers</h2>
+</div>
+<div id="outline-container-org8882320" class="outline-2">
+<h2 id="org8882320"><span class="section-number-2">4.</span> Device Drivers</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 <b>Device drivers</b> are device-specific code in the kernel that interacts directly with the device hardware. It supports the standard system call interface so that the kernel can interact easily with different device drivers, with special device-specific configuration supported with the <code>ioctl()</code> syscall.
@@ -249,16 +269,16 @@ Device drivers are typically divided into two pieces. The top half is accessed v
 </p>
 </div>
 </div>
-<div id="outline-container-org1f29994" class="outline-2">
-<h2 id="org1f29994"><span class="section-number-2">5.</span> Inter-Process Communication (IPC)</h2>
+<div id="outline-container-orgcc15611" class="outline-2">
+<h2 id="orgcc15611"><span class="section-number-2">5.</span> Inter-Process Communication (IPC)</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Recall that a process has a <i>protected</i> address space with one or more threads that by default cannot share information between processes. Thus, communication between processes must be set up explicitly using a variety of abstractions, such as streams, files, sockets, and pipes. 
 </p>
 </div>
 </div>
-<div id="outline-container-org4bfcf00" class="outline-2">
-<h2 id="org4bfcf00"><span class="section-number-2">6.</span> Sockets</h2>
+<div id="outline-container-org3daf411" class="outline-2">
+<h2 id="org3daf411"><span class="section-number-2">6.</span> Sockets</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Communication across the world looks like file I/O! The interface underpinning this are <b>sockets</b>, which is an abstraction for one endpoint of a network connection. It is the same abstraction for any kind of network: whether local, the Internet (TCP/IP, UDP/IP), and even legacy systems (OSI, Appletalk, IPX).
@@ -268,8 +288,8 @@ Communication across the world looks like file I/O! The interface underpinning t
 A socket acts just like a file with a file descriptor. We can then connect sockets together to perform communication across the network. Each socket represents a queue, where <code>write()</code> adds to the output queue (data destined for the other side), and <code>read()</code> removes from the input queue (data destined for this side). 
 </p>
 </div>
-<div id="outline-container-org7f36b2d" class="outline-3">
-<h3 id="org7f36b2d"><span class="section-number-3">6.1.</span> TCP/IP</h3>
+<div id="outline-container-orgd8360fd" class="outline-3">
+<h3 id="orgd8360fd"><span class="section-number-3">6.1.</span> TCP/IP</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 We have a hostname (e.g. www.eecs.berkeley.edu) that resolves into some kind of IP address (128.32.244.172), and then finally a port number that identifies a socket. Port numbers are allocated as follows:
@@ -302,7 +322,7 @@ To setup a connection over <b>TCP/IP</b>, the client side must first request a c
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-09-10 15:32
+               Last modified: 2026-09-15 14:56
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

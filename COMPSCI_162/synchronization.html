@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-09-26 Sat 22:32 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Synchronization</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_162/index.html">COMPSCI 162</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Synchronization</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org11dbb14">1. Yielding</a>
+<ul>
+<li><a href="#orgf2d00b5">1.1. Internal Events</a></li>
+<li><a href="#org08df5f8">1.2. External Events</a></li>
+</ul>
+</li>
+<li><a href="#org99802b9">2. Atomic Operations</a></li>
+<li><a href="#org20f9375">3. Locks</a>
+<ul>
+<li><a href="#org0880165">3.1. Disabling Interrupts</a></li>
+<li><a href="#orgb0e9ac1">3.2. Atomic Read-Modify-Write Instructions</a></li>
+</ul>
+</li>
+<li><a href="#org2a1fd2b">4. Semaphores</a></li>
+<li><a href="#orgb99cc31">5. Monitors</a>
+<ul>
+<li><a href="#org52ccc23">5.1. Hoare Monitors</a></li>
+<li><a href="#org25ec024">5.2. Mesa Monitors</a></li>
+</ul>
+</li>
+<li><a href="#org88d8420">6. Readers-Writer Locks</a></li>
+<li><a href="#org270e117">7. Futexes</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org11dbb14" class="outline-2">
+<h2 id="org11dbb14"><span class="section-number-2">1.</span> Yielding</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+To run a thread, we:
+</p>
+
+<ul class="org-ul">
+<li>Load its state (registers, PC, stack pointer) into the CPU</li>
+<li>Load environment (virtual memory space, etc.)</li>
+<li>Jump to the PC</li>
+</ul>
+
+<p>
+This gives control of processor to user code. For the kernel to get control back, we rely on either <b>internal events</b> or <b>external events</b>.
+</p>
+</div>
+<div id="outline-container-orgf2d00b5" class="outline-3">
+<h3 id="orgf2d00b5"><span class="section-number-3">1.1.</span> Internal Events</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Several internal events gives control back to the OS:
+</p>
+
+<ol class="org-ol">
+<li>Blocking on I/O: requesting I/O implicitly yields the CPU</li>
+<li>Waiting on a &ldquo;signal&rdquo; from another thread: threads asks to wait and thus yields the CPU</li>
+<li>Thread executies a <code>yield()</code>: thread volunteers to give up CPU</li>
+</ol>
+
+<p>
+Yield traps into the kernel, where <code>kernel_yield</code> runs to tell us to <code>run_new_thread</code>. This then picks the new thread to run, at which point we <code>switch</code> to the new thread.
+</p>
+</div>
+</div>
+<div id="outline-container-org08df5f8" class="outline-3">
+<h3 id="org08df5f8"><span class="section-number-3">1.2.</span> External Events</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+If the thread never does any I/O, never waits, and never yields control, we still need a way for the kernel to gain control. The solution is to use external events like interrupts and timers. For example, we can use a timer interrupt to force scheduling decsisions at a given interval.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org99802b9" class="outline-2">
+<h2 id="org99802b9"><span class="section-number-2">2.</span> Atomic Operations</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+An <b>atomic operation</b> is an operation that always runs to completion or not at all: it is <i>indivisible</i>, which means it cannot be stopped in the middle and its state cannot be modified by someone else in the middle. For example, on most machines loads and stores of words are atomic.
+</p>
+
+<p>
+<b>Synchronization</b> is using atomic operations to ensure cooperation between threads. <b>Mutual exclusion</b> is ensuring that only one thread does a particular thing at a time. Finally, a <b>critical section</b> is a block of code that can only be executed by one thread at a time. A threaded program is considered <i>correct</i> if it works for <i>all interleavings of thread instruction sequences</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-org20f9375" class="outline-2">
+<h2 id="org20f9375"><span class="section-number-2">3.</span> Locks</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+A <b>lock</b> prevents someone else from doing something. Generally, you <i>lock</i> before entering a critical section or accessing shared data, and then <i>unlock</i> when leaving. The key idea here is that all synchronization involves waiting.
+</p>
+
+<p>
+Locks provide two atomic operations:
+</p>
+
+<ul class="org-ul">
+<li><code>acquire(&amp;lock)</code> — wait until lock is free, then mark it as busy</li>
+<li><code>release(&amp;lock)</code> — mark lock as free</li>
+</ul>
+
+<p>
+Acquire either acquires the lock successfully, or sees that it is busy and puts the current thread on a wait queue sleeping. Release then checks the wait queue upon release and wakes up the next thread waiting to acquire the lock.
+</p>
+</div>
+<div id="outline-container-org0880165" class="outline-3">
+<h3 id="org0880165"><span class="section-number-3">3.1.</span> Disabling Interrupts</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+One way to implement locks is to disable interrupts. Recall that the scheduler gets control either through internal events (controlled by the thread), or external events (hardware interrupts). Therefore, if we <i>disable interrupts</i> when we acquire a lock, and then <i>re-enable interrupts</i> when we release the lock, then nothing external can run while our thread holds the lock.
+</p>
+
+<p>
+However, this means that we allow the user to disable interrupts, which is a bad idea. Instead, we can maintain a lock variable and impose mutual exclusion only during operations on that variable. This way, even if we get stuck in a loop while holding a lock, interrupts can still run at that time:
+</p>
+
+<pre><code class="language-c"><span style="color: #89b4fa;">acquire</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>
+    <span style="color: #f9e2af;">disable</span> <span style="color: #cdd6f4;">interrupts</span>;
+    <span style="color: #cba6f7;">if</span> <span style="color: #fab387;">(</span>value == BUSY<span style="color: #fab387;">)</span> <span style="color: #fab387;">{</span>
+        put thread on <span style="color: #f9e2af;">wait</span> <span style="color: #cdd6f4;">queue</span>;
+        sleep<span style="color: #f9e2af;">()</span>;
+    <span style="color: #fab387;">}</span> <span style="color: #cba6f7;">else</span> <span style="color: #fab387;">{</span>
+        value = BUSY;
+    <span style="color: #fab387;">}</span>
+    <span style="color: #f9e2af;">enable</span> <span style="color: #cdd6f4;">interrupts</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Sleep disables interrupts, so it is the responsibility of the next thread to re-enable interrupts.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb0e9ac1" class="outline-3">
+<h3 id="orgb0e9ac1"><span class="section-number-3">3.2.</span> Atomic Read-Modify-Write Instructions</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+The problem with disabling interrupts is that it doesn&rsquo;t work very well on a multiprocessor chip. Disabling interrupts on all processors requires messages and would be very time consuming. An alternative are atomic <b>read-modify-write</b> instructions, which are atomic operations that read a value and write a new value:
+</p>
+
+<pre><code class="language-c">test_and_set<span style="color: #f38ba8;">(</span>&amp;address<span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+  result = M<span style="color: #fab387;">[</span>address<span style="color: #fab387;">]</span>;     <span style="color: #6c7086;">// </span><span style="color: #6c7086;">return result from address and
+</span>  M<span style="color: #fab387;">[</span>address<span style="color: #fab387;">]</span> = 1;          <span style="color: #6c7086;">// </span><span style="color: #6c7086;">set value at address to 1
+</span>  <span style="color: #cba6f7;">return</span> result;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+We can implement a lock using <code>test_and_set()</code>:
+</p>
+
+<pre><code class="language-c"><span style="color: #89b4fa;">acquire</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> *<span style="color: #cdd6f4;">thelock</span><span style="color: #f38ba8;">)</span> <span style="color: #f38ba8;">{</span>
+  <span style="color: #cba6f7;">while</span><span style="color: #fab387;">(</span>test_and_set<span style="color: #f9e2af;">(</span>thelock<span style="color: #f9e2af;">)</span><span style="color: #fab387;">)</span>;
+<span style="color: #f38ba8;">}</span>
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2a1fd2b" class="outline-2">
+<h2 id="org2a1fd2b"><span class="section-number-2">4.</span> Semaphores</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+<b>Semaphores</b> are a kind of generalized lock: they have a <i>non-negative integer value</i> and supports the following operations:
+</p>
+
+<ol class="org-ol">
+<li>Sets value when you initialize</li>
+<li><code>down()</code> or <code>p()</code>: an atomic operation that waits (sleeps) for the semaphore to become positive, then decrements it by 1</li>
+<li><code>up()</code> or <code>v()</code>: an atomic operation that increments the semaphore by 1, waking up a waiting <code>p()</code>, if any</li>
+</ol>
+
+<p>
+Technically, examining the value after initialization is not supported. In this way, semaphores are like non-negative integers except the only operations allowed are the atmoic <code>p()</code> and <code>v()</code> operations (can&rsquo;t read or write, except initially).
+</p>
+
+<p>
+The semaphore comes from the railway analogy:
+</p>
+
+<div id="sem-demo" style="max-width:680px;margin:1em auto;padding:10px;border:1px solid #ddd;border-radius:8px;background:#fafafa;font-family:sans-serif;color:#222">
+  <canvas id="sem-cv" width="680" height="250" style="width:100%;display:block"></canvas>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:14px;margin-top:6px">
+    <label>Tracks (initial value):
+      <input type="range" id="sem-n" min="1" max="4" value="2" style="vertical-align:middle">
+      <b id="sem-nv">2</b></label>
+    <button id="sem-add">+ Train</button>
+    <label><input type="checkbox" id="sem-auto" checked> auto trains</label>
+    <button id="sem-reset">Reset</button>
+  </div>
+  <div id="sem-log" style="font-family:monospace;font-size:13px;margin-top:6px;min-height:4.8em"></div>
+</div>
+<script>
+(() => {
+  const $ = s => document.getElementById(s);
+  const cv = $('sem-cv'), g = cv.getContext('2d');
+  const W = cv.width, H = cv.height, MY = 140;          // main line y
+  const SIG = 250, F1 = 290, F2 = 470, M2 = 510;         // signal, fan-out, fan-in, exit
+  const STOP = SIG - 28, MID = 380, SP = 110;            // stop point, work point, speed px/s
+  const COL = ['#e6194b','#3cb44b','#4363d8','#f58231','#911eb4','#0aa6c2','#f032e6','#9a6324'];
+  let N, sem, occ, trains, queue, id, log, autoT;
+
+  function say(m) {
+    log.unshift(m); log.length = Math.min(log.length, 4);
+    $('sem-log').innerHTML = log.map((l, i) => `<div style="opacity:${1 - i * 0.22}">${l}</div>`).join('');
+  }
+  function reset() {
+    N = +$('sem-n').value; $('sem-nv').textContent = N;
+    sem = N; occ = Array(N).fill(null); trains = []; queue = []; id = 0; log = []; autoT = 0;
+    say(`init: sem = ${N}`);
+  }
+  const laneY = i => MY + (i - (N - 1) / 2) * 40;
+  function yAt(t) {                                      // y position follows the track shape
+    const x = t.x; if (t.lane == null || x <= SIG) return MY;
+    const ly = laneY(t.lane);
+    if (x < F1) return MY + (ly - MY) * (x - SIG) / (F1 - SIG);
+    if (x <= F2) return ly;
+    if (x < M2) return ly + (MY - ly) * (x - F2) / (M2 - F2);
+    return MY;
+  }
+  function add() {
+    const t = { id: ++id, x: -40, lane: null, st: 'q', c: COL[(id - 1) % COL.length] };
+    trains.push(t); queue.push(t);
+  }
+
+  function step(dt) {
+    // queued trains roll up to the signal
+    queue.forEach((t, i) => { const tx = STOP - i * 52; t.x = Math.min(tx, t.x + SP * dt); t.stopped = t.x >= tx - 0.5; });
+    const h = queue[0];
+    if (h && h.stopped && sem > 0) {                     // p() succeeds
+      sem--; h.lane = occ.indexOf(null); occ[h.lane] = h; h.st = 'run'; queue.shift();
+      say(`Train ${h.id}: p() → sem = ${sem}, enters`);
+    } else if (h && h.stopped && sem === 0 && !h.blk) {  // p() blocks
+      h.blk = 1; say(`Train ${h.id}: p() blocks (sem = 0), sleeps`);
+    }
+    for (const t of trains) {
+      if (t.st === 'run') {
+        t.x = Math.min(MID, t.x + SP * dt);
+        if (t.x >= MID) { t.st = 'cs'; t.hold = t.max = 1.5 + Math.random() * 2.5; }
+      } else if (t.st === 'cs') {
+        t.hold -= dt; if (t.hold <= 0) t.st = 'out';
+      } else if (t.st === 'out') {
+        t.x += SP * dt;
+        if (t.x >= M2 && !t.rel) {                       // v() on leaving the section
+          t.rel = 1; occ[t.lane] = null; sem++;
+          const w = queue[0] && queue[0].blk ? `, wakes Train ${queue[0].id}` : '';
+          say(`Train ${t.id}: v() → sem = ${sem}${w}`);
+        }
+      }
+    }
+    trains = trains.filter(t => t.x < W + 40);
+  }
+
+  function line(pts) { g.beginPath(); g.moveTo(...pts[0]); pts.slice(1).forEach(p => g.lineTo(...p)); g.stroke(); }
+
+  function draw() {
+    g.clearRect(0, 0, W, H);
+    // tracks
+    g.strokeStyle = '#999'; g.lineWidth = 3;
+    line([[0, MY], [SIG, MY]]); line([[M2, MY], [W, MY]]);
+    for (let i = 0; i < N; i++) { const y = laneY(i); line([[SIG, MY], [F1, y], [F2, y], [M2, MY]]); }
+    // protected section
+    const top = Math.min(MY, laneY(0)) - 22, bot = Math.max(MY, laneY(N - 1)) + 22;
+    g.setLineDash([5, 4]); g.strokeStyle = '#bbb'; g.lineWidth = 1;
+    g.strokeRect(SIG - 4, top, M2 - SIG + 8, bot - top); g.setLineDash([]);
+    g.fillStyle = '#666'; g.font = '12px sans-serif'; g.textAlign = 'center';
+    g.fillText(`shared section: ${N} track${N > 1 ? 's' : ''}`, (SIG + M2) / 2, top - 6);
+    // signal (the semaphore)
+    g.fillStyle = '#444'; g.fillRect(SIG - 12, MY - 52, 3, 40);
+    g.beginPath(); g.arc(SIG - 10.5, MY - 58, 8, 0, 7);
+    g.fillStyle = sem > 0 ? '#2ecc40' : '#ff4136'; g.fill();
+    g.fillStyle = '#333'; g.font = 'bold 13px monospace';
+    g.fillText('p()', SIG - 10, MY + 30); g.fillText('v()', M2 + 4, MY + 30);
+    // semaphore value + tokens
+    g.textAlign = 'left'; g.font = 'bold 18px monospace'; g.fillStyle = '#222';
+    g.fillText(`sem = ${sem}`, 12, 28);
+    for (let i = 0; i < sem; i++) { g.beginPath(); g.arc(128 + i * 18, 22, 6, 0, 7); g.fillStyle = '#2ecc40'; g.fill(); }
+    // trains
+    const sleeping = queue[0] && queue[0].blk;
+    for (const t of trains) {
+      const x = t.x, y = yAt(t);
+      g.fillStyle = t.c; g.beginPath(); g.roundRect ? g.roundRect(x - 18, y - 10, 36, 18, 5) : g.rect(x - 18, y - 10, 36, 18); g.fill();
+      g.fillStyle = '#333'; [-10, 10].forEach(d => { g.beginPath(); g.arc(x + d, y + 9, 3, 0, 7); g.fill(); });
+      g.fillStyle = '#fff'; g.font = 'bold 12px sans-serif'; g.textAlign = 'center'; g.fillText(t.id, x, y + 3);
+      if (t.st === 'cs') {                               // "doing work" progress bar
+        g.fillStyle = '#ddd'; g.fillRect(x - 18, y - 17, 36, 4);
+        g.fillStyle = t.c; g.fillRect(x - 18, y - 17, 36 * (1 - t.hold / t.max), 4);
+      }
+      if (sleeping && t.stopped && queue.includes(t)) { g.fillStyle = '#888'; g.font = 'italic 12px sans-serif'; g.fillText('zzz', x + 8, y - 15); }
+    }
+  }
+
+  let last = performance.now();
+  function loop(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    if ($('sem-auto').checked && (autoT -= dt) <= 0) { if (queue.length < 5) add(); autoT = 1 + Math.random() * 1.8; }
+    step(dt); draw(); requestAnimationFrame(loop);
+  }
+
+  $('sem-n').oninput = reset; $('sem-reset').onclick = reset; $('sem-add').onclick = add;
+  reset(); requestAnimationFrame(loop);
+})();
+</script>
+
+<p>
+Semaphores can be very powerful. We can implement <i>mutual exclusion</i> by initializing the semaphore to 1. We can also use <code>v()</code> to signal another thread sleeping via <code>p()</code> when the semaphore is initialized to 0.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb99cc31" class="outline-2">
+<h2 id="orgb99cc31"><span class="section-number-2">5.</span> Monitors</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+A <b>monitor</b> is a lock and zero or more condition variables for managing concurrent access to shared data. A <b>condition variable</b> is a queue of threads waiting for something inside a critical section. We can do the following operations on a monitor:
+</p>
+
+<ol class="org-ol">
+<li><code>wait(&amp;lock)</code>: atomically release lock and go to sleep; reacquire lock later before returning</li>
+<li><code>signal()</code>: wake up one waiter, if any</li>
+<li><code>broadcast()</code>: wake up all waiters</li>
+</ol>
+
+<p>
+The rule is that we must hold the lock while doing condition variable operations.
+</p>
+</div>
+<div id="outline-container-org52ccc23" class="outline-3">
+<h3 id="org52ccc23"><span class="section-number-3">5.1.</span> Hoare Monitors</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+A paradigm of using monitors where the signaler, after signaling, gives up the lock immediately and passes the CPU to the waiter. This allows the waiter to use an <code>if</code> instead a <code>while</code> so that it does not need to check the condition again before running.
+</p>
+
+<p>
+However, these semantics become complicated since it interferes with the work of the scheduler.
+</p>
+</div>
+</div>
+<div id="outline-container-org25ec024" class="outline-3">
+<h3 id="org25ec024"><span class="section-number-3">5.2.</span> Mesa Monitors</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+This paradigm is used much more in modern operating systems. After signaling, the signaler keeps the lock and the waiter is placed on the ready queue with no special priority. Therefore, with this paradigm, the waiter must check the condition <i>again after wait</i>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org88d8420" class="outline-2">
+<h2 id="org88d8420"><span class="section-number-2">6.</span> Readers-Writer Locks</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<b>Readers-writer locks</b> (RW locks) are synchronization primitives that let multiple &ldquo;reader&rdquo; threads access a critical section, or one &ldquo;writer&rdquo; thread only. There are three operations on a RW lock:
+</p>
+
+<ol class="org-ol">
+<li><code>read()</code>: atomically acquires the lock in read mode</li>
+<li><code>write()</code>: atomically acquires the lock in write mode</li>
+<li><code>unlock()</code>: release the lock</li>
+</ol>
+
+<p>
+The key idea is that a thread holding the lock in read mode should not do anything that could cause a race condition with other threads also holding the lock in read mode.
+</p>
+</div>
+</div>
+<div id="outline-container-org270e117" class="outline-2">
+<h2 id="org270e117"><span class="section-number-2">7.</span> Futexes</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+The problem with many implementations of locks is that it requires a syscall, which means a context switch into the kernel <i>even if there is no contention</i> A <b>futex</b> (fast userspace mutex) allows the user program to sleep until a condition becomes true where most of the logic occurs in userspace:
+</p>
+
+<pre><code class="language-c"><span style="color: #89b4fa;">futex</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">int</span> *<span style="color: #cdd6f4;">uaddr</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">operation</span>, <span style="color: #f9e2af;">int</span> <span style="color: #cdd6f4;">val</span><span style="color: #f38ba8;">)</span>;
+</code></pre>
+
+<p>
+The futex compares the value at <code>uaddr</code> with <code>val</code>, and does an <code>operation</code> depending on if they are equal or not. The operation can either be <code>FUTEX_WAIT</code> or <code>FUTEX_WAKE</code>:
+</p>
+
+<ol class="org-ol">
+<li><code>FUTEX_WAIT</code>: Atomically checks if <code>*uaddr</code> equals <code>val</code>. If so, puts the calling thread to sleep; otherwise, returns immediately.</li>
+<li><code>FUTEX_WAKE</code>: Wakes up to <code>val</code> threads currently sleeping on <code>uaddr</code>.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-09-25 14:57
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-10 Thu 15:30 -->
+<!-- 2026-09-24 Thu 14:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Operating System Abstractions</title>
@@ -95,28 +95,28 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgb58f69e">1. Threads</a>
+<li><a href="#orgeeab0a4">1. Threads</a>
 <ul>
-<li><a href="#org9b618c3">1.1. Simultaneous Mulithreading</a></li>
+<li><a href="#org5bed345">1.1. Simultaneous Mulithreading</a></li>
 </ul>
 </li>
-<li><a href="#org63d9a7f">2. Address Spaces</a>
+<li><a href="#org11715d7">2. Address Spaces</a>
 <ul>
-<li><a href="#org59a4d5a">2.1. Base and Bound</a></li>
-<li><a href="#orgfe344ee">2.2. Paged Virtual Address Space</a></li>
+<li><a href="#org3bfe7fa">2.1. Base and Bound</a></li>
+<li><a href="#orgea23efb">2.2. Paged Virtual Address Space</a></li>
 </ul>
 </li>
-<li><a href="#orgbe64226">3. Processes</a>
+<li><a href="#org90dfe7a">3. Processes</a>
 <ul>
-<li><a href="#org68a4a6a">3.1. Process Control Blocks</a></li>
-<li><a href="#org6972776">3.2. Managing Processes</a></li>
+<li><a href="#orgcc53f7d">3.1. Process Control Blocks</a></li>
+<li><a href="#org770dcd7">3.2. Managing Processes</a></li>
 </ul>
 </li>
-<li><a href="#org2b5466a">4. Dual Mode Operation</a>
+<li><a href="#orgd0fe69d">4. Dual Mode Operation</a>
 <ul>
-<li><a href="#orga16036c">4.1. Separate Kernel Stack</a></li>
-<li><a href="#org2fdd961">4.2. Syscall Handlers</a></li>
-<li><a href="#orgf187735">4.3. Interrupt Handlers</a></li>
+<li><a href="#org0dd453d">4.1. Separate Kernel Stack</a></li>
+<li><a href="#orgfe22d65">4.2. Syscall Handlers</a></li>
+<li><a href="#orgac4cb7b">4.3. Interrupt Handlers</a></li>
 </ul>
 </li>
 </ul>
@@ -125,8 +125,8 @@
 <p>
 The operating system <i>abstracts</i> underlying hardware to help tame complexity. The bottom line of an operating system is to provide the ability to run programs. 
 </p>
-<div id="outline-container-orgb58f69e" class="outline-2">
-<h2 id="orgb58f69e"><span class="section-number-2">1.</span> Threads</h2>
+<div id="outline-container-orgeeab0a4" class="outline-2">
+<h2 id="orgeeab0a4"><span class="section-number-2">1.</span> Threads</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>thread</b> is a single unique execution context, which contains things like the program counter, registers, execution flags, stack, and its memory state. 
@@ -145,7 +145,7 @@ Threads are used to create the illusion that there are <i>more cores than there 
 </p>
 
 
-<div id="org7756021" class="figure">
+<div id="org4dfee11" class="figure">
 <p><img src="../static/COMPSCI_162/os_abstractions1.png" alt="os_abstractions1.png" />
 </p>
 </div>
@@ -162,17 +162,17 @@ We can use the <code>pthreads</code> interface to create and manage threads. Spe
 When we run threads, we use the stack to keep track of sequencing. However, when we have multiple stacks for multiple threads for our process, we have to consider how we position our stacks relative to each other in memory.
 </p>
 </div>
-<div id="outline-container-org9b618c3" class="outline-3">
-<h3 id="org9b618c3"><span class="section-number-3">1.1.</span> Simultaneous Mulithreading</h3>
+<div id="outline-container-org5bed345" class="outline-3">
+<h3 id="org5bed345"><span class="section-number-3">1.1.</span> Simultaneous Mulithreading</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-<b>Simultaneous multithreading</b> (also called <b>hyperthreading</b> by Intel) is a hardware scheduling technique that allows multiple threads to run on the same processor core. Since execution of a program often requires stalls due to <a href="../COMPSCI_61C/processors.html#org4a32c84">hazards</a>, we can make use of the free hardware to run computation on other threads.
+<b>Simultaneous multithreading</b> (also called <b>hyperthreading</b> by Intel) is a hardware scheduling technique that allows multiple threads to run on the same processor core. Since execution of a program often requires stalls due to <a href="../COMPSCI_61C/processors.html#org8b493bf">hazards</a>, we can make use of the free hardware to run computation on other threads.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org63d9a7f" class="outline-2">
-<h2 id="org63d9a7f"><span class="section-number-2">2.</span> Address Spaces</h2>
+<div id="outline-container-org11715d7" class="outline-2">
+<h2 id="org11715d7"><span class="section-number-2">2.</span> Address Spaces</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 An <b>address space</b> is the set of accessible addresses and the state associated with them. Address spaces may be <i>virtual</i>, in which case it is distinct from the memory space of the actual physical machine.
@@ -182,8 +182,8 @@ An <b>address space</b> is the set of accessible addresses and the state associa
 Threads have to share non-CPU resources such as memory and I/O devices, which means that each thread can possibly read/write memory of other processes or even the OS. This is a problem, which means our OS must implement some kind of protection on what memory programs can access.
 </p>
 </div>
-<div id="outline-container-org59a4d5a" class="outline-3">
-<h3 id="org59a4d5a"><span class="section-number-3">2.1.</span> Base and Bound</h3>
+<div id="outline-container-org3bfe7fa" class="outline-3">
+<h3 id="org3bfe7fa"><span class="section-number-3">2.1.</span> Base and Bound</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We can define a block of memory a program can use using a <b>base</b> address and a <b>bound</b> offset/size. The virtual address space of the program starts at zero, so our OS translates on-the-fly these addresses by adding them to our base address. Protection is done by ensuring that our addresses never exceed the bound.
@@ -194,17 +194,17 @@ Base and bound has several problems, however. Base and bound is wasteful, as it 
 </p>
 </div>
 </div>
-<div id="outline-container-orgfe344ee" class="outline-3">
-<h3 id="orgfe344ee"><span class="section-number-3">2.2.</span> Paged Virtual Address Space</h3>
+<div id="outline-container-orgea23efb" class="outline-3">
+<h3 id="orgea23efb"><span class="section-number-3">2.2.</span> Paged Virtual Address Space</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-We can also break the entire virtual address space for our program into equal sized chunks (i.e. pages), with each page having its own base. The processor translates each virtual address according to the bases stored in a <a href="COMPSCI_61C/virtual_memory.html#org325e43f">page table</a>.
+We can also break the entire virtual address space for our program into equal sized chunks (i.e. pages), with each page having its own base. The processor translates each virtual address according to the bases stored in a <a href="COMPSCI_61C/virtual_memory.html#org2b92566">page table</a>.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbe64226" class="outline-2">
-<h2 id="orgbe64226"><span class="section-number-2">3.</span> Processes</h2>
+<div id="outline-container-org90dfe7a" class="outline-2">
+<h2 id="org90dfe7a"><span class="section-number-2">3.</span> Processes</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A <b>process</b> is an execution environment with restricted rights, which consists of a (protected) address space along with one or more threads. Application programs executes as processes.
@@ -214,8 +214,8 @@ A <b>process</b> is an execution environment with restricted rights, which consi
 Processes are protected by the OS from each other. This is done by creating protected address spaces for each process, such as using translation techniques like those described earlier. However, there is a tradeoff, as communication becomes harder between processes.
 </p>
 </div>
-<div id="outline-container-org68a4a6a" class="outline-3">
-<h3 id="org68a4a6a"><span class="section-number-3">3.1.</span> Process Control Blocks</h3>
+<div id="outline-container-orgcc53f7d" class="outline-3">
+<h3 id="orgcc53f7d"><span class="section-number-3">3.1.</span> Process Control Blocks</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 The kernel represents each process using a <b>process control block</b> (PCB). This includes information on status (running, ready, blocked), space for register state, the process ID, execution time, etc.
@@ -226,14 +226,14 @@ The kernel scheduler then maintains a data structure containing these PCBs. It i
 </p>
 
 
-<div id="orgf071c23" class="figure">
+<div id="orgb034a04" class="figure">
 <p><img src="../static/COMPSCI_162/os_abstractions2.png" alt="os_abstractions2.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org6972776" class="outline-3">
-<h3 id="org6972776"><span class="section-number-3">3.2.</span> Managing Processes</h3>
+<div id="outline-container-org770dcd7" class="outline-3">
+<h3 id="org770dcd7"><span class="section-number-3">3.2.</span> Managing Processes</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Processes are created and managed by processes. But if processes are created by other processes, how does the first process start?
@@ -254,8 +254,8 @@ The first process is started by the kernel, often called the INIT process. After
 </div>
 </div>
 </div>
-<div id="outline-container-org2b5466a" class="outline-2">
-<h2 id="org2b5466a"><span class="section-number-2">4.</span> Dual Mode Operation</h2>
+<div id="outline-container-orgd0fe69d" class="outline-2">
+<h2 id="orgd0fe69d"><span class="section-number-2">4.</span> Dual Mode Operation</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The hardware provides at least two modes of operation: the <b>kernel mode</b> (or &ldquo;supervisor&rdquo; mode) and the <b>user mode</b>. Certain operations will be prohibited when running in user mode, such as changing the page table pointer, diabling interrupts, etc. 
@@ -279,31 +279,31 @@ So how do we implement a safe kernel mode transfer? We need to keep in mind some
 <li>restrict entry points by using an indirection table: interrupt handler table and syscall table</li>
 </ul>
 </div>
-<div id="outline-container-orga16036c" class="outline-3">
-<h3 id="orga16036c"><span class="section-number-3">4.1.</span> Separate Kernel Stack</h3>
+<div id="outline-container-org0dd453d" class="outline-3">
+<h3 id="org0dd453d"><span class="section-number-3">4.1.</span> Separate Kernel Stack</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The kernel needs space to work, so it must have a stack. However, the kernel uses its own <i>separate</i> <b>kernel stack</b> for security reasons: we can&rsquo;t trust the user&rsquo;s stack pointer. We also can&rsquo;t trust other threads to not mess with information on user stack. This is called the <b>two-stack model</b>, where each thread has both user stack (located in user memory) and kernel stack (located in kernel memory).
 </p>
 </div>
 </div>
-<div id="outline-container-org2fdd961" class="outline-3">
-<h3 id="org2fdd961"><span class="section-number-3">4.2.</span> Syscall Handlers</h3>
+<div id="outline-container-orgfe22d65" class="outline-3">
+<h3 id="orgfe22d65"><span class="section-number-3">4.2.</span> Syscall Handlers</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 For security reasons, we also want to vector through <i>well-defined syscall entry points</i>. To do this, we have a table mapping <i>system call numbers</i> to their <i>handler</i>. The syscall handler will locate arguments in registers or on user stack, then very carefully copy those arguments from user memory to kernel memory — this protects the kernel from other threads changing the arguments in user memory.
 </p>
 </div>
 </div>
-<div id="outline-container-orgf187735" class="outline-3">
-<h3 id="orgf187735"><span class="section-number-3">4.3.</span> Interrupt Handlers</h3>
+<div id="outline-container-orgac4cb7b" class="outline-3">
+<h3 id="orgac4cb7b"><span class="section-number-3">4.3.</span> Interrupt Handlers</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 We also want to vector through a <i>table of interrupt handlers</i>: this table maps interrupt numbers to their handler. Interrupt processing is not visible to user processes, with no change to process state.
 </p>
 
 <p>
-The interrupt controller is a piece of hardware that handles interrupts from various devices. Hardware interrupts are invoked with interrupt lines from devices. The interrupt controller choose which interrupt request to honor by using a mask and a priority encoder to pick the highest priority interrupt.
+The <b>interrupt controller</b> is a piece of hardware that handles interrupts from various devices. Hardware interrupts are invoked with interrupt lines from devices. The interrupt controller choose which interrupt request to honor by using a mask and a priority encoder to pick the highest priority interrupt.
 </p>
 </div>
 </div>
@@ -315,7 +315,7 @@ The interrupt controller is a piece of hardware that handles interrupts from var
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-09-08 15:07
+               Last modified: 2026-09-15 15:10
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
