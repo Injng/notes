@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-10-01 Thu 15:36 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Threads and Processes</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_162/index.html">COMPSCI 162</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Threads and Processes</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8bc8f68">1. Multithreaded Programs</a>
+<ul>
+<li><a href="#orgd1b6475">1.1. <code>int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg);</code></a></li>
+<li><a href="#org4eba71c">1.2. <code>void pthread_exit(void *value_ptr);</code></a></li>
+<li><a href="#org2856c99">1.3. <code>int pthread_join(pthread_t thread, void **value_ptr);</code></a></li>
+</ul>
+</li>
+<li><a href="#org9e3d864">2. Multiprocess Programs</a>
+<ul>
+<li><a href="#org1e27cf4">2.1. Managing Processes</a></li>
+</ul>
+</li>
+<li><a href="#org1c23d3a">3. Kernel Mode Transfers</a>
+<ul>
+<li><a href="#org05ada0e">3.1. System Calls</a></li>
+<li><a href="#orgd3deb3f">3.2. Interrupts</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8bc8f68" class="outline-2">
+<h2 id="org8bc8f68"><span class="section-number-2">1.</span> Multithreaded Programs</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Running an executable initially creates a process with one <a href="os_abstractions.html#org2b6471e">thread</a> in its own address space. Once the process starts, it is possible to issue <i>system calls</i> to create new threads. Since these new threads are part of the process, they share the same <a href="os_abstractions.html#orgd564567">address space</a> as the process.
+</p>
+
+<p>
+Each thread shares the heap, global variables, and code with the process. Howevever, each thread has its own stack within the address space. The state private to each thread is kept in its <b>thread control block</b> (TCB). This includes information such as the CPU registers and its execution stack.
+</p>
+
+<p>
+We can use the <code>pthreads</code> library to create threads:
+</p>
+</div>
+<div id="outline-container-orgd1b6475" class="outline-3">
+<h3 id="orgd1b6475"><span class="section-number-3">1.1.</span> <code>int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine)(void *), void *arg);</code></h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The thread is created executing <code>start_routine</code> with <code>arg</code> as its sole argument. Returning implicitly calls <code>pthread_exit</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-org4eba71c" class="outline-3">
+<h3 id="org4eba71c"><span class="section-number-3">1.2.</span> <code>void pthread_exit(void *value_ptr);</code></h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Terminates the thread and makes <code>value_ptr</code> available to any successful join.
+</p>
+</div>
+</div>
+<div id="outline-container-org2856c99" class="outline-3">
+<h3 id="org2856c99"><span class="section-number-3">1.3.</span> <code>int pthread_join(pthread_t thread, void **value_ptr);</code></h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Suspends execution of the calling thread until the target <code>thread</code> terminates. On return with a non-NULL <code>value_ptr</code>, the value passed to <code>pthread_exit</code> by the terminating thread is made available in the location referenced by <code>value_ptr</code>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9e3d864" class="outline-2">
+<h2 id="org9e3d864"><span class="section-number-2">2.</span> Multiprocess Programs</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The kernel represents each <a href="os_abstractions.html#org339b893">process</a> using a <b>process control block</b> (PCB). This includes information on status (running, ready, blocked), space for register state, the process ID, execution time, etc.
+</p>
+
+<p>
+The kernel scheduler then maintains a data structure containing these PCBs. It is then up to the scheduler to make policy decisions regarding the allocation of processors to each process:
+</p>
+
+
+<div id="orga1d46eb" class="figure">
+<p><img src="../static/COMPSCI_162/os_abstractions2.png" alt="os_abstractions2.png" />
+</p>
+</div>
+</div>
+<div id="outline-container-org1e27cf4" class="outline-3">
+<h3 id="org1e27cf4"><span class="section-number-3">2.1.</span> Managing Processes</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Processes are created and managed by processes. But if processes are created by other processes, how does the first process start?
+</p>
+
+<p>
+The first process is started by the kernel, often called the INIT process. After the INIT process is started, all other processes are created by other processes. This is done by a set of system calls:
+</p>
+
+<ul class="org-ul">
+<li><code>exit</code>: terminate a process</li>
+<li><code>fork</code>: copy the current process</li>
+<li><code>exec</code>: change the <i>program</i> being run by the current process</li>
+<li><code>wait</code>: wait for a child process to finish</li>
+<li><code>kill</code>: send a signal to another process</li>
+<li><code>sigaction</code>: set handlers for signals</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org1c23d3a" class="outline-2">
+<h2 id="org1c23d3a"><span class="section-number-2">3.</span> Kernel Mode Transfers</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+For security reasons, processors use <a href="os_abstractions.html#org827dd5e">dual mode operation</a>: some operations must be run in a protected <i>kernel mode</i> and not in user mode. Therefore, it is necessary from time to time to <i>transfer into kernel mode</i>, for example to create threads and interact with I/O.
+</p>
+
+<p>
+Since the kernel mode is powerful, we need carefully controlled transitions between user mode and kernel mode. There are three ways user mode can transfer into kernel mode, with the primary one being the <b>system call interface</b>: this is the primary way the user mode interacts with the kernel mode. The two other methods are <b>interrupts</b> and <b>traps</b> (or exceptions).
+</p>
+
+<p>
+Interrupts are external asynchronous events (e.g. timer or I/O) that trigger a mode switch. Traps are internal synchronous events (e.g. segfault, divide by zero) that trigger a mode switch. All three methods are known as <b>unprogrammed control transfer</b>: the process doesn&rsquo;t identify the specific address but rather an index into the <b>interrupt vector table</b> (IVT) which contains the address and properties of each interrupt handler.
+</p>
+</div>
+<div id="outline-container-org05ada0e" class="outline-3">
+<h3 id="org05ada0e"><span class="section-number-3">3.1.</span> System Calls</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The key here is to vector through pre-defined entry points which we know to be safe: this is implemented via a table that maps a system call <i>number</i> to a <i>handler</i>. A system call generally follows this process:
+</p>
+
+<ol class="org-ol">
+<li>Get user arguments from registers, or <i>copy arguments</i> from user stack onto kernel stack.</li>
+<li>Validate the arguments to protect the kernel from errors in user code.</li>
+<li>Dispatch to the handler and do the work.</li>
+<li>Store return value in registers, or copy results back into user memory.</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgd3deb3f" class="outline-3">
+<h3 id="orgd3deb3f"><span class="section-number-3">3.2.</span> Interrupts</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Similar to system calls, interrupts vector into a <b>interrupt vector table</b> (IVT) which contains a list of pre-defined interrupt handlers. Interrupt processing is not &ldquo;visible&rdquo; to user programs: it occurs between instructions, and the user program is restarted transparently with no change to its process state.
+</p>
+
+<p>
+The interrupt handler is invoked with interrupts &ldquo;disabled&rdquo; in order to prevent other interrupts from triggering. The handler is designed to run to completion without blocking or waiting, and re-enables interrupts upon completion.
+</p>
+
+<p>
+Interrupts are handled by a <b>interrupt controller</b>. Hardware interrupts (e.g. timer) have physical interrupt lines into this device, and software interrupts are handled by a line that is set/cleared by software. Each interrupt line is first passed through an <b>interrupt mask</b>, which has the ability to selectively enable/disable interrupts. Then, a priority encoder is used to select with interrupt request to honor, and sends its ID to the CPU. The CPU also contains an interrupt disable flag that can control the interrupt controller to disable all interrupts, with an exception for the <b>non-maskable interrupt</b> (NMI) line that has its own separate pathway into the CPU and takes precedence over all other interrupts.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-09-30 10:08
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

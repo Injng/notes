@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-10-01 Thu 15:36 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Scheduling</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_162/index.html">COMPSCI 162</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Scheduling</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org22fd634">1. Scheduling Policies</a>
+<ul>
+<li><a href="#orge58837c">1.1. First-Come First-Served (FCFS) Scheduling</a></li>
+<li><a href="#orgc1d40c2">1.2. Round Robin (RR) Scheduling</a>
+<ul>
+<li><a href="#org548a615">1.2.1. Comparison</a></li>
+</ul>
+</li>
+<li><a href="#org2610585">1.3. Shortest Job First (SJF) Scheduling</a>
+<ul>
+<li><a href="#org8c55179">1.3.1. Burst Length Prediction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org66f2f0b">2. Priority</a>
+<ul>
+<li><a href="#org21bb6f7">2.1. Multi-Level Feedback Scheduling</a></li>
+</ul>
+</li>
+<li><a href="#orgb737fba">3. Multi-Core Scheduling</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org22fd634" class="outline-2">
+<h2 id="org22fd634"><span class="section-number-2">1.</span> Scheduling Policies</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Scheduling policies wish to:
+</p>
+
+<ul class="org-ul">
+<li>Minimize elapsed time to do an operation (response time)</li>
+<li>Maximize operations per second (throughput)</li>
+<li>Share CPU among users in some equitable way (fairness)</li>
+</ul>
+
+<p>
+These may often be in conflict with each other, and it is the job of the scheduling policy to choose a balance of optimizations.
+</p>
+</div>
+<div id="outline-container-orge58837c" class="outline-3">
+<h3 id="orge58837c"><span class="section-number-3">1.1.</span> First-Come First-Served (FCFS) Scheduling</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<b>First-come first-served scheduling</b> is also known as &ldquo;First-In First-Out&rdquo; (FIFO) or &ldquo;run until done&rdquo; scheduling. In early systems, FCFS scheduling meant that one program was scheduled until it was done (including I/O). Now, this means that the program keeps the CPU until the thread blocks.
+</p>
+
+<p>
+This scheduling policy is simple and good at maximizing usage of the CPU, but it is not particularly fair to programs themselves. The <b>convoy effect</b> may occur, where a shorter program is stuck behind the execution of a very long program: with FCFS non-preemptive scheduling, &ldquo;convoys&rdquo; of small tasks tend to build up when a large one is running:
+</p>
+
+
+<div id="org6e4348d" class="figure">
+<p><img src="../static/COMPSCI_162/scheduling1.png" alt="scheduling1.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc1d40c2" class="outline-3">
+<h3 id="orgc1d40c2"><span class="section-number-3">1.2.</span> Round Robin (RR) Scheduling</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+In the <b>round robin scheduling</b> scheme, each process gets a small unit of CPU time (the <i>time quantum</i>), usually 10-100 milliseconds. After the time quantum expires, the process is preempted and added to the end of the ready queue. Therefore, if there are \(n\) processes in the ready queue with a time quantum of \(q\) time units, then <i>no process waits more than</i> \((n-1)q\) time units:
+</p>
+
+
+<div id="org1b5c6a0" class="figure">
+<p><img src="../static/COMPSCI_162/scheduling2.png" alt="scheduling2.png" />
+</p>
+</div>
+
+<p>
+Choosing \(q\) is important here: if \(q\) is too large, then it just becomes like FCFS; if \(q\) is very small, then the time is all spent on overhead. It is important to choose a \(q\) such that it is sufficiently longer than the time spent on overhead.
+</p>
+
+<p>
+To implement RR in the kernel, we have a FIFO queue, just like FCFS. However, we preempt the job after the quantum expires using a <i>timer interrupt</i>.
+</p>
+</div>
+<div id="outline-container-org548a615" class="outline-4">
+<h4 id="org548a615"><span class="section-number-4">1.2.1.</span> Comparison</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+Round robin scheduling solves the convoy effect, but average completion time is much worse under RR! Additionally, cache state has to be shared across all processes in RR, but can be devoted to only one process in FCFS.
+</p>
+
+
+<div id="orgbc7fcb8" class="figure">
+<p><img src="../static/COMPSCI_162/scheduling3.png" alt="scheduling3.png" />
+</p>
+</div>
+
+<p>
+Given this hypothetical set of processes, we can also make a table based on the best FCFS case, worst FCFS case, and varying time quanta:
+</p>
+
+
+<div id="org269c611" class="figure">
+<p><img src="../static/COMPSCI_162/scheduling4.png" alt="scheduling4.png" />
+</p>
+</div>
+
+<p>
+Notice that when it comes to scheduling, the shortest process is the <i>most affected by different policies</i>, and the longest process is the <i>least affected by different policies</i>.
+</p>
+
+<p>
+But what if we knew the future? Could we always mirror best FCFS?
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2610585" class="outline-3">
+<h3 id="org2610585"><span class="section-number-3">1.3.</span> Shortest Job First (SJF) Scheduling</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+If we knew the future, then we could use <b>shortest job first scheduling</b>, also sometimes called &ldquo;shortest time to completion first&rdquo; (STCF) scheduling. The idea is we run whatever job has the least amount of computation to do: this has a big effect on short jobs, but only a small effect on long ones.
+</p>
+
+<p>
+A variant of this is <b>shortest remaining time first</b> (SRTF) scheduling, which is the preemptive version of SJF: if a job arrives and it has a shorter time to completion that the current job, we immediately preempt the CPU.
+</p>
+
+<p>
+A clear issue is that SRTF can lead to starvation if we have a lot of small jobs, since the large jobs never get to run.
+</p>
+
+<p>
+Obviously, we can&rsquo;t predict the future. However, we can use SRTF as a yardstick for measuring other policies, since it is guaranteed to be the best at optimizing for <i>average response time</i>.
+</p>
+</div>
+<div id="outline-container-org8c55179" class="outline-4">
+<h4 id="org8c55179"><span class="section-number-4">1.3.1.</span> Burst Length Prediction</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+However, we can try to predict the future! This is the basis of <i>adaptive</i> policies: we change our policies based on past behavior, and what we think the process will do in the future. This works because programs often have predictable behavior: if a program was I/O bound in the past, then it will likely still be in the future.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org66f2f0b" class="outline-2">
+<h2 id="org66f2f0b"><span class="section-number-2">2.</span> Priority</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Applications are often either &ldquo;interactive&rdquo; or &ldquo;high throughput.&rdquo; We can attempt to categorize these apps by observing the <b>burst time</b> of the CPU: oftentimes, we assume that apps that sleep a lot and have short burst times are interactive, and should get high priority. On the other hand, apps that compute a lot should get lower priority since they won&rsquo;t notice intermittent bursts.
+</p>
+
+<p>
+This leads to the idea of <b>priority</b>: we can categorize processes based on how important they are.
+</p>
+</div>
+<div id="outline-container-org21bb6f7" class="outline-3">
+<h3 id="org21bb6f7"><span class="section-number-3">2.1.</span> Multi-Level Feedback Scheduling</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Priority allows us to do <b>multi-level feedback scheduling</b>: each priority level gets its own queue that can be processed in RR with some time quantum.
+</p>
+
+<p>
+However, there can be some problems with this:
+</p>
+
+<ul class="org-ul">
+<li><b>starvation</b>: lower priority jobs don&rsquo;t get to run because of higher priority jobs</li>
+<li><b>priority inversion:</b> happens when low priority task has lock needed by high-priority task, which usually involves a third intermediate priority task which prevents the high priority task from running</li>
+</ul>
+
+<p>
+We can try to prevent starvation by giving each queue some fraction of the CPU. We can also attempt to increase the priority of jobs that don&rsquo;t get service. The tradeoff here is that as <i>we gain more fairness, we lose in average response time</i>.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Case study: Linux O (1) Scheduler
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+The Linux O(1) scheduler was a priority scheduler with 140 priority levels, with levels 0-99 for kernel/realtime tasks, levels 100-139 for user tasks, and a different time quantum per level. An active priority queue held the active processes waiting to be run, and once a process uses up its time quantum it is put on a expired priority queue. Once the scheduler processed all of programs on the active queue, the two queues would swap.
+</p>
+
+<p>
+It was called the O(1) scheduler becaues it did not contain any algorithms that ran in worse than O(1) time
+</p>
+
+<p>
+It also had a lot of ad-hoc heuristics: it tries to boost priority of &ldquo;I/O-bound tasks&rdquo;, as well as the priority of &ldquo;starved tasks.&rdquo; There was also an idea of <i>interactive credit</i>, where IC was earned when a task sleeps for a &ldquo;long&rdquo; time and spent when a task runs for a &ldquo;long&rdquo; time. 
+</p>
+
+
+</details>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb737fba" class="outline-2">
+<h2 id="orgb737fba"><span class="section-number-2">3.</span> Multi-Core Scheduling</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Algorithmically, multi-core scheduling isn&rsquo;t a big difference from single-core scheduling. Implementation-wise, it is helpful to have <i>per-core</i> scheduling data structures. 
+</p>
+
+<p>
+We also often use <b>affinity scheduling</b>: once a thread is scheduled on a core, the OS tries to reschedule it on the same CPU. This gives us the benefits of cache reuse and branch prediction
+</p>
+
+<p>
+We also do <b>gang scheduling</b>: when multiple threads work together on a multi-core system, try to schedule them together.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-10-01 15:36
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
