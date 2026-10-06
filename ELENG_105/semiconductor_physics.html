@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-10-06 Tue 11:09 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Semiconductor Physics</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/ELENG_105/index.html">ELENG 105</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Semiconductor Physics</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org479bbe5">1. Conductivity and Resistivity</a></li>
+<li><a href="#org6853fd1">2. Energy Levels</a></li>
+<li><a href="#org4cf30a0">3. Energy Bands</a></li>
+<li><a href="#orgdc3690d">4. Doping</a></li>
+<li><a href="#orgb697324">5. Motion of Free Carriers</a>
+<ul>
+<li><a href="#orgaf260b3">5.1. Diffusion Current</a></li>
+<li><a href="#org62a7b90">5.2. Drift Current</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org479bbe5" class="outline-2">
+<h2 id="org479bbe5"><span class="section-number-2">1.</span> Conductivity and Resistivity</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Say we have a slab of material with length \(l\) and cross-sectional area \(A\). Then, the resistance of this material is given by:
+</p>
+
+\begin{align}
+R = \frac{\rho l}{A}
+\end{align}
+
+<p>
+Intuitively, making a material twice a long is like putting two resistors in series, so resistance should be directly proportional to length. Similarly, increasing the width or the height is like putting resistors in parallel, so resistance is inversely proportional to area. \(\rho\) is the proportionality constant <b>resistivity</b>, and it is a property of the material.
+</p>
+
+<p>
+<b>Conductivity</b> is defined as the inverse of resistivity:
+</p>
+
+\begin{align}
+\sigma = \frac{1}{\rho}
+\end{align}
+
+<p>
+If we plot the resistivity on a scale, <b>semiconductors</b> would fall in the middle, between insulators (with high resistivity) and conductors (with low resistivity). This gives semiconductors huge flexibility in terms of becoming insulators or conductors.
+</p>
+</div>
+</div>
+<div id="outline-container-org6853fd1" class="outline-2">
+<h2 id="org6853fd1"><span class="section-number-2">2.</span> Energy Levels</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Quantum mechanics tells us that the same object can behave either like a particle or a wave. If it&rsquo;s a wave, we can define its equivalent wavelength (called the <b>deBroglie wavelength</b>) \(\lambda\) for a given particle with momentum \(p\):
+</p>
+
+\begin{align}
+\lambda = \frac{h}{p}
+\end{align}
+
+<p>
+where \(h\) is <b>Planck&rsquo;s constant</b>. 
+</p>
+
+<p>
+Now consider an electron traveling around a hydrogen atom. If we view this electron as a wave, then it must form a <a href="../PHYSICS_7A/mechanical_waves.html#org341ba64">standing wave</a>, since otherwise as the electron orbits the nucleus the waves would interfere destructively. Therefore, the diameter of its orbit must be an integer multiple of its wavelength:
+</p>
+
+\begin{align}
+2\pi r = n\lambda = \frac{nh}{p}
+\end{align}
+
+<p>
+The electrostatic force can be equated with what we know from Newtonian mechanics like so:
+</p>
+
+\begin{align}
+F = \frac{1}{4\pi\epsilon_0}\frac{e^2}{r^2} = \frac{m_0v^2}{r} = \frac{p^2}{m_0r} \notag
+\end{align}
+
+<p>
+Solving for radius and momentum, we get:
+</p>
+
+\begin{align}
+r = \frac{n^2h^2\epsilon_0}{\pi m_0 e^2} \\
+p = \frac{m_0 e^2}{2\epsilon_0 hn}
+\end{align}
+
+<p>
+The total energy of the system is the sum of kinetic energy and potential energy
+</p>
+
+\begin{align}
+E_{\text{total}} &= -\frac{1}{4\pi\epsilon_0}\frac{e^2}{r} + \frac{1}{2}mv^2 \notag \\
+&= -\frac{p^2}{m_0} + \frac{p^2}{2m_0} \notag \\
+&= -\frac{p^2}{2m_0} \notag
+\end{align}
+
+<p>
+If we now substitute in our equation for \(p\), all of our constants reduce to one number:
+</p>
+
+\begin{align}
+E_{\text{total}} = -\frac{13.6}{n^2} \text{ eV}
+\end{align}
+
+<p>
+This shows us that even the <b>energy levels</b> are quantized. \(n\) here is the <b>principal quantum number</b>, which can be thought of as denoting which shell the electron is in. 
+</p>
+</div>
+</div>
+<div id="outline-container-org4cf30a0" class="outline-2">
+<h2 id="org4cf30a0"><span class="section-number-2">3.</span> Energy Bands</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+We now know that atoms have discrete energy levels where electrons can exist. When two atoms move close together, their overlapping energy levels split into two, one slightly higher and one slightly lower. This is due to the Pauli exclusion principle: two electrons with the same energy cannot share the same space. As you get more and more atoms, the discrete energy levels form continuous <b>energy bands</b>:
+</p>
+
+
+<div id="org42dee4d" class="figure">
+<p><img src="../static/ELENG_105/semiconductor_physics1.png" alt="semiconductor_physics1.png" />
+</p>
+</div>
+
+<p>
+As energy bands get farther away, their potential energy increases (less attraction from the nucleus). At some point, electrons can move freely; the lowest band that they can do this in is called the <b>conduction band</b>.
+</p>
+
+<p>
+The band adjacent to it, the highest energy band where electrons are still bound to the atom, is called the <b>valence band</b>. The gap between these bands is called the <b>band gap</b>:
+</p>
+
+
+<div id="orge2fc4b1" class="figure">
+<p><img src="../static/ELENG_105/semiconductor_physics2.png" alt="semiconductor_physics2.png" />
+</p>
+</div>
+
+<p>
+Electrons must cross the band gap to be conductive. This gap determines the conductive properties of the material: for an insulator, the gap is very large; for a semiconductor, medium-sized; for a conductor, the bands partially overlap.
+</p>
+
+<p>
+When an electron breaks free of the atom (by jumping to the conductive band), it leaves behind a <b>hole</b>. This hole is quickly filled, often by another valence electron, resulting in another hole: the hole <i>moves</i>. The net motion of many electrons in the valence band can therefore be equivalently represented as the motion of a hole. Both free electrons and holes are <b>charge carriers</b>.
+</p>
+
+<p>
+It is also possible for a free electron to fill a hole. This process is called <b>recombination</b>, where the electron and the hole annihilate one another, thus depleting the supply of carriers. In thermal equilibrium, a <b>generation</b> process counterbalances this to produce a steady stream of carriers.
+</p>
+</div>
+</div>
+<div id="outline-container-orgdc3690d" class="outline-2">
+<h2 id="orgdc3690d"><span class="section-number-2">4.</span> Doping</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+However, this stream of carriers is not actually that much. In order to increase our number of carriers, we can introduce <i>impurities</i> into our material by way of <b>doping</b>.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">III</th>
+<th scope="col" class="org-left">IV</th>
+<th scope="col" class="org-left">V</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">B</td>
+<td class="org-left">C</td>
+<td class="org-left">N</td>
+</tr>
+
+<tr>
+<td class="org-left">Al</td>
+<td class="org-left">Si</td>
+<td class="org-left">P</td>
+</tr>
+
+<tr>
+<td class="org-left">Ga</td>
+<td class="org-left">Ge</td>
+<td class="org-left">As</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Consider a phosphorous atom bonded to four silicon atoms. Since phosphorous has five valence electrons (group V), it has an extra unbonded electron. We can view this phosphorous atom as a &ldquo;silicon + hydrogen atom in a sea of silicon atoms,&rdquo; because silicon has four valence electrons and the hydrogen adds the extra proton and electron. Then, using the relative conductivity of silicon, we find that the \(E_{\text{total}}\) of the extra electron has a very low bonding energy (around \(-0.1 \text{ eV}\)): therefore, it can act as a free electron.
+</p>
+
+<p>
+In this way, by <i>doping silicon with phosphorous</i>, we have added an extra free electron. Similarly, if we dope with a group III element, we can add a hole instead.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb697324" class="outline-2">
+<h2 id="orgb697324"><span class="section-number-2">5.</span> Motion of Free Carriers</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgaf260b3" class="outline-3">
+<h3 id="orgaf260b3"><span class="section-number-3">5.1.</span> Diffusion Current</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+Intuitively, putting a drop of ink in a glass of water causes that ink to spread evenly into the water. This is because each molecule of the ink is moving randomly in the water, and thus it is more probable for them to move into areas with less concentration of ink: it diffuses.
+</p>
+
+<p>
+Similarly, <b>diffusion</b> of free carriers is their motion due to <b>concentration gradients</b>, a random process due to thermal energy. The velocity that one of these carriers have due to this thermal energy is known as <b>thermal velocity</b> \(v_{\text{th}}\). We can then equate kinetic energy with thermal energy:
+</p>
+
+\begin{align}
+\frac{1}{2}m^* v^2_{\text{th}} = \frac{1}{2}kT \notag
+\end{align}
+
+<p>
+where \(m^*\) is the effective mass of the electron and \(k\) is Boltzmann&rsquo;s constant. 
+</p>
+
+<p>
+<b>Fick&rsquo;s first law</b> tells us that the flux (number of particles crossing a unit area per unit time) is proportional to the opposite of the <a href="../MATH_53/gradient.html#orgd61c91e">gradient</a> of charge carriers, \(-\frac{\text{d}n}{\text{d}x}\). Then, we can write
+</p>
+
+\begin{align}
+F_n &= -D_n\frac{\text{d}n}{\text{d}x} \notag \\
+F_p &= -D_p\frac{\text{d}p}{\text{d}x} \notag
+\end{align}
+
+<p>
+where \(F_n\) is the flux for electrons and \(F_p\) is the flux for holes. \(n\) is the number of free electrons per unit volume, and \(p\) is the number of holes per unit volume. Then, to convert this to <i>current density</i> (charge crossing a unit area per unit time), we need to multiply each particle by the elementary charge:
+</p>
+
+\begin{align}
+J_{\text{n},\text{ diffusion}} &= qD_n\frac{\text{d}n}{\text{d}x} \\
+J_{\text{p},\text{ diffusion}} &= -qD_p\frac{\text{d}p}{\text{d}x}
+\end{align}
+</div>
+</div>
+<div id="outline-container-org62a7b90" class="outline-3">
+<h3 id="org62a7b90"><span class="section-number-3">5.2.</span> Drift Current</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+The other way free carriers move is via drift. <b>Drift</b> is the average motion of charge carriers due to an applied electric field \(E\).
+</p>
+
+<p>
+In a lattice, our electrons are constantly experiencing collisions followed by scattering. We can then treat the momentum of each electron as two components: the &ldquo;initial momentum&rdquo; of the particle immediately after a collision, and the additional extra momentum the particle gains over the time <i>between collisions</i>. Therefore, we can write:
+</p>
+
+\begin{align}
+p = m^*v_0 + Eqt \notag
+\end{align}
+
+<p>
+where \(t\) is the time between scattering events. Taking the average of all carriers in our lattice:
+</p>
+
+\begin{align}
+\bar{p} = m^*\bar{v} = \frac{1}{N}\sum_{j} m^*v_j + Eqt_j \notag
+\end{align}
+
+<p>
+When we sum over all the random velocities \(v_j\) of the particles, we are averaging over a large number of random variables with zero mean. Therefore, that term goes to zero, and we are left with:
+</p>
+
+\begin{align}
+bar{p} = m^*\bar{v} = Eq\tau \notag
+\end{align}
+
+<p>
+where \(\tau\) is the <i>mean scattering time</i>, the average amount of time an electron spends between two collisions.
+</p>
+
+<p>
+In many situations we would like to find the average speed gained from this electric field. Thus, we define <b>mobility</b>, after rearranging the previous equation:
+</p>
+
+\begin{align}
+\bar{v} = \frac{q\tau}{m^*}E = \mu E
+\end{align}
+
+<p>
+where \(\mu\) is the mobility of the charge carrier. Then for charge carriers, the drift current is:
+</p>
+
+\begin{align}
+v_{\text{dr}} = -\mu_nE
+\end{align}
+
+<p>
+The drift current density is charge crossing a unit area per unit time, so it is defined as:
+</p>
+
+\begin{align}
+J_{\text{n},\text{ drift}} &= qn\mu_nE \\
+J_{\text{p},\text{ drift}} &= qp\mu_pE
+\end{align}
+
+<p>
+From Ohm&rsquo;s Law, we know that \(J=\sigma E\), where \(\sigma\) is conductivity. Adding up the two previous equations to get total $J4, we find that conductivity can also be represented as:
+</p>
+
+\begin{align}
+\sigma = qn\mu_n + qp\mu_p
+\end{align}
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-10-06 11:08
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
