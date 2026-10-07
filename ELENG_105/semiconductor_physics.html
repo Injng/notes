@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-06 Tue 11:09 -->
+<!-- 2026-10-06 Tue 23:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Semiconductor Physics</title>
@@ -127,21 +127,30 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org479bbe5">1. Conductivity and Resistivity</a></li>
-<li><a href="#org6853fd1">2. Energy Levels</a></li>
-<li><a href="#org4cf30a0">3. Energy Bands</a></li>
-<li><a href="#orgdc3690d">4. Doping</a></li>
-<li><a href="#orgb697324">5. Motion of Free Carriers</a>
+<li><a href="#org6fae82c">1. Conductivity and Resistivity</a></li>
+<li><a href="#org7e90e21">2. Energy Levels</a></li>
+<li><a href="#org127167d">3. Energy Bands</a>
 <ul>
-<li><a href="#orgaf260b3">5.1. Diffusion Current</a></li>
-<li><a href="#org62a7b90">5.2. Drift Current</a></li>
+<li><a href="#orge60c437">3.1. Carrier Distribution</a></li>
 </ul>
 </li>
+<li><a href="#orgaa01072">4. Doping</a>
+<ul>
+<li><a href="#org260d731">4.1. Mass Action Law</a></li>
+</ul>
+</li>
+<li><a href="#orga79aef5">5. Motion of Free Carriers</a>
+<ul>
+<li><a href="#orgbdfc6eb">5.1. Diffusion Current</a></li>
+<li><a href="#org39c4033">5.2. Drift Current</a></li>
+</ul>
+</li>
+<li><a href="#org8839d14">6. Integrated Circuit Materials</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org479bbe5" class="outline-2">
-<h2 id="org479bbe5"><span class="section-number-2">1.</span> Conductivity and Resistivity</h2>
+<div id="outline-container-org6fae82c" class="outline-2">
+<h2 id="org6fae82c"><span class="section-number-2">1.</span> Conductivity and Resistivity</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Say we have a slab of material with length \(l\) and cross-sectional area \(A\). Then, the resistance of this material is given by:
@@ -168,8 +177,8 @@ If we plot the resistivity on a scale, <b>semiconductors</b> would fall in the m
 </p>
 </div>
 </div>
-<div id="outline-container-org6853fd1" class="outline-2">
-<h2 id="org6853fd1"><span class="section-number-2">2.</span> Energy Levels</h2>
+<div id="outline-container-org7e90e21" class="outline-2">
+<h2 id="org7e90e21"><span class="section-number-2">2.</span> Energy Levels</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Quantum mechanics tells us that the same object can behave either like a particle or a wave. If it&rsquo;s a wave, we can define its equivalent wavelength (called the <b>deBroglie wavelength</b>) \(\lambda\) for a given particle with momentum \(p\):
@@ -231,29 +240,29 @@ This shows us that even the <b>energy levels</b> are quantized. \(n\) here is th
 </p>
 </div>
 </div>
-<div id="outline-container-org4cf30a0" class="outline-2">
-<h2 id="org4cf30a0"><span class="section-number-2">3.</span> Energy Bands</h2>
+<div id="outline-container-org127167d" class="outline-2">
+<h2 id="org127167d"><span class="section-number-2">3.</span> Energy Bands</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 We now know that atoms have discrete energy levels where electrons can exist. When two atoms move close together, their overlapping energy levels split into two, one slightly higher and one slightly lower. This is due to the Pauli exclusion principle: two electrons with the same energy cannot share the same space. As you get more and more atoms, the discrete energy levels form continuous <b>energy bands</b>:
 </p>
 
 
-<div id="org42dee4d" class="figure">
+<div id="orgbfa85e7" class="figure">
 <p><img src="../static/ELENG_105/semiconductor_physics1.png" alt="semiconductor_physics1.png" />
 </p>
 </div>
 
 <p>
-As energy bands get farther away, their potential energy increases (less attraction from the nucleus). At some point, electrons can move freely; the lowest band that they can do this in is called the <b>conduction band</b>.
+As energy bands get farther away, their potential energy increases (less attraction from the nucleus). At some point, electrons can move freely; the lowest band that they can do this in is called the <b>conduction band</b>, with a minimum energy \(E_c\).
 </p>
 
 <p>
-The band adjacent to it, the highest energy band where electrons are still bound to the atom, is called the <b>valence band</b>. The gap between these bands is called the <b>band gap</b>:
+The band adjacent to it, the highest energy band where electrons are still bound to the atom, is called the <b>valence band</b> with a maximum energy \(E_v\). The gap between these bands is called the <b>band gap</b>, with an energy \(E_g\):
 </p>
 
 
-<div id="orge2fc4b1" class="figure">
+<div id="org3f2b882" class="figure">
 <p><img src="../static/ELENG_105/semiconductor_physics2.png" alt="semiconductor_physics2.png" />
 </p>
 </div>
@@ -270,9 +279,86 @@ When an electron breaks free of the atom (by jumping to the conductive band), it
 It is also possible for a free electron to fill a hole. This process is called <b>recombination</b>, where the electron and the hole annihilate one another, thus depleting the supply of carriers. In thermal equilibrium, a <b>generation</b> process counterbalances this to produce a steady stream of carriers.
 </p>
 </div>
+<div id="outline-container-orge60c437" class="outline-3">
+<h3 id="orge60c437"><span class="section-number-3">3.1.</span> Carrier Distribution</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Electrons are <b>Fermions</b>, which means they follow a <b>Fermi-Dirac distribution</b>:
+</p>
+
+
+<div id="orge56d6c9" class="figure">
+<p><img src="../static/ELENG_105/semiconductor_physics4.png" alt="semiconductor_physics4.png" />
+</p>
 </div>
-<div id="outline-container-orgdc3690d" class="outline-2">
-<h2 id="orgdc3690d"><span class="section-number-2">4.</span> Doping</h2>
+
+<p>
+\(E_v\) is somewhere to the left of \(E_f\), and \(E_c\) is somewhere to the right of \(E_f\). \(f(E)\) is the probability of finding an electron in an <i>allowed energy level</i>. \(E_f\) is called the <b>Fermi energy</b>, representing the hypothetical energy level where the probability is 50%. Since this is energy state is in the bandgap, however, the actual probability is 0. What we want to do is see if we can approximate this function in the conduction and valence bands.
+</p>
+
+<p>
+In the conduction band, we can assume that \(E-E_f>3kT\). Then we can approximate:
+</p>
+
+\begin{align}
+f(E) \approx e^{-\frac{E-E_f}{kT}} \notag
+\end{align}
+
+<p>
+In the valence band, we can assume that \(E-E_f<3kT\). Then we can approximate:
+</p>
+
+\begin{align}
+f(E) \approx 1 - e^{\frac{E-E_f}{kT}} \notag
+\end{align}
+
+<p>
+The above distributions work when your bands are large enough, and are called <b>Boltzmann distributions</b> (approximates of the Fermi-Dirac distribution).
+</p>
+
+<p>
+We can then integrate these regions over the distribution while considering the density of states to get expressions for the number of free holes or free electrons:
+</p>
+
+\begin{align}
+n &= N_c e^{\frac{E_f-E_c}{kT}} \notag \\
+p &= N_v e^{\frac{E_v-E_f}{kT}} \notag
+\end{align}
+
+<p>
+In pure silicon (&ldquo;intrinsic&rdquo; with no doping), the number of free electrons leave behind the same number of holes. We call this number the intrinsic carrier concentration:
+</p>
+
+\begin{align}
+n=p=n_i=N_c e^{\frac{E_i-E_c}{kT}}=N_v e^{\frac{E_v-E_i}{kT}} \notag
+\end{align}
+
+<p>
+where \(E_i\) is the Fermi level for intrinsic silicon. Then we can get an expression for the two constants \(N_c\) and \(N_v\):
+</p>
+
+\begin{align}
+N_c &= n_ie^{\frac{E_c-E_i}{kT}} \notag \\
+N_v &= n_ie^{\frac{E_i-E_v}{kT}} \notag
+\end{align}
+
+<p>
+We can then put these constants back in our original expressions for \(n\) and \(p\) to get:
+</p>
+
+\begin{align}
+n &= n_i e^{\frac{E_f-E_i}{kT}} \\
+p &= n_i e^{\frac{E_i-E_f}{kT}}
+\end{align}
+
+<p>
+When we dope with donors (n-type), we get \(E_f > E_i\). On the other hand, when we dope with acceptors (p-type), we get \(E_f < E_i\).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaa01072" class="outline-2">
+<h2 id="orgaa01072"><span class="section-number-2">4.</span> Doping</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 However, this stream of carriers is not actually that much. In order to increase our number of carriers, we can introduce <i>impurities</i> into our material by way of <b>doping</b>.
@@ -324,13 +410,25 @@ Consider a phosphorous atom bonded to four silicon atoms. Since phosphorous has 
 In this way, by <i>doping silicon with phosphorous</i>, we have added an extra free electron. Similarly, if we dope with a group III element, we can add a hole instead.
 </p>
 </div>
+<div id="outline-container-org260d731" class="outline-3">
+<h3 id="org260d731"><span class="section-number-3">4.1.</span> Mass Action Law</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+The <b>mass action law</b> states that under thermal equilibrium, the product of free electron concentration \(n\) and free hole concentration \(p\) is equal to a constant square of intrinsic carrier concentration \(n_i\):
+</p>
+
+\begin{align}
+np = n_i^2
+\end{align}
 </div>
-<div id="outline-container-orgb697324" class="outline-2">
-<h2 id="orgb697324"><span class="section-number-2">5.</span> Motion of Free Carriers</h2>
+</div>
+</div>
+<div id="outline-container-orga79aef5" class="outline-2">
+<h2 id="orga79aef5"><span class="section-number-2">5.</span> Motion of Free Carriers</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgaf260b3" class="outline-3">
-<h3 id="orgaf260b3"><span class="section-number-3">5.1.</span> Diffusion Current</h3>
+<div id="outline-container-orgbdfc6eb" class="outline-3">
+<h3 id="orgbdfc6eb"><span class="section-number-3">5.1.</span> Diffusion Current</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Intuitively, putting a drop of ink in a glass of water causes that ink to spread evenly into the water. This is because each molecule of the ink is moving randomly in the water, and thus it is more probable for them to move into areas with less concentration of ink: it diffuses.
@@ -367,8 +465,8 @@ J_{\text{p},\text{ diffusion}} &= -qD_p\frac{\text{d}p}{\text{d}x}
 \end{align}
 </div>
 </div>
-<div id="outline-container-org62a7b90" class="outline-3">
-<h3 id="org62a7b90"><span class="section-number-3">5.2.</span> Drift Current</h3>
+<div id="outline-container-org39c4033" class="outline-3">
+<h3 id="org39c4033"><span class="section-number-3">5.2.</span> Drift Current</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 The other way free carriers move is via drift. <b>Drift</b> is the average motion of charge carriers due to an applied electric field \(E\).
@@ -395,7 +493,7 @@ When we sum over all the random velocities \(v_j\) of the particles, we are aver
 </p>
 
 \begin{align}
-bar{p} = m^*\bar{v} = Eq\tau \notag
+\bar{p} = m^*\bar{v} = Eq\tau \notag
 \end{align}
 
 <p>
@@ -428,13 +526,31 @@ J_{\text{p},\text{ drift}} &= qp\mu_pE
 \end{align}
 
 <p>
-From Ohm&rsquo;s Law, we know that \(J=\sigma E\), where \(\sigma\) is conductivity. Adding up the two previous equations to get total $J4, we find that conductivity can also be represented as:
+From Ohm&rsquo;s Law, we know that \(J=\sigma E\), where \(\sigma\) is conductivity. Adding up the two previous equations to get total \(J\), we find that conductivity can also be represented as:
 </p>
 
 \begin{align}
 \sigma = qn\mu_n + qp\mu_p
 \end{align}
 </div>
+</div>
+</div>
+<div id="outline-container-org8839d14" class="outline-2">
+<h2 id="org8839d14"><span class="section-number-2">6.</span> Integrated Circuit Materials</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Pure silicon is the starting material, which forms the substrate for the integrated circuit. Oxide is used as the insulator:
+</p>
+
+
+<div id="org70647e3" class="figure">
+<p><img src="../static/ELENG_105/semiconductor_physics3.png" alt="semiconductor_physics3.png" />
+</p>
+</div>
+
+<p>
+The oxide insulator is layered on top of the silicon substrate (p-type), and photoresist is layered on top of the oxide. Then, we add a mask to protect areas of photoresist, and we expose the rest using a UV source. Chemicals are then used to etch the areas we want, ion implantation is used to inject dopants into the substrate, and finally temperature is increased to allow dopants to diffuse.
+</p>
 </div>
 </div>
 </div>
@@ -444,7 +560,7 @@ From Ohm&rsquo;s Law, we know that \(J=\sigma E\), where \(\sigma\) is conductiv
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-10-06 11:08
+               Last modified: 2026-10-06 23:27
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

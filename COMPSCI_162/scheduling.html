@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-01 Thu 15:36 -->
+<!-- 2026-10-06 Tue 23:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Scheduling</title>
@@ -127,32 +127,44 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org22fd634">1. Scheduling Policies</a>
+<li><a href="#org3acd440">1. Scheduling Policies</a>
 <ul>
-<li><a href="#orge58837c">1.1. First-Come First-Served (FCFS) Scheduling</a></li>
-<li><a href="#orgc1d40c2">1.2. Round Robin (RR) Scheduling</a>
+<li><a href="#orge97fb50">1.1. First-Come First-Served (FCFS) Scheduling</a></li>
+<li><a href="#org7656ba9">1.2. Round Robin (RR) Scheduling</a>
 <ul>
-<li><a href="#org548a615">1.2.1. Comparison</a></li>
+<li><a href="#org9b8f9af">1.2.1. Comparison</a></li>
 </ul>
 </li>
-<li><a href="#org2610585">1.3. Shortest Job First (SJF) Scheduling</a>
+<li><a href="#org629bda8">1.3. Shortest Job First (SJF) Scheduling</a>
 <ul>
-<li><a href="#org8c55179">1.3.1. Burst Length Prediction</a></li>
+<li><a href="#org47be454">1.3.1. Burst Length Prediction</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org66f2f0b">2. Priority</a>
+<li><a href="#orgc973646">2. Priority</a>
 <ul>
-<li><a href="#org21bb6f7">2.1. Multi-Level Feedback Scheduling</a></li>
+<li><a href="#org9e0ca1a">2.1. Multi-Level Feedback Scheduling</a></li>
 </ul>
 </li>
-<li><a href="#orgb737fba">3. Multi-Core Scheduling</a></li>
+<li><a href="#org129e677">3. Multi-Core Scheduling</a></li>
+<li><a href="#org1732d6b">4. Priority Inversion</a></li>
+<li><a href="#org911fe75">5. Proportional Share Scheduling</a>
+<ul>
+<li><a href="#org8d40e37">5.1. Lottery Scheduling</a></li>
+<li><a href="#org6162d3a">5.2. Linux Completely Fair Scheduler (CFS)</a></li>
+</ul>
+</li>
+<li><a href="#org432051b">6. Real-Time Scheduling</a>
+<ul>
+<li><a href="#org53559db">6.1. Rate Monotonic Scheduling (RMS)</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org22fd634" class="outline-2">
-<h2 id="org22fd634"><span class="section-number-2">1.</span> Scheduling Policies</h2>
+<div id="outline-container-org3acd440" class="outline-2">
+<h2 id="org3acd440"><span class="section-number-2">1.</span> Scheduling Policies</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Scheduling policies wish to:
@@ -168,8 +180,8 @@ Scheduling policies wish to:
 These may often be in conflict with each other, and it is the job of the scheduling policy to choose a balance of optimizations.
 </p>
 </div>
-<div id="outline-container-orge58837c" class="outline-3">
-<h3 id="orge58837c"><span class="section-number-3">1.1.</span> First-Come First-Served (FCFS) Scheduling</h3>
+<div id="outline-container-orge97fb50" class="outline-3">
+<h3 id="orge97fb50"><span class="section-number-3">1.1.</span> First-Come First-Served (FCFS) Scheduling</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 <b>First-come first-served scheduling</b> is also known as &ldquo;First-In First-Out&rdquo; (FIFO) or &ldquo;run until done&rdquo; scheduling. In early systems, FCFS scheduling meant that one program was scheduled until it was done (including I/O). Now, this means that the program keeps the CPU until the thread blocks.
@@ -180,21 +192,21 @@ This scheduling policy is simple and good at maximizing usage of the CPU, but it
 </p>
 
 
-<div id="org6e4348d" class="figure">
+<div id="org479118d" class="figure">
 <p><img src="../static/COMPSCI_162/scheduling1.png" alt="scheduling1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc1d40c2" class="outline-3">
-<h3 id="orgc1d40c2"><span class="section-number-3">1.2.</span> Round Robin (RR) Scheduling</h3>
+<div id="outline-container-org7656ba9" class="outline-3">
+<h3 id="org7656ba9"><span class="section-number-3">1.2.</span> Round Robin (RR) Scheduling</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 In the <b>round robin scheduling</b> scheme, each process gets a small unit of CPU time (the <i>time quantum</i>), usually 10-100 milliseconds. After the time quantum expires, the process is preempted and added to the end of the ready queue. Therefore, if there are \(n\) processes in the ready queue with a time quantum of \(q\) time units, then <i>no process waits more than</i> \((n-1)q\) time units:
 </p>
 
 
-<div id="org1b5c6a0" class="figure">
+<div id="org3dc409f" class="figure">
 <p><img src="../static/COMPSCI_162/scheduling2.png" alt="scheduling2.png" />
 </p>
 </div>
@@ -207,15 +219,15 @@ Choosing \(q\) is important here: if \(q\) is too large, then it just becomes li
 To implement RR in the kernel, we have a FIFO queue, just like FCFS. However, we preempt the job after the quantum expires using a <i>timer interrupt</i>.
 </p>
 </div>
-<div id="outline-container-org548a615" class="outline-4">
-<h4 id="org548a615"><span class="section-number-4">1.2.1.</span> Comparison</h4>
+<div id="outline-container-org9b8f9af" class="outline-4">
+<h4 id="org9b8f9af"><span class="section-number-4">1.2.1.</span> Comparison</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <p>
 Round robin scheduling solves the convoy effect, but average completion time is much worse under RR! Additionally, cache state has to be shared across all processes in RR, but can be devoted to only one process in FCFS.
 </p>
 
 
-<div id="orgbc7fcb8" class="figure">
+<div id="org28ea4e6" class="figure">
 <p><img src="../static/COMPSCI_162/scheduling3.png" alt="scheduling3.png" />
 </p>
 </div>
@@ -225,7 +237,7 @@ Given this hypothetical set of processes, we can also make a table based on the 
 </p>
 
 
-<div id="org269c611" class="figure">
+<div id="org5830bec" class="figure">
 <p><img src="../static/COMPSCI_162/scheduling4.png" alt="scheduling4.png" />
 </p>
 </div>
@@ -240,8 +252,8 @@ But what if we knew the future? Could we always mirror best FCFS?
 </div>
 </div>
 </div>
-<div id="outline-container-org2610585" class="outline-3">
-<h3 id="org2610585"><span class="section-number-3">1.3.</span> Shortest Job First (SJF) Scheduling</h3>
+<div id="outline-container-org629bda8" class="outline-3">
+<h3 id="org629bda8"><span class="section-number-3">1.3.</span> Shortest Job First (SJF) Scheduling</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 If we knew the future, then we could use <b>shortest job first scheduling</b>, also sometimes called &ldquo;shortest time to completion first&rdquo; (STCF) scheduling. The idea is we run whatever job has the least amount of computation to do: this has a big effect on short jobs, but only a small effect on long ones.
@@ -259,8 +271,8 @@ A clear issue is that SRTF can lead to starvation if we have a lot of small jobs
 Obviously, we can&rsquo;t predict the future. However, we can use SRTF as a yardstick for measuring other policies, since it is guaranteed to be the best at optimizing for <i>average response time</i>.
 </p>
 </div>
-<div id="outline-container-org8c55179" class="outline-4">
-<h4 id="org8c55179"><span class="section-number-4">1.3.1.</span> Burst Length Prediction</h4>
+<div id="outline-container-org47be454" class="outline-4">
+<h4 id="org47be454"><span class="section-number-4">1.3.1.</span> Burst Length Prediction</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 However, we can try to predict the future! This is the basis of <i>adaptive</i> policies: we change our policies based on past behavior, and what we think the process will do in the future. This works because programs often have predictable behavior: if a program was I/O bound in the past, then it will likely still be in the future.
@@ -269,8 +281,8 @@ However, we can try to predict the future! This is the basis of <i>adaptive</i> 
 </div>
 </div>
 </div>
-<div id="outline-container-org66f2f0b" class="outline-2">
-<h2 id="org66f2f0b"><span class="section-number-2">2.</span> Priority</h2>
+<div id="outline-container-orgc973646" class="outline-2">
+<h2 id="orgc973646"><span class="section-number-2">2.</span> Priority</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Applications are often either &ldquo;interactive&rdquo; or &ldquo;high throughput.&rdquo; We can attempt to categorize these apps by observing the <b>burst time</b> of the CPU: oftentimes, we assume that apps that sleep a lot and have short burst times are interactive, and should get high priority. On the other hand, apps that compute a lot should get lower priority since they won&rsquo;t notice intermittent bursts.
@@ -280,8 +292,8 @@ Applications are often either &ldquo;interactive&rdquo; or &ldquo;high throughpu
 This leads to the idea of <b>priority</b>: we can categorize processes based on how important they are.
 </p>
 </div>
-<div id="outline-container-org21bb6f7" class="outline-3">
-<h3 id="org21bb6f7"><span class="section-number-3">2.1.</span> Multi-Level Feedback Scheduling</h3>
+<div id="outline-container-org9e0ca1a" class="outline-3">
+<h3 id="org9e0ca1a"><span class="section-number-3">2.1.</span> Multi-Level Feedback Scheduling</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Priority allows us to do <b>multi-level feedback scheduling</b>: each priority level gets its own queue that can be processed in RR with some time quantum.
@@ -298,6 +310,10 @@ However, there can be some problems with this:
 
 <p>
 We can try to prevent starvation by giving each queue some fraction of the CPU. We can also attempt to increase the priority of jobs that don&rsquo;t get service. The tradeoff here is that as <i>we gain more fairness, we lose in average response time</i>.
+</p>
+
+<p>
+Note that starvation does not imply deadlock. Deadlock is a specific case of starvation that is unresolvable: starvation <i>could</i> resolve under the right circumstances.
 </p>
 
 <details class="code-details"
@@ -331,8 +347,8 @@ It also had a lot of ad-hoc heuristics: it tries to boost priority of &ldquo;I/O
 </div>
 </div>
 </div>
-<div id="outline-container-orgb737fba" class="outline-2">
-<h2 id="orgb737fba"><span class="section-number-2">3.</span> Multi-Core Scheduling</h2>
+<div id="outline-container-org129e677" class="outline-2">
+<h2 id="org129e677"><span class="section-number-2">3.</span> Multi-Core Scheduling</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Algorithmically, multi-core scheduling isn&rsquo;t a big difference from single-core scheduling. Implementation-wise, it is helpful to have <i>per-core</i> scheduling data structures. 
@@ -347,6 +363,111 @@ We also do <b>gang scheduling</b>: when multiple threads work together on a mult
 </p>
 </div>
 </div>
+<div id="outline-container-org1732d6b" class="outline-2">
+<h2 id="org1732d6b"><span class="section-number-2">4.</span> Priority Inversion</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Say we have three jobs, with the higher job number having the higher priority. Say Job 3 attempts to acquire a lock that is being held by Job 1. Now Job 2 wishes to run, and since Job 2 has a higher priority than Job 1, the scheduler switches to running Job 2. If Job 2 now hangs, it is now essentially blocking Job 3: a lower priority job is blocking a higher priority job. This is known as <b>priority inversion</b>.
+</p>
+
+<p>
+One solution to this is <b>priority donation</b> or priority inheritance. If Job 3 blocks on acquire, then Job 3 &ldquo;donates&rdquo; its priority to Job 1, temporarily raising the priority of Job 1 to Job 3. This way, Job 2 no longer blocks Job 1 from releasing the lock.
+</p>
+
+<details class="code-details"
+                 style ="padding: 1em;
+                          background-color: #e5f5e5;
+                          border-radius: 15px;
+                          color: hsl(157 75%);
+                          font-size: 0.9em;
+                          box-shadow: 0.05em 0.1em 5px 0.01em  #00000057;">
+                  <summary>
+                    <strong>
+                      <font face="Courier" size="3" color="green">
+                         Case Study: Pathfinder Rover
+                      </font>
+                    </strong>
+                  </summary>
+<p>
+A few days into the Pathfinder mission, the realtime OS system (VxWorks) would reboot randomly, losing valuable time and progress.
+</p>
+
+<p>
+The issue was priority inversion. A low priority task grabs mutex trying to communicate with higher priority task, but became blocked due to priority inversion. The realtime watchdog detected lack of forward progress and triggered a reset.
+</p>
+
+<p>
+It turns out that the original developers had disabled priority donation due to the belief that it would hinder performance. The issue was fixed by simply turning priority donation back on.
+</p>
+
+
+</details>
+</div>
+</div>
+<div id="outline-container-org911fe75" class="outline-2">
+<h2 id="org911fe75"><span class="section-number-2">5.</span> Proportional Share Scheduling</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+The key idea here is to give each priority some proportion of CPU time. This way, we can prevent starvation.
+</p>
+</div>
+<div id="outline-container-org8d40e37" class="outline-3">
+<h3 id="org8d40e37"><span class="section-number-3">5.1.</span> Lottery Scheduling</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+With lottery scheduling, we give each job some number of &ldquo;tickets.&rdquo; On each time slice, we randomly pick a winning ticket. On average, CPU time is proportional to the number of tickets given to each job.
+</p>
+
+<p>
+In this way, we can assign tickets in a way that gives &ldquo;priorities&rdquo; to each job. However, by giving each job at least one ticket, we prevent starvation (since everyone will get a proportion of CPU time).
+</p>
+</div>
+</div>
+<div id="outline-container-org6162d3a" class="outline-3">
+<h3 id="org6162d3a"><span class="section-number-3">5.2.</span> Linux Completely Fair Scheduler (CFS)</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+Our goal is to give each process an equal share of the CPU. The basic idea is to track CPU time per thread and schedule threads to match up average rate of execution. We want to choose the thread with the minimum CPU time such that we want to &ldquo;repair&rdquo; the illusion that each thread gets exactly 1/N of the CPU.
+</p>
+
+<p>
+In addition to fairness, we also want to have low response time and starvation freedom. We can use a target latency to dynamically choose a time quantum (like RR) by dividing our target latency by the number of threads (e.g. 20 ms target latency over 4 threads means that each thread gets a 5 ms time slice).
+</p>
+
+<p>
+However, we also want to avoid excessive overhead, so we must have a <i>minimum length of any time slice</i>. This <b>minimum granularity</b> constraint prevents the time slice from being so short that it is taken up completely by overhead.
+</p>
+
+<p>
+But what if we want to give more CPU time to some processes than others (i.e. priority)? We can use <i>weights</i> instead to track <i>virtual time</i> instead of actual CPU time. The virtual time would be CPU time divided by weight, and so the same virtual time but different weights would result in differing CPU times.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org432051b" class="outline-2">
+<h2 id="org432051b"><span class="section-number-2">6.</span> Real-Time Scheduling</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+The goal for <b>real-time scheduling</b> is <i>predictability</i>: instead of prioritizing &ldquo;fast computing,&rdquo; we want to know with confidence worst-case response times for systems. This is extremely important for time-critical safety-oriented systems.
+</p>
+
+<p>
+Tasks have deadlines (D) and known computation times (C).
+</p>
+
+<p>
+Tasks are considered <i>periodic</i> with period \(P\) and computation \(C\) in each period. The computation may be spread across the period in many pieces, and each task is assigned a deadline at the end of period. We can label each task \((P_i, C_i)\) for each task \(i\).
+</p>
+</div>
+<div id="outline-container-org53559db" class="outline-3">
+<h3 id="org53559db"><span class="section-number-3">6.1.</span> Rate Monotonic Scheduling (RMS)</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Each process is assigned a unique priority based on its period, and we always execute the active job with the highest priority. The shorter the period, the higher the priority
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -354,7 +475,7 @@ We also do <b>gang scheduling</b>: when multiple threads work together on a mult
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-10-01 15:36
+               Last modified: 2026-10-06 15:30
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
