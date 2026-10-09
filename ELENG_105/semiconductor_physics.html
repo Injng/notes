@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-06 Tue 23:28 -->
+<!-- 2026-10-08 Thu 19:28 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Semiconductor Physics</title>
@@ -127,30 +127,31 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6fae82c">1. Conductivity and Resistivity</a></li>
-<li><a href="#org7e90e21">2. Energy Levels</a></li>
-<li><a href="#org127167d">3. Energy Bands</a>
+<li><a href="#orgd0b60cd">1. Conductivity and Resistivity</a></li>
+<li><a href="#org5ce5808">2. Energy Levels</a></li>
+<li><a href="#orgc96bafe">3. Energy Bands</a>
 <ul>
-<li><a href="#orge60c437">3.1. Carrier Distribution</a></li>
+<li><a href="#org18df659">3.1. Carrier Distribution</a></li>
 </ul>
 </li>
-<li><a href="#orgaa01072">4. Doping</a>
+<li><a href="#org6e4542a">4. Doping</a>
 <ul>
-<li><a href="#org260d731">4.1. Mass Action Law</a></li>
+<li><a href="#org105e554">4.1. Mass Action Law</a></li>
+<li><a href="#org2210157">4.2. Donor Accounting</a></li>
 </ul>
 </li>
-<li><a href="#orga79aef5">5. Motion of Free Carriers</a>
+<li><a href="#org00fb91d">5. Motion of Free Carriers</a>
 <ul>
-<li><a href="#orgbdfc6eb">5.1. Diffusion Current</a></li>
-<li><a href="#org39c4033">5.2. Drift Current</a></li>
+<li><a href="#org835ba29">5.1. Diffusion Current</a></li>
+<li><a href="#org21889d3">5.2. Drift Current</a></li>
 </ul>
 </li>
-<li><a href="#org8839d14">6. Integrated Circuit Materials</a></li>
+<li><a href="#org87603a3">6. Integrated Circuit Materials</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6fae82c" class="outline-2">
-<h2 id="org6fae82c"><span class="section-number-2">1.</span> Conductivity and Resistivity</h2>
+<div id="outline-container-orgd0b60cd" class="outline-2">
+<h2 id="orgd0b60cd"><span class="section-number-2">1.</span> Conductivity and Resistivity</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Say we have a slab of material with length \(l\) and cross-sectional area \(A\). Then, the resistance of this material is given by:
@@ -177,8 +178,8 @@ If we plot the resistivity on a scale, <b>semiconductors</b> would fall in the m
 </p>
 </div>
 </div>
-<div id="outline-container-org7e90e21" class="outline-2">
-<h2 id="org7e90e21"><span class="section-number-2">2.</span> Energy Levels</h2>
+<div id="outline-container-org5ce5808" class="outline-2">
+<h2 id="org5ce5808"><span class="section-number-2">2.</span> Energy Levels</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Quantum mechanics tells us that the same object can behave either like a particle or a wave. If it&rsquo;s a wave, we can define its equivalent wavelength (called the <b>deBroglie wavelength</b>) \(\lambda\) for a given particle with momentum \(p\):
@@ -240,15 +241,15 @@ This shows us that even the <b>energy levels</b> are quantized. \(n\) here is th
 </p>
 </div>
 </div>
-<div id="outline-container-org127167d" class="outline-2">
-<h2 id="org127167d"><span class="section-number-2">3.</span> Energy Bands</h2>
+<div id="outline-container-orgc96bafe" class="outline-2">
+<h2 id="orgc96bafe"><span class="section-number-2">3.</span> Energy Bands</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 We now know that atoms have discrete energy levels where electrons can exist. When two atoms move close together, their overlapping energy levels split into two, one slightly higher and one slightly lower. This is due to the Pauli exclusion principle: two electrons with the same energy cannot share the same space. As you get more and more atoms, the discrete energy levels form continuous <b>energy bands</b>:
 </p>
 
 
-<div id="orgbfa85e7" class="figure">
+<div id="org1fc3253" class="figure">
 <p><img src="../static/ELENG_105/semiconductor_physics1.png" alt="semiconductor_physics1.png" />
 </p>
 </div>
@@ -262,7 +263,7 @@ The band adjacent to it, the highest energy band where electrons are still bound
 </p>
 
 
-<div id="org3f2b882" class="figure">
+<div id="org72f6a09" class="figure">
 <p><img src="../static/ELENG_105/semiconductor_physics2.png" alt="semiconductor_physics2.png" />
 </p>
 </div>
@@ -279,15 +280,15 @@ When an electron breaks free of the atom (by jumping to the conductive band), it
 It is also possible for a free electron to fill a hole. This process is called <b>recombination</b>, where the electron and the hole annihilate one another, thus depleting the supply of carriers. In thermal equilibrium, a <b>generation</b> process counterbalances this to produce a steady stream of carriers.
 </p>
 </div>
-<div id="outline-container-orge60c437" class="outline-3">
-<h3 id="orge60c437"><span class="section-number-3">3.1.</span> Carrier Distribution</h3>
+<div id="outline-container-org18df659" class="outline-3">
+<h3 id="org18df659"><span class="section-number-3">3.1.</span> Carrier Distribution</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Electrons are <b>Fermions</b>, which means they follow a <b>Fermi-Dirac distribution</b>:
 </p>
 
 
-<div id="orge56d6c9" class="figure">
+<div id="org8cd8d0f" class="figure">
 <p><img src="../static/ELENG_105/semiconductor_physics4.png" alt="semiconductor_physics4.png" />
 </p>
 </div>
@@ -357,8 +358,8 @@ When we dope with donors (n-type), we get \(E_f > E_i\). On the other hand, when
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa01072" class="outline-2">
-<h2 id="orgaa01072"><span class="section-number-2">4.</span> Doping</h2>
+<div id="outline-container-org6e4542a" class="outline-2">
+<h2 id="org6e4542a"><span class="section-number-2">4.</span> Doping</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 However, this stream of carriers is not actually that much. In order to increase our number of carriers, we can introduce <i>impurities</i> into our material by way of <b>doping</b>.
@@ -410,8 +411,8 @@ Consider a phosphorous atom bonded to four silicon atoms. Since phosphorous has 
 In this way, by <i>doping silicon with phosphorous</i>, we have added an extra free electron. Similarly, if we dope with a group III element, we can add a hole instead.
 </p>
 </div>
-<div id="outline-container-org260d731" class="outline-3">
-<h3 id="org260d731"><span class="section-number-3">4.1.</span> Mass Action Law</h3>
+<div id="outline-container-org105e554" class="outline-3">
+<h3 id="org105e554"><span class="section-number-3">4.1.</span> Mass Action Law</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The <b>mass action law</b> states that under thermal equilibrium, the product of free electron concentration \(n\) and free hole concentration \(p\) is equal to a constant square of intrinsic carrier concentration \(n_i\):
@@ -422,13 +423,49 @@ np = n_i^2
 \end{align}
 </div>
 </div>
+<div id="outline-container-org2210157" class="outline-3">
+<h3 id="org2210157"><span class="section-number-3">4.2.</span> Donor Accounting</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+\(N_D\) is the concentration of donors, and \(N_A\) is the concentration of acceptors. If we dope with more donors than acceptors, and \(N_D > N_A\), then the material is <b>n-type</b>, and the free electron density is given by:
+</p>
+
+\begin{align}
+n_o = N_D - N_A \gg n_i
+\end{align}
+
+<p>
+And the free holes are approximately given by the law of mass action:
+</p>
+
+\begin{align}
+p_o = \frac{n_i^2}{N_D-N_A}
+\end{align}
+
+<p>
+Otherwise, if we have more acceptors than donors, or \(N_A > N_D\), then the material is <b>p-type</b> and we can approximate the number of free holes by:
+</p>
+
+\begin{align}
+p_o = N_A - N_D \gg n_i
+\end{align}
+
+<p>
+And the number of free electrons:
+</p>
+
+\begin{align}
+n_o = \frac{n_i^2}{N_A-N_D}
+\end{align}
 </div>
-<div id="outline-container-orga79aef5" class="outline-2">
-<h2 id="orga79aef5"><span class="section-number-2">5.</span> Motion of Free Carriers</h2>
+</div>
+</div>
+<div id="outline-container-org00fb91d" class="outline-2">
+<h2 id="org00fb91d"><span class="section-number-2">5.</span> Motion of Free Carriers</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgbdfc6eb" class="outline-3">
-<h3 id="orgbdfc6eb"><span class="section-number-3">5.1.</span> Diffusion Current</h3>
+<div id="outline-container-org835ba29" class="outline-3">
+<h3 id="org835ba29"><span class="section-number-3">5.1.</span> Diffusion Current</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Intuitively, putting a drop of ink in a glass of water causes that ink to spread evenly into the water. This is because each molecule of the ink is moving randomly in the water, and thus it is more probable for them to move into areas with less concentration of ink: it diffuses.
@@ -465,8 +502,8 @@ J_{\text{p},\text{ diffusion}} &= -qD_p\frac{\text{d}p}{\text{d}x}
 \end{align}
 </div>
 </div>
-<div id="outline-container-org39c4033" class="outline-3">
-<h3 id="org39c4033"><span class="section-number-3">5.2.</span> Drift Current</h3>
+<div id="outline-container-org21889d3" class="outline-3">
+<h3 id="org21889d3"><span class="section-number-3">5.2.</span> Drift Current</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 The other way free carriers move is via drift. <b>Drift</b> is the average motion of charge carriers due to an applied electric field \(E\).
@@ -535,15 +572,15 @@ From Ohm&rsquo;s Law, we know that \(J=\sigma E\), where \(\sigma\) is conductiv
 </div>
 </div>
 </div>
-<div id="outline-container-org8839d14" class="outline-2">
-<h2 id="org8839d14"><span class="section-number-2">6.</span> Integrated Circuit Materials</h2>
+<div id="outline-container-org87603a3" class="outline-2">
+<h2 id="org87603a3"><span class="section-number-2">6.</span> Integrated Circuit Materials</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Pure silicon is the starting material, which forms the substrate for the integrated circuit. Oxide is used as the insulator:
 </p>
 
 
-<div id="org70647e3" class="figure">
+<div id="orgfadaa77" class="figure">
 <p><img src="../static/ELENG_105/semiconductor_physics3.png" alt="semiconductor_physics3.png" />
 </p>
 </div>
@@ -560,7 +597,7 @@ The oxide insulator is layered on top of the silicon substrate (p-type), and pho
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-10-06 23:27
+               Last modified: 2026-10-08 13:21
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
