@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-12 Mon 16:41 -->
+<!-- 2026-10-14 Wed 16:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Diodes</title>
@@ -127,24 +127,24 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org77818a1">1. PN Junction</a>
+<li><a href="#orgd9ff66c">1. PN Junction</a>
 <ul>
-<li><a href="#orgf7a08d2">1.1. External Biases</a></li>
-<li><a href="#orgf6eda0a">1.2. Junction Capacitance</a></li>
+<li><a href="#org8da0218">1.1. External Biases</a></li>
+<li><a href="#org8a266af">1.2. Junction Capacitance</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org77818a1" class="outline-2">
-<h2 id="org77818a1"><span class="section-number-2">1.</span> PN Junction</h2>
+<div id="outline-container-orgd9ff66c" class="outline-2">
+<h2 id="orgd9ff66c"><span class="section-number-2">1.</span> PN Junction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>PN junction</b> is formed by placing n-type (extra free electrons) and p-type (extra free holes) <a href="semiconductor_physics.html#org91499fc">semiconductors</a> next to one another. Then, due to <a href="semiconductor_physics.html#org60e7b85">diffusion</a>, the holes in the p-type material wish to move towards the n-type material, and vice versa:
 </p>
 
 
-<div id="orgd2a5db8" class="figure">
+<div id="org5cb540a" class="figure">
 <p><img src="../static/ELENG_105/diodes1.png" alt="diodes1.png" />
 </p>
 </div>
@@ -154,7 +154,7 @@ These mobile carriers become minority carriers in the new region. As the holes a
 </p>
 
 
-<div id="org3d23813" class="figure">
+<div id="org7895162" class="figure">
 <p><img src="../static/ELENG_105/diodes2.png" alt="diodes2.png" />
 </p>
 </div>
@@ -164,7 +164,7 @@ This electric field then causes a <a href="semiconductor_physics.html#orgb9a7e1e
 </p>
 
 
-<div id="org01c0b9f" class="figure">
+<div id="orgc666bc3" class="figure">
 <p><img src="../static/ELENG_105/diodes3.png" alt="diodes3.png" />
 </p>
 </div>
@@ -350,15 +350,15 @@ q\phi_{bi} &= q(\phi_p + \phi_n) \notag \\
 Here we see that our built-in potential scales proportional to the temperature it is at as well as the concentration of acceptors and donors.
 </p>
 </div>
-<div id="outline-container-orgf7a08d2" class="outline-3">
-<h3 id="orgf7a08d2"><span class="section-number-3">1.1.</span> External Biases</h3>
+<div id="outline-container-org8da0218" class="outline-3">
+<h3 id="org8da0218"><span class="section-number-3">1.1.</span> External Biases</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 When we <b>forward bias</b> our PN junction, we introduce more electrons into the n-type area and more holes into the p-type area:
 </p>
 
 
-<div id="orge97aced" class="figure">
+<div id="orgfc931b3" class="figure">
 <p><img src="../static/ELENG_105/diodes4.png" alt="diodes4.png" />
 </p>
 </div>
@@ -827,10 +827,22 @@ This then gives us our <b>diode I-V curve</b>:
 </svg></figure><p>
 The tail on the left side of the plane is our saturation current as \(V_D\) goes very negative; this area becomes dominated by drift current, since as our depletion region grows bigger and bigger our diffusion current goes to zero. Similarly, the right side of the plane is dominated by diffusion current as the depletion region becomes smaller and smaller.
 </p>
+
+<p>
+We can calculate \(I_S\) using the following relationship:
+</p>
+
+\begin{align}
+I_S = qn_i^2\left(\frac{D_n}{L_nN_a}+\frac{D_p}{L_pN_d}\right)A
+\end{align}
+
+<p>
+where \(A\) is cross sectional area, and \(L_p\) and \(L_n\) are the minority carrier diffusion lengths (the average distance a minority carrier travels via diffusion before recombination occurs).
+</p>
 </div>
 </div>
-<div id="outline-container-orgf6eda0a" class="outline-3">
-<h3 id="orgf6eda0a"><span class="section-number-3">1.2.</span> Junction Capacitance</h3>
+<div id="outline-container-org8a266af" class="outline-3">
+<h3 id="org8a266af"><span class="section-number-3">1.2.</span> Junction Capacitance</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 At the PN junction, we have some negative charge and some positive charge that are separated. This means that we have some amount of capacitance at the boundary. We call that capacitance per unit area the <b>junction capacitance</b> \(C_j = \frac{C}{A}\).
@@ -841,7 +853,7 @@ Let the length of the p-type depletion region be \(x_p\), and the length of the 
 </p>
 
 
-<div id="orgeab2bf4" class="figure">
+<div id="orgb8ea0d5" class="figure">
 <p><img src="../static/ELENG_105/diodes5.png" alt="diodes5.png" />
 </p>
 </div>
@@ -861,7 +873,7 @@ Gauss&rsquo;s law tells us that \(\mathbf{E} = \frac{1}{\epsilon_s} \int{\rho}\t
 </p>
 
 
-<div id="orga147cc3" class="figure">
+<div id="org1fcba04" class="figure">
 <p><img src="../static/ELENG_105/diodes6.png" alt="diodes6.png" />
 </p>
 </div>
@@ -912,7 +924,7 @@ where \(C_{j_0}\) is \(C_j\) when \(V_D=0\). \(x_d\) is dominated by the side th
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-10-12 16:41
+               Last modified: 2026-10-14 16:56
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

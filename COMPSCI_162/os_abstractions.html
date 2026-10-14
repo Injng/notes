@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-01 Thu 15:36 -->
+<!-- 2026-10-14 Wed 16:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Operating System Abstractions</title>
@@ -95,17 +95,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2b6471e">1. Threads</a></li>
-<li><a href="#orgd564567">2. Address Spaces</a>
+<li><a href="#org96aaed3">1. Threads</a></li>
+<li><a href="#org0bcd202">2. Address Spaces</a></li>
+<li><a href="#org9ccf196">3. Processes</a></li>
+<li><a href="#orge1b3834">4. Dual Mode Operation</a>
 <ul>
-<li><a href="#orgbe3e0be">2.1. Base and Bound</a></li>
-<li><a href="#orgf7d533a">2.2. Paged Virtual Address Space</a></li>
-</ul>
-</li>
-<li><a href="#org339b893">3. Processes</a></li>
-<li><a href="#org827dd5e">4. Dual Mode Operation</a>
-<ul>
-<li><a href="#org51ba3e6">4.1. Separate Kernel Stack</a></li>
+<li><a href="#org0b84198">4.1. Separate Kernel Stack</a></li>
 </ul>
 </li>
 </ul>
@@ -114,8 +109,8 @@
 <p>
 The operating system <i>abstracts</i> underlying hardware to help tame complexity. The bottom line of an operating system is to provide the ability to run programs. 
 </p>
-<div id="outline-container-org2b6471e" class="outline-2">
-<h2 id="org2b6471e"><span class="section-number-2">1.</span> Threads</h2>
+<div id="outline-container-org96aaed3" class="outline-2">
+<h2 id="org96aaed3"><span class="section-number-2">1.</span> Threads</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>thread</b> is a single unique execution context, which contains things like the program counter, registers, execution flags, stack, and its memory state. 
@@ -134,14 +129,14 @@ Threads are used to create the illusion that there are <i>more cores than there 
 </p>
 
 
-<div id="org30c9776" class="figure">
+<div id="org976aa65" class="figure">
 <p><img src="../static/COMPSCI_162/os_abstractions1.png" alt="os_abstractions1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd564567" class="outline-2">
-<h2 id="orgd564567"><span class="section-number-2">2.</span> Address Spaces</h2>
+<div id="outline-container-org0bcd202" class="outline-2">
+<h2 id="org0bcd202"><span class="section-number-2">2.</span> Address Spaces</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 An <b>address space</b> is the set of accessible addresses and the state associated with them. Address spaces may be <i>virtual</i>, in which case it is distinct from the memory space of the actual physical machine.
@@ -151,29 +146,9 @@ An <b>address space</b> is the set of accessible addresses and the state associa
 Threads have to share non-CPU resources such as memory and I/O devices, which means that each thread can possibly read/write memory of other processes or even the OS. This is a problem, which means our OS must implement some kind of protection on what memory programs can access.
 </p>
 </div>
-<div id="outline-container-orgbe3e0be" class="outline-3">
-<h3 id="orgbe3e0be"><span class="section-number-3">2.1.</span> Base and Bound</h3>
-<div class="outline-text-3" id="text-2-1">
-<p>
-We can define a block of memory a program can use using a <b>base</b> address and a <b>bound</b> offset/size. The virtual address space of the program starts at zero, so our OS translates on-the-fly these addresses by adding them to our base address. Protection is done by ensuring that our addresses never exceed the bound.
-</p>
-
-<p>
-Base and bound has several problems, however. Base and bound is wasteful, as it must dedicate physical memory for <i>future use</i>. Additionally, we must also solve the fragmentation problem, as the kernel must somehow fit whole processes into contiguous blocks of memory.
-</p>
 </div>
-</div>
-<div id="outline-container-orgf7d533a" class="outline-3">
-<h3 id="orgf7d533a"><span class="section-number-3">2.2.</span> Paged Virtual Address Space</h3>
-<div class="outline-text-3" id="text-2-2">
-<p>
-We can also break the entire virtual address space for our program into equal sized chunks (i.e. pages), with each page having its own base. The processor translates each virtual address according to the bases stored in a <a href="COMPSCI_61C/virtual_memory.html#org2b92566">page table</a>. Each process has its own page table, and is pointed to by the page table base register (PTBR).
-</p>
-</div>
-</div>
-</div>
-<div id="outline-container-org339b893" class="outline-2">
-<h2 id="org339b893"><span class="section-number-2">3.</span> Processes</h2>
+<div id="outline-container-org9ccf196" class="outline-2">
+<h2 id="org9ccf196"><span class="section-number-2">3.</span> Processes</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A <b>process</b> is an execution environment with restricted rights, which consists of a (protected) address space along with one or more threads. Application programs executes as processes.
@@ -184,15 +159,15 @@ Processes are protected by the OS from each other. This is done by creating prot
 </p>
 </div>
 </div>
-<div id="outline-container-org827dd5e" class="outline-2">
-<h2 id="org827dd5e"><span class="section-number-2">4.</span> Dual Mode Operation</h2>
+<div id="outline-container-orge1b3834" class="outline-2">
+<h2 id="orge1b3834"><span class="section-number-2">4.</span> Dual Mode Operation</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The hardware provides at least two modes of operation: the <b>kernel mode</b> (sysmode = 0) and the <b>user mode</b> (sysmode = 1). At least 1 mode bit in the hardware keeps track of which mode the processor is in, and certain operations will be prohibited <i>by the hardware</i> when running in user mode, such as changing the page table pointer, diabling interrupts, etc. 
 </p>
 </div>
-<div id="outline-container-org51ba3e6" class="outline-3">
-<h3 id="org51ba3e6"><span class="section-number-3">4.1.</span> Separate Kernel Stack</h3>
+<div id="outline-container-org0b84198" class="outline-3">
+<h3 id="org0b84198"><span class="section-number-3">4.1.</span> Separate Kernel Stack</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 The kernel needs space to work, so it must have a stack. However, the kernel uses its own <i>separate</i> <b>kernel stack</b> for security reasons: we can&rsquo;t trust the user&rsquo;s stack pointer. We also can&rsquo;t trust other threads to not mess with information on user stack. This is called the <b>two-stack model</b>, where each thread has both user stack (located in user memory) and kernel stack (located in kernel memory).
@@ -207,7 +182,7 @@ The kernel needs space to work, so it must have a stack. However, the kernel use
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-09-30 21:43
+               Last modified: 2026-10-13 14:41
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
