@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-14 Wed 16:56 -->
+<!-- 2026-10-14 Wed 19:00 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Diodes</title>
@@ -127,24 +127,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd9ff66c">1. PN Junction</a>
+<li><a href="#orgbef53af">1. PN Junction</a>
 <ul>
-<li><a href="#org8da0218">1.1. External Biases</a></li>
-<li><a href="#org8a266af">1.2. Junction Capacitance</a></li>
+<li><a href="#org93ac33a">1.1. External Biases</a></li>
+<li><a href="#org5ab8fac">1.2. Junction Capacitance</a></li>
 </ul>
 </li>
+<li><a href="#orgcf3b32c">2. Diode Small-Signal Model</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd9ff66c" class="outline-2">
-<h2 id="orgd9ff66c"><span class="section-number-2">1.</span> PN Junction</h2>
+<div id="outline-container-orgbef53af" class="outline-2">
+<h2 id="orgbef53af"><span class="section-number-2">1.</span> PN Junction</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>PN junction</b> is formed by placing n-type (extra free electrons) and p-type (extra free holes) <a href="semiconductor_physics.html#org91499fc">semiconductors</a> next to one another. Then, due to <a href="semiconductor_physics.html#org60e7b85">diffusion</a>, the holes in the p-type material wish to move towards the n-type material, and vice versa:
 </p>
 
 
-<div id="org5cb540a" class="figure">
+<div id="org5f3e8e0" class="figure">
 <p><img src="../static/ELENG_105/diodes1.png" alt="diodes1.png" />
 </p>
 </div>
@@ -154,7 +155,7 @@ These mobile carriers become minority carriers in the new region. As the holes a
 </p>
 
 
-<div id="org7895162" class="figure">
+<div id="org62a3bee" class="figure">
 <p><img src="../static/ELENG_105/diodes2.png" alt="diodes2.png" />
 </p>
 </div>
@@ -164,7 +165,7 @@ This electric field then causes a <a href="semiconductor_physics.html#orgb9a7e1e
 </p>
 
 
-<div id="orgc666bc3" class="figure">
+<div id="orga705a5d" class="figure">
 <p><img src="../static/ELENG_105/diodes3.png" alt="diodes3.png" />
 </p>
 </div>
@@ -350,15 +351,15 @@ q\phi_{bi} &= q(\phi_p + \phi_n) \notag \\
 Here we see that our built-in potential scales proportional to the temperature it is at as well as the concentration of acceptors and donors.
 </p>
 </div>
-<div id="outline-container-org8da0218" class="outline-3">
-<h3 id="org8da0218"><span class="section-number-3">1.1.</span> External Biases</h3>
+<div id="outline-container-org93ac33a" class="outline-3">
+<h3 id="org93ac33a"><span class="section-number-3">1.1.</span> External Biases</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 When we <b>forward bias</b> our PN junction, we introduce more electrons into the n-type area and more holes into the p-type area:
 </p>
 
 
-<div id="orgfc931b3" class="figure">
+<div id="orgb7e59f2" class="figure">
 <p><img src="../static/ELENG_105/diodes4.png" alt="diodes4.png" />
 </p>
 </div>
@@ -841,8 +842,8 @@ where \(A\) is cross sectional area, and \(L_p\) and \(L_n\) are the minority ca
 </p>
 </div>
 </div>
-<div id="outline-container-org8a266af" class="outline-3">
-<h3 id="org8a266af"><span class="section-number-3">1.2.</span> Junction Capacitance</h3>
+<div id="outline-container-org5ab8fac" class="outline-3">
+<h3 id="org5ab8fac"><span class="section-number-3">1.2.</span> Junction Capacitance</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 At the PN junction, we have some negative charge and some positive charge that are separated. This means that we have some amount of capacitance at the boundary. We call that capacitance per unit area the <b>junction capacitance</b> \(C_j = \frac{C}{A}\).
@@ -853,7 +854,7 @@ Let the length of the p-type depletion region be \(x_p\), and the length of the 
 </p>
 
 
-<div id="orgb8ea0d5" class="figure">
+<div id="org83ce200" class="figure">
 <p><img src="../static/ELENG_105/diodes5.png" alt="diodes5.png" />
 </p>
 </div>
@@ -873,7 +874,7 @@ Gauss&rsquo;s law tells us that \(\mathbf{E} = \frac{1}{\epsilon_s} \int{\rho}\t
 </p>
 
 
-<div id="org1fcba04" class="figure">
+<div id="org54aaf73" class="figure">
 <p><img src="../static/ELENG_105/diodes6.png" alt="diodes6.png" />
 </p>
 </div>
@@ -917,6 +918,40 @@ where \(C_{j_0}\) is \(C_j\) when \(V_D=0\). \(x_d\) is dominated by the side th
 </div>
 </div>
 </div>
+<div id="outline-container-orgcf3b32c" class="outline-2">
+<h2 id="orgcf3b32c"><span class="section-number-2">2.</span> Diode Small-Signal Model</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+The small-signal model for a diode in forward bias consists of a current source in parallel with a resistance, junction capacitance, and diffusion capactiance:
+</p>
+
+
+<div id="org44874bd" class="figure">
+<p><img src="../static/ELENG_105/diodes7.png" alt="diodes7.png" />
+</p>
+</div>
+
+<p>
+The parallel resistance \(g_d\) is:
+</p>
+
+\begin{align}
+g_d = \frac{qI}{kT}
+\end{align}
+
+<p>
+And the diffusion capacitance \(C_{\text{diff}}\) is:
+</p>
+
+\begin{align}
+C_{\text{diff}} = \left(\frac{qI}{kT}\right) \tau_F
+\end{align}
+
+<p>
+where \(\tau_F\) is a time constant that measures the time to cross the junction. Diffusion capacitance is caused by the diffusion of excess minority carriers as they wait to recombine.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -924,7 +959,7 @@ where \(C_{j_0}\) is \(C_j\) when \(V_D=0\). \(x_d\) is dominated by the side th
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-10-14 16:56
+               Last modified: 2026-10-14 19:00
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

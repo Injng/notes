@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN" xml:lang="zh-CN">
 <head>
-<!-- 2026-10-14 Wed 16:56 -->
+<!-- 2026-10-14 Wed 19:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>非理想运算放大器</title>
@@ -127,19 +127,19 @@
 <h2>&#30446;&#24405;</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org70c43cd">1. 实体运放模型</a></li>
-<li><a href="#org1b82729">2. 运放的非理想性质</a>
+<li><a href="#org6c654ba">1. 实体运放模型</a></li>
+<li><a href="#orga434d7b">2. 运放的非理想性质</a>
 <ul>
-<li><a href="#org5b08437">2.1. Gain-Bandwidth</a></li>
-<li><a href="#org11745ee">2.2. Offset Voltage</a></li>
-<li><a href="#orgd30834b">2.3. Slewing</a></li>
+<li><a href="#orgbc4e692">2.1. Gain-Bandwidth</a></li>
+<li><a href="#orgf443e14">2.2. Offset Voltage</a></li>
+<li><a href="#org99861e8">2.3. Slewing</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org70c43cd" class="outline-2">
-<h2 id="org70c43cd"><span class="section-number-2">1.</span> 实体运放模型</h2>
+<div id="outline-container-org6c654ba" class="outline-2">
+<h2 id="org6c654ba"><span class="section-number-2">1.</span> 实体运放模型</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 一个实体的运算放大器通常由以下两个模块组成：
@@ -246,11 +246,11 @@
 </p>
 </div>
 </div>
-<div id="outline-container-org1b82729" class="outline-2">
-<h2 id="org1b82729"><span class="section-number-2">2.</span> 运放的非理想性质</h2>
+<div id="outline-container-orga434d7b" class="outline-2">
+<h2 id="orga434d7b"><span class="section-number-2">2.</span> 运放的非理想性质</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-当我们分析一个<a href="file:///home/lnjng/Org/notes/EECS_16B/opamps.html#org2c6eaa8">理想运放</a>时，我们做了一些跟现实世界中不同的假设：
+当我们分析一个<a href="file:///home/lnjng/Org/notes/EECS_16B/opamps.html#org7081be2">理想运放</a>时，我们做了一些跟现实世界中不同的假设：
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -316,11 +316,11 @@
 </table>
 
 <p>
-In particular, we have already seen how we can use <a href="file:///home/lnjng/Org/notes/EECS_16B/opamps.html#org1eca95c">negative feedback</a> to decouple the closed-loop gain from the non-ideal open-loop gain of the op-amp, provided that the open-loop gain is very large.
+In particular, we have already seen how we can use <a href="file:///home/lnjng/Org/notes/EECS_16B/opamps.html#org89f09bb">negative feedback</a> to decouple the closed-loop gain from the non-ideal open-loop gain of the op-amp, provided that the open-loop gain is very large.
 </p>
 </div>
-<div id="outline-container-org5b08437" class="outline-3">
-<h3 id="org5b08437"><span class="section-number-3">2.1.</span> Gain-Bandwidth</h3>
+<div id="outline-container-orgbc4e692" class="outline-3">
+<h3 id="orgbc4e692"><span class="section-number-3">2.1.</span> Gain-Bandwidth</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Using our OTA plus unity buffer model, by Ohm's Law we can derive the gain to be \(A_0 = G_mR_x\). The capacitor provides us with a pole whose cutoff frequency is \(\omega_c = \frac{1}{R_xC_x}\). An interesting observation is that the <b>gain-bandwidth product</b> depends only on the values of \(G_m\) and \(C_x\):
@@ -335,22 +335,22 @@ We can increase our bandwidth by around \(1 + \beta A_0\) if we use negative fee
 </p>
 
 
-<div id="org7adeeae" class="figure">
+<div id="org7fcf987" class="figure">
 <p><img src="../static/ELENG_105/nonideal_opamps1.png" alt="nonideal_opamps1.png" />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org11745ee" class="outline-3">
-<h3 id="org11745ee"><span class="section-number-3">2.2.</span> Offset Voltage</h3>
+<div id="outline-container-orgf443e14" class="outline-3">
+<h3 id="orgf443e14"><span class="section-number-3">2.2.</span> Offset Voltage</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Real op-amps often have a nonzero DC offset voltage. This offset voltage can often be trimmed by connecting a potentiometer to the two offset-nulling terminals of the op-amp. The wiper of the potentiometer is connected to the negative supply of the op-amp.
 </p>
 </div>
 </div>
-<div id="outline-container-orgd30834b" class="outline-3">
-<h3 id="orgd30834b"><span class="section-number-3">2.3.</span> Slewing</h3>
+<div id="outline-container-org99861e8" class="outline-3">
+<h3 id="org99861e8"><span class="section-number-3">2.3.</span> Slewing</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 Real amplifier output is limited by its <b>slew rate</b>, or the maximum rate of change at the output:
