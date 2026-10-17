@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-14 Wed 16:56 -->
+<!-- 2026-10-16 Fri 20:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Memory</title>
@@ -84,6 +84,38 @@
                         color:red;
                         text-decoration: none;}
           </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="preamble" class="status">
@@ -95,11 +127,12 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org42d648c">1. Address Translation</a>
+<li><a href="#orgaa1a6e7">1. Address Translation</a>
 <ul>
-<li><a href="#orgf5420ea">1.1. Base and Bound</a></li>
-<li><a href="#org7bb7d83">1.2. Segmented Memory</a></li>
-<li><a href="#org1a41d2d">1.3. Paged Virtual Address Space</a></li>
+<li><a href="#org6bd9a44">1.1. Base and Bound</a></li>
+<li><a href="#org9b0ddc9">1.2. Segmented Memory</a></li>
+<li><a href="#org5c7e1ee">1.3. Paged Virtual Address Space</a></li>
+<li><a href="#org2f68cb4">1.4. Translation Lookaside Buffer</a></li>
 </ul>
 </li>
 </ul>
@@ -110,19 +143,19 @@ Protection: we want to prevent access to private memory of other processes.
 Translation: ability to translate accesses from one address space (e.g. virtual) to a different one (e.g. physical).
 Controlled overlap: separate state of threads should not collide in physical memory; conversely, we would like the ability to overlap when desired for communication purposes.
 </p>
-<div id="outline-container-org42d648c" class="outline-2">
-<h2 id="org42d648c"><span class="section-number-2">1.</span> Address Translation</h2>
+<div id="outline-container-orgaa1a6e7" class="outline-2">
+<h2 id="orgaa1a6e7"><span class="section-number-2">1.</span> Address Translation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgf5420ea" class="outline-3">
-<h3 id="orgf5420ea"><span class="section-number-3">1.1.</span> Base and Bound</h3>
+<div id="outline-container-org6bd9a44" class="outline-3">
+<h3 id="org6bd9a44"><span class="section-number-3">1.1.</span> Base and Bound</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can define a block of memory a program can use using a <b>base</b> address and a <b>bound</b> offset/size. The virtual address space of the program starts at zero, so our OS can translate on-the-fly these addresses by adding them to our base address. Protection is done by ensuring that our addresses never exceed the bound:
 </p>
 
 
-<div id="orga51ad2a" class="figure">
+<div id="org4c0d1d8" class="figure">
 <p><img src="../static/COMPSCI_162/memory1.png" alt="memory1.png" />
 </p>
 </div>
@@ -132,15 +165,15 @@ Base and bound has several problems, however. Base and bound is wasteful, as it 
 </p>
 </div>
 </div>
-<div id="outline-container-org7bb7d83" class="outline-3">
-<h3 id="org7bb7d83"><span class="section-number-3">1.2.</span> Segmented Memory</h3>
+<div id="outline-container-org9b0ddc9" class="outline-3">
+<h3 id="org9b0ddc9"><span class="section-number-3">1.2.</span> Segmented Memory</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Instead of just having one base and bound for a program, the hardware can support an array of pairs of base and bounds for each program. This is called <b>segmentation</b> since we can split our virtual memory into several <i>segments</i>. The higher order bits of the virtual address are used to index into the array:<abbr class="tooltip" title="in x86, this information can also be encoded in the instruction itself">°</abbr>&emsp13;
 </p>
 
 
-<div id="orgd0da1d8" class="figure">
+<div id="orge7a219e" class="figure">
 <p><img src="../static/COMPSCI_162/memory2.png" alt="memory2.png" />
 </p>
 </div>
@@ -158,11 +191,45 @@ However, the principal downside of segmentation is the overhead of managing many
 </p>
 </div>
 </div>
-<div id="outline-container-org1a41d2d" class="outline-3">
-<h3 id="org1a41d2d"><span class="section-number-3">1.3.</span> Paged Virtual Address Space</h3>
+<div id="outline-container-org5c7e1ee" class="outline-3">
+<h3 id="org5c7e1ee"><span class="section-number-3">1.3.</span> Paged Virtual Address Space</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
-We can also break the entire virtual address space for our program into equal sized chunks (i.e. pages), with each page having its own base. To prevent fragmentation, these page sizes are usually small (e.g. 1K-4K). The processor translates each virtual address according to the bases stored in a <a href="COMPSCI_61C/virtual_memory.html#org2b92566">page table</a>. Each process has its own page table in physical memory, and is pointed to by the page table base register (PTBR).
+We can also break the entire virtual address space for our program into equal sized chunks (i.e. pages), with each page having its own base. To prevent fragmentation, these page sizes are usually small (e.g. 1K-4K). The processor translates each virtual address according to the bases stored in a <a href="COMPSCI_61C/virtual_memory.html#org2b92566">page table</a>. Each process has its own page table in physical (kenel) memory, and is pointed to by the page table base register (PTBR).
+</p>
+
+<p>
+A problem is depending on how much memory we have and how big each page is, our page table can become very large per process. Say the offset is 12 bits, then a 64-bit address space has a total of \(2^52\) with 8 bytes each, which comes out to 36 exabytes: a ridiculous amount of memory. Additionally, a lot of our page table is <i>sparse</i>, which means that many of the entries are unused.
+</p>
+
+<p>
+A solution is to use a <b>multi-level page table</b>:
+</p>
+
+
+<div id="orga71743e" class="figure">
+<p><img src="../static/COMPSCI_162/memory3.png" alt="memory3.png" />
+</p>
+</div>
+
+<p>
+Each page table is the size of a page. Only the top-level page table needs to be filled out; lower levels of the tree only need to be allocated if those portions of the virtual address space are in use.
+</p>
+
+<p>
+Some processors (e.g. PowerPC, UltraSPARC, IA64) also use a <i>hash table</i> instead of a multi-level page table, and this is often called a <b>inverted page table</b> (as opposed to forward page tables seen previously). This size is independent of virtual address space and is directly related to the amount of physical memory. A downside, however, is the complexity of managing hash chains in hardware.
+</p>
+</div>
+</div>
+<div id="outline-container-org2f68cb4" class="outline-3">
+<h3 id="org2f68cb4"><span class="section-number-3">1.4.</span> Translation Lookaside Buffer</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Memory address translation is accomplished by the <b>memory management unit</b>, or MMU. The MMU must attempt to translate virtual addresses to physical addresses on every instruction fetch, every load, every store. It generates a &ldquo;page fault&rdquo; (trap) if it encounters an invalid page table entry. The MMU must do a page table tree traversal to translate each address, which turns a potentially fast memory access into a slow multi-access table traversal.
+</p>
+
+<p>
+The solution is to <a href="../COMPSCI_61C/caches.html#orgbbc22b9">cache</a> translations in a <b>translation lookaside buffer</b> (TLB). The TLB is a small hardware table the contains the results of the most recent address translations, mapping a virtual page to a physical page.
 </p>
 </div>
 </div>
@@ -174,7 +241,7 @@ We can also break the entire virtual address space for our program into equal si
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-10-13 15:27
+               Last modified: 2026-10-15 15:30
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
