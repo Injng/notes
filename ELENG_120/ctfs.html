@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-10-26 Mon 12:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CTFS</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/ELENG_120/index.html">ELENG 120</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">CTFS</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0b14e17">1. Continuous-Time Fourier Series</a>
+<ul>
+<li><a href="#org47b1c2d">1.1. Synthesis Equation</a></li>
+<li><a href="#org40528dc">1.2. Orthogonality</a></li>
+<li><a href="#org4ff742c">1.3. Analysis Equation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0b14e17" class="outline-2">
+<h2 id="org0b14e17"><span class="section-number-2">1.</span> Continuous-Time Fourier Series</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The <b>continuous-time Fourier series</b>, or <b>CTFS</b>, is the continuous-time counterpart to the <a href="../EECS_16A/dtfs.html#org38cd545">DTFS</a>.
+</p>
+</div>
+<div id="outline-container-org47b1c2d" class="outline-3">
+<h3 id="org47b1c2d"><span class="section-number-3">1.1.</span> Synthesis Equation</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+If \(x(t+p)=x(t) \forall t \in \mathbb{R} \exists p > 0\), then the <b>synthesis equation</b> for CTFS is:
+</p>
+
+\begin{align}
+\boxed{x(t) = \sum_{k=-\infty}^{\infty}X_k \psi_k(t)}
+\end{align}
+
+<p>
+where \(\psi_k(t) = e^{ik\omega_0 t}\). Note that the only frequencies that can participate in the signal are \(\dots , -k\omega_0 , \dots , -2\omega_0 , -\omega_0 , 0 , \omega_0 , 2\omega_0 , \dots , k\omega_0 , \dots\).
+</p>
+
+<p>
+There are two counter-intuitive aspects here: one, \(x\) has an uncountably infinite set of points, but we can represent it with a countably infinite set of coefficents. Two, we can represent potentially discontinuous functions (e.g. the square wave) with complex exponentials that are infinitely differentiable.
+</p>
+</div>
+</div>
+<div id="outline-container-org40528dc" class="outline-3">
+<h3 id="org40528dc"><span class="section-number-3">1.2.</span> Orthogonality</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+We wish to establish the orthogonality of each of \(\psi_k\). We live in the vector space of CT p-periodic signals, so we define the inner product as
+</p>
+
+\begin{align}
+\langle f, g \rangle &= \int_0^p f(t) g^*(t) \text{ d}t \notag \\
+&= \int_{\langle p \rangle} f(t)g^*(t)\text{ d}t \notag
+\end{align}
+
+<p>
+So if \(\psi_k(t) = e^{ik\omega_0t}\), 
+</p>
+
+\begin{align}
+\langle \psi_k, \psi_l \rangle &= \int_{\langle p \rangle} e^{ik\omega_0 t}e^{-il\omega_0 t} \text{ d}t \notag \\
+&= \int_0^p e^{i(k-l)\omega_0 t}\text{ d}t \notag
+\end{align}
+
+<p>
+<i>Case (i): \(k = l\)</i>
+</p>
+
+<p>
+Then we have:
+</p>
+
+\begin{align}
+\langle \psi_k, \psi_l \rangle = \int_0^p \text{ d}t = p \notag
+\end{align}
+
+<p>
+<i>Case (ii): \(k \neq l\)</i>
+</p>
+
+<p>
+Then we have:
+</p>
+
+\begin{align}
+\langle \psi_k, \psi_l \rangle = \int_0^p \cos\left[(k-l)\omega_0t\right]\text{ d}t + i\int_0^p\sin\left[(k-l)\omega_0t\right]\text{ d}t \notag
+\end{align}
+
+<p>
+We are now integrating cosine and sine over an integer multiple \(k-l\) of its period, which means it is zero. Thus, the basis frequencies are orthogonal.
+</p>
+</div>
+</div>
+<div id="outline-container-org4ff742c" class="outline-3">
+<h3 id="org4ff742c"><span class="section-number-3">1.3.</span> Analysis Equation</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Finally, to get the <b>analysis equation</b>, we can write \(X_k\) as a projection of \(x\) onto \(\psi_k\):
+</p>
+
+\begin{align}
+X_k &= \frac{\langle x, \psi_k \rangle}{\langle \psi_k, \psi_k \rangle} \notag \\
+&= \frac{1}{p} \int_{\langle p \rangle} x(t) \psi_k^*(t)\text{ d}t \notag \\
+&= \frac{1}{p} \int_{\langle p \rangle} x(t) e^{-ik\omega_0t}\text{ d}t \notag
+\end{align}
+
+<p>
+Thus, the analysis equation for CTFS is:
+</p>
+
+\begin{align}
+\boxed{X_k = \frac{1}{p}\int_{\langle p \rangle}x(t)e^{-ik\omega_0t}\text{ d}t}
+\end{align}
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-10-26 12:16
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>

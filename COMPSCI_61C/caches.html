@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-07-29 Wed 13:03 -->
+<!-- 2026-10-26 Mon 12:16 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Caches</title>
@@ -127,33 +127,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org1cef676">1. Memory Hierarchy</a></li>
-<li><a href="#orgf6ebb51">2. Caching</a>
+<li><a href="#org8555ce0">1. Memory Hierarchy</a></li>
+<li><a href="#org9e8c5bd">2. Caching</a>
 <ul>
-<li><a href="#org853bdad">2.1. Blocks</a></li>
+<li><a href="#org7b5273a">2.1. Blocks</a></li>
+<li><a href="#org322ac62">2.2. Cache Misses</a></li>
 </ul>
 </li>
-<li><a href="#orgc968ce6">3. Fully Associative Caches</a>
+<li><a href="#org7803ff7">3. Fully Associative Caches</a>
 <ul>
-<li><a href="#org3569f81">3.1. Eviction Policies</a></li>
+<li><a href="#org92b6c90">3.1. Eviction Policies</a></li>
 </ul>
 </li>
-<li><a href="#org6b36366">4. Direct-Mapped Cache</a>
+<li><a href="#org4faa4df">4. Direct-Mapped Cache</a>
 <ul>
-<li><a href="#orge6d0de9">4.1. Thrashing</a></li>
+<li><a href="#org1cd96d5">4.1. Thrashing</a></li>
 </ul>
 </li>
-<li><a href="#org5cb9a24">5. Set Associative Cache</a></li>
-<li><a href="#org6826263">6. Write Policies</a></li>
-<li><a href="#org3db84de">7. Multilevel Caches</a></li>
+<li><a href="#org5fbafa5">5. Set Associative Cache</a></li>
+<li><a href="#org11ad8c6">6. Write Policies</a></li>
+<li><a href="#org7861e93">7. Multilevel Caches</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org1cef676" class="outline-2">
-<h2 id="org1cef676"><span class="section-number-2">1.</span> Memory Hierarchy</h2>
+<div id="outline-container-org8555ce0" class="outline-2">
+<h2 id="org8555ce0"><span class="section-number-2">1.</span> Memory Hierarchy</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-For <a href="processors.html#org22e70ff">main memory</a>, we use <b>dynamic random-access memory</b> (DRAM). The latency to access first words is moderately fast (~30-40 processor cycles). However, data is impermanent: capacitors are used to store bits, so when power is removed, we lose data.
+For <a href="processors.html#org460a5a9">main memory</a>, we use <b>dynamic random-access memory</b> (DRAM). The latency to access first words is moderately fast (~30-40 processor cycles). However, data is impermanent: capacitors are used to store bits, so when power is removed, we lose data.
 </p>
 
 <p>
@@ -170,7 +171,7 @@ As a general rule of thumb, the runtime cost of operations are as follows:
 <ul class="org-ul">
 <li>File operations are extremely slow since they must read/write from the disk</li>
 <li>Memory operations are ~100x faster than file operations since they use RAM</li>
-<li>Branches and jumps take ~5 cycles due to <a href="processors.html#org14eee83">control hazards</a></li>
+<li>Branches and jumps take ~5 cycles due to <a href="processors.html#org6a38b76">control hazards</a></li>
 <li>Arithmetic operations are the fastest, taking ideally 1 cycle</li>
 </ul>
 
@@ -188,8 +189,8 @@ If registers are what you store in your brain, then proportionally:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf6ebb51" class="outline-2">
-<h2 id="orgf6ebb51"><span class="section-number-2">2.</span> Caching</h2>
+<div id="outline-container-org9e8c5bd" class="outline-2">
+<h2 id="org9e8c5bd"><span class="section-number-2">2.</span> Caching</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 To speed up memory access, we can use <b>caches</b>. Using the library analogy, instead of going to the library each time to retrieve information, we can <i>borrow some books</i> to store at home. The idea is that if you use a book once, chances are you will use it again. If we need another book, we borrow another one without returning earlier books until your bookshelf is too full to carry more books.
@@ -207,8 +208,8 @@ The <b>hit rate</b> of a cache is the percentage of accesses that result in a hi
 Caching is only useful if you can predict what memory a program will access soon. If a program uses completely random memory accesses, caches are guaranteed (on average) to slow down access times! Thus, can we predict future memory accesses given the most recent memory accesses?
 </p>
 </div>
-<div id="outline-container-org853bdad" class="outline-3">
-<h3 id="org853bdad"><span class="section-number-3">2.1.</span> Blocks</h3>
+<div id="outline-container-org7b5273a" class="outline-3">
+<h3 id="org7b5273a"><span class="section-number-3">2.1.</span> Blocks</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 We can observe a phenomenon called <b>temporal locality</b>: if a memory location is referenced then it will tend to be referenced again soon.
@@ -223,9 +224,24 @@ Therefore, we want to move <b>blocks</b> consisting of contiguous words instead 
 </p>
 </div>
 </div>
+<div id="outline-container-org322ac62" class="outline-3">
+<h3 id="org322ac62"><span class="section-number-3">2.2.</span> Cache Misses</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+We can categorize the source of cache misses into the following overarching categories:
+</p>
+
+<ol class="org-ol">
+<li><b>Compulsory misses</b>: the first access to a block; not a whole lot you can do unless you prefetch.</li>
+<li><b>Capacity misses:</b> cache cannot contain all blocks accessed by the program.</li>
+<li><b>Conflict misses</b>: happens when two memory locations are mapped to the same slot in the cache, which occurs with direct-mapped and set-associative caches.</li>
+<li><b>Coherence misses</b>: another process (in a multi-processor system) updates its memory, wchih invalidates the cache of the current process.</li>
+</ol>
 </div>
-<div id="outline-container-orgc968ce6" class="outline-2">
-<h2 id="orgc968ce6"><span class="section-number-2">3.</span> Fully Associative Caches</h2>
+</div>
+</div>
+<div id="outline-container-org7803ff7" class="outline-2">
+<h2 id="org7803ff7"><span class="section-number-2">3.</span> Fully Associative Caches</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 A <b>fully associative cache</b> is parametrized on two aspects: the block size, and the number of blocks that can be stored in the cache. When a memory access occurs:
@@ -242,7 +258,7 @@ A fully associative cache stores cache tags that identify which block of memory 
 </p>
 
 <figure class="tikz-figure"><?xml version='1.0' encoding='UTF-8'?>
-<!-- This file was generated by dvisvgm 3.6 -->
+<!-- This file was generated by dvisvgm 3.6.1 -->
 <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='227.432072pt' height='109.217621pt' viewBox='-66.795522 -66.686316 227.432072 109.217621'>
 <defs>
 <path id='g0-45' d='M3.756912-2.402989C3.855542-2.402989 4.196264-2.402989 4.196264-2.734745C4.196264-3.075467 3.864508-3.075467 3.756912-3.075467H.941469C.842839-3.075467 .502117-3.075467 .502117-2.743711C.502117-2.402989 .833873-2.402989 .941469-2.402989H3.756912Z'/>
@@ -423,8 +439,8 @@ When reading memory, 3 things can happen:
 A cache is considered <b>cold</b> if it doesn&rsquo;t have valid data in it, and <b>hot</b> if it has valid data with a high ratio of cache hits.
 </p>
 </div>
-<div id="outline-container-org3569f81" class="outline-3">
-<h3 id="org3569f81"><span class="section-number-3">3.1.</span> Eviction Policies</h3>
+<div id="outline-container-org92b6c90" class="outline-3">
+<h3 id="org92b6c90"><span class="section-number-3">3.1.</span> Eviction Policies</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 When a cache gets full, we need to follow an <b>eviction policy</b> to determine what data to evict in order to make space for more data. We have the following eviction policies to choose from:
@@ -446,8 +462,8 @@ When a cache gets full, we need to follow an <b>eviction policy</b> to determine
 </div>
 </div>
 </div>
-<div id="outline-container-org6b36366" class="outline-2">
-<h2 id="org6b36366"><span class="section-number-2">4.</span> Direct-Mapped Cache</h2>
+<div id="outline-container-org4faa4df" class="outline-2">
+<h2 id="org4faa4df"><span class="section-number-2">4.</span> Direct-Mapped Cache</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 While nice, an actual implementation of a fully associative cache is complicated and requires a lot of circuitry. The main problem is that any slot in our cache could store our data, so we need to check all spots.
@@ -465,8 +481,8 @@ A memory address can be divided into a <b>tag</b>, and <b>index</b>, and an <b>o
 Notice that we do not need an eviction policy since there is only one place our block can go.
 </p>
 </div>
-<div id="outline-container-orge6d0de9" class="outline-3">
-<h3 id="orge6d0de9"><span class="section-number-3">4.1.</span> Thrashing</h3>
+<div id="outline-container-org1cd96d5" class="outline-3">
+<h3 id="org1cd96d5"><span class="section-number-3">4.1.</span> Thrashing</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 If we access two distinct segments of memory that are aligned, we end up continuously evicting blocks. This is known as <b>thrashing</b>, and causes a significant increase in misses.
@@ -474,8 +490,8 @@ If we access two distinct segments of memory that are aligned, we end up continu
 </div>
 </div>
 </div>
-<div id="outline-container-org5cb9a24" class="outline-2">
-<h2 id="org5cb9a24"><span class="section-number-2">5.</span> Set Associative Cache</h2>
+<div id="outline-container-org5fbafa5" class="outline-2">
+<h2 id="org5fbafa5"><span class="section-number-2">5.</span> Set Associative Cache</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Direct-mapped caches thrash a lot, but fully associative caches use a lot of comparators. To solve this, we can make a compromise by using a <b>N-way set associative cache</b>.
@@ -486,8 +502,8 @@ A set-associative cache can be thought of as a set of multiple direct-mapped cac
 </p>
 </div>
 </div>
-<div id="outline-container-org6826263" class="outline-2">
-<h2 id="org6826263"><span class="section-number-2">6.</span> Write Policies</h2>
+<div id="outline-container-org11ad8c6" class="outline-2">
+<h2 id="org11ad8c6"><span class="section-number-2">6.</span> Write Policies</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 When we write data to memory, we have two policies that we can use to govern the write:
@@ -503,8 +519,8 @@ The write-back policy is much faster than write-through, but it is also more com
 </p>
 </div>
 </div>
-<div id="outline-container-org3db84de" class="outline-2">
-<h2 id="org3db84de"><span class="section-number-2">7.</span> Multilevel Caches</h2>
+<div id="outline-container-org7861e93" class="outline-2">
+<h2 id="org7861e93"><span class="section-number-2">7.</span> Multilevel Caches</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 With one cache, if we get a cache hit, then we get fast access; if we get a cache miss, we get slow access. The problem is that hit rate scales with access time: the higher the hit rate we want, the slower we&rsquo;ll end up making cache accesses (e.g. larger cache means more places to search).
@@ -522,7 +538,7 @@ A solution is to add <i>multiple layers of caches</i>, with each layer being lar
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-07-28 15:11
+               Last modified: 2026-10-20 14:15
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
