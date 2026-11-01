@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-10-26 Mon 12:16 -->
+<!-- 2026-10-31 Sat 17:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Memory</title>
@@ -127,46 +127,47 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgdab7115">1. Address Translation</a>
+<li><a href="#org7d518f1">1. Address Translation</a>
 <ul>
-<li><a href="#org3a95dcc">1.1. Base and Bound</a></li>
-<li><a href="#org27ae963">1.2. Segmented Memory</a></li>
-<li><a href="#org962a656">1.3. Paged Virtual Address Space</a>
+<li><a href="#org924cad0">1.1. Base and Bound</a></li>
+<li><a href="#orgd5e3fcd">1.2. Segmented Memory</a></li>
+<li><a href="#org9515cd3">1.3. Paged Virtual Address Space</a>
 <ul>
-<li><a href="#orgc731840">1.3.1. Page Table Entries</a></li>
+<li><a href="#org7a15a14">1.3.1. Page Table Entries</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org5e60c31">2. Translation Lookaside Buffer</a>
+<li><a href="#orgc7a3c27">2. Translation Lookaside Buffer</a>
 <ul>
-<li><a href="#org5dc477b">2.1. Page Faults</a></li>
+<li><a href="#org7d200fc">2.1. Page Faults</a></li>
 </ul>
 </li>
-<li><a href="#org0ad1142">3. Demand Paging</a></li>
-<li><a href="#org9b736df">4. Page Replacement Policies</a>
+<li><a href="#org68cb724">3. Demand Paging</a></li>
+<li><a href="#org7e8b645">4. Page Replacement Policies</a>
 <ul>
-<li><a href="#org8a4b54a">4.1. Clock Algorithm</a></li>
-<li><a href="#org5a149aa">4.2. Reverse Page Mapping</a></li>
+<li><a href="#orgf0dce5f">4.1. Clock Algorithm</a></li>
+<li><a href="#orgb2572e3">4.2. Reverse Page Mapping</a></li>
 </ul>
 </li>
-<li><a href="#org3af7fdf">5. Page Allocation</a></li>
+<li><a href="#orgd65df34">5. Page Allocation</a></li>
+<li><a href="#orga53880c">6. Meltdown</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdab7115" class="outline-2">
-<h2 id="orgdab7115"><span class="section-number-2">1.</span> Address Translation</h2>
+<div id="outline-container-org7d518f1" class="outline-2">
+<h2 id="org7d518f1"><span class="section-number-2">1.</span> Address Translation</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org3a95dcc" class="outline-3">
-<h3 id="org3a95dcc"><span class="section-number-3">1.1.</span> Base and Bound</h3>
+<div id="outline-container-org924cad0" class="outline-3">
+<h3 id="org924cad0"><span class="section-number-3">1.1.</span> Base and Bound</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 We can define a block of memory a program can use using a <b>base</b> address and a <b>bound</b> offset/size. The virtual address space of the program starts at zero, so our OS can translate on-the-fly these addresses by adding them to our base address. Protection is done by ensuring that our addresses never exceed the bound:
 </p>
 
 
-<div id="org2b85d95" class="figure">
+<div id="orge1c23fc" class="figure">
 <p><img src="../static/COMPSCI_162/memory1.png" alt="memory1.png" />
 </p>
 </div>
@@ -176,15 +177,15 @@ Base and bound has several problems, however. Base and bound is wasteful, as it 
 </p>
 </div>
 </div>
-<div id="outline-container-org27ae963" class="outline-3">
-<h3 id="org27ae963"><span class="section-number-3">1.2.</span> Segmented Memory</h3>
+<div id="outline-container-orgd5e3fcd" class="outline-3">
+<h3 id="orgd5e3fcd"><span class="section-number-3">1.2.</span> Segmented Memory</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Instead of just having one base and bound for a program, the hardware can support an array of pairs of base and bounds for each program. This is called <b>segmentation</b> since we can split our virtual memory into several <i>segments</i>. The higher order bits of the virtual address are used to index into the array:<abbr class="tooltip" title="in x86, this information can also be encoded in the instruction itself">°</abbr>&emsp13;
 </p>
 
 
-<div id="orgbad3fb5" class="figure">
+<div id="orgb43e05d" class="figure">
 <p><img src="../static/COMPSCI_162/memory2.png" alt="memory2.png" />
 </p>
 </div>
@@ -202,8 +203,8 @@ However, the principal downside of segmentation is the overhead of managing many
 </p>
 </div>
 </div>
-<div id="outline-container-org962a656" class="outline-3">
-<h3 id="org962a656"><span class="section-number-3">1.3.</span> Paged Virtual Address Space</h3>
+<div id="outline-container-org9515cd3" class="outline-3">
+<h3 id="org9515cd3"><span class="section-number-3">1.3.</span> Paged Virtual Address Space</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 We can also break the entire virtual address space for our program into equal sized chunks (i.e. pages), with each page having its own base. To prevent fragmentation, these page sizes are usually small (e.g. 1K-4K). The processor translates each virtual address according to the bases stored in a <a href="COMPSCI_61C/virtual_memory.html#org2b92566">page table</a>. Each process has its own page table in physical (kenel) memory, and is pointed to by the page table base register (PTBR).
@@ -218,7 +219,7 @@ A solution is to use a <b>multi-level page table</b>:
 </p>
 
 
-<div id="orge67e165" class="figure">
+<div id="org5a5c78e" class="figure">
 <p><img src="../static/COMPSCI_162/memory3.png" alt="memory3.png" />
 </p>
 </div>
@@ -231,8 +232,8 @@ Each page table is the size of a page. Only the top-level page table needs to be
 Some processors (e.g. PowerPC, UltraSPARC, IA64) also use a <i>hash table</i> instead of a multi-level page table, and this is often called a <b>inverted page table</b> (as opposed to forward page tables seen previously). This size is independent of virtual address space and is directly related to the amount of physical memory. A downside, however, is the complexity of managing hash chains in hardware.
 </p>
 </div>
-<div id="outline-container-orgc731840" class="outline-4">
-<h4 id="orgc731840"><span class="section-number-4">1.3.1.</span> Page Table Entries</h4>
+<div id="outline-container-org7a15a14" class="outline-4">
+<h4 id="org7a15a14"><span class="section-number-4">1.3.1.</span> Page Table Entries</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 A <b>page table entry</b> (PTE) is a pointer to the next-level page table or to an actual page. It consists of the pointer as well as several different status bits, depending on the architecture:
@@ -249,8 +250,8 @@ A <b>page table entry</b> (PTE) is a pointer to the next-level page table or to 
 </div>
 </div>
 </div>
-<div id="outline-container-org5e60c31" class="outline-2">
-<h2 id="org5e60c31"><span class="section-number-2">2.</span> Translation Lookaside Buffer</h2>
+<div id="outline-container-orgc7a3c27" class="outline-2">
+<h2 id="orgc7a3c27"><span class="section-number-2">2.</span> Translation Lookaside Buffer</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 Memory address translation is accomplished by the <b>memory management unit</b>, or MMU. The MMU must attempt to translate virtual addresses to physical addresses on every instruction fetch, every load, every store. It generates a &ldquo;page fault&rdquo; (trap) if it encounters an invalid page table entry. The MMU must do a page table tree traversal to translate each address, which turns a potentially fast memory access into a slow multi-access table traversal.
@@ -265,7 +266,7 @@ Oftentimes, the TLB is placed in serial with the cache lookup. This is called a 
 </p>
 
 
-<div id="org4780245" class="figure">
+<div id="orgf6741fe" class="figure">
 <p><img src="../static/COMPSCI_162/memory4.png" alt="memory4.png" />
 </p>
 </div>
@@ -278,15 +279,15 @@ What structure for the TLB cache makes sense? Since the TLB is in the critical p
 We also must consider what we do to the TLB on a context switch. Since the virtual address space changes when we change processes, the entries in the TLB are no longer valid. We can invalidate (or flush) the TLB when we context switch, but this may be expensive if we are switching processes constantly.
 </p>
 </div>
-<div id="outline-container-org5dc477b" class="outline-3">
-<h3 id="org5dc477b"><span class="section-number-3">2.1.</span> Page Faults</h3>
+<div id="outline-container-org7d200fc" class="outline-3">
+<h3 id="org7d200fc"><span class="section-number-3">2.1.</span> Page Faults</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 These are the steps in handling a page fault:
 </p>
 
 
-<div id="org315fa03" class="figure">
+<div id="orgc15ecd7" class="figure">
 <p><img src="../static/COMPSCI_162/memory5.png" alt="memory5.png" />
 </p>
 </div>
@@ -297,16 +298,16 @@ A <b>precise</b> exception point is where the state of the machine is preserved 
 </div>
 </div>
 </div>
-<div id="outline-container-org0ad1142" class="outline-2">
-<h2 id="org0ad1142"><span class="section-number-2">3.</span> Demand Paging</h2>
+<div id="outline-container-org68cb724" class="outline-2">
+<h2 id="org68cb724"><span class="section-number-2">3.</span> Demand Paging</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Modern programs require a lot of physical memory, but they don&rsquo;t use all their memory all of the time: it is wasteful to require all of user&rsquo;s code to be in memory. <b>Demand paging</b> is the idea that we can use memory as a &ldquo;cache&rdquo; for disk: on program startup, we don&rsquo;t load all of a program&rsquo;s instructions into memory, just the ones we need right now. If we access a part that is not loaded, we handle it with a page fault and &ldquo;cache&rdquo; it into our memory.
 </p>
 </div>
 </div>
-<div id="outline-container-org9b736df" class="outline-2">
-<h2 id="org9b736df"><span class="section-number-2">4.</span> Page Replacement Policies</h2>
+<div id="outline-container-org7e8b645" class="outline-2">
+<h2 id="org7e8b645"><span class="section-number-2">4.</span> Page Replacement Policies</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li><b>First-In First-Out</b> (FIFO): replace the oldest page in the table. However, this throwse out havily used pages instead of infrequently used ones.</li>
@@ -327,8 +328,8 @@ We also can&rsquo;t use MIN, since it requires the future. That leaves us with L
 To implement LRU, use a list. On each use, remove the page from the list and place it at the head. Then, the LRU page is at the tail of the list. But realize now that every load or store now requires many loads and stores to keep track of the list.
 </p>
 </div>
-<div id="outline-container-org8a4b54a" class="outline-3">
-<h3 id="org8a4b54a"><span class="section-number-3">4.1.</span> Clock Algorithm</h3>
+<div id="outline-container-orgf0dce5f" class="outline-3">
+<h3 id="orgf0dce5f"><span class="section-number-3">4.1.</span> Clock Algorithm</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Instead, we can <i>approximate LRU using status bits</i> using the <b>clock algorithm</b>. The &ldquo;hand&rdquo; of the clock advances only on page fault: it advances around a circular buffer, checking for the use bit. We know that the hardware sets the <i>accessed</i> or <i>use</i> bit to 1 on each reference; therefore, if the use bit isn&rsquo;t set, then that means it hasn&rsquo;t been referenced in a long time. If the use bit is 0, it becomes a candidate for us to replace.
@@ -347,8 +348,8 @@ But do we need the dirty bit? An alternative is to use the writable bit as a pro
 </p>
 </div>
 </div>
-<div id="outline-container-org5a149aa" class="outline-3">
-<h3 id="org5a149aa"><span class="section-number-3">4.2.</span> Reverse Page Mapping</h3>
+<div id="outline-container-orgb2572e3" class="outline-3">
+<h3 id="orgb2572e3"><span class="section-number-3">4.2.</span> Reverse Page Mapping</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 Evicting a page frame becomes hard in the presence of shared pages: given a physical page, you must find all the page tables where it is referenced and mark it as invalid. Thus, the <i>reverse mapping mechanism</i> must be very fast.
@@ -356,8 +357,8 @@ Evicting a page frame becomes hard in the presence of shared pages: given a phys
 </div>
 </div>
 </div>
-<div id="outline-container-org3af7fdf" class="outline-2">
-<h2 id="org3af7fdf"><span class="section-number-2">5.</span> Page Allocation</h2>
+<div id="outline-container-orgd65df34" class="outline-2">
+<h2 id="orgd65df34"><span class="section-number-2">5.</span> Page Allocation</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 How do we allocate memory among our different processes? Each process needs some number of minimum frames to make forward progress. Some schemes we can use:
@@ -374,6 +375,27 @@ If a process does not have &ldquo;enough&rdquo; pages, the page-fault rate is ve
 </p>
 </div>
 </div>
+<div id="outline-container-orga53880c" class="outline-2">
+<h2 id="orga53880c"><span class="section-number-2">6.</span> Meltdown</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+The Meltdown vulnerability was announced in 2018 and affected Intel x86, IBM Power, and ARM processors. It exploited speculative execution to observe contents of kernel memory:
+</p>
+
+<pre><code class="language-c"><span style="color: #f9e2af;">uchar</span> <span style="color: #cdd6f4;">array</span><span style="color: #f38ba8;">[</span>256 * 4096<span style="color: #f38ba8;">]</span>;  <span style="color: #6c7086;">// </span><span style="color: #6c7086;">set up side channel (array flushed from cache)
+</span><span style="color: #89b4fa;">flush</span><span style="color: #f38ba8;">(</span><span style="color: #f9e2af;">array</span><span style="color: #f38ba8;">)</span>;             <span style="color: #6c7086;">// </span><span style="color: #6c7086;">make sure array out of cache
+</span>
+try <span style="color: #f38ba8;">{</span>   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">catch and ignore SIGSEGV (illegal access)
+</span>  <span style="color: #f9e2af;">uchar</span> <span style="color: #cdd6f4;">result</span> = *<span style="color: #fab387;">(</span><span style="color: #f9e2af;">uchar</span> *<span style="color: #fab387;">)</span><span style="color: #f9e2af;">kernel</span> <span style="color: #cdd6f4;">address</span>;   <span style="color: #6c7086;">// </span><span style="color: #6c7086;">try to access kernel memory
+</span>  <span style="color: #f9e2af;">uchar</span> <span style="color: #cdd6f4;">dummy</span> = array<span style="color: #fab387;">[</span>result * 4096<span style="color: #fab387;">]</span>;        <span style="color: #6c7086;">// </span><span style="color: #6c7086;">leak info
+</span><span style="color: #f38ba8;">}</span> <span style="color: #89b4fa;">catch</span><span style="color: #f38ba8;">()</span> <span style="color: #f38ba8;">{</span>;<span style="color: #f38ba8;">}</span>
+</code></pre>
+
+<p>
+Out of order execution means that the array will be accessed using kernel memory before we actually check access, and the cache will be changed to reflect that. We can then time array accesses to see which one is faster: the faster access meant that the index was loaded into cache, and that index was the byte loaded from kernel memory. The user never actually gets to see <code>result</code>, but we use a <i>timing side channel</i> to detect it regardless.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -381,7 +403,7 @@ If a process does not have &ldquo;enough&rdquo; pages, the page-fault rate is ve
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-10-22 15:21
+               Last modified: 2026-10-27 14:31
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

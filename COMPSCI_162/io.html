@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-10-31 Sat 17:56 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Input/Output</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/COMPSCI_162/index.html">COMPSCI 162</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">Input/Output</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org8db47c5">1. Hard Disk Drives (HDD)</a>
+<ul>
+<li><a href="#orgf4a28ba">1.1. Shingled Magnetic Recording</a></li>
+<li><a href="#orgbc3ee2d">1.2. Performance</a></li>
+<li><a href="#org0ce1d0a">1.3. Disk Controller</a></li>
+<li><a href="#org672977b">1.4. Disk Scheduling</a></li>
+</ul>
+</li>
+<li><a href="#orgdcc1586">2. Solid State Disks (SSD)</a></li>
+</ul>
+</div>
+</div>
+<p>
+Without I/O, computers are useless. But, we have thousands of devices, each slightly different: how can we standardize access to these devices? Devices are also unreliable and inconsistent.
+</p>
+
+<p>
+I/O devices you recognize are supported by I/O controllers. Processors read and write from them using I/O registers.
+</p>
+
+<p>
+What&rsquo;s a bus?
+A common set of wires for communication among hardware devices, plus protocols for carrying out transactions. 
+</p>
+
+<p>
+PCI bus:
+PCI started as a parallel bus: for a 32-bit system, it had 32 address wires, 32 data wires, and power lines. PCI Express (PCIe) however is no longer a parallel bus, but rather a collection of fast serial channels or &ldquo;lanes.&rdquo; Devices can use as many serial channels as they need to achieve a desired bandwidth.
+</p>
+
+
+<p>
+CPU interacts with a <i>controller</i>. The Controller contains a set of registers that can be read and written, and may contain memory for request queues, etc. Processor can access these registers in two ways: port-mapped i/o (in, out instructions) and memory-mapped i/o (registers/memory appear in physical address space, use load and store instructions).
+</p>
+
+<p>
+Operational parameters for i/o:
+Data granularity: byte vs block. Keyboard, mice, provide single byte at a time. Others like disks, networks, provide blocks at a time.
+Access pattern: sequential vs random. Some devices must be accessed sequentially. Others can be accessed &ldquo;randomly&rdquo; (e.g. disk, cd, etc.) Some devices require continuous monitoring, others generate interrupts when they need service.
+Transfer mechanism: programmed I/O or DMA.
+</p>
+
+<p>
+Programmed I/O:
+each byte is transferred via processor in/out or load/store. Pro: simple hardware, easy to program. Con: consumes processor cycles proportional to data size.
+</p>
+
+<p>
+Direct memory access:
+Give controller access to memory bus. Ask it to transfer data blcoks to/from memory directly.
+</p>
+
+<p>
+I/O interrupt:
+The OS needs to know when the I/O device has completed on operation or if it has encountered an error. The device generates an interrupt whenever it needs service. Pro is that it handle unpredictable events well. Con: interrupts have relatively high overhead.
+</p>
+
+<p>
+Alternative is polling: OS periodically checks a device specific status register. The pro is low overhead, but con is it may waste many cycles on polling if operations are infrequent or unpredictable.
+</p>
+
+<p>
+Want standard interface to devices:
+Block devices: e.g. disk drives, tape drives, DVD-ROM, access blocks of data
+Character devices: e.g. keyboards, mice, serial ports
+Network devices: e.g. Ethernet, wireless, Bluetooth
+</p>
+
+<p>
+Timing:
+blocking interface: &ldquo;wait&rdquo;
+non-blocking interface: &ldquo;don&rsquo;t wait&rdquo;
+asynchronous interface: &ldquo;tell me later&rdquo;
+</p>
+<div id="outline-container-org8db47c5" class="outline-2">
+<h2 id="org8db47c5"><span class="section-number-2">1.</span> Hard Disk Drives (HDD)</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<b>Hard disk drives</b> (HDDs) are an example of <i>magnetic</i> memory storage. An arm is held above a platter to read it:
+</p>
+
+
+<div id="org4f5b77f" class="figure">
+<p><img src="../static/COMPSCI_162/io1.png" alt="io1.png" />
+</p>
+</div>
+
+<p>
+A <b>platter</b> has two faces, and on each face are rings of <b>tracks</b>. Each track is comprised of a set of <b>sectors</b>, and two <b>arms</b> that can rotate into the correct position to hover above a track. The platter can then spin to position the correct sector underneath the arms.
+</p>
+
+<p>
+The unit of transfer here is the sector, which are traditionally 512 bytes large (or 4096 bytes on some recent units). Disk tracks are about 1 micron wide, with about 100k tracks on a typical 2.5 inch disk. Each sector is separated by unused guard regions to reduce likelihood of write corrupting adjacent sectors.
+</p>
+
+<p>
+For the operating system, the unit of transfer is often a &ldquo;block&rdquo; instead, which is usually a group of sectors. The block is usually defined equivalent to how large a physical page in memory is.
+</p>
+</div>
+<div id="outline-container-orgf4a28ba" class="outline-3">
+<h3 id="orgf4a28ba"><span class="section-number-3">1.1.</span> Shingled Magnetic Recording</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+<b>Shingled magnetic recording</b> (SMR) is a technique used to overlap tracks in order to yield greater density of storage. Normally, <b>conventional magnetic recording</b> (CMR) is used, but with shingled recording, new tracks that are written overlap previously written tracks (similar to roof shingles). While this increases the density of data, it also makes writing to a track harder since it also overwrites adjacent tracks:
+</p>
+
+
+<div id="org6561ab9" class="figure">
+<p><img src="../static/COMPSCI_162/io2.png" alt="io2.png" />
+</p>
+</div>
+
+<p>
+Thus, a write to an SMR drive may trigger a cascade of rewrites down the line.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbc3ee2d" class="outline-3">
+<h3 id="orgbc3ee2d"><span class="section-number-3">1.2.</span> Performance</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Read/write data is a three-step process:
+</p>
+
+<ol class="org-ol">
+<li><b>Seek</b>: the head is positioned over the proper track.</li>
+<li><b>Rotate</b>: the platter rotates the desired sector underneath the head.</li>
+<li><b>Transfer</b>: transfer a block of bits (sectors) under the head.</li>
+</ol>
+
+<p>
+Thus, the total read/write time is a combination of these times plus your software and hardware controller times.
+</p>
+</div>
+</div>
+<div id="outline-container-org0ce1d0a" class="outline-3">
+<h3 id="org0ce1d0a"><span class="section-number-3">1.3.</span> Disk Controller</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Sector sparing: remap bad sectors transparently to spare sectors on the same surface
+Slip sparing: remap all sectors when there is a bad sector to preserve sequential behavior
+Track skewing: sector numbers offset from one track to the next to allow for disk head movement in sequential operations.
+</p>
+</div>
+</div>
+<div id="outline-container-org672977b" class="outline-3">
+<h3 id="org672977b"><span class="section-number-3">1.4.</span> Disk Scheduling</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Since disks can only service one request at a time, we have a number of options to schedule these requests:
+</p>
+
+<ul class="org-ul">
+<li><b>FIFO</b>: first in first out</li>
+<li><b>SPTF/SSTF</b>: shortest positioning time first/shortest seek time first — greedy algorithm, but can be susceptible to starvation.</li>
+<li><b>SCAN</b>: implements an <i>elevator algorithm</i> — take the closest request in the direction of travel.</li>
+<li><b>C-SCAN</b>: circular SCAN — only go in one direction, so as to not be biased towards pages in the middle.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdcc1586" class="outline-2">
+<h2 id="orgdcc1586"><span class="section-number-2">2.</span> Solid State Disks (SSD)</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b>Solid state disks</b> (SSDs) replace the rotating magnetic media with <i>flash memory</i>. Since flash memory has no moving parts, they are very lightweight; however, they are more expensive than magnetic media. One flash memory cell looks something like this:
+</p>
+
+
+<div id="org225bc62" class="figure">
+<p><img src="../static/COMPSCI_162/io3.png" alt="io3.png" />
+</p>
+</div>
+
+<p>
+There are two varieties: NAND, which is denser but must be read and written in blocks, and NOR, which is much less dense but fast to read and write.
+</p>
+
+<p>
+This device is like a normal transistor, however it adds a <i>floating gate</i> which is separated by insulators in order to hold charge. We can then take advantage of <i>electron tunneling</i> by raising or lowering the wordline high enough to read/write the gate.
+</p>
+
+<p>
+Data is read and written in page-sized chunks. Before writing to a page, data in the block must first be erased. The flash memory controller is responsible for controlling reads and writes to the flash chip. The SSD also maintains a <b>flash translation layer</b> (FTL) which is a layer of inderection between the operating system and the flash controller. The FTL gives us many features, such as copy-on-write and wear levelling.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-10-29 14:59
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
