@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-11-06 Fri 14:33 -->
+<!-- 2026-11-11 Wed 12:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Filesystems</title>
@@ -95,13 +95,19 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org440b39a">1. Filesystems</a></li>
-<li><a href="#org21d2672">2. Files and Directories</a></li>
+<li><a href="#org58a37f1">1. Filesystems</a></li>
+<li><a href="#org08799b2">2. File Allocation Table (FAT)</a></li>
+<li><a href="#org4ba8344">3. Berkeley Fast File System (FFS)</a>
+<ul>
+<li><a href="#org754508b">3.1. Linux Ext3</a></li>
+</ul>
+</li>
+<li><a href="#org5756724">4. Windows New Technology File System (NTFS)</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org440b39a" class="outline-2">
-<h2 id="org440b39a"><span class="section-number-2">1.</span> Filesystems</h2>
+<div id="outline-container-org58a37f1" class="outline-2">
+<h2 id="org58a37f1"><span class="section-number-2">1.</span> Filesystems</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>filesystem</b> is a layer of the operating system that transforms block interfaces of disks (or other block devices) into files, directories, etc. Specifically, we want to take the limited hardware interface of blocks and provide:
@@ -138,15 +144,89 @@ All of this also needs to be maintained somewhere on disk, since this metadata m
 </p>
 </div>
 </div>
-<div id="outline-container-org21d2672" class="outline-2">
-<h2 id="org21d2672"><span class="section-number-2">2.</span> Files and Directories</h2>
+<div id="outline-container-org08799b2" class="outline-2">
+<h2 id="org08799b2"><span class="section-number-2">2.</span> File Allocation Table (FAT)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-An open file description is better described as remembering its <b>inumber</b> (file number), not its file name. When we call <code>open()</code>, it performs <b>name resolution</b>: translating the file name to its inumber. Then, the inumber is an index into a file header structure describing the file, called the <b>inode</b>. The inode gives us all the information needed to find the file in the block structure. Open syscall will create an &ldquo;in-memory&rdquo; inode in the system-wide open file table, which is kind of like caching it in memory. A directory is basically a file containing file name to file number mappings.
+The <b>File Allocation Table</b> (or <b>FAT</b>) filesystem was first introduced for MS-DOS in 1977. We have some number of disk blocks, with each disk block corresponding to an entry in the file allocation table. In order to figure out which block corresponds to our file, we index into the FAT with a file number. The FAT is simply a linked list structure that then shows us the collection of blocks that make up our file:
+</p>
+
+
+<div id="org1a01e66" class="figure">
+<p><img src="../static/COMPSCI_162/filesystem1.png" alt="filesystem1.png" />
+</p>
+</div>
+
+<p>
+Note that files have no locality by default, so they become &ldquo;fragmented&rdquo; over time. The FAT is stored on disk.
 </p>
 
 <p>
-The <b>current working directory</b> is a per-address-space pointer to a directory used for resolving file names. This allows user to specify the relative filename instead of an absolute path.
+A directory is a file containing mappings between file names and file numbers. In FAT, file attributes (e.g. read only) are kept in the directory entry, and not associated with the file itself. This means that you can have two different directory entries pointing at the same file, but with different permissions.
+</p>
+</div>
+</div>
+<div id="outline-container-org4ba8344" class="outline-2">
+<h2 id="org4ba8344"><span class="section-number-2">3.</span> Berkeley Fast File System (FFS)</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The <b>Berkeley Fast File System</b> (or <b>FFS</b>) is the foundation of the modern <b>UNIX File System</b> (UFS), which is widely used across various BSD operating systems. The index structure is an array of <b>inodes</b>, with a file number (or <b>inumber</b>) an index into the array of inodes. Each inode corresponds to a file and <i>contains its metadata</i> (therefore things like read/write permissions are stored with the file, not the directory).
+</p>
+
+<p>
+The inode maintains a <i>fixed</i>, asymmetric multi-level tree structure to find storage blocks for files:
+</p>
+
+
+<div id="org9c581f4" class="figure">
+<p><img src="../static/COMPSCI_162/filesystem2.png" alt="filesystem2.png" />
+</p>
+</div>
+
+<p>
+Direct, single indirect, double indirect, and triple indirect pointers are used for increasing levels of file size.
+</p>
+
+<p>
+In early UNIX/DOS systems, headers were stored in a special array in the outermost cylinders of a disk. However, this meant all the inodes were in one place (which makes it susceptible to data loss).
+</p>
+
+<p>
+FFS distributes the header information (inodes) closer to the data blocks. Often, the inodes for the file are stored in the same &ldquo;cylinder group&rdquo; as the parent directory of the file (making an ls run really fast).
+</p>
+</div>
+<div id="outline-container-org754508b" class="outline-3">
+<h3 id="org754508b"><span class="section-number-3">3.1.</span> Linux Ext3</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The Linux <b>Ext3</b> (Third Extended) file system largely maintains the same inode structure as FFS, with some differences in file metadata. The difference between Ext3 and Ext2 is that Ext3 adopted <i>journaling</i>.
+</p>
+
+<p>
+A <b>hard link</b> is a mapping from a name to a file number in the directory structure. We can create extra hard links to a file with the <code>link()</code> system call, and remove links to a file with <code>unlink()</code>. The file contents are deleted once there are no more hard links to the file (the inode maintains reference counts for this purpose).
+</p>
+
+<p>
+A <b>soft link</b> (or <b>symbolic link</b>) is a mapping from a file name to another file name in the directory. The operating system looks up the destination file name each time the program accesses the source file name. In Unix, soft links are created with the <code>symlink()</code> system call.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5756724" class="outline-2">
+<h2 id="org5756724"><span class="section-number-2">4.</span> Windows New Technology File System (NTFS)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+The <b>New Technology File System</b> (or <b>NTFS</b>) is the default file system on modern Windows systems. NTFS uses <i>variable length extents</i> rather than fixed blocks for data. Instead of a FAT or inode relay, NTFS uses a <b>Master File Table</b> (MFT) which is like a database where each entry contains metadata, a file&rsquo;s data directly (for small files), a list of <b>extents</b> for the file&rsquo;s data, and/or pointers to other MFT entries with <i>more</i> extent lists:
+</p>
+
+
+<div id="orgd6ec561" class="figure">
+<p><img src="../static/COMPSCI_162/filesystem3.png" alt="filesystem3.png" />
+</p>
+</div>
+
+<p>
+Notice that for extents, the only information required is the pointer to the extent and a length. For a huge, badly-fragmented file, we may need many MFT records to keep track of all the extents that make up a file.
 </p>
 </div>
 </div>
@@ -157,7 +237,7 @@ The <b>current working directory</b> is a per-address-space pointer to a directo
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-11-03 15:24
+               Last modified: 2026-11-10 18:35
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

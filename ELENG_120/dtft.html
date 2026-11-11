@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-11-11 Wed 12:38 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DTFT</title>
+<meta name="generator" content="Org Mode" />
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+   <script src="/pagefind/pagefind-ui.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/scheme.min.js"></script>
+   <script src="/riscvasm.min.js"></script>
+   <link rel="stylesheet" href="//unpkg.com/@catppuccin/highlightjs@1.0.1/css/catppuccin-frappe.css">
+   <link rel="stylesheet" href="/style.css" type="text/css"/>
+   <script>hljs.highlightAll();</script>
+
+          <style>
+          /* From: https://endlessparentheses.com/public/css/endless.css */
+          /* See also: https://meta.superuser.com/questions/4788/css-for-the-new-kbd-style */
+          kbd
+          {
+            -moz-border-radius: 6px;
+            -moz-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            -webkit-border-radius: 6px;
+            -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            background-color: #f7f7f7;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.2),0 0 0 2px #fff inset;
+            color: #333;
+            display: inline-block;
+            font-family: 'Droid Sans Mono', monospace;
+            font-size: 80%;
+            font-weight: normal;
+            line-height: inherit;
+            margin: 0 .1em;
+            padding: .08em .4em;
+            text-shadow: 0 1px 0 #fff;
+            word-spacing: -4px;
+        
+            box-shadow: 2px 2px 2px #222; /* MA: An extra I've added. */
+          }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/tooltipster.bundle.min.css"/>
+        
+          <link rel="stylesheet" type="text/css" href="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/css/plugins/tooltipster/sideTip/themes/tooltipster-sideTip-punk.min.css" />
+        
+          <script type="text/javascript">
+              if (typeof jQuery == 'undefined') {
+                  document.write(unescape('%3Cscript src="https://code.jquery.com/jquery-1.10.0.min.js"%3E%3C/script%3E'));
+              }
+          </script>
+        
+           <script type="text/javascript"            src="https://alhassy.github.io/org-special-block-extras/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
+        
+            <script>
+                   $(document).ready(function() {
+                       $('.tooltip').tooltipster({
+                           theme: 'tooltipster-punk',
+                           contentAsHTML: true,
+                           animation: 'grow',
+                           delay: [100,500],
+                           // trigger: 'click'
+                           trigger: 'custom',
+                           triggerOpen: {
+                               mouseenter: true
+                           },
+                           triggerClose: {
+                               originClick: true,
+                               scroll: true
+                           }
+           });
+                   });
+               </script>
+        
+          <style>
+             abbr {color: red;}
+        
+             .tooltip { border-bottom: 1px dotted #000;
+                        color:red;
+                        text-decoration: none;}
+          </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<div id="search"></div><div class="breadcrumb"><a href="/">Home</a> <span>→</span> <a href="/ELENG_120/index.html">ELENG 120</a></div>
+</div>
+<div id="content" class="content">
+<h1 class="title">DTFT</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org172521c">1. Discrete-Time Fourier Transform</a>
+<ul>
+<li><a href="#orgff6282c">1.1. Synthesis and Analysis Equations</a></li>
+</ul>
+</li>
+<li><a href="#orgc6484aa">2. DTFT Properties</a>
+<ul>
+<li><a href="#orga622373">2.1. Time-Shift Property</a></li>
+<li><a href="#orgb9639ac">2.2. Frequency Shift Property</a></li>
+<li><a href="#org0ee9840">2.3. Convolution Property</a></li>
+<li><a href="#orgffb01b7">2.4. Modulation Property</a></li>
+</ul>
+</li>
+<li><a href="#org76a8447">3. Rayleigh-Plancherel Identity</a>
+<ul>
+<li><a href="#org70b3b2b">3.1. Parseval&rsquo;s Identity</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org172521c" class="outline-2">
+<h2 id="org172521c"><span class="section-number-2">1.</span> Discrete-Time Fourier Transform</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+The <b>discrete-time Fourier transform</b>, or <b>DTFT</b>, is for discrete-time aperiodic signals.
+</p>
+</div>
+<div id="outline-container-orgff6282c" class="outline-3">
+<h3 id="orgff6282c"><span class="section-number-3">1.1.</span> Synthesis and Analysis Equations</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+The <b>synthesis equation</b> for the DTFT is an integral of the frequency spectrum along with its corresponding frequencies:
+</p>
+
+\begin{align}
+\boxed{x[n] = \frac{1}{2\pi} \int_{\langle 2\pi \rangle} X(\omega) e^{i\omega n}\text{ d}\omega}
+\end{align}
+
+<p>
+The integral is only within the period \(2\pi\) because the frequency spectrum is periodic. The <b>analysis equation</b> is then:
+</p>
+
+\begin{align}
+\boxed{X(\omega) = \sum_{n=-\infty}^{\infty} x[n] e^{-i\omega n}}
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-orgc6484aa" class="outline-2">
+<h2 id="orgc6484aa"><span class="section-number-2">2.</span> DTFT Properties</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orga622373" class="outline-3">
+<h3 id="orga622373"><span class="section-number-3">2.1.</span> Time-Shift Property</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+\(\require{mathtools}\)
+If
+</p>
+
+\begin{align}
+x[n] \xleftrightarrow{\:\mathcal{F}} X(\omega) \notag
+\end{align}
+
+<p>
+then
+</p>
+
+\begin{align}
+x[n-N] \xleftrightarrow{\:\mathcal{F}} X(\omega)e^{-i\omega N}
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgb9639ac" class="outline-3">
+<h3 id="orgb9639ac"><span class="section-number-3">2.2.</span> Frequency Shift Property</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+If
+</p>
+
+\begin{align}
+x[n] \xleftrightarrow{\:\mathcal{F}} X(\omega) \notag
+\end{align}
+
+<p>
+then
+</p>
+
+\begin{align}
+x[n]e^{i\omega_0 n} \xleftrightarrow{\:\mathcal{F}} X(\omega - \omega_0)
+\end{align}
+</div>
+</div>
+<div id="outline-container-org0ee9840" class="outline-3">
+<h3 id="org0ee9840"><span class="section-number-3">2.3.</span> Convolution Property</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+If
+</p>
+
+\begin{align}
+f[n] \xleftrightarrow{\:\mathcal{F}} F(\omega) \notag
+\end{align}
+
+<p>
+and
+</p>
+
+\begin{align}
+g[n] \xleftrightarrow{\:\mathcal{F}} G(\omega) \notag
+\end{align}
+
+<p>
+then
+</p>
+
+\begin{align}
+(f*g)[n] \xleftrightarrow{\:\mathcal{F}} F(\omega)G(\omega)
+\end{align}
+</div>
+</div>
+<div id="outline-container-orgffb01b7" class="outline-3">
+<h3 id="orgffb01b7"><span class="section-number-3">2.4.</span> Modulation Property</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+If
+</p>
+
+\begin{align}
+x[n] \xleftrightarrow{\:\mathcal{F}} X(\omega) \notag
+\end{align}
+
+<p>
+and
+</p>
+
+\begin{align}
+c[n] \xleftrightarrow{\:\mathcal{F}} C(\omega) \notag
+\end{align}
+
+<p>
+then
+</p>
+
+\begin{align}
+x(t)c(t) \xleftrightarrow{\:\mathcal{F}} \frac{1}{2\pi}\int_{\langle 2\pi \rangle} X(\theta)C(\omega - \theta) \text{ d}\theta
+\end{align}
+</div>
+</div>
+</div>
+<div id="outline-container-org76a8447" class="outline-2">
+<h2 id="org76a8447"><span class="section-number-2">3.</span> Rayleigh-Plancherel Identity</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The <b>Rayleigh-Plancherel identity</b> (also known as the <b>Parseval-Plancherel theorem</b>) states that if \(X = \mathcal{F}\{x\}\) and \(Y=\mathcal{F}\{y\}\), then
+</p>
+
+\begin{align}
+\boxed{\langle X, Y \rangle = 2\pi \langle x, y \rangle}
+\end{align}
+
+<p>
+An implication of this identity is that if two signals are orthogonal in the time domain, then they must be orthogonal in the frequency domain.
+</p>
+
+<p>
+The proof of this is as follows. Define the inner product of \(X\) and \(Y\) as
+</p>
+
+\begin{align}
+\langle X,Y\rangle = \int_{\langle 2\pi \rangle}X(\omega)Y^*(\omega)\text{ d}\omega \notag
+\end{align}
+
+<p>
+Then, the inner product is
+</p>
+
+\begin{align}
+\langle X,Y\rangle &= \int_{\langle 2\pi \rangle}\sum_n x[n]e^{-i\omega n} \sum_l y*[l]e^{i\omega l}\text{ d\omega} \notag \\
+&= \sum_n \sum_l x[n]y^*[l]\int_{\langle 2\pi \rangle} e^{i\omega(l-n)}\text{ d}\omega \notag
+\end{align}
+
+<p>
+If \(l\neq n\), then the inner product is zero. Therefore, only considering the case \(l = n\), we have
+</p>
+
+\begin{align}
+\langle X,Y\rangle = 2\pi\sum_n x[n]y^*[n] = 2\pi\langle x,y\rangle \notag
+\end{align}
+</div>
+<div id="outline-container-org70b3b2b" class="outline-3">
+<h3 id="org70b3b2b"><span class="section-number-3">3.1.</span> Parseval&rsquo;s Identity</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<b>Parseval&rsquo;s identity</b> is just a special case of Rayleigh-Plancherel where \(x=y\):
+</p>
+
+\begin{align}
+\int_{\langle 2\pi \rangle} |X(\omega)|^2\text{ d}\omega = 2\pi\sum_{n=-\infty}^{\infty}|x[n]|^2
+\end{align}
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<div class="footer">
+               <p>Author: Lin Jiang</p>
+               
+             </div>
+             <div class="last-modified">
+               Last modified: 2026-11-11 12:38
+             </div><script>
+     window.addEventListener('DOMContentLoaded', (event) => {
+         new PagefindUI({
+            element: '#search',
+            showSubResults: true,
+            bundlePath: '/pagefind/'
+         });
+     });
+    </script>
+</div>
+</body>
+</html>
