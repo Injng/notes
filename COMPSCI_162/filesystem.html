@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-11-11 Wed 12:02 -->
+<!-- 2026-11-14 Sat 09:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Filesystems</title>
@@ -95,19 +95,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org58a37f1">1. Filesystems</a></li>
-<li><a href="#org08799b2">2. File Allocation Table (FAT)</a></li>
-<li><a href="#org4ba8344">3. Berkeley Fast File System (FFS)</a>
+<li><a href="#org0f75db8">1. Filesystems</a></li>
+<li><a href="#orgdba4d72">2. File Allocation Table (FAT)</a></li>
+<li><a href="#org5c1ffaa">3. Berkeley Fast File System (FFS)</a>
 <ul>
-<li><a href="#org754508b">3.1. Linux Ext3</a></li>
+<li><a href="#orgf309faa">3.1. Linux Ext3</a></li>
 </ul>
 </li>
-<li><a href="#org5756724">4. Windows New Technology File System (NTFS)</a></li>
+<li><a href="#org47ee5c3">4. Windows New Technology File System (NTFS)</a></li>
+<li><a href="#orgbbce4f9">5. Buffer Caches</a></li>
+<li><a href="#orgbd4286f">6. Redundant Array of Inexpensive Dikss</a>
+<ul>
+<li><a href="#orgebe637d">6.1. RAID 1</a></li>
+<li><a href="#org7eff3c8">6.2. RAID 5</a></li>
+<li><a href="#org491b412">6.3. RAID 6</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org58a37f1" class="outline-2">
-<h2 id="org58a37f1"><span class="section-number-2">1.</span> Filesystems</h2>
+<div id="outline-container-org0f75db8" class="outline-2">
+<h2 id="org0f75db8"><span class="section-number-2">1.</span> Filesystems</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>filesystem</b> is a layer of the operating system that transforms block interfaces of disks (or other block devices) into files, directories, etc. Specifically, we want to take the limited hardware interface of blocks and provide:
@@ -144,15 +152,15 @@ All of this also needs to be maintained somewhere on disk, since this metadata m
 </p>
 </div>
 </div>
-<div id="outline-container-org08799b2" class="outline-2">
-<h2 id="org08799b2"><span class="section-number-2">2.</span> File Allocation Table (FAT)</h2>
+<div id="outline-container-orgdba4d72" class="outline-2">
+<h2 id="orgdba4d72"><span class="section-number-2">2.</span> File Allocation Table (FAT)</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The <b>File Allocation Table</b> (or <b>FAT</b>) filesystem was first introduced for MS-DOS in 1977. We have some number of disk blocks, with each disk block corresponding to an entry in the file allocation table. In order to figure out which block corresponds to our file, we index into the FAT with a file number. The FAT is simply a linked list structure that then shows us the collection of blocks that make up our file:
 </p>
 
 
-<div id="org1a01e66" class="figure">
+<div id="org1f8a0c6" class="figure">
 <p><img src="../static/COMPSCI_162/filesystem1.png" alt="filesystem1.png" />
 </p>
 </div>
@@ -166,8 +174,8 @@ A directory is a file containing mappings between file names and file numbers. I
 </p>
 </div>
 </div>
-<div id="outline-container-org4ba8344" class="outline-2">
-<h2 id="org4ba8344"><span class="section-number-2">3.</span> Berkeley Fast File System (FFS)</h2>
+<div id="outline-container-org5c1ffaa" class="outline-2">
+<h2 id="org5c1ffaa"><span class="section-number-2">3.</span> Berkeley Fast File System (FFS)</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 The <b>Berkeley Fast File System</b> (or <b>FFS</b>) is the foundation of the modern <b>UNIX File System</b> (UFS), which is widely used across various BSD operating systems. The index structure is an array of <b>inodes</b>, with a file number (or <b>inumber</b>) an index into the array of inodes. Each inode corresponds to a file and <i>contains its metadata</i> (therefore things like read/write permissions are stored with the file, not the directory).
@@ -178,7 +186,7 @@ The inode maintains a <i>fixed</i>, asymmetric multi-level tree structure to fin
 </p>
 
 
-<div id="org9c581f4" class="figure">
+<div id="org62e561a" class="figure">
 <p><img src="../static/COMPSCI_162/filesystem2.png" alt="filesystem2.png" />
 </p>
 </div>
@@ -195,8 +203,8 @@ In early UNIX/DOS systems, headers were stored in a special array in the outermo
 FFS distributes the header information (inodes) closer to the data blocks. Often, the inodes for the file are stored in the same &ldquo;cylinder group&rdquo; as the parent directory of the file (making an ls run really fast).
 </p>
 </div>
-<div id="outline-container-org754508b" class="outline-3">
-<h3 id="org754508b"><span class="section-number-3">3.1.</span> Linux Ext3</h3>
+<div id="outline-container-orgf309faa" class="outline-3">
+<h3 id="orgf309faa"><span class="section-number-3">3.1.</span> Linux Ext3</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 The Linux <b>Ext3</b> (Third Extended) file system largely maintains the same inode structure as FFS, with some differences in file metadata. The difference between Ext3 and Ext2 is that Ext3 adopted <i>journaling</i>.
@@ -212,15 +220,15 @@ A <b>soft link</b> (or <b>symbolic link</b>) is a mapping from a file name to an
 </div>
 </div>
 </div>
-<div id="outline-container-org5756724" class="outline-2">
-<h2 id="org5756724"><span class="section-number-2">4.</span> Windows New Technology File System (NTFS)</h2>
+<div id="outline-container-org47ee5c3" class="outline-2">
+<h2 id="org47ee5c3"><span class="section-number-2">4.</span> Windows New Technology File System (NTFS)</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 The <b>New Technology File System</b> (or <b>NTFS</b>) is the default file system on modern Windows systems. NTFS uses <i>variable length extents</i> rather than fixed blocks for data. Instead of a FAT or inode relay, NTFS uses a <b>Master File Table</b> (MFT) which is like a database where each entry contains metadata, a file&rsquo;s data directly (for small files), a list of <b>extents</b> for the file&rsquo;s data, and/or pointers to other MFT entries with <i>more</i> extent lists:
 </p>
 
 
-<div id="orgd6ec561" class="figure">
+<div id="orgbb3915c" class="figure">
 <p><img src="../static/COMPSCI_162/filesystem3.png" alt="filesystem3.png" />
 </p>
 </div>
@@ -230,6 +238,63 @@ Notice that for extents, the only information required is the pointer to the ext
 </p>
 </div>
 </div>
+<div id="outline-container-orgbbce4f9" class="outline-2">
+<h2 id="orgbbce4f9"><span class="section-number-2">5.</span> Buffer Caches</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+We need some cache between our file system and the hardware devices. This is because the kernel must copy disk blocks to memory (somewhere) to access their contents and write them back if modified. The key idea is that we can exploit locality by <i>caching disk data in memory</i>. We call this memory that is used the <b>buffer cache</b>.
+</p>
+
+<p>
+The operating system implements this cache of disk blocks in memory for efficient access to data, directories, inodes, etc. Each time we read a block from disk, we can cache it in memory. Note that unlike memory caches, the buffer cache is implemented entirely in OS software. 
+</p>
+
+<p>
+We use LRU as our eviction policy. However, this may not be optimal in certain scenarios, such as when an application scans through the filesystem once. Certain systems therefore allow applications to specify an alternate policy (e.g. &ldquo;use once&rdquo;).
+</p>
+
+<p>
+We also must decide how much memory the OS should allocate to the buffer cache. The solution is to adjust the boundary dynamically so that the disk access rates for paging and file size are balanced.
+</p>
+
+<p>
+Buffer caches also allow us to do <b>read ahead prefetching</b>, where we fetch sequential blocks early. This exploits the fact that most common file accesses are sequential, so we fetch adjacent blocks before we actually request them.
+</p>
+
+<p>
+Buffer caches are <i>writeback caches</i>. In other words, they are delayed writes. <code>write()</code> copies data from user space to the kernel buffer cache, and <code>read()</code> is fulfilled by the cache, so <code>read</code> sees the result of <code>write</code>. The data in the cache is finally written back to disk either when the buffer cache is full (e.g. we need to evict something) or our buffer cache is flushed (usually periodically in case we crash).
+</p>
+</div>
+</div>
+<div id="outline-container-orgbd4286f" class="outline-2">
+<h2 id="orgbd4286f"><span class="section-number-2">6.</span> Redundant Array of Inexpensive Dikss</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgebe637d" class="outline-3">
+<h3 id="orgebe637d"><span class="section-number-3">6.1.</span> RAID 1</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+Each disk is fully duplicated onto its &ldquo;shadow&rdquo; disk. This is the simplest, but most expensive solutoin: it requires a 100% capacity overhead, and each logical write requires two physical writes.
+</p>
+</div>
+</div>
+<div id="outline-container-org7eff3c8" class="outline-3">
+<h3 id="org7eff3c8"><span class="section-number-3">6.2.</span> RAID 5</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+Data is stripped across multiple disks, where successive blocks are stored on successive (non-parity) disks. A parity block is constructed by XORing data blocks in a stripe. Now, if any one disk fails, we can reconstruct the data by utilizing the parity block and XORing it with the remaining data.
+</p>
+</div>
+</div>
+<div id="outline-container-org491b412" class="outline-3">
+<h3 id="org491b412"><span class="section-number-3">6.3.</span> RAID 6</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+Today, disks are so big that RAID 5 is no longer sufficient as the time to repair disk is so long that another disk might fail in the process. Thus, RAID 6 introduces a more complex erasure code such that it allows two disks in replication stripe to fail.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -237,7 +302,7 @@ Notice that for extents, the only information required is the pointer to the ext
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-11-10 18:35
+               Last modified: 2026-11-12 15:21
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({

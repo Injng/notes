@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-11-11 Wed 12:36 -->
+<!-- 2026-11-14 Sat 09:50 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CTFT</title>
@@ -127,31 +127,33 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgf2ac302">1. Continuous-Time Fourier Transform</a>
+<li><a href="#orga3ff236">1. Continuous-Time Fourier Transform</a>
 <ul>
-<li><a href="#org5efd970">1.1. Synthesis and Analysis Equations</a></li>
+<li><a href="#org657c174">1.1. Synthesis and Analysis Equations</a></li>
 </ul>
 </li>
-<li><a href="#org24de8cd">2. CTFT Properties</a>
+<li><a href="#orga7eeacb">2. CTFT Properties</a>
 <ul>
-<li><a href="#org2d0731b">2.1. Time Shift Property</a></li>
-<li><a href="#org9373101">2.2. Frequency Shift Property</a></li>
-<li><a href="#org30285b2">2.3. Convolution Property</a></li>
-<li><a href="#org40e2be0">2.4. Modulation Property</a></li>
+<li><a href="#org3411fb6">2.1. Time Shift Property</a></li>
+<li><a href="#org694afbe">2.2. Frequency Shift Property</a></li>
+<li><a href="#org90928ef">2.3. Convolution Property</a></li>
+<li><a href="#orgbb0dc90">2.4. Modulation Property</a></li>
+<li><a href="#orgb47c5b9">2.5. Differentiation Property</a></li>
+<li><a href="#org226d974">2.6. Conjugation and Conjugate Symmetry</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf2ac302" class="outline-2">
-<h2 id="orgf2ac302"><span class="section-number-2">1.</span> Continuous-Time Fourier Transform</h2>
+<div id="outline-container-orga3ff236" class="outline-2">
+<h2 id="orga3ff236"><span class="section-number-2">1.</span> Continuous-Time Fourier Transform</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The <b>continuous-time Fourier transform</b>, or <b>CTFT</b>, is for continuous-time aperiodic signals.
 </p>
 </div>
-<div id="outline-container-org5efd970" class="outline-3">
-<h3 id="org5efd970"><span class="section-number-3">1.1.</span> Synthesis and Analysis Equations</h3>
+<div id="outline-container-org657c174" class="outline-3">
+<h3 id="org657c174"><span class="section-number-3">1.1.</span> Synthesis and Analysis Equations</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The <b>synthesis equation</b> for the CTFT is an integral of the frequency spectrum along with its corresponding frequencies:
@@ -171,16 +173,16 @@ The <b>analysis equation</b> is:
 </div>
 </div>
 </div>
-<div id="outline-container-org24de8cd" class="outline-2">
-<h2 id="org24de8cd"><span class="section-number-2">2.</span> CTFT Properties</h2>
+<div id="outline-container-orga7eeacb" class="outline-2">
+<h2 id="orga7eeacb"><span class="section-number-2">2.</span> CTFT Properties</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org2d0731b" class="outline-3">
-<h3 id="org2d0731b"><span class="section-number-3">2.1.</span> Time Shift Property</h3>
+<div id="outline-container-org3411fb6" class="outline-3">
+<h3 id="org3411fb6"><span class="section-number-3">2.1.</span> Time Shift Property</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 \(\require{mathtools}\)
-If
+The time shift property states that if
 </p>
 
 \begin{align}
@@ -196,11 +198,11 @@ x(t-t_0) \xleftrightarrow{\:\mathcal{F}} X(\omega)e^{-i\omega t_0}
 \end{align}
 </div>
 </div>
-<div id="outline-container-org9373101" class="outline-3">
-<h3 id="org9373101"><span class="section-number-3">2.2.</span> Frequency Shift Property</h3>
+<div id="outline-container-org694afbe" class="outline-3">
+<h3 id="org694afbe"><span class="section-number-3">2.2.</span> Frequency Shift Property</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-If
+The frequency shift property states that if
 </p>
 
 \begin{align}
@@ -216,11 +218,11 @@ x(t)e^{i\omega_0 t} \xleftrightarrow{\:\mathcal{F}} X(\omega - \omega_0)
 \end{align}
 </div>
 </div>
-<div id="outline-container-org30285b2" class="outline-3">
-<h3 id="org30285b2"><span class="section-number-3">2.3.</span> Convolution Property</h3>
+<div id="outline-container-org90928ef" class="outline-3">
+<h3 id="org90928ef"><span class="section-number-3">2.3.</span> Convolution Property</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
-If
+The convolution property states that if
 </p>
 
 \begin{align}
@@ -244,11 +246,11 @@ then
 \end{align}
 </div>
 </div>
-<div id="outline-container-org40e2be0" class="outline-3">
-<h3 id="org40e2be0"><span class="section-number-3">2.4.</span> Modulation Property</h3>
+<div id="outline-container-orgbb0dc90" class="outline-3">
+<h3 id="orgbb0dc90"><span class="section-number-3">2.4.</span> Modulation Property</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
-If
+The modulation property states that if
 </p>
 
 \begin{align}
@@ -272,6 +274,54 @@ x(t)c(t) \xleftrightarrow{\:\mathcal{F}} \frac{1}{2\pi}(X*C)(\omega)
 \end{align}
 </div>
 </div>
+<div id="outline-container-orgb47c5b9" class="outline-3">
+<h3 id="orgb47c5b9"><span class="section-number-3">2.5.</span> Differentiation Property</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+The differentation property states that if
+</p>
+
+\begin{align}
+x(t) \xleftrightarrow{\:\mathcal{F}} X(\omega) \notag
+\end{align}
+
+<p>
+then
+</p>
+
+\begin{align}
+\frac{\text{d}x(t)}{\text{d}t} \xleftrightarrow{\:\mathcal{F}} i\omega X(\omega)
+\end{align}
+</div>
+</div>
+<div id="outline-container-org226d974" class="outline-3">
+<h3 id="org226d974"><span class="section-number-3">2.6.</span> Conjugation and Conjugate Symmetry</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+The conjugation property states that if
+</p>
+
+\begin{align}
+x(t) \xleftrightarrow{\:\mathcal{F}} X(\omega) \notag
+\end{align}
+
+<p>
+then
+</p>
+
+\begin{align}
+x^*(t) \xleftrightarrow{\:\mathcal{F}} X^*(-\omega)
+\end{align}
+
+<p>
+If \(x(t)\) is real, then \(x(t) = x^*(t)\), and the conjugation property allows us to show that \(X(\omega)\) has <b>conjugate symmetry</b>:
+</p>
+
+\begin{align}
+X(-\omega) = X^*(\omega) \quad \text{if } x(t) \text{ real}
+\end{align}
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
@@ -280,7 +330,7 @@ x(t)c(t) \xleftrightarrow{\:\mathcal{F}} \frac{1}{2\pi}(X*C)(\omega)
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-11-11 12:30
+               Last modified: 2026-11-14 09:50
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
