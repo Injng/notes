@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-11-14 Sat 09:50 -->
+<!-- 2026-11-14 Sat 11:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CTFT</title>
@@ -127,33 +127,34 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orga3ff236">1. Continuous-Time Fourier Transform</a>
+<li><a href="#org81308a1">1. Continuous-Time Fourier Transform</a>
 <ul>
-<li><a href="#org657c174">1.1. Synthesis and Analysis Equations</a></li>
+<li><a href="#org786d1b2">1.1. Synthesis and Analysis Equations</a></li>
 </ul>
 </li>
-<li><a href="#orga7eeacb">2. CTFT Properties</a>
+<li><a href="#org8586929">2. CTFT Properties</a>
 <ul>
-<li><a href="#org3411fb6">2.1. Time Shift Property</a></li>
-<li><a href="#org694afbe">2.2. Frequency Shift Property</a></li>
-<li><a href="#org90928ef">2.3. Convolution Property</a></li>
-<li><a href="#orgbb0dc90">2.4. Modulation Property</a></li>
-<li><a href="#orgb47c5b9">2.5. Differentiation Property</a></li>
-<li><a href="#org226d974">2.6. Conjugation and Conjugate Symmetry</a></li>
+<li><a href="#org981d912">2.1. Time Shift Property</a></li>
+<li><a href="#org3ed394f">2.2. Frequency Shift Property</a></li>
+<li><a href="#orgb843b84">2.3. Convolution Property</a></li>
+<li><a href="#orgfa39356">2.4. Modulation Property</a></li>
+<li><a href="#org33e7f5f">2.5. Differentiation Property</a></li>
+<li><a href="#orgf2cbba1">2.6. Conjugation and Conjugate Symmetry</a></li>
 </ul>
 </li>
+<li><a href="#org453a0ae">3. CTFT for Periodic Signals</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga3ff236" class="outline-2">
-<h2 id="orga3ff236"><span class="section-number-2">1.</span> Continuous-Time Fourier Transform</h2>
+<div id="outline-container-org81308a1" class="outline-2">
+<h2 id="org81308a1"><span class="section-number-2">1.</span> Continuous-Time Fourier Transform</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 The <b>continuous-time Fourier transform</b>, or <b>CTFT</b>, is for continuous-time aperiodic signals.
 </p>
 </div>
-<div id="outline-container-org657c174" class="outline-3">
-<h3 id="org657c174"><span class="section-number-3">1.1.</span> Synthesis and Analysis Equations</h3>
+<div id="outline-container-org786d1b2" class="outline-3">
+<h3 id="org786d1b2"><span class="section-number-3">1.1.</span> Synthesis and Analysis Equations</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 The <b>synthesis equation</b> for the CTFT is an integral of the frequency spectrum along with its corresponding frequencies:
@@ -173,12 +174,12 @@ The <b>analysis equation</b> is:
 </div>
 </div>
 </div>
-<div id="outline-container-orga7eeacb" class="outline-2">
-<h2 id="orga7eeacb"><span class="section-number-2">2.</span> CTFT Properties</h2>
+<div id="outline-container-org8586929" class="outline-2">
+<h2 id="org8586929"><span class="section-number-2">2.</span> CTFT Properties</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org3411fb6" class="outline-3">
-<h3 id="org3411fb6"><span class="section-number-3">2.1.</span> Time Shift Property</h3>
+<div id="outline-container-org981d912" class="outline-3">
+<h3 id="org981d912"><span class="section-number-3">2.1.</span> Time Shift Property</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 \(\require{mathtools}\)
@@ -198,8 +199,8 @@ x(t-t_0) \xleftrightarrow{\:\mathcal{F}} X(\omega)e^{-i\omega t_0}
 \end{align}
 </div>
 </div>
-<div id="outline-container-org694afbe" class="outline-3">
-<h3 id="org694afbe"><span class="section-number-3">2.2.</span> Frequency Shift Property</h3>
+<div id="outline-container-org3ed394f" class="outline-3">
+<h3 id="org3ed394f"><span class="section-number-3">2.2.</span> Frequency Shift Property</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 The frequency shift property states that if
@@ -218,8 +219,8 @@ x(t)e^{i\omega_0 t} \xleftrightarrow{\:\mathcal{F}} X(\omega - \omega_0)
 \end{align}
 </div>
 </div>
-<div id="outline-container-org90928ef" class="outline-3">
-<h3 id="org90928ef"><span class="section-number-3">2.3.</span> Convolution Property</h3>
+<div id="outline-container-orgb843b84" class="outline-3">
+<h3 id="orgb843b84"><span class="section-number-3">2.3.</span> Convolution Property</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 The convolution property states that if
@@ -246,8 +247,8 @@ then
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgbb0dc90" class="outline-3">
-<h3 id="orgbb0dc90"><span class="section-number-3">2.4.</span> Modulation Property</h3>
+<div id="outline-container-orgfa39356" class="outline-3">
+<h3 id="orgfa39356"><span class="section-number-3">2.4.</span> Modulation Property</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 The modulation property states that if
@@ -274,8 +275,8 @@ x(t)c(t) \xleftrightarrow{\:\mathcal{F}} \frac{1}{2\pi}(X*C)(\omega)
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgb47c5b9" class="outline-3">
-<h3 id="orgb47c5b9"><span class="section-number-3">2.5.</span> Differentiation Property</h3>
+<div id="outline-container-org33e7f5f" class="outline-3">
+<h3 id="org33e7f5f"><span class="section-number-3">2.5.</span> Differentiation Property</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 The differentation property states that if
@@ -294,8 +295,8 @@ then
 \end{align}
 </div>
 </div>
-<div id="outline-container-org226d974" class="outline-3">
-<h3 id="org226d974"><span class="section-number-3">2.6.</span> Conjugation and Conjugate Symmetry</h3>
+<div id="outline-container-orgf2cbba1" class="outline-3">
+<h3 id="orgf2cbba1"><span class="section-number-3">2.6.</span> Conjugation and Conjugate Symmetry</h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 The conjugation property states that if
@@ -323,6 +324,34 @@ X(-\omega) = X^*(\omega) \quad \text{if } x(t) \text{ real}
 </div>
 </div>
 </div>
+<div id="outline-container-org453a0ae" class="outline-2">
+<h2 id="org453a0ae"><span class="section-number-2">3.</span> CTFT for Periodic Signals</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The CTFT was introduced for aperiodic signals, but we can also develop Fourier transform representations for periodic signals, thus allowing us to consider both periodic and aperiodic signals under one uniform context.
+</p>
+
+<p>
+Generally, if \(X(\omega)\) is a linear combination of equally spaced impulses:
+</p>
+
+\begin{align}
+X(\omega) = \sum_{k=-\infty}^{\infty} 2\pi a_k \delta(\omega - k\omega_0) \notag
+\end{align}
+
+<p>
+Then applying the inverse transform relation yields the following signal:
+</p>
+
+\begin{align}
+x(t) = \sum_{k=-\infty}^{\infty} a_ke^{jk\omega_0 t} \notag
+\end{align}
+
+<p>
+Notice that this is just the <a href="ctfs.html#org47b1c2d">Fourier series</a> representation of a periodic signal! Thus, if we can represent a periodic signal with its Fourier series, then we know that its corresponding Fourier transform is a train of impulses occurring at some frequency.
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <div class="footer">
@@ -330,7 +359,7 @@ X(-\omega) = X^*(\omega) \quad \text{if } x(t) \text{ real}
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-11-14 09:50
+               Last modified: 2026-11-14 11:33
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
