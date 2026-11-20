@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-11-17 Tue 12:10 -->
+<!-- 2026-11-19 Thu 17:56 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MOSFETs</title>
@@ -127,45 +127,45 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgedfedfe">1. MOS Capacitor</a>
+<li><a href="#orgc1c1927">1. MOS Capacitor</a>
 <ul>
-<li><a href="#org38334ed">1.1. Accumulation</a></li>
-<li><a href="#org016a13f">1.2. Depletion</a></li>
-<li><a href="#orge6a567a">1.3. Inversion</a>
+<li><a href="#org4f32640">1.1. Accumulation</a></li>
+<li><a href="#orga241dae">1.2. Depletion</a></li>
+<li><a href="#org82c904b">1.3. Inversion</a>
 <ul>
-<li><a href="#orgd94f757">1.3.1. Derivation of Threshold Voltage</a></li>
+<li><a href="#org7373110">1.3.1. Derivation of Threshold Voltage</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org6b187a1">2. MOSFET</a>
+<li><a href="#org0855b0b">2. MOSFET</a>
 <ul>
-<li><a href="#org42e0a20">2.1. MOSFET Symbol</a></li>
+<li><a href="#orgee85373">2.1. MOSFET Symbol</a></li>
 </ul>
 </li>
-<li><a href="#org4ed4c2f">3. MOSFET Operating Regions</a>
+<li><a href="#org46a9eaa">3. MOSFET Operating Regions</a>
 <ul>
-<li><a href="#org22ec3f6">3.1. Linear/Triode</a></li>
-<li><a href="#orgea0ad60">3.2. Saturation</a></li>
+<li><a href="#orgcb636f2">3.1. Linear/Triode</a></li>
+<li><a href="#orge05bbd7">3.2. Saturation</a></li>
 </ul>
 </li>
-<li><a href="#orgdf7f303">4. MOSFET Small Signal Model</a>
+<li><a href="#org0f94cbe">4. MOSFET Small Signal Model</a>
 <ul>
-<li><a href="#org7e52bd0">4.1. T Model</a></li>
+<li><a href="#orge66249d">4.1. T Model</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgedfedfe" class="outline-2">
-<h2 id="orgedfedfe"><span class="section-number-2">1.</span> MOS Capacitor</h2>
+<div id="outline-container-orgc1c1927" class="outline-2">
+<h2 id="orgc1c1927"><span class="section-number-2">1.</span> MOS Capacitor</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 A <b>metal oxide semiconductor</b> (MOS) capacitor is composed of a metal (conductor) layer, an oxide (insulator) layer, and a semiconductor layer. Say the semiconductor layer is <a href="semiconductor_physics.html#org91499fc">p-type</a>, and that it acts somewhat like a metal: we now have something that looks like a capacitor:
 </p>
 
 
-<div id="org69642bd" class="figure">
+<div id="org2454e58" class="figure">
 <p><img src="../static/ELENG_105/mosfets1.png" alt="mosfets1.png" />
 </p>
 </div>
@@ -567,8 +567,8 @@ Now, we can join the metal, oxide, and semiconductor band diagrams together to g
 </g>
 </svg></figure>
 </div>
-<div id="outline-container-org38334ed" class="outline-3">
-<h3 id="org38334ed"><span class="section-number-3">1.1.</span> Accumulation</h3>
+<div id="outline-container-org4f32640" class="outline-3">
+<h3 id="org4f32640"><span class="section-number-3">1.1.</span> Accumulation</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Say we now apply a negative voltage to the gate (with the body grounded), i.e. \(V_G < 0\). Then, negative charges build up at the metal-oxide interface, and there are plenty of holes in the p-type material to flow toward the negative charges at the semiconductor-oxide interface. There is now an electric field across the oxide material, and we call this the <b>accumulation</b> mode:
@@ -823,8 +823,8 @@ The MOSCAP in accumulation mode acts as a capacitor: it has a constant electric 
 </p>
 </div>
 </div>
-<div id="outline-container-org016a13f" class="outline-3">
-<h3 id="org016a13f"><span class="section-number-3">1.2.</span> Depletion</h3>
+<div id="outline-container-orga241dae" class="outline-3">
+<h3 id="orga241dae"><span class="section-number-3">1.2.</span> Depletion</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 Now let&rsquo;s say \(V_G>0\) (and below some threshold). As we apply the voltage, positive charges will flow to the gate (i.e. electrons will leave the gate). This will then repel the holes which form the majority carrier in the p-type semiconductor, leaving behind <a href="semiconductor_physics.html#org91499fc">negative ions</a>. These negative ions form a depletion region, putting the MOSCAP into <b>depletion</b> mode:
@@ -1123,8 +1123,8 @@ Now let&rsquo;s say \(V_G>0\) (and below some threshold). As we apply the voltag
 </svg></figure>
 </div>
 </div>
-<div id="outline-container-orge6a567a" class="outline-3">
-<h3 id="orge6a567a"><span class="section-number-3">1.3.</span> Inversion</h3>
+<div id="outline-container-org82c904b" class="outline-3">
+<h3 id="org82c904b"><span class="section-number-3">1.3.</span> Inversion</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Once we increase the gate voltage past some voltage \(V_T\), we reach <b>inversion</b>. Here, the minority carriers (e.g. electrons for p-type semiconductor) get attracted to the oxide boundary and form an inversion layer:
@@ -1519,8 +1519,8 @@ At strong inversion, \(\Delta E_1 = \Delta E_2 = q\phi_f\). So, another way of t
 n_s=p_0= n_i e^{\frac{q\phi_f}{kT}}
 \end{align}
 </div>
-<div id="outline-container-orgd94f757" class="outline-4">
-<h4 id="orgd94f757"><span class="section-number-4">1.3.1.</span> Derivation of Threshold Voltage</h4>
+<div id="outline-container-org7373110" class="outline-4">
+<h4 id="org7373110"><span class="section-number-4">1.3.1.</span> Derivation of Threshold Voltage</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 In order to derive the threshold voltage, then, we would like to find these concentrations as a function of the applied gate voltage. We can express \(V_G\) as two terms, the voltage/potential drop from the oxide interface across the semiconductor \(\phi_s\), and the change in voltage across the oxide \(\Delta \phi_{\text{ox}}\):
@@ -1633,8 +1633,8 @@ where \(\gamma = \frac{\sqrt{2\epsilon_sqN_A}}{C_{\text{ox}}}\).
 </div>
 </div>
 </div>
-<div id="outline-container-org6b187a1" class="outline-2">
-<h2 id="org6b187a1"><span class="section-number-2">2.</span> MOSFET</h2>
+<div id="outline-container-org0855b0b" class="outline-2">
+<h2 id="org0855b0b"><span class="section-number-2">2.</span> MOSFET</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 The <b>metal-oxide-semiconductor field-effect transistor</b>, or <b>MOSFET</b>, is a kind of voltage-controlled current source. A MOSFET consists of a doped semiconductor substrate, above which there is an oxide, and a metal gate (much like a MOS capacitor). Additionally, however, we introduce two wells:
@@ -1794,8 +1794,8 @@ The voltage of the body affects the formation of the channel, thus, the threshol
 \boxed{V_T = V_{FB} + 2\phi_f + \gamma\sqrt{2\phi_f + V_{\text{SB}}}}
 \end{align}
 </div>
-<div id="outline-container-org42e0a20" class="outline-3">
-<h3 id="org42e0a20"><span class="section-number-3">2.1.</span> MOSFET Symbol</h3>
+<div id="outline-container-orgee85373" class="outline-3">
+<h3 id="orgee85373"><span class="section-number-3">2.1.</span> MOSFET Symbol</h3>
 <div class="outline-text-3" id="text-2-1">
 <figure class="tikz-figure"><?xml version='1.0' encoding='UTF-8'?>
 <!-- This file was generated by dvisvgm 3.6.1 -->
@@ -1927,21 +1927,21 @@ The voltage of the body affects the formation of the channel, thus, the threshol
 </div>
 </div>
 </div>
-<div id="outline-container-org4ed4c2f" class="outline-2">
-<h2 id="org4ed4c2f"><span class="section-number-2">3.</span> MOSFET Operating Regions</h2>
+<div id="outline-container-org46a9eaa" class="outline-2">
+<h2 id="org46a9eaa"><span class="section-number-2">3.</span> MOSFET Operating Regions</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 If we graph the current-voltage relationship of a MOSFET, we can split it up into several operating regions:
 </p>
 
 
-<div id="org9b279af" class="figure">
+<div id="orge8f1a47" class="figure">
 <p><img src="../static/ELENG_105/mosfets2.png" alt="mosfets2.png" />
 </p>
 </div>
 </div>
-<div id="outline-container-org22ec3f6" class="outline-3">
-<h3 id="org22ec3f6"><span class="section-number-3">3.1.</span> Linear/Triode</h3>
+<div id="outline-container-orgcb636f2" class="outline-3">
+<h3 id="orgcb636f2"><span class="section-number-3">3.1.</span> Linear/Triode</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 When \(V_{\text{GS}} > V_T\), the inversion channel forms and charge can flow. The total charge in the channel is given by capacitance. For small \(V_{\text{DS}}\), we are operating in the <b>linear</b> region, and we can approximate the channel as a rectangle with length \(L\):
@@ -2097,8 +2097,8 @@ Multiplying by \(\text{d}x\) and taking the integral, we get:
 \end{align}
 </div>
 </div>
-<div id="outline-container-orgea0ad60" class="outline-3">
-<h3 id="orgea0ad60"><span class="section-number-3">3.2.</span> Saturation</h3>
+<div id="outline-container-orge05bbd7" class="outline-3">
+<h3 id="orge05bbd7"><span class="section-number-3">3.2.</span> Saturation</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 At saturation, the drain to source voltage rises high enough such that <b>pinch-off</b> occurs, where the channel length becomes shorter:
@@ -2231,8 +2231,8 @@ where \(L_{\text{eff}}\) is the <i>effective length</i> of the channel, since we
 </div>
 </div>
 </div>
-<div id="outline-container-orgdf7f303" class="outline-2">
-<h2 id="orgdf7f303"><span class="section-number-2">4.</span> MOSFET Small Signal Model</h2>
+<div id="outline-container-org0f94cbe" class="outline-2">
+<h2 id="org0f94cbe"><span class="section-number-2">4.</span> MOSFET Small Signal Model</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 A small signal model attempts to linearize the behavior of a device around some bias point. We wish to linearize the behavior of a MOSFET around some \(V_{\text{GS}}\). Define <b>transconductance</b> \(g_m\) as
@@ -2332,6 +2332,7 @@ From (5), however, \(I_D\) also depends on \(V_{\text{BS}}\). This is called <b>
 g_{mb} &= \frac{\partial I_D}{\partial V_{\text{BS}}} \notag \\
 &= -\mu_n C_{\text{ox}} \frac{W}{L}(V_{\text{GS}} - V_T)\frac{\partial V_T}{\partial V_{\text{BS}}} \notag \\
 &= \frac{g_m \gamma}{2\sqrt{2\phi_f + V_{\text{SB}}}} \notag \\
+&= \frac{g_m \gamma}{2\sqrt{-2\phi_p - V_{\text{BS}}}} \notag \\
 &= \frac{g_m\sqrt{2\epsilon_s q N_A}}{2\sqrt{2\phi_f + V_{\text{SB}}}C_{\text{ox}}} \notag
 \end{align}
 
@@ -2640,8 +2641,8 @@ C_{gd} &= WL_{ov}C_{\text{ox}} + C_{\text{fringe}}
 This model is known as the \(\pi\) model.
 </p>
 </div>
-<div id="outline-container-org7e52bd0" class="outline-3">
-<h3 id="org7e52bd0"><span class="section-number-3">4.1.</span> T Model</h3>
+<div id="outline-container-orge66249d" class="outline-3">
+<h3 id="orge66249d"><span class="section-number-3">4.1.</span> T Model</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 If we remove the current sources where they are at currently, and instead feed them through gate and body like so:
@@ -2880,7 +2881,7 @@ Note that this is fine since no current is actually entering the gate and body, 
                
              </div>
              <div class="last-modified">
-               Last modified: 2026-11-17 12:09
+               Last modified: 2026-11-19 17:56
              </div><script>
      window.addEventListener('DOMContentLoaded', (event) => {
          new PagefindUI({
